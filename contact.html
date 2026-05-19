@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Rebel Ranch Ministries — Trenton, FL</title>
+<meta name="description" content="Get in touch with Rebel Ranch Ministries. Book a session, send a message, or find your path.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Lato:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<script src="https://www.paypal.com/sdk/js?client-id=BAAbIxhvUS0zj2F3I5KlgriP9hAG_X8vwKSQcj6MACt9KBVLBzA0C6dO67oUk9ydTwWilpf4LuSZuZ9uTE&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0D0700;--dark:#1A0A00;--maroon:#7A1A1A;--maroon-light:#9B2222;
+  --gold:#C4962A;--gold-light:#E0B84A;--cream:#F0E6D3;--cream-light:#FAF6F0;
+  --white:#FFFFFF;--sage:#5C6B4A;--sage-light:#7A8F62;--text-muted:#8A7A6A;
+  --border:rgba(196,150,42,0.25);--green:#2E7D32;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--dark);color:var(--cream);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(13,7,0,0.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);letter-spacing:3px;text-decoration:none}
+.nav-logo span{color:var(--white)}
+.nav-links{display:flex;gap:1.25rem;list-style:none;align-items:center}
+.nav-links a{font-family:'Lato',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--cream);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a.active{color:var(--gold)}
+.nav-book{background:var(--maroon);color:var(--white)!important;padding:0.4rem 1rem;border-radius:2px;white-space:nowrap}
+.nav-book:hover{background:var(--maroon-light)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{width:24px;height:2px;background:var(--gold);display:block}
+section{padding:5rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+.section-tag{font-family:'Lato',sans-serif;font-size:0.65rem;letter-spacing:4px;font-weight:700;color:var(--gold);text-transform:uppercase;margin-bottom:1rem;display:block}
+h1,h2{font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;line-height:1;color:var(--white);margin-bottom:1rem}
+h1{font-size:clamp(2.5rem,5vw,4rem)}
+h2{font-size:clamp(1.8rem,3.5vw,2.8rem)}
+h2 .gold,h1 .gold{color:var(--gold)}
+h3{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem}
+.lead{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--cream);opacity:0.88;line-height:1.7;margin-bottom:1.5rem}
+p{line-height:1.8;color:var(--cream);opacity:0.8;margin-bottom:0.75rem}
+.divider{width:60px;height:2px;background:var(--gold);margin:1.5rem 0}
+.divider-center{margin:1.5rem auto}
+.btn-primary{background:var(--maroon);color:var(--white);font-family:'Oswald',sans-serif;font-size:0.82rem;letter-spacing:3px;text-transform:uppercase;padding:0.9rem 2rem;text-decoration:none;transition:background 0.2s;border:none;cursor:pointer;display:inline-block}
+.btn-primary:hover{background:var(--maroon-light)}
+.btn-secondary{background:transparent;color:var(--gold);font-family:'Oswald',sans-serif;font-size:0.82rem;letter-spacing:3px;text-transform:uppercase;padding:0.9rem 2rem;text-decoration:none;border:1px solid var(--gold);transition:all 0.2s;cursor:pointer;display:inline-block}
+.btn-secondary:hover{background:var(--gold);color:var(--dark)}
+.btn-sage{background:var(--sage);color:var(--white);font-family:'Oswald',sans-serif;font-size:0.82rem;letter-spacing:3px;text-transform:uppercase;padding:0.9rem 2rem;text-decoration:none;transition:background 0.2s;border:none;cursor:pointer;display:inline-block}
+.btn-sage:hover{background:var(--sage-light)}
+.badge{display:inline-block;font-family:'Lato',sans-serif;font-size:0.58rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:0.25rem 0.65rem;margin-top:0.75rem}
+.badge-open{background:#2E7D32;color:#fff}
+.badge-soon{background:var(--maroon);color:#fff}
+.badge-apply{background:var(--gold);color:var(--dark)}
+.badge-founding{background:var(--sage);color:#fff}
+.badge-sponsor{background:#5a3e00;color:var(--gold-light);border:1px solid var(--gold)}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+footer{background:#060200;border-top:1px solid var(--border);padding:3rem 2rem;text-align:center}
+.footer-logo{font-family:'Oswald',sans-serif;font-size:1.4rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem}
+.footer-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.95rem;color:var(--cream);opacity:0.45;margin-bottom:1.5rem}
+.footer-links{display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem}
+.footer-links a{font-family:'Lato',sans-serif;font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.2s}
+.footer-links a:hover{color:var(--gold)}
+.footer-social{display:flex;gap:0.75rem;justify-content:center;margin-bottom:1.5rem}
+.footer-social a{width:36px;height:36px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--cream);text-decoration:none;font-size:0.75rem;transition:all 0.2s}
+.footer-social a:hover{border-color:var(--gold);color:var(--gold)}
+.footer-legal{font-size:0.62rem;color:rgba(138,122,106,0.5);max-width:700px;margin:1rem auto 0;line-height:1.7}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .mobile-menu-open .nav-links{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:rgba(13,7,0,0.98);padding:1rem 2rem 2rem;gap:1rem;border-bottom:1px solid var(--border)}
+}
+</style>
+</head>
+<body>
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">REBEL <span>RANCH</span></a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Home</a></li>
+<li><a href="academy.html">Academy</a></li>
+<li><a href="creation.html">Creation Station</a></li>
+<li><a href="services.html">Services</a></li>
+<li><a href="marketplace.html">Marketplace</a></li>
+<li><a href="community.html">Community</a></li>
+<li><a href="support.html">Support</a></li>
+<li><a href="contact.html" class="active">Contact</a></li>
+
+    <li><a href="https://calendly.com/rebelranchfl" target="_blank" class="nav-book">Book a Session</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav><section style="padding:8rem 2rem 4rem;background:#0A0300;text-align:center">
+  <div class="container">
+    <span class="section-tag">Get In Touch</span>
+    <h1>Let's <span class='gold'>Talk.</span></h1>
+    <div class="divider divider-center"></div>
+    <p class="lead" style="max-width:650px;margin:0 auto">Real people. Real answers. No bots, no scripts, no automated responses. A human will read your message and respond personally.</p>
+  </div>
+</section>
+<section style="background:var(--black);padding:3rem 2rem 5rem">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem" class="fade-in">
+      <div>
+        <h3 style="margin-bottom:1.5rem">Reach Us</h3>
+        <div style="display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.25rem">
+          <span style="color:var(--gold);font-size:1rem;flex-shrink:0;margin-top:2px">📍</span>
+          <div style="font-size:0.85rem;color:var(--cream);opacity:0.8">Actively under construction in Trenton, FL.<br><span style="opacity:0.6;font-size:0.8rem">The door is always open for the right conversation.</span></div>
+        </div>
+        <div style="display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.25rem">
+          <span style="color:var(--gold);font-size:1rem;flex-shrink:0;margin-top:2px">✉️</span>
+          <div style="font-size:0.85rem;color:var(--cream);opacity:0.8">Church: <a href="mailto:ffnchurch@proton.me" style="color:var(--gold);text-decoration:none">ffnchurch@proton.me</a><br>Ministry: <a href="mailto:rebelranchfl@gmail.com" style="color:var(--gold);text-decoration:none">rebelranchfl@gmail.com</a></div>
+        </div>
+        <div style="display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.25rem">
+          <span style="color:var(--gold);font-size:1rem;flex-shrink:0;margin-top:2px">📘</span>
+          <div style="font-size:0.85rem"><a href="https://www.facebook.com/rebelranchministries" target="_blank" style="color:var(--gold);text-decoration:none">Facebook: Rebel Ranch Ministries</a></div>
+        </div>
+        <div style="display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.25rem">
+          <span style="color:var(--gold);font-size:1rem;flex-shrink:0;margin-top:2px">📸</span>
+          <div style="font-size:0.85rem"><a href="https://www.instagram.com/rebel_ranch_fl" target="_blank" style="color:var(--gold);text-decoration:none">Instagram: @rebel_ranch_fl</a></div>
+        </div>
+        <div style="display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.25rem">
+          <span style="color:var(--gold);font-size:1rem;flex-shrink:0;margin-top:2px">▶</span>
+          <div style="font-size:0.85rem"><a href="https://www.youtube.com/@RebelRanchMinistries" target="_blank" style="color:var(--gold);text-decoration:none">YouTube: @RebelRanchMinistries</a></div>
+        </div>
+        <div style="display:flex;gap:1rem;align-items:flex-start;margin-bottom:2rem">
+          <span style="color:var(--gold);font-size:1rem;flex-shrink:0;margin-top:2px">📸</span>
+          <div style="font-size:0.85rem"><a href="https://drive.google.com/drive/folders/1eQVvegeVb38qGOsTVidBb_CWd2QqR_HW?usp=sharing" target="_blank" style="color:var(--gold);text-decoration:none">View Property Photos on Google Drive</a></div>
+        </div>
+        <div style="margin-top:2rem;padding:1.5rem;border:1px solid var(--border);background:rgba(196,150,42,0.04)">
+          <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:var(--gold);margin-bottom:0">"We are done being managed. Done with algorithms deciding what we see. Done with food that poisons the people we love. Done with systems that were never designed to serve us."</p>
+        </div>
+      </div>
+      <div>
+        <div style="margin-bottom:2rem;padding:1.25rem 1.5rem;border:1px solid var(--border);background:rgba(196,150,42,0.05);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+      <div>
+        <p style="font-family:'Oswald',sans-serif;font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:0.25rem">Ready to Book a Session?</p>
+        <p style="font-size:0.85rem;margin-bottom:0;opacity:0.8">Skip the form and book directly. Assessments start at $33.</p>
+      </div>
+      <a href="https://calendly.com/rebelranchfl" target="_blank" class="btn-primary" style="white-space:nowrap">Book on Calendly</a>
+    </div>
+    <form id="contact-form" action="https://formspree.io/f/xnjrqydq" method="POST">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+        <input type="text" name="name" placeholder="Your Name" required style="padding:0.85rem 1rem;background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--cream);font-family:'Lato',sans-serif;font-size:0.88rem;outline:none;width:100%">
+        <input type="email" name="email" placeholder="Your Email" required style="padding:0.85rem 1rem;background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--cream);font-family:'Lato',sans-serif;font-size:0.88rem;outline:none;width:100%">
+      </div>
+      <input type="text" name="contact_method" placeholder="Best way to reach you — phone, email, or chat? (optional)" style="padding:0.85rem 1rem;background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--cream);font-family:'Lato',sans-serif;font-size:0.88rem;outline:none;width:100%;margin-bottom:1rem">
+      <textarea name="message" placeholder="Tell us a little about yourself and what brought you here today..." required style="width:100%;padding:0.85rem 1rem;background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--cream);font-family:'Lato',sans-serif;font-size:0.88rem;outline:none;height:130px;resize:vertical;margin-bottom:1rem"></textarea>
+      <input type="hidden" name="_subject" value="New Rebel Ranch Inquiry">
+      <button type="submit" class="btn-primary" style="width:100%;border:none;cursor:pointer">Send Message</button>
+    </form>
+    <div id="form-success" style="display:none;margin-top:1rem;padding:1rem;border:1px solid var(--gold);background:rgba(196,150,42,0.1);text-align:center">
+      <p style="color:var(--gold);margin-bottom:0;font-family:'Oswald',sans-serif;letter-spacing:2px;text-transform:uppercase;font-size:0.88rem">Message received. We will be in touch.</p>
+    </div>
+    <script>
+    const cf=document.getElementById('contact-form');
+    if(cf){cf.addEventListener('submit',async function(e){
+      e.preventDefault();
+      const btn=cf.querySelector('button[type="submit"]');
+      btn.textContent='Sending...';
+      try{
+        const res=await fetch(cf.action,{method:'POST',body:new FormData(cf),headers:{'Accept':'application/json'}});
+        if(res.ok){document.getElementById('form-success').style.display='block';cf.style.display='none';}
+        else{btn.textContent='Error - try again';}
+      }catch(err){btn.textContent='Error - try again';}
+    });}
+    </script>
+      </div>
+    </div>
+    <div style="margin-top:4rem;padding:3rem;border:1px solid var(--border);background:rgba(196,150,42,0.04);text-align:center;max-width:800px;margin-left:auto;margin-right:auto">
+      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--gold);line-height:1.9;margin-bottom:0">"We are not here to fight the machine. We are here to build something it cannot touch.<br><br>Real food. Real skills. Real faith. Real people. A community that takes care of itself — because nobody else is coming.<br><br>This is for the ones who are done waiting. The ones who are ready to work. The ones looking for their tribe.<br><br>Welcome home."</p>
+    </div>
+  </div>
+</section><footer>
+  <div class="footer-logo">REBEL RANCH</div>
+  <p class="footer-tagline">Faith · Family · Freedom</p>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="academy.html">Academy</a>
+    <a href="creation.html">Creation Station</a>
+    <a href="services.html">Services</a>
+    <a href="marketplace.html">Marketplace</a>
+    <a href="community.html">Community</a>
+    <a href="support.html">Support</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="footer-social">
+    <a href="https://www.facebook.com/rebelranchministries" target="_blank">f</a>
+    <a href="https://www.instagram.com/rebel_ranch_fl" target="_blank">ig</a>
+    <a href="https://www.youtube.com/@RebelRanchMinistries" target="_blank">yt</a>
+    <a href="mailto:rebelranchfl@gmail.com">@</a>
+  </div>
+  <p style="font-size:0.72rem;color:var(--text-muted);margin-bottom:0.5rem">
+    <a href="https://drive.google.com/drive/folders/1eQVvegeVb38qGOsTVidBb_CWd2QqR_HW?usp=sharing" target="_blank" style="color:var(--gold);text-decoration:none">📸 View Property Photos</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.youtube.com/@RebelRanchMinistries" target="_blank" style="color:var(--gold);text-decoration:none">▶ Watch on YouTube</a>
+  </p>
+  <p class="footer-legal">Faith, Family & Nature Church, Inc. operates as a tax-exempt church under Section 501(c)(3) of the Internal Revenue Code. Rebel Ranch Ministries is a privately organized ministry. The Rebel Ranch Marketplace is a Private Membership Association — membership by application only. Nothing on this website constitutes legal, financial, or tax advice. © 2026 Rebel Ranch Ministries · Trenton, Florida</p>
+</footer><script>
+function toggleMenu(){
+  document.getElementById('main-nav').classList.toggle('mobile-menu-open');
+}
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+</script><!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6a0c711f0454421c389d69dd/1jp09jpbe';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+</body></html>

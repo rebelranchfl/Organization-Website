@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Services | Rebel Ranch Ministries — Trenton, FL</title>
+<meta name="description" content="Business consulting, tax navigation, LLC formation, asset protection, pastoral care and life navigation. Angel number pricing. Barter welcome.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Lato:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<script src="https://www.paypal.com/sdk/js?client-id=BAAbIxhvUS0zj2F3I5KlgriP9hAG_X8vwKSQcj6MACt9KBVLBzA0C6dO67oUk9ydTwWilpf4LuSZuZ9uTE&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0D0700;--dark:#1A0A00;--maroon:#7A1A1A;--maroon-light:#9B2222;
+  --gold:#C4962A;--gold-light:#E0B84A;--cream:#F0E6D3;--cream-light:#FAF6F0;
+  --white:#FFFFFF;--sage:#5C6B4A;--sage-light:#7A8F62;--text-muted:#8A7A6A;
+  --border:rgba(196,150,42,0.25);--green:#2E7D32;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--dark);color:var(--cream);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(13,7,0,0.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);letter-spacing:3px;text-decoration:none}
+.nav-logo span{color:var(--white)}
+.nav-links{display:flex;gap:1.25rem;list-style:none;align-items:center}
+.nav-links a{font-family:'Lato',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--cream);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a.active{color:var(--gold)}
+.nav-book{background:var(--maroon);color:var(--white)!important;padding:0.4rem 1rem;border-radius:2px;white-space:nowrap}
+.nav-book:hover{background:var(--maroon-light)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{width:24px;height:2px;background:var(--gold);display:block}
+section{padding:5rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+.section-tag{font-family:'Lato',sans-serif;font-size:0.65rem;letter-spacing:4px;font-weight:700;color:var(--gold);text-transform:uppercase;margin-bottom:1rem;display:block}
+h1,h2{font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;line-height:1;color:var(--white);margin-bottom:1rem}
+h1{font-size:clamp(2.5rem,5vw,4rem)}
+h2{font-size:clamp(1.8rem,3.5vw,2.8rem)}
+h2 .gold,h1 .gold{color:var(--gold)}
+h3{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem}
+.lead{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--cream);opacity:0.88;line-height:1.7;margin-bottom:1.5rem}
+p{line-height:1.8;color:var(--cream);opacity:0.8;margin-bottom:0.75rem}
+.divider{width:60px;height:2px;background:var(--gold);margin:1.5rem 0}
+.divider-center{margin:1.5rem auto}
+.btn-primary{background:var(--maroon);color:var(--white);font-family:'Oswald',sans-serif;font-size:0.82rem;letter-spacing:3px;text-transform:uppercase;padding:0.9rem 2rem;text-decoration:none;transition:background 0.2s;border:none;cursor:pointer;display:inline-block}
+.btn-primary:hover{background:var(--maroon-light)}
+.btn-secondary{background:transparent;color:var(--gold);font-family:'Oswald',sans-serif;font-size:0.82rem;letter-spacing:3px;text-transform:uppercase;padding:0.9rem 2rem;text-decoration:none;border:1px solid var(--gold);transition:all 0.2s;cursor:pointer;display:inline-block}
+.btn-secondary:hover{background:var(--gold);color:var(--dark)}
+.btn-sage{background:var(--sage);color:var(--white);font-family:'Oswald',sans-serif;font-size:0.82rem;letter-spacing:3px;text-transform:uppercase;padding:0.9rem 2rem;text-decoration:none;transition:background 0.2s;border:none;cursor:pointer;display:inline-block}
+.btn-sage:hover{background:var(--sage-light)}
+.badge{display:inline-block;font-family:'Lato',sans-serif;font-size:0.58rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:0.25rem 0.65rem;margin-top:0.75rem}
+.badge-open{background:#2E7D32;color:#fff}
+.badge-soon{background:var(--maroon);color:#fff}
+.badge-apply{background:var(--gold);color:var(--dark)}
+.badge-founding{background:var(--sage);color:#fff}
+.badge-sponsor{background:#5a3e00;color:var(--gold-light);border:1px solid var(--gold)}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+footer{background:#060200;border-top:1px solid var(--border);padding:3rem 2rem;text-align:center}
+.footer-logo{font-family:'Oswald',sans-serif;font-size:1.4rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem}
+.footer-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.95rem;color:var(--cream);opacity:0.45;margin-bottom:1.5rem}
+.footer-links{display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem}
+.footer-links a{font-family:'Lato',sans-serif;font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.2s}
+.footer-links a:hover{color:var(--gold)}
+.footer-social{display:flex;gap:0.75rem;justify-content:center;margin-bottom:1.5rem}
+.footer-social a{width:36px;height:36px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--cream);text-decoration:none;font-size:0.75rem;transition:all 0.2s}
+.footer-social a:hover{border-color:var(--gold);color:var(--gold)}
+.footer-legal{font-size:0.62rem;color:rgba(138,122,106,0.5);max-width:700px;margin:1rem auto 0;line-height:1.7}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .mobile-menu-open .nav-links{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:rgba(13,7,0,0.98);padding:1rem 2rem 2rem;gap:1rem;border-bottom:1px solid var(--border)}
+}
+</style>
+</head>
+<body>
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">REBEL <span>RANCH</span></a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Home</a></li>
+<li><a href="academy.html">Academy</a></li>
+<li><a href="creation.html">Creation Station</a></li>
+<li><a href="services.html" class="active">Services</a></li>
+<li><a href="marketplace.html">Marketplace</a></li>
+<li><a href="community.html">Community</a></li>
+<li><a href="support.html">Support</a></li>
+<li><a href="contact.html">Contact</a></li>
+
+    <li><a href="https://calendly.com/rebelranchfl" target="_blank" class="nav-book">Book a Session</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav><section style="padding:8rem 2rem 4rem;background:#0A0300;text-align:center">
+  <div class="container">
+    <span class="section-tag">Rebel Ranch Academy — Business Services</span>
+    <h1>There Is Always<br><span class='gold'>a Way Forward.</span></h1>
+    <div class="divider divider-center"></div>
+    <p class="lead" style="max-width:650px;margin:0 auto">Real answers from a real human. No scripts. No bots. No runaround. Bring your business, your questions, and your situation. We will figure it out together.</p>
+  </div>
+</section>
+<section style="background:#0A0300;padding:3rem 2rem 5rem">
+  <div class="container">
+    <div style="margin-bottom:3rem;padding:1.25rem 1.5rem;border-left:2px solid var(--gold);background:rgba(196,150,42,0.05)">
+      <p style="font-family:'Oswald',sans-serif;font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem">Why Angel Numbers?</p>
+      <p style="font-size:0.85rem;margin-bottom:0">Every price here is intentional. 33 is the Master Teacher — compassion, healing, the beginning. 222 is the farming number — plant, tend, wait, grow. 333 is creativity and structure — turning work into freedom. 444 is stability and hard work. 555 is change and freedom. We operate on faith in every direction — including how we charge. Barter is always welcome. Contact us if you need an alternative arrangement.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem" class="fade-in">
+      <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:2rem;transition:border-color 0.3s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(196,150,42,0.25)'">
+      <div style="font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;color:var(--gold);margin-bottom:0.25rem">$33</div>
+      <div style="font-family:'Lato',sans-serif;font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem">The Master Teacher</div>
+      <h3 style="margin-bottom:0.5rem">Business Health Assessment</h3>
+      <p style="font-size:0.85rem;margin-bottom:1rem">45 min · The starting point for everything. We review where you are, identify the gaps, and map exactly which services will move the needle. 33 — compassion, healing, the beginning.</p>
+      <a href="https://calendly.com/rebelranchfl" target="_blank" style="display:inline-block;font-family:'Oswald',sans-serif;font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid var(--gold);padding:0.3rem 0.75rem">Book Now →</a>
+    </div><div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:2rem;transition:border-color 0.3s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(196,150,42,0.25)'">
+      <div style="font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;color:var(--gold);margin-bottom:0.25rem">$33</div>
+      <div style="font-family:'Lato',sans-serif;font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem">The Master Teacher</div>
+      <h3 style="margin-bottom:0.5rem">Pastoral Care — I'm Going Through It</h3>
+      <p style="font-size:0.85rem;margin-bottom:1rem">45 min · Sometimes you just need a real human who will listen without judgment and speak truth without an agenda. This session is offered as ministry. A donation to support our programs is always welcome but never required.</p>
+      <a href="https://calendly.com/rebelranchfl" target="_blank" style="display:inline-block;font-family:'Oswald',sans-serif;font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid var(--gold);padding:0.3rem 0.75rem">Book Now →</a>
+    </div><div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:2rem;transition:border-color 0.3s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(196,150,42,0.25)'">
+      <div style="font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;color:var(--gold);margin-bottom:0.25rem">$33</div>
+      <div style="font-family:'Lato',sans-serif;font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem">The Master Teacher</div>
+      <h3 style="margin-bottom:0.5rem">Life Navigation Session</h3>
+      <p style="font-size:0.85rem;margin-bottom:1rem">60 min · You are at a crossroads. You cannot see clearly because you are too close to it. We remove the noise, identify what is actually happening, and build a direction forward. Not therapy. Not advice. Clarity.</p>
+      <a href="https://calendly.com/rebelranchfl" target="_blank" style="display:inline-block;font-family:'Oswald',sans-serif;font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid var(--gold);padding:0.3rem 0.75rem">Book Now →</a>
+    </div><div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:2rem;transition:border-color 0.3s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(196,150,42,0.25)'">
+      <div style="font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;color:var(--gold);margin-bottom:0.25rem">$111</div>
+      <div style="font-family:'Lato',sans-serif;font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem">New Beginnings</div>
+      <h3 style="margin-bottom:0.5rem">Business Strategy Session</h3>
+      <p style="font-size:0.85rem;margin-bottom:1rem">60 min · You know something is not working. Bring your business, your frustration, and your questions. Leave with clarity, direction, and a plan. 111 — new beginnings, leadership, the first real step.</p>
+      <a href="https://calendly.com/rebelranchfl" target="_blank" style="display:inline-block;font-family:'Oswald',sans-serif;font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid var(--gold);padding:0.3rem 0.75rem">Book Now →</a>
+    </div><div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:2rem;transition:border-color 0.3s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(196,150,42,0.25)'">
+      <div style="font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;color:var(--gold);margin-bottom:0.25rem">$111</div>
+      <div style="font-family:'Lato',sans-serif;font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem">New Beginnings</div>
+      <h3 style="margin-bottom:0.5rem">Registered Agent Service</h3>
+      <p style="font-size:0.85rem;margin-bottom:1rem">Annual · We serve as your registered agent in Florida — your official point of contact for state and legal documents. 111 — new beginnings, maintained. Per year, per entity.</p>
+      <a href="https://calendly.com/rebelranchfl" target="_blank" style="display:inline-block;font-family:'Oswald',sans-serif;font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid var(--gold);padding:0.3rem 0.75rem">Book Now →</a>
+    </div><div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:2rem;transition:border-color 0.3s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(196,150,42,0.25)'">
+      <div style="font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;color:var(--gold);margin-bottom:0.25rem">$222</div>
+      <div style="font-family:'Lato',sans-serif;font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem">The Farming Number</div>
+      <h3 style="margin-bottom:0.5rem">Business Audit + Written Plan</h3>
+      <p style="font-size:0.85rem;margin-bottom:1rem">90 min + document · A deep dive into your business followed by a written summary of findings and a clear action plan you keep. 222 — plant, tend, wait, grow.</p>
+      <a href="https://calendly.com/rebelranchfl" target="_blank" style="display:inline-block;font-family:'Oswald',sans-serif;font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid var(--gold);padding:0.3rem 0.75rem">Book Now →</a>
+    </div><div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:2rem;transition:border-color 0.3s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(196,150,42,0.25)'">
+      <div style="font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;color:var(--gold);margin-bottom:0.25rem">$222</div>
+      <div style="font-family:'Lato',sans-serif;font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem">The Farming Number</div>
+      <h3 style="margin-bottom:0.5rem">LLC Formation + Filing</h3>
+      <p style="font-size:0.85rem;margin-bottom:1rem">60 min · We handle the paperwork and file your LLC with the state of Florida. Florida state fee of $87.50 is separate. Our service: $222. 222 — building the structure that lets your seeds grow.</p>
+      <a href="https://calendly.com/rebelranchfl" target="_blank" style="display:inline-block;font-family:'Oswald',sans-serif;font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid var(--gold);padding:0.3rem 0.75rem">Book Now →</a>
+    </div><div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:2rem;transition:border-color 0.3s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(196,150,42,0.25)'">
+      <div style="font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;color:var(--gold);margin-bottom:0.25rem">$333</div>
+      <div style="font-family:'Lato',sans-serif;font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem">Creativity & Structure</div>
+      <h3 style="margin-bottom:0.5rem">Accounting Setup + Tax Optimization</h3>
+      <p style="font-size:0.85rem;margin-bottom:1rem">90 min · Most small businesses leave money on the table every year. We set up your accounting structure and identify your legitimate deductions. 333 — turning your work into freedom.</p>
+      <a href="https://calendly.com/rebelranchfl" target="_blank" style="display:inline-block;font-family:'Oswald',sans-serif;font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid var(--gold);padding:0.3rem 0.75rem">Book Now →</a>
+    </div><div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:2rem;transition:border-color 0.3s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(196,150,42,0.25)'">
+      <div style="font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;color:var(--gold);margin-bottom:0.25rem">$333</div>
+      <div style="font-family:'Lato',sans-serif;font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem">Creativity & Structure</div>
+      <h3 style="margin-bottom:0.5rem">Tax Navigation Consultation</h3>
+      <p style="font-size:0.85rem;margin-bottom:1rem">60 min · Not tax preparation — tax education. We walk through your situation and give you the questions to ask your CPA. Note: educational consultation, not licensed tax advice.</p>
+      <a href="https://calendly.com/rebelranchfl" target="_blank" style="display:inline-block;font-family:'Oswald',sans-serif;font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid var(--gold);padding:0.3rem 0.75rem">Book Now →</a>
+    </div><div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:2rem;transition:border-color 0.3s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(196,150,42,0.25)'">
+      <div style="font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;color:var(--gold);margin-bottom:0.25rem">$333</div>
+      <div style="font-family:'Lato',sans-serif;font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem">Creativity & Structure</div>
+      <h3 style="margin-bottom:0.5rem">Trust & Asset Protection Strategy</h3>
+      <p style="font-size:0.85rem;margin-bottom:1rem">60 min · Trusts, asset titling, generational wealth transfer — the structures that make sure what you build actually lasts. 333.</p>
+      <a href="https://calendly.com/rebelranchfl" target="_blank" style="display:inline-block;font-family:'Oswald',sans-serif;font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid var(--gold);padding:0.3rem 0.75rem">Book Now →</a>
+    </div><div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:2rem;transition:border-color 0.3s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(196,150,42,0.25)'">
+      <div style="font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;color:var(--gold);margin-bottom:0.25rem">$444</div>
+      <div style="font-family:'Lato',sans-serif;font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem">Stability & Structure</div>
+      <h3 style="margin-bottom:0.5rem">Monthly Business Coaching</h3>
+      <p style="font-size:0.85rem;margin-bottom:1rem">4 sessions/month · Ongoing strategy, accountability, and direction. We do not work with everyone — intro call required first. 444 — stability, hard work, reliability.</p>
+      <a href="https://calendly.com/rebelranchfl" target="_blank" style="display:inline-block;font-family:'Oswald',sans-serif;font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid var(--gold);padding:0.3rem 0.75rem">Book Now →</a>
+    </div><div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:2rem;transition:border-color 0.3s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(196,150,42,0.25)'">
+      <div style="font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;color:var(--gold);margin-bottom:0.25rem">$555</div>
+      <div style="font-family:'Lato',sans-serif;font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem">Change & Freedom</div>
+      <h3 style="margin-bottom:0.5rem">Team Alignment Workshop</h3>
+      <p style="font-size:0.85rem;margin-bottom:1rem">Per session · Your team is your business. If they are not aligned, nothing else matters. We work directly with your team. 555 — change, freedom, transformation.</p>
+      <a href="https://calendly.com/rebelranchfl" target="_blank" style="display:inline-block;font-family:'Oswald',sans-serif;font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid var(--gold);padding:0.3rem 0.75rem">Book Now →</a>
+    </div>
+    </div>
+    <div style="margin-top:3rem;padding:2rem;border:1px solid var(--border);background:rgba(196,150,42,0.04);display:flex;gap:2rem;align-items:center;flex-wrap:wrap">
+      <div style="font-size:2rem">🤝</div>
+      <div>
+        <h3 style="margin-bottom:0.5rem">Barter & Alternative Arrangements</h3>
+        <p style="font-size:0.85rem;margin-bottom:0">We accept barter. Farm products, skilled labor, services, materials. We also offer payment plans and investment arrangements for the right situations. Nobody is turned away because they cannot pay. Contact us and we will figure something out.</p>
+      </div>
+      <a href="contact.html" class="btn-secondary" style="white-space:nowrap">Let's Talk</a>
+    </div>
+    <p style="font-size:0.72rem;margin-top:2rem;opacity:0.5;text-align:center">Business and financial education provided through Rebel Ranch Academy is for informational and educational purposes only and does not constitute legal, tax, or financial advice. Pastoral care sessions are provided as ministry. Consult a licensed professional for advice specific to your situation.</p>
+  </div>
+</section>
+<footer>
+  <div class="footer-logo">REBEL RANCH</div>
+  <p class="footer-tagline">Faith · Family · Freedom</p>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="academy.html">Academy</a>
+    <a href="creation.html">Creation Station</a>
+    <a href="services.html">Services</a>
+    <a href="marketplace.html">Marketplace</a>
+    <a href="community.html">Community</a>
+    <a href="support.html">Support</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="footer-social">
+    <a href="https://www.facebook.com/rebelranchministries" target="_blank">f</a>
+    <a href="https://www.instagram.com/rebel_ranch_fl" target="_blank">ig</a>
+    <a href="https://www.youtube.com/@RebelRanchMinistries" target="_blank">yt</a>
+    <a href="mailto:rebelranchfl@gmail.com">@</a>
+  </div>
+  <p style="font-size:0.72rem;color:var(--text-muted);margin-bottom:0.5rem">
+    <a href="https://drive.google.com/drive/folders/1eQVvegeVb38qGOsTVidBb_CWd2QqR_HW?usp=sharing" target="_blank" style="color:var(--gold);text-decoration:none">📸 View Property Photos</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.youtube.com/@RebelRanchMinistries" target="_blank" style="color:var(--gold);text-decoration:none">▶ Watch on YouTube</a>
+  </p>
+  <p class="footer-legal">Faith, Family & Nature Church, Inc. operates as a tax-exempt church under Section 501(c)(3) of the Internal Revenue Code. Rebel Ranch Ministries is a privately organized ministry. The Rebel Ranch Marketplace is a Private Membership Association — membership by application only. Nothing on this website constitutes legal, financial, or tax advice. © 2026 Rebel Ranch Ministries · Trenton, Florida</p>
+</footer><script>
+function toggleMenu(){
+  document.getElementById('main-nav').classList.toggle('mobile-menu-open');
+}
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+</script></body></html>

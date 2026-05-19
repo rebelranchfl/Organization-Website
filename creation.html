@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creation Station | Rebel Ranch Ministries — Trenton, FL</title>
+<meta name="description" content="For kids and crafters ready to turn what they love into how they live. Your passion is the beginning of something extraordinary.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Lato:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<script src="https://www.paypal.com/sdk/js?client-id=BAAbIxhvUS0zj2F3I5KlgriP9hAG_X8vwKSQcj6MACt9KBVLBzA0C6dO67oUk9ydTwWilpf4LuSZuZ9uTE&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0D0700;--dark:#1A0A00;--maroon:#7A1A1A;--maroon-light:#9B2222;
+  --gold:#C4962A;--gold-light:#E0B84A;--cream:#F0E6D3;--cream-light:#FAF6F0;
+  --white:#FFFFFF;--sage:#5C6B4A;--sage-light:#7A8F62;--text-muted:#8A7A6A;
+  --border:rgba(196,150,42,0.25);--green:#2E7D32;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--dark);color:var(--cream);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(13,7,0,0.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);letter-spacing:3px;text-decoration:none}
+.nav-logo span{color:var(--white)}
+.nav-links{display:flex;gap:1.25rem;list-style:none;align-items:center}
+.nav-links a{font-family:'Lato',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--cream);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a.active{color:var(--gold)}
+.nav-book{background:var(--maroon);color:var(--white)!important;padding:0.4rem 1rem;border-radius:2px;white-space:nowrap}
+.nav-book:hover{background:var(--maroon-light)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{width:24px;height:2px;background:var(--gold);display:block}
+section{padding:5rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+.section-tag{font-family:'Lato',sans-serif;font-size:0.65rem;letter-spacing:4px;font-weight:700;color:var(--gold);text-transform:uppercase;margin-bottom:1rem;display:block}
+h1,h2{font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;line-height:1;color:var(--white);margin-bottom:1rem}
+h1{font-size:clamp(2.5rem,5vw,4rem)}
+h2{font-size:clamp(1.8rem,3.5vw,2.8rem)}
+h2 .gold,h1 .gold{color:var(--gold)}
+h3{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem}
+.lead{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--cream);opacity:0.88;line-height:1.7;margin-bottom:1.5rem}
+p{line-height:1.8;color:var(--cream);opacity:0.8;margin-bottom:0.75rem}
+.divider{width:60px;height:2px;background:var(--gold);margin:1.5rem 0}
+.divider-center{margin:1.5rem auto}
+.btn-primary{background:var(--maroon);color:var(--white);font-family:'Oswald',sans-serif;font-size:0.82rem;letter-spacing:3px;text-transform:uppercase;padding:0.9rem 2rem;text-decoration:none;transition:background 0.2s;border:none;cursor:pointer;display:inline-block}
+.btn-primary:hover{background:var(--maroon-light)}
+.btn-secondary{background:transparent;color:var(--gold);font-family:'Oswald',sans-serif;font-size:0.82rem;letter-spacing:3px;text-transform:uppercase;padding:0.9rem 2rem;text-decoration:none;border:1px solid var(--gold);transition:all 0.2s;cursor:pointer;display:inline-block}
+.btn-secondary:hover{background:var(--gold);color:var(--dark)}
+.btn-sage{background:var(--sage);color:var(--white);font-family:'Oswald',sans-serif;font-size:0.82rem;letter-spacing:3px;text-transform:uppercase;padding:0.9rem 2rem;text-decoration:none;transition:background 0.2s;border:none;cursor:pointer;display:inline-block}
+.btn-sage:hover{background:var(--sage-light)}
+.badge{display:inline-block;font-family:'Lato',sans-serif;font-size:0.58rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:0.25rem 0.65rem;margin-top:0.75rem}
+.badge-open{background:#2E7D32;color:#fff}
+.badge-soon{background:var(--maroon);color:#fff}
+.badge-apply{background:var(--gold);color:var(--dark)}
+.badge-founding{background:var(--sage);color:#fff}
+.badge-sponsor{background:#5a3e00;color:var(--gold-light);border:1px solid var(--gold)}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+footer{background:#060200;border-top:1px solid var(--border);padding:3rem 2rem;text-align:center}
+.footer-logo{font-family:'Oswald',sans-serif;font-size:1.4rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem}
+.footer-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.95rem;color:var(--cream);opacity:0.45;margin-bottom:1.5rem}
+.footer-links{display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem}
+.footer-links a{font-family:'Lato',sans-serif;font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.2s}
+.footer-links a:hover{color:var(--gold)}
+.footer-social{display:flex;gap:0.75rem;justify-content:center;margin-bottom:1.5rem}
+.footer-social a{width:36px;height:36px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--cream);text-decoration:none;font-size:0.75rem;transition:all 0.2s}
+.footer-social a:hover{border-color:var(--gold);color:var(--gold)}
+.footer-legal{font-size:0.62rem;color:rgba(138,122,106,0.5);max-width:700px;margin:1rem auto 0;line-height:1.7}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .mobile-menu-open .nav-links{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:rgba(13,7,0,0.98);padding:1rem 2rem 2rem;gap:1rem;border-bottom:1px solid var(--border)}
+}
+</style>
+</head>
+<body>
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">REBEL <span>RANCH</span></a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Home</a></li>
+<li><a href="academy.html">Academy</a></li>
+<li><a href="creation.html" class="active">Creation Station</a></li>
+<li><a href="services.html">Services</a></li>
+<li><a href="marketplace.html">Marketplace</a></li>
+<li><a href="community.html">Community</a></li>
+<li><a href="support.html">Support</a></li>
+<li><a href="contact.html">Contact</a></li>
+
+    <li><a href="https://calendly.com/rebelranchfl" target="_blank" class="nav-book">Book a Session</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav><section style="padding:8rem 2rem 4rem;background:#0A0300;text-align:center">
+  <div class="container">
+    <span class="section-tag">Creation Station</span>
+    <h1>Every Child Has<br><span class='gold'>a Passion.</span></h1>
+    <div class="divider divider-center"></div>
+    <p class="lead" style="max-width:650px;margin:0 auto">The world calls it a hobby and moves on. We call it the seed of something extraordinary — and we are here to water it.</p>
+  </div>
+</section>
+<section style="background:var(--dark);padding:3rem 2rem 5rem">
+  <div class="container">
+    <p style="font-size:0.95rem;opacity:0.85;max-width:750px;margin-bottom:3rem">Too many people spend their lives chasing a paycheck in work they hate. The answer is simple: they were never encouraged to follow what they loved. When people do what they are passionate about, everything changes. The quality of their work. The depth of their commitment. The happiness in their daily life. And the business that grows from it? That is not the goal. That is the reward.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem" class="fade-in">
+      <div style="border:1px solid var(--border);padding:2.5rem">
+        <span style="font-family:'Lato',sans-serif;font-size:0.6rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem;display:block">For Kids · Open Now</span>
+        <h3>Young Creators</h3>
+        <p style="font-size:0.88rem;margin-bottom:0.75rem"><strong style="color:var(--gold)">Parents — this is for you too.</strong> Your child has a passion. Maybe they draw constantly, build things, cook, take things apart, or craft something nobody asked for but everyone wants. That passion is not a distraction. It is a direction.</p>
+        <p style="font-size:0.88rem;margin-bottom:1rem">We provide the structure, the encouragement, and the business foundation for that passion to grow into something sustainable. Your child will leave knowing how to price their work, manage their money, and stand behind what they create — not because we forced it, but because they loved it first.</p>
+        <ul style="list-style:none;margin-bottom:1.5rem">
+          <li style="font-size:0.85rem;padding:0.4rem 0;border-bottom:1px solid rgba(196,150,42,0.1);display:flex;gap:0.75rem"><span style="color:var(--gold);font-size:0.55rem;margin-top:4px;flex-shrink:0">✦</span>Discover and develop their natural passion and gifts</li>
+          <li style="font-size:0.85rem;padding:0.4rem 0;border-bottom:1px solid rgba(196,150,42,0.1);display:flex;gap:0.75rem"><span style="color:var(--gold);font-size:0.55rem;margin-top:4px;flex-shrink:0">✦</span>Learn real business and money concepts</li>
+          <li style="font-size:0.85rem;padding:0.4rem 0;border-bottom:1px solid rgba(196,150,42,0.1);display:flex;gap:0.75rem"><span style="color:var(--gold);font-size:0.55rem;margin-top:4px;flex-shrink:0">✦</span>Build something they can actually sell</li>
+          <li style="font-size:0.85rem;padding:0.4rem 0;border-bottom:1px solid rgba(196,150,42,0.1);display:flex;gap:0.75rem"><span style="color:var(--gold);font-size:0.55rem;margin-top:4px;flex-shrink:0">✦</span>Understand value, pricing, and exchange</li>
+          <li style="font-size:0.85rem;padding:0.4rem 0;display:flex;gap:0.75rem"><span style="color:var(--gold);font-size:0.55rem;margin-top:4px;flex-shrink:0">✦</span>Enter adulthood ready — capable of supporting themselves with real skills, not just a diploma</li>
+        </ul>
+        <a href="contact.html" class="btn-primary" style="font-size:0.78rem;padding:0.75rem 1.5rem">Register Your Child</a>
+      </div>
+      <div style="border:1px solid var(--border);padding:2.5rem">
+        <span style="font-family:'Lato',sans-serif;font-size:0.6rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem;display:block">For Crafters & Makers · Open Now</span>
+        <h3>Creator Launch</h3>
+        <p style="font-size:0.88rem;margin-bottom:1rem">You have the talent. Maybe you need the structure, the strategy, or the platform. We help crafters turn what they love into what they live on — and give them a place to teach, sell, and grow.</p>
+        <ul style="list-style:none;margin-bottom:1.5rem">
+          <li style="font-size:0.85rem;padding:0.4rem 0;border-bottom:1px solid rgba(196,150,42,0.1);display:flex;gap:0.75rem"><span style="color:var(--gold);font-size:0.55rem;margin-top:4px;flex-shrink:0">✦</span>Launch or grow your craft business</li>
+          <li style="font-size:0.85rem;padding:0.4rem 0;border-bottom:1px solid rgba(196,150,42,0.1);display:flex;gap:0.75rem"><span style="color:var(--gold);font-size:0.55rem;margin-top:4px;flex-shrink:0">✦</span>Pricing, branding, and market strategy</li>
+          <li style="font-size:0.85rem;padding:0.4rem 0;border-bottom:1px solid rgba(196,150,42,0.1);display:flex;gap:0.75rem"><span style="color:var(--gold);font-size:0.55rem;margin-top:4px;flex-shrink:0">✦</span>Sell at Rebel Ranch events and market</li>
+          <li style="font-size:0.85rem;padding:0.4rem 0;border-bottom:1px solid rgba(196,150,42,0.1);display:flex;gap:0.75rem"><span style="color:var(--gold);font-size:0.55rem;margin-top:4px;flex-shrink:0">✦</span>Host a workshop or teach a class here</li>
+          <li style="font-size:0.85rem;padding:0.4rem 0;display:flex;gap:0.75rem"><span style="color:var(--gold);font-size:0.55rem;margin-top:4px;flex-shrink:0">✦</span>Business and finance guidance included</li>
+        </ul>
+        <a href="contact.html" class="btn-secondary" style="font-size:0.78rem;padding:0.75rem 1.5rem">Apply to the Creator Program</a>
+      </div>
+    </div>
+
+    <!-- Coming Soon - Kids Live Sessions -->
+    <div style="margin-top:3rem;border:1px solid rgba(196,150,42,0.4);padding:2.5rem;background:rgba(196,150,42,0.04);text-align:center" class="fade-in">
+      <span class="badge badge-soon" style="margin-bottom:1rem;display:inline-block">Coming Soon</span>
+      <h3 style="margin-bottom:0.75rem">Live Creative Sessions for Kids</h3>
+      <p style="max-width:600px;margin:0 auto 1.5rem;font-size:0.9rem">Safe, supervised, live online creative sessions hosted for kids. A dedicated hour for your child to create, connect, and grow — with real guidance from someone who actually cares. Frees up parents. Invests in kids. More details coming soon.</p>
+      <p style="font-size:0.8rem;color:var(--gold);margin-bottom:1.5rem">Help us schedule it right — tell us what days and times work for your family.</p>
+      <a href="contact.html" class="btn-secondary" style="font-size:0.78rem;padding:0.75rem 1.5rem">Tell Us What Works for You</a>
+    </div>
+
+    <!-- Closing quote -->
+    <div style="margin-top:3rem;padding:2rem;border:1px solid var(--border);background:rgba(196,150,42,0.04)">
+      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;text-align:center;color:var(--gold);margin-bottom:0">"The world will try to convince your child that passion is impractical and happiness is a luxury. We are here to tell them the opposite — and prove it. When you do what you love, with the right support and knowledge behind you, the business comes naturally. The success of that business is the only natural outcome. Trust the process."</p>
+    </div>
+  </div>
+</section><footer>
+  <div class="footer-logo">REBEL RANCH</div>
+  <p class="footer-tagline">Faith · Family · Freedom</p>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="academy.html">Academy</a>
+    <a href="creation.html">Creation Station</a>
+    <a href="services.html">Services</a>
+    <a href="marketplace.html">Marketplace</a>
+    <a href="community.html">Community</a>
+    <a href="support.html">Support</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="footer-social">
+    <a href="https://www.facebook.com/rebelranchministries" target="_blank">f</a>
+    <a href="https://www.instagram.com/rebel_ranch_fl" target="_blank">ig</a>
+    <a href="https://www.youtube.com/@RebelRanchMinistries" target="_blank">yt</a>
+    <a href="mailto:rebelranchfl@gmail.com">@</a>
+  </div>
+  <p style="font-size:0.72rem;color:var(--text-muted);margin-bottom:0.5rem">
+    <a href="https://drive.google.com/drive/folders/1eQVvegeVb38qGOsTVidBb_CWd2QqR_HW?usp=sharing" target="_blank" style="color:var(--gold);text-decoration:none">📸 View Property Photos</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.youtube.com/@RebelRanchMinistries" target="_blank" style="color:var(--gold);text-decoration:none">▶ Watch on YouTube</a>
+  </p>
+  <p class="footer-legal">Faith, Family & Nature Church, Inc. operates as a tax-exempt church under Section 501(c)(3) of the Internal Revenue Code. Rebel Ranch Ministries is a privately organized ministry. The Rebel Ranch Marketplace is a Private Membership Association — membership by application only. Nothing on this website constitutes legal, financial, or tax advice. © 2026 Rebel Ranch Ministries · Trenton, Florida</p>
+</footer><script>
+function toggleMenu(){
+  document.getElementById('main-nav').classList.toggle('mobile-menu-open');
+}
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+</script></body></html>

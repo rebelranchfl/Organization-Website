@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support the Mission | Rebel Ranch Ministries — Trenton, FL</title>
+<meta name="description" content="Every dollar goes back into the land, the programs, and the people. No executive salaries. No overhead games. Just real work getting funded.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Lato:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<script src="https://www.paypal.com/sdk/js?client-id=BAAbIxhvUS0zj2F3I5KlgriP9hAG_X8vwKSQcj6MACt9KBVLBzA0C6dO67oUk9ydTwWilpf4LuSZuZ9uTE&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0D0700;--dark:#1A0A00;--maroon:#7A1A1A;--maroon-light:#9B2222;
+  --gold:#C4962A;--gold-light:#E0B84A;--cream:#F0E6D3;--cream-light:#FAF6F0;
+  --white:#FFFFFF;--sage:#5C6B4A;--sage-light:#7A8F62;--text-muted:#8A7A6A;
+  --border:rgba(196,150,42,0.25);--green:#2E7D32;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--dark);color:var(--cream);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(13,7,0,0.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);letter-spacing:3px;text-decoration:none}
+.nav-logo span{color:var(--white)}
+.nav-links{display:flex;gap:1.25rem;list-style:none;align-items:center}
+.nav-links a{font-family:'Lato',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--cream);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a.active{color:var(--gold)}
+.nav-book{background:var(--maroon);color:var(--white)!important;padding:0.4rem 1rem;border-radius:2px;white-space:nowrap}
+.nav-book:hover{background:var(--maroon-light)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{width:24px;height:2px;background:var(--gold);display:block}
+section{padding:5rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+.section-tag{font-family:'Lato',sans-serif;font-size:0.65rem;letter-spacing:4px;font-weight:700;color:var(--gold);text-transform:uppercase;margin-bottom:1rem;display:block}
+h1,h2{font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;line-height:1;color:var(--white);margin-bottom:1rem}
+h1{font-size:clamp(2.5rem,5vw,4rem)}
+h2{font-size:clamp(1.8rem,3.5vw,2.8rem)}
+h2 .gold,h1 .gold{color:var(--gold)}
+h3{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem}
+.lead{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--cream);opacity:0.88;line-height:1.7;margin-bottom:1.5rem}
+p{line-height:1.8;color:var(--cream);opacity:0.8;margin-bottom:0.75rem}
+.divider{width:60px;height:2px;background:var(--gold);margin:1.5rem 0}
+.divider-center{margin:1.5rem auto}
+.btn-primary{background:var(--maroon);color:var(--white);font-family:'Oswald',sans-serif;font-size:0.82rem;letter-spacing:3px;text-transform:uppercase;padding:0.9rem 2rem;text-decoration:none;transition:background 0.2s;border:none;cursor:pointer;display:inline-block}
+.btn-primary:hover{background:var(--maroon-light)}
+.btn-secondary{background:transparent;color:var(--gold);font-family:'Oswald',sans-serif;font-size:0.82rem;letter-spacing:3px;text-transform:uppercase;padding:0.9rem 2rem;text-decoration:none;border:1px solid var(--gold);transition:all 0.2s;cursor:pointer;display:inline-block}
+.btn-secondary:hover{background:var(--gold);color:var(--dark)}
+.btn-sage{background:var(--sage);color:var(--white);font-family:'Oswald',sans-serif;font-size:0.82rem;letter-spacing:3px;text-transform:uppercase;padding:0.9rem 2rem;text-decoration:none;transition:background 0.2s;border:none;cursor:pointer;display:inline-block}
+.btn-sage:hover{background:var(--sage-light)}
+.badge{display:inline-block;font-family:'Lato',sans-serif;font-size:0.58rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:0.25rem 0.65rem;margin-top:0.75rem}
+.badge-open{background:#2E7D32;color:#fff}
+.badge-soon{background:var(--maroon);color:#fff}
+.badge-apply{background:var(--gold);color:var(--dark)}
+.badge-founding{background:var(--sage);color:#fff}
+.badge-sponsor{background:#5a3e00;color:var(--gold-light);border:1px solid var(--gold)}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+footer{background:#060200;border-top:1px solid var(--border);padding:3rem 2rem;text-align:center}
+.footer-logo{font-family:'Oswald',sans-serif;font-size:1.4rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem}
+.footer-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.95rem;color:var(--cream);opacity:0.45;margin-bottom:1.5rem}
+.footer-links{display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem}
+.footer-links a{font-family:'Lato',sans-serif;font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.2s}
+.footer-links a:hover{color:var(--gold)}
+.footer-social{display:flex;gap:0.75rem;justify-content:center;margin-bottom:1.5rem}
+.footer-social a{width:36px;height:36px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--cream);text-decoration:none;font-size:0.75rem;transition:all 0.2s}
+.footer-social a:hover{border-color:var(--gold);color:var(--gold)}
+.footer-legal{font-size:0.62rem;color:rgba(138,122,106,0.5);max-width:700px;margin:1rem auto 0;line-height:1.7}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .mobile-menu-open .nav-links{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:rgba(13,7,0,0.98);padding:1rem 2rem 2rem;gap:1rem;border-bottom:1px solid var(--border)}
+}
+</style>
+</head>
+<body>
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">REBEL <span>RANCH</span></a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Home</a></li>
+<li><a href="academy.html">Academy</a></li>
+<li><a href="creation.html">Creation Station</a></li>
+<li><a href="services.html">Services</a></li>
+<li><a href="marketplace.html">Marketplace</a></li>
+<li><a href="community.html">Community</a></li>
+<li><a href="support.html" class="active">Support</a></li>
+<li><a href="contact.html">Contact</a></li>
+
+    <li><a href="https://calendly.com/rebelranchfl" target="_blank" class="nav-book">Book a Session</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav><section style="padding:8rem 2rem 4rem;background:#0A0300;text-align:center">
+  <div class="container">
+    <span class="section-tag">Support the Mission</span>
+    <h1>This Isn't Charity.<br><span class='gold'>This Is an Investment.</span></h1>
+    <div class="divider divider-center"></div>
+    <p class="lead" style="max-width:650px;margin:0 auto">Every dollar goes back into the land, the programs, and the people. No executive salaries. No overhead games. Just real work getting funded.</p>
+  </div>
+</section>
+<section style="background:var(--maroon);padding:3rem 2rem 5rem">
+  <div class="container">
+    <div style="margin-bottom:2rem;padding:1.25rem 1.5rem;border-left:2px solid rgba(240,230,211,0.4);background:rgba(0,0,0,0.15)">
+      <p style="font-family:'Oswald',sans-serif;font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:rgba(240,230,211,0.7);margin-bottom:0.4rem">Why Angel Numbers?</p>
+      <p style="font-size:0.85rem;color:rgba(240,230,211,0.85);margin-bottom:0">Every price here is intentional. 33 is the Master Teacher — compassion, healing, nurturing. 222 is the farming number — plant, tend, wait, grow. 999 is graduation — the old cycle ending, the new one beginning. Focus on the why. Focus on the process. The how will come. Rebel Ranch is the how.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-bottom:3rem" class="fade-in">
+      <div style="background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.15);padding:2rem;cursor:pointer;transition:all 0.2s" onmouseover="this.style.background='rgba(0,0,0,0.35)';this.style.borderColor='var(--gold-light)'" onmouseout="this.style.background='rgba(0,0,0,0.2)';this.style.borderColor='rgba(255,255,255,0.15)'">
+        <div style="font-family:'Oswald',sans-serif;font-size:2.2rem;font-weight:700;color:var(--gold-light);margin-bottom:0.4rem">$33</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:rgba(240,230,211,0.6);margin-bottom:0.75rem">The Master Teacher</div>
+        <p style="font-size:0.85rem;color:rgba(240,230,211,0.85);line-height:1.6;margin-bottom:0">33 is compassion, healing, nurturing. This puts real supplies in a child's hands for a Creation Station lesson. You are planting something in a kid that may grow for the rest of their life. That is not a small thing.</p>
+      </div>
+      <div style="background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.15);padding:2rem;cursor:pointer;transition:all 0.2s" onmouseover="this.style.background='rgba(0,0,0,0.35)';this.style.borderColor='var(--gold-light)'" onmouseout="this.style.background='rgba(0,0,0,0.2)';this.style.borderColor='rgba(255,255,255,0.15)'">
+        <div style="font-family:'Oswald',sans-serif;font-size:2.2rem;font-weight:700;color:var(--gold-light);margin-bottom:0.4rem">$222</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:rgba(240,230,211,0.6);margin-bottom:0.75rem">The Farming Number</div>
+        <p style="font-size:0.85rem;color:rgba(240,230,211,0.85);line-height:1.6;margin-bottom:0">222 is plant, tend, wait, grow. This funds a community workshop — real skills, real people, real change in someone's trajectory. You may never meet the person whose life this shifts. That is what makes it powerful.</p>
+      </div>
+      <div style="background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.15);padding:2rem;cursor:pointer;transition:all 0.2s" onmouseover="this.style.background='rgba(0,0,0,0.35)';this.style.borderColor='var(--gold-light)'" onmouseout="this.style.background='rgba(0,0,0,0.2)';this.style.borderColor='rgba(255,255,255,0.15)'">
+        <div style="font-family:'Oswald',sans-serif;font-size:2.2rem;font-weight:700;color:var(--gold-light);margin-bottom:0.4rem">$999</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:rgba(240,230,211,0.6);margin-bottom:0.75rem">The Graduation</div>
+        <p style="font-size:0.85rem;color:rgba(240,230,211,0.85);line-height:1.6;margin-bottom:0">999 is completion. One cycle ending, a new one beginning. This is a cornerstone investment in the land, the infrastructure, the programs, and the next generation. You are done with the old. Help us build the new.</p>
+      </div>
+      <div style="background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.15);padding:2rem;cursor:pointer;transition:all 0.2s" onmouseover="this.style.background='rgba(0,0,0,0.35)';this.style.borderColor='var(--gold-light)'" onmouseout="this.style.background='rgba(0,0,0,0.2)';this.style.borderColor='rgba(255,255,255,0.15)'">
+        <div style="font-family:'Oswald',sans-serif;font-size:2.2rem;font-weight:700;color:var(--gold-light);margin-bottom:0.4rem">You</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:rgba(240,230,211,0.6);margin-bottom:0.75rem">Name Your Contribution</div>
+        <p style="font-size:0.85rem;color:rgba(240,230,211,0.85);line-height:1.6;margin-bottom:0">Sponsor fencing, feed, tools, pantry supplies, a child's enrollment, a program build. Tell us what matters to you. We will make sure it goes there.</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;align-items:center">
+      <div style="background:rgba(255,255,255,0.1);padding:1.5rem 2rem;border:1px solid rgba(255,255,255,0.2);text-align:center;min-width:340px;max-width:420px;width:100%">
+        <p style="font-family:'Oswald',sans-serif;font-size:0.68rem;letter-spacing:3px;text-transform:uppercase;color:rgba(240,230,211,0.65);margin-bottom:1rem">Secure Online Donation</p>
+        <div id="paypal-container-2VQWL5JDTTVMG"></div>
+        <script>window.addEventListener('load',function(){if(typeof paypal!=='undefined'){paypal.HostedButtons({hostedButtonId:"2VQWL5JDTTVMG"}).render("#paypal-container-2VQWL5JDTTVMG");}});</script>
+      </div>
+      <div style="text-align:center">
+        <a href="contact.html" class="btn-secondary" style="color:var(--white);border-color:rgba(255,255,255,0.4);display:block;margin-bottom:1rem">Discuss Barter or In-Kind</a>
+        <a href="mailto:ffnchurch@proton.me" style="font-size:0.72rem;color:rgba(240,230,211,0.45);text-decoration:none">ffnchurch@proton.me</a>
+      </div>
+    </div>
+    <p style="font-size:0.7rem;margin-top:2rem;opacity:0.55;letter-spacing:1px;text-align:center">Faith, Family & Nature Church, Inc. operates as a tax-exempt church under Section 501(c)(3) of the Internal Revenue Code. Donations are tax-deductible to the extent permitted by law.</p>
+
+    <!-- Sponsor programs -->
+    <div style="margin-top:4rem">
+      <p style="font-family:'Oswald',sans-serif;font-size:0.82rem;letter-spacing:3px;text-transform:uppercase;color:rgba(240,230,211,0.7);margin-bottom:1.5rem">Sponsor a Specific Program</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem">
+        <div style="background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.15);padding:2rem"><h3 style="color:var(--gold-light);margin-bottom:0.75rem">Sponsor a Child</h3><p style="font-size:0.85rem;color:rgba(240,230,211,0.8);margin-bottom:0">Cover a child's Creation Station enrollment so they can discover their gift regardless of what their family can afford.</p></div>
+        <div style="background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.15);padding:2rem"><h3 style="color:var(--gold-light);margin-bottom:0.75rem">Fund the Food Pantry</h3><p style="font-size:0.85rem;color:rgba(240,230,211,0.8);margin-bottom:0">Help us put real food on real tables. Every contribution goes directly toward sourcing from our farm partners.</p></div>
+        <div style="background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.15);padding:2rem"><h3 style="color:var(--gold-light);margin-bottom:0.75rem">Support the Academy</h3><p style="font-size:0.85rem;color:rgba(240,230,211,0.8);margin-bottom:0">Fund tools, equipment, and materials so our trade and skills programs can run at full capacity.</p></div>
+        <div style="background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.15);padding:2rem"><h3 style="color:var(--gold-light);margin-bottom:0.75rem">General Mission Fund</h3><p style="font-size:0.85rem;color:rgba(240,230,211,0.8);margin-bottom:0">Support the overall work — property development, programming, outreach, and everything in between.</p></div>
+      </div>
+    </div>
+  </div>
+</section><footer>
+  <div class="footer-logo">REBEL RANCH</div>
+  <p class="footer-tagline">Faith · Family · Freedom</p>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="academy.html">Academy</a>
+    <a href="creation.html">Creation Station</a>
+    <a href="services.html">Services</a>
+    <a href="marketplace.html">Marketplace</a>
+    <a href="community.html">Community</a>
+    <a href="support.html">Support</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="footer-social">
+    <a href="https://www.facebook.com/rebelranchministries" target="_blank">f</a>
+    <a href="https://www.instagram.com/rebel_ranch_fl" target="_blank">ig</a>
+    <a href="https://www.youtube.com/@RebelRanchMinistries" target="_blank">yt</a>
+    <a href="mailto:rebelranchfl@gmail.com">@</a>
+  </div>
+  <p style="font-size:0.72rem;color:var(--text-muted);margin-bottom:0.5rem">
+    <a href="https://drive.google.com/drive/folders/1eQVvegeVb38qGOsTVidBb_CWd2QqR_HW?usp=sharing" target="_blank" style="color:var(--gold);text-decoration:none">📸 View Property Photos</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.youtube.com/@RebelRanchMinistries" target="_blank" style="color:var(--gold);text-decoration:none">▶ Watch on YouTube</a>
+  </p>
+  <p class="footer-legal">Faith, Family & Nature Church, Inc. operates as a tax-exempt church under Section 501(c)(3) of the Internal Revenue Code. Rebel Ranch Ministries is a privately organized ministry. The Rebel Ranch Marketplace is a Private Membership Association — membership by application only. Nothing on this website constitutes legal, financial, or tax advice. © 2026 Rebel Ranch Ministries · Trenton, Florida</p>
+</footer><script>
+function toggleMenu(){
+  document.getElementById('main-nav').classList.toggle('mobile-menu-open');
+}
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+</script></body></html>
