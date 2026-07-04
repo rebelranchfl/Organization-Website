@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find Your Fit | Rebel Ranch Ministries</title>
+<meta name="description" content="Answer 6 quick questions and find out which Rebel Ranch program fits you.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07120A;
+    --gold:#C17F24;
+    --gold-2:#EF9F27;
+    --green:#97C459;
+    --green2:#4A7C59;
+    --ink:#F0EDD8;
+    --ink-dim: rgba(240,237,216,0.65);
+    --card-bg: rgba(240,237,216,0.04);
+    --card-border: rgba(240,237,216,0.12);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    min-height:100vh;
+    scroll-behavior:smooth;
+  }
+  body{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:32px 16px 80px;
+    position:relative;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";
+    position:fixed;
+    top:-20%; left:50%;
+    transform:translateX(-50%);
+    width:900px; height:900px;
+    background:radial-gradient(circle, rgba(151,196,89,0.08) 0%, rgba(151,196,89,0) 70%);
+    pointer-events:none;
+    z-index:0;
+  }
+  .wrap{
+    width:100%;
+    max-width:640px;
+    position:relative;
+    z-index:1;
+  }
+  .home-link{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    color:var(--ink-dim);
+    text-decoration:none;
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:0.02em;
+    margin-bottom:28px;
+    transition:color 0.2s;
+  }
+  .home-link:hover{ color:var(--gold-2); }
+
+  .eyebrow{
+    display:inline-block;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--gold-2);
+    margin-bottom:12px;
+  }
+  h1{
+    font-size:clamp(28px, 5vw, 40px);
+    font-weight:800;
+    line-height:1.15;
+    letter-spacing:-0.01em;
+    margin-bottom:14px;
+  }
+  .sub{
+    color:var(--ink-dim);
+    font-size:16px;
+    line-height:1.6;
+    margin-bottom:36px;
+    max-width:52ch;
+  }
+
+  /* progress */
+  .progress-track{
+    width:100%;
+    height:4px;
+    background:rgba(240,237,216,0.1);
+    border-radius:99px;
+    overflow:hidden;
+    margin-bottom:36px;
+  }
+  .progress-fill{
+    height:100%;
+    background:linear-gradient(90deg, var(--green2), var(--gold));
+    border-radius:99px;
+    transition:width 0.4s ease;
+    width:0%;
+  }
+  .progress-label{
+    font-size:12px;
+    color:var(--ink-dim);
+    margin-top:-26px;
+    margin-bottom:36px;
+    letter-spacing:0.04em;
+  }
+
+  .card{
+    background:var(--card-bg);
+    border:1px solid var(--card-border);
+    border-radius:14px;
+    padding:32px 28px;
+  }
+
+  .q-text{
+    font-size:22px;
+    font-weight:700;
+    line-height:1.35;
+    margin-bottom:24px;
+  }
+  .options{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .option{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:16px 18px;
+    background:rgba(240,237,216,0.03);
+    border:1px solid var(--card-border);
+    border-radius:10px;
+    cursor:pointer;
+    transition:border-color 0.15s, background 0.15s, transform 0.1s;
+    font-size:15px;
+    line-height:1.45;
+  }
+  .option:hover{
+    border-color:var(--green);
+    background:rgba(151,196,89,0.06);
+  }
+  .option.selected{
+    border-color:var(--gold);
+    background:rgba(193,127,36,0.1);
+  }
+  .option .dot{
+    flex:0 0 18px;
+    width:18px; height:18px;
+    border-radius:50%;
+    border:2px solid var(--ink-dim);
+    position:relative;
+    transition:border-color 0.15s;
+  }
+  .option.selected .dot{
+    border-color:var(--gold);
+  }
+  .option.selected .dot::after{
+    content:"";
+    position:absolute;
+    top:3px; left:3px;
+    width:8px; height:8px;
+    border-radius:50%;
+    background:var(--gold);
+  }
+
+  .nav-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:28px;
+  }
+  .btn{
+    appearance:none;
+    border:none;
+    font-family:inherit;
+    font-weight:700;
+    font-size:15px;
+    padding:14px 26px;
+    border-radius:99px;
+    cursor:pointer;
+    transition:transform 0.15s, opacity 0.15s;
+  }
+  .btn:active{ transform:scale(0.97); }
+  .btn-primary{
+    background:linear-gradient(90deg, var(--gold), var(--gold-2));
+    color:#1a0f00;
+  }
+  .btn-primary:disabled{
+    opacity:0.35;
+    cursor:not-allowed;
+  }
+  .btn-ghost{
+    background:transparent;
+    color:var(--ink-dim);
+    padding:14px 8px;
+  }
+  .btn-ghost:hover{ color:var(--ink); }
+  .btn-ghost:disabled{
+    opacity:0.25;
+    cursor:not-allowed;
+  }
+
+  /* result screen */
+  .result-badge{
+    display:inline-block;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--green);
+    background:rgba(151,196,89,0.1);
+    border:1px solid rgba(151,196,89,0.3);
+    padding:6px 14px;
+    border-radius:99px;
+    margin-bottom:18px;
+  }
+  .result-title{
+    font-size:clamp(26px, 5vw, 34px);
+    font-weight:800;
+    line-height:1.2;
+    margin-bottom:14px;
+  }
+  .result-price{
+    color:var(--gold-2);
+    font-weight:700;
+  }
+  .result-desc{
+    color:var(--ink-dim);
+    font-size:16px;
+    line-height:1.65;
+    margin-bottom:28px;
+  }
+
+  form.lead-form{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    margin-top:8px;
+  }
+  .field label{
+    display:block;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0.03em;
+    color:var(--ink-dim);
+    margin-bottom:6px;
+    text-transform:uppercase;
+  }
+  .field input[type="text"],
+  .field input[type="email"],
+  .field input[type="tel"]{
+    width:100%;
+    background:rgba(240,237,216,0.05);
+    border:1px solid var(--card-border);
+    border-radius:8px;
+    padding:13px 14px;
+    color:var(--ink);
+    font-family:inherit;
+    font-size:15px;
+    outline:none;
+    transition:border-color 0.15s;
+  }
+  .field input:focus{
+    border-color:var(--gold);
+  }
+  .checkbox-row{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    font-size:13px;
+    color:var(--ink-dim);
+    line-height:1.5;
+    padding:2px 2px;
+  }
+  .checkbox-row input{
+    margin-top:3px;
+    accent-color:var(--gold);
+    width:16px; height:16px;
+    flex:0 0 16px;
+  }
+  .submit-row{
+    margin-top:10px;
+  }
+  .form-note{
+    font-size:12px;
+    color:var(--ink-dim);
+    margin-top:10px;
+    opacity:0.7;
+  }
+  .success-msg{
+    display:none;
+    text-align:center;
+    padding:20px 0 4px;
+  }
+  .success-msg h2{
+    font-size:22px;
+    margin-bottom:10px;
+  }
+  .success-msg p{
+    color:var(--ink-dim);
+    font-size:15px;
+    line-height:1.6;
+  }
+  .error-msg{
+    display:none;
+    color:var(--gold-2);
+    font-size:13px;
+    margin-top:8px;
+  }
+
+  .screen{ display:none; }
+  .screen.active{ display:block; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <a href="/" class="home-link">&larr; Back to Rebel Ranch Ministries</a>
+
+  <!-- INTRO SCREEN -->
+  <div class="screen active" id="screen-intro">
+    <span class="eyebrow">60-Second Freedom Fit Quiz</span>
+    <h1>Find out which program is actually built for you.</h1>
+    <p class="sub">Six quick questions. No fluff, no guessing. Answer honestly and we'll tell you exactly which $250 program fits where you are right now &mdash; Bring Home The Bacon, Spread The Word, or Preach it Teach.</p>
+    <div class="card">
+      <div class="q-text">Ready?</div>
+      <p class="sub" style="margin-bottom:22px;">Takes about a minute. Your result shows up immediately.</p>
+      <button class="btn btn-primary" onclick="startQuiz()">Start the Quiz</button>
+    </div>
+  </div>
+
+  <!-- QUIZ SCREEN -->
+  <div class="screen" id="screen-quiz">
+    <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="progress-label" id="progress-label">Question 1 of 6</div>
+    <div class="card">
+      <div class="q-text" id="q-text"></div>
+      <div class="options" id="q-options"></div>
+      <div class="nav-row">
+        <button class="btn btn-ghost" id="btn-back" onclick="prevQuestion()">Back</button>
+        <button class="btn btn-primary" id="btn-next" onclick="nextQuestion()" disabled>Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <div class="screen" id="screen-result">
+    <span class="result-badge" id="result-badge">Your Fit</span>
+    <div class="result-title" id="result-title"></div>
+    <p class="result-desc" id="result-desc"></p>
+
+    <div class="card">
+      <div id="form-block">
+        <p class="sub" style="margin-bottom:18px;">Get your result sent to you and hear from us about next steps.</p>
+        <form class="lead-form" id="lead-form">
+          <div class="field">
+            <label for="f-name">Name</label>
+            <input type="text" id="f-name" name="name" required>
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input type="email" id="f-email" name="email" required>
+          </div>
+          <div class="field">
+            <label for="f-phone">Phone <span style="text-transform:none; font-weight:400;">(optional)</span></label>
+            <input type="tel" id="f-phone" name="phone" placeholder="For text updates">
+          </div>
+          <label class="checkbox-row">
+            <input type="checkbox" id="f-sms" name="sms_opt_in" value="yes">
+            <span>Text me updates about my program via SMS (only if you leave a phone number).</span>
+          </label>
+          <div class="submit-row">
+            <button class="btn btn-primary" type="submit" style="width:100%;">Get My Result</button>
+          </div>
+          <div class="error-msg" id="form-error">Something didn't go through &mdash; check your email address and try again.</div>
+          <p class="form-note">We'll never sell your info.</p>
+        </form>
+      </div>
+
+      <div class="success-msg" id="success-msg">
+        <h2>You're in.</h2>
+        <p>Check your inbox &mdash; we're sending your full breakdown now, and we'll follow up with next steps for getting started.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/xnjrqydq";
+
+  const questions = [
+    {
+      id: 1,
+      scored: false,
+      segment: "motivation",
+      text: "Why did you start this in the first place?",
+      options: [
+        { label: "More money", value: "Money" },
+        { label: "More time back", value: "Time" },
+        { label: "To make my own schedule", value: "Autonomy" }
+      ]
+    },
+    {
+      id: 2,
+      scored: true,
+      text: "What best describes where you're stuck right now?",
+      options: [
+        { label: "I've got a skill, business or side hustle but no real structure behind it", program: "Bacon" },
+        { label: "I've got something to offer but nobody knows I exist", program: "Word" },
+        { label: "People ask me to teach or help them, but I have to manually schedule appointments and collect payment", program: "Teach" }
+      ]
+    },
+    {
+      id: 3,
+      scored: true,
+      text: "If you could fix ONE thing tomorrow, what would it be?",
+      options: [
+        { label: "Time spent on paperwork, leads and accounting", program: "Bacon" },
+        { label: "Getting seen online / building a following", program: "Word" },
+        { label: "A real way to schedule classes and collect payment", program: "Teach" }
+      ]
+    },
+    {
+      id: 4,
+      scored: true,
+      text: "Where are you right now?",
+      options: [
+        { label: "Making some income, but I should be making more or it's inconsistent", program: "Bacon" },
+        { label: "I have little to no online presence", program: "Word" },
+        { label: "I have knowledge worth teaching, but no platform to do it on", program: "Teach" }
+      ]
+    },
+    {
+      id: 5,
+      scored: true,
+      text: "What does \"freedom\" look like to you?",
+      options: [
+        { label: "Running things like they actually make sense, without chaos", program: "Bacon" },
+        { label: "People finding ME instead of me chasing them", program: "Word" },
+        { label: "Getting paid for what I already know how to do", program: "Teach" }
+      ]
+    },
+    {
+      id: 6,
+      scored: false,
+      segment: "leadValue",
+      text: "Are you currently earning income from this?",
+      options: [
+        { label: "Yes, actively", value: "HIGH" },
+        { label: "Some, but inconsistent", value: "MEDIUM" },
+        { label: "Not yet", value: "EARLY" }
+      ]
+    }
+  ];
+
+  const programInfo = {
+    Bacon: {
+      title: "Bring Home The Bacon",
+      badge: "Your Fit: Business Operations",
+      price: "$250",
+      desc: "You don't need another idea &mdash; you need the structure that turns what you're already doing into something that actually runs. Bring Home The Bacon gets your pricing, systems, and day-to-day operations in order so the business works even when you're not standing over it."
+    },
+    Word: {
+      title: "Spread The Word",
+      badge: "Your Fit: Online Presence & Marketing",
+      price: "$250",
+      desc: "You've got something worth people knowing about. Spread The Word builds your online presence and marketing from the ground up, so people start finding you instead of you chasing every lead yourself."
+    },
+    Teach: {
+      title: "Preach it Teach",
+      badge: "Your Fit: Classes, Booking & Payment",
+      price: "$250",
+      desc: "What you know is worth getting paid for. Preach it Teach sets up the actual system &mdash; booking, scheduling, and payment &mdash; so teaching or coaching becomes something you get paid for automatically, not something you chase down after the fact."
+    }
+  };
+
+  let current = -1; // -1 = intro
+  const answers = {}; // question id -> option object
+
+  function showScreen(id){
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  function startQuiz(){
+    current = 0;
+    showScreen('screen-quiz');
+    renderQuestion();
+  }
+
+  function renderQuestion(){
+    const q = questions[current];
+    document.getElementById('q-text').textContent = q.text;
+    document.getElementById('progress-label').textContent = `Question ${current + 1} of ${questions.length}`;
+    document.getElementById('progress-fill').style.width = `${((current) / questions.length) * 100}%`;
+
+    const optionsEl = document.getElementById('q-options');
+    optionsEl.innerHTML = '';
+    q.options.forEach((opt, idx) => {
+      const div = document.createElement('div');
+      div.className = 'option';
+      const isSelected = answers[q.id] && answers[q.id].label === opt.label;
+      if (isSelected) div.classList.add('selected');
+      div.innerHTML = `<span class="dot"></span><span>${opt.label}</span>`;
+      div.onclick = () => selectOption(q, opt, div);
+      optionsEl.appendChild(div);
+    });
+
+    document.getElementById('btn-back').disabled = (current === 0);
+    document.getElementById('btn-next').disabled = !answers[q.id];
+    document.getElementById('btn-next').textContent = (current === questions.length - 1) ? 'See My Result' : 'Next';
+  }
+
+  function selectOption(q, opt, el){
+    document.querySelectorAll('#q-options .option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    answers[q.id] = opt;
+    document.getElementById('btn-next').disabled = false;
+  }
+
+  function prevQuestion(){
+    if (current > 0){
+      current--;
+      renderQuestion();
+    }
+  }
+
+  function nextQuestion(){
+    if (current < questions.length - 1){
+      current++;
+      renderQuestion();
+    } else {
+      showResult();
+    }
+  }
+
+  function showResult(){
+    const tally = { Bacon: 0, Word: 0, Teach: 0 };
+    questions.filter(q => q.scored).forEach(q => {
+      const a = answers[q.id];
+      if (a && a.program) tally[a.program]++;
+    });
+
+    let winner = Object.keys(tally).reduce((a, b) => tally[a] >= tally[b] ? a : b);
+    const info = programInfo[winner];
+
+    document.getElementById('result-badge').textContent = info.badge;
+    document.getElementById('result-title').innerHTML = `${info.title} <span class="result-price">&mdash; ${info.price}</span>`;
+    document.getElementById('result-desc').innerHTML = info.desc;
+
+    // stash hidden values for submission
+    window._quizResult = winner;
+    window._motivation = answers[1] ? answers[1].value : '';
+    window._leadValue = answers[6] ? answers[6].value : '';
+
+    progressBarFull();
+    showScreen('screen-result');
+  }
+
+  function progressBarFull(){
+    // no-op, quiz screen no longer visible, kept for clarity
+  }
+
+  document.getElementById('lead-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('f-name').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const phone = document.getElementById('f-phone').value.trim();
+    const smsOptIn = document.getElementById('f-sms').checked;
+    const errorEl = document.getElementById('form-error');
+    errorEl.style.display = 'none';
+
+    const payload = {
+      name: name,
+      email: email,
+      phone: phone,
+      sms_opt_in: smsOptIn ? "yes" : "no",
+      quiz_result: programInfo[window._quizResult].title,
+      motivation_angle: window._motivation,
+      lead_value: window._leadValue,
+      _subject: `New Freedom Fit Quiz Lead: ${name} \u2192 ${programInfo[window._quizResult].title}`
+    };
+
+    fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(res => {
+      if (res.ok){
+        document.getElementById('form-block').style.display = 'none';
+        document.getElementById('success-msg').style.display = 'block';
+      } else {
+        errorEl.style.display = 'block';
+      }
+    }).catch(() => {
+      errorEl.style.display = 'block';
+    });
+  });
+</script>
+
+</body>
+</html>
