@@ -1,207 +1,32 @@
 [
   {
-    "file": "animals/baby-chicks-bee-balm.jpg",
+    "file": "Baby Chicks in our Bee Balm.JPG",
     "caption": "Baby chicks tucked into the bee balm",
     "category": "animal"
   },
   {
-    "file": "animals/bacon-piggy.jpg",
-    "caption": "Bacon, doing what Bacon does",
-    "category": "animal"
-  },
-  {
-    "file": "animals/baby-rabbits.jpg",
+    "file": "Baby rabbits.jpg",
     "caption": "New arrivals",
     "category": "animal"
   },
   {
-    "file": "animals/sleeping-piglet.jpg",
+    "file": "Cato & Piggies.PNG",
+    "caption": "REPLACE ME - Cato & Piggies",
+    "category": "animal"
+  },
+  {
+    "file": "Melissa.JPG",
+    "caption": "REPLACE ME - Melissa",
+    "category": "animal"
+  },
+  {
+    "file": "Piggy nose.jpeg",
+    "caption": "Up close and personal",
+    "category": "animal"
+  },
+  {
+    "file": "Sleepy Baby Piggy AKA Rebel Piggy.jpg",
     "caption": "Nap time, fresh off a bath",
     "category": "animal"
-  },
-  {
-    "file": "animals/piglet-meets-guardian-dog.jpg",
-    "caption": "The guardian dogs take their job seriously",
-    "category": "animal"
-  },
-  {
-    "file": "animals/guardian-dog-on-patrol.jpg",
-    "caption": "On patrol",
-    "category": "animal"
-  },
-  {
-    "file": "animals/dogs-being-dogs.jpg",
-    "caption": "Dogs being dogs",
-    "category": "animal"
-  },
-  {
-    "file": "animals/incubator-babies.jpg",
-    "caption": "Fresh out of the incubator",
-    "category": "animal"
-  },
-  {
-    "file": "animals/incubator-time.jpg",
-    "caption": "Incubator time",
-    "category": "animal"
-  },
-  {
-    "file": "animals/they-grow-up-too-fast.jpg",
-    "caption": "They grow up too fast",
-    "category": "animal"
-  },
-  {
-    "file": "garden/composting.jpg",
-    "caption": "Compost doing what compost does",
-    "category": "garden"
-  },
-  {
-    "file": "garden/worm-farm-1.jpg",
-    "caption": "The worm farm, hard at work",
-    "category": "garden"
-  },
-  {
-    "file": "garden/worm-farm-2.jpg",
-    "caption": "Vermiculture in action",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2020-04-11.jpg",
-    "caption": "REPLACE ME - April 2020",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2020-05-01-a.jpg",
-    "caption": "REPLACE ME - May 2020",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2020-05-01-b.jpg",
-    "caption": "REPLACE ME - May 2020",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2020-05-01-c.jpg",
-    "caption": "REPLACE ME - May 2020",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2020-05-06.jpg",
-    "caption": "REPLACE ME - May 2020",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2020-07-07-a.jpg",
-    "caption": "REPLACE ME - July 2020",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2020-07-07-b.jpg",
-    "caption": "REPLACE ME - July 2020",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2021-04-28-a.jpg",
-    "caption": "REPLACE ME - April 2021",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2021-04-28-b.jpg",
-    "caption": "REPLACE ME - April 2021",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2021-06-13-a.jpg",
-    "caption": "REPLACE ME - June 2021",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2021-06-13-b.jpg",
-    "caption": "REPLACE ME - June 2021",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2021-06-13-c.jpg",
-    "caption": "REPLACE ME - June 2021",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2021-06-13-d.jpg",
-    "caption": "REPLACE ME - June 2021",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2021-07-02.jpg",
-    "caption": "REPLACE ME - July 2021",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2021-07-03.jpg",
-    "caption": "REPLACE ME - July 2021",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2021-07-04.jpg",
-    "caption": "REPLACE ME - July 2021",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2021-07-15.jpg",
-    "caption": "REPLACE ME - July 2021",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2021-07-18.jpg",
-    "caption": "REPLACE ME - July 2021",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2021-07-26-a.jpg",
-    "caption": "REPLACE ME - July 2021",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2021-07-26-b.jpg",
-    "caption": "REPLACE ME - July 2021",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2021-08-28.jpg",
-    "caption": "REPLACE ME - August 2021",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2022-03-27.jpg",
-    "caption": "REPLACE ME - March 2022",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2022-04-02.jpg",
-    "caption": "REPLACE ME - April 2022",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2022-04-08.jpg",
-    "caption": "REPLACE ME - April 2022",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2022-06-05.jpg",
-    "caption": "REPLACE ME - June 2022",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2022-06-06.jpg",
-    "caption": "REPLACE ME - June 2022",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2022-06-07.jpg",
-    "caption": "REPLACE ME - June 2022",
-    "category": "garden"
-  },
-  {
-    "file": "garden/2022-07-18.jpg",
-    "caption": "REPLACE ME - July 2022",
-    "category": "garden"
   }
 ]
