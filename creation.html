@@ -3,164 +3,165 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Creation Station | Rebel Ranch Ministries</title>
-<meta name="description" content="Creation Station turns creativity into guided projects, stronger thinking, practical skills, confidence, and work young creators are proud to finish.">
+<title>Creation Station | Create, Learn, Build, and Grow</title>
+<meta name="description" content="Creative projects with real-life purpose and application. Creation Station helps kids create with guided projects, reflection, portfolio-building, entrepreneurship thinking, and parent-friendly support.">
 <style>
 :root{
-  --ink:#241c2d;--text:#554a5b;--purple:#5b258f;--purple-dark:#32134f;--lav:#a963ef;
-  --pink:#ec4e91;--teal:#0098a5;--aqua:#18c2cd;--gold:#f5c94d;--orange:#f39a3d;
-  --cream:#fff7e9;--paper:#fffdf8;--white:#fff;--line:rgba(91,37,143,.14);
-  --shadow:0 24px 70px rgba(42,23,54,.14);--shadow2:0 12px 30px rgba(42,23,54,.10);
-  --radius:30px;
+  --bg:#fdf7ef;--paper:#fffdf9;--ink:#241c2d;--text:#574b5d;--purple:#5b258f;--purple2:#2e0d54;--pink:#ec4e91;--teal:#0098a5;--aqua:#18c2cd;--gold:#f7c94c;--orange:#f39b42;--line:rgba(91,37,143,.16);--shadow:0 22px 70px rgba(34,13,53,.15);--shadow2:0 12px 30px rgba(34,13,53,.11);
 }
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:
-radial-gradient(circle at 8% 12%,rgba(245,201,77,.16),transparent 23%),
-radial-gradient(circle at 91% 10%,rgba(24,194,205,.13),transparent 24%),
-radial-gradient(circle at 78% 62%,rgba(236,78,145,.10),transparent 24%),
-linear-gradient(180deg,#fff8ef 0%,#fffdf9 44%,#fbf3ff 100%);overflow-x:hidden}
-a{color:inherit}img{max-width:100%;display:block}.wrap{width:min(1240px,calc(100% - 32px));margin:auto}.skip{position:absolute;left:-9999px}.skip:focus{left:14px;top:14px;z-index:9999;background:#fff;border:3px solid var(--purple);padding:12px 16px;border-radius:12px}
-.topbar{position:sticky;top:0;z-index:100;background:rgba(255,250,244,.84);backdrop-filter:blur(18px);border-bottom:1px solid rgba(91,37,143,.09)}
-.nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:22px}.brand{display:flex;align-items:center;gap:12px;text-decoration:none}.brand img{width:58px;height:58px;object-fit:contain;filter:drop-shadow(0 9px 18px rgba(91,37,143,.18))}.brand strong{display:block;color:var(--purple);font-size:1.08rem;letter-spacing:-.03em}.brand span span{display:block;margin-top:4px;color:#6d6271;font-size:.78rem;font-weight:800}.navlinks{display:flex;align-items:center;justify-content:flex-end;gap:6px;flex-wrap:wrap}.navlinks>a{padding:10px 12px;text-decoration:none;font-weight:850;color:var(--purple);border-radius:10px}.navlinks>a:hover,.navlinks>a:focus-visible{background:#fff;outline:none}.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 18px;border:0;border-radius:16px;text-decoration:none;font-weight:950;cursor:pointer;line-height:1.08;transition:transform .2s ease,box-shadow .2s ease;box-shadow:var(--shadow2)}.btn:hover,.btn:focus-visible{transform:translateY(-3px);outline:3px solid rgba(24,194,205,.28);outline-offset:2px}.btn.primary{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}.btn.secondary{background:#fff;color:var(--purple);border:1px solid var(--line);box-shadow:none}.btn.gold{background:linear-gradient(135deg,var(--gold),#ffe58c);color:#3f2d05}.btn.teal{background:linear-gradient(135deg,var(--teal),var(--aqua));color:#fff}.btn.dark{background:linear-gradient(135deg,#26172f,#56316b);color:#fff}
-.hero{padding:72px 0 62px;position:relative}.hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:34px;align-items:center}.eyebrow{display:inline-block;border-left:6px solid var(--gold);padding:8px 12px;background:rgba(255,255,255,.74);font-size:.78rem;font-weight:1000;letter-spacing:.11em;text-transform:uppercase;color:var(--teal);box-shadow:var(--shadow2);border-radius:8px}.hero h1{font-size:clamp(3.2rem,7vw,6.65rem);line-height:.88;letter-spacing:-.075em;margin:18px 0 20px;color:var(--purple)}.hero h1 span{display:block;font-size:.58em;color:var(--ink);margin-top:11px;letter-spacing:-.045em}.lead{font-size:clamp(1.04rem,2vw,1.2rem);line-height:1.7;color:var(--text);font-weight:720;max-width:760px;margin:0 0 12px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.hero-points{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}.hero-point{background:rgba(255,255,255,.78);border:1px solid var(--line);border-radius:20px;padding:15px;box-shadow:var(--shadow2)}.hero-point strong{display:block;color:var(--purple);margin-bottom:6px;letter-spacing:-.03em}.hero-point span{font-size:.9rem;line-height:1.45;color:#625665;font-weight:720}
-.photo-frame{position:relative;min-height:650px;border-radius:38px;overflow:hidden;background:linear-gradient(145deg,#fff,#f9efff);box-shadow:var(--shadow);border:1px solid var(--line)}.photo-frame>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}.photo-frame:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(34,14,52,.03),rgba(34,14,52,.16));pointer-events:none}.photo-frame.missing>img{display:none}.asset-fallback{display:none;position:absolute;inset:0;padding:44px;align-items:center;justify-content:center;text-align:center;color:var(--purple);font-weight:900;line-height:1.55;background:linear-gradient(145deg,#fff,#f6eafe)}.photo-frame.missing .asset-fallback{display:flex}.float-card{position:absolute;z-index:3;max-width:250px;background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:var(--shadow2);backdrop-filter:blur(8px);animation:float 5.4s ease-in-out infinite alternate}.float-card h3{margin:0 0 6px;color:var(--purple);font-size:1.08rem;line-height:1.03}.float-card p{margin:0;color:#5c5160;font-size:.9rem;line-height:1.45;font-weight:720}.f1{left:-16px;top:38px}.f2{right:-14px;top:96px;animation-delay:.7s}.f3{right:18px;bottom:24px;background:rgba(38,24,49,.91)}.f3 h3,.f3 p{color:#fff}.f4{left:20px;bottom:26px;background:linear-gradient(135deg,#fff4cf,#fff)}@keyframes float{from{transform:translateY(0)}to{transform:translateY(12px)}}
-.section{padding:70px 0}.section-head{text-align:center;max-width:960px;margin:0 auto 30px}.section-head h2{font-size:clamp(2.35rem,5vw,4.55rem);line-height:.92;letter-spacing:-.06em;color:var(--purple);margin:14px 0 12px}.section-head p{margin:0;color:var(--text);line-height:1.66;font-size:1.07rem;font-weight:720}.paths{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.path-card{display:flex;flex-direction:column;min-height:470px;padding:28px;border-radius:30px;border:1px solid var(--line);box-shadow:var(--shadow2);position:relative;overflow:hidden}.path-card:before{content:"";position:absolute;width:170px;height:170px;border-radius:50%;right:-65px;top:-72px;background:rgba(255,255,255,.22)}.path-card.youth{background:linear-gradient(145deg,#fff3fb,#f5eaff)}.path-card.adult{background:linear-gradient(145deg,#e9fffd,#f4ffff)}.path-card.live{background:linear-gradient(145deg,#fff4d6,#fffaf1)}.path-icon{width:64px;height:64px;display:grid;place-items:center;border-radius:20px;font-size:2rem;font-weight:1000;color:#fff;margin-bottom:22px;box-shadow:var(--shadow2)}.youth .path-icon{background:linear-gradient(135deg,var(--purple),var(--pink))}.adult .path-icon{background:linear-gradient(135deg,var(--teal),var(--aqua))}.live .path-icon{background:linear-gradient(135deg,var(--orange),var(--gold));color:#3b2505}.path-card h3{font-size:2rem;line-height:.98;letter-spacing:-.05em;color:var(--purple);margin:0 0 8px}.path-card h4{font-size:1.13rem;line-height:1.2;color:var(--ink);margin:0 0 13px}.path-card p{line-height:1.58;color:#5c5161;font-weight:710;margin:0 0 12px}.path-card ul{padding-left:20px;color:#544958;line-height:1.55;font-weight:720}.path-card .action{margin-top:auto;padding-top:16px}.path-card .btn{width:100%}
-.family-section{padding:70px 0}.family-panel{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;padding:38px;border-radius:38px;background:linear-gradient(135deg,#24172f,#542b70 48%,#008d99);color:#fff;box-shadow:0 30px 80px rgba(45,25,60,.25);overflow:hidden;position:relative}.family-panel:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 18%,rgba(245,201,77,.22),transparent 18%),radial-gradient(circle at 12% 88%,rgba(255,255,255,.12),transparent 19%)}.family-copy,.family-visual{position:relative;z-index:1}.family-copy h2{font-size:clamp(2.4rem,5vw,4.6rem);line-height:.93;letter-spacing:-.06em;margin:0 0 16px}.family-copy p{color:#f0e9f5;font-size:1.06rem;line-height:1.67;font-weight:720}.family-list{display:grid;gap:12px;margin:20px 0}.family-list div{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.13);padding:14px;border-radius:16px;font-weight:760;line-height:1.45}.family-list b{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:var(--gold);color:#392706}.dashboard-mock{background:#fff;border-radius:30px;padding:18px;color:var(--ink);box-shadow:0 30px 70px rgba(0,0,0,.24);transform:rotate(1.5deg)}.mock-top{display:flex;align-items:center;gap:10px;border-bottom:1px solid #eadff1;padding-bottom:12px}.mock-top img{width:50px;height:50px;object-fit:contain}.mock-top strong{color:var(--purple);font-size:1.05rem}.mock-progress{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:16px 0}.mock-progress span{height:12px;border-radius:4px;background:#eadff1}.mock-progress span:nth-child(-n+3){background:linear-gradient(90deg,var(--teal),var(--pink))}.mock-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:12px}.mock-card{min-height:126px;border-radius:18px;padding:15px;background:#faf6ff;border:1px solid #eadff1}.mock-card h4{margin:0 0 8px;color:var(--purple)}.mock-card p{margin:0;color:#665a69;font-size:.88rem;line-height:1.45}.mock-card.teal{background:#edfffd}.mock-card.gold{background:#fff8df}
-.maker-strip{padding:50px 0 72px}.maker-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.maker-item{background:#fff;border:1px solid var(--line);border-radius:24px;padding:12px;box-shadow:var(--shadow2)}.maker-item img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:16px;background:#f4edf8}.maker-item strong{display:block;padding:12px 6px 4px;color:var(--purple)}
-.cta-band{padding:0 0 74px}.cta-card{padding:34px;border-radius:34px;background:linear-gradient(135deg,#fff,#fff2d1 55%,#e9fffd);border:1px solid var(--line);box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;gap:26px}.cta-card h2{font-size:clamp(2.1rem,4vw,3.7rem);line-height:.95;letter-spacing:-.055em;color:var(--purple);margin:0 0 10px}.cta-card p{margin:0;color:#5a4f5e;line-height:1.58;font-weight:720}.cta-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
-footer{padding:34px 0 46px;border-top:1px solid var(--line);color:#6a5f6e}.footer-grid{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}.footer-brand{display:flex;align-items:center;gap:12px;font-weight:900;color:var(--purple)}.footer-brand img{width:46px;height:46px;object-fit:contain}.footer-links{display:flex;gap:8px;flex-wrap:wrap}.footer-links a{padding:8px 10px;border-radius:9px;text-decoration:none;font-weight:800}.footer-links a:hover{background:#fff}
-.reveal{opacity:0;transform:translateY(24px);transition:.7s ease}.reveal.in{opacity:1;transform:none}@media(max-width:1030px){.hero-grid,.family-panel{grid-template-columns:1fr}.photo-frame{min-height:560px}.paths{grid-template-columns:1fr 1fr}.path-card.live{grid-column:1/-1}.maker-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:760px){.nav{align-items:flex-start;padding:12px 0}.navlinks{display:none}.hero{padding-top:46px}.hero-points{grid-template-columns:1fr}.photo-frame{min-height:500px}.float-card{max-width:205px}.paths{grid-template-columns:1fr}.path-card.live{grid-column:auto}.family-panel{padding:26px}.mock-grid{grid-template-columns:1fr}.cta-card{display:block}.cta-actions{justify-content:flex-start;margin-top:20px}.maker-grid{grid-template-columns:1fr 1fr}}@media(max-width:520px){.brand span{display:none}.photo-frame{min-height:440px}.float-card{position:relative;inset:auto!important;margin:10px}.photo-frame{display:flex;flex-direction:column;justify-content:flex-end;padding:10px}.photo-frame>img,.photo-frame:after,.asset-fallback{position:absolute}.maker-grid{grid-template-columns:1fr}.hero-actions .btn,.cta-actions .btn{width:100%}.family-panel{border-radius:28px;padding:22px}}
-@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:linear-gradient(180deg,#fbf6ef 0%,#fffdfa 100%)}
+a{color:inherit}img{max-width:100%;display:block}.wrap{width:min(1220px,calc(100% - 32px));margin:auto}
+.skip{position:absolute;left:-9999px}.skip:focus{left:10px;top:10px;background:#fff;padding:10px 14px;border:3px solid var(--purple);z-index:999}
+.topbar{position:sticky;top:0;z-index:80;background:rgba(255,249,240,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(91,37,143,.08)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:82px}.brand{display:flex;align-items:center;gap:14px;text-decoration:none}.brand img{width:58px;height:58px;object-fit:contain;filter:drop-shadow(0 8px 18px rgba(91,37,143,.18))}.brand strong{display:block;font-size:1.08rem;color:var(--purple);letter-spacing:-.03em}.brand small{display:block;margin-top:3px;font-size:.78rem;font-weight:800;color:#6a5d71}.navlinks{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.navlinks a{font-weight:900;text-decoration:none;color:var(--purple);padding:10px 12px;border-radius:12px}.navlinks a:hover{background:#fff}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 20px;border-radius:16px;text-decoration:none;font-weight:950;line-height:1.08;border:none;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease;box-shadow:var(--shadow2)}.btn:hover,.btn:focus-visible{transform:translateY(-2px);outline:3px solid rgba(24,194,205,.25);outline-offset:2px}.btn.primary{background:linear-gradient(135deg,var(--pink),#ffbe45);color:#241c2d}.btn.demo{background:#ffffff;color:var(--purple);border:1px solid rgba(255,255,255,.35)}.btn.preview{background:linear-gradient(135deg,var(--purple),#7c3fc2);color:#fff}.btn.teal{background:linear-gradient(135deg,var(--teal),var(--aqua));color:#fff}.btn.ghost{background:#fff;color:var(--purple);border:1px solid var(--line);box-shadow:none}
+.hand{font-family:"Segoe Script","Comic Sans MS",cursive;font-weight:700;letter-spacing:-.02em}.hero{position:relative;overflow:hidden;background:radial-gradient(circle at 85% 12%,rgba(236,78,145,.28),transparent 20%),linear-gradient(180deg,#1d0637 0%,#2d0e54 58%,#a64b93 86%,#f3d6ca 97%,#fbf7ef 100%)}.hero .wrap{padding:26px 0 78px}.eyebrow{display:inline-block;margin-top:10px;padding:12px 18px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);color:#61e5f0;font-weight:1000;letter-spacing:.08em;text-transform:uppercase;font-size:.84rem}.hero-grid{display:grid;grid-template-columns:1.03fr .97fr;gap:34px;align-items:center;padding-top:48px}.hero-copy{color:#fff}.hero h1{margin:22px 0 18px;font-size:clamp(3.2rem,8vw,6.35rem);line-height:.92;letter-spacing:-.08em}.hero h1 .line{display:block}.rainbow{background:linear-gradient(90deg,#ff4b94 0%,#ff8a64 20%,#f7c84e 42%,#b6d85a 66%,#80d7c7 100%);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{max-width:760px;font-size:1.08rem;line-height:1.7;color:#f5edf6;font-weight:720}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.hero-note{margin-top:18px;color:#ffd76a;font-size:1.3rem}.hero-note span{display:inline-block;filter:drop-shadow(0 8px 18px rgba(0,0,0,.22))}.hero-card{position:relative;background:rgba(255,255,255,.94);padding:18px;border-radius:34px;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.28)}.hero-card img{width:100%;border-radius:26px;box-shadow:0 14px 38px rgba(34,13,53,.12)}.soft-card{background:#fff;border:1px solid var(--line);border-radius:30px;box-shadow:var(--shadow2)}
+.section{padding:68px 0}.section.alt{background:linear-gradient(180deg,#fffaf3 0%,#f8f1ff 100%)}.section.deep{background:linear-gradient(180deg,#fffdf9 0%,#f5eefe 100%)}.section h2{margin:0 0 14px;font-size:clamp(2.4rem,5vw,4.6rem);line-height:.93;letter-spacing:-.06em;color:var(--purple)}.section h2 .hand{color:var(--pink)}.intro{max-width:860px;color:var(--text);font-size:1.06rem;line-height:1.7;font-weight:730}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{padding:24px;border-radius:28px;background:#fff;box-shadow:var(--shadow2);border:1px solid var(--line)}.card h3{margin:0 0 10px;color:var(--purple);font-size:1.35rem;letter-spacing:-.03em}.card p{margin:0;color:var(--text);line-height:1.6;font-weight:720}.icon{width:56px;height:56px;border-radius:18px;display:grid;place-items:center;font-size:1.6rem;margin-bottom:14px}.i1{background:rgba(236,78,145,.13)}.i2{background:rgba(24,194,205,.14)}.i3{background:rgba(247,201,76,.18)}
+.learn-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:24px}.learn-card{background:#fff;border:1px solid var(--line);border-radius:26px;padding:22px;box-shadow:var(--shadow2)}.learn-card h3{margin:0 0 8px;font-size:1.2rem;color:var(--purple)}.learn-card ul{margin:10px 0 0;padding-left:18px;color:var(--text);font-weight:720;line-height:1.6}
+.demo-band{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center}.portfolio{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}.visual{background:#fff;border-radius:30px;padding:16px;box-shadow:var(--shadow);border:1px solid var(--line)}.visual img{border-radius:20px}.listbox{background:linear-gradient(180deg,#fff 0%,#fff9f4 100%);border-radius:28px;padding:24px;box-shadow:var(--shadow2);border:1px solid var(--line)}.checklist{display:grid;gap:12px;margin-top:14px}.check{display:flex;gap:12px;align-items:flex-start}.check b{color:var(--purple)}.check span{display:block;color:var(--text);line-height:1.55;font-weight:720}.dot{flex:0 0 30px;width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,var(--pink),#ffb35d);color:#fff;font-weight:900}
+.cta-box{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;background:linear-gradient(135deg,#311153,#7137a7);color:#fff;padding:28px;border-radius:30px;box-shadow:var(--shadow)}.cta-box h3{margin:0 0 8px;font-size:2rem;letter-spacing:-.04em}.cta-box p{margin:0;color:#f5edf8;line-height:1.65;font-weight:720}.footer{padding:24px 0 40px;background:#fff7ee;color:#6c5e70;font-weight:800;text-align:center}
+.overlay{position:fixed;inset:0;background:radial-gradient(circle at 50% 38%,rgba(255,255,255,.12),transparent 20%),linear-gradient(180deg,#22053e,#381060 60%,#160329);z-index:200;display:none;align-items:center;justify-content:center;flex-direction:column;color:#fff;text-align:center;padding:24px}.overlay.active{display:flex}.overlay img{width:min(240px,48vw);filter:drop-shadow(0 16px 34px rgba(0,0,0,.32));animation:pulse 1.5s ease-in-out infinite alternate}.overlay h2{margin:24px 0 8px;font-size:clamp(2rem,4vw,3.6rem);letter-spacing:-.05em}.overlay p{margin:0;color:#ede2f1;font-weight:720;max-width:560px}.progress{width:min(360px,80vw);height:14px;border-radius:999px;background:rgba(255,255,255,.16);margin-top:28px;overflow:hidden}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--gold),var(--aqua));animation:load 1.6s ease forwards}
+@keyframes pulse{from{transform:scale(.96)}to{transform:scale(1.04)}}@keyframes load{from{width:0}to{width:100%}}
+@media (max-width:980px){.hero-grid,.grid3,.learn-grid,.demo-band,.portfolio,.cta-box{grid-template-columns:1fr}.cta-box{padding:24px}.nav{align-items:flex-start}.navlinks{justify-content:flex-end}}
+@media (max-width:760px){.navlinks{display:none}.hero .wrap{padding-bottom:58px}.hero h1{font-size:clamp(2.7rem,12vw,4.5rem)}.hero-note{font-size:1.15rem}}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
 <header class="topbar">
   <div class="wrap nav">
-    <a class="brand" href="creation.html" aria-label="Creation Station home">
-      <img src="assets/Creation Station Logo.png" alt="Creation Station logo">
-      <span><strong>Creation Station</strong><span>by Rebel Ranch Ministries</span></span>
+    <a class="brand" href="creation.html">
+      <img src="assets/Creation Station Logo.png" alt="Creation Station logo" onerror="this.style.visibility='hidden'">
+      <span><strong>Creation Station</strong><small>by Rebel Ranch Ministries</small></span>
     </a>
-    <nav class="navlinks" aria-label="Creation Station navigation">
+    <nav class="navlinks" aria-label="Primary">
       <a href="#paths">Choose a Path</a>
       <a href="creation-station-adult-page.html">Adult Makers</a>
-      <a href="#live">Live Classes</a>
+      <a href="creation-station-live-classes.html">Live Classes</a>
       <a href="support.html">Support</a>
-      <a class="btn primary" href="creation-station-preview.html">Take a Look Inside</a>
+      <a class="btn primary" href="creation-young-creators-interest.html">Sign Up Now</a>
     </nav>
   </div>
 </header>
+
 <main id="main">
   <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="reveal">
-        <div class="eyebrow">For busy parents raising kids in the real world</div>
-        <h1>Your child has ideas.<span>You have a whole life to run.</span></h1>
-        <p class="lead">Parents have responsibilities. There is work, dinner, laundry, practices, errands, school, appointments, and a household that still has to keep moving.</p>
-        <p class="lead">Creation Station gives your child meaningful direction without making you build the entire lesson from scratch or follow up with every single step.</p>
-        <p class="lead"><strong>The creativity feels natural and fun, but the learning underneath is intentional.</strong></p>
-        <div class="hero-actions">
-          <a class="btn primary" href="creation-station-preview.html">Take a Look Inside</a>
-          <a class="btn secondary" href="#paths">Find Your Path</a>
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">For busy parents raising kids in the real world</div>
+          <h1>
+            <span class="line">Your child has ideas.</span>
+            <span class="line rainbow">You have a whole life to run.</span>
+          </h1>
+          <p>There is work, dinner, laundry, practices, errands, school, appointments, and a household that still has to keep moving.</p>
+          <p>Creation Station gives kids meaningful direction without making parents build the whole lesson from scratch or follow up with every single step. The fun feels natural. The learning underneath it is intentional.</p>
+          <p>Every project is built to strengthen problem-solving, follow-through, reflection, critical thinking, real-life application, and work a child can actually be proud to finish.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="creation-young-creators-interest.html">Sign Up Now</a>
+            <button class="btn demo" type="button" onclick="startDemo()">Experience It Through Their Eyes</button>
+            <a class="btn preview" href="creation-station-preview.html">See Why It Works</a>
+          </div>
+          <div class="hero-note"><span class="hand">Creative projects with real-life purpose and application.</span></div>
         </div>
-        <div class="hero-points">
-          <div class="hero-point"><strong>Basic education</strong><span>Writing, math, communication, and presentation are built into meaningful work.</span></div>
-          <div class="hero-point"><strong>Entrepreneurship mindset</strong><span>Ideas become products, stories, pricing, presentation, and possibilities.</span></div>
-          <div class="hero-point"><strong>Real-life skills</strong><span>Critical thinking, follow-through, reflection, and confidence grow underneath the creative fun.</span></div>
+        <div class="hero-card">
+          <img src="assets/creation-station-studio-hero.png" alt="Creation Station Studio preview showing what a creative portfolio or storefront can become">
         </div>
-      </div>
-      <div class="photo-frame reveal" id="familyHero">
-        <img src="assets/creation-station-family-hero.png" alt="A child creating at the table while their mother prepares a family dinner in the background" onerror="document.getElementById('familyHero').classList.add('missing')">
-        <div class="asset-fallback">Upload this image to:<br><strong>assets/creation-station-family-hero.png</strong><br><br>Scene: a child happily making a project at the table while their mother prepares a family dinner in the background.</div>
-        <div class="float-card f1"><h3>Support for the whole family</h3><p>Your child keeps creating while you take care of your family and keep the household moving.</p></div>
-        <div class="float-card f2"><h3>Not just another craft</h3><p>What looks creative on the surface is intentionally teaching far more underneath.</p></div>
-        <div class="float-card f3"><h3>Experience the dashboard</h3><p>Step into the workspace and see Creation Station through your child’s eyes.</p></div>
-        <div class="float-card f4"><h3>Ideas become finished work</h3><p>Dream it. Plan it. Make it. Capture it. Share it. Grow it.</p></div>
       </div>
     </div>
   </section>
 
   <section class="section" id="paths">
     <div class="wrap">
-      <div class="section-head reveal">
-        <div class="eyebrow">Start in the right place</div>
-        <h2>Who are we helping learn, grow, and build something meaningful today?</h2>
-        <p>The front door is simple. The experience behind it goes much deeper. Choose the path that fits, then step into the part of Creation Station built for you.</p>
-      </div>
-      <div class="paths">
-        <article class="path-card youth reveal">
-          <div class="path-icon">✦</div>
-          <h3>Parents &amp; Young Creators</h3>
-          <h4>Ages 6–18</h4>
-          <p>Turn your child’s interests into meaningful learning, practical skills, stronger thinking, and work they are proud to finish.</p>
-          <ul><li>Four age-stage experiences</li><li>Guided projects and progress tools</li><li>A Creation Companion that helps keep the project moving</li></ul>
-          <div class="action"><a class="btn primary" href="creation-station-preview.html">Take a Look Inside</a></div>
-        </article>
-        <article class="path-card adult reveal">
-          <div class="path-icon">✎</div>
-          <h3>Adult Makers &amp; Crafters</h3>
-          <h4>Creative work deserves structure too.</h4>
-          <p>For adults with handmade ideas, creative work, and products that deserve clearer presentation, stronger next steps, and more intentional growth.</p>
-          <ul><li>Pricing and product presentation</li><li>Creator story and listing support</li><li>A path that respects your work</li></ul>
-          <div class="action"><a class="btn teal" href="creation-station-adult-page.html">Explore the Adult Maker Path</a></div>
-        </article>
-        <article class="path-card live reveal" id="live">
-          <div class="path-icon">▶</div>
-          <h3>Live Creation Station Classes</h3>
-          <h4>Interactive Saturday classes for ages 6–12.</h4>
-          <p>A live, supportive creative space where kids make, ask questions, share progress, and keep the project moving.</p>
-          <ul><li>Young Creator Host with Adult Room Moderator</li><li>60-minute guided classes</li><li>Affordable materials lists and downloadable project pages</li></ul>
-          <div class="action"><a class="btn gold" href="summer-sessions-interest.html">View Live Class Details</a></div>
-        </article>
+      <h2>Who are we helping learn, grow, and build something <span class="hand">meaningful</span>?</h2>
+      <p class="intro">Creation Station is built for families who want creative direction with structure, for kids who love making and building, for adult crafters ready to grow, and for live class experiences that feel fun without being fluff.</p>
+      <div class="grid3" style="margin-top:24px">
+        <article class="card"><div class="icon i1">🎨</div><h3>Parents &amp; Young Creators</h3><p>Guided creative projects, reflection, documentation, portfolio pieces, and practical support that helps families keep moving without losing the learning underneath it.</p><div style="margin-top:18px"><a class="btn preview" href="creation-young-creators-interest.html">Start Here</a></div></article>
+        <article class="card"><div class="icon i2">🛍️</div><h3>Adult Makers &amp; Crafters</h3><p>For adults starting from scratch or already selling. We help organize what you make, present it better, and move it toward real income and stronger visibility.</p><div style="margin-top:18px"><a class="btn teal" href="creation-station-adult-page.html">Explore the Adult Maker Path</a></div></article>
+        <article class="card"><div class="icon i3">🖌️</div><h3>Live Online Classes</h3><p>Simple, fun, creative live sessions with a real project, a clear next step, and a smooth path for parents to register, pay, and schedule.</p><div style="margin-top:18px"><a class="btn ghost" href="creation-station-live-classes.html">View Live Class Details</a></div></article>
       </div>
     </div>
   </section>
 
-  <section class="family-section">
-    <div class="wrap family-panel reveal">
-      <div class="family-copy">
-        <h2>They keep creating. You keep the family moving.</h2>
-        <p>Creation Station does not replace the parent. It gives the child a clear path, visible progress, encouragement, and next steps so every stuck moment does not become another thing the parent has to carry alone.</p>
-        <div class="family-list">
-          <div><b>1</b><span><strong>Dream It</strong><br>Turn an interest into a real project idea.</span></div>
-          <div><b>2</b><span><strong>Build It</strong><br>Plan, make, solve problems, and keep going.</span></div>
-          <div><b>3</b><span><strong>Show It</strong><br>Photograph, explain, reflect, and improve.</span></div>
-        </div>
-        <a class="btn gold" href="creation-station-preview.html">Experience It Through Their Eyes</a>
-      </div>
-      <div class="family-visual">
-        <div class="dashboard-mock" aria-label="Creation Station dashboard preview illustration">
-          <div class="mock-top"><img src="assets/Creation Station Logo.png" alt=""><div><strong>Young Creators Dashboard</strong><br><small>Parent demo preview</small></div></div>
-          <div class="mock-progress"><span></span><span></span><span></span><span></span><span></span><span></span></div>
-          <div class="mock-grid"><div class="mock-card"><h4>My Creation Companion</h4><p>Name it, choose its colors, and pick the kind of help your creator needs.</p></div><div class="mock-card teal"><h4>You Are Here</h4><p>Plan It → Make It → Capture It</p></div><div class="mock-card gold"><h4>Sample Project</h4><p>One complete project lets parents experience the flow before joining.</p></div><div class="mock-card"><h4>Progress + Proof</h4><p>Photos, reflection, finished work, and parent documentation.</p></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="maker-strip">
+  <section class="section alt">
     <div class="wrap">
-      <div class="section-head reveal"><div class="eyebrow">Creativity can become something real</div><h2>Make it. Present it. Be proud of it.</h2><p>Creation Station supports handmade work, practical projects, creator stories, and the confidence to show what was built.</p></div>
-      <div class="maker-grid">
-        <div class="maker-item reveal"><img src="assets/bracelets.png" alt="Handmade bracelets"><strong>Handmade products</strong></div>
-        <div class="maker-item reveal"><img src="assets/lavender candle.png" alt="Handmade lavender candle"><strong>Creative product development</strong></div>
-        <div class="maker-item reveal"><img src="assets/lip gloss &amp; soap.png" alt="Handmade lip gloss and soap"><strong>Presentation and packaging</strong></div>
-        <div class="maker-item reveal"><img src="assets/tumbler.png" alt="Decorated tumbler"><strong>Creator confidence</strong></div>
+      <h2>What are we actually <span class="hand">teaching</span> and providing?</h2>
+      <p class="intro">Creation Station is more than a craft. It blends creative projects with guided learning, reflection, documentation, presentation, and practical real-world thinking. That makes it easier for parents to see the educational value underneath the fun — including families using PEP-style funds and homeschool resources.</p>
+      <div class="learn-grid">
+        <article class="learn-card"><h3>Guided Learning Materials</h3><ul><li>Interactive worksheets and step-by-step guided materials</li><li>Project planning, sequencing, and follow-through</li><li>Writing, reflection, and critical-thinking prompts</li><li>Portfolio-style evidence of completed work</li></ul></article>
+        <article class="learn-card"><h3>Real-Life Skill Building</h3><ul><li>Supply, cost, and time awareness</li><li>Creative confidence and self-expression</li><li>Presentation, photography, and storytelling</li><li>Age-appropriate entrepreneurship thinking</li></ul></article>
+        <article class="learn-card"><h3>Parent-Friendly Structure</h3><ul><li>A clear dashboard and project path</li><li>Sample projects and progress checkpoints</li><li>Meaningful work without building lessons from scratch</li><li>A stronger bridge between fun and educational purpose</li></ul></article>
+        <article class="learn-card"><h3>What Kids Walk Away With</h3><ul><li>Finished work they can explain and present</li><li>Reflection and follow-through, not just random activity</li><li>Portfolio pieces that show process and growth</li><li>Projects that feel creative and still carry substance</li></ul></article>
       </div>
     </div>
   </section>
 
-  <section class="cta-band">
-    <div class="wrap cta-card reveal">
-      <div><h2>See what your child will actually experience.</h2><p>Walk through the parent preview, then cross into the limited dashboard demo from your child’s point of view.</p></div>
-      <div class="cta-actions"><a class="btn primary" href="creation-station-preview.html">Open the Parent Preview</a><a class="btn secondary" href="support.html">Support a Young Creator</a></div>
+  <section class="section deep">
+    <div class="wrap demo-band">
+      <div>
+        <h2>They keep creating. You keep the family <span class="hand">moving</span>.</h2>
+        <p class="intro">If the words promise an experience, the action should deliver one. So this is where parents can jump straight into the dashboard demo and feel what their child would actually experience inside Creation Station.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px">
+          <a class="btn primary" href="creation-young-creators-interest.html">Sign Up Now</a>
+          <button class="btn teal" type="button" onclick="startDemo()">Experience It Through Their Eyes</button>
+          <a class="btn ghost" href="creation-station-preview.html">Parent Preview</a>
+        </div>
+      </div>
+      <div class="visual"><img src="assets/creation-station-dashboard-preview.png" alt="Preview of the Creation Station dashboard demo"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap portfolio">
+      <div class="visual"><img src="assets/creation-station-portfolio-preview.png" alt="Example of what a child or family creator portfolio page can look like"></div>
+      <div>
+        <h2>What their <span class="hand">portfolio</span> can become</h2>
+        <p class="intro">A project is not just something they made one afternoon and forgot about. It can become a real piece of work they document, present, reflect on, and build from. That gives parents something stronger than vague promises — it gives them visible proof.</p>
+        <div class="listbox">
+          <div class="checklist">
+            <div class="check"><div class="dot">✓</div><div><b>Finished work</b><span>Projects that move from idea to completion instead of stopping halfway.</span></div></div>
+            <div class="check"><div class="dot">✓</div><div><b>Story + reflection</b><span>Kids explain what they made, what they learned, and how they would improve it next time.</span></div></div>
+            <div class="check"><div class="dot">✓</div><div><b>Documentation</b><span>Photos, progress markers, and completed examples that help parents track growth.</span></div></div>
+            <div class="check"><div class="dot">✓</div><div><b>Future opportunity</b><span>For older creators, the work can begin moving toward presentation, pricing, and entrepreneurship thinking.</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <div class="cta-box">
+        <div>
+          <h3>Strongest next step: sign up. Second strongest: start the demo.</h3>
+          <p>If a parent is ready, we move them forward. If they need to see it first, we let them experience the dashboard. If they still want deeper explanation, the Parent Preview is there to do the selling without killing momentum.</p>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end">
+          <a class="btn primary" href="creation-young-creators-interest.html">Sign Up Now</a>
+          <button class="btn demo" type="button" onclick="startDemo()">Start the Demo</button>
+          <a class="btn ghost" href="creation-station-preview.html">See Why It Works</a>
+        </div>
+      </div>
     </div>
   </section>
 </main>
-<footer>
-  <div class="wrap footer-grid"><div class="footer-brand"><img src="assets/Creation Station Logo.png" alt="Creation Station logo"><span>Creation Station · Rebel Ranch Ministries</span></div><div class="footer-links"><a href="creation.html">Creation Station</a><a href="creation-station-adult-page.html">Adult Makers</a><a href="summer-sessions-interest.html">Live Classes</a><a href="support.html">Support</a></div></div>
+
+<footer class="footer">
+  <div class="wrap">Creation Station • Create. Learn. Build. Grow. • Rebel Ranch Ministries</div>
 </footer>
+
+<div class="overlay" id="demoOverlay" aria-hidden="true">
+  <img src="assets/Creation Station Logo.png" alt="Creation Station logo" onerror="this.style.display='none'">
+  <h2>Entering Creation Station</h2>
+  <p>You’re about to step into the limited dashboard demo and experience Creation Station from your child’s point of view.</p>
+  <div class="progress"><span></span></div>
+</div>
 <script>
-const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in');observer.unobserve(entry.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+function startDemo(){
+  const overlay=document.getElementById('demoOverlay');
+  overlay.classList.add('active');
+  overlay.setAttribute('aria-hidden','false');
+  setTimeout(()=>window.location.href='creation-station-experience.html',1650);
+}
 </script>
 </body>
 </html>
