@@ -187,89 +187,122 @@
   </main>
 
   <script type="module">
-    import { supabase } from "./assets/js/supabase-client.js";
+  import { supabase } from "./assets/js/supabase-client.js";
 
-    const statusBox = document.getElementById("status");
-    const actions = document.getElementById("actions");
+  const statusBox = document.getElementById("status");
+  const actions = document.getElementById("actions");
 
-    function showResult(message, type) {
-      statusBox.textContent = message;
-      statusBox.className = `status-box ${type}`;
-      actions.classList.add("visible");
+  function showResult(message, type = "") {
+    statusBox.textContent = message;
+    statusBox.className = `status-box ${type}`.trim();
+    actions.classList.add("visible");
+  }
+
+  async function waitForSession() {
+    for (let attempt = 0; attempt < 20; attempt += 1) {
+      const { data, error } = await supabase.auth.getSession();
+
+      if (error) {
+        throw error;
+      }
+
+      if (data.session?.user) {
+        return data.session;
+      }
+
+      await new Promise((resolve) => {
+        setTimeout(resolve, 100);
+      });
     }
 
-    async function finishConfirmation() {
-      try {
-        const searchParameters =
-          new URLSearchParams(window.location.search);
+    return null;
+  }
 
-        const hashParameters =
-          new URLSearchParams(
-            window.location.hash.replace(/^#/, "")
-          );
+  async function finishConfirmation() {
+    try {
+      const currentUrl = new URL(window.location.href);
+      const searchParameters = currentUrl.searchParams;
 
-        const returnedError =
-          searchParameters.get("error_description") ||
-          hashParameters.get("error_description");
+      const hashParameters = new URLSearchParams(
+        currentUrl.hash.replace(/^#/, "")
+      );
 
-        if (returnedError) {
-          throw new Error(
-            decodeURIComponent(
-              returnedError.replace(/\+/g, " ")
-            )
-          );
-        }
+      const returnedError =
+        searchParameters.get("error_description") ||
+        hashParameters.get("error_description");
 
-        const authorizationCode =
-          searchParameters.get("code");
+      if (returnedError) {
+        throw new Error(returnedError);
+      }
 
-        if (authorizationCode) {
-          const { error: exchangeError } =
-            await supabase.auth.exchangeCodeForSession(
-              authorizationCode
-            );
+      const authorizationCode =
+        searchParameters.get("code");
 
-          if (exchangeError) {
-            throw exchangeError;
-          }
-        }
+      const hasImplicitTokens =
+        Boolean(hashParameters.get("access_token")) &&
+        Boolean(hashParameters.get("refresh_token"));
 
-        const { data, error } =
-          await supabase.auth.getSession();
-
-        if (error) {
-          throw error;
-        }
-
-        history.replaceState(
-          {},
-          document.title,
-          window.location.pathname
+      if (!authorizationCode && !hasImplicitTokens) {
+        showResult(
+          "This page is available, but no email-confirmation link was detected. Use the confirmation link sent to your email, or continue to the account page.",
+          ""
         );
 
-        if (data.session?.user) {
-          showResult(
-            "Your email has been confirmed and your Rebel Ranch account is ready. Continue to your account dashboard.",
-            "success"
+        return;
+      }
+
+      if (authorizationCode) {
+        const { error: exchangeError } =
+          await supabase.auth.exchangeCodeForSession(
+            authorizationCode
           );
 
-          return;
+        if (exchangeError) {
+          throw exchangeError;
         }
+      }
 
-        showResult(
-          "Your confirmation link has been processed. Continue to the account page and sign in with your email and password.",
-          "success"
-        );
-      } catch (error) {
-        showResult(
-          error?.message ||
-            "This confirmation link could not be completed. It may have expired or already been used.",
-          "error"
+      const session = await waitForSession();
+
+      if (!session?.user) {
+        throw new Error(
+          "The confirmation link was received, but a secure account session could not be established."
         );
       }
-    }
 
-    finishConfirmation();
-  </script>
+      const { data: userData, error: userError } =
+        await supabase.auth.getUser();
+
+      if (userError) {
+        throw userError;
+      }
+
+      if (!userData.user) {
+        throw new Error(
+          "The confirmed account could not be verified."
+        );
+      }
+
+      history.replaceState(
+        {},
+        document.title,
+        window.location.pathname
+      );
+
+      showResult(
+        "Your email has been confirmed and your Rebel Ranch account is ready. Continue to your account dashboard.",
+        "success"
+      );
+    } catch (error) {
+      showResult(
+        error?.message ||
+          "This confirmation link could not be completed. It may have expired or already been used.",
+        "error"
+      );
+    }
+  }
+
+  finishConfirmation();
+</script>
 </body>
 </html>
