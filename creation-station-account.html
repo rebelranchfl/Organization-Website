@@ -1,0 +1,1942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Manage your household and creator profiles for Rebel Ranch Creation Station."
+  >
+
+  <title>Creation Station Account | Rebel Ranch Ministries</title>
+
+  <style>
+    :root {
+      --cream: #fff8ed;
+      --cream-light: #fffdf8;
+      --ink: #302734;
+      --muted: #6c6470;
+      --purple: #5b258f;
+      --purple-dark: #42156f;
+      --lavender: #7b43bd;
+      --pink: #e64f86;
+      --pink-dark: #c93670;
+      --teal: #008d99;
+      --teal-dark: #006c75;
+      --aqua: #16b8c6;
+      --gold: #f6c84c;
+      --white: #ffffff;
+      --line: rgba(91, 37, 143, 0.18);
+      --shadow: 0 22px 65px rgba(47, 41, 51, 0.16);
+      --success-bg: #e8f8ef;
+      --success-text: #17663f;
+      --error-bg: #fff0f2;
+      --error-text: #97213f;
+      --notice-bg: #f4eef9;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background:
+        radial-gradient(
+          circle at 8% 10%,
+          rgba(230, 79, 134, 0.18),
+          transparent 29%
+        ),
+        radial-gradient(
+          circle at 94% 82%,
+          rgba(22, 184, 198, 0.18),
+          transparent 31%
+        ),
+        var(--cream);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .site-header {
+      padding: 16px 22px;
+      background: rgba(255, 253, 248, 0.95);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    .header-inner {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-link {
+      color: var(--purple);
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+    }
+
+    .header-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .header-link {
+      padding: 10px 14px;
+      border: 2px solid var(--purple);
+      border-radius: 8px;
+      color: var(--purple);
+      font-weight: 850;
+      text-decoration: none;
+    }
+
+    .header-link:hover,
+    .header-link:focus-visible {
+      background: var(--purple);
+      color: var(--white);
+    }
+
+    main {
+      width: min(1180px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 52px 0 82px;
+    }
+
+    .hero {
+      max-width: 880px;
+      margin: 0 auto 34px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--teal);
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--purple);
+      font-size: clamp(2.7rem, 8vw, 5.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+    }
+
+    .hero-copy {
+      max-width: 720px;
+      margin: 20px auto 0;
+      color: var(--muted);
+      font-size: 1.06rem;
+      line-height: 1.7;
+    }
+
+    .shell {
+      overflow: hidden;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .loading-panel,
+    .signed-out-panel {
+      padding: clamp(30px, 6vw, 60px);
+      text-align: center;
+    }
+
+    .loading-panel p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .signed-out-panel {
+      display: none;
+    }
+
+    .signed-out-panel.visible {
+      display: block;
+    }
+
+    .signed-out-panel h2 {
+      margin: 0 0 12px;
+      color: var(--purple);
+      font-size: clamp(2rem, 5vw, 3.4rem);
+    }
+
+    .signed-out-panel p {
+      max-width: 560px;
+      margin: 0 auto 24px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .workspace {
+      display: none;
+    }
+
+    .workspace.visible {
+      display: block;
+    }
+
+    .member-banner {
+      padding: clamp(26px, 5vw, 46px);
+      background:
+        linear-gradient(
+          130deg,
+          rgba(91, 37, 143, 0.98),
+          rgba(123, 67, 189, 0.96)
+        );
+      color: var(--white);
+    }
+
+    .member-banner .eyebrow {
+      color: var(--gold);
+    }
+
+    .member-banner h2 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3.7rem);
+      line-height: 1;
+    }
+
+    .member-email {
+      margin: 12px 0 0;
+      opacity: 0.9;
+      overflow-wrap: anywhere;
+    }
+
+    .workspace-content {
+      padding: clamp(25px, 5vw, 50px);
+    }
+
+    .intro-heading {
+      margin: 0;
+      color: var(--purple);
+      font-size: clamp(1.9rem, 4vw, 3rem);
+    }
+
+    .intro-copy {
+      max-width: 740px;
+      margin: 12px 0 26px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .path-button {
+      min-height: 210px;
+      padding: 25px;
+      border: 0;
+      border-radius: 14px;
+      color: var(--white);
+      cursor: pointer;
+      text-align: left;
+      transition:
+        transform 160ms ease,
+        box-shadow 160ms ease;
+    }
+
+    .path-button:hover,
+    .path-button:focus-visible {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 42px rgba(47, 41, 51, 0.2);
+    }
+
+    .path-button.parent {
+      background:
+        linear-gradient(
+          140deg,
+          var(--pink),
+          var(--purple)
+        );
+    }
+
+    .path-button.adult {
+      background:
+        linear-gradient(
+          140deg,
+          var(--aqua),
+          var(--teal-dark)
+        );
+    }
+
+    .path-button strong {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 1.75rem;
+      line-height: 1.05;
+    }
+
+    .path-button span {
+      display: block;
+      line-height: 1.55;
+    }
+
+    .path-button .action-text {
+      margin-top: 22px;
+      font-weight: 900;
+      text-decoration: underline;
+    }
+
+    .setup-panel {
+      display: none;
+      margin-top: 28px;
+      padding: clamp(22px, 4vw, 36px);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--cream-light);
+    }
+
+    .setup-panel.visible {
+      display: block;
+    }
+
+    .setup-panel h3 {
+      margin: 0 0 10px;
+      color: var(--purple);
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+    }
+
+    .setup-copy {
+      margin: 0 0 24px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .privacy-note {
+      margin: 0 0 24px;
+      padding: 15px 17px;
+      border-left: 5px solid var(--teal);
+      background: rgba(22, 184, 198, 0.09);
+      line-height: 1.55;
+    }
+
+    .subsection {
+      margin-top: 28px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    .subsection:first-of-type {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .subsection h4 {
+      margin: 0 0 8px;
+      color: var(--ink);
+      font-size: 1.35rem;
+    }
+
+    .subsection-copy {
+      margin: 0 0 20px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 850;
+    }
+
+    input,
+    select {
+      width: 100%;
+      min-height: 51px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--ink);
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--teal);
+      outline: 3px solid rgba(0, 141, 153, 0.13);
+    }
+
+    .field-help {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.45;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 11px;
+    }
+
+    .primary-button,
+    .secondary-button,
+    .danger-button,
+    .text-button,
+    .account-link {
+      min-height: 49px;
+      padding: 12px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .primary-button {
+      border: 0;
+      background: var(--purple);
+      color: var(--white);
+    }
+
+    .primary-button:hover,
+    .primary-button:focus-visible {
+      background: var(--purple-dark);
+    }
+
+    .secondary-button {
+      border: 2px solid var(--teal);
+      background: var(--white);
+      color: var(--teal-dark);
+    }
+
+    .secondary-button:hover,
+    .secondary-button:focus-visible {
+      background: var(--teal);
+      color: var(--white);
+    }
+
+    .danger-button {
+      border: 2px solid var(--pink);
+      background: var(--white);
+      color: var(--pink-dark);
+    }
+
+    .danger-button:hover,
+    .danger-button:focus-visible {
+      background: var(--pink);
+      color: var(--white);
+    }
+
+    .text-button {
+      min-height: auto;
+      padding: 7px 0;
+      border: 0;
+      background: transparent;
+      color: var(--purple);
+      text-decoration: underline;
+    }
+
+    .account-link {
+      display: inline-block;
+      border: 2px solid var(--purple);
+      background: var(--purple);
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .account-link:hover,
+    .account-link:focus-visible {
+      background: var(--purple-dark);
+      border-color: var(--purple-dark);
+    }
+
+    button:disabled {
+      cursor: wait;
+      opacity: 0.62;
+    }
+
+    .status-box {
+      display: none;
+      margin: 22px 0 0;
+      padding: 16px;
+      border-left: 5px solid var(--purple);
+      background: var(--notice-bg);
+      line-height: 1.55;
+    }
+
+    .status-box.visible {
+      display: block;
+    }
+
+    .status-box.success {
+      border-color: var(--success-text);
+      background: var(--success-bg);
+      color: var(--success-text);
+    }
+
+    .status-box.error {
+      border-color: var(--error-text);
+      background: var(--error-bg);
+      color: var(--error-text);
+    }
+
+    .profiles-section {
+      margin-top: 42px;
+      padding-top: 34px;
+      border-top: 1px solid var(--line);
+    }
+
+    .profiles-heading {
+      margin: 0;
+      color: var(--purple);
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+    }
+
+    .profiles-copy {
+      margin: 10px 0 22px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .empty-state {
+      padding: 24px;
+      border: 1px dashed rgba(91, 37, 143, 0.35);
+      border-radius: 12px;
+      background: var(--cream-light);
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .profiles-list {
+      display: grid;
+      gap: 17px;
+    }
+
+    .creator-card {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-left: 7px solid var(--purple);
+      border-radius: 12px;
+      background: var(--white);
+    }
+
+    .creator-card.child-card {
+      border-left-color: var(--pink);
+    }
+
+    .creator-card.adult-card {
+      border-left-color: var(--teal);
+    }
+
+    .creator-card.archived {
+      opacity: 0.72;
+      background: #f6f3f6;
+    }
+
+    .creator-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .creator-card h4 {
+      margin: 0;
+      color: var(--purple);
+      font-size: 1.55rem;
+    }
+
+    .creator-meta {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .status-label {
+      flex: 0 0 auto;
+      color: var(--teal-dark);
+      font-size: 0.86rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .creator-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .edit-area {
+      display: none;
+      margin-top: 22px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+    }
+
+    .edit-area.visible {
+      display: block;
+    }
+
+    .workspace-footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 38px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    .site-footer {
+      padding: 22px;
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    @media (max-width: 760px) {
+      .site-header {
+        padding: 14px;
+      }
+
+      .header-inner {
+        align-items: flex-start;
+      }
+
+      .brand-link {
+        max-width: 180px;
+      }
+
+      .header-links {
+        max-width: 180px;
+      }
+
+      main {
+        width: min(100% - 18px, 1180px);
+        padding-top: 38px;
+      }
+
+      .path-grid,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .creator-card-top {
+        display: block;
+      }
+
+      .status-label {
+        display: block;
+        margin-top: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand-link" href="creation.html">
+        Creation Station
+      </a>
+
+      <div class="header-links">
+        <a class="header-link" href="account.html">
+          My Account
+        </a>
+
+        <a class="header-link" href="creation.html">
+          Creation Station Home
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Your Creative Home Base</p>
+
+      <h1>Build Your Creation Station</h1>
+
+      <p class="hero-copy">
+        Set up your household, add young creators, or create your own
+        adult maker profile. One adult account can manage either path
+        or both.
+      </p>
+    </section>
+
+    <section class="shell">
+      <div id="loading-panel" class="loading-panel">
+        <p>Loading your secure Creation Station account...</p>
+      </div>
+
+      <section id="signed-out-panel" class="signed-out-panel">
+        <h2>Sign in to continue.</h2>
+
+        <p>
+          Your household and creator profiles are protected inside your
+          Rebel Ranch account.
+        </p>
+
+        <a class="account-link" href="account.html">
+          Go to My Account
+        </a>
+      </section>
+
+      <section id="workspace" class="workspace">
+        <div class="member-banner">
+          <p class="eyebrow">Creation Station Member</p>
+
+          <h2 id="member-name">Welcome</h2>
+
+          <p id="member-email" class="member-email"></p>
+        </div>
+
+        <div class="workspace-content">
+          <section>
+            <h3 class="intro-heading">
+              What are you setting up?
+            </h3>
+
+            <p class="intro-copy">
+              Choose the path that fits today. You can return and add
+              the other path at any time.
+            </p>
+
+            <div class="path-grid">
+              <button
+                id="show-parent-setup"
+                class="path-button parent"
+                type="button"
+              >
+                <strong>Parent or Guardian</strong>
+
+                <span>
+                  Create your household and add young creators beneath
+                  your adult account.
+                </span>
+
+                <span class="action-text">
+                  Set Up My Household
+                </span>
+              </button>
+
+              <button
+                id="show-adult-setup"
+                class="path-button adult"
+                type="button"
+              >
+                <strong>Adult Maker</strong>
+
+                <span>
+                  Create an independent maker profile for your own
+                  projects, portfolio, and studio path.
+                </span>
+
+                <span class="action-text">
+                  Create My Maker Profile
+                </span>
+              </button>
+            </div>
+          </section>
+
+          <section id="parent-setup" class="setup-panel">
+            <h3>Parent or Guardian Setup</h3>
+
+            <p class="setup-copy">
+              Begin with your household, then add one creator profile
+              for each young person participating in Creation Station.
+            </p>
+
+            <p class="privacy-note">
+              We use an age range rather than collecting a child’s exact
+              birthdate. A public creator name is optional and can be a
+              first name, nickname, or creative studio name.
+            </p>
+
+            <div class="subsection">
+              <h4>Household</h4>
+
+              <p class="subsection-copy">
+                Give the household a simple name you will recognize on
+                your account.
+              </p>
+
+              <form id="household-form">
+                <div class="field">
+                  <label for="household-name">
+                    Household name
+                  </label>
+
+                  <input
+                    id="household-name"
+                    name="household_name"
+                    type="text"
+                    maxlength="120"
+                    placeholder="Example: The Ritchie Household"
+                    required
+                  >
+                </div>
+
+                <button
+                  id="household-button"
+                  class="primary-button"
+                  type="submit"
+                >
+                  Save Household
+                </button>
+              </form>
+            </div>
+
+            <div class="subsection">
+              <h4>Add a Young Creator</h4>
+
+              <p class="subsection-copy">
+                Your household must be saved before a young creator
+                profile can be added.
+              </p>
+
+              <form id="child-form">
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="child-display-name">
+                      Creator name
+                    </label>
+
+                    <input
+                      id="child-display-name"
+                      name="display_name"
+                      type="text"
+                      maxlength="100"
+                      required
+                    >
+
+                    <p class="field-help">
+                      The name shown privately inside your account.
+                    </p>
+                  </div>
+
+                  <div class="field">
+                    <label for="child-public-name">
+                      Public creator name
+                    </label>
+
+                    <input
+                      id="child-public-name"
+                      name="public_name"
+                      type="text"
+                      maxlength="100"
+                    >
+
+                    <p class="field-help">
+                      Optional. This can be changed before anything is
+                      displayed publicly.
+                    </p>
+                  </div>
+
+                  <div class="field full">
+                    <label for="child-age-band">
+                      Age range
+                    </label>
+
+                    <select
+                      id="child-age-band"
+                      name="age_band"
+                      required
+                    >
+                      <option value="">Choose an age range</option>
+                      <option value="young_6_12">
+                        Young Creator · Ages 6–12
+                      </option>
+                      <option value="teen_13_17">
+                        Teen Creator · Ages 13–17
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <button
+                  id="child-button"
+                  class="primary-button"
+                  type="submit"
+                  disabled
+                >
+                  Add Young Creator
+                </button>
+              </form>
+            </div>
+
+            <div
+              id="parent-status"
+              class="status-box"
+              role="status"
+              aria-live="polite"
+            ></div>
+          </section>
+
+          <section id="adult-setup" class="setup-panel">
+            <h3>Adult Maker Setup</h3>
+
+            <p class="setup-copy">
+              Build your own Creation Station profile for projects,
+              creative growth, portfolio development, and your future
+              studio path.
+            </p>
+
+            <form id="adult-form">
+              <div class="form-grid">
+                <div class="field">
+                  <label for="adult-display-name">
+                    Maker name
+                  </label>
+
+                  <input
+                    id="adult-display-name"
+                    name="display_name"
+                    type="text"
+                    maxlength="100"
+                    required
+                  >
+
+                  <p class="field-help">
+                    The name shown privately inside your account.
+                  </p>
+                </div>
+
+                <div class="field">
+                  <label for="adult-public-name">
+                    Public maker or studio name
+                  </label>
+
+                  <input
+                    id="adult-public-name"
+                    name="public_name"
+                    type="text"
+                    maxlength="100"
+                  >
+
+                  <p class="field-help">
+                    Optional. Use your name, maker name, or future
+                    studio name.
+                  </p>
+                </div>
+              </div>
+
+              <button
+                id="adult-button"
+                class="primary-button"
+                type="submit"
+              >
+                Create Adult Maker Profile
+              </button>
+            </form>
+
+            <div
+              id="adult-status"
+              class="status-box"
+              role="status"
+              aria-live="polite"
+            ></div>
+          </section>
+
+          <section class="profiles-section">
+            <h3 class="profiles-heading">
+              Your Creator Profiles
+            </h3>
+
+            <p class="profiles-copy">
+              View and manage the young creator and adult maker profiles
+              connected to this account.
+            </p>
+
+            <div id="empty-state" class="empty-state">
+              No creator profiles have been added yet.
+            </div>
+
+            <div id="profiles-list" class="profiles-list"></div>
+          </section>
+
+          <div
+            id="workspace-status"
+            class="status-box"
+            role="status"
+            aria-live="polite"
+          ></div>
+
+          <div class="workspace-footer">
+            <a class="account-link" href="account.html">
+              Return to My Account
+            </a>
+
+            <button
+              id="signout-button"
+              class="secondary-button"
+              type="button"
+            >
+              Sign Out
+            </button>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    Rebel Ranch Ministries · Creation Station · Faith, Family &amp; Freedom
+  </footer>
+
+  <script type="module">
+    import { supabase } from "./assets/js/supabase-client.js";
+
+    const loadingPanel =
+      document.getElementById("loading-panel");
+
+    const signedOutPanel =
+      document.getElementById("signed-out-panel");
+
+    const workspace =
+      document.getElementById("workspace");
+
+    const parentSetup =
+      document.getElementById("parent-setup");
+
+    const adultSetup =
+      document.getElementById("adult-setup");
+
+    const householdForm =
+      document.getElementById("household-form");
+
+    const childForm =
+      document.getElementById("child-form");
+
+    const adultForm =
+      document.getElementById("adult-form");
+
+    const householdButton =
+      document.getElementById("household-button");
+
+    const childButton =
+      document.getElementById("child-button");
+
+    const adultButton =
+      document.getElementById("adult-button");
+
+    const parentStatus =
+      document.getElementById("parent-status");
+
+    const adultStatus =
+      document.getElementById("adult-status");
+
+    const workspaceStatus =
+      document.getElementById("workspace-status");
+
+    const profilesList =
+      document.getElementById("profiles-list");
+
+    const emptyState =
+      document.getElementById("empty-state");
+
+    let currentUser = null;
+    let household = null;
+    let creators = [];
+
+    function setStatus(element, message, type = "") {
+      element.textContent = message;
+      element.className =
+        `status-box visible ${type}`.trim();
+    }
+
+    function clearStatus(element) {
+      element.textContent = "";
+      element.className = "status-box";
+    }
+
+    function showSignedOut() {
+      loadingPanel.hidden = true;
+      workspace.classList.remove("visible");
+      signedOutPanel.classList.add("visible");
+    }
+
+    function showWorkspace() {
+      loadingPanel.hidden = true;
+      signedOutPanel.classList.remove("visible");
+      workspace.classList.add("visible");
+    }
+
+    function openSetup(panel) {
+      const openingParent = panel === "parent";
+
+      parentSetup.classList.toggle(
+        "visible",
+        openingParent
+      );
+
+      adultSetup.classList.toggle(
+        "visible",
+        !openingParent
+      );
+
+      const target =
+        openingParent ? parentSetup : adultSetup;
+
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+
+    function cleanOptionalValue(value) {
+      const cleaned = value.trim();
+      return cleaned ? cleaned : null;
+    }
+
+    function ageBandLabel(ageBand) {
+      if (ageBand === "young_6_12") {
+        return "Young Creator · Ages 6–12";
+      }
+
+      if (ageBand === "teen_13_17") {
+        return "Teen Creator · Ages 13–17";
+      }
+
+      return "Adult Maker · Age 18+";
+    }
+
+    function formatStatus(status) {
+      return status
+        .replaceAll("_", " ")
+        .replace(/\b\w/g, (letter) =>
+          letter.toUpperCase()
+        );
+    }
+
+    async function loadPlatformProfile() {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("display_name")
+        .eq("id", currentUser.id)
+        .single();
+
+      if (error) {
+        throw error;
+      }
+
+      document.getElementById("member-name").textContent =
+        `Welcome, ${data.display_name}`;
+
+      document.getElementById("member-email").textContent =
+        currentUser.email || "";
+    }
+
+    async function refreshAccountData() {
+      const [
+        householdResult,
+        creatorsResult
+      ] = await Promise.all([
+        supabase
+          .from("households")
+          .select("id, household_name")
+          .eq("owner_user_id", currentUser.id)
+          .limit(1),
+
+        supabase
+          .from("creator_profiles")
+          .select(
+            "id, creator_type, age_band, display_name, public_name, profile_status, created_at"
+          )
+          .eq("owner_user_id", currentUser.id)
+          .order("created_at", {
+            ascending: true
+          })
+      ]);
+
+      if (householdResult.error) {
+        throw householdResult.error;
+      }
+
+      if (creatorsResult.error) {
+        throw creatorsResult.error;
+      }
+
+      household =
+        householdResult.data?.[0] || null;
+
+      creators =
+        creatorsResult.data || [];
+
+      document.getElementById(
+        "household-name"
+      ).value = household?.household_name || "";
+
+      householdButton.textContent =
+        household
+          ? "Update Household"
+          : "Save Household";
+
+      childButton.disabled = !household;
+
+      renderCreatorProfiles();
+    }
+
+    function createTextElement(
+      tagName,
+      className,
+      text
+    ) {
+      const element =
+        document.createElement(tagName);
+
+      if (className) {
+        element.className = className;
+      }
+
+      element.textContent = text;
+      return element;
+    }
+
+    function createEditArea(creator) {
+      const editArea =
+        document.createElement("div");
+
+      editArea.className = "edit-area";
+
+      const form =
+        document.createElement("form");
+
+      const grid =
+        document.createElement("div");
+
+      grid.className = "form-grid";
+
+      const nameField =
+        document.createElement("div");
+
+      nameField.className = "field";
+
+      const nameLabel =
+        createTextElement(
+          "label",
+          "",
+          "Creator name"
+        );
+
+      const nameInput =
+        document.createElement("input");
+
+      nameInput.type = "text";
+      nameInput.maxLength = 100;
+      nameInput.required = true;
+      nameInput.value = creator.display_name;
+
+      nameField.append(nameLabel, nameInput);
+
+      const publicField =
+        document.createElement("div");
+
+      publicField.className = "field";
+
+      const publicLabel =
+        createTextElement(
+          "label",
+          "",
+          "Public creator or studio name"
+        );
+
+      const publicInput =
+        document.createElement("input");
+
+      publicInput.type = "text";
+      publicInput.maxLength = 100;
+      publicInput.value = creator.public_name || "";
+
+      publicField.append(
+        publicLabel,
+        publicInput
+      );
+
+      grid.append(nameField, publicField);
+
+      let ageSelect = null;
+
+      if (creator.creator_type === "child") {
+        const ageField =
+          document.createElement("div");
+
+        ageField.className = "field";
+
+        const ageLabel =
+          createTextElement(
+            "label",
+            "",
+            "Age range"
+          );
+
+        ageSelect =
+          document.createElement("select");
+
+        const youngOption =
+          new Option(
+            "Young Creator · Ages 6–12",
+            "young_6_12"
+          );
+
+        const teenOption =
+          new Option(
+            "Teen Creator · Ages 13–17",
+            "teen_13_17"
+          );
+
+        ageSelect.add(youngOption);
+        ageSelect.add(teenOption);
+        ageSelect.value = creator.age_band;
+
+        ageField.append(ageLabel, ageSelect);
+        grid.append(ageField);
+      }
+
+      const statusField =
+        document.createElement("div");
+
+      statusField.className = "field";
+
+      const statusLabel =
+        createTextElement(
+          "label",
+          "",
+          "Profile status"
+        );
+
+      const statusSelect =
+        document.createElement("select");
+
+      [
+        ["Draft", "draft"],
+        ["Active", "active"],
+        ["Paused", "paused"]
+      ].forEach(([label, value]) => {
+        statusSelect.add(
+          new Option(label, value)
+        );
+      });
+
+      statusSelect.value =
+        creator.profile_status === "archived"
+          ? "paused"
+          : creator.profile_status;
+
+      statusField.append(
+        statusLabel,
+        statusSelect
+      );
+
+      grid.append(statusField);
+
+      const buttons =
+        document.createElement("div");
+
+      buttons.className = "button-row";
+
+      const saveButton =
+        createTextElement(
+          "button",
+          "primary-button",
+          "Save Changes"
+        );
+
+      saveButton.type = "submit";
+
+      const cancelButton =
+        createTextElement(
+          "button",
+          "secondary-button",
+          "Cancel"
+        );
+
+      cancelButton.type = "button";
+
+      cancelButton.addEventListener(
+        "click",
+        () => {
+          editArea.classList.remove("visible");
+        }
+      );
+
+      buttons.append(saveButton, cancelButton);
+      form.append(grid, buttons);
+      editArea.append(form);
+
+      form.addEventListener(
+        "submit",
+        async (event) => {
+          event.preventDefault();
+
+          clearStatus(workspaceStatus);
+
+          saveButton.disabled = true;
+          saveButton.textContent = "Saving...";
+
+          const changes = {
+            display_name:
+              nameInput.value.trim(),
+
+            public_name:
+              cleanOptionalValue(
+                publicInput.value
+              ),
+
+            profile_status:
+              statusSelect.value
+          };
+
+          if (ageSelect) {
+            changes.age_band =
+              ageSelect.value;
+          }
+
+          try {
+            const { error } = await supabase
+              .from("creator_profiles")
+              .update(changes)
+              .eq("id", creator.id)
+              .eq(
+                "owner_user_id",
+                currentUser.id
+              );
+
+            if (error) {
+              throw error;
+            }
+
+            await refreshAccountData();
+
+            setStatus(
+              workspaceStatus,
+              "Creator profile updated successfully.",
+              "success"
+            );
+          } catch (error) {
+            setStatus(
+              workspaceStatus,
+              error?.message ||
+                "The creator profile could not be updated.",
+              "error"
+            );
+          } finally {
+            saveButton.disabled = false;
+            saveButton.textContent =
+              "Save Changes";
+          }
+        }
+      );
+
+      return editArea;
+    }
+
+    function renderCreatorProfiles() {
+      profilesList.replaceChildren();
+
+      emptyState.style.display =
+        creators.length ? "none" : "block";
+
+      creators.forEach((creator) => {
+        const card =
+          document.createElement("article");
+
+        card.className =
+          `creator-card ${
+            creator.creator_type === "child"
+              ? "child-card"
+              : "adult-card"
+          } ${
+            creator.profile_status === "archived"
+              ? "archived"
+              : ""
+          }`;
+
+        const top =
+          document.createElement("div");
+
+        top.className = "creator-card-top";
+
+        const identity =
+          document.createElement("div");
+
+        const heading =
+          createTextElement(
+            "h4",
+            "",
+            creator.display_name
+          );
+
+        const publicName =
+          creator.public_name
+            ? `Public name: ${creator.public_name}`
+            : "No public name selected";
+
+        const meta =
+          createTextElement(
+            "p",
+            "creator-meta",
+            `${ageBandLabel(
+              creator.age_band
+            )} · ${publicName}`
+          );
+
+        identity.append(heading, meta);
+
+        const status =
+          createTextElement(
+            "span",
+            "status-label",
+            formatStatus(
+              creator.profile_status
+            )
+          );
+
+        top.append(identity, status);
+
+        const actions =
+          document.createElement("div");
+
+        actions.className = "creator-actions";
+
+        const editButton =
+          createTextElement(
+            "button",
+            "secondary-button",
+            "Edit Profile"
+          );
+
+        editButton.type = "button";
+
+        const archiveButton =
+          createTextElement(
+            "button",
+            creator.profile_status === "archived"
+              ? "primary-button"
+              : "danger-button",
+            creator.profile_status === "archived"
+              ? "Restore Profile"
+              : "Archive Profile"
+          );
+
+        archiveButton.type = "button";
+
+        const editArea =
+          createEditArea(creator);
+
+        editButton.addEventListener(
+          "click",
+          () => {
+            editArea.classList.toggle("visible");
+          }
+        );
+
+        archiveButton.addEventListener(
+          "click",
+          async () => {
+            clearStatus(workspaceStatus);
+
+            archiveButton.disabled = true;
+
+            const restoring =
+              creator.profile_status === "archived";
+
+            archiveButton.textContent =
+              restoring
+                ? "Restoring..."
+                : "Archiving...";
+
+            try {
+              const { error } = await supabase
+                .from("creator_profiles")
+                .update({
+                  profile_status:
+                    restoring
+                      ? "active"
+                      : "archived"
+                })
+                .eq("id", creator.id)
+                .eq(
+                  "owner_user_id",
+                  currentUser.id
+                );
+
+              if (error) {
+                throw error;
+              }
+
+              await refreshAccountData();
+
+              setStatus(
+                workspaceStatus,
+                restoring
+                  ? "Creator profile restored."
+                  : "Creator profile archived.",
+                "success"
+              );
+            } catch (error) {
+              setStatus(
+                workspaceStatus,
+                error?.message ||
+                  "The profile status could not be changed.",
+                "error"
+              );
+            }
+          }
+        );
+
+        actions.append(
+          editButton,
+          archiveButton
+        );
+
+        card.append(
+          top,
+          actions,
+          editArea
+        );
+
+        profilesList.append(card);
+      });
+    }
+
+    document
+      .getElementById("show-parent-setup")
+      .addEventListener("click", () => {
+        openSetup("parent");
+      });
+
+    document
+      .getElementById("show-adult-setup")
+      .addEventListener("click", () => {
+        openSetup("adult");
+      });
+
+    householdForm.addEventListener(
+      "submit",
+      async (event) => {
+        event.preventDefault();
+
+        clearStatus(parentStatus);
+
+        householdButton.disabled = true;
+        householdButton.textContent =
+          household ? "Updating..." : "Saving...";
+
+        const householdName =
+          document
+            .getElementById("household-name")
+            .value.trim();
+
+        try {
+          if (household) {
+            const { error } = await supabase
+              .from("households")
+              .update({
+                household_name: householdName
+              })
+              .eq("id", household.id)
+              .eq(
+                "owner_user_id",
+                currentUser.id
+              );
+
+            if (error) {
+              throw error;
+            }
+          } else {
+            const { data, error } = await supabase
+              .from("households")
+              .insert({
+                owner_user_id: currentUser.id,
+                household_name: householdName
+              })
+              .select("id, household_name")
+              .single();
+
+            if (error) {
+              throw error;
+            }
+
+            household = data;
+          }
+
+          await refreshAccountData();
+
+          setStatus(
+            parentStatus,
+            "Your household is saved. You can now add a young creator.",
+            "success"
+          );
+        } catch (error) {
+          setStatus(
+            parentStatus,
+            error?.message ||
+              "The household could not be saved.",
+            "error"
+          );
+        } finally {
+          householdButton.disabled = false;
+          householdButton.textContent =
+            household
+              ? "Update Household"
+              : "Save Household";
+        }
+      }
+    );
+
+    childForm.addEventListener(
+      "submit",
+      async (event) => {
+        event.preventDefault();
+
+        clearStatus(parentStatus);
+
+        if (!household) {
+          setStatus(
+            parentStatus,
+            "Save your household before adding a young creator.",
+            "error"
+          );
+
+          return;
+        }
+
+        childButton.disabled = true;
+        childButton.textContent =
+          "Adding Creator...";
+
+        const displayName =
+          document
+            .getElementById(
+              "child-display-name"
+            )
+            .value.trim();
+
+        const publicName =
+          cleanOptionalValue(
+            document.getElementById(
+              "child-public-name"
+            ).value
+          );
+
+        const ageBand =
+          document.getElementById(
+            "child-age-band"
+          ).value;
+
+        try {
+          const { error } = await supabase
+            .from("creator_profiles")
+            .insert({
+              owner_user_id: currentUser.id,
+              household_id: household.id,
+              creator_type: "child",
+              age_band: ageBand,
+              display_name: displayName,
+              public_name: publicName,
+              profile_status: "active"
+            });
+
+          if (error) {
+            throw error;
+          }
+
+          childForm.reset();
+          await refreshAccountData();
+
+          setStatus(
+            parentStatus,
+            "Young creator profile added successfully.",
+            "success"
+          );
+        } catch (error) {
+          setStatus(
+            parentStatus,
+            error?.message ||
+              "The young creator profile could not be added.",
+            "error"
+          );
+        } finally {
+          childButton.disabled = !household;
+          childButton.textContent =
+            "Add Young Creator";
+        }
+      }
+    );
+
+    adultForm.addEventListener(
+      "submit",
+      async (event) => {
+        event.preventDefault();
+
+        clearStatus(adultStatus);
+
+        adultButton.disabled = true;
+        adultButton.textContent =
+          "Creating Profile...";
+
+        const displayName =
+          document
+            .getElementById(
+              "adult-display-name"
+            )
+            .value.trim();
+
+        const publicName =
+          cleanOptionalValue(
+            document.getElementById(
+              "adult-public-name"
+            ).value
+          );
+
+        try {
+          const { error } = await supabase
+            .from("creator_profiles")
+            .insert({
+              owner_user_id: currentUser.id,
+              household_id: null,
+              creator_type: "adult",
+              age_band: "adult_18_plus",
+              display_name: displayName,
+              public_name: publicName,
+              profile_status: "active"
+            });
+
+          if (error) {
+            throw error;
+          }
+
+          adultForm.reset();
+          await refreshAccountData();
+
+          setStatus(
+            adultStatus,
+            "Adult maker profile created successfully.",
+            "success"
+          );
+        } catch (error) {
+          setStatus(
+            adultStatus,
+            error?.message ||
+              "The adult maker profile could not be created.",
+            "error"
+          );
+        } finally {
+          adultButton.disabled = false;
+          adultButton.textContent =
+            "Create Adult Maker Profile";
+        }
+      }
+    );
+
+    document
+      .getElementById("signout-button")
+      .addEventListener("click", async () => {
+        const { error } =
+          await supabase.auth.signOut();
+
+        if (error) {
+          setStatus(
+            workspaceStatus,
+            `Sign-out error: ${error.message}`,
+            "error"
+          );
+
+          return;
+        }
+
+        window.location.href = "account.html";
+      });
+
+    async function initializePage() {
+      try {
+        const { data, error } =
+          await supabase.auth.getUser();
+
+        if (error || !data.user) {
+          showSignedOut();
+          return;
+        }
+
+        currentUser = data.user;
+
+        await loadPlatformProfile();
+        await refreshAccountData();
+
+        showWorkspace();
+      } catch (error) {
+        showWorkspace();
+
+        setStatus(
+          workspaceStatus,
+          error?.message ||
+            "Your Creation Station account could not be loaded.",
+          "error"
+        );
+      }
+    }
+
+    supabase.auth.onAuthStateChange(
+      (event) => {
+        if (event === "SIGNED_OUT") {
+          showSignedOut();
+        }
+      }
+    );
+
+    initializePage();
+  </script>
+</body>
+</html>
