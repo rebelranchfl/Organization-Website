@@ -720,18 +720,24 @@
         <p>Loading your secure Creation Station account...</p>
       </div>
 
-      <section id="signed-out-panel" class="signed-out-panel">
-        <h2>Sign in to continue.</h2>
+     <section id="signed-out-panel" class="signed-out-panel">
+  <h2 id="access-panel-title">
+    Sign in to continue.
+  </h2>
 
-        <p>
-          Your household and creator profiles are protected inside your
-          Rebel Ranch account.
-        </p>
+  <p id="access-panel-copy">
+    Your household and creator profiles are protected inside your
+    Rebel Ranch account.
+  </p>
 
-        <a class="account-link" href="account.html">
-          Go to My Account
-        </a>
-      </section>
+  <a
+    id="access-panel-link"
+    class="account-link"
+    href="account.html"
+  >
+    Go to My Account
+  </a>
+</section>
 
       <section id="workspace" class="workspace">
         <div class="member-banner">
@@ -1043,6 +1049,14 @@
 
     const signedOutPanel =
       document.getElementById("signed-out-panel");
+    const accessPanelTitle =
+  document.getElementById("access-panel-title");
+
+const accessPanelCopy =
+  document.getElementById("access-panel-copy");
+
+const accessPanelLink =
+  document.getElementById("access-panel-link");
 
     const workspace =
       document.getElementById("workspace");
@@ -1102,15 +1116,43 @@
     }
 
     function showSignedOut() {
-      loadingPanel.hidden = true;
-      workspace.classList.remove("visible");
-      signedOutPanel.classList.add("visible");
-    }
+  loadingPanel.hidden = true;
+  workspace.classList.remove("visible");
 
-    function showWorkspace() {
-      loadingPanel.hidden = true;
-      signedOutPanel.classList.remove("visible");
-      workspace.classList.add("visible");
+  accessPanelTitle.textContent =
+    "Sign in to continue.";
+
+  accessPanelCopy.textContent =
+    "Your household and creator profiles are protected inside your Rebel Ranch account.";
+
+  accessPanelLink.href = "account.html";
+  accessPanelLink.textContent = "Go to My Account";
+
+  signedOutPanel.classList.add("visible");
+}
+
+function showMembershipRequired() {
+  loadingPanel.hidden = true;
+  workspace.classList.remove("visible");
+
+  accessPanelTitle.textContent =
+    "Creation Station membership required.";
+
+  accessPanelCopy.textContent =
+    "Your Rebel Ranch account is active, but this workspace requires an active Young Creator Family, Creator Development, or Creator Website Membership.";
+
+  accessPanelLink.href = "creation.html";
+  accessPanelLink.textContent =
+    "View Creation Station Options";
+
+  signedOutPanel.classList.add("visible");
+}
+
+function showWorkspace() {
+  loadingPanel.hidden = true;
+  signedOutPanel.classList.remove("visible");
+  workspace.classList.add("visible");
+}
     }
 
     function openSetup(panel) {
@@ -1159,7 +1201,70 @@
           letter.toUpperCase()
         );
     }
+function membershipIsCurrent(membership) {
+  const currentTime = Date.now();
 
+  const startsAt = membership.starts_at
+    ? new Date(membership.starts_at).getTime()
+    : null;
+
+  const endsAt = membership.ends_at
+    ? new Date(membership.ends_at).getTime()
+    : null;
+
+  return (
+    membership.membership_status === "active" &&
+    (startsAt === null || startsAt <= currentTime) &&
+    (endsAt === null || endsAt > currentTime)
+  );
+}
+
+async function getCreationStationAccess() {
+  const [rolesResult, membershipsResult] =
+    await Promise.all([
+      supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", currentUser.id),
+
+      supabase
+        .from("memberships")
+        .select(
+          "offer_code, membership_status, starts_at, ends_at, created_at"
+        )
+        .eq("user_id", currentUser.id)
+        .eq("program_code", "creation_station")
+        .eq("membership_status", "active")
+        .order("created_at", {
+          ascending: false
+        })
+    ]);
+
+  if (rolesResult.error) {
+    throw rolesResult.error;
+  }
+
+  if (membershipsResult.error) {
+    throw membershipsResult.error;
+  }
+
+  const isAdmin =
+    (rolesResult.data || []).some(
+      (item) => item.role === "admin"
+    );
+
+  const activeMembership =
+    (membershipsResult.data || []).find(
+      membershipIsCurrent
+    ) || null;
+
+  return {
+    isAdmin,
+    activeMembership,
+    allowed:
+      isAdmin || Boolean(activeMembership)
+  };
+}
     async function loadPlatformProfile() {
       const { data, error } = await supabase
         .from("profiles")
@@ -1901,37 +2006,48 @@
       });
 
     async function initializePage() {
-      try {
-        const { data, error } =
-          await supabase.auth.getUser();
+  try {
+    const { data, error } =
+      await supabase.auth.getUser();
 
-        if (error || !data.user) {
-          showSignedOut();
-          return;
-        }
-
-        currentUser = data.user;
-
-        await loadPlatformProfile();
-        await refreshAccountData();
-
-        showWorkspace();
-      } catch (error) {
-        showWorkspace();
-
-        setStatus(
-          workspaceStatus,
-          error?.message ||
-            "Your Creation Station account could not be loaded.",
-          "error"
-        );
-      }
+    if (error || !data.user) {
+      showSignedOut();
+      return;
     }
 
-    supabase.auth.onAuthStateChange(
-      (event) => {
-        if (event === "SIGNED_OUT") {
-          showSignedOut();
+    currentUser = data.user;
+
+    await loadPlatformProfile();
+
+    const access =
+      await getCreationStationAccess();
+
+    if (!access.allowed) {
+      showMembershipRequired();
+      return;
+    }
+
+    await refreshAccountData();
+
+    showWorkspace();
+  } catch (error) {
+    loadingPanel.hidden = true;
+    workspace.classList.remove("visible");
+
+    accessPanelTitle.textContent =
+      "We could not verify access.";
+
+    accessPanelCopy.textContent =
+      error?.message ||
+      "Your Creation Station access could not be verified. Return to your account and try again.";
+
+    accessPanelLink.href = "account.html";
+    accessPanelLink.textContent =
+      "Return to My Account";
+
+    signedOutPanel.classList.add("visible");
+  }
+}
         }
       }
     );
