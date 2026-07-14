@@ -1,54 +1,82 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-import { paypalRequest } from "../_shared/paypal.ts";
+import { corsHeaders, paypalEnvironment, paypalRequest, validatedSiteUrl } from "../_shared/paypal.ts";
 
-const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), {
-  status, headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
-});
+function response(body: unknown, status: number, origin: string | null) {
+  return new Response(body === null ? null : JSON.stringify(body), {
+    status, headers: { ...corsHeaders(origin), "Content-Type": "application/json" },
+  });
+}
+const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 Deno.serve(async (req) => {
-  if (req.method === "OPTIONS") return json({});
-  if (req.method !== "POST") return json({ error: "Method not allowed." }, 405);
+  const origin = req.headers.get("Origin");
   try {
-    const auth = req.headers.get("Authorization");
-    if (!auth) return json({ error: "Authentication required." }, 401);
+    const site = validatedSiteUrl();
+    if (origin && origin !== site.origin) return response({ error: "Origin is not allowed." }, 403, origin);
+    if (req.method === "OPTIONS") return response(null, 204, origin);
+    if (req.method !== "POST") return response({ error: "Method not allowed." }, 405, origin);
 
-    const url = Deno.env.get("SUPABASE_URL")!;
-    const anon = Deno.env.get("SUPABASE_ANON_KEY")!;
-    const service = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const userClient = createClient(url, anon, { global: { headers: { Authorization: auth } } });
-    const { data: { user }, error: userError } = await userClient.auth.getUser();
-    if (userError || !user) return json({ error: "Authentication required." }, 401);
+    const authorization = req.headers.get("Authorization");
+    if (!authorization?.startsWith("Bearer ")) return response({ error: "Authentication required." }, 401, origin);
 
-    const { offer_code } = await req.json();
-    if (typeof offer_code !== "string") return json({ error: "offer_code is required." }, 400);
+    const url = Deno.env.get("SUPABASE_URL");
+    const anon = Deno.env.get("SUPABASE_ANON_KEY");
+    const service = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    if (!url || !anon || !service) throw new Error("Supabase function environment is incomplete.");
+
+    const userClient = createClient(url, anon, { global: { headers: { Authorization: authorization } } });
+    const token = authorization.slice(7);
+    const { data: { user }, error: userError } = await userClient.auth.getUser(token);
+    if (userError || !user) return response({ error: "Authentication required." }, 401, origin);
+
+    const body = await req.json().catch(() => ({}));
+    if (typeof body.offer_code !== "string") return response({ error: "offer_code is required." }, 400, origin);
+    if (typeof body.request_id !== "string" || !uuid.test(body.request_id)) {
+      return response({ error: "A valid request_id is required." }, 400, origin);
+    }
+
+    const environment = paypalEnvironment();
     const admin = createClient(url, service);
-    const environment = Deno.env.get("PAYPAL_ENVIRONMENT") === "live" ? "live" : "sandbox";
-    const { data: mapping, error } = await admin.from("payment_plan_mappings")
-      .select("provider_plan_id").eq("payment_provider", "paypal")
-      .eq("payment_environment", environment).eq("program_code", "creation_station")
-      .eq("offer_code", offer_code).eq("is_active", true).maybeSingle();
-    if (error || !mapping) return json({ error: "Membership plan is unavailable." }, 404);
-
-    const siteUrl = (Deno.env.get("SITE_URL") || "").replace(/\/$/, "");
-    const subscription = await paypalRequest("/v1/billing/subscriptions", {
-      method: "POST",
-      headers: { "PayPal-Request-Id": crypto.randomUUID(), Prefer: "return=representation" },
-      body: JSON.stringify({
-        plan_id: mapping.provider_plan_id,
-        custom_id: user.id,
-        application_context: {
-          brand_name: "Rebel Ranch Ministries",
-          user_action: "SUBSCRIBE_NOW",
-          return_url: `${siteUrl}/membership-status.html?paypal=success`,
-          cancel_url: `${siteUrl}/creation-station-membership.html?paypal=cancelled`,
-        },
-      }),
+    const { data: reserved, error: reserveError } = await admin.rpc("reserve_paypal_checkout_attempt", {
+      p_user_id: user.id, p_environment: environment,
+      p_offer_code: body.offer_code, p_request_key: body.request_id,
     });
-    const approve_url = subscription.links?.find((link: { rel: string }) => link.rel === "approve")?.href;
-    return json({ subscription_id: subscription.id, approve_url });
+    if (reserveError) {
+      const message = reserveError.message || "";
+      if (message.includes("unknown_plan")) return response({ error: "Membership plan is unavailable." }, 404, origin);
+      if (message.includes("existing_subscription")) return response({ error: "An active membership already exists." }, 409, origin);
+      throw reserveError;
+    }
+
+    let subscription;
+    if (reserved.provider_subscription_id) {
+      subscription = await paypalRequest(`/v1/billing/subscriptions/${reserved.provider_subscription_id}`);
+    } else {
+      subscription = await paypalRequest("/v1/billing/subscriptions", {
+        method: "POST",
+        headers: { "PayPal-Request-Id": reserved.request_id, Prefer: "return=representation" },
+        body: JSON.stringify({
+          plan_id: reserved.plan_id,
+          custom_id: user.id,
+          application_context: {
+            brand_name: "Rebel Ranch Ministries", user_action: "SUBSCRIBE_NOW",
+            return_url: new URL("/membership-status.html?paypal=success", site).href,
+            cancel_url: new URL("/creation-station-membership.html?paypal=cancelled", site).href,
+          },
+        }),
+      });
+      const { error: completeError } = await admin.rpc("complete_paypal_checkout_attempt", {
+        p_attempt_id: reserved.attempt_id, p_subscription_id: subscription.id,
+      });
+      if (completeError) throw completeError;
+    }
+
+    const approveUrl = subscription.links?.find((link: { rel: string }) => link.rel === "approve")?.href;
+    if (!approveUrl) throw new Error("PayPal did not return an approval URL.");
+    return response({ subscription_id: subscription.id, approve_url: approveUrl }, 200, origin);
   } catch (error) {
     console.error(error);
-    return json({ error: "Unable to start PayPal checkout." }, 500);
+    return response({ error: "Unable to start PayPal checkout." }, 500, origin);
   }
 });
