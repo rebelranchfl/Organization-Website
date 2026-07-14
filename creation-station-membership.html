@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Creation Station Memberships | Rebel Ranch Ministries</title>
+  <style>
+    body{margin:0;background:#fff7ea;color:#2f2933;font-family:Arial,sans-serif}main{max-width:1050px;margin:auto;padding:48px 22px}
+    h1{text-align:center;color:#43166f}.intro{text-align:center;max-width:700px;margin:0 auto 32px}.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+    article{background:#fff;border:1px solid rgba(91,37,143,.2);border-radius:18px;padding:25px;box-shadow:0 12px 35px rgba(47,41,51,.1)}
+    .price{font-size:2rem;color:#008d99;font-weight:700}button{width:100%;border:0;border-radius:999px;padding:13px;background:#5b258f;color:#fff;font-weight:700;cursor:pointer}
+    #status{text-align:center;margin:24px;color:#97213f}a{color:#5b258f}
+  </style>
+</head>
+<body><main>
+  <h1>Creation Station Memberships</h1>
+  <p class="intro">Choose the support that fits your family or creative journey. Every membership strengthens a relationship-centered creative ecosystem.</p>
+  <div class="plans">
+    <article><h2>Young Creator Family</h2><p class="price">$4.99 <small>/ month</small></p><p>Family membership supporting young creators with an adult account holder.</p><button data-offer="young_creator_family">Continue with PayPal</button></article>
+    <article><h2>Creator Development</h2><p class="price">$19.99 <small>/ month</small></p><p>Development support for creators growing their skills and work.</p><button data-offer="creator_development">Continue with PayPal</button></article>
+    <article><h2>Creator Website</h2><p class="price">$49.99 <small>/ month</small></p><p>Creation Station membership with creator website support.</p><button data-offer="creator_website">Continue with PayPal</button></article>
+  </div>
+  <p id="status" role="status"></p><p style="text-align:center"><a href="account.html">Return to My Account</a></p>
+</main>
+<script src="assets/js/membership-payments.js"></script>
+<script type="module">
+  import { supabase } from "./assets/js/supabase-client.js";
+  const status=document.getElementById("status");
+  document.querySelectorAll("[data-offer]").forEach(button=>button.addEventListener("click",async()=>{
+    status.textContent="Opening secure PayPal checkout…"; button.disabled=true;
+    try { await window.RebelRanchPayments.startCheckout(supabase,button.dataset.offer); }
+    catch(error){ status.textContent=error.message; button.disabled=false; }
+  }));
+</script></body></html>
