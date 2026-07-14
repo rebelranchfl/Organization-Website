@@ -126,9 +126,15 @@ begin
        and provider_subscription_id=p_subscription_id for update;
 
     if v_membership.id is null then
+      if exists (
+        select 1 from public.memberships where user_id=p_user_id and program_code='creation_station'
+          and membership_status in ('pending','active','past_due','suspended')
+          and payment_environment is not null and payment_environment<>p_environment
+      ) then raise exception 'payment_environment_mismatch'; end if;
       select * into v_membership from public.memberships
        where user_id=p_user_id and program_code='creation_station'
          and membership_status in ('pending','active','past_due','suspended')
+         and (payment_environment is null or payment_environment=p_environment)
        order by created_at desc limit 1 for update;
     end if;
 
