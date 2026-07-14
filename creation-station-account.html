@@ -2006,53 +2006,50 @@ async function getCreationStationAccess() {
       });
 
     async function initializePage() {
-  try {
-    const { data, error } =
-      await supabase.auth.getUser();
+      try {
+        const { data, error } =
+          await supabase.auth.getUser();
 
-    if (error || !data.user) {
-      showSignedOut();
-      return;
-    }
-
-    currentUser = data.user;
-
-    await loadPlatformProfile();
-
-    const access =
-      await getCreationStationAccess();
-
-    if (!access.allowed) {
-      showMembershipRequired();
-      return;
-    }
-
-    await refreshAccountData();
-
-    showWorkspace();
-  } catch (error) {
-    loadingPanel.hidden = true;
-    workspace.classList.remove("visible");
-
-    accessPanelTitle.textContent =
-      "We could not verify access.";
-
-    accessPanelCopy.textContent =
-      error?.message ||
-      "Your Creation Station access could not be verified. Return to your account and try again.";
-
-    accessPanelLink.href = "account.html";
-    accessPanelLink.textContent =
-      "Return to My Account";
-
-    signedOutPanel.classList.add("visible");
-  }
-}
+        if (error || !data.user) {
+          showSignedOut();
+          return;
         }
+
+        currentUser = data.user;
+
+        await loadPlatformProfile();
+
+        const access =
+          await getCreationStationAccess();
+
+        if (!access.allowed) {
+          showMembershipRequired();
+          return;
+        }
+
+        await refreshAccountData();
+        showWorkspace();
+      } catch (error) {
+        loadingPanel.hidden = true;
+        workspace.classList.remove("visible");
+
+        accessPanelTitle.textContent =
+          "We could not verify access.";
+
+        accessPanelCopy.textContent =
+          error?.message ||
+          "Your Creation Station access could not be verified. Return to your account and try again.";
+
+        accessPanelLink.href = "account.html";
+        accessPanelLink.textContent =
+          "Return to My Account";
+
+        signedOutPanel.classList.add("visible");
       }
-    );
+    }
 
     initializePage();
   </script>
 </body>
 </html>
+
