@@ -23,6 +23,8 @@ grant all on public.payment_checkout_attempts to service_role;
 
 create index if not exists payment_checkout_attempts_lookup_idx
   on public.payment_checkout_attempts(user_id, payment_environment, offer_code, created_at desc);
+create index if not exists payment_events_membership_id_idx on public.payment_events(membership_id);
+create index if not exists payment_events_user_id_idx on public.payment_events(user_id);
 
 create or replace function public.reserve_paypal_checkout_attempt(
   p_user_id uuid, p_environment text, p_offer_code text, p_request_key uuid
@@ -176,6 +178,12 @@ begin
        where id=v_membership.id;
     else
       v_status := 'ignored';
+    end if;
+
+    if p_event_type in ('BILLING.SUBSCRIPTION.ACTIVATED','PAYMENT.SALE.COMPLETED') then
+      update public.payment_checkout_attempts set status='completed',updated_at=now()
+       where payment_provider='paypal' and payment_environment=p_environment
+         and provider_subscription_id=p_subscription_id and status='pending';
     end if;
 
     update public.payment_events set membership_id=v_membership.id,processing_status=v_status,
