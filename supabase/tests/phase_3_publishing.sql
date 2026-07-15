@@ -1,0 +1,15 @@
+begin;
+select plan(11);
+select has_type('public','portfolio_publication_status','portfolio state type exists');
+select col_type_is('public','creator_portfolios','review_status','portfolio_publication_status','portfolio state uses approved type');
+select has_column('public','creator_portfolios','parent_approved_at','parent approval is recorded');
+select has_column('public','creator_portfolios','admin_approved_at','admin approval is recorded');
+select has_column('public','creator_portfolios','published_at','portfolio publication is recorded');
+select has_column('public','creator_website_requests','revision_number','website revisions are versioned');
+select has_column('public','creator_website_requests','replaces_request_id','website revision lineage exists');
+select col_type_is('public','creator_website_requests','status','website_publication_status','website state uses approved type');
+select has_trigger('public','creator_portfolios','guard_portfolio_publication','portfolio transitions are guarded');
+select has_trigger('public','creator_website_requests','guard_website_publication','website transitions are guarded');
+select ok(not (select public from storage.buckets where id='creation-station-private'),'creation storage remains private');
+select * from finish();
+rollback;
