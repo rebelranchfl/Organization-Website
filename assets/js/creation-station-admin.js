@@ -1,7 +1,44 @@
-import {supabase} from './supabase-client.js';
-const $=id=>document.getElementById(id);const esc=v=>{const d=document.createElement('div');d.textContent=v||'';return d.innerHTML};function msg(t,e=false){$('message').textContent=t;$('message').className=`notice${e?' error':''}`}
-async function init(){const {data:{session}}=await supabase.auth.getSession();if(!session)return location.href='account.html';const roles=await supabase.from('user_roles').select('role').eq('user_id',session.user.id);if(roles.error||!roles.data.some(r=>r.role==='admin'))throw new Error('Administrator access required.');await load()}
-async function load(){const [p,w]=await Promise.all([supabase.from('creator_portfolios').select('id,title,review_status,parent_approved_at,moderation_note,creator_profiles(display_name,creator_type,age_band)').in('review_status',['submitted','changes_requested','approved','published']),supabase.from('creator_website_requests').select('id,brand_name,status,revision_number,story,products,moderation_note,creator_profiles(display_name)').in('status',['submitted','changes_requested','approved','published'])]);if(p.error||w.error)throw p.error||w.error;$('portfolio-reviews').innerHTML=p.data.map(x=>card('portfolio',x.id,x.title,x.review_status,x.creator_profiles?.display_name,x.moderation_note)).join('')||'<p class="empty">No portfolio reviews.</p>';$('website-reviews').innerHTML=w.data.map(x=>card('website',x.id,`${x.brand_name} · revision ${x.revision_number}`,x.status,x.creator_profiles?.display_name,x.moderation_note)).join('')||'<p class="empty">No website reviews.</p>';document.querySelectorAll('[data-action]').forEach(b=>b.onclick=()=>moderate(b.dataset.kind,b.dataset.id,b.dataset.action))}
-function card(kind,id,title,status,creator,note){const actions=status==='submitted'?['changes_requested','approved','rejected']:status==='approved'?['published','changes_requested']:status==='published'?[kind==='portfolio'?'private':'archived']:['approved','rejected'];return `<article class="card"><h3>${esc(title)}</h3><p>${esc(creator)} · ${status.replaceAll('_',' ')}</p>${note?`<p>${esc(note)}</p>`:''}<div class="actions">${actions.map(a=>`<button data-kind="${kind}" data-id="${id}" data-action="${a}">${a.replaceAll('_',' ')}</button>`).join('')}</div></article>`}
-async function moderate(kind,id,status){const note=status==='changes_requested'||status==='rejected'?prompt('Moderation note required:')||'':prompt('Optional moderation note:')||'';if((status==='changes_requested'||status==='rejected')&&!note)return;const table=kind==='portfolio'?'creator_portfolios':'creator_website_requests',update=kind==='portfolio'?{review_status:status,moderation_note:note,updated_at:new Date().toISOString()}:{status,moderation_note:note,updated_at:new Date().toISOString()};const {error}=await supabase.from(table).update(update).eq('id',id);if(error)return msg(error.message,true);msg(`${kind} moved to ${status.replaceAll('_',' ')}.`);await load()}
-init().catch(e=>msg(e.message,true));
+import { loadAccountContext, loadModerationQueue, moderateSubmission } from './creation-station-data.js';
+
+const $ = (id) => document.getElementById(id);
+function esc(value = '') { const element = document.createElement('div'); element.textContent = value; return element.innerHTML; }
+function message(text, error = false) { $('message').textContent = text; $('message').className = `notice${error ? ' error' : ''}`; }
+
+async function initialize() {
+  const context = await loadAccountContext();
+  if (!context) { location.href = 'account.html'; return; }
+  if (!context.presentation.isAdmin) throw new Error('Administrator access required.');
+  await renderQueue();
+}
+
+async function renderQueue() {
+  const queue = await loadModerationQueue();
+  $('portfolio-reviews').innerHTML = queue.portfolios.map((item) => reviewCard('portfolio', item.id, item.title,
+    item.review_status, item.creator_profiles?.display_name, item.moderation_note)).join('') || '<p class="empty">No portfolio reviews.</p>';
+  $('website-reviews').innerHTML = queue.websites.map((item) => reviewCard('website', item.id,
+    `${item.brand_name} · revision ${item.revision_number}`, item.status, item.creator_profiles?.display_name,
+    item.moderation_note)).join('') || '<p class="empty">No website reviews.</p>';
+  document.querySelectorAll('[data-action]').forEach((button) => {
+    button.onclick = () => handleModeration(button.dataset.kind, button.dataset.id, button.dataset.action);
+  });
+}
+
+function reviewCard(kind, id, title, status, creator, note) {
+  const actions = status === 'submitted' ? ['changes_requested', 'approved', 'rejected']
+    : status === 'approved' ? ['published', 'changes_requested']
+      : status === 'published' ? [kind === 'portfolio' ? 'private' : 'archived'] : ['approved', 'rejected'];
+  return `<article class="card"><h3>${esc(title)}</h3><p>${esc(creator)} · ${status.replaceAll('_', ' ')}</p>${note ? `<p>${esc(note)}</p>` : ''}<div class="actions">${actions.map((action) => `<button data-kind="${kind}" data-id="${id}" data-action="${action}">${action.replaceAll('_', ' ')}</button>`).join('')}</div></article>`;
+}
+
+async function handleModeration(kind, id, status) {
+  const needsNote = ['changes_requested', 'rejected'].includes(status);
+  const note = prompt(needsNote ? 'Moderation note required:' : 'Optional moderation note:') || '';
+  if (needsNote && !note) return;
+  try {
+    await moderateSubmission(kind, id, status, note);
+    message(`${kind} moved to ${status.replaceAll('_', ' ')}.`);
+    await renderQueue();
+  } catch (error) { message(error.message, true); }
+}
+
+initialize().catch((error) => message(error.message, true));

@@ -1,5 +1,5 @@
 begin;
-select plan(12);
+select plan(15);
 select has_table('public','project_templates','project templates exist');
 select has_table('public','creator_projects','creator projects exist');
 select has_table('public','project_assets','project assets exist');
@@ -10,6 +10,9 @@ select has_table('public','live_classes','classes exist');
 select has_table('public','class_registrations','class registrations exist');
 select has_table('public','creator_website_requests','website workflow exists');
 select has_table('public','creation_activity','activity exists');
+select has_table('public','project_progress_events','project progress history exists');
+select has_column('public','project_templates','skill_tags','project skill tags exist');
+select has_trigger('public','creator_projects','capture_project_progress','project progress is captured');
 select ok((select not public from storage.buckets where id='creation-station-private'),'storage bucket is private');
 select ok((select count(*)>=3 from public.project_templates),'tier templates seeded');
 select * from finish();
