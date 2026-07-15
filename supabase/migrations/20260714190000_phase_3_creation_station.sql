@@ -76,9 +76,10 @@ create table public.creation_activity (
 );
 
 create index on public.creator_projects(owner_user_id,updated_at desc); create index on public.creator_projects(creator_id,status);
-create index on public.project_assets(project_id); create index on public.portfolio_items(portfolio_id,sort_order);
-create index on public.class_registrations(owner_user_id); create index on public.creator_website_requests(owner_user_id,updated_at desc);
-create index on public.creation_activity(owner_user_id,created_at desc);
+create index on public.creator_projects(template_id); create index on public.project_assets(project_id); create index on public.project_assets(owner_user_id); create index on public.project_assets(creator_id);
+create index on public.creator_portfolios(owner_user_id); create index on public.portfolio_items(portfolio_id,sort_order); create index on public.portfolio_items(owner_user_id); create index on public.portfolio_items(project_id); create index on public.portfolio_items(asset_id);
+create index on public.class_registrations(owner_user_id); create index on public.class_registrations(class_id); create index on public.creator_website_requests(owner_user_id,updated_at desc);
+create index on public.creation_activity(owner_user_id,created_at desc); create index on public.creation_activity(creator_id);
 
 alter table public.project_templates enable row level security; alter table public.creator_projects enable row level security;
 alter table public.project_assets enable row level security; alter table public.creator_portfolios enable row level security;

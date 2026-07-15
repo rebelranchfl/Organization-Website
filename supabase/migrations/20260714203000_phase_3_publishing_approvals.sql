@@ -19,10 +19,13 @@ alter table public.creator_portfolios
 create type public.website_publication_status as enum
   ('draft','submitted','changes_requested','approved','published','rejected','archived');
 
+drop policy website_requests_owner_delete on public.creator_website_requests;
 alter table public.creator_website_requests alter column status drop default;
 alter table public.creator_website_requests alter column status type public.website_publication_status
   using status::text::public.website_publication_status;
 alter table public.creator_website_requests alter column status set default 'draft';
+create policy website_requests_owner_delete on public.creator_website_requests for delete to authenticated
+using(owner_user_id=(select auth.uid()) and status in ('draft','archived') or private.is_creation_station_admin());
 
 alter table public.creator_website_requests
   add column revision_number integer not null default 1 check(revision_number > 0),
@@ -32,9 +35,11 @@ alter table public.creator_website_requests
 create unique index creator_website_one_live_revision_idx
   on public.creator_website_requests(creator_id)
   where status in ('submitted','approved');
+create index creator_website_requests_replaces_request_id_idx
+  on public.creator_website_requests(replaces_request_id);
 
 create or replace function private.guard_portfolio_publication()
-returns trigger language plpgsql security invoker set search_path=''
+returns trigger language plpgsql security definer set search_path=''
 as $$
 declare
   v_admin boolean := private.is_creation_station_admin();
@@ -75,13 +80,14 @@ begin
   end if;
   return new;
 end $$;
+revoke all on function private.guard_portfolio_publication() from public,anon,authenticated;
 
 create trigger guard_portfolio_publication
 before insert or update on public.creator_portfolios
 for each row execute function private.guard_portfolio_publication();
 
 create or replace function private.guard_website_publication()
-returns trigger language plpgsql security invoker set search_path=''
+returns trigger language plpgsql security definer set search_path=''
 as $$
 declare v_admin boolean := private.is_creation_station_admin();
 begin
@@ -109,6 +115,7 @@ begin
   end if;
   return new;
 end $$;
+revoke all on function private.guard_website_publication() from public,anon,authenticated;
 
 create trigger guard_website_publication
 before insert or update on public.creator_website_requests
@@ -122,7 +129,9 @@ create policy published_portfolio_items_public_read on public.portfolio_items
 for select to anon using(exists(
  select 1 from public.creator_portfolios p where p.id=portfolio_id and p.review_status='published'
 ));
-grant select on public.creator_portfolios, public.portfolio_items to anon;
+revoke all on public.creator_portfolios,public.portfolio_items from anon;
+grant select(id,creator_id,title,bio,public_slug,review_status,published_at) on public.creator_portfolios to anon;
+grant select(id,portfolio_id,title,description,sort_order,is_featured,created_at) on public.portfolio_items to anon;
 
 comment on column public.creator_website_requests.products is
   'Member-supplied content only. HTML, JavaScript, and executable uploads are not accepted or deployed.';
