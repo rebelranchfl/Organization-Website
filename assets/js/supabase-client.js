@@ -1,4 +1,6 @@
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+import "./vendor/supabase-js-2.52.0.js";
+
+const { createClient } = globalThis.supabase;
 
 const SUPABASE_URL = "https://dfrwxpuojeiykaignyny.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_Ts45JL34s7yFGW5hlI0pUA_-HRUt18a";

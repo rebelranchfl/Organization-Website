@@ -1031,18 +1031,37 @@
         );
       }
 
+      const now = new Date().toISOString();
+      const { data: memberships, error: membershipsError } =
+        await supabase
+          .from("memberships")
+          .select("membership_status,starts_at,ends_at")
+          .eq("user_id", user.id)
+          .eq("program_code", "creation_station")
+          .in("membership_status", ["active", "past_due"])
+          .lte("starts_at", now)
+          .or(`ends_at.is.null,ends_at.gt.${now}`)
+          .limit(1);
+
+      if (membershipsError) {
+        throw new Error(
+          `Your account was authenticated, but its membership could not be loaded: ${membershipsError.message}`
+        );
+      }
+
       document.getElementById("dashboard-name").textContent =
         `Welcome, ${profile.display_name}`;
 
       document.getElementById("dashboard-email").textContent =
         user.email || "";
 
+      const isAdmin = roles.some((item) => item.role === "admin");
       document.getElementById("dashboard-roles").textContent =
-        roles.length
-          ? `Account access: ${roles
-              .map((item) => item.role)
-              .join(", ")}`
-          : "Account access: member";
+        isAdmin
+          ? "Account access: administrator"
+          : memberships.length
+            ? "Account access: Creation Station member"
+            : "Account access: signed-in nonmember";
 
       showDashboard();
     }
