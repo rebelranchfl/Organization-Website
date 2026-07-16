@@ -16,9 +16,9 @@ Future pages should import the shared service and render only the presentation a
 
 ## Presentation-specific code
 
-- `creation-station-dashboard.js` renders the current operational member dashboard and binds its dialogs/buttons.
-- `creation-station-admin.js` renders the moderation queue and binds administrator actions.
-- HTML and CSS remain presentation concerns. The current design is intentionally an operational foundation, not the final Studio UX.
+- Phase 4 supersedes the original dashboard script with `creation-station-app.js` for interaction orchestration and `creation-station-views.js` for role-aware presentation rendering.
+- `creation-station-admin.js` remains the dedicated moderation workflow; the Phase 4 Admin view is an operational summary, not a replacement for server-enforced moderation.
+- HTML and CSS remain presentation concerns. The Phase 3 database, RLS, Storage, approval, and progress-history boundaries remain canonical.
 
 ## Canonical KPI support
 
