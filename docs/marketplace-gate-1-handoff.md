@@ -4,9 +4,9 @@
 
 **Platform Phase 1 is live and functional, but its schema history requires reconciliation before Marketplace Gate 1 can safely build upon it.**
 
-Gate 1 reconciliation, disposable reconstruction, proposed security changes, and access testing are complete.
+Gate 1 reconciliation and final migration preparation are complete.
 
-Production changes remain stopped pending owner approval.
+The tested proposals have been converted into official timestamped migration files. Production application is not authorized.
 
 ## Repository work
 
@@ -14,22 +14,30 @@ Branch:
 
 `agent/marketplace-gate-1-reconciliation`
 
-Files:
+Draft pull request:
+
+`#4 — Marketplace Gate 1: reconcile schema provenance and access controls`
+
+Authoritative Gate 1 migrations:
+
+1. `supabase/migrations/20260718054200_marketplace_seller_privilege_hardening.sql`
+2. `supabase/migrations/20260718054300_marketplace_shared_creator_access.sql`
+3. `supabase/migrations/20260718054400_marketplace_seller_review_index.sql`
+
+Supporting files:
 
 - `supabase/tests/fixtures/verified_platform_baseline.sql`
 - `supabase/tests/marketplace_gate_1_access.sql`
-- `supabase/proposed-migrations/marketplace_seller_privilege_hardening.sql`
-- `supabase/proposed-migrations/marketplace_shared_creator_access.sql`
-- `supabase/proposed-migrations/marketplace_advisor_index.sql`
 - `docs/marketplace-phase-1-architecture-addendum.md`
 - `docs/marketplace-gate-1-reconciliation.md`
+- `docs/marketplace-gate-1-production-execution-plan.md`
 - `docs/marketplace-gate-1-handoff.md`
 
-The proposed SQL is outside `supabase/migrations` so it cannot be applied through a normal migration push before review.
+The superseded files under `supabase/proposed-migrations` were removed. The timestamped migrations are now the single source of truth.
 
 ## Production inventory
 
-Existing Marketplace objects:
+Existing production Marketplace objects:
 
 - `public.seller_profiles`
 - `public.seller_reviews`
@@ -38,7 +46,7 @@ Existing Marketplace objects:
 - Owner/admin RLS policies
 - Seller indexes and constraints
 
-Seller row counts at audit time:
+Production seller row counts at final-preparation verification:
 
 - `seller_profiles`: 0
 - `seller_reviews`: 0
@@ -55,23 +63,46 @@ Marketplace Storage, commerce, checkout, orders, shipping, messaging, and custom
 6. Seller tables grant unnecessary `TRUNCATE`, `TRIGGER`, and `REFERENCES` privileges to `authenticated`.
 7. No production seller data needs migration or transformation.
 
+## Timestamped migration package
+
+### `20260718054200_marketplace_seller_privilege_hardening.sql`
+
+- Removes browser-facing `TRUNCATE`, `TRIGGER`, and `REFERENCES` privileges.
+- Retains `SELECT`, `INSERT`, `UPDATE`, and `DELETE` for `authenticated`.
+- Preserves existing RLS owner and administrator controls.
+- Changes no seller data.
+
+### `20260718054300_marketplace_shared_creator_access.sql`
+
+- Adds `private.has_marketplace_seller_profile()`.
+- Keeps Marketplace access independent of Creation Station paid membership.
+- Expands only creator-profile `SELECT` eligibility.
+- Creates `marketplace_creator_connections` with `security_invoker=true`.
+- Does not grant creator create/update/delete access.
+- Does not grant household, project, asset, progress, class, resource, private Storage, or moderation access.
+
+### `20260718054400_marketplace_seller_review_index.sql`
+
+- Adds `seller_reviews_reviewer_user_id_idx`.
+- Resolves the Marketplace-specific unindexed foreign-key advisor finding.
+- Changes no seller data.
+
 ## Disposable validation
 
 Project:
 
 `rreckoioipopyudqykek`
 
+The disposable project was returned to its pre-Gate-1 state and the exact timestamped SQL was applied in order.
+
 Validated:
 
-1. Shared baseline and Phase 2/3 schema confirmed.
-2. Missing seller shell reconstructed from production inventory.
-3. Seller trigger produced one review per seller.
-4. Seller privileges narrowed.
-5. Marketplace creator access added independently of Creation Station membership.
-6. Safe creator connection view created with `security_invoker=true`.
-7. Reviewer foreign-key index added.
-8. Access matrix executed.
-9. Advisors executed.
+1. Seller privileges narrowed to CRUD only.
+2. Marketplace creator access added independently of Creation Station membership.
+3. Safe creator connection view created with `security_invoker=true`.
+4. Reviewer foreign-key index created.
+5. Advisors executed after every migration.
+6. Full access matrix executed again.
 
 ## Access-control results
 
@@ -92,114 +123,71 @@ Validated:
 | Staff without scoped Marketplace authority | Denied |
 | Creation Station member without seller | No Marketplace access |
 | Administrator | Seller read and moderation allowed |
-| Cross-account seller visibility | Denied |
-
-## Proposed privilege correction
-
-Retain for `authenticated` on `seller_profiles`:
-
-- SELECT
-- INSERT
-- UPDATE
-- DELETE
-
-Retain for `authenticated` on `seller_reviews`:
-
-- SELECT
-- INSERT
-- UPDATE
-- DELETE
-
-RLS continues to limit review mutations to administrators.
-
-Remove from both seller tables:
-
-- TRUNCATE
-- TRIGGER
-- REFERENCES
-
-Anonymous roles receive no table or safe-view access during Gate 1.
-
-## Proposed shared access
-
-Marketplace seller recognition is based on an owned seller profile in `draft`, `active`, or `paused` status and does not require a Creation Station membership.
-
-Creator access is added inside the existing creator-profile SELECT policy. No creator insert, update, or delete permission and no household permission are added.
-
-The safe view exposes only:
-
-- Creator ID
-- Display and public names
-- Creator type and age band
-- Profile status
-- Published portfolio ID, slug, and title
-- Latest published Creator Website URL
-
-It excludes household IDs, owner IDs, private projects, private assets, progress, classes, resources, moderation notes, private portfolios, and private website revisions.
+| Cross-account seller read and update | Denied |
 
 ## Advisor results
 
 No new Marketplace security lint was produced.
 
+The Marketplace-specific unindexed foreign-key warning is resolved after the third migration.
+
 Existing notices remain:
 
 - Payment service tables have RLS without browser policies because they are service-role-only.
 - Leaked-password protection is disabled and requires a separate owner decision.
+- Unused-index notices are expected in the small disposable dataset.
 
-Performance corrections in the disposable proposal:
+## Production deployment blocker
 
-- Added reviewer foreign-key coverage.
-- Added missing creator household foreign-key coverage to the test baseline.
-- Removed the duplicate permissive creator SELECT policy by combining conditions.
+The repository and production migration ledger contain four matching Phase 2/3 migrations under different timestamps.
 
-Remaining performance notices are expected unused-index messages from a small test dataset.
+Recommended pre-deployment action:
 
-## Architecture safeguards recorded
+1. Rename the four repository files to match the exact production-ledger timestamps without changing SQL content.
+2. Run `supabase migration list`.
+3. Run `supabase db push --dry-run`.
+4. The dry run must list only the three Gate 1 migrations.
+5. Stop if any earlier or unexpected migration appears.
 
-- Future seller-team roles
-- Public/private seller-data separation
-- Category-specific rules, assignments, attestations, and credentials
-- One seller per initial future cart and order
-- Legal, tax, and payment approval before integrated checkout
-- Retention, archiving, suspension, appeals, and deletion rules
-- Operational notifications
-- Rural low-bandwidth requirements
-- Map-provider privacy and cost approval
+The exact mapping and deployment steps are in:
 
-## Remaining decisions and blockers
+`docs/marketplace-gate-1-production-execution-plan.md`
 
-Owner approval is required before:
+The timestamp-alignment method requires owner approval before production deployment.
 
-1. Moving seller privilege SQL into a timestamped migration.
-2. Moving Marketplace creator-access SQL into a timestamped migration.
-3. Moving the reviewer index into a timestamped migration.
-4. Applying any of those migrations to production.
-5. Choosing whether production migration history remains a documented pre-ledger baseline or receives a separate migration-repair process.
-6. Enabling leaked-password protection.
-7. Granting future staff Marketplace permissions.
-8. Creating Marketplace Storage, onboarding entities, or later-phase objects.
+## Production stop verification
 
-## Exact production changes requiring approval
+Production currently confirms:
 
-Proposed database changes:
+- `seller_profiles = 0`
+- `seller_reviews = 0`
+- Gate 1 helper function absent
+- Gate 1 safe view absent
+- Gate 1 reviewer index absent
+- All three Gate 1 migration versions absent from production history
+- Original broad seller grants unchanged
 
-- Revoke unnecessary seller-table privileges.
-- Grant explicit seller CRUD privileges.
-- Add `private.has_marketplace_seller_profile()`.
-- Replace the creator-profile SELECT policy with the combined Creation Station and Marketplace condition.
-- Add `marketplace_creator_connections` as a security-invoker view.
-- Add `seller_reviews_reviewer_user_id_idx`.
-
-No Edge Function, PayPal, checkout, order, shipping, or payment change is proposed.
-
-## Stop condition
-
-Gate 1 stops here.
-
-No production Supabase migration was applied.
+No production database object or record was changed.
 
 No Edge Function was deployed.
 
 No PayPal charge or subscription was created.
 
 No Marketplace checkout or later-phase implementation began.
+
+## Repository control note
+
+During the initial branch setup, a temporary placeholder containing only the word `temporary` was mistakenly committed to `main` and immediately removed.
+
+The two commits produce zero changed files relative to the previous Phase 4 content. No application, database, configuration, payment, or asset content differs. Production history was not force-rewritten.
+
+## Next owner decision
+
+Before deployment, the owner must review and approve:
+
+1. The migration timestamp-alignment method.
+2. The final reviewed PR commit.
+3. A production `db push --dry-run` showing only the three Gate 1 migrations.
+4. Production application of the migration package.
+
+Until then, PR #4 remains draft and production remains unchanged.
