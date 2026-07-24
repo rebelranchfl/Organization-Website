@@ -1,0 +1,30 @@
+/* Rebel Ranch Ministries — core brand tokens.
+   Source of truth: docs/brand-guide.md. Formalizes the dark
+   olive/gold/green palette already used across most main-site pages
+   (index.html, marketplace.html, academy.html, community.html, etc.),
+   plus one deliberate addition (--rrm-rust) tying to the logo's
+   barbed-wire/leather tone. Creation Station intentionally keeps its
+   own distinct softer palette and does not use these tokens. */
+:root{
+  --rrm-bg:#07120A;
+  --rrm-bg-alt:#0D1E15;
+  --rrm-panel:#102315;
+  --rrm-panel-alt:#152A18;
+  --rrm-ink:#F0EDD8;
+  --rrm-muted:#B9B596;
+  --rrm-line:#1E3A20;
+
+  --rrm-green:#97C459;
+  --rrm-green-dark:#4A7C59;
+  --rrm-gold:#C17F24;
+  --rrm-gold-bright:#EF9F27;
+  --rrm-rust:#B5541E;
+  --rrm-rust-dark:#8A3F15;
+  --rrm-brown:#2A1A0A;
+  --rrm-danger:#6A1A1A;
+
+  --rrm-bone:#F5EFE1;
+  --rrm-paper:#FFFAF2;
+  --rrm-shadow:0 18px 55px rgba(7,18,10,.25);
+  --rrm-radius:20px;
+}
