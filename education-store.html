@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shop classroom furnishings, elective supplies, project materials, and Rebel Ranch merchandise. Purchases support the educational mission of Rebel Ranch Ministries.">
+  <title>Educational Resource Store | Rebel Ranch Ministries</title>
+  <style>
+    :root{--forest:#20372d;--forest-dark:#14251e;--cream:#f7f1e4;--paper:#fffdf8;--rust:#a85432;--gold:#c9973d;--ink:#20251f;--muted:#687068;--line:#ded5c4}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6}a{color:inherit}.wrap{width:min(1160px,92%);margin:auto}
+    .topbar{background:var(--forest-dark);color:#fff;padding:.65rem 0;text-align:center;font-size:.92rem}.topbar a{font-weight:700}
+    header{background:var(--paper);border-bottom:1px solid var(--line)}.nav{display:flex;align-items:center;justify-content:space-between;gap:1.25rem;padding:1rem 0}.brand{text-decoration:none;font-family:Georgia,serif;font-weight:700;font-size:1.15rem;color:var(--forest)}.navlinks{display:flex;gap:1rem;flex-wrap:wrap}.navlinks a{text-decoration:none;font-weight:700;font-size:.92rem}.navlinks a:hover{text-decoration:underline}
+    .hero{background:linear-gradient(120deg,rgba(20,37,30,.96),rgba(32,55,45,.88));color:#fff;padding:5rem 0 4.5rem}.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;font-weight:800;color:#f1ca7a}.hero h1{font-family:Georgia,serif;font-size:clamp(2.4rem,6vw,4.8rem);line-height:1.02;max-width:850px;margin:.4rem 0 1.2rem}.hero p{max-width:750px;font-size:1.12rem;color:#edf2ee}.hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.7rem}.button{display:inline-block;text-decoration:none;background:var(--gold);color:#1b211c;padding:.85rem 1.15rem;border:2px solid var(--gold);font-weight:800;border-radius:4px}.button.secondary{background:transparent;color:#fff;border-color:#fff}.button:hover{filter:brightness(.95);transform:translateY(-1px)}
+    section{padding:4rem 0}.intro-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:2rem;align-items:start}.panel{background:var(--paper);border:1px solid var(--line);padding:1.5rem;border-radius:8px}.panel h2,.section-title{font-family:Georgia,serif;color:var(--forest);line-height:1.15}.panel h2{margin-top:0}.checklist{padding-left:1.2rem}.checklist li{margin:.45rem 0}
+    .notice{background:#fff8e5;border-left:5px solid var(--gold);padding:1rem 1.2rem;margin-top:1.25rem}.notice strong{color:var(--forest)}
+    .category-nav{display:flex;gap:.6rem;flex-wrap:wrap;margin:1.2rem 0 2rem}.category-nav a{display:inline-block;background:var(--paper);border:1px solid var(--forest);padding:.55rem .8rem;text-decoration:none;font-weight:800;border-radius:4px}.category-nav a:hover{background:var(--forest);color:#fff}
+    .products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem}.card{background:var(--paper);border:1px solid var(--line);border-radius:8px;overflow:hidden;display:flex;flex-direction:column}.card-image{min-height:155px;background:linear-gradient(135deg,#d9dfd5,#f2e8d4);display:grid;place-items:center;font-size:3rem}.card-body{padding:1.2rem;display:flex;flex-direction:column;flex:1}.tag{font-size:.74rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--rust)}.card h3{font-family:Georgia,serif;color:var(--forest);margin:.25rem 0 .45rem;font-size:1.35rem}.card p{margin:.25rem 0;color:#4e554f}.price{font-weight:900;font-size:1.15rem;margin-top:auto;padding-top:1rem}.card .button{margin-top:.75rem;text-align:center;background:var(--forest);border-color:var(--forest);color:#fff}
+    .mission{background:var(--forest);color:#fff}.mission .section-title{color:#fff}.mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}.mission-box{border:1px solid rgba(255,255,255,.3);padding:1.5rem;border-radius:8px}.mission-box h3{font-family:Georgia,serif;color:#f1ca7a}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}.step{background:var(--paper);border:1px solid var(--line);padding:1.25rem;border-radius:8px}.step b{display:block;color:var(--rust);font-size:.8rem;text-transform:uppercase;letter-spacing:.08em}.step h3{font-family:Georgia,serif;color:var(--forest)}
+    footer{background:var(--forest-dark);color:#fff;padding:2.5rem 0}.footer-grid{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}.footer-grid a{color:#fff}
+    @media(max-width:850px){.products{grid-template-columns:repeat(2,1fr)}.intro-grid,.mission-grid{grid-template-columns:1fr}.steps{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:560px){.nav{align-items:flex-start;flex-direction:column}.products,.steps{grid-template-columns:1fr}.hero{padding:3.5rem 0}.hero-actions .button{width:100%;text-align:center}}
+  </style>
+</head>
+<body>
+  <div class="topbar">Every purchase helps fund hands-on learning, family resources, and the mission of Rebel Ranch Ministries.</div>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="index.html">REBEL RANCH MINISTRIES</a>
+      <nav class="navlinks" aria-label="Store navigation">
+        <a href="#classroom">Classroom</a><a href="#electives">Electives</a><a href="#branded">Ranch Gear</a><a href="#documentation">Documentation</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="eyebrow">Learn well. Live boldly. Fund the mission.</div>
+        <h1>Educational resources with purpose behind every purchase.</h1>
+        <p>Shop new, sourced, and donated educational items for home classrooms, hands-on electives, project-based learning, and everyday family life. Applicable purchases include professional, itemized documentation to support the family’s own reimbursement records.</p>
+        <div class="hero-actions"><a class="button" href="#shop">Shop available items</a><a class="button secondary" href="mailto:rebelranchministriesfl@gmail.com?subject=Educational%20Item%20Request">Request an item</a></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap intro-grid">
+        <div>
+          <div class="eyebrow" style="color:var(--rust)">Built for homeschool families</div>
+          <h2 class="section-title">A practical store—not another complicated program.</h2>
+          <p>Rebel Ranch Ministries may offer items already in stock, donated goods that have been inspected and described, and new items sourced after an order request. Product availability, condition, shipping, pickup, and final price are confirmed before payment.</p>
+          <div class="notice"><strong>PEP families:</strong> Product eligibility and reimbursement decisions are made by the scholarship funding organization under the current purchasing guide. We provide clear retail documentation; families remain responsible for confirming eligibility and submitting their request.</div>
+        </div>
+        <aside class="panel" id="documentation">
+          <h2>Documentation included</h2>
+          <ul class="checklist">
+            <li>Rebel Ranch Ministries business name</li><li>Complete purchase date</li><li>Specific item description</li><li>Quantity and item price</li><li>Subtotal, tax, shipping, fees, discounts, and total</li><li>Payment method and paid-in-full status</li><li>Condition noted for donated or previously owned inventory</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="shop" style="background:#efe6d5">
+      <div class="wrap">
+        <div class="eyebrow" style="color:var(--rust)">Opening collection</div>
+        <h2 class="section-title">Products we can source and sell now</h2>
+        <p>Prices shown are starting estimates. Final price depends on brand, size, condition, availability, shipping, and pickup arrangements.</p>
+        <div class="category-nav"><a href="#classroom">Classroom furnishings</a><a href="#electives">Elective equipment</a><a href="#branded">Branded goods</a></div>
+
+        <h2 class="section-title" id="classroom">Classroom Furnishings</h2>
+        <div class="products">
+          <article class="card"><div class="card-image" aria-hidden="true">📐</div><div class="card-body"><span class="tag">Classroom furnishing</span><h3>Architect & Drafting Table</h3><p>Adjustable work surface for drafting, design, architecture, engineering, art, and technical projects.</p><div class="price">Starting at $129</div><a class="button" href="mailto:rebelranchministriesfl@gmail.com?subject=Order%20Request%20-%20Drafting%20Table&body=Please%20send%20current%20drafting%20table%20options%2C%20condition%2C%20price%2C%20and%20pickup%20or%20shipping%20details.">Request current options</a></div></article>
+          <article class="card"><div class="card-image" aria-hidden="true">🪑</div><div class="card-body"><span class="tag">Classroom furnishing</span><h3>Student Desk & Chair</h3><p>New or inspected donated desk-and-chair options for reading, writing, independent work, and projects.</p><div class="price">Starting at $49</div><a class="button" href="mailto:rebelranchministriesfl@gmail.com?subject=Order%20Request%20-%20Student%20Desk%20and%20Chair">Request current options</a></div></article>
+          <article class="card"><div class="card-image" aria-hidden="true">🖊️</div><div class="card-body"><span class="tag">Classroom furnishing</span><h3>Magnetic Whiteboard</h3><p>Wall-mounted or mobile dry-erase boards for instruction, planning, schedules, and visual learning.</p><div class="price">Starting at $24</div><a class="button" href="mailto:rebelranchministriesfl@gmail.com?subject=Order%20Request%20-%20Whiteboard">Request current options</a></div></article>
+          <article class="card"><div class="card-image" aria-hidden="true">🗄️</div><div class="card-body"><span class="tag">Classroom furnishing</span><h3>Learning Storage & Organization</h3><p>Bookshelves, rolling carts, bins, drawers, and containers for books, supplies, and project materials.</p><div class="price">Starting at $18</div><a class="button" href="mailto:rebelranchministriesfl@gmail.com?subject=Order%20Request%20-%20Classroom%20Storage">Request current options</a></div></article>
+          <article class="card"><div class="card-image" aria-hidden="true">🌎</div><div class="card-body"><span class="tag">Classroom furnishing</span><h3>Maps, Globes & Atlases</h3><p>Geography and social-studies visual supports, including wall maps, globes, and student atlases.</p><div class="price">Starting at $16</div><a class="button" href="mailto:rebelranchministriesfl@gmail.com?subject=Order%20Request%20-%20Maps%20Globes%20Atlases">Request current options</a></div></article>
+          <article class="card"><div class="card-image" aria-hidden="true">⏱️</div><div class="card-body"><span class="tag">Classroom furnishing</span><h3>Visual Timers & Classroom Clocks</h3><p>Tools for routines, independent work, task management, experiments, and time instruction.</p><div class="price">Starting at $12</div><a class="button" href="mailto:rebelranchministriesfl@gmail.com?subject=Order%20Request%20-%20Timer%20or%20Clock">Request current options</a></div></article>
+          <article class="card"><div class="card-image" aria-hidden="true">📌</div><div class="card-body"><span class="tag">Classroom furnishing</span><h3>Bulletin Board & Visual Supports</h3><p>Cork boards, educational posters, charts, and visual supports for lessons and routines.</p><div class="price">Starting at $15</div><a class="button" href="mailto:rebelranchministriesfl@gmail.com?subject=Order%20Request%20-%20Bulletin%20Board%20Visual%20Supports">Request current options</a></div></article>
+          <article class="card"><div class="card-image" aria-hidden="true">🎥</div><div class="card-body"><span class="tag">Classroom furnishing</span><h3>Projector Screen</h3><p>Standing or drop-down screen options for lessons, presentations, demonstrations, and group viewing.</p><div class="price">Starting at $59</div><a class="button" href="mailto:rebelranchministriesfl@gmail.com?subject=Order%20Request%20-%20Projector%20Screen">Request current options</a></div></article>
+          <article class="card"><div class="card-image" aria-hidden="true">🧩</div><div class="card-body"><span class="tag">Classroom furnishing</span><h3>Learning Rug or Foam Tiles</h3><p>Defined learning-space flooring for reading, younger learners, movement, and group activities.</p><div class="price">Starting at $29</div><a class="button" href="mailto:rebelranchministriesfl@gmail.com?subject=Order%20Request%20-%20Learning%20Rug%20or%20Foam%20Tiles">Request current options</a></div></article>
+        </div>
+
+        <h2 class="section-title" id="electives" style="margin-top:3.5rem">Elective Course Equipment & Supplies</h2>
+        <div class="products">
+          <article class="card"><div class="card-image" aria-hidden="true">🎨</div><div class="card-body"><span class="tag">Art elective</span><h3>Art Studio Starter Set</h3><p>Easel, drawing tools, brushes, palettes, surfaces, and organized supply options matched to the selected project.</p><div class="price">Starting at $39</div><a class="button" href="mailto:rebelranchministriesfl@gmail.com?subject=Order%20Request%20-%20Art%20Studio%20Set">Request a set</a></div></article>
+          <article class="card"><div class="card-image" aria-hidden="true">🎵</div><div class="card-body"><span class="tag">Music elective</span><h3>Music Learning Equipment</h3><p>Music stands, metronomes, beginner instruments, and related course equipment based on availability.</p><div class="price">Starting at $19</div><a class="button" href="mailto:rebelranchministriesfl@gmail.com?subject=Order%20Request%20-%20Music%20Equipment">Request current options</a></div></article>
+          <article class="card"><div class="card-image" aria-hidden="true">🔨</div><div class="card-body"><span class="tag">Hands-on elective</span><h3>Woodworking Project Kit</h3><p>Age-appropriate project materials, measuring supplies, instructions, and required consumables.</p><div class="price">Starting at $29</div><a class="button" href="mailto:rebelranchministriesfl@gmail.com?subject=Order%20Request%20-%20Woodworking%20Project%20Kit">Request a kit</a></div></article>
+          <article class="card"><div class="card-image" aria-hidden="true">🌱</div><div class="card-body"><span class="tag">Agriculture elective</span><h3>Garden & Plant Science Kit</h3><p>Seeds, trays, growing media, labels, observation materials, and a guided project plan.</p><div class="price">Starting at $24</div><a class="button" href="mailto:rebelranchministriesfl@gmail.com?subject=Order%20Request%20-%20Garden%20Science%20Kit">Request a kit</a></div></article>
+          <article class="card"><div class="card-image" aria-hidden="true">🧪</div><div class="card-body"><span class="tag">Science elective</span><h3>Hands-On Science Kit</h3><p>Project-specific tools, consumable materials, observation sheets, and safety guidance.</p><div class="price">Starting at $25</div><a class="button" href="mailto:rebelranchministriesfl@gmail.com?subject=Order%20Request%20-%20Hands-On%20Science%20Kit">Request a kit</a></div></article>
+          <article class="card"><div class="card-image" aria-hidden="true">🧵</div><div class="card-body"><span class="tag">Life-skills elective</span><h3>Sewing & Textile Project Kit</h3><p>Fabric, notions, patterns, measuring tools, and guided materials for a defined sewing project.</p><div class="price">Starting at $27</div><a class="button" href="mailto:rebelranchministriesfl@gmail.com?subject=Order%20Request%20-%20Sewing%20Project%20Kit">Request a kit</a></div></article>
+        </div>
+
+        <h2 class="section-title" id="branded" style="margin-top:3.5rem">Rebel Ranch Branded Goods</h2>
+        <div class="products">
+          <article class="card"><div class="card-image" aria-hidden="true">👕</div><div class="card-body"><span class="tag">Mission merchandise</span><h3>Rebel Ranch T-Shirt</h3><p>Mission-branded apparel for supporters, families, volunteers, and community events.</p><div class="price">Starting at $22</div><a class="button" href="mailto:rebelranchministriesfl@gmail.com?subject=Order%20Request%20-%20Rebel%20Ranch%20Shirt">Request sizes & designs</a></div></article>
+          <article class="card"><div class="card-image" aria-hidden="true">📓</div><div class="card-body"><span class="tag">Mission merchandise</span><h3>Faith, Family & Nature Journal</h3><p>A practical journal for notes, plans, reflection, nature study, and everyday learning.</p><div class="price">Starting at $14</div><a class="button" href="mailto:rebelranchministriesfl@gmail.com?subject=Order%20Request%20-%20Rebel%20Ranch%20Journal">Request current designs</a></div></article>
+          <article class="card"><div class="card-image" aria-hidden="true">☕</div><div class="card-body"><span class="tag">Mission merchandise</span><h3>Rebel Ranch Mug or Tumbler</h3><p>Useful branded drinkware that helps carry and fund the mission.</p><div class="price">Starting at $16</div><a class="button" href="mailto:rebelranchministriesfl@gmail.com?subject=Order%20Request%20-%20Mug%20or%20Tumbler">Request current designs</a></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="mission">
+      <div class="wrap">
+        <div class="eyebrow">Where the money goes</div><h2 class="section-title">Your purchase helps build what families need.</h2>
+        <div class="mission-grid"><div class="mission-box"><h3>Education & Creation</h3><p>Purchases help support hands-on learning, Creation Station projects, educational resources, and learning opportunities for children and families.</p></div><div class="mission-box"><h3>Faith, Family & Community</h3><p>Proceeds support the broader mission of Rebel Ranch Ministries, including practical family resources, community connection, and mission operations.</p></div></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap"><div class="eyebrow" style="color:var(--rust)">How ordering works</div><h2 class="section-title">Start selling before carrying a warehouse of inventory.</h2>
+        <div class="steps"><div class="step"><b>Step 1</b><h3>Choose or request</h3><p>Select a listed category or tell us the exact item you need.</p></div><div class="step"><b>Step 2</b><h3>We confirm</h3><p>We confirm the product, condition, final price, availability, and delivery method.</p></div><div class="step"><b>Step 3</b><h3>Pay securely</h3><p>We issue the payment link or invoice after the order details are approved.</p></div><div class="step"><b>Step 4</b><h3>Receive records</h3><p>You receive the product and professional itemized purchase documentation.</p></div></div>
+        <div style="text-align:center;margin-top:2rem"><a class="button" href="mailto:rebelranchministriesfl@gmail.com?subject=Educational%20Store%20Order%20Request&body=Item%20requested%3A%0AStudent%20age%2Fgrade%3A%0APreferred%20budget%3A%0APickup%20or%20shipping%3A%0AQuestions%3A">Start an order request</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap footer-grid"><div><strong>Rebel Ranch Ministries</strong><br>Faith · Family · Freedom</div><div><a href="index.html">Home</a> · <a href="mailto:rebelranchministriesfl@gmail.com">Contact</a></div></div></footer>
+</body>
+</html>
