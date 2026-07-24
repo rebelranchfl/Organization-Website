@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Manage your Rebel Ranch Marketplace seller profile, application, and requirements.">
+  <title>Seller Dashboard | Rebel Ranch Marketplace</title>
+  <link rel="stylesheet" href="assets/css/marketplace-seller.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to dashboard content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="marketplace.html" aria-label="Rebel Ranch Marketplace home"><span aria-hidden="true">✦</span> Marketplace</a>
+      <div class="account-actions"><a href="account.html">Rebel Ranch Account</a><button id="signout" type="button">Sign out</button></div>
+    </div>
+  </header>
+
+  <main id="main-content" class="shell" tabindex="-1">
+    <div id="app-status" class="notice hidden" role="status" aria-live="polite"></div>
+
+    <section id="loading" class="state-card" aria-busy="true">
+      <div class="loader" aria-hidden="true"></div>
+      <h1>Opening your dashboard</h1>
+      <p>Gathering your seller profile and application status.</p>
+    </section>
+
+    <section id="access-state" class="state-card hidden">
+      <p class="eyebrow">Rebel Ranch Marketplace</p>
+      <h1 id="access-title">Sign in to continue</h1>
+      <p id="access-copy">Your seller dashboard is protected by your Rebel Ranch account.</p>
+      <a id="access-link" class="button primary" href="account.html">Go to My Account</a>
+    </section>
+
+    <section id="create-profile" class="hidden" aria-labelledby="create-profile-title">
+      <section class="market-hero" aria-labelledby="create-profile-title">
+        <div>
+          <p class="eyebrow">Sell Local</p>
+          <h1 id="create-profile-title">Set up your seller profile</h1>
+          <p>Tell us about your business. Submitting your application does not list your products or authorize sales until it's reviewed and approved.</p>
+        </div>
+      </section>
+      <section class="panel" style="margin-top:18px">
+        <form id="create-profile-form" class="onboarding-form">
+          <label>Business name<input id="ob-business-name" required></label>
+          <label>What do you sell?
+            <select id="ob-marketplace-path" required>
+              <option value="food_farm">Food & Farm</option>
+              <option value="goods_services_handmade">Goods, Services & Handmade</option>
+              <option value="both">Both</option>
+            </select>
+          </label>
+          <label>Short description<textarea id="ob-short-description" placeholder="A sentence or two about what you offer"></textarea></label>
+          <label>Category
+            <div id="ob-categories" class="check-grid"></div>
+          </label>
+          <label>General region<select id="ob-region"></select></label>
+          <label>Legal business name (if different)<input id="ob-legal-business-name"></label>
+          <label>Business type
+            <select id="ob-entity-type">
+              <option value="">Select one</option>
+              <option value="sole_proprietor">Sole proprietor</option>
+              <option value="llc">LLC</option>
+              <option value="partnership">Partnership</option>
+              <option value="nonprofit">Nonprofit</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+          <label>Phone<input id="ob-contact-phone" type="tel"></label>
+          <label>Current producer status
+            <select id="ob-producer-status">
+              <option value="">Select one</option>
+              <option value="licensed_permitted">Licensed / permitted</option>
+              <option value="cottage_food_exemption">Cottage food / exemption</option>
+              <option value="private_only_pma">Private-only / PMA only</option>
+              <option value="still_building">Still building / not ready yet</option>
+              <option value="not_sure">Not sure</option>
+            </select>
+          </label>
+          <label>Anything else we should know?<textarea id="ob-applicant-notes"></textarea></label>
+          <div class="dialog-actions"><button class="primary" type="submit">Create seller profile</button></div>
+        </form>
+      </section>
+    </section>
+
+    <div id="workspace" class="hidden">
+      <section class="market-hero" aria-labelledby="welcome">
+        <div>
+          <p class="eyebrow">Marketplace</p>
+          <h1 id="welcome">Your seller dashboard</h1>
+          <p>Manage your profile, application, requirements, and notifications in one place.</p>
+        </div>
+      </section>
+
+      <section class="view-tools" aria-label="Choose a dashboard view">
+        <div id="view-switcher" class="segmented"></div>
+      </section>
+
+      <div id="screen" tabindex="-1"></div>
+    </div>
+  </main>
+
+  <dialog id="review-dialog" aria-labelledby="review-title">
+    <form method="dialog">
+      <div class="dialog-heading">
+        <div><p class="eyebrow">Application review</p><h2 id="review-title">Seller</h2></div>
+        <button class="icon-button" value="cancel" aria-label="Close">×</button>
+      </div>
+      <div id="review-body"></div>
+      <div class="dialog-actions">
+        <button type="button" id="review-changes">Request changes</button>
+        <button type="button" class="danger" id="review-reject">Reject</button>
+        <button type="button" class="primary" id="review-approve">Approve</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script type="module" src="assets/js/marketplace-seller-app.js"></script>
+</body>
+</html>
