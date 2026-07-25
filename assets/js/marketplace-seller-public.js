@@ -71,7 +71,7 @@ function render(sp,categories,paymentMethods,region){
         <h1>${esc(sp.business_name)}</h1>
         ${sp.short_description?`<p class="tagline">${esc(sp.short_description)}</p>`:''}
         <div class="meta-row">
-          <span class="verified"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 14.3 7.2 16.9l.9-5.4-3.9-3.8 5.4-.8z"/></svg> Vetted Rebel Ranch Seller</span>
+          <span class="verified"><svg viewBox="0 0 24 24"><path d="M12 3l9 8h-3v9h-5v-6h-2v6H6v-9H3z"/></svg> Local & Independent</span>
           ${categories.map(c=>`<span class="tag">${esc(c.marketplace_categories?.name||'')}</span>`).join('')}
           ${region?`<span class="tag">${esc(region.region_name)}${region.state_code?`, ${esc(region.state_code)}`:''}</span>`:''}
         </div>
@@ -103,11 +103,11 @@ function render(sp,categories,paymentMethods,region){
         </section>
 
         <section class="panel trust-panel">
-          <h2>Why the checkmark?</h2>
+          <h2>Why shop here?</h2>
           <ul class="list-plain">
-            <li>Business info reviewed and approved by Rebel Ranch Ministries</li>
+            <li>A real local business, not a chain, franchise, or reseller — every seller attests to that when they apply</li>
+            <li>Business info reviewed and approved by Rebel Ranch Ministries before listing</li>
             <li>Required permits and compliance are self-attested by the seller, not independently verified by Rebel Ranch</li>
-            <li>Listed in good standing as of application approval</li>
           </ul>
         </section>
       </div>
