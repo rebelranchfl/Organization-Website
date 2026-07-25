@@ -3,7 +3,7 @@ import {renderers} from './marketplace-seller-views.js';
 
 const $=id=>document.getElementById(id);
 const state={identity:null,data:null,adminData:null,view:'status',busy:false};
-const routes=['status','requirements','affiliations','notifications','history','admin'];
+const routes=['status','requirements','affiliations','messages','notifications','history','admin'];
 
 function message(text,error=false){
   const el=$('app-status');
@@ -27,7 +27,7 @@ function showAccess(title,copy,label='Go to My Account',href='account.html'){
 
 function isEligible(view){if(view==='admin')return state.identity.isAdmin;return routes.includes(view)}
 function eligibleViews(){
-  const views=[['status','Status'],['requirements','Requirements'],['affiliations','Affiliations'],['notifications','Notifications'],['history','History']];
+  const views=[['status','Status'],['requirements','Requirements'],['affiliations','Affiliations'],['messages','Messages'],['notifications','Notifications'],['history','History']];
   if(state.identity.isAdmin)views.push(['admin','Admin']);
   return views;
 }
@@ -84,7 +84,12 @@ function bindScreen(){
   if(profileForm)profileForm.onsubmit=e=>{
     e.preventDefault();
     withBusy(e.submitter,async()=>{
-      const updates={business_name:$('pf-business-name').value.trim(),short_description:$('pf-short-description').value.trim()};
+      const updates={
+        business_name:$('pf-business-name').value.trim(),
+        short_description:$('pf-short-description').value.trim(),
+        long_description:$('pf-long-description').value.trim(),
+        page_theme:profileForm.querySelector('input[name="pf-theme"]:checked')?.value||state.identity.sellerProfile.page_theme
+      };
       const {error}=await actions.updateSellerProfile(state.identity,updates);
       if(error)throw error;
       state.identity.sellerProfile={...state.identity.sellerProfile,...updates};
@@ -126,6 +131,36 @@ function bindScreen(){
       message('Category added.');
     });
   };
+
+  const addPaymentForm=root.querySelector('#add-payment-form');
+  if(addPaymentForm)addPaymentForm.onsubmit=e=>{
+    e.preventDefault();
+    withBusy(e.submitter,async()=>{
+      const fields={
+        method_type:$('new-payment-type').value,
+        label:$('new-payment-label').value.trim(),
+        link_url:$('new-payment-link').value.trim()
+      };
+      if(!fields.label)throw new Error('Enter a label or handle for this payment method.');
+      const {error}=await actions.addPaymentMethod(state.identity,fields);
+      if(error)throw error;
+      await refresh();
+      message('Payment method added.');
+    });
+  };
+
+  root.querySelectorAll('[data-remove-payment]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
+    const {error}=await actions.removePaymentMethod(state.identity,b.dataset.removePayment);
+    if(error)throw error;
+    await refresh();
+    message('Payment method removed.');
+  }));
+
+  root.querySelectorAll('[data-mark-inquiry-read]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
+    const {error}=await actions.markInquiryRead(state.identity,b.dataset.markInquiryRead);
+    if(error)throw error;
+    await refresh();
+  }));
 
   root.querySelectorAll('[data-attestation-form]').forEach(form=>form.onsubmit=e=>{
     e.preventDefault();
