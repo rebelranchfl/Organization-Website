@@ -32,3 +32,16 @@ document.querySelectorAll('[data-nav-toggle]').forEach((toggle) => {
     close();
   });
 });
+
+const demoOverlay = document.getElementById('demoOverlay');
+if (demoOverlay) {
+  document.querySelectorAll('[data-start-demo]').forEach((button) => {
+    button.addEventListener('click', () => {
+      demoOverlay.hidden = false;
+      demoOverlay.setAttribute('aria-hidden', 'false');
+      setTimeout(() => {
+        window.location.href = 'creation-station-experience.html';
+      }, 1600);
+    });
+  });
+}
