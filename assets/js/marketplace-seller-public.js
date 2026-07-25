@@ -105,8 +105,8 @@ function render(sp,categories,paymentMethods,region){
         <section class="panel trust-panel">
           <h2>Why the checkmark?</h2>
           <ul class="list-plain">
-            <li>Identity and business info reviewed by Rebel Ranch Ministries</li>
-            <li>Cottage food / permit status confirmed where required</li>
+            <li>Business info reviewed and approved by Rebel Ranch Ministries</li>
+            <li>Required permits and compliance are self-attested by the seller, not independently verified by Rebel Ranch</li>
             <li>Listed in good standing as of application approval</li>
           </ul>
         </section>

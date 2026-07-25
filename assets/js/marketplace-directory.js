@@ -11,7 +11,11 @@ async function init(){
   const sellers=(data||[]).filter(sp=>sp.public_slug);
 
   if(error||!sellers.length){
-    grid.innerHTML='<p class="eyebrow" style="grid-column:1/-1;text-align:center">No sellers are listed yet — check back soon.</p>';
+    grid.innerHTML=`<div class="card goldline" style="grid-column:1/-1;text-align:center">
+      <h3>The first listing could be yours</h3>
+      <p>We're opening the directory to our first vetted sellers now. Check back soon to browse — or if you sell locally, apply today and be one of the first ones buyers see.</p>
+      <a class="btn gold" href="marketplace-seller-dashboard.html" style="margin-top:14px;display:inline-block">Apply as a Seller</a>
+    </div>`;
     return;
   }
 
