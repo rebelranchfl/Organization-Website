@@ -17,6 +17,9 @@ function badge(status){return `<span class="status-badge ${badgeClass(status)}">
 function categoryName(state,id){return state.identity.categories.find(c=>c.id===id)?.name||'Category'}
 function requirementFor(state,assignmentId){return state.data.requirementAssignments.find(r=>r.id===assignmentId)}
 
+const THEME_LABELS={dark:'Current (dark green)',cream:'Cream Canvas',linen:'Linen & Timber',white:'Morning Market White'};
+const PAYMENT_LABELS={paypal:'PayPal',venmo:'Venmo',cashapp:'Cash App',zelle:'Zelle',stripe:'Stripe',apple_pay:'Apple Pay',cash:'Cash',check:'Check',other:'Other'};
+
 export function status(state){
   const sp=state.identity.sellerProfile;
   const app=state.data.applications[0];
@@ -32,7 +35,11 @@ export function status(state){
         <form id="profile-form" class="onboarding-form">
           <label>Business name<input id="pf-business-name" value="${esc(sp.business_name)}" ${canEdit?'':'disabled'} required></label>
           <label>Short description<textarea id="pf-short-description" ${canEdit?'':'disabled'}>${esc(sp.short_description||'')}</textarea></label>
-          <div class="dialog-actions">${canEdit?'<button class="primary" type="submit">Save changes</button>':'<p class="eyebrow">Locked while under review</p>'}</div>
+          <label>Long description <span>Shown in the About section of your public page</span><textarea id="pf-long-description">${esc(sp.long_description||'')}</textarea></label>
+          <label>Page tone <span>How your public page looks — the directory itself always stays the current dark green</span>
+            <div class="check-grid">${Object.entries(THEME_LABELS).map(([key,text])=>`<label><input type="radio" name="pf-theme" value="${key}" ${sp.page_theme===key?'checked':''}> ${text}</label>`).join('')}</div>
+          </label>
+          <div class="dialog-actions">${canEdit?'<button class="primary" type="submit">Save changes</button>':'<button class="primary" type="submit">Save page tone &amp; description</button>'}</div>
         </form>
       </section>
       <section class="panel">
@@ -46,6 +53,16 @@ export function status(state){
         <div class="panel-header"><h2>Categories</h2></div>
         <div class="list">${state.data.categoryAssignments.map(a=>`<article class="list-item"><span class="list-icon" aria-hidden="true">✦</span><div><h3>${esc(categoryName(state,a.category_id))}</h3><p>${a.is_primary?'Primary':'Secondary'}</p></div><button class="danger" data-remove-category="${a.id}">Remove</button></article>`).join('')||'<p class="eyebrow">No categories yet</p>'}</div>
         ${available.length?`<form id="add-category-form" class="dialog-actions" style="margin-top:14px"><select id="new-category">${available.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')}</select><button class="primary" type="submit">Add</button></form>`:''}
+      </section>
+      <section class="panel">
+        <div class="panel-header"><div><h2>Payment methods</h2><p>Shown on your public page so buyers know how to pay you directly.</p></div></div>
+        <div class="list">${state.data.paymentMethods.map(m=>`<article class="list-item"><span class="list-icon" aria-hidden="true">$</span><div><h3>${esc(PAYMENT_LABELS[m.method_type]||label(m.method_type))}</h3><p>${esc(m.label)}</p></div><button class="danger" data-remove-payment="${m.id}">Remove</button></article>`).join('')||'<p class="eyebrow">No payment methods added yet</p>'}</div>
+        <form id="add-payment-form" class="onboarding-form" style="margin-top:14px">
+          <label>Type<select id="new-payment-type">${Object.entries(PAYMENT_LABELS).map(([k,t])=>`<option value="${k}">${t}</option>`).join('')}</select></label>
+          <label>Label or handle<input id="new-payment-label" placeholder="e.g. @cypresscreek or (352) 555-0142" required></label>
+          <label>Link <span>Optional — e.g. a PayPal.me or Cash App link</span><input id="new-payment-link" type="url" placeholder="https://paypal.me/…"></label>
+          <div class="dialog-actions"><button class="primary" type="submit">Add payment method</button></div>
+        </form>
       </section>
     </aside>
   </div>`;
@@ -102,6 +119,14 @@ export function notifications(state){
   <div class="list">${items.map(n=>`<article class="list-item"><span class="list-icon" aria-hidden="true">${n.is_read?'✓':'●'}</span><div><h3>${esc(n.title)}</h3><p>${esc(n.body||'')}</p><small>${new Date(n.created_at).toLocaleString()}</small></div>${n.is_read?'':`<button data-mark-read="${n.id}">Mark read</button>`}</article>`).join('')}</div>`;
 }
 
+export function messages(state){
+  const items=state.data.inquiries;
+  if(!items.length)return `${heading('Messages','Buyer inquiries','Messages from buyers who find you through Rebel Ranch Marketplace show up here — never in your personal email.')}${empty('No messages yet','Once your page is public, buyer inquiries will appear here.')}`;
+  const unreadIds=items.filter(m=>!m.is_read).map(m=>m.id);
+  return `${heading('Messages','Buyer inquiries',`${unreadIds.length} unread`)}
+  <div class="list">${items.map(m=>`<article class="list-item"><span class="list-icon" aria-hidden="true">${m.is_read?'✓':'●'}</span><div><h3>${esc(m.sender_name)} <span class="tag" style="margin-left:6px">${m.sender_is_member?'Member':'Non-member'}</span></h3><p>${esc(m.message)}</p>${m.sender_contact?`<p><strong>Contact:</strong> ${esc(m.sender_contact)}</p>`:''}<small>${new Date(m.created_at).toLocaleString()}</small></div>${m.is_read?'':`<button data-mark-inquiry-read="${m.id}">Mark read</button>`}</article>`).join('')}</div>`;
+}
+
 export function history(state){
   const items=state.data.reviewEvents;
   if(!items.length)return `${heading('History','Review history','Every status change on your application and profile will be recorded here.')}${empty('No history yet','Once your application moves through review, each step will show up here.')}`;
@@ -126,4 +151,4 @@ export function admin(state){
   </div>`;
 }
 
-export const renderers={status,requirements,affiliations,notifications,history,admin};
+export const renderers={status,requirements,affiliations,messages,notifications,history,admin};

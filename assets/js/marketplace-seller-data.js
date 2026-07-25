@@ -40,10 +40,12 @@ export async function loadSellerWorkspace(identity){
     supabase.from('seller_review_events').select('id,subject_type,subject_id,from_status,to_status,note,recorded_at').eq('seller_profile_id',spid).order('recorded_at',{ascending:false}).limit(30),
     supabase.from('marketplace_notifications').select('id,notification_type,subject_type,subject_id,title,body,is_read,created_at').eq('owner_user_id',uid).order('created_at',{ascending:false}).limit(30),
     supabase.from('seller_creator_affiliations').select('id,creator_id,relationship_label,is_public,parent_approved_at').eq('seller_profile_id',spid),
-    supabase.from('seller_household_affiliations').select('id,household_id,is_public').eq('seller_profile_id',spid)
+    supabase.from('seller_household_affiliations').select('id,household_id,is_public').eq('seller_profile_id',spid),
+    supabase.from('seller_payment_methods').select('id,method_type,label,link_url,sort_order').eq('seller_profile_id',spid).order('sort_order'),
+    supabase.from('seller_inquiries').select('id,sender_name,sender_contact,sender_is_member,message,is_read,created_at').eq('seller_profile_id',spid).order('created_at',{ascending:false})
   ]);
   fail(results);
-  const [applications,categoryAssignments,requirementAssignments,attestations,credentials,reviewEvents,notifications,creatorAffiliations,householdAffiliations]=results;
+  const [applications,categoryAssignments,requirementAssignments,attestations,credentials,reviewEvents,notifications,creatorAffiliations,householdAffiliations,paymentMethods,inquiries]=results;
   return {
     applications:applications.data,
     categoryAssignments:categoryAssignments.data,
@@ -53,7 +55,9 @@ export async function loadSellerWorkspace(identity){
     reviewEvents:reviewEvents.data,
     notifications:notifications.data,
     creatorAffiliations:creatorAffiliations.data,
-    householdAffiliations:householdAffiliations.data
+    householdAffiliations:householdAffiliations.data,
+    paymentMethods:paymentMethods.data,
+    inquiries:inquiries.data
   };
 }
 
@@ -170,6 +174,15 @@ export const actions={
   },
   async setHouseholdAffiliationPublic(identity,affiliationId,isPublic){
     return supabase.from('seller_household_affiliations').update({is_public:isPublic}).eq('id',affiliationId);
+  },
+  async addPaymentMethod(identity,fields){
+    return supabase.from('seller_payment_methods').insert({seller_profile_id:identity.sellerProfile.id,method_type:fields.method_type,label:fields.label,link_url:fields.link_url||null});
+  },
+  async removePaymentMethod(identity,paymentMethodId){
+    return supabase.from('seller_payment_methods').delete().eq('id',paymentMethodId);
+  },
+  async markInquiryRead(identity,inquiryId){
+    return supabase.from('seller_inquiries').update({is_read:true}).eq('id',inquiryId);
   },
   async markNotificationRead(identity,notificationId){
     return supabase.from('marketplace_notifications').update({is_read:true}).eq('id',notificationId);
