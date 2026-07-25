@@ -1,0 +1,48 @@
+/* Rebel Ranch Ministries — core brand tokens.
+   Source of truth: docs/brand-guide.md. Values verified by auditing
+   actual usage (property + frequency, not just swatches) across the
+   19 main-site pages (index, marketplace, academy, align, community,
+   contact, services, and the *-interest intake pages). Marketplace
+   follows this same system — no separate sub-brand. Creation Station
+   remains an intentional, separate exception (its own palette). */
+:root{
+  /* page canvas: radial gradient, corner to center to edge */
+  --rrm-bg-1:#152A18;
+  --rrm-bg-2:#07120A;
+  --rrm-bg-3:#050b06;
+
+  /* card/panel fill: vertical gradient, one step lighter than the page */
+  --rrm-card-1:#102315;
+  --rrm-card-2:#0A160D;
+  --rrm-card-line:#284a29;
+
+  --rrm-ink:#F0EDD8;    /* headings, primary text on dark */
+  --rrm-muted:#d7d1b3;  /* body/secondary text on dark */
+
+  /* bright green: accent only — gradient endpoint, hover/active text,
+     small icon/label text, list markers, low-opacity glow. NEVER a fill. */
+  --rrm-green:#97C459;
+
+  /* dark green: border/outline for secondary buttons and icon-mark
+     borders, paired with a near-black companion fill. Rarely a fill itself. */
+  --rrm-green-dark:#4A7C59;
+  --rrm-green-fill:#142617;
+  --rrm-green-fill-hover:#1b341f;
+
+  /* gold: the only fill color for primary interactive elements.
+     --rrm-gold is the darker stop (borders, CTA gradient, strokes);
+     --rrm-gold-bright is the brighter one (eyebrow labels, links,
+     emphasized text). */
+  --rrm-gold:#C17F24;
+  --rrm-gold-dark:#7b4b13;
+  --rrm-gold-bright:#EF9F27;
+
+  /* the site's real third accent — marks "negative/old way" framing
+     in before/after comparisons. Not invented; verified in active use. */
+  --rrm-rust:#a94c3e;
+
+  --rrm-brown:#2A1A0A;  /* deep accent, mostly decorative radial gradients */
+
+  --rrm-shadow:0 18px 55px rgba(5,11,6,.45);
+  --rrm-radius:20px;
+}

@@ -1,0 +1,129 @@
+const esc=(v='')=>{const d=document.createElement('div');d.textContent=String(v??'');return d.innerHTML};
+const label=(v='')=>String(v||'').replaceAll('_',' ');
+const heading=(eyebrow,title,copy,action='')=>`<header class="screen-heading"><div><p class="eyebrow">${eyebrow}</p><h2>${title}</h2><p>${copy}</p></div>${action}</header>`;
+const empty=(title,copy)=>`<section class="empty-state"><span class="empty-icon" aria-hidden="true">✦</span><h2>${title}</h2><p>${copy}</p></section>`;
+
+const NEGATIVE=new Set(['rejected','withdrawn','suspended']);
+const REVIEW=new Set(['pending','pending_review','submitted','changes_requested']);
+const PRIVATE=new Set(['draft','not_submitted','paused','archived','not_applicable','waived']);
+function badgeClass(status){
+  if(NEGATIVE.has(status))return 'negative';
+  if(REVIEW.has(status))return 'review';
+  if(PRIVATE.has(status))return 'private';
+  return '';
+}
+function badge(status){return `<span class="status-badge ${badgeClass(status)}">${esc(label(status))}</span>`}
+
+function categoryName(state,id){return state.identity.categories.find(c=>c.id===id)?.name||'Category'}
+function requirementFor(state,assignmentId){return state.data.requirementAssignments.find(r=>r.id===assignmentId)}
+
+export function status(state){
+  const sp=state.identity.sellerProfile;
+  const app=state.data.applications[0];
+  const canEdit=!app||['draft','changes_requested'].includes(app.status);
+  const assignedIds=new Set(state.data.categoryAssignments.map(a=>a.category_id));
+  const available=state.identity.categories.filter(c=>c.path_group===sp.marketplace_path||c.path_group==='both'||sp.marketplace_path==='both').filter(c=>!assignedIds.has(c.id));
+
+  return `${heading('Seller status','Your Marketplace profile','Manage your business details and application status.')}
+  <div class="layout">
+    <div class="stack">
+      <section class="panel">
+        <div class="panel-header"><div><p class="eyebrow">Business</p><h2>${esc(sp.business_name)}</h2></div>${badge(sp.profile_status)}</div>
+        <form id="profile-form" class="onboarding-form">
+          <label>Business name<input id="pf-business-name" value="${esc(sp.business_name)}" ${canEdit?'':'disabled'} required></label>
+          <label>Short description<textarea id="pf-short-description" ${canEdit?'':'disabled'}>${esc(sp.short_description||'')}</textarea></label>
+          <div class="dialog-actions">${canEdit?'<button class="primary" type="submit">Save changes</button>':'<p class="eyebrow">Locked while under review</p>'}</div>
+        </form>
+      </section>
+      <section class="panel">
+        <div class="panel-header"><div><p class="eyebrow">Application</p><h2>${app?label(app.status):'Not started'}</h2></div>${app?badge(app.status):''}</div>
+        ${app?`<p>${app.review_notes?esc(app.review_notes):'No reviewer notes yet.'}</p>
+        <div class="actions">${['draft','changes_requested'].includes(app.status)?'<button class="primary" data-action="submit-application">Submit for review</button>':''}${app.status==='draft'?'<button class="danger" data-action="withdraw-application">Withdraw</button>':''}</div>`:empty('No application yet','Something went wrong creating your application — contact support.')}
+      </section>
+    </div>
+    <aside class="stack">
+      <section class="panel">
+        <div class="panel-header"><h2>Categories</h2></div>
+        <div class="list">${state.data.categoryAssignments.map(a=>`<article class="list-item"><span class="list-icon" aria-hidden="true">✦</span><div><h3>${esc(categoryName(state,a.category_id))}</h3><p>${a.is_primary?'Primary':'Secondary'}</p></div><button class="danger" data-remove-category="${a.id}">Remove</button></article>`).join('')||'<p class="eyebrow">No categories yet</p>'}</div>
+        ${available.length?`<form id="add-category-form" class="dialog-actions" style="margin-top:14px"><select id="new-category">${available.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')}</select><button class="primary" type="submit">Add</button></form>`:''}
+      </section>
+    </aside>
+  </div>`;
+}
+
+export function requirements(state){
+  const items=state.data.requirementAssignments;
+  if(!items.length)return `${heading('Compliance','Requirements','Requirements are assigned automatically based on your categories.')}${empty('No requirements yet','Add a category on the Status tab to see what applies to your business.')}`;
+  return `${heading('Compliance','Requirements','Submit an attestation or upload a document for each requirement below.')}
+  <div class="card-grid">${items.map(r=>{
+    const req=r.compliance_requirements||{};
+    const attestation=state.data.attestations.find(a=>a.requirement_assignment_id===r.id);
+    const creds=state.data.credentials.filter(c=>c.requirement_assignment_id===r.id);
+    return `<article class="req-card">
+      <div class="meta-row">${badge(r.assignment_status)}<span class="tag">${esc(label(req.requirement_type))}</span></div>
+      <h3>${esc(req.title)}</h3>
+      <p>${esc(req.description)}</p>
+      ${r.waived_reason?`<p><strong>Note:</strong> ${esc(r.waived_reason)}</p>`:''}
+      ${attestation?`<p><strong>Your attestation:</strong> ${esc(attestation.attestation_text)}</p>`:''}
+      <form data-attestation-form="${r.id}" class="dialog-actions" style="margin-top:10px">
+        <textarea placeholder="Attest that you meet this requirement…" required></textarea>
+        <button class="primary" type="submit">Submit attestation</button>
+      </form>
+      ${req.requires_credential?`
+      <form data-credential-form="${r.id}" class="onboarding-form" style="margin-top:10px">
+        <label>Credential type<input data-field="credential_type" placeholder="e.g. Cottage Food Permit" required></label>
+        <label>Issuing authority<input data-field="issuing_authority"></label>
+        <label>Expiration date<input data-field="expires_at" type="date"></label>
+        <label>Document <span>JPEG, PNG, or PDF; 10 MB max</span><input data-field="file" type="file" accept="image/jpeg,image/png,application/pdf" required></label>
+        <button class="primary" type="submit">Upload document</button>
+      </form>
+      ${creds.length?`<div class="list" style="margin-top:10px">${creds.map(c=>`<article class="list-item"><span class="list-icon" aria-hidden="true">📄</span><div><h3>${esc(c.credential_type)}</h3><p>${c.expires_at?`Expires ${c.expires_at}`:'No expiration set'}</p></div>${badge(c.verification_status)}</article>`).join('')}</div>`:''}
+      `:''}
+    </article>`;
+  }).join('')}</div>`;
+}
+
+export function affiliations(state){
+  const creators=state.identity.creators;
+  return `${heading('Affiliations','Link your creators','Show off work from your own Creation Station creators on your seller profile.')}
+  <div class="list">${creators.map(c=>{
+    const aff=state.data.creatorAffiliations.find(a=>a.creator_id===c.id);
+    const isMinor=['young_6_12','teen_13_17'].includes(c.age_band);
+    return `<article class="list-item"><span class="list-icon" aria-hidden="true">${isMinor?'✦':'◇'}</span><div><h3>${esc(c.display_name)}</h3><p>${aff?(aff.is_public?'Public':'Private'):'Not linked'}${aff&&isMinor?(aff.parent_approved_at?' · Parent approved':' · Needs parent approval to go public'):''}</p></div>${aff?`<button data-toggle-affiliation="${aff.id}" data-public="${!aff.is_public}">${aff.is_public?'Make private':'Make public'}</button>`:`<button data-link-creator="${c.id}">Link to profile</button>`}</article>`;
+  }).join('')||'<p class="eyebrow">No creator profiles on this account yet</p>'}</div>
+  ${state.identity.household?`<section class="panel" style="margin-top:18px"><div class="panel-header"><h2>Household</h2></div>${(()=>{const h=state.data.householdAffiliations[0];return h?`<p>${esc(state.identity.household.household_name||'Your household')} — ${h.is_public?'Public':'Private'}</p><button data-toggle-household="${h.id}" data-public="${!h.is_public}">${h.is_public?'Make private':'Make public'}</button>`:`<button data-link-household="${state.identity.household.id}">Link household to profile</button>`})()}</section>`:''}`;
+}
+
+export function notifications(state){
+  const items=state.data.notifications;
+  if(!items.length)return `${heading('Notifications','Updates','You will see application and requirement updates here.')}${empty('Nothing yet','Notifications about your application and requirements will appear here.')}`;
+  const unreadIds=items.filter(n=>!n.is_read).map(n=>n.id);
+  return `${heading('Notifications','Updates',`${unreadIds.length} unread`,unreadIds.length?'<button class="primary" data-action="mark-all-read">Mark all read</button>':'')}
+  <div class="list">${items.map(n=>`<article class="list-item"><span class="list-icon" aria-hidden="true">${n.is_read?'✓':'●'}</span><div><h3>${esc(n.title)}</h3><p>${esc(n.body||'')}</p><small>${new Date(n.created_at).toLocaleString()}</small></div>${n.is_read?'':`<button data-mark-read="${n.id}">Mark read</button>`}</article>`).join('')}</div>`;
+}
+
+export function history(state){
+  const items=state.data.reviewEvents;
+  if(!items.length)return `${heading('History','Review history','Every status change on your application and profile will be recorded here.')}${empty('No history yet','Once your application moves through review, each step will show up here.')}`;
+  return `${heading('History','Review history','A record of every status change on your application and profile.')}
+  <div class="list">${items.map(e=>`<article class="list-item"><span class="list-icon" aria-hidden="true">↺</span><div><h3>${e.from_status?`${label(e.from_status)} → ${label(e.to_status)}`:label(e.to_status)}</h3><p>${e.note?esc(e.note):''}</p><small>${new Date(e.recorded_at).toLocaleString()}</small></div></article>`).join('')}</div>`;
+}
+
+export function admin(state){
+  const a=state.adminData||{applicationQueue:[],credentialQueue:[],requirementQueue:[]};
+  return `${heading('Admin','Marketplace review queue','Approve applications, verify documents, and manage compliance requirements.')}
+  <div class="metric-grid">
+    <div class="metric"><span>Applications</span><strong>${a.applicationQueue.length}</strong><small>Awaiting review</small></div>
+    <div class="metric"><span>Documents</span><strong>${a.credentialQueue.length}</strong><small>Awaiting verification</small></div>
+    <div class="metric"><span>Requirements</span><strong>${a.requirementQueue.length}</strong><small>Awaiting a decision</small></div>
+  </div>
+  <div class="layout" style="margin-top:18px">
+    <div class="stack">
+      <section class="panel"><div class="panel-header"><h2>Applications</h2></div><div class="list">${a.applicationQueue.map(x=>`<article class="list-item"><span class="list-icon" aria-hidden="true">✎</span><div><h3>${esc(x.seller_profiles?.business_name||x.legal_business_name||'Application')}</h3><p>${esc(label(x.application_type))} · submitted ${x.submitted_at?new Date(x.submitted_at).toLocaleDateString():'—'}</p></div><button data-review-application="${x.id}" data-seller="${x.seller_profile_id}">Review</button></article>`).join('')||'<p class="eyebrow">Nothing waiting</p>'}</div></section>
+      <section class="panel"><div class="panel-header"><h2>Documents</h2></div><div class="list">${a.credentialQueue.map(x=>`<article class="list-item"><span class="list-icon" aria-hidden="true">📄</span><div><h3>${esc(x.seller_profiles?.business_name||'Seller')}</h3><p>${esc(x.credential_type)}</p></div><div class="actions"><button data-verify-credential="${x.id}">Verify</button><button class="danger" data-reject-credential="${x.id}">Reject</button></div></article>`).join('')||'<p class="eyebrow">Nothing waiting</p>'}</div></section>
+    </div>
+    <aside class="panel"><div class="panel-header"><h2>Requirements</h2></div><div class="list">${a.requirementQueue.map(x=>`<article class="list-item"><span class="list-icon" aria-hidden="true">☑</span><div><h3>${esc(x.seller_profiles?.business_name||'Seller')}</h3><p>${esc(x.compliance_requirements?.title||'Requirement')}</p></div><div class="actions"><button data-waive-requirement="${x.id}">Waive</button><button data-na-requirement="${x.id}">N/A</button></div></article>`).join('')||'<p class="eyebrow">Nothing waiting</p>'}</aside>
+  </div>`;
+}
+
+export const renderers={status,requirements,affiliations,notifications,history,admin};
