@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>[COMPARE] Seller Page Tone Options | Rebel Ranch Marketplace</title>
+  <link rel="icon" type="image/png" href="assets/brand/rrm-logo-black.png">
+  <link rel="stylesheet" href="assets/css/brand-tokens.css">
+  <link rel="stylesheet" href="assets/css/marketplace-seller-page.css">
+  <style>
+    /* This file exists only to compare tone options side-by-switch. Not linked
+       from real site nav, not the final template. */
+    .preview-banner{position:sticky;top:0;z-index:40;background:linear-gradient(90deg,var(--rrm-gold),var(--rrm-gold-dark));color:#fff7de;text-align:center;font-weight:850;font-size:.85rem;padding:9px 14px}
+    .switcher{position:sticky;top:38px;z-index:39;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:12px;background:rgba(5,11,6,.92);border-bottom:1px solid var(--rrm-card-line)}
+    .switcher button{padding:9px 16px;border-radius:999px;border:1px solid var(--rrm-green-dark);background:var(--rrm-green-fill);color:var(--rrm-ink);font-weight:850;font-size:.85rem;cursor:pointer}
+    .switcher button[aria-pressed="true"]{border-color:var(--rrm-gold);background:linear-gradient(135deg,var(--rrm-gold),var(--rrm-gold-dark));color:#fff7de}
+
+    /* ---- Option A: Cream Canvas ---- */
+    [data-market-theme="a"]{
+      --rrm-bg-1:#F6EFDD; --rrm-bg-2:#EFE6CB; --rrm-bg-3:#E8DCB8;
+      --rrm-card-1:#FFFEF8; --rrm-card-2:#F7EFDA; --rrm-card-line:#D8C9A0;
+      --rrm-ink:#2A1A0A; --rrm-muted:#6b5f45;
+      --rrm-green:#4A7C59; --rrm-green-fill:#E4EEDD; --rrm-green-fill-hover:#d7e6cc; --rrm-green-dark:#4A7C59;
+    }
+    /* ---- Option B: Linen & Timber ---- */
+    [data-market-theme="b"]{
+      --rrm-bg-1:#F2E9D8; --rrm-bg-2:#E7D9B7; --rrm-bg-3:#DCC89A;
+      --rrm-card-1:#F3E6C4; --rrm-card-2:#E9D8AC; --rrm-card-line:#B79A62;
+      --rrm-ink:#2A1A0A; --rrm-muted:#71603c;
+      --rrm-green:#3E6A4B; --rrm-green-fill:#DCE6C9; --rrm-green-fill-hover:#cddcb4; --rrm-green-dark:#3E6A4B;
+    }
+    /* ---- Option C: Morning Market White ---- */
+    [data-market-theme="c"]{
+      --rrm-bg-1:#FAF8F2; --rrm-bg-2:#F3EEE0; --rrm-bg-3:#ECE4D0;
+      --rrm-card-1:#FFFFFF; --rrm-card-2:#FBF8EF; --rrm-card-line:#E3C48A;
+      --rrm-ink:#2A1A0A; --rrm-muted:#7c7461;
+      --rrm-green:#4A7C59; --rrm-green-fill:#EEF3E6; --rrm-green-fill-hover:#e3ecd7; --rrm-green-dark:#4A7C59;
+    }
+    [data-market-theme="a"] .verified,[data-market-theme="b"] .verified,[data-market-theme="c"] .verified{background:rgba(193,127,36,.14)}
+    [data-market-theme]:not([data-market-theme="dark"]) .gallery div{background:linear-gradient(135deg,var(--rrm-card-2),var(--rrm-bg-2))}
+  </style>
+</head>
+<body data-market-theme="dark">
+  <div class="preview-banner">COMPARE — same page, four tone options. Not final, nothing here is live.</div>
+  <div class="switcher" role="group" aria-label="Choose a tone">
+    <button type="button" data-theme="dark" aria-pressed="true">Current (dark green)</button>
+    <button type="button" data-theme="a" aria-pressed="false">A · Cream Canvas</button>
+    <button type="button" data-theme="b" aria-pressed="false">B · Linen &amp; Timber</button>
+    <button type="button" data-theme="c" aria-pressed="false">C · Morning Market White</button>
+  </div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="marketplace.html" aria-label="Rebel Ranch Marketplace home"><img src="assets/brand/rrm-logo-white.png" alt="" width="32" height="32"> Marketplace</a>
+      <div class="header-actions">
+        <a href="marketplace.html">Directory</a>
+        <a href="marketplace-seller-dashboard.html">Seller Dashboard</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <p class="crumb"><a href="marketplace.html">Marketplace Directory</a> / Food &amp; Farm / Honey</p>
+
+    <section class="seller-hero">
+      <div class="seller-mark" aria-hidden="true">CC</div>
+      <div>
+        <p class="eyebrow">Food &amp; Farm · Honey</p>
+        <h1>Cypress Creek Apiary</h1>
+        <p class="tagline">Raw wildflower honey, comb, and beeswax candles — harvested and bottled right here in Gilchrist County.</p>
+        <div class="meta-row">
+          <span class="verified"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 14.3 7.2 16.9l.9-5.4-3.9-3.8 5.4-.8z"/></svg> Vetted Rebel Ranch Seller</span>
+          <span class="tag">Honey</span>
+          <span class="tag">Value-Added Foods</span>
+          <span class="tag">Gilchrist County, FL</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <div class="stack">
+        <section class="panel">
+          <h2>About</h2>
+          <p>Cypress Creek Apiary has been keeping bees along the Suwannee since 2019. Every jar is raw, unfiltered, and never heated past hive temperature — bottled within a week of harvest. We also make small-batch beeswax candles from our own cappings.</p>
+          <p>Currently offering: raw wildflower honey (8oz / 16oz / 32oz), comb honey by the piece, and hand-poured beeswax candles. Local pickup near Trenton, or delivery within Gilchrist and Levy counties.</p>
+        </section>
+
+        <section class="panel">
+          <h2>Photos</h2>
+          <div class="gallery">
+            <div>hive &amp; harvest photo</div>
+            <div>bottled honey photo</div>
+            <div>candles photo</div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>What we offer</h2>
+          <ul class="list-plain">
+            <li>Raw wildflower honey — 8oz, 16oz, 32oz jars</li>
+            <li>Comb honey, by the piece</li>
+            <li>Hand-poured beeswax candles</li>
+            <li>Local pickup near Trenton, FL — delivery available within 20 miles</li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="stack">
+        <section class="panel order-panel">
+          <h2>How to order</h2>
+          <p>Contact Cypress Creek Apiary directly to place an order or ask about availability.</p>
+          <a class="button primary" href="#">Message This Seller</a>
+          <div class="pay-methods">
+            <div class="pay-method"><span class="dot"></span> Accepts PayPal</div>
+            <div class="pay-method"><span class="dot"></span> Accepts Zelle</div>
+            <div class="pay-method"><span class="dot"></span> Cash on local pickup</div>
+          </div>
+          <a class="button secondary" href="tel:+13525550142">Call / Text (352) 555-0142</a>
+          <p class="fine-print">Rebel Ranch Ministries connects buyers and sellers as a community directory. Payment and fulfillment happen directly between you and Cypress Creek Apiary — Rebel Ranch does not process or hold payment for this transaction.</p>
+        </section>
+
+        <section class="panel trust-panel">
+          <h2>Why the checkmark?</h2>
+          <ul class="list-plain">
+            <li>Identity and business info reviewed by Rebel Ranch Ministries</li>
+            <li>Cottage food / permit status confirmed where required</li>
+            <li>Listed in good standing as of application approval</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Rebel Ranch Ministries · Faith · Family · Freedom</p>
+  </footer>
+
+  <script>
+    var buttons = document.querySelectorAll('.switcher button');
+    buttons.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        document.body.setAttribute('data-market-theme', btn.getAttribute('data-theme'));
+        buttons.forEach(function(b){ b.setAttribute('aria-pressed', String(b === btn)); });
+      });
+    });
+  </script>
+</body>
+</html>

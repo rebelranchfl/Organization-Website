@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Sample standard seller page template for Rebel Ranch Marketplace — the automatic page every vetted seller gets.">
+  <title>[PREVIEW] Standard Seller Page Template | Rebel Ranch Marketplace</title>
+  <link rel="icon" type="image/png" href="assets/brand/rrm-logo-black.png">
+  <link rel="stylesheet" href="assets/css/brand-tokens.css">
+  <link rel="stylesheet" href="assets/css/marketplace-seller-page.css">
+  <style>
+    /* preview-only banner, not part of the real template */
+    .preview-banner{position:sticky;top:0;z-index:30;background:linear-gradient(90deg,var(--rrm-gold),var(--rrm-gold-dark));color:#fff7de;text-align:center;font-weight:850;font-size:.85rem;padding:9px 14px}
+  </style>
+</head>
+<body>
+  <div class="preview-banner">PREVIEW — sample data only, not connected to Supabase yet. This is the one template every approved seller's page will use.</div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="marketplace.html" aria-label="Rebel Ranch Marketplace home"><img src="assets/brand/rrm-logo-white.png" alt="" width="32" height="32"> Marketplace</a>
+      <div class="header-actions">
+        <a href="marketplace.html">Directory</a>
+        <a href="marketplace-seller-dashboard.html">Seller Dashboard</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <p class="crumb"><a href="marketplace.html">Marketplace Directory</a> / Food &amp; Farm / Honey</p>
+
+    <section class="seller-hero">
+      <div class="seller-mark" aria-hidden="true">CC</div>
+      <div>
+        <p class="eyebrow">Food &amp; Farm · Honey</p>
+        <h1>Cypress Creek Apiary</h1>
+        <p class="tagline">Raw wildflower honey, comb, and beeswax candles — harvested and bottled right here in Gilchrist County.</p>
+        <div class="meta-row">
+          <span class="verified"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 14.3 7.2 16.9l.9-5.4-3.9-3.8 5.4-.8z"/></svg> Vetted Rebel Ranch Seller</span>
+          <span class="tag">Honey</span>
+          <span class="tag">Value-Added Foods</span>
+          <span class="tag">Gilchrist County, FL</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <div class="stack">
+        <section class="panel">
+          <h2>About</h2>
+          <p>Cypress Creek Apiary has been keeping bees along the Suwannee since 2019. Every jar is raw, unfiltered, and never heated past hive temperature — bottled within a week of harvest. We also make small-batch beeswax candles from our own cappings.</p>
+          <p>Currently offering: raw wildflower honey (8oz / 16oz / 32oz), comb honey by the piece, and hand-poured beeswax candles. Local pickup near Trenton, or delivery within Gilchrist and Levy counties.</p>
+        </section>
+
+        <section class="panel">
+          <h2>Photos</h2>
+          <div class="gallery">
+            <div>hive &amp; harvest photo</div>
+            <div>bottled honey photo</div>
+            <div>candles photo</div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>What we offer</h2>
+          <ul class="list-plain">
+            <li>Raw wildflower honey — 8oz, 16oz, 32oz jars</li>
+            <li>Comb honey, by the piece</li>
+            <li>Hand-poured beeswax candles</li>
+            <li>Local pickup near Trenton, FL — delivery available within 20 miles</li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="stack">
+        <section class="panel order-panel">
+          <h2>How to order</h2>
+          <p>Contact Cypress Creek Apiary directly to place an order or ask about availability.</p>
+          <a class="button primary" href="#">Message This Seller</a>
+          <div class="pay-methods">
+            <div class="pay-method"><span class="dot"></span> Accepts PayPal</div>
+            <div class="pay-method"><span class="dot"></span> Accepts Zelle</div>
+            <div class="pay-method"><span class="dot"></span> Cash on local pickup</div>
+          </div>
+          <a class="button secondary" href="tel:+13525550142">Call / Text (352) 555-0142</a>
+          <p class="fine-print">Rebel Ranch Ministries connects buyers and sellers as a community directory. Payment and fulfillment happen directly between you and Cypress Creek Apiary — Rebel Ranch does not process or hold payment for this transaction.</p>
+        </section>
+
+        <section class="panel trust-panel">
+          <h2>Why the checkmark?</h2>
+          <ul class="list-plain">
+            <li>Identity and business info reviewed by Rebel Ranch Ministries</li>
+            <li>Cottage food / permit status confirmed where required</li>
+            <li>Listed in good standing as of application approval</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Rebel Ranch Ministries · Faith · Family · Freedom</p>
+  </footer>
+</body>
+</html>
