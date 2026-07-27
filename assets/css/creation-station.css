@@ -103,9 +103,9 @@ body {
 .hero-card a { display: block; border-radius: 1.2rem; text-decoration: none; }
 .hero-card img { width: 100%; border-radius: 1.2rem; box-shadow: 0 .9rem 2.4rem rgba(34, 13, 53, .12); }
 
-.section { padding-block: clamp(3.5rem, 7vw, 5rem); }
-.section.alt { background: linear-gradient(180deg, #fffaf3 0%, #f8f1ff 100%); }
-.section.deep { background: linear-gradient(180deg, #fffdf9 0%, #f5eefe 100%); }
+.section { padding-block: clamp(3.5rem, 7vw, 5rem); background: linear-gradient(160deg, #fff2f8 0%, #fff9ec 50%, #edfbfa 100%); }
+.section.alt { background: linear-gradient(150deg, #f3ecff 0%, #ffeef5 55%, #fff7e6 100%); }
+.section.deep { background: linear-gradient(160deg, #e9f9ff 0%, #f5ecff 55%, #ffeef6 100%); }
 .section h2 {
   margin: 0 0 .9rem;
   color: var(--purple);
@@ -217,7 +217,10 @@ body {
 }
 .studio-title {
   margin: 0;
-  color: var(--purple);
+  color: transparent;
+  background: linear-gradient(90deg, #ff4b94 0%, #ff8a64 20%, #f7c84e 42%, #b6d85a 66%, #80d7c7 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
   font-size: clamp(2.35rem, 10vw, 4.4rem);
   line-height: .88;
   letter-spacing: -.06em;
@@ -297,7 +300,18 @@ body {
 }
 .cta-box h3 { margin: 0 0 .5rem; font-size: clamp(1.65rem, 5vw, 2rem); letter-spacing: -.04em; }
 .cta-box p { margin: 0; color: #f5edf8; font-weight: 700; line-height: 1.62; }
-.footer { padding: 1.6rem 0 2.5rem; color: #6c5e70; background: #fff7ee; text-align: center; font-weight: 800; }
+.footer { padding: 1.8rem 0 2.5rem; color: #6c5e70; background: linear-gradient(135deg, #fff0f6, #fff8ea, #eefcfa); text-align: center; font-weight: 800; }
+.footer-tagline { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: .5rem .85rem; font-size: 1.05rem; margin-bottom: .35rem; }
+.footer-tagline .footer-name { color: var(--purple); font-weight: 950; }
+.footer-tagline .footer-slogan {
+  color: transparent;
+  background: linear-gradient(90deg, #ff4b94 0%, #ff8a64 20%, #f7c84e 42%, #b6d85a 66%, #80d7c7 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  font-weight: 950;
+}
+.footer-tagline .footer-possibility { color: var(--teal); font-weight: 900; }
+.footer-sub { font-size: .82rem; color: #8b7c8f; }
 
 .overlay {
   position: fixed;
