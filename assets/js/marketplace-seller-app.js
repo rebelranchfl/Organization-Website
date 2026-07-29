@@ -363,7 +363,7 @@ window.addEventListener('hashchange',()=>{
 async function init(){
   try{
     state.identity=await loadSellerIdentity();
-    if(!state.identity)return showAccess('Sign in to continue','Your seller dashboard is protected by your Rebel Ranch account.');
+    if(!state.identity)return showAccess('Sign in to continue','Your seller dashboard is protected by your Rebel Ranch Ministries account.');
     $('loading').classList.add('hidden');
     if(!state.identity.sellerProfile){
       $('create-profile').classList.remove('hidden');

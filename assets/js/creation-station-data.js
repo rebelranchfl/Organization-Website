@@ -1,6 +1,6 @@
 import {supabase} from './supabase-client.js';
 
-export const tierNames={1:'Young Creator Family',2:'Creator Development',3:'Creator Website'};
+export const tierNames={1:'Young Creator Family',2:'Creator Development',3:'Creation Station Studio'};
 export const tierRanks={young_creator_family:1,creator_development:2,creator_website:3};
 export function membershipIsCurrent(m){const now=Date.now(),start=m.starts_at?Date.parse(m.starts_at):null,end=m.ends_at?Date.parse(m.ends_at):null;return ['active','past_due'].includes(m.membership_status)&&(!start||start<=now)&&(!end||end>now)}
 const fail=(results)=>{const error=results.find(r=>r.error)?.error;if(error)throw error};

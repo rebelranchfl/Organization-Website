@@ -9,30 +9,46 @@
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to studio content</a>
-  <header class="site-header">
-    <div class="header-inner">
-      <a class="brand" href="creation.html" aria-label="Creation Station home"><span aria-hidden="true">✦</span> Creation Station</a>
-      <button id="menu-toggle" class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+  <div class="mobile-topbar">
+    <a class="brand" href="creation.html" aria-label="Creation Station home"><span aria-hidden="true">✦</span> Creation Station</a>
+    <button id="menu-toggle" class="menu-toggle button" type="button" aria-expanded="false" aria-controls="app-sidebar">Menu</button>
+  </div>
+
+  <div class="app-shell">
+    <aside id="app-sidebar" class="sidebar">
+      <a class="brand" href="creation.html" aria-label="Creation Station home"><span class="brand-mark" aria-hidden="true">✦</span><span class="brand-word"><b>Creation</b><b>Station</b></span></a>
       <nav id="primary-nav" class="primary-nav" aria-label="Creation Station">
-        <a href="#studio" data-route="studio">Studio</a><a href="#projects" data-route="projects">Projects</a><a href="#portfolio" data-route="portfolio">Portfolio</a><a href="#resources" data-route="resources">Resources</a><a href="#classes" data-route="classes">Classes</a><a href="#growth" data-route="growth">Growth</a><a href="#website" data-route="website" data-min-tier="3">Creator Website</a>
+        <a href="#studio" data-route="studio"><span class="nav-icon" aria-hidden="true" style="background:var(--teal)">⌂</span>Studio</a><a href="#projects" data-route="projects"><span class="nav-icon" aria-hidden="true" style="background:var(--pink)">◇</span>Projects</a><a href="#portfolio" data-route="portfolio"><span class="nav-icon" aria-hidden="true" style="background:var(--purple)">◆</span>Portfolio</a><a href="#resources" data-route="resources"><span class="nav-icon" aria-hidden="true" style="background:var(--green)">▤</span>Resources</a><a href="#classes" data-route="classes"><span class="nav-icon" aria-hidden="true" style="background:var(--lavender)">▣</span>Sessions</a><a href="#growth" data-route="growth"><span class="nav-icon" aria-hidden="true" style="background:#3a8fd4">↗</span>Growth</a><a href="#website" data-route="website"><span class="nav-icon" aria-hidden="true" style="background:var(--gold);color:var(--ink)">✦</span>Creation Station Studio</a><a href="#parent" data-route="parent"><span class="nav-icon" aria-hidden="true" style="background:#e2578f">♥</span>Parent View</a><a href="#admin" data-route="admin"><span class="nav-icon" aria-hidden="true" style="background:#6c6470">▦</span>Admin</a>
       </nav>
-      <div class="account-actions"><a href="account.html">Rebel Ranch Account</a><button id="signout" type="button">Sign out</button></div>
-    </div>
-  </header>
+      <div class="account-actions"><div class="account-chip"><span id="user-avatar" class="user-avatar" aria-hidden="true"></span><div class="account-chip-text"><strong id="user-name">Creator</strong><small>Member</small></div></div><a href="account.html">RRM Account</a><button id="signout" type="button">Sign out</button></div>
+    </aside>
 
   <main id="main-content" class="shell" tabindex="-1">
     <div id="app-status" class="notice hidden" role="status" aria-live="polite"></div>
     <section id="loading" class="state-card" aria-busy="true"><div class="loader" aria-hidden="true"></div><h1>Opening your Studio</h1><p>Gathering the projects, progress, and tools available to you.</p></section>
-    <section id="access-state" class="state-card hidden"><p class="eyebrow">Creation Station</p><h1 id="access-title">Sign in to continue</h1><p id="access-copy">Your Studio is protected by your Rebel Ranch account.</p><a id="access-link" class="button primary" href="account.html">Go to My Account</a></section>
+    <section id="access-state" class="state-card hidden"><p class="eyebrow">Creation Station</p><h1 id="access-title">Sign in to continue</h1><p id="access-copy">Your Studio is protected by your Rebel Ranch Ministries account.</p><a id="access-link" class="button primary" href="account.html">Go to My Account</a></section>
 
     <div id="workspace" class="hidden">
       <section class="studio-hero" aria-labelledby="welcome">
-        <div><p id="tier" class="eyebrow">Member Studio</p><h1 id="welcome">Welcome to your Studio</h1><p id="hero-copy">Pick up where you left off, make something meaningful, and see how your skills are growing.</p></div>
-        <div class="hero-art" aria-hidden="true"><span>CREATE</span><span>BUILD</span><span>GROW</span></div>
+        <div><p id="tier" class="eyebrow">Member Studio</p><h1 id="welcome">Welcome to your Studio</h1><p id="hero-copy">Pick up where you left off, make something meaningful, and see how your skills are growing.</p><button id="hero-cta" class="hero-cta" type="button">Start New Project</button></div>
+        <div class="robot-stage" aria-hidden="true">
+          <svg class="robot-svg" viewBox="0 0 320 320" role="img" aria-label="Friendly creative robot">
+            <defs><linearGradient id="botBody" x1="0" x2="1"><stop offset="0" stop-color="#6B3BB0"/><stop offset="1" stop-color="#00A7B7"/></linearGradient><linearGradient id="botScreen" x1="0" x2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#D8FAF8"/></linearGradient></defs>
+            <path d="M58 252c36 18 166 18 204 0" fill="none" stroke="#FFC857" stroke-width="18" stroke-linecap="round" opacity=".85"/>
+            <rect x="83" y="90" width="154" height="142" rx="40" fill="url(#botBody)"/>
+            <rect x="100" y="115" width="120" height="74" rx="22" fill="url(#botScreen)"/>
+            <circle cx="132" cy="150" r="11" fill="#3D2471"/><circle cx="188" cy="150" r="11" fill="#3D2471"/>
+            <path d="M137 171c15 12 31 12 46 0" fill="none" stroke="#EF6AA7" stroke-width="8" stroke-linecap="round"/>
+            <rect x="133" y="52" width="54" height="46" rx="17" fill="#FFC857"/><path d="M160 52V32" stroke="#fff" stroke-width="8" stroke-linecap="round"/><circle cx="160" cy="25" r="11" fill="#EF6AA7"/>
+            <path d="M82 143H52c-12 0-18 10-18 20v48" fill="none" stroke="#00A7B7" stroke-width="18" stroke-linecap="round"/>
+            <path d="M238 143h30c12 0 18 10 18 20v48" fill="none" stroke="#6B3BB0" stroke-width="18" stroke-linecap="round"/>
+            <path d="M64 208l-18 38M256 208l18 38" stroke="#FFC857" stroke-width="12" stroke-linecap="round"/>
+            <circle cx="46" cy="248" r="13" fill="#EF6AA7"/><circle cx="274" cy="248" r="13" fill="#F9A03F"/>
+          </svg>
+        </div>
       </section>
 
-      <section class="view-tools" aria-label="Choose a Studio view">
-        <div id="view-switcher" class="segmented"></div>
+      <section class="view-tools" aria-label="Choose a creator">
         <label class="creator-picker" for="creator-filter">Working with <select id="creator-filter"></select></label>
       </section>
 
@@ -44,6 +60,9 @@
       <div id="screen" tabindex="-1"></div>
     </div>
   </main>
+  </div>
+
+  <footer class="app-footer"><div class="footer-tagline"><strong class="tag-brand">Creation Station</strong> <strong class="tag-rainbow">Create. Learn. Promote. Earn.</strong> <span class="tag-possibility">From passion to possibility.</span></div><div class="footer-by">by Rebel Ranch Ministries</div></footer>
 
   <template id="empty-template"><section class="empty-state"><span class="empty-icon" aria-hidden="true">✦</span><h2></h2><p></p><button class="button primary" type="button"></button></section></template>
 

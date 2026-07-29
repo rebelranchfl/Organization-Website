@@ -99,7 +99,7 @@ function render(sp,categories,paymentMethods,region){
           </form>
           <p id="inquiry-confirm" class="inquiry-confirm hidden" role="status"></p>
           ${renderPaymentMethods(paymentMethods)}
-          <p class="fine-print">Rebel Ranch Ministries connects buyers and sellers as a community directory. Payment and fulfillment happen directly between you and ${esc(sp.business_name)} — Rebel Ranch does not process or hold payment for this transaction.</p>
+          <p class="fine-print">Rebel Ranch Ministries connects buyers and sellers as a community directory. Payment and fulfillment happen directly between you and ${esc(sp.business_name)} — Rebel Ranch Ministries does not process or hold payment for this transaction.</p>
         </section>
 
         <section class="panel trust-panel">
@@ -107,7 +107,7 @@ function render(sp,categories,paymentMethods,region){
           <ul class="list-plain">
             <li>A real local business, not a chain, franchise, or reseller — every seller attests to that when they apply</li>
             <li>Business info reviewed and approved by Rebel Ranch Ministries before listing</li>
-            <li>Required permits and compliance are self-attested by the seller, not independently verified by Rebel Ranch</li>
+            <li>Required permits and compliance are self-attested by the seller, not independently verified by Rebel Ranch Ministries</li>
           </ul>
         </section>
       </div>
