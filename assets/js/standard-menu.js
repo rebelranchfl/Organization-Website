@@ -1,4 +1,13 @@
 (() => {
+  const page = window.location.pathname.split('/').pop();
+
+  if (page === 'business-fixes.html') {
+    const unlistedProblemLink = document.querySelector('.hero-actions a[href="contact.html"]');
+    if (unlistedProblemLink) {
+      unlistedProblemLink.href = 'business-request.html?service=general-business-service';
+    }
+  }
+
   const button = document.getElementById('ham');
   const menu = document.getElementById('menu');
 
