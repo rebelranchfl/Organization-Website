@@ -1,5 +1,10 @@
 (() => {
   const services = {
+    'general-business-service': {
+      name: 'Tell Us What Your Business Needs',
+      price: 'Service selected after review',
+      description: 'Describe the business problem you need help solving. Rebel Ranch Ministries will review the request and confirm the best available service before sending a secure invoice.'
+    },
     'owner-capacity-recovery': {
       name: 'Give Me Back My Time',
       price: 'Starting at $199 · Normally $249',
@@ -34,7 +39,7 @@
 
   const params = new URLSearchParams(window.location.search);
   const requestedSlug = params.get('service');
-  const selectedSlug = Object.hasOwn(services, requestedSlug) ? requestedSlug : 'owner-capacity-recovery';
+  const selectedSlug = Object.hasOwn(services, requestedSlug) ? requestedSlug : 'general-business-service';
   const select = document.getElementById('service-select');
   const title = document.getElementById('request-title');
   const description = document.getElementById('service-description');
@@ -87,7 +92,7 @@
 
       form.reset();
       showService(selectedSlug);
-      status.textContent = 'Your request was received. Rebel Ranch Ministries will confirm the service and send the secure invoice and intake instructions.';
+      status.textContent = 'Your request was received. Rebel Ranch Ministries will review it, confirm the service, and send the secure invoice and intake instructions.';
     } catch (error) {
       status.textContent = 'The request did not send. Please try again or email rebelranchfl@gmail.com.';
     } finally {
