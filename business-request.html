@@ -64,19 +64,30 @@
             <label for="email">Business email
               <input id="email" type="email" name="email" autocomplete="email" required>
             </label>
-            <label for="phone">Business phone
+            <label for="contact-method">Preferred contact method
+              <select id="contact-method" name="preferred_contact_method" required>
+                <option value="" selected disabled>Choose how we should contact you</option>
+                <option value="Email">Email</option>
+                <option value="Phone call">Phone call</option>
+                <option value="Text message">Text message</option>
+              </select>
+            </label>
+            <label for="phone">Business phone <span id="phone-required-note" hidden>(required for calls or texts)</span>
               <input id="phone" type="tel" name="phone" autocomplete="tel">
             </label>
             <label class="full" for="service-select">Service requested
               <select id="service-select" name="service_selection" required></select>
             </label>
             <label class="full" for="notes">What should Rebel Ranch Ministries know before sending the secure invoice?
-              <textarea id="notes" name="notes" rows="6" placeholder="Tell us what is happening, what you need help with, and anything that may affect the service scope."></textarea>
+              <textarea id="notes" name="notes" rows="6" placeholder="Tell us what is happening, what you need help with, and anything that may affect the service scope." required></textarea>
+            </label>
+            <label class="full text-consent" id="text-consent-row" for="text-consent" hidden>
+              <span><input id="text-consent" type="checkbox" name="text_message_consent" value="I agree to receive text messages about this request."> I agree to receive text messages from Rebel Ranch Ministries about this request. Message and data rates may apply. Reply STOP to opt out.</span>
             </label>
           </div>
 
           <div class="invoice-notice">
-            Submitting this request does not expand the published service scope. Rebel Ranch Ministries will confirm the service, then send the secure payment link and service-specific intake instructions.
+            Submitting this request does not expand the published service scope. Rebel Ranch Ministries will review your request and respond within 24 business hours. We will confirm the service, then send the secure payment link and service-specific intake instructions. By submitting, you agree to our <a href="privacy-policy.html">Privacy Policy</a>.
           </div>
 
           <button class="btn primary" type="submit">Request Secure Invoice</button>
@@ -93,7 +104,8 @@
     </div>
     <div class="ftag">Faith · Family · Freedom</div>
     <p class="disclaimer">Faith, Family &amp; Nature Church, Inc. operates as a tax-exempt church under Section 501(c)(3) of the Internal Revenue Code, organized under Section 508(c)(1)(a). Rebel Ranch Ministries™, Rebel Ranch Academy™, Rebel Ranch Rescue™, Rebel Ranch Marketplace™, and Creation Station™ are ministry programs of Faith, Family &amp; Nature Church, Inc. and are not separate legal entities. The Rebel Ranch Marketplace™ operates as a Private Membership Association — membership by application only. All donations and program fees are made to, and received by, Faith, Family &amp; Nature Church, Inc. Nothing on this website constitutes legal, financial, or tax advice.<br>© 2026 Faith, Family &amp; Nature Church, Inc. · Trenton, Florida</p>
-  </footer>
+      <p class="disclaimer"><a href="privacy-policy.html">Privacy Policy</a></p>
+    </footer>
 
   <script src="assets/js/standard-menu.js" defer></script>
   <script src="assets/js/business-request.js" defer></script>

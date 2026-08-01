@@ -47,6 +47,11 @@
   const slugField = document.getElementById('service-slug');
   const serviceField = document.getElementById('service-requested');
   const priceField = document.getElementById('service-price-field');
+  const contactMethod = document.getElementById('contact-method');
+  const phone = document.getElementById('phone');
+  const phoneRequiredNote = document.getElementById('phone-required-note');
+  const textConsentRow = document.getElementById('text-consent-row');
+  const textConsent = document.getElementById('text-consent');
 
   Object.entries(services).forEach(([slug, service]) => {
     const option = document.createElement('option');
@@ -70,6 +75,19 @@
   select.addEventListener('change', () => showService(select.value));
   showService(selectedSlug);
 
+  const updateContactFields = () => {
+    const texting = contactMethod.value === 'Text message';
+    const needsPhone = texting || contactMethod.value === 'Phone call';
+    phone.required = needsPhone;
+    phoneRequiredNote.hidden = !needsPhone;
+    textConsentRow.hidden = !texting;
+    textConsent.required = texting;
+    if (!texting) textConsent.checked = false;
+  };
+
+  contactMethod.addEventListener('change', updateContactFields);
+  updateContactFields();
+
   const form = document.getElementById('business-request-form');
   const status = document.getElementById('form-status');
 
@@ -92,7 +110,8 @@
 
       form.reset();
       showService(selectedSlug);
-      status.textContent = 'Your request was received. Rebel Ranch Ministries will review it, confirm the service, and send the secure invoice and intake instructions.';
+      updateContactFields();
+      status.textContent = 'Your request was received. Rebel Ranch Ministries will review it and respond within 24 business hours to confirm the service and send the secure invoice and intake instructions.';
     } catch (error) {
       status.textContent = 'The request did not send. Please try again or email rebelranchfl@gmail.com.';
     } finally {
