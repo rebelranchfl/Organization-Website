@@ -28,8 +28,8 @@ export async function loadWorkspace(identity){
     supabase.from('creation_resources').select('id,title,description,resource_type,external_url,storage_path,minimum_tier').eq('is_published',true).order('created_at',{ascending:false}).limit(12),
     supabase.from('live_classes').select('id,title,description,starts_at,ends_at,supply_list,meeting_url,replay_url,minimum_tier').eq('is_published',true).order('starts_at').limit(12),
     supabase.from('class_registrations').select('id,creator_id,class_id,attended_at').eq('owner_user_id',uid),
-    supabase.from('creator_website_requests').select('id,creator_id,status,brand_name,story,products,social_links,owner_notes,admin_notes,submitted_at,approved_at,published_at,published_url,updated_at').eq('owner_user_id',uid).order('updated_at',{ascending:false}),
-    supabase.from('creation_activity').select('id,creator_id,activity_type,summary,created_at').eq('owner_user_id',uid).order('created_at',{ascending:false}).limit(12)
+    supabase.from('creator_website_requests').select('id,creator_id,status,brand_name,story,products,social_links,payment_methods,payment_other_note,delivery_methods,owner_notes,admin_notes,submitted_at,approved_at,published_at,published_url,updated_at').eq('owner_user_id',uid).order('updated_at',{ascending:false}),
+    supabase.from('creation_activity').select('id,creator_id,activity_type,summary,created_at').eq('owner_user_id',uid).order('created_at',{ascending:false})
   ]);fail(results);const [templates,projects,portfolios,resources,classes,registrations,websites,activity]=results;
   return {templates:templates.data,projects:projects.data,portfolios:portfolios.data,resources:resources.data,classes:classes.data,registrations:registrations.data,websites:websites.data,activity:activity.data};
 }
