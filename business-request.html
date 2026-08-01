@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Request a Business Service | Rebel Ranch Ministries</title>
+  <meta name="description" content="Request a Rebel Ranch Ministries Business Service and receive a secure invoice and service-specific intake instructions.">
+  <link rel="icon" href="assets/brand/rrm-logo-black.png">
+  <link rel="stylesheet" href="assets/css/brand-tokens.css">
+  <link rel="stylesheet" href="assets/css/site-core.css">
+  <link rel="stylesheet" href="assets/css/business-fixes.css">
+  <link rel="stylesheet" href="assets/css/business-request.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="standard-nav" aria-label="Primary navigation">
+      <a class="brand" href="/" aria-label="Rebel Ranch Ministries home">
+        <img src="assets/brand/rrm-logo-white.png" alt="Rebel Ranch Ministries">
+        <span>Rebel Ranch Ministries</span>
+      </a>
+      <button class="hamburger" id="ham" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="standard-menu" id="menu">
+        <a href="/">Home</a>
+        <a href="/freedom" class="active">Business Freedom</a>
+        <a href="/align.html" class="gold">Partner With Us</a>
+        <a href="/support.html">Support the Mission</a>
+        <a href="/contact.html">Contact</a>
+        <div class="sep"></div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="request-main">
+    <div class="wrap request-wrap">
+      <section class="request-card" aria-labelledby="request-title">
+        <p class="eyebrow">Request a Business Service</p>
+        <div class="request-summary">
+          <div>
+            <h1 id="request-title">Rebel Ranch Business Service</h1>
+            <p id="service-description"></p>
+            <p class="request-note">Work begins after payment, complete intake, required files, access, and decisions are received.</p>
+          </div>
+          <p class="request-price" id="service-price"></p>
+        </div>
+
+        <form id="business-request-form" action="https://formspree.io/f/xnjrqydq" method="POST">
+          <input type="hidden" name="form_type" value="Rebel Ranch Business Service Secure Invoice Request">
+          <input type="hidden" name="_subject" value="Rebel Ranch Business Service Purchase Request">
+          <input type="hidden" name="service_slug" id="service-slug">
+          <input type="hidden" name="service_requested" id="service-requested">
+          <input type="hidden" name="service_price" id="service-price-field">
+
+          <div class="form-grid">
+            <label for="name">Your name
+              <input id="name" name="name" autocomplete="name" required>
+            </label>
+            <label for="business">Business name
+              <input id="business" name="business_name" autocomplete="organization" required>
+            </label>
+            <label for="email">Business email
+              <input id="email" type="email" name="email" autocomplete="email" required>
+            </label>
+            <label for="contact-method">Preferred contact method
+              <select id="contact-method" name="preferred_contact_method" required>
+                <option value="" selected disabled>Choose how we should contact you</option>
+                <option value="Email">Email</option>
+                <option value="Phone call">Phone call</option>
+                <option value="Text message">Text message</option>
+              </select>
+            </label>
+            <label for="phone">Business phone <span id="phone-required-note" hidden>(required for calls or texts)</span>
+              <input id="phone" type="tel" name="phone" autocomplete="tel">
+            </label>
+            <label class="full" for="service-select">Service requested
+              <select id="service-select" name="service_selection" required></select>
+            </label>
+            <label class="full" for="notes">What should Rebel Ranch Ministries know before sending the secure invoice?
+              <textarea id="notes" name="notes" rows="6" placeholder="Tell us what is happening, what you need help with, and anything that may affect the service scope." required></textarea>
+            </label>
+            <label class="full text-consent" id="text-consent-row" for="text-consent" hidden>
+              <span><input id="text-consent" type="checkbox" name="text_message_consent" value="I agree to receive text messages about this request."> I agree to receive text messages from Rebel Ranch Ministries about this request. Message and data rates may apply. Reply STOP to opt out.</span>
+            </label>
+          </div>
+
+          <div class="invoice-notice">
+            Submitting this request does not expand the published service scope. Rebel Ranch Ministries will review your request and respond within 24 business hours. We will confirm the service, then send the secure payment link and service-specific intake instructions. By submitting, you agree to our <a href="privacy-policy.html">Privacy Policy</a>.
+          </div>
+
+          <button class="btn primary" type="submit">Request Secure Invoice</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer class="standard-footer">
+    <div class="fbrand">
+      <img class="footer-logo" src="assets/brand/rrm-logo-white.png" alt="Rebel Ranch Ministries logo">
+      <span>Rebel Ranch Ministries</span>
+    </div>
+    <div class="ftag">Faith · Family · Freedom</div>
+    <p class="disclaimer">Faith, Family &amp; Nature Church, Inc. operates as a tax-exempt church under Section 501(c)(3) of the Internal Revenue Code, organized under Section 508(c)(1)(a). Rebel Ranch Ministries™, Rebel Ranch Academy™, Rebel Ranch Rescue™, Rebel Ranch Marketplace™, and Creation Station™ are ministry programs of Faith, Family &amp; Nature Church, Inc. and are not separate legal entities. The Rebel Ranch Marketplace™ operates as a Private Membership Association — membership by application only. All donations and program fees are made to, and received by, Faith, Family &amp; Nature Church, Inc. Nothing on this website constitutes legal, financial, or tax advice.<br>© 2026 Faith, Family &amp; Nature Church, Inc. · Trenton, Florida</p>
+      <p class="disclaimer"><a href="privacy-policy.html">Privacy Policy</a></p>
+    </footer>
+
+  <script src="assets/js/standard-menu.js" defer></script>
+  <script src="assets/js/business-request.js" defer></script>
+</body>
+</html>

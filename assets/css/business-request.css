@@ -1,0 +1,102 @@
+.request-main {
+  min-height: calc(100vh - 5rem);
+  padding: clamp(3rem, 7vw, 6rem) 0;
+}
+
+.request-wrap { max-width: 61.25rem; }
+
+.request-card {
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: var(--rrm-card-2);
+  border: 1px solid var(--rrm-card-line);
+  box-shadow: var(--shadow);
+}
+
+.request-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.5rem;
+  align-items: start;
+  margin-bottom: 1.8rem;
+  padding-bottom: 1.8rem;
+  border-bottom: 1px solid var(--rrm-gold-dark);
+}
+
+.request-summary h1 {
+  max-width: 18ch;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+.request-summary > div > p {
+  max-width: 46rem;
+  color: var(--rrm-muted);
+}
+
+.request-note {
+  font-size: .9rem;
+  font-weight: 700;
+}
+
+.request-price {
+  margin: .25rem 0 0;
+  color: var(--rrm-gold-bright);
+  font-size: 1.5rem;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.15rem;
+}
+
+.form-grid label {
+  display: grid;
+  gap: .45rem;
+  color: var(--rrm-ink);
+  font-weight: 850;
+}
+
+.form-grid .full { grid-column: 1 / -1; }
+
+.form-grid input,
+.form-grid select,
+.form-grid textarea {
+  width: 100%;
+  padding: .9rem 1rem;
+  color: var(--rrm-ink);
+  background: var(--rrm-bg-1);
+  border: 1px solid var(--rrm-gold-dark);
+  border-radius: .35rem;
+}
+
+.form-grid textarea {
+  min-height: 9rem;
+  resize: vertical;
+}
+
+.invoice-notice {
+  margin: 1.4rem 0;
+  padding: 1.2rem;
+  color: var(--rrm-ink);
+  background: var(--rrm-card-1);
+  border-left: .3rem solid var(--rrm-gold-bright);
+}
+
+.form-status {
+  min-height: 1.5rem;
+  margin: 1rem 0 0;
+  color: var(--rrm-green);
+  font-weight: 800;
+}
+
+@media (max-width: 650px) {
+  .request-summary,
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid .full { grid-column: auto; }
+  .request-price { white-space: normal; }
+}
