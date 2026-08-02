@@ -1,0 +1,212 @@
+﻿/* Public-site surface language: cards hold choices; sections guide the story. */
+:root {
+  --rrm-surface-border: #284a29;
+  --rrm-surface-gold: #c17f24;
+  --rrm-surface-gold-bright: #ef9f27;
+  --rrm-surface-green: #97c459;
+  --rrm-surface-shadow: 0 18px 55px rgba(0, 0, 0, .32);
+}
+
+/* Every public-facing card shares the Alignment page's border treatment. */
+.card,
+.panel,
+.bf-card,
+.path,
+.feature-card,
+.info-card,
+.form-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--rrm-surface-border) !important;
+  border-radius: 22px;
+  box-shadow: var(--rrm-surface-shadow);
+}
+
+.card::before,
+.panel::before,
+.bf-card::before,
+.path::before,
+.feature-card::before,
+.info-card::before,
+.form-card::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0 0 auto;
+  width: 100%;
+  height: 3px;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--rrm-surface-gold), var(--rrm-surface-green));
+}
+
+.card > *,
+.panel > *,
+.bf-card > *,
+.path > *,
+.feature-card > *,
+.info-card > *,
+.form-card > * { position: relative; z-index: 2; }
+
+/* A featured offer may have a warmer fill, but it keeps the same outer border. */
+.monthly,
+.monthly-guidance-card,
+.card.goldline {
+  border-color: var(--rrm-surface-border) !important;
+}
+
+/* Sections stay open. Add .section-divider only when a real visual handoff is needed. */
+.section-divider,
+.partnership-section,
+.support-section {
+  position: relative;
+}
+
+.section-divider::before,
+.partnership-section::before,
+.support-section::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  width: min(10rem, 28vw);
+  height: 3px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, var(--rrm-surface-gold-bright), transparent);
+}
+/* Shared public header/footer shell. This is the only public-site shell treatment. */
+body.rrm-public-shell { padding-top: 0; }
+.rrm-public-header { position:sticky; top:0; z-index:1000; width:100%; background:rgba(5,8,6,.98); border-bottom:1px solid #1e3a20; box-shadow:0 .65rem 1.8rem rgba(0,0,0,.28); backdrop-filter:blur(14px); }
+.rrm-public-nav { width:min(1160px,92vw); min-height:4.6rem; margin:auto; display:flex; align-items:center; justify-content:space-between; gap:1.25rem; }
+.rrm-public-brand { display:inline-flex; align-items:center; gap:.8rem; min-width:0; color:#f0edd8; text-decoration:none; }
+.rrm-public-brand img { width:2.8rem; height:2.8rem; object-fit:contain; flex:0 0 auto; }
+.rrm-public-brand strong,.rrm-public-brand small { display:block; }
+.rrm-public-brand strong { font:800 1rem/1.05 Arial,Helvetica,sans-serif; }
+.rrm-public-brand small { margin-top:.2rem; color:#ef9f27; font:700 .72rem/1.2 Arial,Helvetica,sans-serif; }
+.rrm-public-links { display:flex; align-items:center; gap:.15rem; }
+.rrm-public-links a { min-height:2.75rem; display:inline-flex; align-items:center; padding:0 .65rem; color:#c9c5a7; border-radius:.65rem; font:800 .9rem/1.2 Arial,Helvetica,sans-serif; text-decoration:none; }
+.rrm-public-links a:hover { color:#97c459; background:#142617; }
+.rrm-public-links .rrm-contact { color:#fff7de; background:linear-gradient(135deg,#c17f24,#7b4b13); }
+.rrm-public-menu { display:none; width:3rem; height:3rem; padding:0; color:#f0edd8; background:#142617; border:1px solid #4a7c59; border-radius:.75rem; }
+.rrm-public-footer { width:100%; margin:0; padding:24px max(4vw,24px); color:#88836d; background:#050806; border-top:1px solid #1d321e; font-size:13px; }
+.rrm-public-footer-inner { width:min(1160px,92vw); margin:auto; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:16px 24px; }
+.rrm-footer-brand { display:inline-flex; align-items:center; gap:.8rem; min-width:0; color:#f0edd8; text-decoration:none; }
+.rrm-footer-brand img { width:2.8rem; height:2.8rem; object-fit:contain; flex:0 0 auto; }
+.rrm-footer-brand span { min-width:0; text-align:left; }
+.rrm-footer-brand strong,.rrm-footer-brand small { display:block; }
+.rrm-footer-brand strong { font:800 1rem/1.05 Arial,Helvetica,sans-serif; }
+.rrm-footer-brand small { margin-top:.2rem; color:#ef9f27; font:700 .72rem/1.2 Arial,Helvetica,sans-serif; letter-spacing:0; }
+.rrm-footer-links { display:flex; flex-wrap:wrap; justify-content:center; gap:16px; }
+.rrm-footer-links a,.rrm-socials a { color:#c7c1a6; font-weight:700; text-decoration:none; }
+.rrm-socials { display:flex; justify-content:flex-end; gap:12px; }
+.rrm-socials a { display:grid; place-items:center; width:32px; height:32px; border:1px solid #284a29; border-radius:50%; font-size:12px; }
+.rrm-footer-legal,.rrm-copyright { grid-column:1/-1; margin:0 auto; text-align:center; }
+.rrm-footer-legal { margin-top:4px; }
+.rrm-copyright { color:#88836d; font-size:12px; }
+/* Service-card actions are the one primary action: gold means request this service. */
+.bf-card .card-actions .btn.primary { color:#fff7de; border-color:#c17f24; background:linear-gradient(135deg,#c17f24,#7b4b13); }
+.bf-card .card-actions .btn.primary:hover { background:linear-gradient(135deg,#d9932a,#8d5718); }
+@media(max-width:900px){ .rrm-public-nav{min-height:5.15rem}.rrm-public-menu{display:inline-grid;place-items:center}.rrm-public-links{display:none;position:absolute;left:4vw;right:4vw;top:calc(100% + .5rem);padding:.75rem;background:#07120a;border:1px solid #1e3a20}.rrm-public-header[data-open="true"] .rrm-public-links{display:grid}.rrm-public-links a{min-height:3rem;padding:.7rem .85rem}.rrm-public-footer-inner{display:flex;flex-direction:column;text-align:center}.rrm-socials{justify-content:center} }
+/* Homepage narrative sections share centered introductory and supporting copy. */
+.business-feature .section-head .business-description { max-width:820px; margin:1.5rem auto 0; text-align:center; color:#d7d1b3; font-size:18px; }
+.business-feature .section-head .business-description p { margin:0 0 1rem; }
+.mission-overview { display:block; max-width:980px; margin:auto; }
+.mission-overview .availability { max-width:880px; margin:2.5rem auto 0; padding-top:2rem; border-top:1px solid rgba(74,124,89,.48); }
+.mission-overview .availability h3 { margin:0 0 1.25rem; font-size:clamp(24px,3vw,34px); }
+#homestead .origin-story,
+#start .mission-overview { text-align:center; }
+#start .mission-overview p,
+.partnership-section p,
+.support-section p { margin-inline:auto; }
+
+/* Homepage service cards: accents support the hierarchy instead of competing with it. */
+.rrm-public-rules #business-freedom .bf-card .service-type { color:#d7d1b3; }
+.rrm-public-rules #business-freedom .bf-detail-card .category { color:#b9b596; }
+.rrm-public-rules #business-freedom .bf-detail-card .service-details summary { color:#d7d1b3; }
+.rrm-public-rules #business-freedom .bf-detail-card .service-details summary:hover { color:#f0edd8; }
+.rrm-public-rules #business-freedom .bf-detail-card .service-details-content strong { color:#f0edd8; }
+
+/* Approved RRM public visual rules (docs/rrm-visual-rules.md). */
+body.rrm-public-rules { background:#1A3620 !important; }
+.rrm-public-rules .business-feature { border:0; border-radius:0; background:transparent; box-shadow:none; }
+.rrm-public-rules .card,
+.rrm-public-rules .bf-card,
+.rrm-public-rules .path {
+  background:linear-gradient(180deg,#274D2C,#1D3D24) !important;
+  border:1px solid #284A29 !important;
+  border-radius:20px !important;
+  padding:24px !important;
+}
+.rrm-public-rules .monthly,
+.rrm-public-rules .monthly-guidance-card {
+  background:linear-gradient(180deg,#3C6A3D,#28502F) !important;
+  border-color:#284A29 !important;
+}
+.rrm-public-rules main > section:not(.hero) {
+  width:min(1160px,92vw);
+  margin:0 auto !important;
+  padding:clamp(4.5rem,8vw,7rem) 0 !important;
+  position:relative;
+}
+.rrm-public-rules main > section:not(.hero)::before {
+  content:"";
+  position:absolute;
+  top:0;
+  left:50%;
+  width:100%;
+  height:1px;
+  transform:translateX(-50%);
+  background:rgba(151,196,89,.62);
+}
+.rrm-public-rules main > section:not(.hero)::after {
+  content:"";
+  position:absolute;
+  top:-1px;
+  left:50%;
+  width:min(10rem,28vw);
+  height:3px;
+  transform:translateX(-50%);
+  background:linear-gradient(90deg,transparent,#EF9F27,transparent);
+}
+.rrm-public-rules main > section:not(.hero) > * { position:relative; z-index:1; }
+.rrm-public-rules .contact-card {
+  border:1px solid #C17F24 !important;
+  border-radius:28px !important;
+  background:linear-gradient(180deg,#3C6A3D 0%,#28502F 58%,#1A3620 100%) !important;
+}
+.rrm-public-rules .contact-card::before {
+  height:3px !important;
+  background:linear-gradient(90deg,#C17F24,#97C459) !important;
+}
+
+/* Phase 1: homepage and forms reached directly from the homepage only. */
+body.rrm-phase-one {
+  background:#204227 !important;
+}
+
+body.rrm-phase-one .hero {
+  width:100%;
+  margin:0;
+  padding:0;
+  background:linear-gradient(180deg,#1D4024 0%,#122A18 100%) !important;
+}
+
+body.rrm-phase-one .hero .home-hero-layout {
+  width:min(1160px,92vw);
+  margin:0 auto;
+  padding:calc(30px + clamp(36px,6vw,74px)) 0 calc(70px + clamp(36px,6vw,74px));
+}
+
+body.rrm-phase-one .legacy-page .interest-hero,
+body.rrm-phase-one .legacy-page.page-contact .contact-hero {
+  background:linear-gradient(180deg,#1D4024 0%,#122A18 100%) !important;
+}
+
+body.rrm-phase-one #business-freedom .bf-card,
+body.rrm-phase-one #how-it-fits .card,
+body.rrm-phase-one .form-card,
+body.rrm-phase-one .request-card,
+body.rrm-phase-one .interest-card,
+body.rrm-phase-one .contact-card {
+  background:linear-gradient(180deg,#1D4024 0%,#122A18 100%) !important;
+}
+
