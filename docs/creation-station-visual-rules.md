@@ -71,6 +71,16 @@ The approved Creation Station primary action is the current borderless gradient 
 - Preserve the approved Rebel Ranch Marketplace card treatment.
 - Neither component may be simplified, replaced, recolored, or redesigned without explicit owner approval.
 
+### Locked experience-page design extension
+
+- The current visual design and colors in `creation-station-experience.html` are owner-approved and locked as of 2026-08-02.
+- Preserve its approved purple-to-pink Creation Station energy, rainbow color rhythm, borderless gradient primary actions, teal supporting actions, white and pale supporting surfaces, section treatments, cards, tracker styling, and responsive presentation.
+- Preserve the current Creative Companion concept and identify the full feature clearly as **coming soon**. The interactive public concept may remain, but it must not be presented as a completed member feature.
+- Preserve the mandatory full-screen entry transition whenever a visitor enters the interactive dashboard preview. It must retain the Creation Station logo, the heading **Entering Creation Station**, the child-perspective supporting message, the deep-purple background, and the animated pink-to-gold-to-aqua rainbow loading bar.
+- Direct links to `creation-station-experience.html` must not bypass the entry transition. When the transition has already played on `creation-station-preview.html`, the handoff may suppress a duplicate animation so visitors see one intentional transition rather than two.
+- This approval locks the page's design and colors only. It does not settle or lock unresolved wording, age-band, shared-shell, dashboard, membership, Marketplace, or future-feature decisions.
+- Do not change this locked visual extension without a newer, explicit owner decision.
+
 ## 8. Implementation check
 
 Before presenting a Creation Station public-marketing page for review:

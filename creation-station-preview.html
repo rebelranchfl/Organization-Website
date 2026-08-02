@@ -97,6 +97,6 @@
 </main>
 <footer class="footer"><div class="wrap">Creation Station • Parent Preview • Rebel Ranch Ministries</div></footer>
 <div class="overlay" id="demoOverlay" aria-hidden="true"><img src="assets/Creation Station Logo.png" alt="Creation Station logo" onerror="this.style.display='none'"><h2>Entering Creation Station</h2><p>You’re about to step into the limited dashboard demo and experience Creation Station from your child’s point of view.</p><div class="progress"><span></span></div></div>
-<script>function startDemo(){const overlay=document.getElementById('demoOverlay');overlay.classList.add('active');overlay.setAttribute('aria-hidden','false');setTimeout(()=>window.location.href='creation-station-experience.html',1650);}</script>
+<script>function startDemo(){const overlay=document.getElementById('demoOverlay');overlay.classList.add('active');overlay.setAttribute('aria-hidden','false');sessionStorage.setItem('csEntryTransitionJustShown','1');setTimeout(()=>window.location.href='creation-station-experience.html',1650);}</script>
 </body>
 </html>
