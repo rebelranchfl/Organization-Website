@@ -1,9 +1,9 @@
-(() => {
+﻿(() => {
   const services = {
     'general-business-service': {
       name: 'Tell Us What Your Business Needs',
-      price: 'Service selected after review',
-      description: 'Describe the business problem you need help solving. Rebel Ranch Ministries will review the request and confirm the best available service before sending a secure invoice.'
+      price: 'You will be contacted within 24 hours',
+      description: 'Rebel Ranch and 3P Help Me partnered to deliver these donated professional services to support local businesses. This ensures that local businesses receive the guidance and support they need at a price they can afford.'
     },
     'owner-capacity-recovery': {
       name: 'Give Me Back My Time',
@@ -120,3 +120,4 @@
     }
   });
 })();
+

@@ -1,6 +1,8 @@
 # Rebel Ranch Ministries — Brand Guide
 
 This is the documented source of truth for the site's visual identity.
+
+> **Phase 1 public-surface update:** [rrm-visual-rules.md](./rrm-visual-rules.md) is authoritative for the homepage and its directly linked forms. Those pages use a solid `#204227` canvas and a `linear-gradient(180deg, #1D4024 0%, #122A18 100%)` hero, card, and form surface. The older radial-background and dark-card guidance below is historical. Creation Station remains separate, and other pages wait for a later approved rollout phase.
 Before this, colors were chosen page-by-page with no shared reference.
 The rules below aren't invented — they were reverse-engineered by
 auditing how colors actually behave (which CSS property, how often,
@@ -40,8 +42,10 @@ anywhere on the real site. Follow the roles below exactly.
 
 | Token | Hex | Role |
 |---|---|---|
-| `--rrm-bg-1/2/3` | `#152A18` → `#07120A` → `#050b06` | Page canvas — always a radial gradient (corner-light to center to edge-dark), never a flat fill |
-| `--rrm-card-1/2` | `#102315` → `#0A160D` | Card/panel fill — a vertical gradient, one step lighter than the page background |
+| Phase 1 page surface | `#204227` | Current canvas for the homepage and its directly linked forms |
+| Phase 1 hero/card/form surface | `#1D4024` → `#122A18` | Current vertical fade for full-width heroes, cards, and form surfaces on approved Phase 1 pages |
+| `--rrm-bg-1/2/3` | `#152A18` → `#07120A` → `#050b06` | Historical legacy-page canvas; not the Phase 1 public surface |
+| `--rrm-card-1/2` | `#102315` → `#0A160D` | Historical legacy-page card fill; not the Phase 1 public surface |
 | `--rrm-card-line` | `#284a29` | Card border |
 | `--rrm-ink` | `#F0EDD8` | Headings and primary text on dark backgrounds |
 | `--rrm-muted` | `#d7d1b3` | Body/secondary text on dark backgrounds |
@@ -55,9 +59,9 @@ anywhere on the real site. Follow the roles below exactly.
 | `--rrm-rust` | `#a94c3e` | The site's real third accent. Marks "negative/old way" framing (before/after comparisons). Verified in active use, not invented |
 | `--rrm-brown` | `#2A1A0A` | Deep accent, mostly inside decorative radial-gradient art, rarely a visible flat color |
 
-**Rules to actually follow when building anything new:**
-1. Page background is always the 3-stop radial gradient, never flat.
-2. Cards are always the 2-stop vertical gradient with a `--rrm-card-line` border, never a flat fill.
+**Historical rules below are retained only as context for legacy pages; do not use them for new public RRM work:**
+1. The earlier 3-stop radial page background is retired for RRM public pages.
+2. The earlier near-black card gradient is retired for RRM public pages.
 3. Bright green never fills a button, badge, or panel. If you want green to read as "positive," use it as *text* on a dark tinted background, not as the background itself.
 4. Gold is the only color allowed to fill a primary button. Use the `--rrm-gold` → `--rrm-gold-dark` gradient.
 5. Secondary/outline buttons use a `--rrm-green-dark` border over a `--rrm-green-fill` background, with `--rrm-ink` text (not colored text).
