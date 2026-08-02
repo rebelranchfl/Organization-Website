@@ -304,10 +304,11 @@ Do not casually replace these names with “store,” “website,” “creator 
 
 ## 11. Design boundaries
 
-Detailed styling rules belong in separate, approved visual-standard documents. Until those are approved:
+Detailed styling rules belong in separate, approved visual-standard documents. The Creation Station public-marketing baseline identified below is approved; other program surfaces remain governed by their own approved rules or remain open decisions.
 
 - Rebel Ranch Ministries, Creation Station, Marketplace, Academy, and personal creator pages must not be assumed to share one visual system.
 - Creation Station is an intentional sub-brand separate from the main Rebel Ranch Ministries appearance.
+- The current `creation.html` public-marketing page is the approved Creation Station reference. Its shared public header, borderless gradient-button family, rainbow hamburger, footer, Rebel Ranch Ministries return path, and clickable earnings disclaimer are owner-locked in `docs/creation-station-visual-rules.md`.
 - Creation Station must serve young creators, teens, and adults without making the whole brand childish or overly corporate.
 - A paid Creation Station Studio personal page may be more individually expressive than a Marketplace listing.
 - Marketplace listings must remain within approved Marketplace templates.
@@ -341,7 +342,7 @@ Detailed styling rules belong in separate, approved visual-standard documents. U
 - Final Business Freedom offers, pricing, and service boundaries.
 - Phase Two AI assistant behavior, data storage, safeguards, and customization.
 - Any gamification rules, including points, streaks, or achievements.
-- Final visual standards for Creation Station, Marketplace, Academy, and other program-specific experiences.
+- Final visual standards outside the locked Creation Station public-marketing baseline, including unsettled dashboard and program-specific experiences, plus Marketplace, Academy, and other program surfaces.
 
 ## 14. Related project documents
 
@@ -349,6 +350,7 @@ Agents must read only the documents relevant to their assigned work, but this ch
 
 - `docs/brand-guide.md` — existing Rebel Ranch Ministries brand guidance and program-brand boundaries.
 - `docs/rrm-visual-rules.md` — current approved RRM public-site visual rules.
+- `docs/creation-station-visual-rules.md` — approved Creation Station public-marketing baseline and locked shared component rules.
 - `docs/phase-3-architecture.md` — Creation Station record and dashboard architecture.
 - `docs/phase-4-creation-station.md` — Creation Station dashboard presentation and access boundaries.
 - `docs/creation-station-studio-dashboard-handoff.md` — historical planning notes; useful context, but items may be outdated or undecided. This charter controls when the two conflict unless the owner gives a newer explicit decision.
