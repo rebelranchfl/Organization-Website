@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Creation Station | Limited Parent Dashboard Demo</title>
-<meta name="description" content="A limited interactive parent demo of the Creation Station Young Creators dashboard.">
+<title>Creation Station | Parent Experience &amp; Interactive Preview</title>
+<meta name="description" content="See how Creation Station turns creativity into independent, hands-on progress through guided projects, real-life skills, parent visibility, and an interactive dashboard preview.">
 <style>
 :root{
   --purple:#6b3bb0;--purple-dark:#3d2471;--purple-soft:#e7d9ff;--teal:#00a7b7;--teal-soft:#d8faf8;
@@ -143,7 +143,13 @@ input:focus,textarea:focus,select:focus{border-color:var(--teal);box-shadow:0 0 
 .color-picker-wrap{border:1px solid var(--line);border-radius:1rem;background:#fbf8ff}
 .selected-color-swatch{border-radius:.5rem}
 .doodle-box{border:2px dashed rgba(101,41,154,.35);border-radius:1rem;background:linear-gradient(135deg,#fff,#fff4f9)}
-.bot-preview{border-color:var(--purple);border-radius:1.15rem;background:linear-gradient(135deg,#fff,#e8fbf8)}
+.bot-preview{min-height:21rem;border-color:var(--purple);border-radius:1.15rem;background:linear-gradient(135deg,#fff,#e8fbf8)}
+.companion-preview-art{display:grid;gap:.75rem;justify-items:center;width:100%}
+.companion-preview-svg{display:block;width:min(15rem,80%);filter:drop-shadow(0 1rem 1.25rem rgba(36,4,63,.2))}
+.companion-preview-art strong{font-size:1.45rem;color:var(--purple-dark)}
+.companion-preview-art p{max-width:22rem;margin:0;color:var(--muted);font-weight:750}
+.companion-preview-words{position:relative;padding:.75rem 1rem;border:2px solid rgba(101,41,154,.22);border-radius:1rem;background:#fff;color:var(--purple-dark)!important}
+.companion-preview-words:before{content:"";position:absolute;left:50%;top:-.55rem;width:1rem;height:1rem;border-left:2px solid rgba(101,41,154,.22);border-top:2px solid rgba(101,41,154,.22);background:#fff;transform:translateX(-50%) rotate(45deg)}
 .boost{background:var(--purple-gradient);border-radius:1rem}
 .boost:after{color:rgba(247,201,76,.2)}
 .you-are-here{background:linear-gradient(135deg,#fff5fa,#fff9e4);border:1px solid rgba(247,201,76,.75);border-radius:1rem}
@@ -156,14 +162,15 @@ input:focus,textarea:focus,select:focus{border-color:var(--teal);box-shadow:0 0 
 .checkline input{accent-color:var(--teal)}
 .photo-box{border:2px dashed rgba(3,151,164,.4);border-radius:1rem;background:linear-gradient(135deg,#fff,#e7faf8);color:#047f8b}
 .example{border-left:.42rem solid var(--pink);border-radius:.85rem;background:#fff9fc}
-.locked-grid{gap:1rem}
+.locked-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
 .locked-card{padding:1.25rem;background:#fff;border:1px solid var(--line);border-radius:1.1rem;box-shadow:var(--shadow2)}
 .locked-card:nth-child(1){border-top:.35rem solid var(--pink)}
 .locked-card:nth-child(2){border-top:.35rem solid var(--gold)}
 .locked-card:nth-child(3){border-top:.35rem solid var(--teal)}
 .locked-card:nth-child(4){border-top:.35rem solid var(--purple)}
 .locked-card:after{background:var(--purple-dark)}
-.age-grid{gap:.8rem}
+.age-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem}
+.age-card{padding:1.4rem}
 .age-card{padding:1.15rem;border:1px solid var(--line);border-radius:1rem;box-shadow:var(--shadow2)}
 .age-card:nth-child(1){border-top:.35rem solid var(--pink)}
 .age-card:nth-child(2){border-top:.35rem solid var(--gold)}
@@ -174,6 +181,46 @@ input:focus,textarea:focus,select:focus{border-color:var(--teal);box-shadow:0 0 
   margin-top:1.25rem;padding:1.4rem 1rem;color:#eadcf0;background:#23043d;border-top:.35rem solid transparent;
   border-image:var(--rainbow) 1;font-weight:750
 }
+
+.parent-value{
+  margin:1.15rem 0;padding:clamp(1.25rem,3vw,2rem);color:#fff;background:var(--deep-gradient);
+  border-radius:1.5rem;box-shadow:var(--shadow);overflow:hidden;position:relative
+}
+.parent-value:before{content:"";position:absolute;inset:0 0 auto;height:.35rem;background:var(--rainbow)}
+.parent-value>*{position:relative}
+.parent-value-heading{display:grid;grid-template-columns:1fr;gap:1rem;max-width:56rem;margin:0 auto 1.25rem;text-align:center}
+.parent-value-kicker{margin:0 0 .45rem;color:#81eee4;font-size:.78rem;font-weight:1000;letter-spacing:.12em;text-transform:uppercase}
+.parent-value h2{margin:0 auto;color:#fff;font-size:clamp(2rem,4.5vw,4rem);line-height:.94;letter-spacing:-.055em;text-align:center}
+.parent-value-heading>p{max-width:50rem;margin:0 auto;color:#efe3f3;font-weight:720;line-height:1.65;text-align:center}
+.parent-value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem}
+.parent-value-card{padding:1.1rem;background:rgba(255,255,255,.95);color:var(--ink);border:1px solid rgba(255,255,255,.7);border-radius:1rem;box-shadow:var(--shadow2)}
+.parent-value-card:nth-child(1){border-top:.35rem solid var(--pink)}
+.parent-value-card:nth-child(2){border-top:.35rem solid var(--gold)}
+.parent-value-card:nth-child(3){border-top:.35rem solid var(--teal)}
+.parent-value-card strong{display:block;margin-bottom:.45rem;color:var(--purple-dark);font-size:1.08rem}
+.parent-value-card p{margin:0;color:var(--muted);font-weight:700}
+.benefit-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.benefit-card{padding:1.15rem;background:#fff;border:1px solid var(--line);border-radius:1rem;box-shadow:var(--shadow2)}
+.benefit-card:nth-child(4n+1){border-left:.35rem solid var(--pink)}
+.benefit-card:nth-child(4n+2){border-left:.35rem solid var(--gold)}
+.benefit-card:nth-child(4n+3){border-left:.35rem solid var(--teal)}
+.benefit-card:nth-child(4n+4){border-left:.35rem solid var(--purple)}
+.benefit-card h3{margin-bottom:.45rem;font-size:1.15rem}
+.benefit-card p{margin:0;color:var(--muted);font-weight:700}
+.community-path{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
+.community-card,.growth-card{padding:1.25rem;border-radius:1rem}
+.community-card{background:linear-gradient(135deg,#e8fbf8,#fff);border:1px solid rgba(3,151,164,.22)}
+.growth-card{background:linear-gradient(135deg,#fff4fa,#fff9e5);border:1px solid rgba(240,75,152,.2)}
+.community-card h3,.growth-card h3{margin-bottom:.45rem}
+.community-card p,.growth-card p{margin:0;color:var(--muted);font-weight:700}
+.community-card .btn,.growth-card .btn{margin-top:1rem}
+.decision-cta{
+  display:grid;grid-template-columns:1fr auto;gap:1.25rem;align-items:center;margin:1.15rem 0 0;padding:clamp(1.25rem,3vw,2rem);
+  color:#fff;background:linear-gradient(135deg,#34105b 0%,#65299a 50%,#a73793 100%);border-radius:1.5rem;box-shadow:var(--shadow)
+}
+.decision-cta h2{margin:0 0 .5rem;color:#fff;font-size:clamp(1.8rem,3.5vw,3rem);letter-spacing:-.045em}
+.decision-cta p{max-width:48rem;margin:0;color:#f4eaf7;font-weight:720}
+.decision-actions{display:flex;gap:.65rem;flex-wrap:wrap;justify-content:flex-end}
 
 /* OWNER-LOCKED: Required entry transition for the interactive Creation Station preview. */
 .entry-overlay{
@@ -201,6 +248,7 @@ input:focus,textarea:focus,select:focus{border-color:var(--teal);box-shadow:0 0 
   .tracker{grid-template-columns:repeat(3,1fr)}
   .col-3,.col-4,.col-5,.col-6,.col-7,.col-8{grid-column:span 12}
   .locked-grid{grid-template-columns:1fr 1fr}.age-grid{grid-template-columns:1fr 1fr}
+  .parent-value-heading,.decision-cta{grid-template-columns:1fr}.decision-actions{justify-content:flex-start}
   .project-nav{position:relative;top:auto}.robot-bubble:after{display:none}
 }
 @media(max-width:650px){
@@ -211,7 +259,8 @@ input:focus,textarea:focus,select:focus{border-color:var(--teal);box-shadow:0 0 
   .hero-grid{margin-top:1.2rem}.quick-actions .btn{width:100%}.robot-stage{padding:.8rem}
   .tracker{grid-template-columns:1fr 1fr}.sticky-tracker{top:.25rem;padding:.5rem;border-radius:1rem}
   .section{border-radius:1.15rem}.section-head{padding:1rem}.section-body{padding:.9rem}.section-title{align-items:flex-start}
-  .choice-grid,.photo-row,.locked-grid,.age-grid{grid-template-columns:1fr}
+  .choice-grid,.photo-row,.locked-grid,.age-grid,.parent-value-grid,.benefit-grid,.community-path{grid-template-columns:1fr}
+  .decision-actions .btn{width:100%}
 }
 @media(prefers-reduced-motion:reduce){
   .entry-overlay img{animation:none}.entry-progress span{width:100%;animation:none}
@@ -228,17 +277,17 @@ input:focus,textarea:focus,select:focus{border-color:var(--teal);box-shadow:0 0 
 <a href="#main" class="skip">Skip to main content</a>
 <div class="page">
   <div class="demo-bar">
-    <div><strong>Parent Demo · Limited Sample Experience</strong><p>This preview shows the dashboard style, coming-soon Creation Companion concept, tracker, and one sample project. The complete project library and member tools are not public.</p></div>
-    <div class="demo-actions"><a class="btn" href="creation-station-preview.html">← Return to Parent Preview</a><a class="btn primary" href="creation-young-creators-interest.html">Join / Request Full Access</a></div>
+    <div><strong>Parent Demo · Limited Sample Experience</strong><p>This preview shows the dashboard style, customizable Creation Companion, tracker, and one sample project. The complete project library and member tools are not public.</p></div>
+    <div class="demo-actions"><a class="btn" href="creation.html">← Back to Creation Station</a><a class="btn primary" href="creation-young-creators-interest.html">Join / Request Full Access</a></div>
   </div>
 
   <header class="hero" id="top">
     <div class="brand-row">
       <div class="logo-wrap"><img src="assets/Creation Station Logo.png" alt="Creation Station logo"></div>
-      <div><div class="kicker">Young Creators · Parent Demo</div><h1>Step into their creative journey.</h1><p>Preview the coming-soon Creation Companion, move through the project tracker, and try one complete sample project. This is enough to understand the experience without opening the full member dashboard.</p></div>
+      <div><div class="kicker">Young Creators · Parent Demo</div><h1>Step into their creative journey.</h1><p>Customize a Creation Companion, move through the project tracker, and try one complete sample project. This is enough to understand the experience without opening the full member dashboard.</p></div>
     </div>
     <div class="hero-grid">
-      <div><div class="quick-actions"><a class="btn alt" href="#companion">Companion Coming Soon</a><a class="btn" href="#journey">Open the Tracker</a><a class="btn" href="#project">Try the Sample Project</a><a class="btn dark" href="#member-preview">See What Full Access Adds</a></div></div>
+      <div><div class="quick-actions"><a class="btn alt" href="#companion">Customize a Companion</a><a class="btn" href="#journey">Open the Tracker</a><a class="btn" href="#project">Try the Sample Project</a><a class="btn dark" href="#member-preview">See What Full Access Adds</a></div></div>
       <div class="robot-stage" aria-label="Creation Companion concept art">
         <div class="robot-bubble"><span id="heroCompanion">Your Creation Companion</span> says:<br><br>“I’m here to journey with you. Name me, design me, and let’s build something real.”</div>
         <svg class="robot-svg" viewBox="0 0 320 320" role="img" aria-label="Friendly creative robot with art tools">
@@ -258,6 +307,21 @@ input:focus,textarea:focus,select:focus{border-color:var(--teal);box-shadow:0 0 
     </div>
   </header>
 
+  <section class="parent-value" id="why-it-matters" aria-labelledby="parent-value-title">
+    <div class="parent-value-heading">
+      <div>
+        <p class="parent-value-kicker">More Than a Craft</p>
+        <h2 id="parent-value-title">Creativity becomes meaningful progress.</h2>
+      </div>
+      <p>Children are not simply making something and moving on. Creation Station gives them a clear path from imagination to completion—while parents keep visibility and control without having to plan and supervise every step.</p>
+    </div>
+    <div class="parent-value-grid">
+      <article class="parent-value-card"><strong>Meaningful independent activity</strong><p>Visible next steps help children keep creating with more confidence and less parent project management.</p></article>
+      <article class="parent-value-card"><strong>Real-life skills inside the fun</strong><p>Planning, problem-solving, patience, organization, responsibility, and follow-through grow through hands-on work.</p></article>
+      <article class="parent-value-card"><strong>Screen time that leads to action</strong><p>Technology becomes a guide for making, documenting, reflecting, and doing something in the real world.</p></article>
+    </div>
+  </section>
+
   <nav class="sticky-tracker" id="journey" aria-label="Sample project progress">
     <div class="tracker">
       <button class="step-btn active" data-stage="dream"><span>Dream It</span><small>Choose an idea</small></button>
@@ -272,10 +336,10 @@ input:focus,textarea:focus,select:focus{border-color:var(--teal);box-shadow:0 0 
 
   <main id="main">
     <section class="section" id="companion">
-      <div class="section-head"><h2 class="section-title"><span class="mark">🤖</span> Creation Companion · Coming Soon</h2></div>
+      <div class="section-head"><h2 class="section-title"><span class="mark">🤖</span> Customize a Creation Companion</h2></div>
       <div class="section-body grid">
-        <div class="card col-7"><h3>A future guide that belongs to the student.</h3><p>The full Creation Companion is coming soon. This interactive concept lets families preview how each child will be able to name and design a creative helper, making the journey personal before the project work begins.</p><label for="botName">My companion’s name is</label><input id="botName" type="text" placeholder="Example: Pixel, Moxie, Captain Create, LunaBot"><label>My companion helps me with</label><div class="choice-grid"><label class="choice"><input type="checkbox" value="ideas"> Ideas</label><label class="choice"><input type="checkbox" value="planning"> Planning</label><label class="choice"><input type="checkbox" value="making"> Making</label><label class="choice"><input type="checkbox" value="photos"> Photos</label><label class="choice"><input type="checkbox" value="writing"> Writing</label><label class="choice"><input type="checkbox" value="bravery"> Staying brave</label></div><label>Pick companion colors</label><p class="note">Choose a Creation Station color or open the color wheel.</p><div class="color-row"><button type="button" class="color-btn selected" data-color="#6B3BB0" style="background:#6B3BB0" aria-label="Purple"></button><button type="button" class="color-btn" data-color="#00A7B7" style="background:#00A7B7" aria-label="Teal"></button><button type="button" class="color-btn" data-color="#EF6AA7" style="background:#EF6AA7" aria-label="Pink"></button><button type="button" class="color-btn" data-color="#FFC857" style="background:#FFC857" aria-label="Gold"></button><button type="button" class="color-btn" data-color="#F9A03F" style="background:#F9A03F" aria-label="Orange"></button></div><div class="color-picker-wrap"><input id="customBotColor" type="color" value="#6B3BB0" aria-label="Choose a custom companion color"><div><label for="customBotColor">Custom color wheel</label><div class="selected-color-line"><span id="selectedColorSwatch" class="selected-color-swatch" aria-hidden="true"></span><span id="selectedColorText">Selected color: #6B3BB0</span></div></div></div><label for="catchphrase">My companion’s catchphrase</label><input id="catchphrase" type="text" placeholder="Example: Start small. Keep creating."><button class="btn primary" id="saveCompanion" type="button" style="margin-top:14px">Save My Demo Companion</button><p class="note">Coming-soon concept: demo choices stay in this browser session only.</p></div>
-        <div class="card col-5"><h3>Companion preview · Coming Soon</h3><div class="bot-preview" id="botPreview"><div><strong>My Companion</strong><br><br>Try a name and color to explore this coming-soon concept.</div></div><div class="boost" style="margin-top:15px"><strong id="botSaysLabel">Your Companion Says:</strong><p id="botMessage">“Start with the next small step. You do not have to solve the whole project at once.”</p></div></div>
+        <div class="card col-7"><h3>Make a Companion that feels like yours.</h3><p>Name it, choose its colors, and give it encouraging words. This version is ready to personalize now; more interactive Companion guidance can be added in a later phase.</p><label for="botName">My companion’s name is</label><input id="botName" type="text" placeholder="Example: Pixel, Moxie, Captain Create, LunaBot"><label>My companion can cheer me on with</label><div class="choice-grid"><label class="choice"><input type="checkbox" value="ideas"> Ideas</label><label class="choice"><input type="checkbox" value="planning"> Planning</label><label class="choice"><input type="checkbox" value="making"> Making</label><label class="choice"><input type="checkbox" value="photos"> Photos</label><label class="choice"><input type="checkbox" value="writing"> Writing</label><label class="choice"><input type="checkbox" value="bravery"> Staying brave</label></div><label>Pick companion colors</label><p class="note">Choose a Creation Station color or open the color wheel.</p><div class="color-row"><button type="button" class="color-btn selected" data-color="#6B3BB0" style="background:#6B3BB0" aria-label="Purple"></button><button type="button" class="color-btn" data-color="#00A7B7" style="background:#00A7B7" aria-label="Teal"></button><button type="button" class="color-btn" data-color="#EF6AA7" style="background:#EF6AA7" aria-label="Pink"></button><button type="button" class="color-btn" data-color="#FFC857" style="background:#FFC857" aria-label="Gold"></button><button type="button" class="color-btn" data-color="#F9A03F" style="background:#F9A03F" aria-label="Orange"></button></div><div class="color-picker-wrap"><input id="customBotColor" type="color" value="#6B3BB0" aria-label="Choose a custom companion color"><div><label for="customBotColor">Custom color wheel</label><div class="selected-color-line"><span id="selectedColorSwatch" class="selected-color-swatch" aria-hidden="true"></span><span id="selectedColorText">Selected color: #6B3BB0</span></div></div></div><label for="catchphrase">What should your companion say?</label><input id="catchphrase" type="text" placeholder="Example: We can do it!" aria-describedby="companionWordsHelp"><p class="note" id="companionWordsHelp">These words will appear beside your Companion.</p><button class="btn primary" id="saveCompanion" type="button" style="margin-top:14px">Save My Companion</button><p class="note">Saved in this browser on this device for now. Clearing browser data will remove it.</p></div>
+        <div class="card col-5"><h3>Your Companion</h3><div class="bot-preview" id="botPreview"><div class="companion-preview-art"><svg class="companion-preview-svg" viewBox="0 0 320 320" role="img" aria-label="Customizable Creation Companion preview"><path d="M58 252c36 18 166 18 204 0" fill="none" stroke="#F7C94C" stroke-width="18" stroke-linecap="round" opacity=".85"/><rect id="previewBotBody" x="83" y="90" width="154" height="142" rx="40" fill="#65299A"/><rect x="100" y="115" width="120" height="74" rx="22" fill="#E8FBF8"/><circle cx="132" cy="150" r="11" fill="#34105B"/><circle cx="188" cy="150" r="11" fill="#34105B"/><path d="M137 171c15 12 31 12 46 0" fill="none" stroke="#F04B98" stroke-width="8" stroke-linecap="round"/><rect x="133" y="52" width="54" height="46" rx="17" fill="#F7C94C"/><path d="M160 52V32" stroke="#fff" stroke-width="8" stroke-linecap="round"/><circle cx="160" cy="25" r="11" fill="#F04B98"/><path id="previewBotArmLeft" d="M82 143H52c-12 0-18 10-18 20v48" fill="none" stroke="#0397A4" stroke-width="18" stroke-linecap="round"/><path id="previewBotArmRight" d="M238 143h30c12 0 18 10 18 20v48" fill="none" stroke="#65299A" stroke-width="18" stroke-linecap="round"/><path d="M64 208l-18 38M256 208l18 38" stroke="#F7C94C" stroke-width="12" stroke-linecap="round"/><circle cx="46" cy="248" r="13" fill="#F04B98"/><circle cx="274" cy="248" r="13" fill="#F59B45"/></svg><strong id="botPreviewName">My Companion</strong><p class="companion-preview-words" id="companionPreviewWords">“Start with the next small step.”</p></div></div></div>
       </div>
     </section>
 
@@ -297,20 +361,45 @@ input:focus,textarea:focus,select:focus{border-color:var(--teal);box-shadow:0 0 
       </div>
     </section>
 
+    <section class="section" id="parent-proof">
+      <div class="section-head"><h2 class="section-title"><span class="mark">✦</span> What Parents Can See Taking Shape</h2></div>
+      <div class="section-body">
+        <p>What feels colorful and creative to a child has real structure underneath. Each stage helps turn an idea into finished work, visible progress, and skills that can be used again.</p>
+        <div class="benefit-grid">
+          <article class="benefit-card"><h3>Structure underneath the creativity</h3><p>The dashboard guides creators through choosing an idea, planning it, making it, documenting it, sharing its story, and reflecting on what they learned.</p></article>
+          <article class="benefit-card"><h3>Confidence built through completion</h3><p>Children learn that their ideas matter and that they can finish, explain, improve, and take pride in what they create.</p></article>
+          <article class="benefit-card"><h3>Visible progress with parent control</h3><p>Parents can follow relevant progress and finished work. For anyone under 18, a parent or guardian controls anything that could eventually become public.</p></article>
+          <article class="benefit-card"><h3>A private record of achievement</h3><p>Projects do not have to disappear into a drawer. Creators can document the process, preserve finished work, reflect on growth, and build a private portfolio.</p></article>
+          <article class="benefit-card"><h3>Business and financial foundations</h3><p>Age-appropriate guidance can introduce supplies, costs, inventory, pricing, presentation, branding, marketing, and the difference between spending money and building something with value.</p></article>
+          <article class="benefit-card"><h3>Problem-solving that transfers to life</h3><p>Projects strengthen critical thinking, decision-making, patience, organization, responsibility, communication, and follow-through.</p></article>
+        </div>
+        <div class="community-path">
+          <article class="community-card"><h3>A parent-aware creative place to connect</h3><p>Live online gatherings can give children a convenient place to make, talk, laugh, share ideas, ask questions, and spend time with other young creators who understand their interests.</p><a class="btn teal" href="creation-station-live-classes.html">Explore Live Sessions</a></article>
+          <article class="growth-card"><h3>A pathway that can grow with them</h3><p>A hobby can remain a meaningful creative outlet. When a creator and parent are ready, they can explore age-appropriate entrepreneurship learning and an optional paid Creation Station Studio page.</p><a class="btn primary" href="creation-young-creators-interest.html">Start the Family Path</a></article>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="member-preview">
       <div class="section-head"><h2 class="section-title"><span class="mark">🔒</span> What Full Member Access Adds</h2></div>
-      <div class="section-body"><p>This public page intentionally stops after one complete sample. These deeper tools remain behind the membership or access process.</p><div class="locked-grid"><article class="locked-card"><h3>Complete Project Library</h3><p>Age-matched projects across art, handmade products, digital creation, building, photography, sewing, cooking, and creative business.</p><a class="btn locked" href="creation-young-creators-interest.html">Request Library Access</a></article><article class="locked-card"><h3>Long-Term Progress Records</h3><p>Saved student profiles, project history, milestones, evidence, completed work, and continued progress over time.</p><a class="btn locked" href="creation-young-creators-interest.html">Request Member Access</a></article><article class="locked-card"><h3>Parent Documentation Tools</h3><p>Parent-selected documentation, printable pages, project records, completion evidence, and age-specific material delivery.</p><a class="btn locked" href="creation-young-creators-interest.html">See Access Options</a></article><article class="locked-card"><h3>Creation Station Studio &amp; Business Tools</h3><p>A personal creator page, business-building guidance, and marketplace listing — with the potential to sell what you make. No income is guaranteed; the goal is real skills and real opportunity.</p><a class="btn locked" href="creation-young-creators-interest.html">See Creation Station Studio Access</a></article></div></div>
+      <div class="section-body"><p>This public page intentionally stops after one complete sample. These deeper tools remain behind the membership or access process.</p><div class="locked-grid"><article class="locked-card"><h3>Complete Project Library</h3><p>Age-matched projects across art, handmade products, digital creation, building, photography, sewing, cooking, and creative business.</p><a class="btn locked" href="creation-young-creators-interest.html">Request Library Access</a></article><article class="locked-card"><h3>Long-Term Progress Records</h3><p>Saved student profiles, project history, milestones, evidence, completed work, and continued progress over time.</p><a class="btn locked" href="creation-young-creators-interest.html">Request Member Access</a></article><article class="locked-card"><h3>Parent Documentation Tools</h3><p>Parent-selected documentation, printable pages, project records, completion evidence, and age-specific material delivery.</p><a class="btn locked" href="creation-young-creators-interest.html">See Access Options</a></article><article class="locked-card"><h3>Creation Station Studio &amp; Business Tools</h3><p>An optional paid personal creator page can present approved work, a creator story, products or services, ordering information, and contact paths. Creation Station provides education and opportunity, not guaranteed sales or income.</p><a class="btn locked" href="creation-young-creators-interest.html">See Creation Station Studio Access</a></article></div></div>
     </section>
 
     <section class="section" id="ages">
-      <div class="section-head"><h2 class="section-title"><span class="mark">↗</span> The Experience Grows With the Student</h2></div>
-      <div class="section-body"><div class="age-grid"><div class="age-card"><strong>Ages 6–8</strong><p>Dream → Choose → Make → Show → Celebrate</p></div><div class="age-card"><strong>Ages 9–11</strong><p>Idea → Plan → Create → Explain → Improve</p></div><div class="age-card"><strong>Ages 12–14</strong><p>Concept → Plan → Build → Document → Present → Improve</p></div><div class="age-card"><strong>Ages 15–18</strong><p>Concept → Development → Production → Documentation → Portfolio → Reflection</p></div></div><div style="text-align:center;margin-top:22px"><a class="btn primary" href="creation-young-creators-interest.html">Join / Request Full Access</a> <a class="btn" href="creation-station-preview.html">Return to Parent Preview</a></div></div>
+      <div class="section-head"><h2 class="section-title"><span class="mark">↗</span> Creation Station Grows With the Creator</h2></div>
+      <div class="section-body"><div class="age-grid"><div class="age-card"><strong>Young Creators · Ages 6–12</strong><p>Visual steps, encouragement, age-appropriate independence, and a clear path from idea to finished work.</p></div><div class="age-card"><strong>Teen Creators · Ages 13–17</strong><p>Stronger planning, documentation, presentation, portfolio thinking, and practical business preparation.</p></div><div class="age-card"><strong>Adult Makers · Ages 18+</strong><p>A separate, mature path for creators who may already have work to present and do not need the child-guided journey.</p></div></div><div style="text-align:center;margin-top:22px"><a class="btn primary" href="creation-young-creators-interest.html">Join / Request Full Access</a> <a class="btn" href="creation.html#adult-path">See the Adult Maker Path</a></div></div>
     </section>
 
-    <div class="footer-note">Creation Station Young Creators · Limited parent demo · Complete member content is not public</div>
+    <section class="decision-cta" aria-labelledby="decision-title">
+      <div><h2 id="decision-title">Give their creativity somewhere meaningful to go.</h2><p>You have seen the structure, tried the journey, and explored what grows around it. Take the next step when your family is ready.</p></div>
+      <div class="decision-actions"><a class="btn primary" href="creation-young-creators-interest.html">Start Creating</a><a class="btn teal" href="creation-station-live-classes.html">Explore Live Sessions</a></div>
+    </section>
+
   </main>
 </div>
+<div data-creation-station-footer></div>
 <div class="confetti" id="confetti"></div>
+<script src="assets/components/creation-station-footer/footer.js?v=20260803-1" defer></script>
 <script>
 const entryOverlay=document.getElementById('entryOverlay');
 const entryTransitionJustShown=sessionStorage.getItem('csEntryTransitionJustShown')==='1';
@@ -318,11 +407,11 @@ if(entryTransitionJustShown){sessionStorage.removeItem('csEntryTransitionJustSho
   entryOverlay.classList.add('active');entryOverlay.setAttribute('aria-hidden','false');
   setTimeout(()=>{entryOverlay.classList.remove('active');entryOverlay.setAttribute('aria-hidden','true')},1650)
 }
-const companionName=document.getElementById('botName');const catchphrase=document.getElementById('catchphrase');const saveCompanion=document.getElementById('saveCompanion');const heroCompanion=document.getElementById('heroCompanion');const botSaysLabel=document.getElementById('botSaysLabel');const botPreview=document.getElementById('botPreview');const colorButtons=document.querySelectorAll('.color-btn');const customBotColor=document.getElementById('customBotColor');const selectedColorSwatch=document.getElementById('selectedColorSwatch');const selectedColorText=document.getElementById('selectedColorText');let activeColor='#6B3BB0';
-function displayCompanion(){const name=companionName.value.trim()||'Your Creation Companion';heroCompanion.textContent=name;botSaysLabel.textContent=name+' Says:';const phrase=catchphrase.value.trim();if(phrase)document.getElementById('botMessage').textContent='“'+phrase+'”';botPreview.style.borderColor=activeColor;botPreview.innerHTML='<div><strong style="color:'+activeColor+'">'+(companionName.value.trim()||'My Companion')+'</strong><br><br>Coming-soon companion demo ready to help with the next small step.</div>';selectedColorSwatch.style.background=activeColor;selectedColorText.textContent='Selected color: '+activeColor.toUpperCase()}
-function saveDemo(){sessionStorage.setItem('csDemoName',companionName.value);sessionStorage.setItem('csDemoPhrase',catchphrase.value);sessionStorage.setItem('csDemoColor',activeColor);displayCompanion()}
-window.addEventListener('load',()=>{companionName.value=sessionStorage.getItem('csDemoName')||'';catchphrase.value=sessionStorage.getItem('csDemoPhrase')||'';activeColor=sessionStorage.getItem('csDemoColor')||activeColor;customBotColor.value=activeColor;colorButtons.forEach(button=>button.classList.toggle('selected',button.dataset.color.toLowerCase()===activeColor.toLowerCase()));displayCompanion();updateProgress()});
-colorButtons.forEach(button=>button.addEventListener('click',()=>{activeColor=button.dataset.color;colorButtons.forEach(b=>b.classList.remove('selected'));button.classList.add('selected');customBotColor.value=activeColor;displayCompanion()}));customBotColor.addEventListener('input',()=>{activeColor=customBotColor.value;colorButtons.forEach(b=>b.classList.remove('selected'));displayCompanion()});saveCompanion.addEventListener('click',()=>{saveDemo();popConfetti()});
+const companionName=document.getElementById('botName');const catchphrase=document.getElementById('catchphrase');const saveCompanion=document.getElementById('saveCompanion');const heroCompanion=document.getElementById('heroCompanion');const companionPreviewWords=document.getElementById('companionPreviewWords');const botPreview=document.getElementById('botPreview');const botPreviewName=document.getElementById('botPreviewName');const previewBotBody=document.getElementById('previewBotBody');const previewBotArmRight=document.getElementById('previewBotArmRight');const colorButtons=document.querySelectorAll('.color-btn');const customBotColor=document.getElementById('customBotColor');const selectedColorSwatch=document.getElementById('selectedColorSwatch');const selectedColorText=document.getElementById('selectedColorText');let activeColor='#6B3BB0';
+function displayCompanion(){const name=companionName.value.trim()||'Your Creation Companion';const phrase=catchphrase.value.trim()||'Start with the next small step.';const spokenWords='“'+phrase+'”';heroCompanion.textContent=name;botPreviewName.textContent=companionName.value.trim()||'My Companion';companionPreviewWords.textContent=spokenWords;botPreview.style.borderColor=activeColor;previewBotBody.setAttribute('fill',activeColor);previewBotArmRight.setAttribute('stroke',activeColor);selectedColorSwatch.style.background=activeColor;selectedColorText.textContent='Selected color: '+activeColor.toUpperCase()}
+function saveDemo(){localStorage.setItem('csCompanionName',companionName.value);localStorage.setItem('csCompanionWords',catchphrase.value);localStorage.setItem('csCompanionColor',activeColor);displayCompanion()}
+window.addEventListener('load',()=>{companionName.value=localStorage.getItem('csCompanionName')||sessionStorage.getItem('csDemoName')||'';catchphrase.value=localStorage.getItem('csCompanionWords')||sessionStorage.getItem('csDemoPhrase')||'';activeColor=localStorage.getItem('csCompanionColor')||sessionStorage.getItem('csDemoColor')||activeColor;customBotColor.value=activeColor;colorButtons.forEach(button=>button.classList.toggle('selected',button.dataset.color.toLowerCase()===activeColor.toLowerCase()));displayCompanion();updateProgress()});
+companionName.addEventListener('input',displayCompanion);catchphrase.addEventListener('input',displayCompanion);colorButtons.forEach(button=>button.addEventListener('click',()=>{activeColor=button.dataset.color;colorButtons.forEach(b=>b.classList.remove('selected'));button.classList.add('selected');customBotColor.value=activeColor;displayCompanion()}));customBotColor.addEventListener('input',()=>{activeColor=customBotColor.value;colorButtons.forEach(b=>b.classList.remove('selected'));displayCompanion()});saveCompanion.addEventListener('click',()=>{saveDemo();popConfetti()});
 const stageInfo={dream:['You are at: Dream It','Choose what you want to make and why it matters to you.','dreamPanel'],plan:['You are at: Plan It','Think through materials, time, cost, safety, and steps.','planPanel'],make:['You are at: Make It','Create, test, solve problems, and keep moving.','makePanel'],capture:['You are at: Capture It','Collect photos and evidence of the process and result.','capturePanel'],share:['You are at: Share It','Explain the work, the purpose, and the creator story.','sharePanel'],grow:['You are at: Grow It','Reflect on what worked and what you will improve.','growPanel']};const stepButtons=[...document.querySelectorAll('.step-btn')];const navButtons=[...document.querySelectorAll('.project-nav button')];const completed=new Set();
 function openStage(stage){const info=stageInfo[stage];stepButtons.forEach(button=>button.classList.toggle('active',button.dataset.stage===stage));navButtons.forEach(button=>button.classList.toggle('active',button.dataset.panel===info[2]));document.querySelectorAll('.project-panel').forEach(panel=>panel.classList.toggle('active',panel.id===info[2]));document.getElementById('stageTitle').textContent=info[0];document.getElementById('stageHelp').textContent=info[1];document.getElementById('project').scrollIntoView({behavior:'smooth',block:'start'})}
 stepButtons.forEach(button=>button.addEventListener('click',()=>openStage(button.dataset.stage)));navButtons.forEach(button=>button.addEventListener('click',()=>{const stage=Object.keys(stageInfo).find(key=>stageInfo[key][2]===button.dataset.panel);openStage(stage)}));
