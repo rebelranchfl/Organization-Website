@@ -2,13 +2,13 @@
 
 **Status:** Owner-approved and locked
 
-**Version:** 1.0
+**Version:** 1.1
 
-**Approved:** 2026-08-02
+**Approved:** 2026-08-03
 
 **Approved reference:** `creation.html`
 
-**Matching CSS:** `assets/css/creation-station.css`
+**Matching CSS:** `assets/css/creation-station.css` and `assets/components/creation-station-footer/footer.css`
 
 These rules preserve the Creation Station public-marketing page approved by the owner. They apply to the shared public Creation Station marketing shell and must not be replaced with the separate Rebel Ranch Ministries public-site visual system.
 
@@ -58,12 +58,15 @@ The approved Creation Station primary action is the current borderless gradient 
 
 ## 6. Locked footer
 
+- The uniform Creation Station footer is a shared component maintained in `assets/components/creation-station-footer/` rather than copied into individual pages.
+- Creation Station pages using the shared public footer must load `footer.js` into an element marked `data-creation-station-footer`.
 - Preserve the deep-purple footer and thin rainbow top edge.
 - Preserve the Creation Station logo and Creation Station identity.
 - Preserve the clearly linked line `by Rebel Ranch Ministries · Return to the main website`, linking to the Rebel Ranch Ministries main page.
 - Preserve the `Create. Learn. Build. Grow.` rainbow tagline and the supporting real-life-purpose sentence.
-- Preserve the compact, clickable **Earnings Disclaimer** disclosure.
-- The disclosure must continue to state that Creation Station and Rebel Ranch Ministries provide the platform, tools, education, and opportunity but do not guarantee sales, profits, income, earnings, cost recovery, or business success.
+- Preserve the concise **Earnings & Opportunity Disclaimer** footer link to `creation-station-disclaimer.html`.
+- Keep the complete disclosure language on the dedicated disclaimer page rather than repeating the full wording inside each Creation Station page or footer.
+- Update the shared component files when changing the Creation Station footer. Do not create page-specific copies or embedded variations.
 
 ## 7. Previously locked components on this page
 
@@ -75,7 +78,8 @@ The approved Creation Station primary action is the current borderless gradient 
 
 - The current visual design and colors in `creation-station-experience.html` are owner-approved and locked as of 2026-08-02.
 - Preserve its approved purple-to-pink Creation Station energy, rainbow color rhythm, borderless gradient primary actions, teal supporting actions, white and pale supporting surfaces, section treatments, cards, tracker styling, and responsive presentation.
-- Preserve the current Creative Companion concept and identify the full feature clearly as **coming soon**. The interactive public concept may remain, but it must not be presented as a completed member feature.
+- Preserve the current Creation Companion customizer. Naming the Companion, choosing its color, adding encouraging words, and saving those choices in the visitor's browser are available parts of the public experience and must not be labeled **coming soon**.
+- Keep the current Companion customizer distinct from a future AI or interactive member assistant. Personalized guidance, account-based storage, cross-device access, and deeper dashboard integration remain later-phase features and must not be presented as available now.
 - Preserve the mandatory full-screen entry transition whenever a visitor enters the interactive dashboard preview. It must retain the Creation Station logo, the heading **Entering Creation Station**, the child-perspective supporting message, the deep-purple background, and the animated pink-to-gold-to-aqua rainbow loading bar.
 - Direct links to `creation-station-experience.html` must not bypass the entry transition. When the transition has already played on `creation-station-preview.html`, the handoff may suppress a duplicate animation so visitors see one intentional transition rather than two.
 - This approval locks the page's design and colors only. It does not settle or lock unresolved wording, age-band, shared-shell, dashboard, membership, Marketplace, or future-feature decisions.
@@ -88,7 +92,7 @@ Before presenting a Creation Station public-marketing page for review:
 1. Compare the shared header, primary buttons, supporting teal buttons, hero boundary, and footer against `creation.html`.
 2. Confirm primary and teal gradient buttons do not have permanent outlines.
 3. Confirm the hamburger lines retain the rainbow treatment.
-4. Confirm the footer includes the linked Rebel Ranch Ministries return path and clickable earnings disclaimer.
+4. Confirm the shared footer loads, includes the linked Rebel Ranch Ministries return path, and links to the dedicated Earnings & Opportunity Disclaimer page.
 5. Confirm no hero circle or orbit decoration has been introduced.
 6. Stop and request owner approval before changing any locked component.
 

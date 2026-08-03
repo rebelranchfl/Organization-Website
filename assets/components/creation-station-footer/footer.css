@@ -1,0 +1,107 @@
+.cs-footer {
+  margin-top: 0;
+  padding: 2.4rem 0;
+  color: #eadcf0;
+  background: #23043d;
+  border-top: .35rem solid transparent;
+  border-image: linear-gradient(135deg, #f04b98 0%, #ff756d 20%, #f7c94c 43%, #b7d957 65%, #55d7d1 100%) 1;
+  font-family: "Segoe UI", ui-sans-serif, system-ui, -apple-system, Roboto, Arial, sans-serif;
+}
+
+.cs-footer *,
+.cs-footer *::before,
+.cs-footer *::after { box-sizing: border-box; }
+
+.cs-footer__inner {
+  display: grid;
+  width: min(1160px, calc(100% - 2rem));
+  margin: 0 auto;
+  gap: 1.4rem;
+  align-items: center;
+  text-align: center;
+}
+
+.cs-footer__brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .85rem;
+}
+
+.cs-footer__brand img {
+  width: 4.8rem;
+  height: 4.8rem;
+  object-fit: contain;
+  filter: drop-shadow(0 .5rem 1rem rgba(0, 0, 0, .28));
+}
+
+.cs-footer__brand strong {
+  display: block;
+  color: #fff;
+  font-size: 1.08rem;
+  text-align: left;
+}
+
+.cs-footer__rrm {
+  display: block;
+  margin-top: .25rem;
+  color: #9bece4;
+  font-size: .78rem;
+  font-weight: 850;
+  text-align: left;
+  text-underline-offset: .2rem;
+}
+
+.cs-footer__message p {
+  margin: .55rem 0 0;
+  color: #bfece7;
+  font-weight: 750;
+}
+
+.cs-footer__tagline {
+  display: block;
+  color: transparent;
+  background: linear-gradient(135deg, #f04b98 0%, #ff756d 20%, #f7c94c 43%, #b7d957 65%, #55d7d1 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  font-size: 1.08rem;
+}
+
+.cs-footer__links {
+  display: flex;
+  grid-column: 1 / -1;
+  justify-content: center;
+  gap: .65rem 1.15rem;
+  flex-wrap: wrap;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, .14);
+}
+
+.cs-footer__links a {
+  color: #d9cce3;
+  font-size: .82rem;
+  font-weight: 800;
+  text-underline-offset: .2rem;
+}
+
+.cs-footer__links a:hover,
+.cs-footer__links a:focus-visible,
+.cs-footer__rrm:hover,
+.cs-footer__rrm:focus-visible { color: #fff; }
+
+.cs-footer__links .cs-footer__disclaimer { color: #d9cce3; }
+
+.cs-footer__load-error {
+  margin: 0;
+  padding: 1rem;
+  color: #34105b;
+  background: #fff;
+  text-align: center;
+  font-weight: 800;
+}
+
+@media (min-width: 720px) {
+  .cs-footer__inner { grid-template-columns: auto 1fr; text-align: right; }
+  .cs-footer__brand { justify-content: flex-start; }
+  .cs-footer__message { justify-self: end; }
+}
