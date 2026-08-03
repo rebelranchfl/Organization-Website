@@ -1,94 +1,1429 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Creation Station | Live Sessions</title>
-<meta name="description" content="Live From the Creation Station — a simple, fun, creative live session experience with parent agreement, payment, and scheduling in one place.">
-<style>
-:root{--ink:#241c2d;--text:#564a5c;--purple:#5b258f;--purple2:#2d0d53;--pink:#ec4e91;--teal:#0098a5;--aqua:#18c2cd;--gold:#f7c94c;--cream:#fff8f0;--line:rgba(91,37,143,.16);--shadow:0 24px 70px rgba(34,13,53,.14);--shadow2:0 12px 28px rgba(34,13,53,.10)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:linear-gradient(180deg,#fff9f2 0%,#f8f1ff 100%)}a{color:inherit}img{display:block;max-width:100%}.wrap{width:min(1220px,calc(100% - 32px));margin:auto}.topbar{position:sticky;top:0;z-index:80;background:rgba(255,249,242,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(91,37,143,.08)}.nav{display:flex;align-items:center;justify-content:space-between;min-height:80px;gap:20px}.brand{display:flex;align-items:center;gap:13px;text-decoration:none}.brand img{width:56px;height:56px;object-fit:contain}.brand strong{display:block;color:var(--purple);letter-spacing:-.03em}.brand small{display:block;margin-top:3px;color:#6f6073;font-weight:800}.navlinks{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.navlinks a{padding:10px 12px;text-decoration:none;color:var(--purple);font-weight:900;border-radius:12px}.navlinks a:hover{background:#fff}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 18px;border-radius:16px;text-decoration:none;font-weight:950;line-height:1.08;border:none;cursor:pointer;box-shadow:var(--shadow2);transition:transform .18s ease}.btn:hover{transform:translateY(-2px)}.btn.primary{background:linear-gradient(135deg,var(--pink),#ffbe45);color:#241c2d}.btn.teal{background:linear-gradient(135deg,var(--teal),var(--aqua));color:#fff}.btn.ghost{background:#fff;color:var(--purple);border:1px solid var(--line);box-shadow:none}.hand{font-family:"Segoe Script","Comic Sans MS",cursive;font-weight:700}.hero{padding:66px 0 34px}.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}.eyebrow{display:inline-block;padding:10px 14px;border-radius:14px;background:#fff;border:1px solid var(--line);color:var(--teal);font-size:.82rem;font-weight:1000;letter-spacing:.08em;text-transform:uppercase;box-shadow:var(--shadow2)}.hero h1{margin:18px 0 16px;font-size:clamp(3rem,6.3vw,5.6rem);line-height:.91;letter-spacing:-.07em;color:var(--purple)}.hero h1 .hand{color:var(--pink)}.hero p{margin:0 0 12px;font-size:1.07rem;line-height:1.7;color:var(--text);font-weight:725}.visual{background:#fff;border-radius:34px;padding:18px;box-shadow:var(--shadow);border:1px solid var(--line)}.visual img{border-radius:24px}.badge-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.badge{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:14px;background:#fff;border:1px solid var(--line);font-weight:900;color:var(--purple);box-shadow:var(--shadow2)}.section{padding:56px 0}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}.card{background:#fff;border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow2);padding:24px}.card h2,.card h3{margin:0 0 10px;color:var(--purple)}.card p{margin:0;color:var(--text);line-height:1.62;font-weight:720}.mini-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:14px}.mini{background:#fff8f2;border:1px dashed rgba(91,37,143,.2);border-radius:20px;padding:16px}.mini strong{display:block;color:var(--purple);margin-bottom:6px}.mini span{display:block;color:var(--text);font-weight:720;line-height:1.5}.steps{display:grid;gap:14px;margin-top:18px}.step{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);padding:16px;border-radius:20px}.num{width:34px;height:34px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;font-weight:900;flex:0 0 34px}.step strong{display:block;color:var(--purple);margin-bottom:4px}.step span{display:block;color:var(--text);font-weight:720;line-height:1.55}form{background:#fff;border:1px solid var(--line);border-radius:30px;padding:24px;box-shadow:var(--shadow)}fieldset{border:0;padding:0;margin:0 0 20px}legend{font-weight:1000;color:var(--purple);font-size:1.22rem;margin-bottom:12px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.full{grid-column:1/-1}label{display:block;margin-bottom:6px;font-weight:900;color:#3c3444;font-size:.94rem}input,select,textarea{width:100%;padding:12px 13px;border:2px solid rgba(91,37,143,.18);border-radius:16px;background:#fffdf9;font:inherit;color:var(--ink);font-weight:700}textarea{min-height:96px;resize:vertical}.agreement{display:grid;gap:12px}.agree-row{display:grid;grid-template-columns:1fr 140px;gap:12px;align-items:center;padding:14px;border:1px solid var(--line);border-radius:18px;background:#fffaf5}.agree-row p{margin:0;color:var(--text);line-height:1.55;font-weight:720}.agree-row input{background:#fff}.checkline{display:flex;gap:10px;align-items:flex-start;padding:14px;border:1px solid var(--line);border-radius:18px;background:#fffaf5}.checkline input{width:auto;transform:scale(1.1);margin-top:4px}.submit-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.status{font-weight:900;color:var(--purple)}.pay, .schedule{display:none}.pay.active,.schedule.active{display:block}.paybox{background:linear-gradient(135deg,#2e1051,#7338a5);color:#fff;border-radius:30px;padding:26px;box-shadow:var(--shadow)}.paybox h2{margin:0 0 10px;font-size:2rem}.paybox p{margin:0;color:#ede1f2;line-height:1.65;font-weight:720}.notice{margin-top:16px;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.12);font-weight:800;color:#fff}.footer{padding:24px 0 42px;text-align:center;color:#6e6073;font-weight:800}
-@media (max-width:980px){.hero-grid,.grid2,.mini-grid,.grid{grid-template-columns:1fr}.agree-row{grid-template-columns:1fr}}
-@media (max-width:760px){.navlinks{display:none}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Creation Station Club | Weekly Live Creative Session</title>
+  <meta name="description" content="A weekly live creative gathering where young creators can follow a guided activity or bring their own project, connect with others, and keep making.">
+  <link rel="stylesheet" href="assets/css/site-core.css">
+  <link rel="stylesheet" href="assets/css/creation-station.css">
+  <style>
+    .live-sessions-page {
+      color: var(--ink);
+      background: var(--purple-950);
+    }
+
+    .live-sessions-page main {
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 8% 18%, rgba(240, 75, 152, .16), transparent 24%),
+        radial-gradient(circle at 92% 46%, rgba(85, 215, 209, .17), transparent 25%),
+        linear-gradient(160deg, #f4edff 0%, #fff4fa 48%, #e9fbf8 100%);
+    }
+
+    .live-sessions-page .live-hero {
+      padding: 0;
+      background: linear-gradient(135deg, #511c85 0%, #7131a4 38%, #a73793 69%, #ed4d92 100%);
+    }
+
+    .live-sessions-page .live-hero::after {
+      height: 6rem;
+      background: linear-gradient(0deg, rgba(47, 7, 77, .38), transparent);
+    }
+
+    .live-sessions-page .live-hero .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: clamp(2.5rem, 6vw, 5rem);
+      align-items: center;
+      padding-block: clamp(4rem, 8vw, 7rem);
+    }
+
+    .live-sessions-page .live-hero-copy {
+      color: #fff;
+    }
+
+    .live-sessions-page .live-hero .eyebrow,
+    .live-sessions-page .section-kicker {
+      margin: 0 0 .9rem;
+      color: #8ef1e8;
+      font-size: .78rem;
+      font-weight: 950;
+      letter-spacing: .1em;
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+
+    .live-sessions-page .live-hero .eyebrow {
+      display: inline-block;
+      padding: .55rem .8rem;
+      background: rgba(39, 5, 66, .3);
+      border: 1px solid rgba(255, 255, 255, .28);
+      border-radius: .75rem;
+    }
+
+    .live-sessions-page .live-hero h1 {
+      margin: 0 0 1.35rem;
+      color: #fff;
+      font-size: clamp(3.4rem, 10vw, 6.8rem);
+      line-height: .88;
+      letter-spacing: -.078em;
+    }
+
+    .live-sessions-page .live-hero h1 span {
+      display: inline;
+    }
+
+    .live-sessions-page .live-hero h1 .hand {
+      color: #ffd66b;
+    }
+
+    .live-sessions-page .hero-lead {
+      max-width: 47rem;
+      margin: 0;
+      color: #fff7fd;
+      font-size: clamp(1.08rem, 2vw, 1.25rem);
+      font-weight: 760;
+      line-height: 1.65;
+    }
+
+    .live-sessions-page .hero-support {
+      max-width: 45rem;
+      margin: .8rem 0 0;
+      color: var(--text);
+      font-size: .98rem;
+      font-weight: 700;
+      line-height: 1.62;
+    }
+
+    .live-sessions-page .hero-proof,
+    .live-sessions-page .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+    }
+
+    .live-sessions-page .hero-proof {
+      margin: 0;
+    }
+
+    .live-sessions-page .hero-proof span {
+      color: #fff;
+      font-size: .9rem;
+      font-weight: 900;
+    }
+
+    .live-sessions-page .hero-proof span::before {
+      content: "✓";
+      margin-right: .42rem;
+      color: transparent;
+      background: var(--rainbow);
+      background-clip: text;
+      -webkit-background-clip: text;
+      font-size: 1.15rem;
+      font-weight: 950;
+    }
+
+    .live-sessions-page .hero-actions {
+      margin: 0;
+      justify-content: center;
+    }
+
+    .live-sessions-page .hero-utility {
+      display: grid;
+      grid-column: 1 / -1;
+      gap: 1rem;
+      align-items: center;
+      padding-top: .25rem;
+      text-align: center;
+    }
+
+    .live-sessions-page .hero-utility .hero-proof {
+      justify-content: center;
+    }
+
+    .live-sessions-page .hero-card {
+      position: relative;
+      width: min(100%, 35rem);
+      margin-inline: auto;
+      padding: .75rem;
+      background: rgba(255, 255, 255, .96);
+      border: 1px solid rgba(255, 255, 255, .5);
+      border-radius: 1.75rem;
+      box-shadow: 0 2rem 5rem rgba(35, 3, 58, .34);
+      transform: rotate(1deg);
+    }
+
+    .live-sessions-page .hero-card::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: -.75rem .75rem .75rem -.75rem;
+      background: var(--rainbow);
+      border-radius: 1.9rem;
+      opacity: .82;
+      transform: rotate(-2deg);
+    }
+
+    .live-sessions-page .hero-card img {
+      width: 100%;
+      border-radius: 1.2rem;
+    }
+
+    .live-sessions-page .hero-card-copy {
+      margin: .9rem .45rem .35rem;
+      color: var(--text);
+      font-size: .98rem;
+      font-weight: 760;
+      line-height: 1.6;
+    }
+
+    .live-sessions-page .hero-card-tag {
+      position: absolute;
+      top: -1rem;
+      left: 1.1rem;
+      padding: .55rem .85rem;
+      color: #fff;
+      background: var(--purple-900);
+      border: 2px solid #fff;
+      border-radius: .75rem;
+      box-shadow: var(--shadow-soft);
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .live-sessions-page .pulse-strip {
+      color: #fff;
+      background: #25043f;
+      border-top: .45rem solid transparent;
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+      border-image: var(--rainbow) 1;
+    }
+
+    .live-sessions-page .pulse-grid {
+      display: grid;
+      gap: 1px;
+      background: rgba(255, 255, 255, .12);
+    }
+
+    .live-sessions-page .pulse-item {
+      padding: 1.3rem;
+      text-align: center;
+      background:
+        linear-gradient(145deg, rgba(66, 12, 100, .98), rgba(37, 4, 63, .98));
+    }
+
+    .live-sessions-page .pulse-item strong {
+      display: block;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .live-sessions-page .pulse-item span {
+      display: block;
+      margin-top: .25rem;
+      color: #bdeee8;
+      font-size: .82rem;
+      font-weight: 750;
+    }
+
+    .live-sessions-page .marketing-section {
+      position: relative;
+      padding-block: clamp(4rem, 8vw, 7rem);
+    }
+
+    .live-sessions-page .marketing-section::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: .45rem;
+      background: var(--rainbow);
+      box-shadow: 0 .3rem 1.1rem rgba(106, 32, 139, .22);
+    }
+
+    .live-sessions-page .section-heading {
+      max-width: 62rem;
+    }
+
+    .live-sessions-page .section-heading.centered {
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    .live-sessions-page .section-heading .section-kicker {
+      color: var(--teal);
+    }
+
+    .live-sessions-page .section-heading h2 {
+      margin: 0 0 1.1rem;
+      color: var(--purple-900);
+      font-size: clamp(2.7rem, 7vw, 5rem);
+      line-height: .92;
+      letter-spacing: -.067em;
+    }
+
+    .live-sessions-page .section-heading p:last-child {
+      max-width: 54rem;
+      margin: 0;
+      color: var(--text);
+      font-size: 1.06rem;
+      font-weight: 700;
+      line-height: 1.7;
+    }
+
+    .live-sessions-page .section-heading.centered p:last-child {
+      margin-inline: auto;
+    }
+
+    .live-sessions-page .community-section {
+      color: #fff;
+      background:
+        radial-gradient(circle at 9% 16%, rgba(85, 215, 209, .2), transparent 24%),
+        radial-gradient(circle at 91% 84%, rgba(56, 104, 201, .23), transparent 27%),
+        linear-gradient(145deg, #062f3c, #075965 52%, #173c66);
+    }
+
+    .live-sessions-page .community-section .section-heading .section-kicker {
+      color: #8ef1e8;
+    }
+
+    .live-sessions-page .community-section .section-heading h2 {
+      color: #fff;
+    }
+
+    .live-sessions-page .community-section .section-heading p:last-child {
+      color: #dff5f2;
+    }
+
+    .live-sessions-page .reason-grid {
+      display: grid;
+      gap: 1rem;
+      margin-top: 2.2rem;
+    }
+
+    .live-sessions-page .reason-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 15rem;
+      padding: 1.5rem;
+      background: linear-gradient(145deg, #fff, #f3eaff);
+      border: 2px solid rgba(101, 41, 154, .22);
+      border-radius: 1.5rem;
+      box-shadow: 0 1.2rem 2.8rem rgba(36, 4, 63, .14);
+    }
+
+    .live-sessions-page .reason-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: .4rem;
+      background: var(--rainbow);
+    }
+
+    .live-sessions-page .reason-card::after {
+      content: "";
+      position: absolute;
+      right: -2.5rem;
+      bottom: -3.5rem;
+      width: 9rem;
+      height: 9rem;
+      background: var(--rainbow);
+      border-radius: 2.5rem;
+      opacity: .16;
+      transform: rotate(24deg);
+    }
+
+    .live-sessions-page .reason-card:nth-child(1) {
+      background: linear-gradient(145deg, #f1e5ff, #fff);
+    }
+
+    .live-sessions-page .reason-card:nth-child(2) {
+      background: linear-gradient(145deg, #dffaf7, #dfe8ff);
+      border: 2px solid rgba(3, 151, 164, .28);
+    }
+
+    .live-sessions-page .reason-card:nth-child(3) {
+      background: linear-gradient(145deg, #ffe1ef, #fff0c7);
+      border: 2px solid rgba(240, 75, 152, .28);
+    }
+
+    .live-sessions-page .reason-card:nth-child(4) {
+      background: linear-gradient(145deg, #eef0ff, #e1faf3);
+      border: 2px solid rgba(56, 104, 201, .25);
+    }
+
+    .live-sessions-page .reason-number {
+      display: grid;
+      place-items: center;
+      width: 3rem;
+      height: 3rem;
+      margin-bottom: 1.2rem;
+      color: #301537;
+      background: var(--primary);
+      border: 2px solid rgba(255, 255, 255, .8);
+      border-radius: .85rem;
+      font-weight: 950;
+    }
+
+    .live-sessions-page .reason-card h3 {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 .65rem;
+      color: var(--purple-900);
+      font-size: 1.55rem;
+      letter-spacing: -.04em;
+    }
+
+    .live-sessions-page .reason-card p {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      color: var(--text);
+      font-weight: 700;
+      line-height: 1.62;
+    }
+
+    .live-sessions-page .experience-band {
+      color: #fff;
+      background:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(140deg, #24043e, #4a1073 58%, #70207b);
+      background-size: 36px 36px, 36px 36px, auto;
+    }
+
+    .live-sessions-page .experience-band .section-kicker {
+      color: #8ef1e8;
+    }
+
+    .live-sessions-page .experience-band .section-heading h2 {
+      color: #fff;
+    }
+
+    .live-sessions-page .experience-band .section-heading p:last-child {
+      color: #eee3f3;
+    }
+
+    .live-sessions-page .experience-grid {
+      display: grid;
+      gap: 1rem;
+      align-items: stretch;
+      margin-top: 2.2rem;
+    }
+
+    .live-sessions-page .experience-card {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 17rem;
+      padding: 1.35rem;
+      background: rgba(255, 255, 255, .1);
+      border: 1px solid rgba(255, 255, 255, .18);
+      border-radius: 1.25rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .live-sessions-page .experience-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: .4rem;
+      background: var(--rainbow);
+    }
+
+    .live-sessions-page .experience-card span {
+      display: inline-grid;
+      place-items: center;
+      width: 2.7rem;
+      height: 2.7rem;
+      color: #32143b;
+      background: var(--primary);
+      border-radius: .75rem;
+      font-weight: 950;
+    }
+
+    .live-sessions-page .experience-card h3 {
+      margin: 1rem 0 .55rem;
+      color: #fff;
+      font-size: 1.3rem;
+    }
+
+    .live-sessions-page .experience-card p {
+      margin: 0;
+      color: #eadff0;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .live-sessions-page .host-callout {
+      display: grid;
+      gap: 1.5rem;
+      align-items: center;
+      margin-top: 2rem;
+      padding: clamp(1.4rem, 4vw, 2.2rem);
+      color: #2c1235;
+      background: var(--primary);
+      border: 3px solid #fff;
+      border-radius: 1.5rem;
+      box-shadow: 0 1.5rem 4rem rgba(16, 0, 29, .28);
+    }
+
+    .live-sessions-page .host-callout strong {
+      display: block;
+      font-size: clamp(1.45rem, 3vw, 2.1rem);
+      line-height: 1.1;
+    }
+
+    .live-sessions-page .host-callout p {
+      margin: .55rem 0 0;
+      font-weight: 750;
+      line-height: 1.6;
+    }
+
+    .live-sessions-page .join-section {
+      color: #fff;
+      background:
+        radial-gradient(circle at 10% 14%, rgba(255, 255, 255, .2), transparent 23%),
+        radial-gradient(circle at 90% 84%, rgba(255, 255, 255, .18), transparent 25%),
+        linear-gradient(135deg, #d93685 0%, #f04b98 25%, #ff756d 50%, #d59336 73%, #047f8b 100%);
+    }
+
+    .live-sessions-page .join-section .section-kicker {
+      color: #d8fffb;
+    }
+
+    .live-sessions-page .join-section .section-heading h2 {
+      color: #fff;
+      text-shadow: 0 .2rem .9rem rgba(65, 8, 70, .22);
+    }
+
+    .live-sessions-page .join-section .section-heading p:last-child {
+      color: #fff8fd;
+      text-shadow: 0 .1rem .5rem rgba(65, 8, 70, .2);
+    }
+
+    .live-sessions-page .purchase-grid {
+      display: grid;
+      gap: 1rem;
+      margin-top: 2.2rem;
+    }
+
+    .live-sessions-page .purchase-card {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 25rem;
+      padding: clamp(1.4rem, 4vw, 2rem);
+      color: var(--ink);
+      border-radius: 1.5rem;
+      box-shadow: 0 1.6rem 4rem rgba(36, 4, 63, .18);
+      transform: translateY(0);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .live-sessions-page .purchase-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: .55rem;
+      background: var(--rainbow);
+    }
+
+    .live-sessions-page .purchase-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 2rem 4.8rem rgba(36, 4, 63, .24);
+    }
+
+    .live-sessions-page .club-savings-badge {
+      position: absolute;
+      z-index: 2;
+      top: 1rem;
+      right: 1rem;
+      display: grid;
+      place-content: center;
+      width: 6.4rem;
+      min-height: 6.4rem;
+      padding: .7rem;
+      color: #fff;
+      background: var(--purple-gradient);
+      border: 3px solid #ffd66b;
+      border-radius: 50%;
+      box-shadow: 0 .8rem 1.8rem rgba(36, 4, 63, .26);
+      text-align: center;
+      transform: rotate(6deg);
+    }
+
+    .live-sessions-page .club-savings-badge span {
+      display: block;
+      color: #ffd66b;
+      font-size: 1.35rem;
+      line-height: 1;
+    }
+
+    .live-sessions-page .club-savings-badge strong,
+    .live-sessions-page .club-savings-badge small {
+      display: block;
+      line-height: 1.05;
+    }
+
+    .live-sessions-page .club-savings-badge strong {
+      margin-top: .22rem;
+      font-size: .95rem;
+    }
+
+    .live-sessions-page .club-savings-badge small {
+      margin-top: .15rem;
+      font-size: .68rem;
+      font-weight: 850;
+    }
+
+    .live-sessions-page .purchase-card.club h3 {
+      padding-right: 6.9rem;
+    }
+
+    .live-sessions-page .purchase-card.club {
+      background: linear-gradient(150deg, #f0e5ff, #fff 46%, #ddfaf6);
+      border: 2px solid rgba(85, 215, 209, .55);
+    }
+
+    .live-sessions-page .purchase-card.single {
+      background: linear-gradient(150deg, #ffe0ed, #fff 46%, #fff0c7);
+      border: 2px solid rgba(240, 75, 152, .45);
+    }
+
+    .live-sessions-page .purchase-label {
+      align-self: flex-start;
+      margin: 0 0 1rem;
+      padding: .45rem .7rem;
+      color: #fff;
+      background: var(--purple-gradient);
+      border-radius: 999px;
+      font-size: .75rem;
+      font-weight: 900;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .live-sessions-page .purchase-card > .purchase-label {
+      color: #fff;
+    }
+
+    .live-sessions-page .purchase-card h3 {
+      margin: 0 0 .75rem;
+      color: var(--purple-900);
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+
+    .live-sessions-page .purchase-price {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      align-items: baseline;
+      margin: 0 0 1rem;
+      color: var(--purple-900);
+    }
+
+    .live-sessions-page .purchase-price strong {
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1;
+    }
+
+    .live-sessions-page .purchase-price span {
+      font-weight: 850;
+    }
+
+    .live-sessions-page .purchase-card > p {
+      margin: 0;
+      color: var(--text);
+      font-weight: 700;
+      line-height: 1.62;
+    }
+
+    .live-sessions-page .purchase-card > .purchase-label {
+      margin: 0 0 1rem;
+      color: #fff;
+    }
+
+    .live-sessions-page .purchase-card > .purchase-price {
+      margin: 0 0 1rem;
+      color: var(--purple-900);
+    }
+
+    .live-sessions-page .purchase-card ul {
+      display: grid;
+      gap: .65rem;
+      margin: 1.25rem 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .live-sessions-page .purchase-card li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: .55rem;
+      color: var(--text);
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .live-sessions-page .purchase-card li::before {
+      content: "✓";
+      color: var(--teal);
+      font-weight: 950;
+    }
+
+    .live-sessions-page .purchase-card .btn {
+      width: 100%;
+      margin-top: auto;
+    }
+
+    .live-sessions-page .purchase-card.club .paypal-action,
+    .live-sessions-page .purchase-card.club .paypal-action:hover,
+    .live-sessions-page .purchase-card.club .paypal-action:focus-visible {
+      color: #fff;
+      background: linear-gradient(135deg, #4b1878, #9e2f8d 55%, #e34e78);
+      border: 0;
+    }
+
+    .live-sessions-page .purchase-card.single .paypal-action,
+    .live-sessions-page .purchase-card.single .paypal-action:hover,
+    .live-sessions-page .purchase-card.single .paypal-action:focus-visible {
+      color: #fff;
+      background: linear-gradient(135deg, #046f7a, #12989b 55%, #21aaa6);
+      border: 0;
+    }
+
+    .live-sessions-page .flow-panel {
+      margin-top: 2rem;
+      padding: clamp(1.4rem, 4vw, 2rem);
+      background: linear-gradient(145deg, #fff, #eef9ff 52%, #f5eaff);
+      border: 2px solid rgba(101, 41, 154, .2);
+      border-radius: 1.5rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .live-sessions-page .flow-panel h3 {
+      margin: 0 0 1.2rem;
+      color: var(--purple-900);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+    }
+
+    .live-sessions-page .flow-steps {
+      display: grid;
+      gap: .85rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .live-sessions-page .flow-steps li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: .8rem;
+      align-items: start;
+      padding: 1rem;
+      background: linear-gradient(135deg, #f7edff, #fff);
+      border: 1px solid rgba(101, 41, 154, .18);
+      border-radius: 1rem;
+    }
+
+    .live-sessions-page .flow-steps li:nth-child(even) {
+      background: linear-gradient(135deg, #e2faf7, #eef1ff);
+      border-color: rgba(3, 151, 164, .22);
+    }
+
+    .live-sessions-page .flow-steps span {
+      display: grid;
+      place-items: center;
+      width: 2.4rem;
+      height: 2.4rem;
+      color: #32143b;
+      background: var(--primary);
+      border-radius: .7rem;
+      font-weight: 950;
+    }
+
+    .live-sessions-page .flow-steps strong {
+      display: block;
+      color: var(--purple-900);
+    }
+
+    .live-sessions-page .flow-steps small {
+      display: block;
+      margin-top: .25rem;
+      color: var(--text);
+      font-size: .88rem;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .live-sessions-page .paperwork-section {
+      min-height: calc(100vh - 6rem);
+      padding-block: clamp(3rem, 7vw, 5rem);
+      color: #fff;
+      background:
+        radial-gradient(circle at 12% 12%, rgba(240, 75, 152, .32), transparent 24%),
+        radial-gradient(circle at 88% 86%, rgba(85, 215, 209, .24), transparent 26%),
+        var(--deep-gradient);
+    }
+
+    .live-sessions-page .paperwork-shell {
+      max-width: 58rem;
+    }
+
+    .live-sessions-page .paperwork-intro {
+      margin-bottom: 1.4rem;
+    }
+
+    .live-sessions-page .paperwork-intro h1 {
+      margin: 0 0 .8rem;
+      color: #fff;
+      font-size: clamp(2.6rem, 7vw, 4.8rem);
+      line-height: .94;
+      letter-spacing: -.065em;
+    }
+
+    .live-sessions-page .paperwork-intro p {
+      max-width: 48rem;
+      margin: 0;
+      color: #eadff0;
+      font-weight: 700;
+      line-height: 1.65;
+    }
+
+    .live-sessions-page .progress-shell {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, .1);
+      border: 1px solid rgba(255, 255, 255, .17);
+      border-radius: 1rem;
+    }
+
+    .live-sessions-page .progress-copy {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: .6rem;
+      color: #fff;
+      font-size: .85rem;
+      font-weight: 850;
+    }
+
+    .live-sessions-page .paperwork-progress {
+      overflow: hidden;
+      height: .85rem;
+      background: rgba(255, 255, 255, .14);
+      border-radius: 999px;
+    }
+
+    .live-sessions-page .paperwork-progress span {
+      display: block;
+      width: 25%;
+      height: 100%;
+      background: var(--rainbow);
+      border-radius: inherit;
+      box-shadow: 0 0 1.2rem rgba(240, 75, 152, .42);
+      transition: width .25s ease;
+    }
+
+    .live-sessions-page .paperwork-form {
+      padding: clamp(1.3rem, 4vw, 2rem);
+      color: var(--ink);
+      background: linear-gradient(145deg, #fff, #f6efff);
+      border: 2px solid rgba(255, 255, 255, .72);
+      border-radius: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .live-sessions-page .form-step[hidden] {
+      display: none;
+    }
+
+    .live-sessions-page .form-step h2 {
+      margin: 0 0 .45rem;
+      color: var(--purple-900);
+      font-size: clamp(1.6rem, 4vw, 2.3rem);
+      letter-spacing: -.045em;
+    }
+
+    .live-sessions-page .form-step > p {
+      margin: 0 0 1.2rem;
+      color: var(--text);
+      font-weight: 700;
+      line-height: 1.55;
+    }
+
+    .live-sessions-page .form-grid {
+      display: grid;
+      gap: .9rem;
+    }
+
+    .live-sessions-page .full {
+      grid-column: 1 / -1;
+    }
+
+    .live-sessions-page label {
+      display: block;
+      margin-bottom: .4rem;
+      color: #3b2f44;
+      font-size: .94rem;
+      font-weight: 900;
+    }
+
+    .live-sessions-page input,
+    .live-sessions-page textarea {
+      width: 100%;
+      padding: .8rem .85rem;
+      color: var(--ink);
+      background: #fff;
+      border: 2px solid rgba(91, 37, 143, .18);
+      border-radius: .85rem;
+      font: inherit;
+      font-weight: 700;
+    }
+
+    .live-sessions-page input:focus,
+    .live-sessions-page textarea:focus {
+      border-color: var(--teal);
+      outline: 3px solid rgba(85, 215, 209, .24);
+      outline-offset: 1px;
+    }
+
+    .live-sessions-page textarea {
+      min-height: 6.5rem;
+      resize: vertical;
+    }
+
+    .live-sessions-page .agreement-list {
+      display: grid;
+      gap: .75rem;
+    }
+
+    .live-sessions-page .agreement-item {
+      display: grid;
+      gap: .75rem;
+      padding: 1rem;
+      background: linear-gradient(135deg, #fff7fb, #f0f7ff);
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+    }
+
+    .live-sessions-page .agreement-item p {
+      margin: 0;
+      color: var(--text);
+      font-weight: 700;
+      line-height: 1.55;
+    }
+
+    .live-sessions-page .confirm-line {
+      display: flex;
+      gap: .7rem;
+      align-items: flex-start;
+      margin-top: 1rem;
+      padding: 1rem;
+      background: linear-gradient(135deg, #e8fbf8, #f1e9ff);
+      border: 1px solid rgba(3, 151, 164, .28);
+      border-radius: 1rem;
+    }
+
+    .live-sessions-page .confirm-line input {
+      width: auto;
+      margin-top: .25rem;
+      accent-color: var(--purple-700);
+      transform: scale(1.15);
+    }
+
+    .live-sessions-page .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: .75rem;
+      margin-top: 1.4rem;
+    }
+
+    .live-sessions-page .form-status {
+      margin: 1rem 0 0;
+      color: var(--purple-700);
+      font-weight: 850;
+    }
+
+    .live-sessions-page .pending-message {
+      margin: .85rem 0 0;
+      color: #ffd66b;
+      font-size: .88rem;
+      font-weight: 850;
+      text-align: center;
+    }
+
+    @media (min-width: 42rem) {
+      .live-sessions-page .pulse-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .live-sessions-page .experience-grid,
+      .live-sessions-page .flow-steps,
+      .live-sessions-page .form-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .live-sessions-page .agreement-item {
+        grid-template-columns: 1fr 8rem;
+        align-items: center;
+      }
+
+      .live-sessions-page .host-callout {
+        grid-template-columns: 1fr auto;
+      }
+    }
+
+    @media (min-width: 64rem) {
+      .live-sessions-page .live-hero .hero-grid,
+      .live-sessions-page .purchase-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .live-sessions-page .pulse-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .live-sessions-page .reason-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .live-sessions-page .experience-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+    }
+
+    @media (max-width: 35rem) {
+      .live-sessions-page .hero-actions .btn,
+      .live-sessions-page .form-actions .btn {
+        width: 100%;
+      }
+
+      .live-sessions-page .hero-card {
+        transform: none;
+      }
+
+      .live-sessions-page .club-savings-badge {
+        position: relative;
+        top: auto;
+        right: auto;
+        align-self: flex-start;
+        margin-bottom: 1rem;
+      }
+
+      .live-sessions-page .purchase-card.club h3 {
+        padding-right: 0;
+      }
+    }
+  </style>
 </head>
-<body>
-<header class="topbar"><div class="wrap nav"><a class="brand" href="creation.html"><img src="assets/Creation Station Logo.png" alt="Creation Station logo" onerror="this.style.visibility='hidden'"><span><strong>Live From the Creation Station</strong><small>Simple. Fun. Creative.</small></span></a><nav class="navlinks"><a href="creation.html">Young Creators</a><a href="creation-station-preview.html">Parent Preview</a><a href="creation-station-adult-page.html">Adult Makers</a><a class="btn primary" href="#register">Register Now</a></nav></div></header>
-<main>
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <div class="eyebrow">Live online sessions</div>
-        <h1>Simple, fun, <span class="hand">creative</span> live sessions.</h1>
-        <p>Creation Station live sessions give kids a guided project, a real creative experience, and a parent-friendly registration path in one place. It's also a great way to meet like-minded friends and be part of a comfortable, encouraging community.</p>
-        <p>Parents complete the participation agreement, submit payment, and then schedule the session through Calendly. No extra maze. No unnecessary pages.</p>
-        <div class="badge-row"><div class="badge">Ages 6–12</div><div class="badge">$15 per session</div><div class="badge">60 minutes</div><div class="badge">Saturdays • 4:00 PM ET</div></div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px"><a class="btn primary" href="#register">Register Now</a><a class="btn ghost" href="https://calendly.com/rebelranchfl/live-from-the-creation-station" target="_blank" rel="noopener">View Calendly</a></div>
-      </div>
-      <div class="visual"><img src="assets/creation-station-live-class-card.png" alt="Live From the Creation Station session preview"><p style="margin:12px 4px 0;font-size:.82rem;color:var(--text);font-weight:700">Creation Station teaches creative and business-building skills, including how kids can learn to sell what they make. No income, sales, or earnings are guaranteed — results depend on the individual.</p></div>
-    </div>
-  </section>
+<body class="live-sessions-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
 
-  <section class="section">
-    <div class="wrap grid2">
-      <article class="card"><h2>Session snapshot</h2><div class="mini-grid"><div class="mini"><strong>Project style</strong><span>Guided, hands-on creative project with a clear finished outcome.</span></div><div class="mini"><strong>Host format</strong><span>Young Creator host with adult room moderation and parent support.</span></div><div class="mini"><strong>What to expect</strong><span>Warm welcome, project walkthrough, creative time, and finished-work encouragement.</span></div><div class="mini"><strong>What families need</strong><span>Basic supplies, internet access, and a parent who completes the pre-session agreement.</span></div></div></article>
-      <article class="card"><h2>How registration works</h2><div class="steps"><div class="step"><div class="num">1</div><div><strong>Complete the participation agreement</strong><span>Parents submit the required information and confirm they understand the live-session expectations.</span></div></div><div class="step"><div class="num">2</div><div><strong>Pay for the session</strong><span>Submit the $15 session payment using the secure PayPal checkout link.</span></div></div><div class="step"><div class="num">3</div><div><strong>Schedule in Calendly</strong><span>After payment, use the Calendly link to reserve the session time.</span></div></div></div></article>
-    </div>
-  </section>
+  <!-- OWNER-LOCKED: Approved Creation Station public header. Preserve this structure and treatment unless the owner explicitly authorizes a change. See docs/creation-station-visual-rules.md. -->
+  <header class="site-header topbar" data-site-nav>
+    <div class="wrap site-nav">
+      <a class="brand" href="creation.html" aria-label="Creation Station home">
+        <img src="assets/creation-station-logo.png" alt="Creation Station logo" width="220" height="220">
+        <span class="brand-text">
+          <strong>Creation Station</strong>
+          <small>by Rebel Ranch Ministries</small>
+        </span>
+      </a>
 
-  <section class="section" id="register">
-    <div class="wrap grid2">
-      <div>
-        <form id="liveClassForm" action="https://formspree.io/f/xnjrqydq" method="POST">
-          <input type="hidden" name="source" value="Creation Station Live Sessions">
-          <fieldset>
-            <legend>Parent + student details</legend>
-            <div class="grid">
-              <div><label for="parentName">Parent / Guardian Name</label><input id="parentName" name="parent_guardian_name" required></div>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation" data-nav-toggle>
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+      </button>
+
+      <nav class="nav-menu" id="primary-navigation" aria-label="Primary" data-nav-menu data-open="false">
+        <a href="creation.html#paths">Choose Your Path</a>
+        <a href="creation.html#more-than-craft">What They Build</a>
+        <a href="creation.html#experience">See the Experience</a>
+        <a href="creation-station-live-classes.html" aria-current="page">Live Sessions</a>
+        <a class="rrm-return" href="index.html">Rebel Ranch Ministries</a>
+        <a class="btn primary" href="creation-young-creators-interest.html">Start Creating</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div data-marketing-content>
+      <section class="hero live-hero" aria-labelledby="hero-title">
+        <div class="wrap hero-grid">
+          <div class="live-hero-copy">
+            <p class="eyebrow">Creation Station Club · Weekly Live Creative Session</p>
+            <h1 id="hero-title">A place to make, connect, and <span class="hand">belong.</span></h1>
+            <p class="hero-lead">There's not enough options or time for kids to be creative, work with their hands &amp; spend time with other kids who share the same wholesome interests. Creation Station Club solves this problem—all from the comfort and convenience of your home.</p>
+          </div>
+
+          <div class="hero-card">
+            <span class="hero-card-tag">Live from Creation Station</span>
+            <img src="assets/creation-station-live-class-card.png" alt="Colorful preview for the weekly Creation Station live creative gathering" width="1200" height="1200" fetchpriority="high">
+            <p class="hero-card-copy">Each week, young creators can follow a guided activity or bring whatever they are already making. They create, talk, ask questions, share ideas, and spend an hour with other kids who get it.</p>
+          </div>
+
+          <div class="hero-utility">
+            <div class="hero-proof" aria-label="Weekly live session highlights">
+              <span>Weekly and live</span>
+              <span>60 creative minutes</span>
+              <span>Guided or bring your own project</span>
+              <span>Parent-aware</span>
+            </div>
+
+            <div class="hero-actions">
+              <a class="btn primary" href="#join">Choose How to Join</a>
+              <a class="btn light" href="#what-happens">See What Happens Live</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="pulse-strip" aria-label="Creation Station Club session features">
+        <div class="pulse-grid">
+          <div class="pulse-item"><strong>Make something real</strong><span>Hands busy. Ideas moving.</span></div>
+          <div class="pulse-item"><strong>Meet creative friends</strong><span>Connection without the long drive.</span></div>
+          <div class="pulse-item"><strong>Bring any project</strong><span>Follow along or do your own thing.</span></div>
+          <div class="pulse-item"><strong>Come back next week</strong><span>A dependable creative rhythm.</span></div>
+        </div>
+      </section>
+
+      <section class="marketing-section community-section" aria-labelledby="why-title">
+        <div class="wrap">
+          <div class="section-heading centered">
+            <p class="section-kicker">More than another activity to fill the afternoon</p>
+            <h2 id="why-title">Creativity grows better with <span class="rainbow">people around it.</span></h2>
+            <p>A child can make alone. But encouragement, conversation, fresh ideas, and the simple feeling of “these are my people” can turn a passing interest into something they want to keep building.</p>
+          </div>
+
+          <div class="reason-grid">
+            <article class="reason-card">
+              <span class="reason-number">01</span>
+              <h3>They get a real creative community.</h3>
+              <p>Young creators can talk about what they are making without feeling “different” or explaining why their hobbies matter to people or kids who just do not understand. They meet other kids who sketch, build, bead, paint, sew, sculpt, write, and experiment too.</p>
+            </article>
+            <article class="reason-card">
+              <span class="reason-number">02</span>
+              <h3>Turn screen time into wholesome, quality time.</h3>
+              <p>Instead of passively scrolling or watching, kids spend that hour being productive, learning, creating, and sharing something meaningful with friends.</p>
+            </article>
+            <article class="reason-card">
+              <span class="reason-number">03</span>
+              <h3>They do not have to start from scratch.</h3>
+              <p>When they want direction, the host brings a guided idea they can follow. It gives uncertain hands an easy place to begin.</p>
+            </article>
+            <article class="reason-card">
+              <span class="reason-number">04</span>
+              <h3>They do not have to abandon their own idea.</h3>
+              <p>Already deep into a project? Bring it. Open creative time leaves room to work independently, ask questions, brainstorm, and share progress.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="marketing-section experience-band" id="what-happens" aria-labelledby="experience-title">
+        <div class="wrap">
+          <div class="section-heading">
+            <p class="section-kicker">What happens inside the live gathering</p>
+            <h2 id="experience-title">One hour. Plenty of ways to <span class="hand">create.</span></h2>
+            <p>This is not a rigid formal class. It is an educational and social creative gathering with enough structure to keep things moving and enough freedom for each child to make the hour their own.</p>
+          </div>
+
+          <div class="experience-grid">
+            <article class="experience-card">
+              <span>01</span>
+              <h3>Warm welcome</h3>
+              <p>Creators settle in, meet the group, and share what they brought or what they hope to make.</p>
+            </article>
+            <article class="experience-card">
+              <span>02</span>
+              <h3>Guided option</h3>
+              <p>The host introduces an activity for anyone who wants a clear idea and a place to begin. Creators can follow along, personalize it, or use it as inspiration for something new.</p>
+            </article>
+            <article class="experience-card">
+              <span>03</span>
+              <h3>Open creative time</h3>
+              <p>Creators work, talk, ask questions, trade ideas, and keep their own projects moving.</p>
+            </article>
+            <article class="experience-card">
+              <span>04</span>
+              <h3>Share and encourage</h3>
+              <p>Children can show progress, celebrate finished work, and leave with a reason to keep creating.</p>
+            </article>
+          </div>
+
+          <div class="host-callout">
+            <div>
+              <strong>Led by a young creator. Supported by an adult moderator.</strong>
+              <p>The gathering keeps a peer-to-peer creative feel while preserving adult support and parent or guardian responsibility for each child’s participation environment.</p>
+            </div>
+            <a class="btn primary" href="#join">Try a Session</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="marketing-section join-section" id="join" aria-labelledby="join-title">
+        <div class="wrap">
+          <div class="section-heading centered">
+            <p class="section-kicker">Choose the fit that works for your family</p>
+            <h2 id="join-title">Join for one session or make creativity part of every <span class="hand">week.</span></h2>
+            <p>Try one live session when your family wants a single creative experience, or choose Creation Station Club for the child who thrives with a dependable weekly rhythm, familiar faces, and a community that keeps their ideas moving.</p>
+          </div>
+
+          <div class="purchase-grid">
+            <article class="purchase-card club">
+              <p class="purchase-label">Recurring access</p>
+              <div class="club-savings-badge" aria-label="Save $10 with Creation Station Club"><span aria-hidden="true">★</span><strong>Save $10</strong><small>with Club</small></div>
+              <h3>Join Creation Station Club</h3>
+              <p class="purchase-price"><strong>$49.99</strong><span>recurring Club membership</span></p>
+              <p>For the child who needs a dependable creative rhythm, familiar faces, and a reason to keep showing up for their own ideas.</p>
+              <ul>
+                <li>Weekly Live Creative Session access</li>
+                <li>Guided and open-project participation</li>
+                <li>Ongoing creative community</li>
+                <li>Automatic recurring PayPal billing</li>
+              </ul>
+              <a class="btn paypal-action" href="#">Join Creation Station Club · $49.99</a>
+            </article>
+
+            <article class="purchase-card single">
+              <p class="purchase-label">One-time access</p>
+              <h3>Try One Live Session</h3>
+              <p class="purchase-price"><strong>$15</strong><span>one-time purchase</span></p>
+              <p>For families who want to experience the community before choosing a recurring membership—or simply join for one live session.</p>
+              <ul>
+                <li>One Weekly Live Creative Session</li>
+                <li>Guided or bring-your-own-project choice</li>
+                <li>The same live community experience</li>
+                <li>One-time PayPal purchase</li>
+              </ul>
+              <a class="btn paypal-action" href="#">Try One Live Session · $15</a>
+            </article>
+          </div>
+
+          <div class="flow-panel" aria-labelledby="flow-title">
+            <h3 id="flow-title">What happens after you choose</h3>
+            <ol class="flow-steps">
+              <li><span>1</span><div><strong>Complete PayPal checkout</strong><small>Choose recurring Club access or one live session and review the payment terms in PayPal.</small></div></li>
+              <li><span>2</span><div><strong>Watch for the paperwork link</strong><small>The purchaser will automatically receive a link to the required parent or guardian paperwork.</small></div></li>
+              <li><span>3</span><div><strong>Complete forms for every participating minor</strong><small>A child cannot participate until the required information, permissions, and acknowledgments are complete.</small></div></li>
+              <li><span>4</span><div><strong>Receive the live-session details</strong><small>After the required participation paperwork is complete, the family receives the live link and any supply information.</small></div></li>
+            </ol>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="paperwork-section" id="participant-paperwork" hidden data-paperwork-section aria-labelledby="paperwork-title">
+      <div class="wrap paperwork-shell">
+        <div class="paperwork-intro">
+          <p class="section-kicker">Required after payment · One form per participating child</p>
+          <h1 id="paperwork-title">Parent &amp; Guardian Participation Paperwork</h1>
+          <p>Please complete every step before your child joins a Weekly Live Creative Session. This form collects the same core family information and acknowledgments used by the existing participation process.</p>
+        </div>
+
+        <div class="progress-shell" aria-label="Paperwork completion progress">
+          <div class="progress-copy"><span data-progress-label>Step 1 of 4</span><span data-progress-percent>25% complete</span></div>
+          <div class="paperwork-progress" aria-hidden="true"><span data-progress-bar></span></div>
+        </div>
+
+        <form class="paperwork-form" id="liveSessionPaperwork" action="https://formspree.io/f/xnjrqydq" method="POST">
+          <input type="hidden" name="source" value="Creation Station Weekly Live Creative Session">
+
+          <section class="form-step" data-form-step="1">
+            <h2>Parent and child details</h2>
+            <p>Start with the adult responsible for participation and the child joining the live gathering.</p>
+            <div class="form-grid">
+              <div><label for="parentName">Parent / Guardian Name</label><input id="parentName" name="parent_guardian_name" autocomplete="name" required></div>
               <div><label for="studentName">Child Name</label><input id="studentName" name="child_name" required></div>
-              <div><label for="childAge">Child Age</label><input id="childAge" name="child_age" required></div>
-              <div><label for="email">Email</label><input id="email" name="email" type="email" required></div>
-              <div><label for="phone">Phone</label><input id="phone" name="phone"></div>
-              <div><label for="experience">Creative interests</label><input id="experience" name="creative_interests" placeholder="Painting, bracelets, clay, etc."></div>
-              <div class="full"><label for="notes">Anything we should know?</label><textarea id="notes" name="notes"></textarea></div>
+              <div><label for="childAge">Child Age</label><input id="childAge" name="child_age" inputmode="numeric" required></div>
+              <div><label for="email">Parent / Guardian Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+              <div><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
             </div>
-          </fieldset>
-          <fieldset>
-            <legend>Participation agreement</legend>
-            <div class="agreement">
-              <div class="agree-row"><p>I understand that a parent or guardian is responsible for the child’s participation environment, materials, and supervision needs during the live session.</p><div><label for="init1">Parent initials</label><input id="init1" name="initial_supervision" required></div></div>
-              <div class="agree-row"><p>I understand that the session is live, creative, and interactive, and that respectful behavior is required so every child can participate well.</p><div><label for="init2">Parent initials</label><input id="init2" name="initial_behavior" required></div></div>
-              <div class="agree-row"><p>I understand that the session fee secures the session spot and that I should schedule through Calendly after payment is complete.</p><div><label for="init3">Parent initials</label><input id="init3" name="initial_payment" required></div></div>
-              <div class="checkline"><input id="agreeAll" name="agreement_confirmed" type="checkbox" required><label for="agreeAll" style="margin:0">I confirm that I have reviewed the participation agreement and I am submitting this as the parent or guardian responsible for the child’s session participation.</label></div>
+          </section>
+
+          <section class="form-step" data-form-step="2" hidden>
+            <h2>Participation information</h2>
+            <p>Share your child’s creative interests and anything that will help support a positive live experience.</p>
+            <div class="form-grid">
+              <div class="full"><label for="experience">Creative interests</label><input id="experience" name="creative_interests" placeholder="Painting, bracelets, clay, drawing, etc."></div>
+              <div class="full"><label for="notes">Anything we should know?</label><textarea id="notes" name="notes" placeholder="Support needs, allergies related to common craft materials, or other helpful participation information."></textarea></div>
             </div>
-          </fieldset>
-          <div class="submit-row"><button class="btn primary" type="submit">Submit Agreement</button><span class="status" id="formStatus"></span></div>
+          </section>
+
+          <section class="form-step" data-form-step="3" hidden>
+            <h2>Parent acknowledgments</h2>
+            <p>Initial each item to confirm that you understand the participation expectations.</p>
+            <div class="agreement-list">
+              <div class="agreement-item">
+                <p>I understand that a parent or guardian is responsible for the child’s participation environment, materials, and supervision needs during the live session.</p>
+                <div><label for="init1">Parent initials</label><input id="init1" name="initial_supervision" maxlength="6" required></div>
+              </div>
+              <div class="agreement-item">
+                <p>I understand that the session is live, creative, and interactive, and that respectful behavior is required so every child can participate well.</p>
+                <div><label for="init2">Parent initials</label><input id="init2" name="initial_behavior" maxlength="6" required></div>
+              </div>
+              <div class="agreement-item">
+                <p>I understand that payment does not replace the required participation paperwork and that my child cannot participate until this form is complete.</p>
+                <div><label for="init3">Parent initials</label><input id="init3" name="initial_paperwork" maxlength="6" required></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="form-step" data-form-step="4" hidden>
+            <h2>Review and submit</h2>
+            <p>Confirm that the information is complete and that you are the responsible parent or guardian submitting it.</p>
+            <div class="confirm-line">
+              <input id="agreeAll" name="agreement_confirmed" type="checkbox" required>
+              <label for="agreeAll">I confirm that I reviewed the participation information, completed the required acknowledgments, and am submitting this form as the parent or guardian responsible for this child’s participation.</label>
+            </div>
+          </section>
+
+          <div class="form-actions">
+            <button class="btn light" type="button" data-form-back hidden>Back</button>
+            <button class="btn primary" type="button" data-form-next>Continue</button>
+            <button class="btn primary" type="submit" data-form-submit hidden>Submit Required Paperwork</button>
+          </div>
+          <p class="form-status" data-form-status aria-live="polite"></p>
         </form>
       </div>
-      <div>
-        <div class="paybox pay" id="paymentBox">
-          <h2>Step 2: Pay for the session</h2>
-          <p>Once the agreement is submitted, use the PayPal checkout below to pay the <strong>$15 live session fee</strong>. Please include the child’s name and “Creation Station Live Session” in the payment note when possible.</p>
-          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:18px"><a class="btn primary" href="https://www.paypal.com/ncp/payment/EPN9NB78Y8VEU" target="_blank" rel="noopener">Pay $15 with PayPal</a><button class="btn ghost" type="button" onclick="showSchedule()">I completed payment</button></div>
-          <div class="notice">Payment comes before scheduling. After payment, click “I completed payment” to open the Calendly step.</div>
-        </div>
-        <div class="paybox schedule" id="scheduleBox" style="margin-top:18px">
-          <h2>Step 3: Schedule the session</h2>
-          <p>Your next step is to reserve your session time through Calendly. Once the session is scheduled, watch for follow-up details and any supply reminders.</p>
-          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:18px"><a class="btn teal" href="https://calendly.com/rebelranchfl/live-from-the-creation-station" target="_blank" rel="noopener">Open Calendly</a><a class="btn ghost" href="creation.html">Back to Creation Station</a></div>
-          <div class="notice">If you ever need help, reply to your confirmation or contact Creation Station directly.</div>
+    </section>
+  </main>
+
+  <!-- OWNER-LOCKED: Approved Creation Station public footer, RRM return path, and earnings disclosure. Preserve unless the owner explicitly authorizes a change. See docs/creation-station-visual-rules.md. -->
+  <footer class="footer">
+    <div class="wrap footer-layout">
+      <div class="footer-brand-lockup">
+        <img src="assets/creation-station-logo.png" alt="Creation Station logo" width="220" height="220" loading="lazy">
+        <div>
+          <strong>Creation Station</strong>
+          <a class="footer-rrm-link" href="index.html">by Rebel Ranch Ministries · Return to the main website</a>
         </div>
       </div>
+      <div class="footer-message">
+        <strong class="footer-tagline rainbow">Create. Learn. Build. Grow.</strong>
+        <p>Creative projects with real-life purpose and application.</p>
+      </div>
+      <details class="footer-disclaimer">
+        <summary>Earnings Disclaimer</summary>
+        <p>Creation Station and Rebel Ranch Ministries provide the platform, tools, education, and opportunity. We do not guarantee sales, profits, income, earnings, cost recovery, or business success.</p>
+      </details>
     </div>
-  </section>
-</main>
-<footer class="footer"><div class="wrap">Creation Station • Live Sessions • Rebel Ranch Ministries</div></footer>
-<script>
-const form=document.getElementById('liveClassForm');
-const statusEl=document.getElementById('formStatus');
-function showPayment(){document.getElementById('paymentBox').classList.add('active');document.getElementById('paymentBox').scrollIntoView({behavior:'smooth',block:'start'});} 
-function showSchedule(){document.getElementById('scheduleBox').classList.add('active');document.getElementById('scheduleBox').scrollIntoView({behavior:'smooth',block:'start'});} 
-if(form){form.addEventListener('submit', async function(e){e.preventDefault();statusEl.textContent='Submitting agreement...';try{const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});if(res.ok){statusEl.textContent='Agreement received. Continue to payment.';showPayment();}else{throw new Error('Form response not ok');}}catch(err){statusEl.textContent='Agreement saved for preview flow. Continue to payment.';showPayment();}})}
-</script>
+  </footer>
+
+  <script src="assets/js/site-navigation.js" defer></script>
+  <script>
+    const paperworkSection = document.querySelector('[data-paperwork-section]');
+    const marketingContent = document.querySelector('[data-marketing-content]');
+    const paperworkForm = document.getElementById('liveSessionPaperwork');
+    const formSteps = paperworkForm ? Array.from(paperworkForm.querySelectorAll('[data-form-step]')) : [];
+    const backButton = paperworkForm ? paperworkForm.querySelector('[data-form-back]') : null;
+    const nextButton = paperworkForm ? paperworkForm.querySelector('[data-form-next]') : null;
+    const submitButton = paperworkForm ? paperworkForm.querySelector('[data-form-submit]') : null;
+    const statusElement = paperworkForm ? paperworkForm.querySelector('[data-form-status]') : null;
+    const progressBar = document.querySelector('[data-progress-bar]');
+    const progressLabel = document.querySelector('[data-progress-label]');
+    const progressPercent = document.querySelector('[data-progress-percent]');
+    let currentStep = 0;
+
+    function paperworkRequested() {
+      return window.location.hash === '#participant-paperwork';
+    }
+
+    function showPaperworkIfRequested() {
+      if (!paperworkRequested() || !paperworkSection) return;
+      paperworkSection.hidden = false;
+      if (marketingContent) marketingContent.hidden = true;
+      document.title = 'Required Participation Paperwork | Creation Station Club';
+      requestAnimationFrame(() => paperworkSection.scrollIntoView({ block: 'start' }));
+    }
+
+    function updateFormStep() {
+      formSteps.forEach((step, index) => {
+        step.hidden = index !== currentStep;
+      });
+
+      const stepNumber = currentStep + 1;
+      const percent = Math.round((stepNumber / formSteps.length) * 100);
+      if (progressBar) progressBar.style.width = percent + '%';
+      if (progressLabel) progressLabel.textContent = 'Step ' + stepNumber + ' of ' + formSteps.length;
+      if (progressPercent) progressPercent.textContent = percent + '% complete';
+      if (backButton) backButton.hidden = currentStep === 0;
+      if (nextButton) nextButton.hidden = currentStep === formSteps.length - 1;
+      if (submitButton) submitButton.hidden = currentStep !== formSteps.length - 1;
+      if (statusElement) statusElement.textContent = '';
+    }
+
+    function validateCurrentStep() {
+      const requiredFields = Array.from(formSteps[currentStep].querySelectorAll('[required]'));
+      for (const field of requiredFields) {
+        if (!field.checkValidity()) {
+          field.reportValidity();
+          return false;
+        }
+      }
+      return true;
+    }
+
+    if (nextButton) {
+      nextButton.addEventListener('click', () => {
+        if (!validateCurrentStep()) return;
+        currentStep = Math.min(currentStep + 1, formSteps.length - 1);
+        updateFormStep();
+        paperworkForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+
+    if (backButton) {
+      backButton.addEventListener('click', () => {
+        currentStep = Math.max(currentStep - 1, 0);
+        updateFormStep();
+        paperworkForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+
+    if (paperworkForm) {
+      paperworkForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        if (!paperworkForm.checkValidity()) {
+          paperworkForm.reportValidity();
+          return;
+        }
+
+        statusElement.textContent = 'Submitting required paperwork…';
+        submitButton.disabled = true;
+
+        try {
+          const response = await fetch(paperworkForm.action, {
+            method: 'POST',
+            body: new FormData(paperworkForm),
+            headers: { Accept: 'application/json' }
+          });
+
+          if (!response.ok) throw new Error('Form response was not successful.');
+          progressBar.style.width = '100%';
+          progressLabel.textContent = 'Paperwork complete';
+          progressPercent.textContent = '100% complete';
+          statusElement.textContent = 'Thank you. Your required participation paperwork was submitted.';
+        } catch (error) {
+          statusElement.textContent = 'We could not submit the paperwork. Please check your connection and try again.';
+          submitButton.disabled = false;
+        }
+      });
+    }
+
+    window.addEventListener('hashchange', showPaperworkIfRequested);
+    showPaperworkIfRequested();
+    updateFormStep();
+  </script>
 </body>
 </html>
