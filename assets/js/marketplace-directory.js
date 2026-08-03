@@ -2,6 +2,9 @@ import {supabase} from './supabase-client.js';
 
 const esc=(v='')=>{const d=document.createElement('div');d.textContent=String(v??'');return d.innerHTML};
 const grid=document.getElementById('seller-directory-grid');
+const eyebrowEl=document.getElementById('seller-directory-eyebrow');
+const headingEl=document.getElementById('seller-directory-heading');
+const descriptionEl=document.getElementById('seller-directory-description');
 
 async function init(){
   const {data,error}=await supabase.from('seller_profiles')
@@ -11,13 +14,20 @@ async function init(){
   const sellers=(data||[]).filter(sp=>sp.public_slug);
 
   if(error||!sellers.length){
-    grid.innerHTML=`<div class="card goldline" style="grid-column:1/-1;text-align:center">
-      <h3>The first listing could be yours</h3>
-      <p>We're opening the directory to our first vetted sellers now. Check back soon to browse — or if you sell locally, apply today and be one of the first ones buyers see.</p>
-      <a class="btn gold" href="marketplace-seller-dashboard.html" style="margin-top:14px;display:inline-block">Apply as a Seller</a>
+    if(eyebrowEl)eyebrowEl.textContent='Now Accepting Applications';
+    if(headingEl)headingEl.textContent='Accepting Marketplace Applications Now';
+    if(descriptionEl)descriptionEl.textContent="We're reviewing applications for our very first sellers right now. Check back soon — or apply today and be one of the first ones buyers see.";
+    grid.innerHTML=`<div class="card founding-card">
+      <h3>The First Listing Could Be Yours</h3>
+      <p>Apply today and be one of the first sellers buyers see when the directory opens.</p>
+      <a class="btn gold" href="marketplace-seller-dashboard.html">Apply as a Seller</a>
     </div>`;
     return;
   }
+
+  if(eyebrowEl)eyebrowEl.textContent='Browse The Marketplace';
+  if(headingEl)headingEl.textContent='Real Local Sellers';
+  if(descriptionEl)descriptionEl.textContent="Farms, makers, homesteaders, tradespeople, side hustles, and small local businesses — not chains, not resellers. Every seller here is a real neighbor, reviewed by Rebel Ranch Ministries before they're listed. Contact sellers directly — payment and pickup happen between you and them, never through Rebel Ranch Ministries.";
 
   grid.innerHTML=sellers.map(sp=>{
     const assignments=sp.seller_category_assignments||[];

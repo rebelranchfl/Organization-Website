@@ -3,9 +3,7 @@
   if (!root || root.dataset.publicShellReady === 'true') return;
   root.dataset.publicShellReady = 'true';
   root.classList.add('rrm-public-shell');
-  const supportHref = root.classList.contains('rrm-phase-one')
-    ? 'https://www.paypal.com/ncp/payment/QM7MMH9V4LDBY'
-    : 'support.html';
+  const supportHref = 'https://www.paypal.com/ncp/payment/QM7MMH9V4LDBY';
 
   const header = document.createElement('header');
   header.className = 'rrm-public-header';
