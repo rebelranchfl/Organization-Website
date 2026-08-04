@@ -61,7 +61,11 @@ export async function paypalRequest(path: string, init: RequestInit = {}) {
     headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", ...(init.headers || {}) },
   });
   const body = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(body?.message || `PayPal request failed (${response.status}).`);
+  if (!response.ok) {
+    const issue = body?.details?.[0]?.issue;
+    const message = body?.message || `PayPal request failed (${response.status}).`;
+    throw new Error(issue ? `${message} (${issue})` : message);
+  }
   return body;
 }
 

@@ -2,7 +2,7 @@
 -- The transaction rolls back all fixtures.
 begin;
 create extension if not exists pgtap with schema extensions;
-select plan(20);
+select plan(36);
 
 insert into auth.users(id,instance_id,aud,role,email,encrypted_password,created_at,updated_at)
 values
@@ -82,6 +82,71 @@ select set_config('request.jwt.claim.sub','10000000-0000-4000-8000-000000000002'
 select is((select count(*) from public.households where id='30000000-0000-4000-8000-000000000001'),0::bigint,'nonmember RLS denies household');
 select set_config('request.jwt.claim.sub','10000000-0000-4000-8000-000000000003',true);
 select is((select count(*) from public.households where id='30000000-0000-4000-8000-000000000001'),1::bigint,'admin RLS permits household');
+
+-- Creation Station Club + one-time Live Session (added 2026-08-03).
+-- Club only has a live payment_plan_mappings row (no sandbox PayPal plan exists for it yet),
+-- so this fixture-only sandbox row lets the RPC logic be exercised without implying a real
+-- PayPal Sandbox plan exists — it is never referenced outside this rolled-back transaction.
+insert into public.payment_plan_mappings(payment_provider,payment_environment,program_code,offer_code,provider_plan_id,is_active)
+values('paypal','sandbox','creation_station','club','P-TEST-CLUB-SANDBOX-FIXTURE',true);
+
+select lives_ok($$
+ select public.process_paypal_webhook_event('sandbox','WH-CLUB-ACTIVATE','BILLING.SUBSCRIPTION.ACTIVATED','{}',
+  'I-PHASE2-CLUB','10000000-0000-4000-8000-000000000001','P-TEST-CLUB-SANDBOX-FIXTURE','ACTIVE',
+  now()+interval '1 month',now())
+$$,'club activation succeeds now that club is an allowed offer code');
+
+insert into public.households(id,owner_user_id,household_name)
+values('30000000-0000-4000-8000-000000000002','10000000-0000-4000-8000-000000000004','Phase 2 Live Session Test');
+insert into public.creator_profiles(id,owner_user_id,household_id,creator_type,age_band,display_name,profile_status)
+values
+ ('40000000-0000-4000-8000-000000000001','10000000-0000-4000-8000-000000000004','30000000-0000-4000-8000-000000000002','child','young_6_12','Test Creator One','active'),
+ ('40000000-0000-4000-8000-000000000002','10000000-0000-4000-8000-000000000004','30000000-0000-4000-8000-000000000002','child','young_6_12','Test Creator Two','active');
+insert into public.live_classes(id,title,starts_at,capacity,is_published)
+values('50000000-0000-4000-8000-000000000001','Phase 2 Test Live Session',now()+interval '3 days',1,true);
+
+select lives_ok($$select public.reserve_paypal_order_attempt('10000000-0000-4000-8000-000000000004','40000000-0000-4000-8000-000000000001','sandbox','20000000-0000-4000-8000-000000000003')$$,'first order reservation succeeds');
+select is(
+ (select public.reserve_paypal_order_attempt('10000000-0000-4000-8000-000000000004','40000000-0000-4000-8000-000000000001','sandbox','20000000-0000-4000-8000-000000000003')->>'attempt_id'),
+ (select public.reserve_paypal_order_attempt('10000000-0000-4000-8000-000000000004','40000000-0000-4000-8000-000000000001','sandbox','20000000-0000-4000-8000-000000000004')->>'attempt_id'),
+ 'repeated order requests reuse one server attempt');
+
+select lives_ok($$
+ select public.complete_paypal_order_checkout_attempt(
+  (public.reserve_paypal_order_attempt('10000000-0000-4000-8000-000000000004','40000000-0000-4000-8000-000000000001','sandbox','20000000-0000-4000-8000-000000000003')->>'attempt_id')::uuid,
+  'ORDER-PHASE2-A')
+$$,'completing the order checkout attempt records the PayPal order id');
+
+select throws_ok($$select public.reserve_paypal_order_attempt('10000000-0000-4000-8000-000000000004','40000000-0000-4000-8000-000000000099','sandbox','20000000-0000-4000-8000-000000000005')$$,'P0001','unknown_creator_profile','reservation rejects a creator profile the caller does not own');
+
+select lives_ok($$select public.reserve_paypal_order_attempt('10000000-0000-4000-8000-000000000004','40000000-0000-4000-8000-000000000002','sandbox','20000000-0000-4000-8000-000000000006')$$,'reservation for the second creator succeeds independently');
+select lives_ok($$
+ select public.complete_paypal_order_checkout_attempt(
+  (public.reserve_paypal_order_attempt('10000000-0000-4000-8000-000000000004','40000000-0000-4000-8000-000000000002','sandbox','20000000-0000-4000-8000-000000000006')->>'attempt_id')::uuid,
+  'ORDER-PHASE2-B')
+$$,'completing the second order checkout attempt records its PayPal order id');
+
+select lives_ok($$
+ select public.process_paypal_order_webhook_event('sandbox','WH-ORDER-A','PAYMENT.CAPTURE.COMPLETED','{}',
+  'ORDER-PHASE2-A','CAP-PHASE2-A','10000000-0000-4000-8000-000000000004','40000000-0000-4000-8000-000000000001',
+  'COMPLETED',now())
+$$,'first order capture completes');
+select is((select status from public.live_session_purchases where provider_order_id='ORDER-PHASE2-A'),'completed','first purchase marked completed');
+select is((select fulfillment_status from public.live_session_purchases where provider_order_id='ORDER-PHASE2-A'),'registered','first purchase auto-registered into the upcoming class');
+select is((select count(*) from public.class_registrations where creator_id='40000000-0000-4000-8000-000000000001' and class_id='50000000-0000-4000-8000-000000000001'),1::bigint,'first creator is registered for the class');
+
+select is((select (public.process_paypal_order_webhook_event('sandbox','WH-ORDER-A','PAYMENT.CAPTURE.COMPLETED','{}',
+ 'ORDER-PHASE2-A','CAP-PHASE2-A','10000000-0000-4000-8000-000000000004','40000000-0000-4000-8000-000000000001',
+ 'COMPLETED',now())->>'duplicate')::boolean),true,'duplicate order webhook is dismissed');
+
+select lives_ok($$
+ select public.process_paypal_order_webhook_event('sandbox','WH-ORDER-B','PAYMENT.CAPTURE.COMPLETED','{}',
+  'ORDER-PHASE2-B','CAP-PHASE2-B','10000000-0000-4000-8000-000000000004','40000000-0000-4000-8000-000000000002',
+  'COMPLETED',now())
+$$,'second order capture completes even though the class is now full');
+select is((select status from public.live_session_purchases where provider_order_id='ORDER-PHASE2-B'),'completed','second purchase is still marked completed (payment is never dropped)');
+select is((select fulfillment_status from public.live_session_purchases where provider_order_id='ORDER-PHASE2-B'),'needs_manual_scheduling','second purchase falls back to manual scheduling once the class is full');
+select is((select count(*) from public.class_registrations where creator_id='40000000-0000-4000-8000-000000000002'),0::bigint,'second creator is not registered once the only upcoming class is full');
 
 select * from finish();
 rollback;

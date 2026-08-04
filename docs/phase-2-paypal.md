@@ -10,6 +10,25 @@ Product: `PROD-4LY82075N1615481P` — Rebel Ranch Creation Station Memberships
 | `creator_development` | $19.99 | `P-4LM62438SR045062ENJLE2CA` |
 | `creator_website` | $49.99 | `P-3Y70407689889710CNJLE2CI` |
 
+## Live catalog additions — Creation Station Club and Live Session
+
+Added 2026-08-03. `club` is a recurring `payment_plan_mappings` offer code like the three
+above, but sits outside the `creation_station_tier_rank()` tier ladder (it doesn't unlock
+portfolio/project/storage features — see `20260803190000_creation_station_club_and_live_session.sql`).
+`live_session_trial` is a one-time purchase, tracked separately since PayPal Orders (not
+Subscriptions) don't fit the existing `payment_plan_mappings`/`memberships` shape.
+
+| Offer code | Price | Type | Live provider ID |
+|---|---:|---|---|
+| `club` | $49.99/mo | Recurring subscription | `P-96900096GE192010XNJYO6MQ` |
+| `live_session_trial` | $15 | One-time order | n/a — price configured in `payment_one_time_offers`, order created per checkout via `paypal-create-order` |
+
+A one-time `live_session_trial` purchase auto-registers the buyer's creator profile into the
+next upcoming published `live_classes` row once the capture completes (see
+`process_paypal_order_webhook_event`). If no upcoming class has capacity, the purchase is
+still recorded as `completed` with `fulfillment_status='needs_manual_scheduling'` — the
+payment is never dropped, but staff need to seat that family manually.
+
 ## Protected Supabase secrets
 
 Configure `PAYPAL_ENVIRONMENT`, `PAYPAL_CLIENT_ID`, `PAYPAL_CLIENT_SECRET`,
@@ -53,3 +72,11 @@ Webhook URL:
 - `BILLING.SUBSCRIPTION.PAYMENT.FAILED`
 - `PAYMENT.SALE.COMPLETED`
 - `PAYMENT.SALE.DENIED`
+
+One-time orders (`live_session_trial`) are handled by a separate branch in the same
+`paypal-webhook` function:
+
+- `CHECKOUT.ORDER.APPROVED` — triggers the server-side capture call (`ORDER_ALREADY_CAPTURED`
+  on a retried webhook is treated as a no-op, not a failure).
+- `PAYMENT.CAPTURE.COMPLETED` — marks the purchase completed and attempts auto-registration.
+- `PAYMENT.CAPTURE.DENIED` — marks the purchase and checkout attempt failed.

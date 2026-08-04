@@ -40,6 +40,16 @@ Check for more specific `AGENTS.md` files in the target folder. More specific in
 - Never perform unrelated cleanup, redesign, renaming, dependency changes, database changes, or configuration changes.
 - Commits, pushes, pull requests, merges, deployments, deletions, permission changes, payments, messages, and other external actions require separate explicit authorization.
 
+## Change attribution and traceability
+
+- Every durable record of a change — commit message, pull request description, database migration file, edge function deployment note, or any other push/live activity — must state which AI agent made the change (for example: Claude Code, ChatGPT/Codex, or another named tool) and the title of the chat or session that produced it.
+- In commit messages, add this as trailer lines, for example:
+  `AI-Agent: Claude Code`
+  `Session: <chat title>`
+- In a new database migration file, add both as a leading SQL comment before any statements.
+- This applies to every AI-originated change without exception, including changes applied directly to a live system outside a normal commit (for example, a migration run straight against the database instead of through a committed file).
+- Why: without this, a later session — AI or human — cannot trace back which conversation's reasoning or decision caused a given change, making it impossible to reconstruct why something exists or was modified.
+
 ## Communication
 
 - Assume the owner has no technical background.

@@ -1192,7 +1192,7 @@
                 <li>Ongoing creative community</li>
                 <li>Automatic recurring PayPal billing</li>
               </ul>
-              <a class="btn paypal-action" href="#">Join Creation Station Club · $49.99</a>
+              <button type="button" class="btn paypal-action" id="club-checkout-btn">Join Creation Station Club · $49.99</button>
             </article>
 
             <article class="purchase-card single">
@@ -1206,9 +1206,11 @@
                 <li>The same live community experience</li>
                 <li>One-time PayPal purchase</li>
               </ul>
-              <a class="btn paypal-action" href="#">Try One Live Session · $15</a>
+              <select id="live-session-creator-select" aria-label="Choose which creator this session is for" hidden></select>
+              <button type="button" class="btn paypal-action" id="single-session-checkout-btn">Try One Live Session · $15</button>
             </article>
           </div>
+          <p id="purchase-status" role="status" aria-live="polite"></p>
 
           <div class="flow-panel" aria-labelledby="flow-title">
             <h3 id="flow-title">What happens after you choose</h3>
@@ -1424,6 +1426,69 @@
     window.addEventListener('hashchange', showPaperworkIfRequested);
     showPaperworkIfRequested();
     updateFormStep();
+  </script>
+  <script src="assets/js/membership-payments.js"></script>
+  <script type="module">
+    import { supabase } from "./assets/js/supabase-client.js";
+
+    const statusEl = document.getElementById("purchase-status");
+    const clubButton = document.getElementById("club-checkout-btn");
+    const sessionButton = document.getElementById("single-session-checkout-btn");
+    const creatorSelect = document.getElementById("live-session-creator-select");
+
+    function setStatus(message) {
+      if (statusEl) statusEl.textContent = message || "";
+    }
+
+    if (clubButton) {
+      clubButton.addEventListener("click", async () => {
+        setStatus("Opening secure PayPal checkout…");
+        clubButton.disabled = true;
+        try {
+          await window.RebelRanchPayments.startCheckout(supabase, "club");
+        } catch (error) {
+          setStatus(error.message);
+          clubButton.disabled = false;
+        }
+      });
+    }
+
+    if (sessionButton) {
+      (async () => {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session || !creatorSelect) return;
+        const { data: creators, error } = await supabase
+          .from("creator_profiles")
+          .select("id,display_name,public_name")
+          .eq("owner_user_id", session.user.id)
+          .eq("profile_status", "active")
+          .order("created_at");
+        if (error || !creators || creators.length === 0) return;
+        const options = creators.map((c) => {
+          const opt = document.createElement("option");
+          opt.value = c.id;
+          opt.textContent = c.public_name || c.display_name;
+          return opt;
+        });
+        creatorSelect.replaceChildren(...options);
+        if (creators.length > 1) {
+          creatorSelect.hidden = false;
+        } else {
+          creatorSelect.value = creators[0].id;
+        }
+      })();
+
+      sessionButton.addEventListener("click", async () => {
+        setStatus("Opening secure PayPal checkout…");
+        sessionButton.disabled = true;
+        try {
+          await window.RebelRanchPayments.startOneTimeCheckout(supabase, creatorSelect ? creatorSelect.value : undefined);
+        } catch (error) {
+          setStatus(error.message);
+          sessionButton.disabled = false;
+        }
+      });
+    }
   </script>
 </body>
 </html>
