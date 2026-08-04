@@ -1,33 +1,997 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Creation Station Memberships | Rebel Ranch Ministries</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Creation Station Studio Membership | Create, Build &amp; Share</title>
+  <meta name="description" content="Creation Station Studio is a monthly membership for children, teens, and adult makers who want guided project tools, a private working portfolio, and a personal public creator page.">
+  <link rel="stylesheet" href="assets/css/site-core.css">
+  <link rel="stylesheet" href="assets/css/creation-station.css">
   <style>
-    body{margin:0;background:#fff7ea;color:#2f2933;font-family:Arial,sans-serif}main{max-width:1050px;margin:auto;padding:48px 22px}
-    h1{text-align:center;color:#43166f}.intro{text-align:center;max-width:700px;margin:0 auto 32px}.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-    article{background:#fff;border:1px solid rgba(91,37,143,.2);border-radius:18px;padding:25px;box-shadow:0 12px 35px rgba(47,41,51,.1)}
-    .price{font-size:2rem;color:#008d99;font-weight:700}button{width:100%;border:0;border-radius:999px;padding:13px;background:#5b258f;color:#fff;font-weight:700;cursor:pointer}
-    #status{text-align:center;margin:24px;color:#97213f}a{color:#5b258f}
+    .studio-membership-page {
+      color: var(--ink);
+      background: var(--purple-950);
+    }
+
+    .studio-membership-page main { overflow: hidden; }
+
+    .studio-membership-page .studio-hero {
+      padding: 0;
+      background: linear-gradient(135deg, #511c85 0%, #7131a4 40%, #a73793 70%, #ed4d92 100%);
+    }
+
+    .studio-membership-page .studio-hero .hero-grid {
+      position: relative;
+      z-index: 1;
+    }
+
+    .studio-membership-page .studio-hero h1 .hand {
+      color: #ffda6e;
+      font-size: 1.06em;
+    }
+
+    .studio-membership-page .hero-proof span::before {
+      content: "âœ“";
+      margin-right: .4rem;
+      color: #8ef1e8;
+      font-weight: 950;
+    }
+
+    .studio-membership-page .studio-hero-card {
+      position: relative;
+      width: min(100%, 34rem);
+      margin-inline: auto;
+      padding: .75rem;
+      color: var(--purple-900);
+      background: rgba(255, 255, 255, .96);
+      border: 1px solid rgba(255, 255, 255, .55);
+      border-radius: 1.75rem;
+      box-shadow: 0 2rem 5rem rgba(35, 3, 58, .32);
+      transform: rotate(1deg);
+    }
+
+    .studio-membership-page .studio-hero-card::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: -.8rem .8rem .8rem -.8rem;
+      background: var(--rainbow);
+      border-radius: 1.9rem;
+      opacity: .8;
+      transform: rotate(-2deg);
+    }
+
+    .studio-membership-page .studio-hero-card img {
+      width: 100%;
+      border-radius: 1.2rem;
+    }
+
+    .studio-membership-page .studio-hero-card strong,
+    .studio-membership-page .studio-hero-card small {
+      display: block;
+      text-align: center;
+    }
+
+    .studio-membership-page .studio-hero-card strong {
+      padding: .85rem .5rem .15rem;
+      color: var(--purple-800);
+      font-size: 1.12rem;
+    }
+
+    .studio-membership-page .studio-hero-card small {
+      padding: 0 .5rem .4rem;
+      color: var(--text);
+      font-weight: 750;
+      line-height: 1.45;
+    }
+
+    .studio-membership-page .studio-pulse {
+      color: #fff;
+      background: var(--purple-950);
+      border-top: .45rem solid transparent;
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+      border-image: var(--rainbow) 1;
+    }
+
+    .studio-membership-page .pulse-grid {
+      display: grid;
+      gap: 1px;
+      width: min(1160px, 100%);
+      margin-inline: auto;
+      background: rgba(255, 255, 255, .12);
+    }
+
+    .studio-membership-page .pulse-item {
+      padding: 1.25rem 1rem;
+      background: var(--purple-950);
+      text-align: center;
+    }
+
+    .studio-membership-page .pulse-item strong,
+    .studio-membership-page .pulse-item span { display: block; }
+
+    .studio-membership-page .pulse-item strong { color: #fff; }
+    .studio-membership-page .pulse-item span {
+      margin-top: .25rem;
+      color: #c9eee9;
+      font-size: .82rem;
+      font-weight: 700;
+    }
+
+    .studio-membership-page .marketing-section .wrap {
+      padding-block: clamp(4rem, 8vw, 6.5rem);
+    }
+
+    .studio-membership-page .section-heading { max-width: 61rem; }
+    .studio-membership-page .section-heading.centered { margin-inline: auto; }
+
+    .studio-membership-page .section-heading h2 {
+      color: var(--purple-900);
+    }
+
+    .studio-membership-page .section-heading h2 .hand { color: var(--pink); }
+
+    .studio-membership-page .section-heading > p:last-child {
+      max-width: 52rem;
+    }
+
+    .studio-membership-page .centered > p:last-child { margin-inline: auto; }
+
+    .studio-membership-page .inside-section {
+      background:
+        radial-gradient(circle at 4% 15%, rgba(240, 75, 152, .09), transparent 25%),
+        radial-gradient(circle at 96% 90%, rgba(85, 215, 209, .13), transparent 27%),
+        #f8f3ff;
+    }
+
+    .studio-membership-page .space-grid {
+      display: grid;
+      gap: 1rem;
+      margin-top: 2.2rem;
+    }
+
+    .studio-membership-page .space-card {
+      position: relative;
+      overflow: hidden;
+      padding: 1.5rem;
+      border: 2px solid var(--line);
+      border-radius: 1.5rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .studio-membership-page .space-card.private {
+      color: #fff;
+      background: var(--deep-gradient);
+      border-color: rgba(255, 255, 255, .18);
+      box-shadow: var(--shadow);
+    }
+
+    .studio-membership-page .space-card.public {
+      background: linear-gradient(135deg, #ffe2ef 0%, #fff0c9 52%, #daf6f4 100%);
+      border-color: rgba(240, 75, 152, .32);
+    }
+
+    .studio-membership-page .space-number {
+      display: grid;
+      place-items: center;
+      width: 3.2rem;
+      height: 3.2rem;
+      margin-bottom: 1rem;
+      color: #31143b;
+      background: var(--primary);
+      border: 2px solid rgba(255, 255, 255, .82);
+      border-radius: .9rem;
+      box-shadow: var(--shadow-soft);
+      font-weight: 950;
+    }
+
+    .studio-membership-page .space-card h3 {
+      margin: 0 0 .65rem;
+      font-size: clamp(1.75rem, 4vw, 2.45rem);
+      letter-spacing: -.045em;
+    }
+
+    .studio-membership-page .space-card.private h3 { color: #fff; }
+    .studio-membership-page .space-card.public h3 { color: var(--purple-900); }
+
+    .studio-membership-page .space-card > p {
+      margin: 0;
+      font-weight: 700;
+      line-height: 1.65;
+    }
+
+    .studio-membership-page .space-card.private > p { color: #f3e9f7; }
+    .studio-membership-page .space-card.public > p { color: var(--text); }
+
+    .studio-membership-page .feature-list {
+      display: grid;
+      gap: .7rem;
+      margin: 1.25rem 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .studio-membership-page .feature-list li {
+      position: relative;
+      padding-left: 1.65rem;
+      font-weight: 800;
+      line-height: 1.5;
+    }
+
+    .studio-membership-page .feature-list li::before {
+      content: "âœ“";
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-weight: 950;
+    }
+
+    .studio-membership-page .space-card.private .feature-list li::before { color: #8ef1e8; }
+
+    .studio-membership-page .privacy-note {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: .8rem;
+      align-items: start;
+      margin-top: 1rem;
+      padding: 1rem;
+      color: var(--purple-900);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      box-shadow: var(--shadow-soft);
+      font-weight: 800;
+      line-height: 1.55;
+    }
+
+    .studio-membership-page .privacy-note span {
+      display: grid;
+      place-items: center;
+      width: 2.2rem;
+      height: 2.2rem;
+      color: #fff;
+      background: linear-gradient(135deg, #007e8a, #42cbc5);
+      border-radius: .7rem;
+    }
+
+    .studio-membership-page .showcase-section {
+      color: #fff;
+      background:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(140deg, #24043e, #4a1073 58%, #70207b);
+      background-size: 36px 36px, 36px 36px, auto;
+    }
+
+    .studio-membership-page .showcase-section .section-heading h2 { color: #fff; }
+    .studio-membership-page .showcase-section .section-heading h2 .hand { color: #ffd66b; }
+    .studio-membership-page .showcase-section .section-heading > p:last-child { color: #f1e6f4; }
+    .studio-membership-page .showcase-section .section-kicker { color: #8ef1e8; }
+
+    .studio-membership-page .showcase-grid {
+      display: grid;
+      gap: 1rem;
+      margin-top: 2.2rem;
+    }
+
+    .studio-membership-page .showcase-copy,
+    .studio-membership-page .showcase-visual {
+      padding: 1.25rem;
+      background: rgba(255, 255, 255, .96);
+      border: 1px solid rgba(255, 255, 255, .42);
+      border-radius: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .studio-membership-page .showcase-copy { color: var(--ink); }
+    .studio-membership-page .showcase-copy h3 {
+      margin: 0 0 .75rem;
+      color: var(--purple-900);
+      font-size: clamp(1.75rem, 4vw, 2.6rem);
+      letter-spacing: -.045em;
+    }
+
+    .studio-membership-page .showcase-copy p {
+      margin: 0;
+      color: var(--text);
+      font-weight: 700;
+      line-height: 1.68;
+    }
+
+    .studio-membership-page .showcase-copy .feature-list { color: var(--purple-900); }
+
+    .studio-membership-page .showcase-visual {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: .75rem;
+      background: linear-gradient(135deg, #eefaf8 0%, #f5eef8 48%, #fff0f3 100%);
+    }
+
+    .studio-membership-page .sample-product {
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid rgba(91, 37, 143, .16);
+      border-radius: 1rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .studio-membership-page .sample-product img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+
+    .studio-membership-page .sample-product span {
+      display: block;
+      padding: .7rem;
+      color: var(--purple-800);
+      font-size: .8rem;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .studio-membership-page .audience-section {
+      background: linear-gradient(135deg, #f1eaff 0%, #fff 48%, #def8f5 100%);
+    }
+
+    .studio-membership-page .audience-grid {
+      display: grid;
+      gap: 1rem;
+      margin-top: 2.2rem;
+    }
+
+    .studio-membership-page .audience-card {
+      padding: 1.35rem;
+      background: rgba(255, 255, 255, .94);
+      border: 2px solid var(--line);
+      border-radius: 1.25rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .studio-membership-page .audience-card:nth-child(1) { border-color: rgba(240,75,152,.4); }
+    .studio-membership-page .audience-card:nth-child(2) { border-color: rgba(247,201,76,.7); }
+    .studio-membership-page .audience-card:nth-child(3) { border-color: rgba(3,151,164,.4); }
+
+    .studio-membership-page .audience-card span {
+      color: var(--pink);
+      font-size: .72rem;
+      font-weight: 950;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .studio-membership-page .audience-card h3 {
+      margin: .4rem 0 .55rem;
+      color: var(--purple-900);
+      font-size: 1.45rem;
+      letter-spacing: -.035em;
+    }
+
+    .studio-membership-page .audience-card p {
+      margin: 0;
+      color: var(--text);
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .studio-membership-page .journey-section {
+      color: #fff;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(85,215,209,.17), transparent 25%),
+        linear-gradient(135deg, #331054, #5c1f78 55%, #8a2e83);
+    }
+
+    .studio-membership-page .journey-section .section-heading h2 { color: #fff; }
+    .studio-membership-page .journey-section .section-heading h2 .hand { color: #ffd66b; }
+    .studio-membership-page .journey-section .section-heading > p:last-child { color: #eee0f1; }
+    .studio-membership-page .journey-section .section-kicker { color: #8ef1e8; }
+
+    .studio-membership-page .studio-steps {
+      display: grid;
+      gap: .75rem;
+      margin: 2.2rem 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .studio-membership-page .studio-steps li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: .85rem;
+      align-items: start;
+      padding: 1rem;
+      background: rgba(255, 255, 255, .1);
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 1rem;
+    }
+
+    .studio-membership-page .studio-steps > li > span {
+      display: grid;
+      place-items: center;
+      width: 2.6rem;
+      height: 2.6rem;
+      color: #2f1634;
+      background: var(--primary);
+      border-radius: .75rem;
+      font-weight: 950;
+    }
+
+    .studio-membership-page .studio-steps strong,
+    .studio-membership-page .studio-steps small { display: block; }
+    .studio-membership-page .studio-steps strong { color: #fff; }
+    .studio-membership-page .studio-steps small {
+      margin-top: .25rem;
+      color: #ead9ef;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .studio-membership-page .choices-section {
+      background: #fbf8ff;
+    }
+
+    .studio-membership-page .choice-grid {
+      display: grid;
+      gap: 1rem;
+      margin-top: 2.2rem;
+    }
+
+    .studio-membership-page .choice-card {
+      display: flex;
+      flex-direction: column;
+      padding: 1.35rem;
+      background: #fff;
+      border: 2px solid var(--line);
+      border-radius: 1.25rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .studio-membership-page .choice-card.current {
+      background: linear-gradient(135deg, #ffe2ef 0%, #fff0c9 100%);
+      border-color: rgba(240,75,152,.45);
+    }
+
+    .studio-membership-page .choice-card.live { border-color: rgba(3,151,164,.4); }
+
+    .studio-membership-page .choice-card.marketplace {
+      color: #f0edd8;
+      background: linear-gradient(180deg, #142617, #0b170e);
+      border-color: #c17f24;
+    }
+
+    .studio-membership-page .choice-card .choice-kicker { color: var(--pink); }
+    .studio-membership-page .choice-card.live .choice-kicker { color: var(--teal); }
+    .studio-membership-page .choice-card.marketplace .choice-kicker { color: #ef9f27; }
+
+    .studio-membership-page .choice-card h3 {
+      margin: 0 0 .55rem;
+      color: var(--purple-900);
+      font-size: 1.45rem;
+      letter-spacing: -.035em;
+    }
+
+    .studio-membership-page .choice-card.marketplace h3 { color: #f0edd8; }
+
+    .studio-membership-page .choice-card > p:not(.choice-kicker) {
+      margin: 0;
+      color: var(--text);
+      font-weight: 700;
+      line-height: 1.62;
+    }
+
+    .studio-membership-page .choice-card.marketplace > p:not(.choice-kicker) { color: #d7d1b3; }
+
+    .studio-membership-page .choice-card a {
+      align-self: flex-start;
+      margin-top: 1rem;
+      color: var(--purple-800);
+      font-weight: 950;
+      text-underline-offset: .25rem;
+    }
+
+    .studio-membership-page .choice-card.marketplace a { color: #efb153; }
+
+    .studio-membership-page .join-section {
+      color: #fff;
+      background:
+        radial-gradient(circle at 10% 14%, rgba(255, 255, 255, .2), transparent 23%),
+        radial-gradient(circle at 90% 84%, rgba(255, 255, 255, .18), transparent 25%),
+        linear-gradient(135deg, #d93685 0%, #f04b98 25%, #ff756d 50%, #d59336 73%, #047f8b 100%);
+    }
+
+    .studio-membership-page .join-section .section-kicker { color: #d8fffb; }
+    .studio-membership-page .join-section .section-heading h2 { color: #fff; }
+    .studio-membership-page .join-section .section-heading h2 .hand { color: #fff1a9; }
+    .studio-membership-page .join-section .section-heading > p:last-child { color: #fff8fd; }
+
+    .studio-membership-page .purchase-shell {
+      display: grid;
+      gap: 1rem;
+      max-width: 62rem;
+      margin: 2.2rem auto 0;
+    }
+
+    .studio-membership-page .purchase-card,
+    .studio-membership-page .flow-panel {
+      background: rgba(255, 255, 255, .97);
+      border: 1px solid rgba(255, 255, 255, .72);
+      border-radius: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .studio-membership-page .purchase-card {
+      position: relative;
+      overflow: hidden;
+      padding: 1.6rem;
+      color: var(--ink);
+    }
+
+    .studio-membership-page .purchase-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: .5rem;
+      background: var(--rainbow);
+    }
+
+    .studio-membership-page .purchase-label {
+      margin: .35rem 0 .55rem;
+      color: var(--pink);
+      font-size: .75rem;
+      font-weight: 950;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .studio-membership-page .purchase-card h3 {
+      margin: 0;
+      color: var(--purple-900);
+      font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: -.055em;
+    }
+
+    .studio-membership-page .purchase-price {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .35rem .75rem;
+      align-items: baseline;
+      margin: 1rem 0;
+    }
+
+    .studio-membership-page .purchase-price strong {
+      color: var(--teal);
+      font-size: clamp(2.5rem, 7vw, 4rem);
+      line-height: 1;
+      letter-spacing: -.06em;
+    }
+
+    .studio-membership-page .purchase-price span {
+      color: var(--text);
+      font-weight: 850;
+    }
+
+    .studio-membership-page .purchase-card > p:not(.purchase-label, .purchase-price, .billing-note) {
+      color: var(--text);
+      font-weight: 700;
+      line-height: 1.65;
+    }
+
+    .studio-membership-page .purchase-card .feature-list { color: var(--purple-900); }
+
+    .studio-membership-page .paypal-action {
+      width: 100%;
+      margin-top: 1.25rem;
+      color: #2f1634;
+      background: var(--primary);
+      border: 0;
+    }
+
+    .studio-membership-page .paypal-action:hover,
+    .studio-membership-page .paypal-action:focus-visible {
+      color: #fff;
+      background: var(--purple-gradient);
+    }
+
+    .studio-membership-page .billing-note {
+      margin: .75rem 0 0;
+      color: #75647d;
+      font-size: .82rem;
+      font-weight: 750;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .studio-membership-page #status {
+      min-height: 1.5rem;
+      margin: .85rem 0 0;
+      color: #97213f;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .studio-membership-page .account-return {
+      margin: .5rem 0 0;
+      text-align: center;
+    }
+
+    .studio-membership-page .account-return a {
+      color: var(--purple-800);
+      font-weight: 900;
+      text-underline-offset: .25rem;
+    }
+
+    .studio-membership-page .flow-panel {
+      padding: 1.5rem;
+      color: var(--ink);
+    }
+
+    .studio-membership-page .flow-panel h3 {
+      margin: 0 0 1rem;
+      color: var(--purple-900);
+      font-size: 1.6rem;
+      letter-spacing: -.035em;
+    }
+
+    .studio-membership-page .flow-steps {
+      display: grid;
+      gap: .75rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .studio-membership-page .flow-steps li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: .75rem;
+      align-items: start;
+    }
+
+    .studio-membership-page .flow-steps > li > span {
+      display: grid;
+      place-items: center;
+      width: 2.2rem;
+      height: 2.2rem;
+      color: #fff;
+      background: linear-gradient(135deg, #007e8a, #42cbc5);
+      border-radius: .65rem;
+      font-weight: 950;
+    }
+
+    .studio-membership-page .flow-steps strong,
+    .studio-membership-page .flow-steps small { display: block; }
+    .studio-membership-page .flow-steps strong { color: var(--purple-900); }
+    .studio-membership-page .flow-steps small {
+      margin-top: .2rem;
+      color: var(--text);
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 35rem) {
+      .studio-membership-page .studio-hero-card { transform: none; }
+      .studio-membership-page .showcase-visual { grid-template-columns: 1fr; }
+    }
+
+    @media (min-width: 36rem) {
+      .studio-membership-page .pulse-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .studio-membership-page .studio-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (min-width: 48rem) {
+      .studio-membership-page .space-grid,
+      .studio-membership-page .showcase-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .studio-membership-page .audience-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .studio-membership-page .choice-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .studio-membership-page .purchase-card,
+      .studio-membership-page .flow-panel { padding: 2rem; }
+    }
+
+    @media (min-width: 64rem) {
+      .studio-membership-page .pulse-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .studio-membership-page .studio-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .studio-membership-page .purchase-shell { grid-template-columns: 1.08fr .92fr; align-items: start; }
+    }
   </style>
 </head>
-<body><main>
-  <h1>Creation Station Memberships</h1>
-  <p class="intro">Choose the support that fits your family or creative journey. Every membership strengthens a relationship-centered creative ecosystem.</p>
-  <div class="plans">
-    <article><h2>Young Creator Family</h2><p class="price">$4.99 <small>/ month</small></p><p>Family membership supporting young creators with an adult account holder.</p><button data-offer="young_creator_family">Continue with PayPal</button></article>
-    <article><h2>Creator Development</h2><p class="price">$19.99 <small>/ month</small></p><p>Development support for creators growing their skills and work.</p><button data-offer="creator_development">Continue with PayPal</button></article>
-    <article><h2>Creation Station Studio</h2><p class="price">$49.99 <small>/ month</small></p><p>Creation Station membership that unlocks additional business and portfolio-building features, including a personal creator page.</p><button data-offer="creator_website">Continue with PayPal</button></article>
-  </div>
-  <p id="status" role="status"></p><p style="text-align:center"><a href="account.html">Return to My Account</a></p>
-</main>
-<script src="assets/js/membership-payments.js"></script>
-<script type="module">
-  import { supabase } from "./assets/js/supabase-client.js";
-  const status=document.getElementById("status");
-  document.querySelectorAll("[data-offer]").forEach(button=>button.addEventListener("click",async()=>{
-    status.textContent="Opening secure PayPal checkout…"; button.disabled=true;
-    try { await window.RebelRanchPayments.startCheckout(supabase,button.dataset.offer); }
-    catch(error){ status.textContent=error.message; button.disabled=false; }
-  }));
-</script></body></html>
+<body class="studio-membership-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- OWNER-LOCKED: Approved Creation Station public header. Preserve this structure and treatment unless the owner explicitly authorizes a change. See docs/creation-station-visual-rules.md. -->
+  <header class="site-header topbar" data-site-nav>
+    <div class="wrap site-nav">
+      <a class="brand" href="creation.html" aria-label="Creation Station home">
+        <img src="assets/creation-station-logo.png" alt="Creation Station logo" width="220" height="220">
+        <span class="brand-text">
+          <strong>Creation Station</strong>
+          <small>by Rebel Ranch Ministries</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation" data-nav-toggle>
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+      </button>
+
+      <nav class="nav-menu" id="primary-navigation" aria-label="Primary" data-nav-menu data-open="false">
+        <a href="#inside">What You Get</a>
+        <a href="#who">Who It Fits</a>
+        <a href="#how">How It Works</a>
+        <a href="creation-station-live-classes.html">Club &amp; Live Sessions</a>
+        <a class="rrm-return" href="index.html">Rebel Ranch Ministries</a>
+        <a class="btn primary" href="#join">Start My Studio</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero studio-hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Creation Station Studio Â· Monthly Membership</p>
+          <h1 id="hero-title">Give creative work a place to <span class="hand">growâ€”and be seen.</span></h1>
+          <p class="hero-lead">Creation Station Studio brings the creative journey together: guided project tools, a private working portfolio, and a personal public page for sharing a creatorâ€™s story, products or services, ordering information, and contact choices.</p>
+          <p class="hero-skills">It is built for Young Creators, Teen Creators, and Adult Makersâ€”with parent or guardian control over every public step for anyone under 18.</p>
+          <div class="hero-proof" aria-label="Creation Station Studio membership features">
+            <span>Project guidance</span>
+            <span>Private portfolio</span>
+            <span>Personal Studio page</span>
+            <span>Parent-visible</span>
+          </div>
+          <div class="button-row hero-actions">
+            <a class="btn primary" href="#join">Start My Studio</a>
+            <a class="btn light" href="creation-station-experience.html">See the Creator Experience</a>
+          </div>
+          <p class="hero-note hand">Create. Document. Share. Grow.</p>
+        </div>
+
+        <div class="studio-hero-card" aria-label="Creation Station Studio preview">
+          <span class="visual-tag">Your creative home</span>
+          <img src="assets/creation-station-family-hero.png" alt="Creation Station Studio showing creator stories, product photos, and presentation tools" width="1122" height="1402" fetchpriority="high">
+          <strong>Creation Station Studio</strong>
+          <small>A guided creative workspace with a separate public page when the creator is ready.</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="studio-pulse" aria-label="Creation Station Studio highlights">
+      <div class="pulse-grid">
+        <div class="pulse-item"><strong>Plan the work</strong><span>Turn an idea into clear stages.</span></div>
+        <div class="pulse-item"><strong>Document progress</strong><span>Keep photos, notes, and reflection together.</span></div>
+        <div class="pulse-item"><strong>Build a presence</strong><span>Present a story, work, and contact choices.</span></div>
+        <div class="pulse-item"><strong>Stay in control</strong><span>Parents approve public steps for minors.</span></div>
+      </div>
+    </section>
+
+    <section class="marketing-section inside-section" id="inside" aria-labelledby="inside-title">
+      <div class="wrap">
+        <div class="section-heading centered">
+          <p class="section-kicker">One membership Â· Two connected spaces</p>
+          <h2 id="inside-title">Build privately. Share <span class="hand">intentionally.</span></h2>
+          <p>The dashboard and the public Studio page serve different purposes. The private side helps creators do the work. The public side gives selected finished work a place to be presented clearly.</p>
+        </div>
+
+        <div class="space-grid">
+          <article class="space-card private">
+            <div class="space-number" aria-hidden="true">01</div>
+            <p class="section-kicker light">Inside the member dashboard</p>
+            <h3>Projects &amp; Private Portfolio</h3>
+            <p>Creators can move ideas through real stages, keep track of progress, document what they made, and build a working record of effort and growth.</p>
+            <ul class="feature-list">
+              <li>Guided projects and visible next steps</li>
+              <li>Progress tracking, notes, and private image uploads</li>
+              <li>A working portfolio of ideas, process, and finished work</li>
+              <li>Resources, classes, and age-aware dashboard language</li>
+              <li>Parent visibility and approval boundaries for minors</li>
+            </ul>
+          </article>
+
+          <article class="space-card public">
+            <div class="space-number" aria-hidden="true">02</div>
+            <p class="section-kicker">The paid public-facing option</p>
+            <h3>Creation Station Studio</h3>
+            <p>A standalone creator page can organize the creatorâ€™s identity and work in one colorful, shareable place without turning the page into a full online store.</p>
+            <ul class="feature-list">
+              <li>Creator or brand name and personal story</li>
+              <li>Products or services with photos and descriptions</li>
+              <li>Ordering and payment instructions or approved links</li>
+              <li>Pickup, shipping, delivery, or digital details</li>
+              <li>Contact choices and social links</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="privacy-note">
+          <span aria-hidden="true">âœ“</span>
+          <div><strong>Nothing from a private portfolio becomes public automatically.</strong> Studio information is entered and submitted separately. A parent or guardian controls public approval for a creator under 18.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="marketing-section showcase-section" aria-labelledby="showcase-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="section-kicker">A real place for the work</p>
+          <h2 id="showcase-title">More than a gallery. A creatorâ€™s <span class="hand">home base.</span></h2>
+          <p>A Studio page uses the creatorâ€™s own story, photos, product or service details, ordering information, and contact choices. Creation Station provides the structure and tools; the creatorâ€™s identity and work remain the focus.</p>
+        </div>
+
+        <div class="showcase-grid">
+          <article class="showcase-copy">
+            <h3>What a Studio page can help organize</h3>
+            <p>The finished page is closer to a personal landing page than a large online shop. It gives people one clear place to understand the creator, see available work, and learn the next step.</p>
+            <ul class="feature-list">
+              <li>A clear creator story and introduction</li>
+              <li>Real photos and descriptions of work</li>
+              <li>Simple pricing or ordering information</li>
+              <li>How payment and delivery are handled</li>
+              <li>Contact and social-media paths</li>
+            </ul>
+          </article>
+
+          <div class="showcase-visual" aria-label="Sample products shown in the Creation Station Studio reference">
+            <div class="sample-product">
+              <img src="assets/lavender candle.png" alt="Lavender candle product example" width="1254" height="1254" loading="lazy">
+              <span>Product photos</span>
+            </div>
+            <div class="sample-product">
+              <img src="assets/bracelets.png" alt="Colorful bracelet stack product example" width="1254" height="1254" loading="lazy">
+              <span>Clear descriptions</span>
+            </div>
+            <div class="sample-product">
+              <img src="assets/lip gloss &amp; soap.png" alt="Lip gloss and handmade soap product example" width="1254" height="1254" loading="lazy">
+              <span>Ordering details</span>
+            </div>
+            <div class="sample-product">
+              <img src="assets/tumbler.png" alt="Painted Creation Station tumbler product example" width="1254" height="1254" loading="lazy">
+              <span>Contact choices</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="marketing-section audience-section" id="who" aria-labelledby="who-title">
+      <div class="wrap">
+        <div class="section-heading centered">
+          <p class="section-kicker">One Creation Station identity Â· Age-aware support</p>
+          <h2 id="who-title">Built for creators at different <span class="hand">stages.</span></h2>
+          <p>Studio membership is not limited to one age group. The language, controls, and amount of adult involvement change with the creator; the core path stays connected.</p>
+        </div>
+
+        <div class="audience-grid">
+          <article class="audience-card">
+            <span>Ages 6â€“12</span>
+            <h3>Young Creators</h3>
+            <p>Children receive guided structure while a parent or guardian holds the account, sees relevant progress, and controls anything that could become public.</p>
+          </article>
+          <article class="audience-card">
+            <span>Ages 13â€“17</span>
+            <h3>Teen Creators</h3>
+            <p>Teens can build independence, presentation skills, and practical business awareness while public decisions remain under parent or guardian control.</p>
+          </article>
+          <article class="audience-card">
+            <span>Ages 18+</span>
+            <h3>Adult Makers</h3>
+            <p>Adults may bring existing work and move more directly toward a personal Studio page without completing the full child-guided project journey.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="marketing-section journey-section" id="how" aria-labelledby="how-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="section-kicker">The Studio membership path</p>
+          <h2 id="how-title">From creative idea to a page that feels <span class="hand">like theirs.</span></h2>
+          <p>Young and Teen Creators may use the full guided journey. Adult Makers can begin with existing work. In both cases, the public Studio information is submitted separately and reviewed before publication.</p>
+        </div>
+
+        <ol class="studio-steps">
+          <li><span>01</span><div><strong>Choose Studio membership</strong><small>Sign in or create the adult account that will hold the monthly membership.</small></div></li>
+          <li><span>02</span><div><strong>Create and plan</strong><small>Use projects, stages, notes, and resources to keep ideas moving.</small></div></li>
+          <li><span>03</span><div><strong>Document the work</strong><small>Build a private record of process, decisions, finished work, and reflection.</small></div></li>
+          <li><span>04</span><div><strong>Prepare the Studio</strong><small>Enter the creatorâ€™s story, products or services, photos, links, and fulfillment details separately.</small></div></li>
+          <li><span>05</span><div><strong>Review and approve</strong><small>Parents control public approval for minors, and submitted Studio requests follow the existing review process.</small></div></li>
+          <li><span>06</span><div><strong>Share the finished page</strong><small>Use the published Studio as a standalone place for people to see the creator and understand what to do next.</small></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="marketing-section choices-section" aria-labelledby="choices-title">
+      <div class="wrap">
+        <div class="section-heading centered">
+          <p class="section-kicker">Choose the right Creation Station path</p>
+          <h2 id="choices-title">Studio is not the same as Club, one session, or the <span class="hand">Marketplace.</span></h2>
+          <p>These options can connect, but they solve different needs. Joining one does not automatically include or approve another.</p>
+        </div>
+
+        <div class="choice-grid">
+          <article class="choice-card current">
+            <p class="choice-kicker">You are viewing this option</p>
+            <h3>Creation Station Studio</h3>
+            <p>A monthly membership for project and portfolio tools plus the paid personal public creator-page option.</p>
+            <a href="#join">Choose Studio <span aria-hidden="true">â†“</span></a>
+          </article>
+          <article class="choice-card live">
+            <p class="choice-kicker">Live creative connection</p>
+            <h3>Club or One Live Session</h3>
+            <p>Choose monthly Club access for a dependable weekly rhythm, or pay once to attend a single live creative gathering.</p>
+            <a href="creation-station-live-classes.html">Explore Club &amp; Live Sessions <span aria-hidden="true">â†’</span></a>
+          </article>
+          <article class="choice-card marketplace">
+            <p class="choice-kicker">A separate Rebel Ranch program</p>
+            <h3>Rebel Ranch Marketplace</h3>
+            <p>A free local-discovery listing for approved sellers. Creation Station membership is not required and never guarantees Marketplace approval.</p>
+            <a href="marketplace.html">Explore the Free Marketplace <span aria-hidden="true">â†’</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="marketing-section join-section" id="join" aria-labelledby="join-title">
+      <div class="wrap">
+        <div class="section-heading centered">
+          <p class="section-kicker">Monthly Creation Station Studio membership</p>
+          <h2 id="join-title">Give the work somewhere meaningful to <span class="hand">go.</span></h2>
+          <p>Choose Studio for guided creation tools, a private working portfolio, and the personal public page pathway described above.</p>
+        </div>
+
+        <div class="purchase-shell">
+          <article class="purchase-card">
+            <p class="purchase-label">Recurring Studio membership</p>
+            <h3>Creation Station Studio</h3>
+            <p class="purchase-price"><strong>$49.99</strong><span>per month</span></p>
+            <p>For a creator or family ready to organize the creative process, document growth, and build a personal public presence when the work is ready.</p>
+            <ul class="feature-list">
+              <li>Creation Station dashboard and project tools</li>
+              <li>Private working portfolio</li>
+              <li>Creation Station Studio page request</li>
+              <li>Story, products or services, links, and contact paths</li>
+              <li>Parent or guardian control for creators under 18</li>
+            </ul>
+            <button type="button" class="btn paypal-action" data-offer="creator_website">Start Creation Station Studio Â· $49.99/month</button>
+            <p class="billing-note">Recurring PayPal subscription. You will review the payment terms in PayPal before completing checkout.</p>
+            <p id="status" role="status" aria-live="polite"></p>
+            <p class="account-return"><a href="account.html">Already have an account? Return to My Account</a></p>
+          </article>
+
+          <aside class="flow-panel" aria-labelledby="flow-title">
+            <h3 id="flow-title">What happens after you choose</h3>
+            <ol class="flow-steps">
+              <li><span>1</span><div><strong>Sign in or create the adult account</strong><small>The account holder completes checkout and manages the membership.</small></div></li>
+              <li><span>2</span><div><strong>Complete PayPal checkout</strong><small>Review the recurring payment terms and approve the subscription in PayPal.</small></div></li>
+              <li><span>3</span><div><strong>Use the Creation Station dashboard</strong><small>Create profiles, work through projects, and build the private portfolio.</small></div></li>
+              <li><span>4</span><div><strong>Submit the Studio details</strong><small>When ready, enter the public page information separately for review and publication.</small></div></li>
+            </ol>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- OWNER-LOCKED: Shared Creation Station footer. Maintain the component in assets/components/creation-station-footer/. -->
+  <div data-creation-station-footer></div>
+
+  <script src="assets/components/creation-station-footer/footer.js?v=20260803-1" defer></script>
+  <script src="assets/js/site-navigation.js" defer></script>
+  <script src="assets/js/membership-payments.js"></script>
+  <script type="module">
+    import { supabase } from "./assets/js/supabase-client.js";
+
+    const status = document.getElementById("status");
+    const checkoutButton = document.querySelector("[data-offer='creator_website']");
+
+    checkoutButton.addEventListener("click", async () => {
+      status.textContent = "Opening secure PayPal checkoutâ€¦";
+      checkoutButton.disabled = true;
+      try {
+        await window.RebelRanchPayments.startCheckout(supabase, checkoutButton.dataset.offer);
+      } catch (error) {
+        status.textContent = error.message;
+        checkoutButton.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
+
