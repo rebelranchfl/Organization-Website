@@ -2,7 +2,7 @@
 
 **Status:** Owner-directed source of truth
 
-**Last updated:** 2026-08-02
+**Last updated:** 2026-08-04
 
 **Purpose:** Give every person and AI agent the same understanding of the organizations, programs, audiences, user paths, financial boundaries, and current decisions before work begins.
 
@@ -16,6 +16,8 @@ Read this document before planning or changing any Rebel Ranch page, program, wo
 - Keep connected programs connected, but do not combine their identities, offers, access rules, or financial roles.
 - If older project notes conflict with this charter, stop and ask the owner which direction is current.
 - A newer, explicit owner decision may update this charter, but an agent's preference may not.
+
+**Build status (updated 2026-08-04):** Earlier project rules were written when Business Freedom was the only built program and assumed the homepage should not link out to other programs yet. That assumption no longer holds — Creation Station and Rebel Ranch Marketplace now have their own live, built, approved pages. See `docs/rrm-visual-rules.md` for the current homepage linking rule; do not assume single-program-era restrictions still apply without checking there first.
 
 ## 2. Organizational structure
 

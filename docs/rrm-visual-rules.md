@@ -1,8 +1,8 @@
 # Rebel Ranch Ministries Visual Rules
 
 **Status:** Approved and locked  
-**Version:** 2.0  
-**Current rollout:** Phase 1 — homepage and forms reached directly from the homepage  
+**Version:** 2.1  
+**Current rollout:** Phase 1 — homepage and forms reached directly from the homepage. This governs which pages receive Phase 1 styling and structural rebuilds; it does not restrict which already-approved program pages the homepage may link to — see the updated linking rule below.  
 **Authority:** This document supersedes conflicting public-site surface guidance in `brand-guide.md` and `site-design-system.md`.
 
 Every agent must read this document before starting visual, layout, or public-page work. If a requested project or target does not comply with these rules, raise a flag and identify the conflict before changing files.
@@ -50,7 +50,9 @@ Every agent must read this document before starting visual, layout, or public-pa
 
 - Primary buttons use `#C17F24` to `#7B4B13` with cream text.
 - Supporting buttons use `#28502F`, a `#4A7C59` border, and cream text.
-- Homepage program and action links may point only to forms, internal homepage anchors, or the approved direct PayPal destination.
+- Homepage program and action links may point to: forms, internal homepage anchors, the approved direct PayPal destination, or the approved entry page(s) of a program that already has its own live, built pages. As of 2026-08-04 that includes Business Freedom's homepage section, Creation Station, and Rebel Ranch Marketplace. This rule was written when Business Freedom was the only built program; it no longer applies as written now that Creation Station and Marketplace exist as real, approved destinations.
+- A homepage card may link to more than one page within an already-approved program (for example, Creation Station's membership page and its live-sessions page) as long as every destination is an existing, approved page — never a newly invented or unapproved one.
+- Rebel Ranch Academy has no live program page yet. Its homepage card may link only to its interest form, an internal anchor, or stay unlinked, until Academy has an approved page of its own.
 - The shared-header **Support the Mission** link on Phase 1 pages goes directly to `https://www.paypal.com/ncp/payment/QM7MMH9V4LDBY`.
 - Required Privacy Policy and Legal Disclosures links and official social-media links remain available; they are not program-navigation links.
 
