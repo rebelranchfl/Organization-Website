@@ -263,7 +263,83 @@ input:focus, select:focus, textarea:focus { border-color: var(--teal); box-shado
 <body class="young-creators-form-page">
 <a class="skip-link" href="#main">Skip to main content</a>
 
-<!-- OWNER-LOCKED: Approved Creati…1762 tokens truncated…ss="field"><label for="childName">Child's full name <span class="required">*</span></label><input id="childName" name="child_full_name" type="text" required></div>
+<!-- OWNER-LOCKED: Approved Creation Station public header. Preserve this structure and treatment unless the owner explicitly authorizes a change. See docs/creation-station-visual-rules.md. -->
+<header class="site-header topbar" data-site-nav>
+  <div class="wrap site-nav">
+    <a class="brand" href="creation.html" aria-label="Creation Station home">
+      <img src="assets/creation-station-logo.png" alt="Creation Station logo" width="220" height="220">
+      <span class="brand-text"><strong>Creation Station</strong><small>by Rebel Ranch Ministries</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation" data-nav-toggle>
+      <span class="nav-toggle-bars" aria-hidden="true"></span>
+    </button>
+    <nav class="nav-menu" id="primary-navigation" aria-label="Primary" data-nav-menu data-open="false">
+      <a href="creation.html#paths">Choose Your Path</a>
+      <a href="creation.html#more-than-craft">What They Build</a>
+      <a href="creation-station-experience.html">See the Experience</a>
+      <a href="creation-station-live-classes.html">Live Sessions</a>
+      <a class="rrm-return" href="index.html">Rebel Ranch Ministries</a>
+      <a class="btn primary" href="#registration-heading">Start Creating</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="registration-hero" aria-labelledby="page-title">
+  <div class="wrap">
+    <img class="hero-logo" src="assets/creation-station-logo.png" alt="" aria-hidden="true">
+    <p class="script hand"><span class="rainbow">A creative hour</span> for them. A little <span class="rainbow">breathing room for you.</span></p>
+    <h1 id="page-title">Sign Up Now</h1>
+    <p class="hero-copy"><strong class="hero-orange">One live online hour each week</strong> where young creators <span class="hero-orange">make, talk, laugh, and create</span> alongside other children.</p>
+  </div>
+</section>
+
+<div class="form-wrap">
+<section class="form-card" aria-labelledby="registration-heading">
+<div id="formContent">
+  <div class="form-top">
+    <h2 id="registration-heading">Creation Station Parent Approval Form</h2>
+    <p>Three quick steps. A parent or legal guardian completes the form, then chooses a weekly session time.</p>
+  </div>
+
+  <div class="progress-region" aria-label="Registration progress">
+    <div class="progress-label"><span id="stepLabel">Step 1 of 3</span><span id="stepPercent">33% complete</span></div>
+    <div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="step-nav" role="navigation" aria-label="Registration steps">
+      <button type="button" data-jump="1" aria-current="step">1. Parent</button>
+      <button type="button" data-jump="2">2. Creator</button>
+      <button type="button" data-jump="3">3. Permission</button>
+    </div>
+  </div>
+
+  <form id="registrationForm" action="https://formspree.io/f/xnjrqydq" method="POST" novalidate>
+    <input type="hidden" name="_subject" value="New Creation Station Weekly Craft Circle Registration">
+    <input type="hidden" name="form_name" value="Creation Station Weekly Craft Circle Registration">
+    <input type="hidden" name="source_path" id="sourcePath" value="Direct registration">
+
+    <section class="form-step" data-step="1">
+      <div class="step-heading"><div class="step-number">1</div><div><h3>Parent Information</h3><p>Where should we send session details?</p></div></div>
+
+      <div class="grid-2">
+        <div class="field"><label for="guardianName">Parent / legal guardian name <span class="required">*</span></label><input id="guardianName" name="guardian_name" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="relationship">Your relationship to the child <span class="required">*</span></label><select id="relationship" name="relationship_to_child" required><option value="">Choose one</option><option>Parent</option><option>Legal guardian</option><option>I am not the parent or legal guardian</option></select></div>
+      </div>
+
+      <div id="otherAdultNotice" class="conditional stop" hidden><strong>A parent or legal guardian needs to complete this sign-up.</strong></div>
+
+      <div class="grid-2">
+        <div class="field"><label for="guardianEmail">Email <span class="required">*</span></label><input id="guardianEmail" name="guardian_email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="guardianPhone">Phone number <span class="required">*</span></label><input id="guardianPhone" name="guardian_phone" type="tel" autocomplete="tel" required></div>
+      </div>
+
+      <div class="form-actions"><button class="action primary" type="button" data-next>Next: Your Creator →</button></div>
+    </section>
+
+    <section class="form-step" data-step="2" hidden>
+      <div class="step-heading"><div class="step-number">2</div><div><h3>Your Young Creator</h3><p>Just the basics for their weekly craft circle.</p></div></div>
+
+      <div class="grid-2">
+        <div class="field"><label for="childName">Child's full name <span class="required">*</span></label><input id="childName" name="child_full_name" type="text" required></div>
         <div class="field"><label for="screenName">First name or nickname used in class <span class="required">*</span></label><input id="screenName" name="child_session_name" type="text" required><p class="hint">Only this name will be used during the live session.</p></div>
       </div>
 
