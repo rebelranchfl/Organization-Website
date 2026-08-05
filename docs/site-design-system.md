@@ -101,22 +101,23 @@ When describing the Marketplace:
 
 Every visible public page and public form uses the shared public header from `assets/js/public-shell.js`. Do not create or edit page-specific header markup or styling.
 
-The navigation is:
+**Updated 2026-08-05** (owner-directed nav rework — see `rrm-visual-rules.md` v2.2): the navigation is now:
 
 - Home
-- What We’re Building
-- Partner With Us
+- Programs (dropdown) — Business Freedom, Creation Station, Marketplace, Partner With Us
 - Support the Mission
 - Contact
 
 Destinations:
 
-- **What We’re Building** → `index.html#start`
-- **Partner With Us** → `align-interest.html`
-- **Support the Mission** → `https://www.paypal.com/ncp/payment/QM7MMH9V4LDBY` on Phase 1 pages
+- **Business Freedom** (in Programs dropdown) → `index.html#business-freedom`
+- **Creation Station** (in Programs dropdown) → `creation.html`
+- **Marketplace** (in Programs dropdown) → `marketplace.html`
+- **Partner With Us** (in Programs dropdown) → `align-interest.html`
+- **Support the Mission** → `support.html` (previously went straight to PayPal; that direct link now lives as the on-page "Choose Your Support Amount" button on both the homepage and `support.html`)
 - **Contact** → `contact.html`
 
-Do not add Business Freedom to the main navigation. Business Freedom is introduced on the homepage and is reached there by scrolling to the service choices.
+The old rule "do not add Business Freedom to the main navigation" no longer applies — the header was overloading as more programs went live, so Business Freedom, Creation Station, and Marketplace were grouped into one "Programs" dropdown instead of listed inline. See `assets/js/public-shell.js` and `.rrm-nav-dropdown` in `assets/css/public-surface.css`.
 
 Creation Station is not part of the Phase 1 public-surface rollout and retains its separate approved visual system.
 

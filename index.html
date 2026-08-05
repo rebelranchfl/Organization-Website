@@ -394,6 +394,11 @@ body > .rr-page > .nav {
 .bf-grid{align-items:start}.bf-detail-card{display:block;min-height:0}.bf-detail-card>div:first-child{display:block;flex:none}.bf-detail-card .summary p:nth-child(n+2){display:none}.bf-detail-card .summary p{margin:0 0 12px}.bf-detail-card .card-actions{margin-top:16px}.bf-detail-card.monthly h3{font-size:24px;line-height:1.16}.bf-detail-card .included-access{margin-top:12px}.bf-detail-card .included-access li{margin-bottom:8px}
 /* Recovered launch-layout rules */
 .homestead-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.homestead-gallery img{width:100%;height:280px;object-fit:cover;border-radius:22px;border:1px solid #284a29}.mission-overview{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}.mission-overview h2,.partnership-section h2,.support-section h2{font-size:clamp(32px,4.5vw,56px);line-height:1.02;margin:0 0 18px}.mission-overview p,.partnership-section p,.support-section p{font-size:18px;max-width:760px}.partnership-section,.support-section{text-align:center;padding:clamp(44px,7vw,82px) 8vw;border-top:1px solid var(--line)}.partnership-section>div,.support-section>div{max-width:850px;margin:auto}.business-intro{grid-template-columns:1fr}.business-intro .panel.d1{display:none}.footer-logo{width:54px;height:54px}.footer-links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;grid-column:2}.footer-legal,.copyright{grid-column:1/-1;margin:12px auto 0;font-size:13px}.copyright{margin-top:4px;font-size:12px}@media(max-width:900px){.homestead-gallery,.mission-overview{grid-template-columns:1fr}.homestead-gallery img{height:240px}}
+/* Community voices / testimonials */
+#community-voices{text-align:center;padding:clamp(44px,7vw,82px) 8vw;border-top:1px solid var(--line)}.testimonial-grid{text-align:left}.testimonial-card{display:flex;flex-direction:column;gap:16px}.testimonial-card .quote{margin:0;font-size:19px;line-height:1.5;color:#F0EDD8}.testimonial-card .quote:before{content:"\201C";color:var(--gold2);font-weight:900}.testimonial-card .quote:after{content:"\201D";color:var(--gold2);font-weight:900}.testimonial-card .attribution{margin:0;font-weight:800;color:var(--green);font-size:15px}.testimonial-card .attribution small{display:block;margin-top:2px;color:#a39d80;text-transform:uppercase;letter-spacing:.08em;font-size:11px;font-weight:700}
+/* In-development cards read as lighter/less urgent than live programs */
+.card.in-development{opacity:.86}.card.in-development:before{background:var(--green2)}
+.testimonial-disclaimer{margin:22px 0 0;text-align:center;color:#a39d80;font-size:13px}
 </style>
   <link rel="stylesheet" href="assets/css/public-surface.css">
   <script src="assets/js/public-shell.js" defer></script>
@@ -409,7 +414,7 @@ body > .rr-page > .nav {
     <div class="hero-copy reveal">
       <div class="eyebrow">Faith · Family · Freedom</div>
       <h1>Real People. Real Work. Real Freedom.</h1>
-      <p class="lead">Rebel Ranch Ministries helps people and small businesses create a happier and more sustainable life with greater freedom and control over our time, income, education, food, families, children and our future.</p>
+      <p class="lead">We help hardworking families and small business owners take back control of their time, income, and future &mdash; through real, hands-on help, not just advice.</p>
       <div class="buttons">
         <a class="btn" href="align-interest.html">Partner With Us</a>
         <a class="btn gold" href="#business-freedom">Explore Business Freedom</a>
@@ -654,7 +659,7 @@ body > .rr-page > .nav {
    <div class="origin-story reveal d1">
     <p>Whether we were buying raw milk, scoring local honey or just enjoying the small town community vibe; every person we met was going through the same thing: high prices, unaffordability, families to support and kids to raise - with no real help or support from the community around them. Our purpose became clear: connect hardworking people and useful skills to practical solutions.</p>
     <p>Many outreach programs help people access services or pay another business for help. That support matters—but far too few help the person doing valuable work get paid. Rebel Ranch Ministries starts at the source. Through community partnerships, including 3P Help Me, a business solutions and consulting company, we help people strengthen the skills, products, services, and small businesses that can generate income of their own.</p>
-    <p>Funds are fuel. Without them, hardworking people can remain trapped in survival mode. We help build practical paths and create solutions so your hard work and effort can really pay off, so you can get the support and resources you need to get paid, support your family and live the life you want to live. Our methods and programs are designed to strengthen businesses, family foundations, and communities from the ground up.</p>
+    <p>That&rsquo;s the whole idea behind what follows &mdash; practical paths built from the ground up, not advice handed down from outside the community.</p>
    </div>
   </section>
 
@@ -663,7 +668,7 @@ body > .rr-page > .nav {
    <div class="section-head reveal">
     <div class="eyebrow">What We Are Building</div>
     <h2>What We Are Building Together.</h2>
-    <p>Some paths are available now. Others are still being built. Every part of Rebel Ranch Ministries is designed to connect real people, real skills, and real community around work that strengthens families and creates opportunity.</p>
+    <p>Some paths are available now. Others are still being built &mdash; each one clearly labeled so you always know what you can act on today.</p>
    </div>
 
    <div class="grid">
@@ -714,7 +719,7 @@ body > .rr-page > .nav {
       </div>
      </details>
     </div>
-    <div class="card reveal d2">
+    <div class="card in-development reveal d2">
      <div class="icon">📚</div>
      <h3>Rebel Ranch Academy — In Development</h3>
      <p class="card-headline">Real Life Skills for the Real World.</p>
@@ -770,6 +775,29 @@ body > .rr-page > .nav {
      </form>
     </div>
    </dialog>
+  </section>
+
+  <!-- COMMUNITY VOICES -->
+  <section id="community-voices">
+   <div class="section-head reveal">
+    <div class="eyebrow">Proof, Not Promises</div>
+    <h2>It&rsquo;s already working.</h2>
+   </div>
+   <div class="grid testimonial-grid reveal">
+    <div class="card testimonial-card">
+     <p class="quote">I&rsquo;ve never seen an app that allows kids to learn so many different skills in one.</p>
+     <p class="attribution">Sarah G.<small>Creation Station</small></p>
+    </div>
+    <div class="card testimonial-card">
+     <p class="quote">It was so nice to make dinner without 100 interruptions &mdash; Mary enjoyed it too!</p>
+     <p class="attribution">Kelly<small>Creation Station</small></p>
+    </div>
+    <div class="card testimonial-card">
+     <p class="quote">RRM got our invoices, estimates &amp; payment methods automated and synchronized &mdash; now we never see a delay in funds!</p>
+     <p class="attribution">Handy Hands<small>Business Freedom</small></p>
+    </div>
+   </div>
+   <p class="testimonial-disclaimer">Real people, real programs &mdash; results are specific to each family and business and are not guaranteed.</p>
   </section>
 
   <!-- PARTNERSHIP -->

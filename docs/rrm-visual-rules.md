@@ -1,7 +1,7 @@
 # Rebel Ranch Ministries Visual Rules
 
 **Status:** Approved and locked  
-**Version:** 2.1  
+**Version:** 2.2  
 **Current rollout:** Phase 1 — homepage and forms reached directly from the homepage. This governs which pages receive Phase 1 styling and structural rebuilds; it does not restrict which already-approved program pages the homepage may link to — see the updated linking rule below.  
 **Authority:** This document supersedes conflicting public-site surface guidance in `brand-guide.md` and `site-design-system.md`.
 
@@ -9,7 +9,7 @@ Every agent must read this document before starting visual, layout, or public-pa
 
 ## Phase 1 boundary
 
-- Phase 1 applies only to `index.html`, `align-interest.html`, `business-request.html`, `support-supplies-interest.html`, and `contact.html`.
+- Phase 1 applies only to `index.html`, `align-interest.html`, `business-request.html`, `support-supplies-interest.html`, `contact.html`, and `support.html` (added 2026-08-05: `support.html` was reconnected to the shared header/footer shell and given a "cost behind the help" section per owner request — see the shared-header rule below).
 - Do not migrate, restyle, or otherwise change any other repository page as part of Phase 1.
 - Creation Station has an intentionally separate visual system. Do not touch Creation Station files, pages, or components unless the user gives separate, explicit authorization.
 - Future rules will be applied in later phases. A Phase 1 task never grants permission to perform a site-wide conversion.
@@ -53,7 +53,8 @@ Every agent must read this document before starting visual, layout, or public-pa
 - Homepage program and action links may point to: forms, internal homepage anchors, the approved direct PayPal destination, or the approved entry page(s) of a program that already has its own live, built pages. As of 2026-08-04 that includes Business Freedom's homepage section, Creation Station, and Rebel Ranch Marketplace. This rule was written when Business Freedom was the only built program; it no longer applies as written now that Creation Station and Marketplace exist as real, approved destinations.
 - A homepage card may link to more than one page within an already-approved program (for example, Creation Station's membership page and its live-sessions page) as long as every destination is an existing, approved page — never a newly invented or unapproved one.
 - Rebel Ranch Academy has no live program page yet. Its homepage card may link only to its interest form, an internal anchor, or stay unlinked, until Academy has an approved page of its own.
-- The shared-header **Support the Mission** link on Phase 1 pages goes directly to `https://www.paypal.com/ncp/payment/QM7MMH9V4LDBY`.
+- As of 2026-08-05, the shared-header nav groups Business Freedom, Creation Station, Marketplace, and Partner With Us under a single "Programs" dropdown (`.rrm-nav-dropdown` in `assets/js/public-shell.js` / `assets/css/public-surface.css`) instead of listing each inline, to keep the header from overloading. Home, the Programs dropdown, Support the Mission, and Contact remain the only top-level items.
+- The shared-header **Support the Mission** link now goes to `support.html` (updated 2026-08-05 — previously went straight to the PayPal link below). `support.html` gives visitors the cost/mission context before asking for a payment. The direct PayPal link (`https://www.paypal.com/ncp/payment/QM7MMH9V4LDBY`) is still used by the on-page "Choose Your Support Amount" buttons on both the homepage and `support.html` itself.
 - Required Privacy Policy and Legal Disclosures links and official social-media links remain available; they are not program-navigation links.
 
 ## Locked spacing
