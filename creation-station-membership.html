@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Creation Station Studio Membership | Create, Build &amp; Share</title>
-  <meta name="description" content="Creation Station Studio is a monthly membership for children, teens, and adult makers who want guided project tools, a private working portfolio, and a personal public creator page.">
+  <meta name="description" content="Creation Station Studio offers two monthly tiers for children, teens, and adult makers: guided project tools with a private portfolio, or the same plus a personal public creator page. Starting at $9.99/month.">
   <link rel="stylesheet" href="assets/css/site-core.css">
   <link rel="stylesheet" href="assets/css/creation-station.css">
   <style>
@@ -511,6 +511,50 @@
       margin: 2.2rem auto 0;
     }
 
+    .studio-membership-page .tier-grid {
+      display: grid;
+      gap: 1rem;
+      max-width: 68rem;
+      margin: 2.2rem auto 0;
+    }
+
+    .studio-membership-page .bundle-heading {
+      max-width: 68rem;
+      margin: 3rem auto 0;
+      text-align: center;
+    }
+
+    .studio-membership-page .bundle-heading h3 {
+      margin: 0 0 .4rem;
+      color: #fff;
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      letter-spacing: -.04em;
+    }
+
+    .studio-membership-page .bundle-heading p {
+      margin: 0;
+      color: #f1e6f4;
+      font-weight: 700;
+    }
+
+    .studio-membership-page .purchase-card.bundle::before {
+      background: linear-gradient(90deg, var(--teal), var(--aqua, #18c2cd));
+    }
+
+    .studio-membership-page .purchase-card.bundle .purchase-label { color: var(--teal); }
+    .studio-membership-page .purchase-card.bundle .purchase-price strong { color: var(--pink); }
+
+    .studio-membership-page .purchase-card .savings-note {
+      margin: -.4rem 0 .85rem;
+      color: var(--teal);
+      font-weight: 900;
+      font-size: .85rem;
+    }
+
+    @media (min-width: 48rem) {
+      .studio-membership-page .tier-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+    }
+
     .studio-membership-page .purchase-card,
     .studio-membership-page .flow-panel {
       background: rgba(255, 255, 255, .97);
@@ -621,8 +665,16 @@
     }
 
     .studio-membership-page .flow-panel {
+      max-width: 46rem;
+      margin: 2rem auto 0;
       padding: 1.5rem;
       color: var(--ink);
+    }
+
+    .studio-membership-page .account-return,
+    .studio-membership-page #status {
+      max-width: 68rem;
+      margin-inline: auto;
     }
 
     .studio-membership-page .flow-panel h3 {
@@ -727,14 +779,14 @@
     <section class="hero studio-hero" aria-labelledby="hero-title">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">Creation Station Studio · Monthly Membership</p>
+          <p class="eyebrow">Creation Station Studio · Two Monthly Tiers</p>
           <h1 id="hero-title">Give creative work a place to <span class="hand">grow—and be seen.</span></h1>
-          <p class="hero-lead">Creation Station Studio brings the creative journey together: guided project tools, a private working portfolio, and a personal public page for sharing a creator’s story, products or services, ordering information, and contact choices.</p>
+          <p class="hero-lead">Every Studio membership includes guided project tools and a private working portfolio. Upgrade to Studio + Landing Page to add a personal public page for sharing a creator’s story, products or services, ordering information, and contact choices.</p>
           <p class="hero-skills">It is built for Young Creators, Teen Creators, and Adult Makers—with parent or guardian control over every public step for anyone under 18.</p>
           <div class="hero-proof" aria-label="Creation Station Studio membership features">
-            <span>Project guidance</span>
+            <span>Starts at $9.99/mo</span>
             <span>Private portfolio</span>
-            <span>Personal Studio page</span>
+            <span>Optional public Studio page</span>
             <span>Parent-visible</span>
           </div>
           <div class="button-row hero-actions">
@@ -765,15 +817,15 @@
     <section class="marketing-section inside-section" id="inside" aria-labelledby="inside-title">
       <div class="wrap">
         <div class="section-heading centered">
-          <p class="section-kicker">One membership · Two connected spaces</p>
+          <p class="section-kicker">Two tiers · Same dashboard, different reach</p>
           <h2 id="inside-title">Build privately. Share <span class="hand">intentionally.</span></h2>
-          <p>The dashboard and the public Studio page serve different purposes. The private side helps creators do the work. The public side gives selected finished work a place to be presented clearly.</p>
+          <p>Every Studio tier includes the private dashboard. The public Studio page is an upgrade for creators ready to share and sell selected work.</p>
         </div>
 
         <div class="space-grid">
           <article class="space-card private">
             <div class="space-number" aria-hidden="true">01</div>
-            <p class="section-kicker light">Inside the member dashboard</p>
+            <p class="section-kicker light">Included in every Studio tier · $9.99/mo</p>
             <h3>Projects &amp; Private Portfolio</h3>
             <p>Creators can move ideas through real stages, keep track of progress, document what they made, and build a working record of effort and growth.</p>
             <ul class="feature-list">
@@ -787,9 +839,9 @@
 
           <article class="space-card public">
             <div class="space-number" aria-hidden="true">02</div>
-            <p class="section-kicker">The paid public-facing option</p>
-            <h3>Creation Station Studio</h3>
-            <p>A standalone creator page can organize the creator’s identity and work in one colorful, shareable place without turning the page into a full online store.</p>
+            <p class="section-kicker">Studio + Landing Page tier only · $19.99/mo</p>
+            <h3>Creation Station Studio Page</h3>
+            <p>A standalone creator page can organize the creator’s identity and work in one colorful, shareable place without turning the page into a full online store. Select which portfolio pieces become public inventory when you're ready.</p>
             <ul class="feature-list">
               <li>Creator or brand name and personal story</li>
               <li>Products or services with photos and descriptions</li>
@@ -909,8 +961,8 @@
           <article class="choice-card current">
             <p class="choice-kicker">You are viewing this option</p>
             <h3>Creation Station Studio</h3>
-            <p>A monthly membership for project and portfolio tools plus the paid personal public creator-page option.</p>
-            <a href="#join">Choose Studio <span aria-hidden="true">↓</span></a>
+            <p>Two monthly tiers, starting at $9.99: project and portfolio tools, with an upgrade to add the paid personal public creator page. Bundle either tier with Club for a lower combined price.</p>
+            <a href="#join">Choose a tier <span aria-hidden="true">↓</span></a>
           </article>
           <article class="choice-card live">
             <p class="choice-kicker">Live creative connection</p>
@@ -933,15 +985,29 @@
         <div class="section-heading centered">
           <p class="section-kicker">Monthly Creation Station Studio membership</p>
           <h2 id="join-title">Give the work somewhere meaningful to <span class="hand">go.</span></h2>
-          <p>Choose Studio for guided creation tools, a private working portfolio, and the personal public page pathway described above.</p>
+          <p>Choose Studio for guided creation tools and a private working portfolio, or upgrade to add the personal public page pathway described above.</p>
         </div>
 
-        <div class="purchase-shell">
+        <div class="tier-grid">
           <article class="purchase-card">
-            <p class="purchase-label">Recurring Studio membership</p>
+            <p class="purchase-label">Studio membership</p>
             <h3>Creation Station Studio</h3>
-            <p class="purchase-price"><strong>$49.99</strong><span>per month</span></p>
-            <p>For a creator or family ready to organize the creative process, document growth, and build a personal public presence when the work is ready.</p>
+            <p class="purchase-price"><strong>$9.99</strong><span>per month</span></p>
+            <p>For a creator or family ready to organize the creative process and document growth, without a public page yet.</p>
+            <ul class="feature-list">
+              <li>Creation Station dashboard and project tools</li>
+              <li>Private working portfolio</li>
+              <li>Parent or guardian control for creators under 18</li>
+            </ul>
+            <button type="button" class="btn paypal-action" data-offer="young_creator_family">Start Studio · $9.99/month</button>
+            <p class="billing-note">Recurring PayPal subscription. You will review the payment terms in PayPal before completing checkout.</p>
+          </article>
+
+          <article class="purchase-card">
+            <p class="purchase-label">Studio + Landing Page</p>
+            <h3>Creation Station Studio + Landing Page</h3>
+            <p class="purchase-price"><strong>$19.99</strong><span>per month</span></p>
+            <p>Everything in Studio, plus the personal public Studio page for sharing and selling selected portfolio work.</p>
             <ul class="feature-list">
               <li>Creation Station dashboard and project tools</li>
               <li>Private working portfolio</li>
@@ -949,22 +1015,61 @@
               <li>Story, products or services, links, and contact paths</li>
               <li>Parent or guardian control for creators under 18</li>
             </ul>
-            <button type="button" class="btn paypal-action" data-offer="creator_website">Start Creation Station Studio · $49.99/month</button>
+            <button type="button" class="btn paypal-action" data-offer="creator_website">Start Studio + Landing Page · $19.99/month</button>
             <p class="billing-note">Recurring PayPal subscription. You will review the payment terms in PayPal before completing checkout.</p>
-            <p id="status" role="status" aria-live="polite"></p>
-            <p class="account-return"><a href="account.html">Already have an account? Return to My Account</a></p>
+          </article>
+        </div>
+
+        <div class="bundle-heading">
+          <h3>Bundle with Club &amp; save</h3>
+          <p>Add the weekly Club gathering to either Studio tier for one combined monthly price.</p>
+        </div>
+
+        <div class="tier-grid">
+          <article class="purchase-card bundle">
+            <p class="purchase-label">Bundle · Club + Studio</p>
+            <h3>Club + Studio</h3>
+            <p class="purchase-price"><strong>$54.99</strong><span>per month</span></p>
+            <p class="savings-note">Save $5/mo vs. Club + Studio separately ($59.98)</p>
+            <p>Weekly Club access plus the Studio dashboard and private portfolio, on one membership.</p>
+            <ul class="feature-list">
+              <li>Weekly Creation Station Club sessions</li>
+              <li>Creation Station dashboard and project tools</li>
+              <li>Private working portfolio</li>
+            </ul>
+            <button type="button" class="btn paypal-action" data-offer="club_studio_bundle">Start Club + Studio · $54.99/month</button>
+            <p class="billing-note">Recurring PayPal subscription. You will review the payment terms in PayPal before completing checkout.</p>
           </article>
 
-          <aside class="flow-panel" aria-labelledby="flow-title">
-            <h3 id="flow-title">What happens after you choose</h3>
-            <ol class="flow-steps">
-              <li><span>1</span><div><strong>Sign in or create the adult account</strong><small>The account holder completes checkout and manages the membership.</small></div></li>
-              <li><span>2</span><div><strong>Complete PayPal checkout</strong><small>Review the recurring payment terms and approve the subscription in PayPal.</small></div></li>
-              <li><span>3</span><div><strong>Use the Creation Station dashboard</strong><small>Create profiles, work through projects, and build the private portfolio.</small></div></li>
-              <li><span>4</span><div><strong>Submit the Studio details</strong><small>When ready, enter the public page information separately for review and publication.</small></div></li>
-            </ol>
-          </aside>
+          <article class="purchase-card bundle">
+            <p class="purchase-label">Bundle · All Access</p>
+            <h3>Club + Studio + Landing Page</h3>
+            <p class="purchase-price"><strong>$59.99</strong><span>per month</span></p>
+            <p class="savings-note">Save $9.99/mo vs. buying separately ($69.98)</p>
+            <p>Weekly Club access plus the full Studio tier, including the public Studio page.</p>
+            <ul class="feature-list">
+              <li>Weekly Creation Station Club sessions</li>
+              <li>Creation Station dashboard and project tools</li>
+              <li>Private working portfolio</li>
+              <li>Creation Station Studio page request</li>
+            </ul>
+            <button type="button" class="btn paypal-action" data-offer="club_all_access_bundle">Start All Access · $59.99/month</button>
+            <p class="billing-note">Recurring PayPal subscription. You will review the payment terms in PayPal before completing checkout.</p>
+          </article>
         </div>
+
+        <p id="status" role="status" aria-live="polite"></p>
+        <p class="account-return"><a href="account.html">Already have an account? Return to My Account</a></p>
+
+        <aside class="flow-panel" aria-labelledby="flow-title">
+          <h3 id="flow-title">What happens after you choose</h3>
+          <ol class="flow-steps">
+            <li><span>1</span><div><strong>Sign in or create the adult account</strong><small>The account holder completes checkout and manages the membership.</small></div></li>
+            <li><span>2</span><div><strong>Complete PayPal checkout</strong><small>Review the recurring payment terms and approve the subscription in PayPal.</small></div></li>
+            <li><span>3</span><div><strong>Use the Creation Station dashboard</strong><small>Create profiles, work through projects, and build the private portfolio.</small></div></li>
+            <li><span>4</span><div><strong>Submit the Studio details</strong><small>If your tier includes the public page, enter that information separately for review and publication.</small></div></li>
+          </ol>
+        </aside>
       </div>
     </section>
   </main>
@@ -979,17 +1084,19 @@
     import { supabase } from "./assets/js/supabase-client.js";
 
     const status = document.getElementById("status");
-    const checkoutButton = document.querySelector("[data-offer='creator_website']");
+    const checkoutButtons = document.querySelectorAll("[data-offer]");
 
-    checkoutButton.addEventListener("click", async () => {
-      status.textContent = "Opening secure PayPal checkout…";
-      checkoutButton.disabled = true;
-      try {
-        await window.RebelRanchPayments.startCheckout(supabase, checkoutButton.dataset.offer);
-      } catch (error) {
-        status.textContent = error.message;
-        checkoutButton.disabled = false;
-      }
+    checkoutButtons.forEach((checkoutButton) => {
+      checkoutButton.addEventListener("click", async () => {
+        status.textContent = "Opening secure PayPal checkout…";
+        checkoutButtons.forEach((button) => { button.disabled = true; });
+        try {
+          await window.RebelRanchPayments.startCheckout(supabase, checkoutButton.dataset.offer);
+        } catch (error) {
+          status.textContent = error.message;
+          checkoutButtons.forEach((button) => { button.disabled = false; });
+        }
+      });
     });
   </script>
 </body>
