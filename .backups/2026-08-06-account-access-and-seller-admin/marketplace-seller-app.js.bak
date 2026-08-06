@@ -270,25 +270,6 @@ function bindScreen(){
     await refresh();
     message('Requirement marked not applicable.');
   }));
-  root.querySelectorAll('[data-pause-seller]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
-    const {error}=await adminActions.pauseSeller(b.dataset.pauseSeller);
-    if(error)throw error;
-    await refresh();
-    message('Seller paused — removed from the public directory.');
-  }));
-  root.querySelectorAll('[data-archive-seller]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
-    if(!confirm('Archive this seller? They will be removed from the public directory until reactivated.'))return;
-    const {error}=await adminActions.archiveSeller(b.dataset.archiveSeller);
-    if(error)throw error;
-    await refresh();
-    message('Seller archived.');
-  }));
-  root.querySelectorAll('[data-reactivate-seller]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
-    const {error}=await adminActions.reactivateSeller(b.dataset.reactivateSeller);
-    if(error)throw error;
-    await refresh();
-    message('Seller reactivated.');
-  }));
 }
 
 async function openReviewDialog(applicationId,sellerProfileId){

@@ -65,12 +65,11 @@ export async function loadSellerAdminSummary(){
   const results=await Promise.all([
     supabase.from('seller_applications').select('id,seller_profile_id,application_type,status,legal_business_name,submitted_at,seller_profiles(business_name,marketplace_path)').eq('status','submitted').order('submitted_at'),
     supabase.from('seller_credentials').select('id,seller_profile_id,credential_type,verification_status,created_at,seller_profiles(business_name)').eq('verification_status','pending').order('created_at'),
-    supabase.from('seller_requirement_assignments').select('id,seller_profile_id,requirement_id,assignment_status,assigned_at,compliance_requirements(title),seller_profiles(business_name)').eq('assignment_status','pending').order('assigned_at'),
-    supabase.from('seller_profiles').select('id,business_name,marketplace_path,profile_status').in('profile_status',['active','paused','archived']).order('business_name')
+    supabase.from('seller_requirement_assignments').select('id,seller_profile_id,requirement_id,assignment_status,assigned_at,compliance_requirements(title),seller_profiles(business_name)').eq('assignment_status','pending').order('assigned_at')
   ]);
   fail(results);
-  const [applications,credentials,requirements,sellers]=results;
-  return {applicationQueue:applications.data,credentialQueue:credentials.data,requirementQueue:requirements.data,sellerQueue:sellers.data};
+  const [applications,credentials,requirements]=results;
+  return {applicationQueue:applications.data,credentialQueue:credentials.data,requirementQueue:requirements.data};
 }
 
 export async function loadApplicationDetail(sellerProfileId,applicationId){
@@ -216,14 +215,5 @@ export const adminActions={
   },
   async getDocumentUrl(path){
     return supabase.storage.from('marketplace-seller-private').createSignedUrl(path,300);
-  },
-  async pauseSeller(sellerProfileId){
-    return supabase.from('seller_profiles').update({profile_status:'paused'}).eq('id',sellerProfileId);
-  },
-  async archiveSeller(sellerProfileId){
-    return supabase.from('seller_profiles').update({profile_status:'archived'}).eq('id',sellerProfileId);
-  },
-  async reactivateSeller(sellerProfileId){
-    return supabase.from('seller_profiles').update({profile_status:'active'}).eq('id',sellerProfileId);
   }
 };
