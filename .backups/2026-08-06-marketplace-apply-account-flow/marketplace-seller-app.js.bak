@@ -1,6 +1,5 @@
 import {loadSellerIdentity,loadSellerWorkspace,loadSellerAdminSummary,loadApplicationDetail,actions,adminActions} from './marketplace-seller-data.js';
 import {renderers} from './marketplace-seller-views.js';
-import {supabase} from './supabase-client.js';
 
 const $=id=>document.getElementById(id);
 const state={identity:null,data:null,adminData:null,view:'status',busy:false};
@@ -310,60 +309,6 @@ async function openReviewDialog(applicationId,sellerProfileId){
   $('review-dialog').showModal();
 }
 
-function showAccountStep(){$('account-step').classList.remove('hidden');$('business-step').classList.add('hidden')}
-function showBusinessStep(){$('account-step').classList.add('hidden');$('business-step').classList.remove('hidden')}
-
-async function afterSignedIn(){
-  if(!state.identity.sellerProfile){showBusinessStep();bindOnboardingForm();return}
-  state.data=await loadSellerWorkspace(state.identity);
-  if(state.identity.isAdmin)state.adminData=await loadSellerAdminSummary();
-  $('create-profile').classList.add('hidden');
-  $('workspace').classList.remove('hidden');
-  state.view=chooseInitial();
-  render();
-}
-
-function bindAccountStep(){
-  const switchEl=$('account-mode-switch');
-  const signinForm=$('signin-form');
-  const signupForm=$('signup-form');
-
-  switchEl.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{
-    switchEl.querySelectorAll('[data-mode]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
-    signinForm.classList.toggle('hidden',b.dataset.mode!=='signin');
-    signupForm.classList.toggle('hidden',b.dataset.mode!=='signup');
-  });
-
-  signinForm.onsubmit=e=>{
-    e.preventDefault();
-    withBusy(e.submitter,async()=>{
-      const {error}=await supabase.auth.signInWithPassword({email:$('si-email').value.trim(),password:$('si-password').value});
-      if(error)throw error;
-      state.identity=await loadSellerIdentity();
-      await afterSignedIn();
-    });
-  };
-
-  signupForm.onsubmit=e=>{
-    e.preventDefault();
-    withBusy(e.submitter,async()=>{
-      const password=$('su-password').value,confirmPassword=$('su-confirm-password').value;
-      if(password!==confirmPassword)throw new Error('Passwords do not match.');
-      const {error}=await supabase.auth.signUp({
-        email:$('su-email').value.trim(),
-        password,
-        options:{
-          emailRedirectTo:'https://rebelranchministries.org/auth-confirm.html?next=marketplace-seller-dashboard.html',
-          data:{display_name:$('su-name').value.trim()}
-        }
-      });
-      if(error)throw error;
-      signupForm.reset();
-      message('Your account request was received. Check your email and use the confirmation link before signing in.');
-    });
-  };
-}
-
 function bindOnboardingForm(){
   const pathSelect=$('ob-marketplace-path');
   const categoryList=$('ob-categories');
@@ -418,16 +363,10 @@ window.addEventListener('hashchange',()=>{
 async function init(){
   try{
     state.identity=await loadSellerIdentity();
+    if(!state.identity)return showAccess('Sign in to continue','Your seller dashboard is protected by your Rebel Ranch Ministries account.');
     $('loading').classList.add('hidden');
-    if(!state.identity){
-      $('create-profile').classList.remove('hidden');
-      showAccountStep();
-      bindAccountStep();
-      return;
-    }
     if(!state.identity.sellerProfile){
       $('create-profile').classList.remove('hidden');
-      showBusinessStep();
       bindOnboardingForm();
       return;
     }

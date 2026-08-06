@@ -1,12 +1,13 @@
-/* Marketplace seller/admin dashboard. Authorized Phase 1 scope exception
-   (see docs/rrm-visual-rules.md, which supersedes docs/brand-guide.md for
-   page backgrounds, cards, and buttons) — 2026-08-05. Page background is
-   the locked flat Phase 1 green; card/hero/panel surfaces use the locked
-   #1D4024->#122A18 fade; gold remains the only fill for primary buttons,
-   green stays accent/text only (never a fill), rust marks negative states. */
+/* Marketplace seller/admin dashboard. Follows the verified Rebel Ranch
+   Ministries brand system (assets/css/brand-tokens.css, documented in
+   docs/brand-guide.md) — link that file before this one. Marketplace
+   uses the same dark palette as the rest of the main site, not a
+   separate sub-brand: dark radial-gradient canvas, dark-gradient
+   cards, gold as the only fill color for primary buttons, green as
+   accent/text only (never a fill), rust for negative states. */
 .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:#204227;color:var(--rrm-ink);font:16px/1.55 Arial,Helvetica,sans-serif}
+body{margin:0;background:radial-gradient(circle at top left,var(--rrm-bg-1) 0,var(--rrm-bg-2) 35%,var(--rrm-bg-3) 100%);color:var(--rrm-ink);font:16px/1.55 Arial,Helvetica,sans-serif}
 button,input,select,textarea{font:inherit}button,a{-webkit-tap-highlight-color:transparent}a{color:inherit}
 .skip-link{position:fixed;z-index:100;top:8px;left:8px;transform:translateY(-150%);padding:10px 14px;background:#fff;color:var(--rrm-gold-dark);border:2px solid var(--rrm-gold-dark);border-radius:8px}.skip-link:focus{transform:none}
 .site-header{position:sticky;z-index:20;top:0;background:rgba(5,11,6,.88);border-bottom:1px solid var(--rrm-card-line);backdrop-filter:blur(15px)}
@@ -19,14 +20,14 @@ button,input,select,textarea{font:inherit}button,a{-webkit-tap-highlight-color:t
 .account-actions{display:flex;align-items:center;gap:7px}.menu-toggle{display:none}
 .shell{width:min(1240px,calc(100% - 32px));margin:auto;padding:38px 0 80px}
 .hidden{display:none!important}
-.notice{position:sticky;z-index:15;top:84px;margin:0 0 16px;padding:14px 18px;background:linear-gradient(180deg,#1D4024,#122A18);border:1px solid var(--rrm-card-line);border-left:5px solid var(--rrm-gold);border-radius:10px;box-shadow:var(--rrm-shadow);color:var(--rrm-ink)}
+.notice{position:sticky;z-index:15;top:84px;margin:0 0 16px;padding:14px 18px;background:linear-gradient(180deg,var(--rrm-card-1),var(--rrm-card-2));border:1px solid var(--rrm-card-line);border-left:5px solid var(--rrm-gold);border-radius:10px;box-shadow:var(--rrm-shadow);color:var(--rrm-ink)}
 .notice.error{border-left-color:var(--rrm-rust)}
-.state-card{max-width:720px;margin:9vh auto;padding:clamp(30px,6vw,64px);background:linear-gradient(180deg,#1D4024,#122A18);border:1px solid var(--rrm-card-line);border-radius:28px;text-align:center;box-shadow:var(--rrm-shadow);color:var(--rrm-ink)}
+.state-card{max-width:720px;margin:9vh auto;padding:clamp(30px,6vw,64px);background:linear-gradient(180deg,var(--rrm-card-1),var(--rrm-card-2));border:1px solid var(--rrm-card-line);border-radius:28px;text-align:center;box-shadow:var(--rrm-shadow);color:var(--rrm-ink)}
 .state-card h1{font-size:clamp(2rem,6vw,4rem);line-height:1;margin:.2em 0}
 .state-card p{color:var(--rrm-muted)}
 .loader{width:44px;height:44px;margin:auto;border:5px solid var(--rrm-card-1);border-top-color:var(--rrm-gold);border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(1turn)}}
-.market-hero{position:relative;overflow:hidden;padding:clamp(26px,5vw,44px);background:linear-gradient(180deg,#1D4024,#122A18);border:1px solid var(--rrm-card-line);border-radius:30px;box-shadow:var(--rrm-shadow)}
+.market-hero{position:relative;overflow:hidden;padding:clamp(26px,5vw,44px);background:linear-gradient(180deg,var(--rrm-card-1),var(--rrm-card-2));border:1px solid var(--rrm-card-line);border-radius:30px;box-shadow:var(--rrm-shadow)}
 .market-hero:before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--rrm-gold),var(--rrm-green))}
 .market-hero h1{max-width:770px;margin:6px 0 15px;font-size:clamp(2.2rem,5.5vw,3.8rem);line-height:1.02;letter-spacing:-.03em;color:var(--rrm-ink)}
 .market-hero p{max-width:670px;margin:0;font-size:1.05rem;color:var(--rrm-muted)}
@@ -40,7 +41,7 @@ button,input,select,textarea{font:inherit}button,a{-webkit-tap-highlight-color:t
 .screen-heading p{max-width:620px;margin:8px 0 0;color:var(--rrm-muted)}
 .layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(280px,.75fr);gap:18px}
 .stack{display:grid;gap:18px;align-content:start}
-.panel{padding:clamp(20px,3vw,30px);background:linear-gradient(180deg,#1D4024,#122A18);border:1px solid var(--rrm-card-line);border-radius:var(--rrm-radius);box-shadow:var(--rrm-shadow)}
+.panel{padding:clamp(20px,3vw,30px);background:linear-gradient(180deg,var(--rrm-card-1),var(--rrm-card-2));border:1px solid var(--rrm-card-line);border-radius:var(--rrm-radius);box-shadow:var(--rrm-shadow)}
 .panel-header{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:18px}
 .panel h2,.panel h3{margin:0;color:var(--rrm-ink)}
 .panel-header p{margin:4px 0 0;color:var(--rrm-muted)}
@@ -60,15 +61,15 @@ button,input,select,textarea{font:inherit}button,a{-webkit-tap-highlight-color:t
 .status-badge.private{background:rgba(240,237,216,.08);color:var(--rrm-muted)}
 .status-badge.negative{background:rgba(169,76,62,.16);color:var(--rrm-rust)}
 .card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.req-card{position:relative;padding:20px;background:linear-gradient(180deg,#1D4024,#122A18);border:1px solid var(--rrm-card-line);border-radius:16px}
+.req-card{position:relative;padding:20px;background:linear-gradient(180deg,var(--rrm-card-1),var(--rrm-card-2));border:1px solid var(--rrm-card-line);border-radius:16px}
 .req-card h3{margin:0 0 6px;color:var(--rrm-ink)}
 .req-card p{color:var(--rrm-muted)}
 .req-card .meta-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:7px 0;color:var(--rrm-muted);font-size:.88rem}
 .tag-row,.actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
 .tag{padding:4px 8px;border-radius:6px;background:var(--rrm-green-fill);color:var(--rrm-green);font-size:.76rem;font-weight:850;text-transform:capitalize}
 .actions{margin-top:14px}
-.button,button{min-height:42px;padding:9px 14px;border:1px solid var(--rrm-green-dark);border-radius:8px;background:#28502F;color:var(--rrm-ink);font-weight:850;text-decoration:none;cursor:pointer}
-.button:hover,button:hover,.button:focus-visible,button:focus-visible{background:#325c39}
+.button,button{min-height:42px;padding:9px 14px;border:1px solid var(--rrm-green-dark);border-radius:8px;background:var(--rrm-green-fill);color:var(--rrm-ink);font-weight:850;text-decoration:none;cursor:pointer}
+.button:hover,button:hover,.button:focus-visible,button:focus-visible{background:var(--rrm-green-fill-hover)}
 .button.primary,button.primary{border:1px solid var(--rrm-gold);background:linear-gradient(135deg,var(--rrm-gold),var(--rrm-gold-dark));color:#fff7de}
 .button.primary:hover,button.primary:hover,.button.primary:focus-visible,button.primary:focus-visible{background:linear-gradient(135deg,var(--rrm-gold-dark),var(--rrm-gold-dark))}
 .button.danger,button.danger{border-color:var(--rrm-rust);background:rgba(169,76,62,.12);color:var(--rrm-rust)}
@@ -84,7 +85,7 @@ button:disabled{opacity:.55;cursor:not-allowed}
 .check-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:12px;border:1px solid var(--rrm-card-line);border-radius:10px;background:var(--rrm-card-2)}
 .check-grid label{display:flex;align-items:center;gap:8px;margin:0;font-weight:600}
 .check-grid input[type=checkbox],.check-grid input[type=radio]{width:auto;min-height:auto}
-dialog{width:min(660px,calc(100% - 24px));max-height:90vh;padding:0;border:1px solid var(--rrm-card-line);border-radius:20px;background:linear-gradient(180deg,#1D4024,#122A18);box-shadow:0 30px 100px rgba(5,11,6,.6);color:var(--rrm-ink)}
+dialog{width:min(660px,calc(100% - 24px));max-height:90vh;padding:0;border:1px solid var(--rrm-card-line);border-radius:20px;background:linear-gradient(180deg,var(--rrm-card-1),var(--rrm-card-2));box-shadow:0 30px 100px rgba(5,11,6,.6);color:var(--rrm-ink)}
 dialog::backdrop{background:rgba(5,11,6,.72);backdrop-filter:blur(3px)}
 dialog form{padding:26px;overflow:auto}
 dialog label{display:grid;gap:6px;margin:14px 0;font-weight:850;color:var(--rrm-ink)}

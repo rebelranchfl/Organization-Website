@@ -42,29 +42,7 @@
           <p>Tell us about your business. Submitting your application does not list your products or authorize sales until it's reviewed and approved.</p>
         </div>
       </section>
-      <section class="panel" id="account-step" style="margin-top:18px">
-        <div class="segmented" id="account-mode-switch">
-          <button type="button" data-mode="signin" aria-pressed="true">Sign in</button>
-          <button type="button" data-mode="signup" aria-pressed="false">Create account</button>
-        </div>
-
-        <form id="signin-form" class="onboarding-form">
-          <label>Email<input id="si-email" type="email" required autocomplete="email"></label>
-          <label>Password<input id="si-password" type="password" required autocomplete="current-password"></label>
-          <div class="dialog-actions"><button class="primary" type="submit">Sign in</button></div>
-        </form>
-
-        <form id="signup-form" class="onboarding-form hidden">
-          <label>Your name<input id="su-name" required autocomplete="name"></label>
-          <label>Email<input id="su-email" type="email" required autocomplete="email"></label>
-          <label>Password <span>At least 10 characters with an uppercase letter, lowercase letter, number, and symbol.</span><input id="su-password" type="password" minlength="10" required autocomplete="new-password"></label>
-          <label>Confirm password<input id="su-confirm-password" type="password" minlength="10" required autocomplete="new-password"></label>
-          <div class="check-grid" style="grid-template-columns:1fr"><label><input id="su-adult-confirmation" type="checkbox" required> I confirm that I am an adult creating this account for myself, my household, or a business I am authorized to manage.</label></div>
-          <div class="dialog-actions"><button class="primary" type="submit">Create account</button></div>
-        </form>
-      </section>
-
-      <section class="panel hidden" id="business-step" style="margin-top:18px">
+      <section class="panel" style="margin-top:18px">
         <form id="create-profile-form" class="onboarding-form">
           <label>Business name<input id="ob-business-name" required></label>
           <label>What do you sell?

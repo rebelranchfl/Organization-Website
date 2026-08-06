@@ -172,7 +172,7 @@
     </div>
 
     <div id="actions" class="actions">
-      <a id="continue-link" class="action-link primary" href="account.html">
+      <a class="action-link primary" href="account.html">
         Continue to My Account
       </a>
 
@@ -191,13 +191,6 @@
 
   const statusBox = document.getElementById("status");
   const actions = document.getElementById("actions");
-  const continueLink = document.getElementById("continue-link");
-
-  const nextParam = new URL(window.location.href).searchParams.get("next");
-  if (nextParam) {
-    continueLink.href = nextParam;
-    continueLink.textContent = "Continue";
-  }
 
   function showResult(message, type = "") {
     statusBox.textContent = message;
