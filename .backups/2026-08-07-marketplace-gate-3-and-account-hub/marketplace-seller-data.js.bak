@@ -199,9 +199,6 @@ export const adminActions={
   async decideApplication(applicationId,status,reviewNotes){
     return supabase.from('seller_applications').update({status,review_notes:reviewNotes||null}).eq('id',applicationId);
   },
-  async approveApplication(applicationId){
-    return supabase.rpc('approve_seller_application',{p_application_id:applicationId});
-  },
   async verifyCredential(credentialId){
     return supabase.from('seller_credentials').update({verification_status:'verified'}).eq('id',credentialId);
   },

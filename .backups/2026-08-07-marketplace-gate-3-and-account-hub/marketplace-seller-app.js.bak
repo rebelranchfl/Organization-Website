@@ -4,7 +4,7 @@ import {supabase} from './supabase-client.js';
 
 const $=id=>document.getElementById(id);
 const state={identity:null,data:null,adminData:null,view:'status',busy:false};
-const routes=['status','requirements','programs','messages','notifications','history','admin'];
+const routes=['status','requirements','affiliations','messages','notifications','history','admin'];
 
 function message(text,error=false){
   const el=$('app-status');
@@ -28,7 +28,7 @@ function showAccess(title,copy,label='Go to My Account',href='account.html'){
 
 function isEligible(view){if(view==='admin')return state.identity.isAdmin;return routes.includes(view)}
 function eligibleViews(){
-  const views=[['status','Status'],['requirements','Requirements'],['programs','Programs'],['messages','Messages'],['notifications','Notifications'],['history','History']];
+  const views=[['status','Status'],['requirements','Requirements'],['affiliations','Affiliations'],['messages','Messages'],['notifications','Notifications'],['history','History']];
   if(state.identity.isAdmin)views.push(['admin','Admin']);
   return views;
 }
@@ -75,10 +75,6 @@ async function refresh(){
 function friendlyError(e){
   if(e?.message==='seller_creator_affiliation_requires_parent_approval')
     return 'This creator is a minor — only their parent/guardian account can make this affiliation public.';
-  if(e?.message==='requirements_still_pending')
-    return 'This seller still has pending compliance requirements. Wait for the seller to submit their attestation, verify any uploaded documents, or waive/mark N/A on the Admin tab before approving.';
-  if(e?.message==='application_not_awaiting_review')
-    return 'This application is no longer awaiting review — refresh and try again.';
   return e?.message||'That action could not be completed.';
 }
 
@@ -297,7 +293,6 @@ function bindScreen(){
 
 async function openReviewDialog(applicationId,sellerProfileId){
   const detail=await loadApplicationDetail(sellerProfileId,applicationId);
-  const pendingCount=detail.requirements.filter(r=>r.assignment_status==='pending').length;
   $('review-title').textContent=detail.sellerProfile.business_name;
   $('review-body').innerHTML=`
     <p><strong>Type:</strong> ${detail.application.application_type} · <strong>Producer status:</strong> ${detail.application.producer_status||'—'}</p>
@@ -305,16 +300,13 @@ async function openReviewDialog(applicationId,sellerProfileId){
     <p><strong>Categories:</strong> ${detail.categories.map(c=>c.marketplace_categories?.name).filter(Boolean).join(', ')||'None'}</p>
     <p><strong>Requirements:</strong></p>
     <ul>${detail.requirements.map(r=>`<li>${r.compliance_requirements?.title||'Requirement'} — ${r.assignment_status}</li>`).join('')||'<li>None</li>'}</ul>
-    ${pendingCount?`<p class="status-badge negative">${pendingCount} requirement(s) still pending — resolve them before approving.</p>`:''}
   `;
-  $('review-approve').disabled=pendingCount>0;
-  $('review-approve').title=pendingCount>0?'Resolve every pending requirement before approving.':'';
   $('review-approve').onclick=()=>withBusy($('review-approve'),async()=>{
-    const {error}=await adminActions.approveApplication(applicationId);
-    if(error){message(friendlyError(error),true);return}
+    const {error}=await adminActions.decideApplication(applicationId,'approved',null);
+    if(error)throw error;
     $('review-dialog').close();
     await refresh();
-    message('Application approved — the seller is now active with a public listing.');
+    message('Application approved.');
   });
   $('review-reject').onclick=()=>withBusy($('review-reject'),async()=>{
     const note=prompt('Reason for rejecting:');
@@ -371,14 +363,6 @@ function bindAccountStep(){
     });
   };
 
-  $('si-forgot-password').onclick=()=>withBusy($('si-forgot-password'),async()=>{
-    const email=$('si-email').value.trim();
-    if(!email)throw new Error('Enter your email address above, then choose "Forgot your password?"');
-    const {error}=await supabase.auth.resetPasswordForEmail(email,{redirectTo:'https://rebelranchministries.org/reset-password.html'});
-    if(error)throw error;
-    message('If an account is associated with that email address, a password-reset message has been sent.');
-  });
-
   signupForm.onsubmit=e=>{
     e.preventDefault();
     withBusy(e.submitter,async()=>{
@@ -400,21 +384,14 @@ function bindAccountStep(){
 }
 
 function bindOnboardingForm(){
+  const pathSelect=$('ob-marketplace-path');
   const categoryList=$('ob-categories');
-  const primarySelect=$('ob-primary-category');
-
-  function renderPrimaryOptions(){
-    const checked=[...categoryList.querySelectorAll('input[type=checkbox]:checked')].map(cb=>cb.value);
-    primarySelect.innerHTML=checked.map(id=>{
-      const c=state.identity.categories.find(x=>x.id===id);
-      return `<option value="${id}">${c.name}</option>`;
-    }).join('')||'<option value="">Select at least one category first</option>';
-  }
   function renderCategoryOptions(){
-    categoryList.innerHTML=state.identity.categories.map(c=>`<label><input type="checkbox" name="ob-category" value="${c.id}"> ${c.name}</label>`).join('')||'<p class="eyebrow">No categories available yet</p>';
-    categoryList.querySelectorAll('input[type=checkbox]').forEach(cb=>{cb.onchange=renderPrimaryOptions;});
-    renderPrimaryOptions();
+    const path=pathSelect.value;
+    const options=state.identity.categories.filter(c=>c.path_group===path||c.path_group==='both');
+    categoryList.innerHTML=options.map((c,i)=>`<label><input type="radio" name="ob-primary-category" value="${c.id}" ${i===0?'checked':''}> ${c.name}</label>`).join('')||'<p class="eyebrow">No categories available for this path yet</p>';
   }
+  pathSelect.onchange=renderCategoryOptions;
   renderCategoryOptions();
 
   const regionSelect=$('ob-region');
@@ -423,15 +400,13 @@ function bindOnboardingForm(){
   $('create-profile-form').onsubmit=e=>{
     e.preventDefault();
     withBusy(e.submitter,async()=>{
-      const categoryIds=[...categoryList.querySelectorAll('input[type=checkbox]:checked')].map(cb=>cb.value);
-      if(!categoryIds.length)throw new Error('Select at least one category.');
-      const primaryCategoryId=primarySelect.value||categoryIds[0];
+      const primaryCategoryId=$('create-profile-form').querySelector('input[name="ob-primary-category"]:checked')?.value;
       const payload={
         business_name:$('ob-business-name').value.trim(),
         marketplace_path:$('ob-marketplace-path').value,
         short_description:$('ob-short-description').value.trim(),
         region_id:$('ob-region').value||null,
-        category_ids:categoryIds,
+        category_ids:primaryCategoryId?[primaryCategoryId]:[],
         primary_category_id:primaryCategoryId,
         legal_business_name:$('ob-legal-business-name').value.trim(),
         entity_type:$('ob-entity-type').value||null,

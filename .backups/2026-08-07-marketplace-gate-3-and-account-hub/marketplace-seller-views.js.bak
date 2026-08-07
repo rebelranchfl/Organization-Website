@@ -25,7 +25,7 @@ export function status(state){
   const app=state.data.applications[0];
   const canEdit=!app||['draft','changes_requested'].includes(app.status);
   const assignedIds=new Set(state.data.categoryAssignments.map(a=>a.category_id));
-  const available=state.identity.categories.filter(c=>!assignedIds.has(c.id));
+  const available=state.identity.categories.filter(c=>c.path_group===sp.marketplace_path||c.path_group==='both'||sp.marketplace_path==='both').filter(c=>!assignedIds.has(c.id));
 
   return `${heading('Seller status','Your Marketplace profile','Manage your business details and application status.')}
   <div class="layout">
@@ -100,19 +100,15 @@ export function requirements(state){
   }).join('')}</div>`;
 }
 
-export function programs(state){
+export function affiliations(state){
   const creators=state.identity.creators;
-  return `${heading('Programs','Link your creators','Show off work from your own Creation Station Portfolio on your seller profile.')}
+  return `${heading('Affiliations','Link your creators','Show off work from your own Creation Station creators on your seller profile.')}
   <div class="list">${creators.map(c=>{
     const aff=state.data.creatorAffiliations.find(a=>a.creator_id===c.id);
     const isMinor=['young_6_12','teen_13_17'].includes(c.age_band);
     return `<article class="list-item"><span class="list-icon" aria-hidden="true">${isMinor?'✦':'◇'}</span><div><h3>${esc(c.display_name)}</h3><p>${aff?(aff.is_public?'Public':'Private'):'Not linked'}${aff&&isMinor?(aff.parent_approved_at?' · Parent approved':' · Needs parent approval to go public'):''}</p></div>${aff?`<button data-toggle-affiliation="${aff.id}" data-public="${!aff.is_public}">${aff.is_public?'Make private':'Make public'}</button>`:`<button data-link-creator="${c.id}">Link to profile</button>`}</article>`;
-  }).join('')||'<p class="eyebrow">No Creation Station profiles linked to this account yet</p>'}</div>
-  ${state.identity.household?`<section class="panel" style="margin-top:18px"><div class="panel-header"><h2>Household</h2></div>${(()=>{const h=state.data.householdAffiliations[0];return h?`<p>${esc(state.identity.household.household_name||'Your household')} — ${h.is_public?'Public':'Private'}</p><button data-toggle-household="${h.id}" data-public="${!h.is_public}">${h.is_public?'Make private':'Make public'}</button>`:`<button data-link-household="${state.identity.household.id}">Link household to profile</button>`})()}</section>`:''}
-  <section class="panel" style="margin-top:18px">
-    <div class="panel-header"><h2>Rebel Ranch Academy</h2><span class="status-badge private">Coming soon</span></div>
-    <p>Once Rebel Ranch Academy programs are live, you'll be able to link your coursework here too.</p>
-  </section>`;
+  }).join('')||'<p class="eyebrow">No creator profiles on this account yet</p>'}</div>
+  ${state.identity.household?`<section class="panel" style="margin-top:18px"><div class="panel-header"><h2>Household</h2></div>${(()=>{const h=state.data.householdAffiliations[0];return h?`<p>${esc(state.identity.household.household_name||'Your household')} — ${h.is_public?'Public':'Private'}</p><button data-toggle-household="${h.id}" data-public="${!h.is_public}">${h.is_public?'Make private':'Make public'}</button>`:`<button data-link-household="${state.identity.household.id}">Link household to profile</button>`})()}</section>`:''}`;
 }
 
 export function notifications(state){
@@ -125,7 +121,7 @@ export function notifications(state){
 
 export function messages(state){
   const items=state.data.inquiries;
-  if(!items.length)return `${heading('Messages','Buyer inquiries','Direct Messages from buyers who find you through Rebel Ranch Marketplace show up here — no spam, no noise, straight sales.')}${empty('No messages yet','Once your page is public, buyer inquiries will appear here.')}`;
+  if(!items.length)return `${heading('Messages','Buyer inquiries','Messages from buyers who find you through Rebel Ranch Marketplace show up here — never in your personal email.')}${empty('No messages yet','Once your page is public, buyer inquiries will appear here.')}`;
   const unreadIds=items.filter(m=>!m.is_read).map(m=>m.id);
   return `${heading('Messages','Buyer inquiries',`${unreadIds.length} unread`)}
   <div class="list">${items.map(m=>`<article class="list-item"><span class="list-icon" aria-hidden="true">${m.is_read?'✓':'●'}</span><div><h3>${esc(m.sender_name)} <span class="tag" style="margin-left:6px">${m.sender_is_member?'Member':'Non-member'}</span></h3><p>${esc(m.message)}</p>${m.sender_contact?`<p><strong>Contact:</strong> ${esc(m.sender_contact)}</p>`:''}<small>${new Date(m.created_at).toLocaleString()}</small></div>${m.is_read?'':`<button data-mark-inquiry-read="${m.id}">Mark read</button>`}</article>`).join('')}</div>`;
@@ -157,4 +153,4 @@ export function admin(state){
   </div>`;
 }
 
-export const renderers={status,requirements,programs,messages,notifications,history,admin};
+export const renderers={status,requirements,affiliations,messages,notifications,history,admin};

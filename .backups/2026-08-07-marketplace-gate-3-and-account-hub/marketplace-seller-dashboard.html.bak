@@ -53,7 +53,6 @@
           <label>Email<input id="si-email" type="email" required autocomplete="email"></label>
           <label>Password<input id="si-password" type="password" required autocomplete="current-password"></label>
           <div class="dialog-actions"><button class="primary" type="submit">Sign in</button></div>
-          <div class="dialog-actions" style="justify-content:center;margin-top:6px"><button id="si-forgot-password" class="text-link-button" type="button">Forgot your password?</button></div>
         </form>
 
         <form id="signup-form" class="onboarding-form hidden">
@@ -77,11 +76,8 @@
             </select>
           </label>
           <label>Short description<textarea id="ob-short-description" placeholder="A sentence or two about what you offer"></textarea></label>
-          <label>Categories <span>Select every category that fits your business</span>
+          <label>Category
             <div id="ob-categories" class="check-grid"></div>
-          </label>
-          <label>Primary category <span>Shown first on your public listing</span>
-            <select id="ob-primary-category"></select>
           </label>
           <label>General region<select id="ob-region"></select></label>
           <label>Legal business name (if different)<input id="ob-legal-business-name"></label>
@@ -101,7 +97,7 @@
               <option value="">Select one</option>
               <option value="licensed_permitted">Licensed / permitted</option>
               <option value="cottage_food_exemption">Cottage food / exemption</option>
-              <option value="private_only_pma">Private sales only</option>
+              <option value="private_only_pma">Private-only / PMA only</option>
               <option value="still_building">Still building / not ready yet</option>
               <option value="not_sure">Not sure</option>
             </select>

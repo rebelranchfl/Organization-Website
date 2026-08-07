@@ -16,7 +16,6 @@ button,input,select,textarea{font:inherit}button,a{-webkit-tap-highlight-color:t
 .primary-nav{display:flex;align-items:center;gap:3px;flex:1}
 .primary-nav a,.account-actions a{padding:9px 10px;border-radius:8px;text-decoration:none;font-weight:800;font-size:.9rem;color:var(--rrm-muted)}
 .primary-nav a:hover,.primary-nav a:focus-visible,.primary-nav a[aria-current="page"]{color:var(--rrm-green)}
-.text-link-button{border:0;background:transparent;padding:6px 0;color:var(--rrm-gold-bright);font-weight:850;text-decoration:underline;cursor:pointer}
 .account-actions{display:flex;align-items:center;gap:7px}
 .menu-toggle{display:none;position:relative;width:40px;height:40px;padding:0;border:0;border-radius:8px;background:transparent;cursor:pointer;flex:0 0 auto}
 .menu-toggle span{position:absolute;left:9px;right:9px;height:2px;background:var(--rrm-gold-bright);border-radius:2px}
