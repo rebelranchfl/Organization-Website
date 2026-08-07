@@ -429,20 +429,6 @@ function bindOnboardingForm(){
 }
 
 $('signout').onclick=async()=>{await actions.signOut();location.href='account.html'};
-{
-  const menuToggle=$('menu-toggle');
-  const accountActions=$('account-actions');
-  const closeMenu=()=>{accountActions.classList.remove('open');menuToggle.setAttribute('aria-expanded','false')};
-  menuToggle.onclick=(event)=>{
-    event.stopPropagation();
-    const open=accountActions.classList.toggle('open');
-    menuToggle.setAttribute('aria-expanded',String(open));
-  };
-  document.addEventListener('click',(event)=>{
-    if(accountActions.classList.contains('open')&&!accountActions.contains(event.target)&&event.target!==menuToggle){closeMenu()}
-  });
-  document.addEventListener('keydown',(event)=>{if(event.key==='Escape')closeMenu()});
-}
 window.addEventListener('hashchange',()=>{
   const v=location.hash.slice(1);
   if(v!==state.view&&isEligible(v)){state.view=v;render()}
