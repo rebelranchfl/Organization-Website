@@ -62,8 +62,6 @@ function render(sp,categories,paymentMethods,region){
   document.title=`${sp.business_name} | Rebel Ranch Marketplace`;
 
   main.innerHTML=`
-    <p class="trust-banner">All funds go directly to the sellers and their families — Rebel Ranch Ministries takes $0. This directory is offered to the community completely free.</p>
-
     <p class="crumb"><a href="marketplace.html">Marketplace Directory</a>${primary?` / ${esc(pathLabel)} / ${esc(primary.marketplace_categories?.name||'')}`:` / ${esc(pathLabel)}`}</p>
 
     <section class="seller-hero">
@@ -91,7 +89,7 @@ function render(sp,categories,paymentMethods,region){
       <div class="stack">
         <section class="panel order-panel">
           <h2>How to order</h2>
-          <p>Message ${esc(sp.business_name)} directly to place an order or ask about availability — no spam, no solicitations, no offers, just direct communication regarding purchases.</p>
+          <p>Contact ${esc(sp.business_name)} directly to place an order or ask about availability.</p>
           <button class="button primary" id="show-inquiry-form" type="button">Message This Seller</button>
           <form id="inquiry-form" class="inquiry-form hidden">
             <label>Your name<input id="inquiry-name" required></label>
@@ -101,15 +99,15 @@ function render(sp,categories,paymentMethods,region){
           </form>
           <p id="inquiry-confirm" class="inquiry-confirm hidden" role="status"></p>
           ${renderPaymentMethods(paymentMethods)}
-          <p class="fine-print">Payment and fulfillment happen directly with ${esc(sp.business_name)} — Rebel Ranch Ministries simply hosts this directory.</p>
+          <p class="fine-print">Rebel Ranch Ministries connects buyers and sellers as a community directory. Payment and fulfillment happen directly between you and ${esc(sp.business_name)} — Rebel Ranch Ministries does not process or hold payment for this transaction.</p>
         </section>
 
         <section class="panel trust-panel">
           <h2>Why shop here?</h2>
           <ul class="list-plain">
-            <li>A real local business, not a chain, franchise, or reseller.</li>
-            <li>Buy &amp; Support REAL Locals</li>
-            <li>You Support REAL families. You're not lining corporate pockets.</li>
+            <li>A real local business, not a chain, franchise, or reseller — every seller attests to that when they apply</li>
+            <li>Business info reviewed and approved by Rebel Ranch Ministries before listing</li>
+            <li>Required permits and compliance are self-attested by the seller, not independently verified by Rebel Ranch Ministries</li>
           </ul>
         </section>
       </div>

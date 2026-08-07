@@ -90,22 +90,11 @@
     .founding-card h3{font-size:24px;margin:0 0 10px}
     .founding-card p{color:#c7c1a6;margin:0 0 16px;max-width:560px;margin-left:auto;margin-right:auto}
 
-    /* Seller directory carousel: 3 cards visible at a time, scroll-snap so it
-       scales gracefully as more sellers join without needing pagination UI. */
-    .carousel{position:relative;display:flex;align-items:center;gap:8px}
-    #seller-directory-grid.grid{display:flex;grid-template-columns:none;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}
-    #seller-directory-grid.grid::-webkit-scrollbar{display:none}
-    #seller-directory-grid.grid>.card{flex:0 0 calc((100% - 36px)/3);scroll-snap-align:start}
-    #seller-directory-grid.grid>.founding-card{flex:0 0 100%}
-    .carousel-nav{flex:0 0 auto;width:40px;height:40px;border-radius:50%;border:1px solid var(--green2);background:#142617;color:var(--ink);font-size:22px;line-height:1;cursor:pointer}
-    .carousel-nav:hover{background:#1b341f}
-
     @media(max-width:900px){
       .hero-layout{grid-template-columns:1fr}
       .who-grid{grid-template-columns:1fr}
       .grid{grid-template-columns:1fr}
       .benefits-grid{grid-template-columns:1fr}
-      #seller-directory-grid.grid>.card{flex:0 0 82%}
     }
 </style>
 </head>
@@ -299,16 +288,12 @@
     <h2 id="seller-directory-heading">Accepting Marketplace Applications Now</h2>
     <p id="seller-directory-description">We're reviewing applications for our very first sellers right now. Check back soon — or scroll up and be one of the first ones buyers see.</p>
   </div>
-  <div class="carousel">
-    <button type="button" class="carousel-nav prev" id="seller-directory-prev" aria-label="Previous sellers" hidden>&#8249;</button>
-    <div id="seller-directory-grid" class="grid">
-      <div class="card founding-card">
-        <h3>The First Listing Could Be Yours</h3>
-        <p>Apply today and be one of the first sellers buyers see when the directory opens.</p>
-        <a class="btn gold" href="marketplace-seller-dashboard.html">Apply as a Seller</a>
-      </div>
+  <div id="seller-directory-grid" class="grid">
+    <div class="card founding-card">
+      <h3>The First Listing Could Be Yours</h3>
+      <p>Apply today and be one of the first sellers buyers see when the directory opens.</p>
+      <a class="btn gold" href="marketplace-seller-dashboard.html">Apply as a Seller</a>
     </div>
-    <button type="button" class="carousel-nav next" id="seller-directory-next" aria-label="More sellers" hidden>&#8250;</button>
   </div>
 </section>
 <script type="module" src="assets/js/marketplace-directory.js"></script>

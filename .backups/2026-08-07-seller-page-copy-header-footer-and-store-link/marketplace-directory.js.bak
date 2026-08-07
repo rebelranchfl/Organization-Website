@@ -5,18 +5,6 @@ const grid=document.getElementById('seller-directory-grid');
 const eyebrowEl=document.getElementById('seller-directory-eyebrow');
 const headingEl=document.getElementById('seller-directory-heading');
 const descriptionEl=document.getElementById('seller-directory-description');
-const prevBtn=document.getElementById('seller-directory-prev');
-const nextBtn=document.getElementById('seller-directory-next');
-
-function updateCarouselNav(){
-  if(!prevBtn||!nextBtn)return;
-  const canScroll=grid.scrollWidth>grid.clientWidth+4;
-  prevBtn.hidden=!canScroll;
-  nextBtn.hidden=!canScroll;
-}
-if(prevBtn)prevBtn.onclick=()=>grid.scrollBy({left:-grid.clientWidth,behavior:'smooth'});
-if(nextBtn)nextBtn.onclick=()=>grid.scrollBy({left:grid.clientWidth,behavior:'smooth'});
-if(grid){grid.addEventListener('scroll',updateCarouselNav);window.addEventListener('resize',updateCarouselNav)}
 
 async function init(){
   const {data,error}=await supabase.from('seller_profiles')
@@ -51,7 +39,6 @@ async function init(){
       ${sp.short_description?`<p>${esc(sp.short_description)}</p>`:''}
     </a>`;
   }).join('');
-  updateCarouselNav();
 }
 
 if(grid)init();

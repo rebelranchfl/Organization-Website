@@ -32,15 +32,14 @@ export function status(state){
     <div class="stack">
       <section class="panel">
         <div class="panel-header"><div><p class="eyebrow">Business</p><h2>${esc(sp.business_name)}</h2></div>${badge(sp.profile_status)}</div>
-        ${sp.profile_status==='active'&&sp.public_slug?`<p><a href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}" target="_blank" rel="noopener">View my public listing ↗</a></p>`:''}
         <form id="profile-form" class="onboarding-form">
           <label>Business name<input id="pf-business-name" value="${esc(sp.business_name)}" ${canEdit?'':'disabled'} required></label>
-          <label>Short description<textarea id="pf-short-description">${esc(sp.short_description||'')}</textarea></label>
+          <label>Short description<textarea id="pf-short-description" ${canEdit?'':'disabled'}>${esc(sp.short_description||'')}</textarea></label>
           <label>Long description <span>Shown in the About section of your public page</span><textarea id="pf-long-description">${esc(sp.long_description||'')}</textarea></label>
           <label>Page tone <span>How your public page looks — the directory itself always stays the current dark green</span>
             <div class="check-grid">${Object.entries(THEME_LABELS).map(([key,text])=>`<label><input type="radio" name="pf-theme" value="${key}" ${sp.page_theme===key?'checked':''}> ${text}</label>`).join('')}</div>
           </label>
-          <div class="dialog-actions"><button class="primary" type="submit">Save changes</button></div>
+          <div class="dialog-actions">${canEdit?'<button class="primary" type="submit">Save changes</button>':'<button class="primary" type="submit">Save page tone &amp; description</button>'}</div>
         </form>
       </section>
       <section class="panel">
