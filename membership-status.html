@@ -1,11 +1,71 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Membership Status | Rebel Ranch Ministries</title>
-<style>body{margin:0;background:#fff7ea;color:#2f2933;font-family:Arial,sans-serif}main{max-width:720px;margin:60px auto;padding:30px;background:#fff;border-radius:18px;box-shadow:0 15px 45px rgba(47,41,51,.12)}h1{color:#43166f}.status{padding:16px;border-radius:12px;background:#f3eef9}a{color:#5b258f}</style></head>
-<body><main><h1>Membership Status</h1><div id="membership" class="status">Checking your membership…</div>
-<p><a href="creation-station-membership.html">View membership options</a> · <a href="account.html">My Account</a></p></main>
-<script src="assets/js/membership-payments.js"></script>
-<script type="module">
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Membership Status | Creation Station | Rebel Ranch Ministries</title>
+  <meta name="description" content="Check the status of your Creation Station membership.">
+  <link rel="stylesheet" href="assets/css/site-core.css">
+  <link rel="stylesheet" href="assets/css/creation-station.css">
+  <style>
+    .status-main { min-height: 70vh; padding: clamp(3.5rem, 7vw, 6rem) 0; background: linear-gradient(180deg, #fff9f0 0%, #f7efff 55%, #edfafa 100%); }
+    .status-hero { max-width: 40rem; margin: 0 auto; text-align: center; }
+    .status-kicker { margin: 0 0 .65rem; color: var(--teal); font-size: .8rem; font-weight: 950; letter-spacing: .12em; text-transform: uppercase; }
+    .status-hero h1 { margin: 0; color: var(--purple-900); font-size: clamp(2.5rem, 6vw, 4rem); line-height: .96; letter-spacing: -.05em; }
+    .status-card { max-width: 34rem; margin: 2rem auto 0; padding: clamp(1.5rem, 4vw, 2.25rem); background: #fff; border: 1px solid var(--line); border-top: .35rem solid var(--pink); border-radius: 1.15rem; box-shadow: var(--shadow-soft); color: var(--purple-900); font-size: 1.1rem; font-weight: 800; line-height: 1.6; text-align: center; }
+    .status-actions { display: flex; gap: .75rem; flex-wrap: wrap; justify-content: center; margin-top: 2rem; }
+    @media (max-width: 700px) { .status-actions .btn { width: 100%; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- OWNER-LOCKED: Approved Creation Station public header. Preserve this structure and treatment unless the owner explicitly authorizes a change. See docs/creation-station-visual-rules.md. -->
+  <header class="site-header topbar" data-site-nav>
+    <div class="wrap site-nav">
+      <a class="brand" href="creation.html" aria-label="Creation Station home">
+        <img src="assets/creation-station-logo.png" alt="Creation Station logo" width="220" height="220">
+        <span class="brand-text">
+          <strong>Creation Station</strong>
+          <small>by Rebel Ranch Ministries</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation" data-nav-toggle>
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+      </button>
+
+      <nav class="nav-menu" id="primary-navigation" aria-label="Primary" data-nav-menu data-open="false">
+        <a href="account.html">My Account</a>
+        <a class="rrm-return" href="index.html">Rebel Ranch Ministries</a>
+        <a class="btn primary" href="creation-station-membership.html">View Membership Options</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="status-main" id="main">
+    <div class="wrap">
+      <div class="status-hero">
+        <p class="status-kicker">Creation Station</p>
+        <h1>Membership Status</h1>
+      </div>
+
+      <div id="membership" class="status-card">Checking your membership&hellip;</div>
+
+      <div class="status-actions">
+        <a class="btn primary" href="creation-station-membership.html">View Membership Options</a>
+        <a class="btn teal" href="account.html">My Account</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- OWNER-LOCKED: Shared Creation Station footer. Maintain the component in assets/components/creation-station-footer/. -->
+  <div data-creation-station-footer></div>
+
+  <script src="assets/components/creation-station-footer/footer.js?v=20260803-1" defer></script>
+  <script src="assets/js/site-navigation.js" defer></script>
+  <script src="assets/js/membership-payments.js"></script>
+  <script type="module">
 import { supabase } from "./assets/js/supabase-client.js";
 const panel=document.getElementById("membership");
 if(new URLSearchParams(location.search).get("paypal")==="success") window.RebelRanchPayments.clearCheckoutAttempts();
@@ -20,4 +80,6 @@ else{
    panel.textContent=data.cancel_requested_at&&through?`Active through ${through}; cancellation is scheduled.`:data.membership_status==="past_due"&&through?`Payment needs attention. Access remains available through ${through}.`:`Membership status: ${data.membership_status}.`;
  }
 }
-</script></body></html>
+</script>
+</body>
+</html>
