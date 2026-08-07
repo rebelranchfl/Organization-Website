@@ -85,6 +85,7 @@ body.rrm-public-shell { padding-top: 0; }
 .rrm-public-links { display:flex; align-items:center; gap:.15rem; }
 .rrm-public-links a { min-height:2.75rem; display:inline-flex; align-items:center; padding:0 .65rem; color:#c9c5a7; border-radius:.65rem; font:800 .9rem/1.2 Arial,Helvetica,sans-serif; text-decoration:none; }
 .rrm-public-links a:hover { color:#97c459; background:#142617; }
+.rrm-public-links .rrm-contact { color:#fff7de; background:linear-gradient(135deg,#c17f24,#7b4b13); }
 .rrm-public-menu { display:none; width:3rem; height:3rem; padding:0; color:#f0edd8; background:#142617; border:1px solid #4a7c59; border-radius:.75rem; }
 .rrm-nav-dropdown { position:relative; }
 .rrm-nav-dropdown-toggle { display:inline-flex; align-items:center; gap:.35rem; min-height:2.75rem; padding:0 .65rem; color:#c9c5a7; background:none; border:none; border-radius:.65rem; font:800 .9rem/1.2 Arial,Helvetica,sans-serif; cursor:pointer; }
