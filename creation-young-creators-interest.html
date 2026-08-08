@@ -9,19 +9,19 @@
 <link rel="stylesheet" href="assets/css/creation-station.css">
 <style>
 :root{
-  --cream:#fff7ea;--cream2:#fffdf7;--ink:#30253a;--muted:#695f72;
-  --purple:#5b258f;--lav:#7a42bf;--pink:#e64f86;--hot:#ff3d94;
-  --teal:#008d99;--aqua:#16b8c6;--gold:#f6c84c;--orange:#ff9d3d;
+  --cream:#f8f3ff;--cream2:#fbf8ff;--ink:#271b31;--muted:#594b61;
+  --purple:#5b258f;--lav:#9352c8;--pink:#f04b98;--hot:#ff3d94;
+  --teal:#0397a4;--aqua:#55d7d1;--gold:#f7c94c;--orange:#f59b45;
   --red:#cf3f54;--line:rgba(91,37,143,.2)
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  margin:0;color:var(--ink);font-family:"Nunito",system-ui,sans-serif;line-height:1.5;min-height:100vh;overflow-x:hidden;
+  margin:0;color:var(--ink);font-family:"Segoe UI",ui-sans-serif,system-ui,-apple-system,Roboto,Arial,sans-serif;line-height:1.5;min-height:100vh;overflow-x:hidden;
   background:
     radial-gradient(circle at 8% 18%,rgba(255,61,148,.17),transparent 19rem),
-    radial-gradient(circle at 92% 38%,rgba(22,184,198,.18),transparent 22rem),
-    linear-gradient(180deg,#6b2ca6 0 15rem,#df4f91 27rem,#fff7ea 46rem,#fffdf7 100%);
+    radial-gradient(circle at 92% 38%,rgba(85,215,209,.18),transparent 22rem),
+    linear-gradient(180deg,#6b2ca6 0 15rem,#df4f91 27rem,#f8f3ff 46rem,#fbf8ff 100%);
 }
 button,input,select,textarea{font:inherit}
 a{color:inherit}
@@ -80,7 +80,7 @@ input[type=text],input[type=email],input[type=tel],input[type=number],input[type
   width:100%;border:2px solid #d9cde4;border-radius:13px;background:#fff;color:var(--ink);padding:13px 14px;outline:none;transition:.18s
 }
 textarea{min-height:92px;resize:vertical}
-input:focus,select:focus,textarea:focus{border-color:var(--aqua);box-shadow:0 0 0 4px rgba(22,184,198,.14)}
+input:focus,select:focus,textarea:focus{border-color:var(--aqua);box-shadow:0 0 0 4px rgba(85,215,209,.14)}
 .invalid{border-color:var(--red)!important;box-shadow:0 0 0 4px rgba(207,63,84,.12)!important}
 .field-error{color:#a62536;font-size:.86rem;font-weight:800;margin-top:6px}
 fieldset{border:0;padding:0;margin:0}
@@ -95,9 +95,9 @@ fieldset{border:0;padding:0;margin:0}
 .choice-card input:focus-visible+span{box-shadow:0 0 0 4px rgba(122,66,191,.15)}
 .choice-card input:checked+span{border-color:var(--purple);background:#f5edfb;color:var(--purple)}
 .choice-card input:checked+span:before{border-color:var(--purple);background:linear-gradient(135deg,var(--purple),var(--pink));box-shadow:inset 0 0 0 4px #fff}
-.conditional,.review-box{border:2px solid rgba(0,141,153,.2);border-radius:16px;background:#eefbfc;padding:15px 16px;margin:10px 0 19px;color:#28565d}
+.conditional,.review-box{border:2px solid rgba(3,151,164,.2);border-radius:16px;background:#eefbfc;padding:15px 16px;margin:10px 0 19px;color:#28565d}
 .conditional strong{color:var(--teal)}
-.conditional.stop{background:#fff4f7;border-color:rgba(230,79,134,.34);color:#743149}
+.conditional.stop{background:#fff4f7;border-color:rgba(240,75,152,.34);color:#743149}
 .conditional.stop strong{color:#a52653}
 .agreement{border:2px solid #e2d6ea;border-radius:19px;background:#fff;padding:21px;margin-bottom:18px;box-shadow:0 12px 32px rgba(62,33,92,.09)}
 .agreement h4{font-family:"Baloo 2";font-size:1.45rem;line-height:1.1;color:var(--purple);margin:0 0 10px}
@@ -117,7 +117,7 @@ fieldset{border:0;padding:0;margin:0}
 .action{border:0}
 .action.primary{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;box-shadow:0 12px 26px rgba(91,37,143,.22)}
 .action.secondary{background:#eee4f5;color:var(--purple)}
-.action.submit{background:linear-gradient(135deg,var(--teal),var(--aqua));color:#fff;box-shadow:0 12px 26px rgba(0,141,153,.22)}
+.action.submit{background:linear-gradient(135deg,var(--teal),var(--aqua));color:#fff;box-shadow:0 12px 26px rgba(3,151,164,.22)}
 .action:disabled{opacity:.62;cursor:wait;transform:none}
 .privacy-note{font-size:.88rem;color:var(--muted);text-align:center;margin:18px auto 0}
 .status{font-weight:900;color:#a62536;text-align:center;margin-top:12px}
