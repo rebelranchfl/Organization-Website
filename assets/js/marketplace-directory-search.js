@@ -44,6 +44,7 @@ function filteredEmptyState(){
     <h3>No sellers match your search</h3>
     <p>Try clearing your search or filters.</p>
   </div>`;
+  resultCount.textContent='0 sellers';
 }
 
 function applyFilters(){
