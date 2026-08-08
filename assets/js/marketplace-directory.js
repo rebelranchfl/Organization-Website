@@ -51,6 +51,7 @@ async function init(){
       ${sp.short_description?`<p>${esc(sp.short_description)}</p>`:''}
     </a>`;
   }).join('');
+  grid.dataset.count=String(sellers.length);
   updateCarouselNav();
 }
 

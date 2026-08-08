@@ -96,6 +96,8 @@
     #seller-directory-grid.grid{display:flex;grid-template-columns:none;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}
     #seller-directory-grid.grid::-webkit-scrollbar{display:none}
     #seller-directory-grid.grid>.card{flex:0 0 calc((100% - 36px)/3);scroll-snap-align:start}
+    #seller-directory-grid.grid[data-count="1"]>.card{flex:0 0 100%}
+    #seller-directory-grid.grid[data-count="2"]>.card{flex:0 0 calc((100% - 18px)/2)}
     #seller-directory-grid.grid>.founding-card{flex:0 0 100%}
     .carousel-nav{flex:0 0 auto;width:40px;height:40px;border-radius:50%;border:1px solid var(--green2);background:#142617;color:var(--ink);font-size:22px;line-height:1;cursor:pointer}
     .carousel-nav:hover{background:#1b341f}
