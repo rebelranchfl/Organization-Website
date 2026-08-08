@@ -70,6 +70,13 @@ button,input,select,textarea{font:inherit}button,a{-webkit-tap-highlight-color:t
 .req-card h3{margin:0 0 6px;color:var(--rrm-ink)}
 .req-card p{color:var(--rrm-muted)}
 .req-card .meta-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:7px 0;color:var(--rrm-muted);font-size:.88rem}
+.listing-photos{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.listing-photos .listing-photo{position:relative}
+.listing-photos img{width:64px;height:64px;object-fit:cover;border-radius:8px;border:1px solid var(--rrm-card-line);display:block}
+.listing-photos button{position:absolute;top:-6px;right:-6px;min-height:0;width:20px;height:20px;padding:0;line-height:1;border-radius:50%;font-size:.8rem}
+.logo-row{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.logo-preview{width:72px;height:72px;border-radius:14px;object-fit:cover;border:1px solid var(--rrm-card-line)}
+.logo-preview-empty{display:grid;place-items:center;background:var(--rrm-green-fill);color:var(--rrm-muted);font-size:.7rem;text-align:center;padding:4px}
 .tag-row,.actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
 .tag{padding:4px 8px;border-radius:6px;background:var(--rrm-green-fill);color:var(--rrm-green);font-size:.76rem;font-weight:850;text-transform:capitalize}
 .actions{margin-top:14px}

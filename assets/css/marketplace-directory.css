@@ -1,0 +1,31 @@
+.shell{width:min(1160px,calc(100% - 32px));margin:auto;padding:34px 0 90px}
+
+.directory-head{margin-bottom:26px}
+.directory-head .eyebrow{margin:0 0 8px;color:var(--rrm-gold-bright);font-size:.78rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase}
+.directory-head h1{margin:0 0 10px;font-size:clamp(1.9rem,4.5vw,2.8rem);letter-spacing:-.03em;color:var(--rrm-ink)}
+.directory-head p{margin:0;color:var(--rrm-muted);max-width:680px}
+
+.directory-controls{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:12px;margin:24px 0 10px}
+.directory-controls input,.directory-controls select{min-height:48px;padding:0 14px;border:1px solid var(--rrm-card-line);border-radius:10px;background:var(--rrm-card-1);color:var(--rrm-ink);font:inherit}
+.directory-controls input::placeholder{color:var(--rrm-muted)}
+
+.directory-result-count{margin:0 0 18px;color:var(--rrm-muted);font-size:.88rem}
+
+.directory-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+
+.seller-directory-card{display:flex;gap:14px;align-items:flex-start;padding:20px;text-decoration:none;color:inherit}
+.seller-directory-mark{flex:0 0 auto;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;overflow:hidden;font-weight:900;font-size:1.2rem;color:var(--rrm-gold-bright);background:radial-gradient(circle,#2A1A0A,#152A18 62%,#07120A);border:2px solid var(--rrm-gold)}
+.seller-directory-mark img{width:100%;height:100%;object-fit:cover}
+.seller-directory-info h3{margin:0 0 4px;color:var(--rrm-ink);font-size:1.05rem}
+.seller-directory-meta{margin:0 0 6px;color:var(--rrm-gold-bright);font-size:.78rem;font-weight:800}
+.seller-directory-info p{margin:0 0 6px;color:var(--rrm-muted);font-size:.9rem}
+
+.founding-card{padding:28px;text-align:center}
+.founding-card h3{margin:0 0 8px;color:var(--rrm-ink)}
+.founding-card p{margin:0 0 16px;color:var(--rrm-muted)}
+
+.button{display:inline-block;min-height:46px;padding:12px 22px;border-radius:9px;text-decoration:none;font-weight:850}
+.button.primary{border:1px solid var(--rrm-gold);background:linear-gradient(135deg,var(--rrm-gold),var(--rrm-gold-dark));color:#fff7de}
+.button.primary:hover{background:linear-gradient(135deg,var(--rrm-gold-dark),var(--rrm-gold-dark))}
+
+@media(max-width:760px){.directory-controls{grid-template-columns:1fr}}

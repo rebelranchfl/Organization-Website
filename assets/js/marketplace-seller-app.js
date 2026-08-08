@@ -4,7 +4,7 @@ import {supabase} from './supabase-client.js';
 
 const $=id=>document.getElementById(id);
 const state={identity:null,data:null,adminData:null,view:'status',busy:false};
-const routes=['status','requirements','programs','messages','notifications','history','admin'];
+const routes=['status','listings','requirements','programs','messages','notifications','history','admin'];
 
 function message(text,error=false){
   const el=$('app-status');
@@ -28,7 +28,7 @@ function showAccess(title,copy,label='Go to My Account',href='account.html'){
 
 function isEligible(view){if(view==='admin')return state.identity.isAdmin;return routes.includes(view)}
 function eligibleViews(){
-  const views=[['status','Status'],['requirements','Requirements'],['programs','Programs'],['messages','Messages'],['notifications','Notifications'],['history','History']];
+  const views=[['status','Status'],['listings','Listings'],['requirements','Requirements'],['programs','Programs'],['messages','Messages'],['notifications','Notifications'],['history','History']];
   if(state.identity.isAdmin)views.push(['admin','Admin']);
   return views;
 }
@@ -102,6 +102,79 @@ function bindScreen(){
       message('Profile updated.');
     });
   };
+
+  const logoForm=root.querySelector('#logo-upload-form');
+  if(logoForm)logoForm.onsubmit=e=>{
+    e.preventDefault();
+    withBusy(e.submitter,async()=>{
+      const file=logoForm.querySelector('[data-field="logo-file"]').files[0];
+      if(!file)throw new Error('Choose an image to upload.');
+      if(file.size>5242880)throw new Error('Image is larger than 5 MB.');
+      const result=await actions.uploadLogo(state.identity,file);
+      if(result.error)throw result.error;
+      state.identity.sellerProfile={...state.identity.sellerProfile,logo_object_path:result.data.logo_object_path};
+      logoForm.reset();
+      await refresh();
+      message('Logo updated.');
+    });
+  };
+
+  const addListingForm=root.querySelector('#add-listing-form');
+  if(addListingForm)addListingForm.onsubmit=e=>{
+    e.preventDefault();
+    withBusy(e.submitter,async()=>{
+      const fields={
+        listing_type:$('new-listing-type').value,
+        title:$('new-listing-title').value.trim(),
+        description:$('new-listing-description').value.trim(),
+        price_label:$('new-listing-price').value.trim()
+      };
+      if(!fields.title)throw new Error('Enter a title for this listing.');
+      const {error}=await actions.createListing(state.identity,fields);
+      if(error)throw error;
+      addListingForm.reset();
+      await refresh();
+      message('Listing added.');
+    });
+  };
+
+  root.querySelectorAll('[data-toggle-listing-active]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
+    const isActive=b.dataset.active==='true';
+    const {error}=await actions.setListingActive(state.identity,b.dataset.toggleListingActive,isActive);
+    if(error)throw error;
+    await refresh();
+    message(isActive?'Listing is now visible on your public page.':'Listing is now hidden from your public page.');
+  }));
+
+  root.querySelectorAll('[data-delete-listing]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
+    if(!confirm('Delete this listing and its photos? This cannot be undone.'))return;
+    const {error}=await actions.deleteListing(state.identity,b.dataset.deleteListing);
+    if(error)throw error;
+    await refresh();
+    message('Listing deleted.');
+  }));
+
+  root.querySelectorAll('[data-listing-image-form]').forEach(form=>form.onsubmit=e=>{
+    e.preventDefault();
+    const listingId=form.dataset.listingImageForm;
+    withBusy(e.submitter,async()=>{
+      const file=form.querySelector('[data-field="file"]').files[0];
+      if(!file)throw new Error('Choose a photo to upload.');
+      if(file.size>5242880)throw new Error('Photo is larger than 5 MB.');
+      const result=await actions.uploadListingImage(state.identity,listingId,file);
+      if(result.error)throw result.error;
+      form.reset();
+      await refresh();
+      message('Photo uploaded.');
+    });
+  });
+
+  root.querySelectorAll('[data-delete-listing-image]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
+    const {error}=await actions.deleteListingImage(state.identity,b.dataset.deleteListingImage);
+    if(error)throw error;
+    await refresh();
+    message('Photo removed.');
+  }));
 
   root.querySelectorAll('[data-action="submit-application"]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
     const app=state.data.applications[0];

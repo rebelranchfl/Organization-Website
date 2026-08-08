@@ -8,7 +8,7 @@ export async function loadSellerIdentity(){
   const results=await Promise.all([
     supabase.from('profiles').select('display_name').eq('id',user.id).single(),
     supabase.from('user_roles').select('role').eq('user_id',user.id),
-    supabase.from('seller_profiles').select('id,business_name,public_slug,marketplace_path,short_description,profile_status,region_id,owner_user_id').eq('owner_user_id',user.id).maybeSingle(),
+    supabase.from('seller_profiles').select('id,business_name,public_slug,marketplace_path,short_description,long_description,page_theme,logo_object_path,profile_status,region_id,owner_user_id').eq('owner_user_id',user.id).maybeSingle(),
     supabase.from('marketplace_categories').select('id,slug,name,description,path_group,parent_id,sort_order').eq('is_active',true).order('sort_order'),
     supabase.from('marketplace_regions').select('id,slug,region_name,state_code,region_type').eq('is_active',true).order('region_name'),
     supabase.from('creator_profiles').select('id,display_name,public_name,creator_type,age_band,profile_status,household_id').eq('owner_user_id',user.id).eq('profile_status','active').order('created_at'),
@@ -34,6 +34,7 @@ export async function loadSellerWorkspace(identity){
   const results=await Promise.all([
     supabase.from('seller_applications').select('id,application_type,status,requested_categories,legal_business_name,entity_type,contact_phone,mailing_region_id,producer_status,applicant_notes,submitted_at,reviewed_at,reviewer_user_id,review_notes,created_at').eq('seller_profile_id',spid).order('created_at',{ascending:false}),
     supabase.from('seller_category_assignments').select('id,category_id,is_primary').eq('seller_profile_id',spid),
+    supabase.from('seller_listings').select('id,listing_type,title,description,price_label,is_active,sort_order,created_at,seller_listing_images(id,object_path,sort_order)').eq('seller_profile_id',spid).order('sort_order'),
     supabase.from('seller_requirement_assignments').select('id,requirement_id,assignment_status,assigned_at,satisfied_at,waived_reason,compliance_requirements(id,code,title,description,requirement_type,requires_credential,requires_minor_consent)').eq('seller_profile_id',spid),
     supabase.from('seller_attestations').select('id,requirement_assignment_id,attestation_text,attested_at,is_current').eq('seller_profile_id',spid).eq('is_current',true),
     supabase.from('seller_credentials').select('id,requirement_assignment_id,credential_type,issuing_authority,credential_identifier,issued_at,expires_at,document_object_path,verification_status,verified_at').eq('seller_profile_id',spid).order('created_at',{ascending:false}),
@@ -45,10 +46,11 @@ export async function loadSellerWorkspace(identity){
     supabase.from('seller_inquiries').select('id,sender_name,sender_contact,sender_is_member,message,is_read,created_at').eq('seller_profile_id',spid).order('created_at',{ascending:false})
   ]);
   fail(results);
-  const [applications,categoryAssignments,requirementAssignments,attestations,credentials,reviewEvents,notifications,creatorAffiliations,householdAffiliations,paymentMethods,inquiries]=results;
+  const [applications,categoryAssignments,listings,requirementAssignments,attestations,credentials,reviewEvents,notifications,creatorAffiliations,householdAffiliations,paymentMethods,inquiries]=results;
   return {
     applications:applications.data,
     categoryAssignments:categoryAssignments.data,
+    listings:listings.data,
     requirementAssignments:requirementAssignments.data,
     attestations:attestations.data,
     credentials:credentials.data,
@@ -192,7 +194,50 @@ export const actions={
     if(!ids.length)return {error:null};
     return supabase.from('marketplace_notifications').update({is_read:true}).in('id',ids);
   },
-  async signOut(){return supabase.auth.signOut()}
+  async signOut(){return supabase.auth.signOut()},
+
+  async uploadLogo(identity,file){
+    const oldPath=identity.sellerProfile.logo_object_path;
+    const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,'-'),path=`${identity.user.id}/${identity.sellerProfile.id}/logo-${crypto.randomUUID()}-${safe}`;
+    const upload=await supabase.storage.from('marketplace-seller-public').upload(path,file);
+    if(upload.error)return upload;
+    const update=await supabase.from('seller_profiles').update({logo_object_path:path}).eq('id',identity.sellerProfile.id).select('logo_object_path').single();
+    if(update.error)return update;
+    if(oldPath)await supabase.storage.from('marketplace-seller-public').remove([oldPath]);
+    return update;
+  },
+  async createListing(identity,fields){
+    return supabase.from('seller_listings').insert({
+      seller_profile_id:identity.sellerProfile.id,
+      listing_type:fields.listing_type,
+      title:fields.title,
+      description:fields.description||null,
+      price_label:fields.price_label||null
+    });
+  },
+  async setListingActive(identity,listingId,isActive){
+    return supabase.from('seller_listings').update({is_active:isActive}).eq('id',listingId);
+  },
+  async deleteListing(identity,listingId){
+    const images=await supabase.from('seller_listing_images').select('object_path').eq('seller_listing_id',listingId);
+    if(images.error)return images;
+    const paths=images.data.map(i=>i.object_path);
+    if(paths.length)await supabase.storage.from('marketplace-seller-public').remove(paths);
+    return supabase.from('seller_listings').delete().eq('id',listingId);
+  },
+  async uploadListingImage(identity,listingId,file){
+    const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,'-'),path=`${identity.user.id}/${identity.sellerProfile.id}/${listingId}-${crypto.randomUUID()}-${safe}`;
+    const upload=await supabase.storage.from('marketplace-seller-public').upload(path,file);
+    if(upload.error)return upload;
+    return supabase.from('seller_listing_images').insert({seller_listing_id:listingId,object_path:path});
+  },
+  async deleteListingImage(identity,imageId){
+    const image=await supabase.from('seller_listing_images').select('object_path').eq('id',imageId).single();
+    if(image.error)return image;
+    const remove=await supabase.storage.from('marketplace-seller-public').remove([image.data.object_path]);
+    if(remove.error)return remove;
+    return supabase.from('seller_listing_images').delete().eq('id',imageId);
+  }
 };
 
 export const adminActions={

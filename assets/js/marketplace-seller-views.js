@@ -1,4 +1,7 @@
+import {supabase} from './supabase-client.js';
+
 const esc=(v='')=>{const d=document.createElement('div');d.textContent=String(v??'');return d.innerHTML};
+const publicUrl=path=>supabase.storage.from('marketplace-seller-public').getPublicUrl(path).data.publicUrl;
 const label=(v='')=>String(v||'').replaceAll('_',' ');
 const heading=(eyebrow,title,copy,action='')=>`<header class="screen-heading"><div><p class="eyebrow">${eyebrow}</p><h2>${title}</h2><p>${copy}</p></div>${action}</header>`;
 const empty=(title,copy)=>`<section class="empty-state"><span class="empty-icon" aria-hidden="true">✦</span><h2>${title}</h2><p>${copy}</p></section>`;
@@ -33,6 +36,13 @@ export function status(state){
       <section class="panel">
         <div class="panel-header"><div><p class="eyebrow">Business</p><h2>${esc(sp.business_name)}</h2></div>${badge(sp.profile_status)}</div>
         ${sp.profile_status==='active'&&sp.public_slug?`<p><a href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}" target="_blank" rel="noopener">View my public listing ↗</a></p>`:''}
+        <div class="logo-row">
+          ${sp.logo_object_path?`<img class="logo-preview" src="${esc(publicUrl(sp.logo_object_path))}" alt="Your business logo">`:'<div class="logo-preview logo-preview-empty">No logo yet</div>'}
+          <form id="logo-upload-form" class="dialog-actions">
+            <label>Business logo <span>JPEG, PNG, WebP, or an iPhone photo (HEIC); 5 MB max</span><input data-field="logo-file" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" required></label>
+            <button class="primary" type="submit">${sp.logo_object_path?'Replace logo':'Upload logo'}</button>
+          </form>
+        </div>
         <form id="profile-form" class="onboarding-form">
           <label>Business name<input id="pf-business-name" value="${esc(sp.business_name)}" ${canEdit?'':'disabled'} required></label>
           <label>Short description<textarea id="pf-short-description">${esc(sp.short_description||'')}</textarea></label>
@@ -67,6 +77,41 @@ export function status(state){
       </section>
     </aside>
   </div>`;
+}
+
+function listingCard(item){
+  const images=item.seller_listing_images||[];
+  return `<article class="req-card">
+    <div class="meta-row"><span class="status-badge ${item.is_active?'':'private'}">${item.is_active?'Visible':'Hidden'}</span><span class="tag">${esc(label(item.listing_type))}</span></div>
+    <h3>${esc(item.title)}</h3>
+    ${item.price_label?`<p><strong>${esc(item.price_label)}</strong></p>`:''}
+    ${item.description?`<p>${esc(item.description)}</p>`:''}
+    <div class="listing-photos">${images.map(img=>`<span class="listing-photo"><img src="${esc(publicUrl(img.object_path))}" alt=""><button type="button" data-delete-listing-image="${img.id}" aria-label="Remove photo">×</button></span>`).join('')}</div>
+    <form data-listing-image-form="${item.id}" class="dialog-actions" style="margin-top:10px">
+      <input data-field="file" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif">
+      <button class="primary" type="submit">Add photo</button>
+    </form>
+    <div class="actions" style="margin-top:10px">
+      <button data-toggle-listing-active="${item.id}" data-active="${!item.is_active}">${item.is_active?'Hide from public page':'Make visible'}</button>
+      <button class="danger" data-delete-listing="${item.id}">Delete</button>
+    </div>
+  </article>`;
+}
+
+export function listings(state){
+  const items=state.data.listings;
+  return `${heading('Listings','What you sell','Add products or services with a price and photos — buyers see these on your public page.')}
+  <section class="panel">
+    <div class="panel-header"><h2>Add a listing</h2></div>
+    <form id="add-listing-form" class="onboarding-form">
+      <label>Type<select id="new-listing-type"><option value="product">Product</option><option value="service">Service</option></select></label>
+      <label>Title<input id="new-listing-title" required></label>
+      <label>Description<textarea id="new-listing-description"></textarea></label>
+      <label>Price <span>Free text — e.g. "$8 each" or "Call for a quote"</span><input id="new-listing-price" placeholder="$8 each"></label>
+      <div class="dialog-actions"><button class="primary" type="submit">Add listing</button></div>
+    </form>
+  </section>
+  ${items.length?`<div class="card-grid" style="margin-top:18px">${items.map(listingCard).join('')}</div>`:empty('No listings yet','Add your first product or service using the form above.')}`;
 }
 
 export function requirements(state){
@@ -158,4 +203,4 @@ export function admin(state){
   </div>`;
 }
 
-export const renderers={status,requirements,programs,messages,notifications,history,admin};
+export const renderers={status,listings,requirements,programs,messages,notifications,history,admin};

@@ -8,11 +8,30 @@ const PATH_LABELS={food_farm:'Food & Farm',goods_services_handmade:'Goods, Servi
 const PAYMENT_LABELS={paypal:'PayPal',venmo:'Venmo',cashapp:'Cash App',zelle:'Zelle',stripe:'Stripe',apple_pay:'Apple Pay',cash:'Cash',check:'Check',other:'Other'};
 
 function showMessage(title,copy){
-  main.innerHTML=`<section class="state-message"><h1>${esc(title)}</h1><p>${esc(copy)}</p><p><a href="marketplace.html" class="button primary">Back to the directory</a></p></section>`;
+  main.innerHTML=`<section class="state-message"><h1>${esc(title)}</h1><p>${esc(copy)}</p><p><a href="marketplace-directory.html" class="button primary">Back to the directory</a></p></section>`;
 }
 
 function initials(name){
   return (name||'').split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join('')||'?';
+}
+
+function publicUrl(path){
+  return supabase.storage.from('marketplace-seller-public').getPublicUrl(path).data.publicUrl;
+}
+
+function renderListings(listings){
+  if(!listings.length)return '';
+  return `<section class="panel">
+    <h2>What we offer</h2>
+    <div class="listing-grid">${listings.map(item=>`
+      <article class="listing-card">
+        <span class="tag">${esc((item.listing_type||'').replaceAll('_',' '))}</span>
+        <h3>${esc(item.title)}</h3>
+        ${item.price_label?`<p class="listing-price">${esc(item.price_label)}</p>`:''}
+        ${item.description?`<p>${esc(item.description)}</p>`:''}
+        ${(item.seller_listing_images||[]).length?`<div class="gallery">${item.seller_listing_images.map(img=>`<div><img src="${esc(publicUrl(img.object_path))}" alt=""></div>`).join('')}</div>`:''}
+      </article>`).join('')}</div>
+  </section>`;
 }
 
 function renderPaymentMethods(methods){
@@ -55,7 +74,7 @@ function bindInquiryForm(sellerProfileId){
   });
 }
 
-function render(sp,categories,paymentMethods,region){
+function render(sp,categories,paymentMethods,region,listings){
   const primary=categories.find(c=>c.is_primary)||categories[0];
   const pathLabel=PATH_LABELS[sp.marketplace_path]||'Marketplace';
   document.body.dataset.marketTheme=sp.page_theme||'dark';
@@ -64,10 +83,10 @@ function render(sp,categories,paymentMethods,region){
   main.innerHTML=`
     <p class="trust-banner">All funds go directly to the sellers and their families — Rebel Ranch Ministries takes $0. This directory is offered to the community completely free.</p>
 
-    <p class="crumb"><a href="marketplace.html">Marketplace Directory</a>${primary?` / ${esc(pathLabel)} / ${esc(primary.marketplace_categories?.name||'')}`:` / ${esc(pathLabel)}`}</p>
+    <p class="crumb"><a href="marketplace-directory.html">Marketplace Directory</a>${primary?` / ${esc(pathLabel)} / ${esc(primary.marketplace_categories?.name||'')}`:` / ${esc(pathLabel)}`}</p>
 
     <section class="seller-hero">
-      <div class="seller-mark" aria-hidden="true">${esc(initials(sp.business_name))}</div>
+      <div class="seller-mark" aria-hidden="true">${sp.logo_object_path?`<img src="${esc(publicUrl(sp.logo_object_path))}" alt="">`:esc(initials(sp.business_name))}</div>
       <div>
         <p class="eyebrow">${esc(pathLabel)}${primary?` · ${esc(primary.marketplace_categories?.name||'')}`:''}</p>
         <h1>${esc(sp.business_name)}</h1>
@@ -86,6 +105,7 @@ function render(sp,categories,paymentMethods,region){
           <h2>About</h2>
           ${sp.long_description?`<p>${esc(sp.long_description)}</p>`:'<p class="eyebrow">This seller has not added a description yet.</p>'}
         </section>
+        ${renderListings(listings)}
       </div>
 
       <div class="stack">
@@ -127,20 +147,21 @@ async function init(){
   if(!slug)return showMessage('No seller specified','Use a link from the Marketplace directory to view a seller page.');
 
   const {data:sp,error}=await supabase.from('seller_profiles')
-    .select('id,business_name,public_slug,marketplace_path,short_description,long_description,page_theme,region_id')
+    .select('id,business_name,public_slug,marketplace_path,short_description,long_description,page_theme,logo_object_path,region_id')
     .eq('public_slug',slug)
     .maybeSingle();
 
   if(error)return showMessage('Something went wrong',error.message||'Try again in a moment.');
   if(!sp)return showMessage('Seller not found','This seller is not currently listed in the Marketplace directory.');
 
-  const [categoriesR,paymentR,regionR]=await Promise.all([
+  const [categoriesR,paymentR,regionR,listingsR]=await Promise.all([
     supabase.from('seller_category_assignments').select('is_primary,marketplace_categories(name,slug)').eq('seller_profile_id',sp.id),
     supabase.from('seller_payment_methods').select('method_type,label,link_url').eq('seller_profile_id',sp.id).order('sort_order'),
-    sp.region_id?supabase.from('marketplace_regions').select('region_name,state_code').eq('id',sp.region_id).maybeSingle():Promise.resolve({data:null})
+    sp.region_id?supabase.from('marketplace_regions').select('region_name,state_code').eq('id',sp.region_id).maybeSingle():Promise.resolve({data:null}),
+    supabase.from('seller_listings').select('id,listing_type,title,description,price_label,sort_order,seller_listing_images(id,object_path,sort_order)').eq('seller_profile_id',sp.id).order('sort_order')
   ]);
 
-  render(sp,categoriesR.data||[],paymentR.data||[],regionR.data);
+  render(sp,categoriesR.data||[],paymentR.data||[],regionR.data,listingsR.data||[]);
 }
 
 init();
