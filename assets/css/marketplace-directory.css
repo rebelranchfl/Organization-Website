@@ -1,31 +1,46 @@
-.shell{width:min(1160px,calc(100% - 32px));margin:auto;padding:34px 0 90px}
+/* Mirrors marketplace.html's own visual language exactly (same variable
+   names/values, Inter font stack, pill buttons, .card/.grid patterns) so
+   this page reads as the same product, not a separately-styled one.
+   The directory always stays this dark tone — no seller-chosen themes here. */
+:root{
+  --bg:#07120A; --bg2:#0D1E15; --panel:#102315; --panel2:#152A18;
+  --ink:#F0EDD8; --muted:#B9B596; --green:#97C459; --green2:#4A7C59;
+  --gold:#C17F24; --gold2:#EF9F27; --shadow:0 18px 55px rgba(0,0,0,.42);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;line-height:1.5;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.rr-page{min-height:100vh;position:relative;isolation:isolate}
 
-.directory-head{margin-bottom:26px}
-.directory-head .eyebrow{margin:0 0 8px;color:var(--rrm-gold-bright);font-size:.78rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase}
-.directory-head h1{margin:0 0 10px;font-size:clamp(1.9rem,4.5vw,2.8rem);letter-spacing:-.03em;color:var(--rrm-ink)}
-.directory-head p{margin:0;color:var(--rrm-muted);max-width:680px}
+.hero{width:min(1160px,92vw);margin:0 auto;padding:clamp(3rem,7vw,5.5rem) 0 clamp(1.5rem,3vw,2rem)}
+.eyebrow{color:var(--gold2);font-weight:800;letter-spacing:.22em;text-transform:uppercase;font-size:12px;margin-bottom:16px}
+h1{font-size:clamp(32px,5vw,54px);line-height:1.05;margin:0 0 18px;letter-spacing:-.03em}
+.hero .lead{font-size:clamp(16px,2vw,19px);color:#d7d1b3;max-width:720px;margin:0}
 
-.directory-controls{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:12px;margin:24px 0 10px}
-.directory-controls input,.directory-controls select{min-height:48px;padding:0 14px;border:1px solid var(--rrm-card-line);border-radius:10px;background:var(--rrm-card-1);color:var(--rrm-ink);font:inherit}
-.directory-controls input::placeholder{color:var(--rrm-muted)}
+#directory-results-section{width:min(1160px,92vw);margin:0 auto;padding:0 0 clamp(3rem,6vw,5rem)}
 
-.directory-result-count{margin:0 0 18px;color:var(--rrm-muted);font-size:.88rem}
+.directory-controls{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:12px;margin:0 0 14px}
+.directory-controls input,.directory-controls select{min-height:48px;padding:0 16px;border-radius:12px;border:1px solid var(--green2);background:#142617;color:var(--ink);font:inherit}
+.directory-controls input::placeholder{color:var(--muted)}
 
-.directory-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.directory-result-count{margin:0 0 20px;color:var(--muted);font-size:.9rem}
 
-.seller-directory-card{display:flex;gap:14px;align-items:flex-start;padding:20px;text-decoration:none;color:inherit}
-.seller-directory-mark{flex:0 0 auto;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;overflow:hidden;font-weight:900;font-size:1.2rem;color:var(--rrm-gold-bright);background:radial-gradient(circle,#2A1A0A,#152A18 62%,#07120A);border:2px solid var(--rrm-gold)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+
+.seller-directory-card{display:flex;gap:14px;align-items:flex-start;padding:22px}
+.seller-directory-mark{flex:0 0 auto;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;overflow:hidden;font-weight:900;font-size:1.2rem;color:var(--gold2);background:radial-gradient(circle,#2A1A0A,#152A18 62%,#07120A);border:2px solid var(--gold)}
 .seller-directory-mark img{width:100%;height:100%;object-fit:cover}
-.seller-directory-info h3{margin:0 0 4px;color:var(--rrm-ink);font-size:1.05rem}
-.seller-directory-meta{margin:0 0 6px;color:var(--rrm-gold-bright);font-size:.78rem;font-weight:800}
-.seller-directory-info p{margin:0 0 6px;color:var(--rrm-muted);font-size:.9rem}
+.seller-directory-info h3{margin:0 0 6px;font-size:1.05rem}
+.seller-directory-meta{margin:0 0 6px;color:var(--gold2);font-size:.78rem;font-weight:800}
+.seller-directory-info p{margin:0 0 6px;color:#c7c1a6;font-size:.9rem}
 
-.founding-card{padding:28px;text-align:center}
-.founding-card h3{margin:0 0 8px;color:var(--rrm-ink)}
-.founding-card p{margin:0 0 16px;color:var(--rrm-muted)}
+.founding-card{grid-column:1/-1;text-align:center}
+.founding-card h3{font-size:24px;margin:0 0 10px}
+.founding-card p{color:#c7c1a6;margin:0 0 16px;max-width:560px;margin-left:auto;margin-right:auto}
 
-.button{display:inline-block;min-height:46px;padding:12px 22px;border-radius:9px;text-decoration:none;font-weight:850}
-.button.primary{border:1px solid var(--rrm-gold);background:linear-gradient(135deg,var(--rrm-gold),var(--rrm-gold-dark));color:#fff7de}
-.button.primary:hover{background:linear-gradient(135deg,var(--rrm-gold-dark),var(--rrm-gold-dark))}
+.btn{padding:14px 22px;border-radius:999px;font-weight:800;border:1px solid var(--green2);background:#142617;color:var(--ink);box-shadow:var(--shadow);transition:.25s transform,.25s background;display:inline-block}
+.btn:hover{transform:translateY(-2px);background:#1b341f}
+.btn.gold{border-color:var(--gold);background:linear-gradient(135deg,#C17F24,#7b4b13);color:#fff7de}
 
-@media(max-width:760px){.directory-controls{grid-template-columns:1fr}}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.directory-controls{grid-template-columns:1fr}}

@@ -34,7 +34,7 @@ function founderEmptyState(){
   grid.innerHTML=`<div class="card founding-card">
     <h3>The First Listing Could Be Yours</h3>
     <p>We're reviewing applications for our very first sellers right now. Apply today and be one of the first ones buyers see.</p>
-    <a class="button primary" href="marketplace-seller-dashboard.html">Apply as a Seller</a>
+    <a class="btn gold" href="marketplace-seller-dashboard.html">Apply as a Seller</a>
   </div>`;
   resultCount.textContent='';
 }
@@ -66,22 +66,14 @@ function applyFilters(){
   resultCount.textContent=`${filtered.length} seller${filtered.length===1?'':'s'}`;
 }
 
-function populateFilters(){
-  const categoryMap=new Map();
-  const regionMap=new Map();
-  sellers.forEach(sp=>{
-    (sp.seller_category_assignments||[]).forEach(a=>{
-      const c=a.marketplace_categories;
-      if(c?.id&&!categoryMap.has(c.id))categoryMap.set(c.id,c.name);
-    });
-    if(sp.region_id&&sp._regionLabel&&!regionMap.has(sp.region_id))regionMap.set(sp.region_id,sp._regionLabel);
-  });
-  categorySelect.innerHTML='<option value="">All categories</option>'+[...categoryMap.entries()].sort((a,b)=>a[1].localeCompare(b[1])).map(([id,name])=>`<option value="${id}">${esc(name)}</option>`).join('');
-  regionSelect.innerHTML='<option value="">All locations</option>'+[...regionMap.entries()].sort((a,b)=>a[1].localeCompare(b[1])).map(([id,label])=>`<option value="${id}">${esc(label)}</option>`).join('');
+function populateFilters(categories,regions){
+  categorySelect.innerHTML='<option value="">All categories</option>'+categories.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');
+  regionSelect.innerHTML='<option value="">All locations</option>'+regions.map(r=>`<option value="${r.id}">${esc(r.region_name)}</option>`).join('');
 }
 
 async function init(){
-  const [{data:regions},{data:sellerRows,error}]=await Promise.all([
+  const [{data:categories},{data:regions},{data:sellerRows,error}]=await Promise.all([
+    supabase.from('marketplace_categories').select('id,name,slug').eq('is_active',true).order('sort_order'),
     supabase.from('marketplace_regions').select('id,region_name,state_code').eq('is_active',true).order('region_name'),
     supabase.from('seller_profiles').select('id,business_name,public_slug,marketplace_path,short_description,long_description,logo_object_path,region_id,seller_category_assignments(is_primary,category_id,marketplace_categories(id,name,slug))').order('business_name')
   ]);
@@ -90,9 +82,10 @@ async function init(){
 
   sellers=(sellerRows||[]).filter(sp=>sp.public_slug).map(sp=>({...sp,_regionLabel:regionMap.get(sp.region_id)||''}));
 
+  populateFilters(categories||[],regions||[]);
+
   if(error||!sellers.length){founderEmptyState();return}
 
-  populateFilters();
   applyFilters();
 
   searchInput.addEventListener('input',applyFilters);
