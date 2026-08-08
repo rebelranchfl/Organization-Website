@@ -50,6 +50,10 @@ export function status(state){
           <label>Page tone <span>How your public page looks — the directory itself always stays the current dark green</span>
             <div class="check-grid">${Object.entries(THEME_LABELS).map(([key,text])=>`<label><input type="radio" name="pf-theme" value="${key}" ${sp.page_theme===key?'checked':''}> ${text}</label>`).join('')}</div>
           </label>
+          <label>Why shop with you? <span>Up to 3 reasons buyers should choose you — shown on your public page. Leave blank to use our default copy.</span></label>
+          <input id="pf-why-1" placeholder="Reason 1" value="${esc((sp.why_shop_points||[])[0]||'')}">
+          <input id="pf-why-2" placeholder="Reason 2" value="${esc((sp.why_shop_points||[])[1]||'')}">
+          <input id="pf-why-3" placeholder="Reason 3" value="${esc((sp.why_shop_points||[])[2]||'')}">
           <div class="dialog-actions"><button class="primary" type="submit">Save changes</button></div>
         </form>
       </section>

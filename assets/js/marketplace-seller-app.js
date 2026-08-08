@@ -89,11 +89,13 @@ function bindScreen(){
   if(profileForm)profileForm.onsubmit=e=>{
     e.preventDefault();
     withBusy(e.submitter,async()=>{
+      const whyShopPoints=[$('pf-why-1').value.trim(),$('pf-why-2').value.trim(),$('pf-why-3').value.trim()].filter(Boolean);
       const updates={
         business_name:$('pf-business-name').value.trim(),
         short_description:$('pf-short-description').value.trim(),
         long_description:$('pf-long-description').value.trim(),
-        page_theme:profileForm.querySelector('input[name="pf-theme"]:checked')?.value||state.identity.sellerProfile.page_theme
+        page_theme:profileForm.querySelector('input[name="pf-theme"]:checked')?.value||state.identity.sellerProfile.page_theme,
+        why_shop_points:whyShopPoints.length?whyShopPoints:null
       };
       const {error}=await actions.updateSellerProfile(state.identity,updates);
       if(error)throw error;

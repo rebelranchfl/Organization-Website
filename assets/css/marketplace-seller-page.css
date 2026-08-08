@@ -6,12 +6,17 @@
    own dashboard) so a seller's public page and their private workspace
    feel like one connected place, not two different products. */
 *{box-sizing:border-box}html{scroll-behavior:smooth}
+.hidden{display:none}
 body{margin:0;background:radial-gradient(circle at top left,var(--rrm-bg-1) 0,var(--rrm-bg-2) 35%,var(--rrm-bg-3) 100%);color:var(--rrm-ink);font:16px/1.55 Arial,Helvetica,sans-serif}
 a{color:inherit}button,input{font:inherit}
 
 .shell{width:min(980px,calc(100% - 32px));margin:auto;padding:34px 0 90px}
 
 .trust-banner{margin:0 0 22px;padding:14px 20px;background:linear-gradient(135deg,rgba(193,127,36,.16),rgba(151,196,89,.12));border:1px solid var(--rrm-gold-dark);border-radius:14px;color:var(--rrm-ink);font-weight:800;text-align:center;font-size:.95rem}
+
+.owner-bar{margin:0 0 14px}
+.owner-bar a{color:var(--rrm-gold-bright);font-weight:800;text-decoration:none}
+.owner-bar a:hover{text-decoration:underline}
 
 .crumb{margin:0 0 18px;color:var(--rrm-muted);font-size:.86rem}
 .crumb a{color:var(--rrm-muted);text-decoration:underline}
@@ -41,8 +46,9 @@ a{color:inherit}button,input{font:inherit}
 .gallery img{width:100%;height:100%;object-fit:cover;display:block}
 
 .listing-grid{display:grid;gap:16px}
-.listing-card{padding:16px;border:1px solid var(--rrm-card-line);border-radius:14px;background:rgba(16,35,21,.4)}
+.listing-card{padding:16px;border:1px solid var(--rrm-card-line);border-radius:14px;background:linear-gradient(180deg,var(--rrm-card-1),var(--rrm-card-2))}
 .listing-card h3{margin:6px 0;color:var(--rrm-ink)}
+.listing-card p{color:var(--rrm-muted)}
 .listing-price{color:var(--rrm-gold-bright);font-weight:850}
 
 .list-plain{list-style:none;margin:0;padding:0;display:grid;gap:10px}

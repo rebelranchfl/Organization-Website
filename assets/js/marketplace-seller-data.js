@@ -8,7 +8,7 @@ export async function loadSellerIdentity(){
   const results=await Promise.all([
     supabase.from('profiles').select('display_name').eq('id',user.id).single(),
     supabase.from('user_roles').select('role').eq('user_id',user.id),
-    supabase.from('seller_profiles').select('id,business_name,public_slug,marketplace_path,short_description,long_description,page_theme,logo_object_path,profile_status,region_id,owner_user_id').eq('owner_user_id',user.id).maybeSingle(),
+    supabase.from('seller_profiles').select('id,business_name,public_slug,marketplace_path,short_description,long_description,page_theme,logo_object_path,why_shop_points,profile_status,region_id,owner_user_id').eq('owner_user_id',user.id).maybeSingle(),
     supabase.from('marketplace_categories').select('id,slug,name,description,path_group,parent_id,sort_order').eq('is_active',true).order('sort_order'),
     supabase.from('marketplace_regions').select('id,slug,region_name,state_code,region_type').eq('is_active',true).order('region_name'),
     supabase.from('creator_profiles').select('id,display_name,public_name,creator_type,age_band,profile_status,household_id').eq('owner_user_id',user.id).eq('profile_status','active').order('created_at'),

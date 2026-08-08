@@ -74,7 +74,7 @@ function bindInquiryForm(sellerProfileId){
   });
 }
 
-function render(sp,categories,paymentMethods,region,listings){
+function render(sp,categories,paymentMethods,region,listings,isOwner){
   const primary=categories.find(c=>c.is_primary)||categories[0];
   const pathLabel=PATH_LABELS[sp.marketplace_path]||'Marketplace';
   document.body.dataset.marketTheme=sp.page_theme||'dark';
@@ -82,6 +82,8 @@ function render(sp,categories,paymentMethods,region,listings){
 
   main.innerHTML=`
     <p class="trust-banner">All funds go directly to the sellers and their families — Rebel Ranch Ministries takes $0. This directory is offered to the community completely free.</p>
+
+    ${isOwner?'<p class="owner-bar"><a href="marketplace-seller-dashboard.html">← Back to my seller dashboard</a></p>':''}
 
     <p class="crumb"><a href="marketplace-directory.html">Marketplace Directory</a>${primary?` / ${esc(pathLabel)} / ${esc(primary.marketplace_categories?.name||'')}`:` / ${esc(pathLabel)}`}</p>
 
@@ -126,11 +128,7 @@ function render(sp,categories,paymentMethods,region,listings){
 
         <section class="panel trust-panel">
           <h2>Why shop here?</h2>
-          <ul class="list-plain">
-            <li>A real local business, not a chain, franchise, or reseller.</li>
-            <li>Buy &amp; Support REAL Locals</li>
-            <li>You Support REAL families. You're not lining corporate pockets.</li>
-          </ul>
+          <ul class="list-plain">${(sp.why_shop_points?.length?sp.why_shop_points:['A real local business, not a chain, franchise, or reseller.','Buy & Support REAL Locals','You Support REAL families. You\'re not lining corporate pockets.']).map(point=>`<li>${esc(point)}</li>`).join('')}</ul>
         </section>
       </div>
     </div>`;
@@ -147,21 +145,23 @@ async function init(){
   if(!slug)return showMessage('No seller specified','Use a link from the Marketplace directory to view a seller page.');
 
   const {data:sp,error}=await supabase.from('seller_profiles')
-    .select('id,business_name,public_slug,marketplace_path,short_description,long_description,page_theme,logo_object_path,region_id')
+    .select('id,business_name,public_slug,marketplace_path,short_description,long_description,page_theme,logo_object_path,why_shop_points,region_id')
     .eq('public_slug',slug)
     .maybeSingle();
 
   if(error)return showMessage('Something went wrong',error.message||'Try again in a moment.');
   if(!sp)return showMessage('Seller not found','This seller is not currently listed in the Marketplace directory.');
 
-  const [categoriesR,paymentR,regionR,listingsR]=await Promise.all([
+  const {data:{session}}=await supabase.auth.getSession();
+  const [categoriesR,paymentR,regionR,listingsR,ownerR]=await Promise.all([
     supabase.from('seller_category_assignments').select('is_primary,marketplace_categories(name,slug)').eq('seller_profile_id',sp.id),
     supabase.from('seller_payment_methods').select('method_type,label,link_url').eq('seller_profile_id',sp.id).order('sort_order'),
     sp.region_id?supabase.from('marketplace_regions').select('region_name,state_code').eq('id',sp.region_id).maybeSingle():Promise.resolve({data:null}),
-    supabase.from('seller_listings').select('id,listing_type,title,description,price_label,sort_order,seller_listing_images(id,object_path,sort_order)').eq('seller_profile_id',sp.id).order('sort_order')
+    supabase.from('seller_listings').select('id,listing_type,title,description,price_label,sort_order,seller_listing_images(id,object_path,sort_order)').eq('seller_profile_id',sp.id).order('sort_order'),
+    session?supabase.from('seller_profiles').select('id').eq('id',sp.id).eq('owner_user_id',session.user.id).maybeSingle():Promise.resolve({data:null})
   ]);
 
-  render(sp,categoriesR.data||[],paymentR.data||[],regionR.data,listingsR.data||[]);
+  render(sp,categoriesR.data||[],paymentR.data||[],regionR.data,listingsR.data||[],!!ownerR.data);
 }
 
 init();
