@@ -2,7 +2,7 @@
 
 **Status:** Owner-directed source of truth
 
-**Last updated:** 2026-08-09
+**Last updated:** 2026-08-04
 
 **Purpose:** Give every person and AI agent the same understanding of the organizations, programs, audiences, user paths, financial boundaries, and current decisions before work begins.
 
@@ -18,8 +18,6 @@ Read this document before planning or changing any Rebel Ranch page, program, wo
 - A newer, explicit owner decision may update this charter, but an agent's preference may not.
 
 **Build status (updated 2026-08-04):** Earlier project rules were written when Business Freedom was the only built program and assumed the homepage should not link out to other programs yet. That assumption no longer holds — Creation Station and Rebel Ranch Marketplace now have their own live, built, approved pages. See `docs/rrm-visual-rules.md` for the current homepage linking rule; do not assume single-program-era restrictions still apply without checking there first.
-
-**Gamification status (updated 2026-08-09):** This charter previously listed gamification as undecided while the real dashboard already had it live — a genuine conflict, now resolved. Gamification is confirmed and owner-approved as of 2026-08-09; see Section 4's "Gamification" subsection for the exact rules in production. It is no longer an open decision.
 
 ## 2. Organizational structure
 
@@ -132,17 +130,6 @@ These are different things:
 The personal page is not a Marketplace listing. It can be more colorful, stylized, and individually expressive. Approved templates provide structure while allowing the creator's identity, content, links, and work to lead.
 
 The exact future method for moving selected portfolio material into the paid personal page is not fully settled. Do not assume automatic transfer, copying, or manual re-entry beyond the currently approved implementation for the task at hand.
-
-### Gamification (confirmed 2026-08-09)
-
-Gamification exists in the real dashboard and is confirmed, owner-approved, and documented here — not an open decision. These are the exact rules running in production as of 2026-08-09:
-
-- **Points:** every logged creator action (starting a project, saving progress, completing a project, creating a portfolio, submitting a Studio request) is worth 1 point. No cap, no weighting by how substantial the action was.
-- **Streak:** counted in distinct calendar days with at least one logged action. Resets to zero once more than 5 days pass with no activity.
-- **Badge:** one badge exists today, the "First Project Badge," unlocked the first time any project reaches completed status. There is no badge library or further tiers yet.
-- Points and streak currently display only on the Studio hero banner. The badge unlocks an achievement panel on the Studio home screen. Neither appears on the Growth view or anywhere else yet.
-
-This section records what is confirmed and live. Adding new badges, changing the point/streak rules, or expanding where gamification is shown still requires owner approval like any other feature change — it is not a blank check for agents to expand gamification further without asking.
 
 ### Development phases
 
@@ -356,6 +343,7 @@ Detailed styling rules belong in separate, approved visual-standard documents. T
 - Final Academy products, subscriptions, classes, prices, and curriculum structure.
 - Final Business Freedom offers, pricing, and service boundaries.
 - Phase Two AI assistant behavior, data storage, safeguards, and customization.
+- Any gamification rules, including points, streaks, or achievements.
 - Final visual standards outside the locked Creation Station public-marketing baseline, including unsettled dashboard and program-specific experiences, plus Marketplace, Academy, and other program surfaces.
 
 ## 14. Related project documents
