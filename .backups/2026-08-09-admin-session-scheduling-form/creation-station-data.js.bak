@@ -39,9 +39,8 @@ export async function loadAdminSummary(){
     supabase.from('creator_portfolios').select('id,review_status,owner_user_id,creator_id').in('review_status',['submitted','changes_requested']),
     supabase.from('creator_website_requests').select('id,status,brand_name,owner_user_id,creator_id,updated_at').in('status',['submitted','changes_requested']),
     supabase.from('creator_projects').select('id,status,completion,owner_user_id'),
-    supabase.from('creator_profiles').select('id,age_band,profile_status'),
-    supabase.from('live_classes').select('id,title,description,starts_at,ends_at,minimum_tier,capacity,meeting_url,replay_url,supply_list,is_published').order('starts_at',{ascending:false})
-  ]);fail(results);return {portfolioQueue:results[0].data,websiteQueue:results[1].data,allProjects:results[2].data,allCreators:results[3].data,allClasses:results[4].data};
+    supabase.from('creator_profiles').select('id,age_band,profile_status')
+  ]);fail(results);return {portfolioQueue:results[0].data,websiteQueue:results[1].data,allProjects:results[2].data,allCreators:results[3].data};
 }
 
 export const actions={
@@ -51,7 +50,5 @@ export const actions={
   async createPortfolio(identity,creator){return supabase.from('creator_portfolios').insert({owner_user_id:identity.user.id,creator_id:creator.id,title:`${creator.display_name}'s Portfolio`})},
   async submitWebsite(identity,payload){return supabase.from('creator_website_requests').insert({...payload,owner_user_id:identity.user.id,status:'submitted',submitted_at:new Date().toISOString()})},
   async log(identity,type,subjectType,subjectId,summary){return supabase.from('creation_activity').insert({owner_user_id:identity.user.id,activity_type:type,subject_type:subjectType,subject_id:subjectId,summary})},
-  async createSession(payload){return supabase.from('live_classes').insert(payload)},
-  async updateSession(id,updates){return supabase.from('live_classes').update(updates).eq('id',id)},
   async signOut(){return supabase.auth.signOut()}
 };
