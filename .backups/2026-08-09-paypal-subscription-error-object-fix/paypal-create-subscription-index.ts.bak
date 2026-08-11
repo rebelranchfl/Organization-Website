@@ -77,9 +77,7 @@ Deno.serve(async (req) => {
     return response({ subscription_id: subscription.id, approve_url: approveUrl }, 200, origin);
   } catch (error) {
     console.error(error);
-    const detail = error && typeof error === "object" && "message" in error
-      ? String((error as { message: unknown }).message)
-      : String(error);
+    const detail = error instanceof Error ? error.message : String(error);
     return response({ error: "Unable to start PayPal checkout.", detail }, 500, origin);
   }
 });
