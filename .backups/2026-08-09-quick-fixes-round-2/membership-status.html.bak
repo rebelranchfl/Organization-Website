@@ -37,7 +37,6 @@
 
       <nav class="nav-menu" id="primary-navigation" aria-label="Primary" data-nav-menu data-open="false">
         <a href="account.html">My Account</a>
-        <a href="creation-station-dashboard.html">My Studio</a>
         <a class="rrm-return" href="index.html">Rebel Ranch Ministries</a>
         <a class="btn primary" href="creation-station-membership.html">View Membership Options</a>
       </nav>

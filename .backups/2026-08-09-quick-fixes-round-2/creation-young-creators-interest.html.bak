@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Register a young creator for Creation Station's weekly one-hour live online creative session.">
+<title>Young Creators Registration | Creation Station</title>
+<link rel="stylesheet" href="assets/css/site-core.css">
+<link rel="stylesheet" href="assets/css/creation-station.css">
+<style>
+:root{
+  --cream:#f8f3ff;--cream2:#fbf8ff;--ink:#271b31;--muted:#594b61;
+  --purple:#5b258f;--lav:#9352c8;--pink:#f04b98;--hot:#ff3d94;
+  --teal:#0397a4;--aqua:#55d7d1;--gold:#f7c94c;--orange:#f59b45;
+  --red:#cf3f54;--line:rgba(91,37,143,.2)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--ink);font-family:"Segoe UI",ui-sans-serif,system-ui,-apple-system,Roboto,Arial,sans-serif;line-height:1.5;min-height:100vh;overflow-x:hidden;
+  background:
+    radial-gradient(circle at 8% 18%,rgba(255,61,148,.17),transparent 19rem),
+    radial-gradient(circle at 92% 38%,rgba(85,215,209,.18),transparent 22rem),
+    linear-gradient(180deg,#6b2ca6 0 15rem,#df4f91 27rem,#f8f3ff 46rem,#fbf8ff 100%);
+}
+button,input,select,textarea{font:inherit}
+a{color:inherit}
+img{max-width:100%;display:block}
+[hidden]{display:none!important}
+.shell{position:relative;isolation:isolate}
+.hero{width:min(1080px,92vw);margin:24px auto 30px;text-align:center;color:#fff;position:relative;isolation:isolate;padding:16px 0 18px}
+.hero-logo,.script,h1,.hero-copy{position:relative;z-index:1}
+.script{position:relative;display:inline-block;padding:0 18px;margin:0 0 6px}
+h1{position:relative;display:inline-block;padding:0 16px 10px}
+.site-header{width:min(1180px,94vw);margin:auto;padding:20px 0 10px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none;font-weight:900}
+.brand img{width:68px;height:68px;object-fit:contain;filter:drop-shadow(0 8px 20px rgba(37,9,70,.28))}
+.brand strong{display:block;font-family:"Baloo 2";font-size:1.12rem;line-height:1}
+.brand small{display:block;opacity:.86;margin-top:3px}
+.back-link,.success-links a,.action{
+  display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:10px 18px;
+  border-radius:999px;text-decoration:none;font-weight:900;cursor:pointer;transition:.18s
+}
+.back-link{border:2px solid rgba(255,255,255,.72);color:#fff;background:rgba(62,20,101,.18);backdrop-filter:blur(10px)}
+.back-link:hover,.back-link:focus-visible,.action:hover,.action:focus-visible,.success-links a:hover,.success-links a:focus-visible{transform:translateY(-2px)}
+.hero-logo{width:116px;margin:0 auto 14px;filter:drop-shadow(0 14px 24px rgba(54,15,84,.28))}
+.script{font-family:"Caveat";font-size:clamp(1.45rem,3vw,2.15rem);font-weight:700;margin:0 0 4px;color:#fff6c6;transform:rotate(-1deg)}
+h1{margin:0;font-family:"Baloo 2";font-size:clamp(3rem,7vw,6.1rem);line-height:.94;letter-spacing:-.035em;text-wrap:balance;text-shadow:0 7px 24px rgba(66,17,99,.26)}
+.r1{color:#fff}.r2{color:#ffdc68}.r3{color:#79edf3}.r4{color:#ffd1e5}
+.hero-copy{max-width:800px;margin:20px auto 0;font-size:clamp(1.06rem,2vw,1.28rem);font-weight:700;text-shadow:0 3px 15px rgba(61,19,91,.3)}
+.hero-copy strong{color:#fff6a8}
+.form-wrap{width:min(920px,92vw);margin:0 auto 70px}
+.form-card{background:rgba(255,253,247,.98);border:1px solid rgba(255,255,255,.85);border-radius:32px;box-shadow:0 28px 90px rgba(65,25,94,.24);overflow:hidden;position:relative}
+.form-card:before{content:"";position:absolute;inset:0 0 auto;height:9px;background:linear-gradient(90deg,var(--purple),var(--hot),var(--orange),var(--gold),var(--aqua),var(--lav))}
+.form-top{padding:38px 38px 20px;text-align:center}
+.form-top h2{font-family:"Baloo 2";font-size:clamp(2rem,4vw,3.1rem);line-height:1;margin:0 0 10px;color:var(--purple)}
+.form-top p{max-width:690px;margin:auto;color:var(--muted);font-size:1.04rem}
+.clear{font-weight:900;color:var(--pink)}
+.progress-region{padding:0 38px 28px}
+.progress-label{display:flex;justify-content:space-between;gap:14px;font-weight:900;color:var(--purple);font-size:.92rem;margin-bottom:9px}
+.progress-track{height:9px;background:#eadff3;border-radius:4px;overflow:hidden}
+.progress-fill{height:100%;width:33.333%;background:linear-gradient(90deg,var(--purple),var(--pink),var(--orange));transition:width .28s}
+.step-nav{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:13px}
+.step-nav button{border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--muted);padding:10px 8px;font-size:.84rem;font-weight:900;cursor:pointer;transition:.18s}
+.step-nav button:hover,.step-nav button:focus-visible{transform:translateY(-1px);border-color:var(--lav)}
+.step-nav button[aria-current=step]{background:#f3eafb;color:var(--purple);border-color:var(--lav)}
+form{padding:0 38px 42px}
+.form-step{animation:stepIn .28s ease}
+@keyframes stepIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.step-heading{display:flex;align-items:flex-start;gap:14px;margin:0 0 24px}
+.step-number{flex:0 0 auto;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;font-family:"Baloo 2";font-weight:900;font-size:1.25rem;box-shadow:0 8px 20px rgba(91,37,143,.22)}
+.step-heading h3{font-family:"Baloo 2";font-size:2rem;line-height:1;margin:2px 0 4px}
+.step-heading p{margin:0;color:var(--muted)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.field{margin-bottom:19px}
+.field label,.field legend{display:block;font-weight:900;margin-bottom:8px}
+.hint{font-size:.88rem;color:var(--muted);font-weight:600;margin:-2px 0 8px}
+.required{color:var(--pink)}
+input[type=text],input[type=email],input[type=tel],input[type=number],input[type=date],select,textarea{
+  width:100%;border:2px solid #d9cde4;border-radius:13px;background:#fff;color:var(--ink);padding:13px 14px;outline:none;transition:.18s
+}
+textarea{min-height:92px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:var(--aqua);box-shadow:0 0 0 4px rgba(85,215,209,.14)}
+.invalid{border-color:var(--red)!important;box-shadow:0 0 0 4px rgba(207,63,84,.12)!important}
+.field-error{color:#a62536;font-size:.86rem;font-weight:800;margin-top:6px}
+fieldset{border:0;padding:0;margin:0}
+.choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.choice-grid.three{grid-template-columns:repeat(3,1fr)}
+.choice-card{position:relative;display:block;cursor:pointer}
+.choice-card input{position:absolute;opacity:0;pointer-events:none}
+.choice-card span{min-height:56px;display:flex;align-items:center;gap:10px;padding:12px 13px;border:2px solid #ded2e7;border-radius:13px;background:#fff;font-weight:800;transition:.18s}
+.choice-card span:before{content:"";flex:0 0 auto;width:20px;height:20px;border:2px solid #b6a5c6;border-radius:5px;background:#fff}
+.choice-card input[type=radio]+span:before{border-radius:50%}
+.choice-card:hover span{transform:translateY(-1px);border-color:var(--lav)}
+.choice-card input:focus-visible+span{box-shadow:0 0 0 4px rgba(122,66,191,.15)}
+.choice-card input:checked+span{border-color:var(--purple);background:#f5edfb;color:var(--purple)}
+.choice-card input:checked+span:before{border-color:var(--purple);background:linear-gradient(135deg,var(--purple),var(--pink));box-shadow:inset 0 0 0 4px #fff}
+.conditional,.review-box{border:2px solid rgba(3,151,164,.2);border-radius:16px;background:#eefbfc;padding:15px 16px;margin:10px 0 19px;color:#28565d}
+.conditional strong{color:var(--teal)}
+.conditional.stop{background:#fff4f7;border-color:rgba(240,75,152,.34);color:#743149}
+.conditional.stop strong{color:#a52653}
+.agreement{border:2px solid #e2d6ea;border-radius:19px;background:#fff;padding:21px;margin-bottom:18px;box-shadow:0 12px 32px rgba(62,33,92,.09)}
+.agreement h4{font-family:"Baloo 2";font-size:1.45rem;line-height:1.1;color:var(--purple);margin:0 0 10px}
+.agreement p{color:#544b5d;margin:0 0 14px}
+.check-stack{display:grid;gap:13px}
+.check-line{display:flex;align-items:flex-start;gap:11px;font-weight:800;cursor:pointer}
+.check-line input{width:22px;height:22px;margin-top:2px;accent-color:var(--purple);flex:0 0 auto}
+.signature-box{border:2px solid var(--line);border-radius:20px;background:linear-gradient(135deg,#fff,#fbf5ff);padding:21px;margin-top:20px}
+.signature-box h4{font-family:"Baloo 2";font-size:1.5rem;color:var(--purple);margin:0 0 8px}
+.review-box{background:#fffaf0;border-color:rgba(246,200,76,.62);color:var(--ink)}
+.review-box h4{font-family:"Baloo 2";font-size:1.45rem;margin:0 0 10px;color:#7c5510}
+.review-list{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin:0;padding:0;list-style:none}
+.review-list li{display:grid;gap:2px;padding:10px 0;border-bottom:1px solid rgba(124,85,16,.16)}
+.review-list strong{font-size:.82rem;text-transform:uppercase;letter-spacing:.04em;color:#7c5510}
+.form-actions{display:flex;justify-content:space-between;gap:12px;margin-top:24px}
+.form-actions:has(.action:only-child){justify-content:flex-end}
+.action{border:0}
+.action.primary{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;box-shadow:0 12px 26px rgba(91,37,143,.22)}
+.action.secondary{background:#eee4f5;color:var(--purple)}
+.action.submit{background:linear-gradient(135deg,var(--teal),var(--aqua));color:#fff;box-shadow:0 12px 26px rgba(3,151,164,.22)}
+.action:disabled{opacity:.62;cursor:wait;transform:none}
+.privacy-note{font-size:.88rem;color:var(--muted);text-align:center;margin:18px auto 0}
+.status{font-weight:900;color:#a62536;text-align:center;margin-top:12px}
+.success-panel{text-align:center;padding:60px 34px}
+.success-burst{font-size:3rem;letter-spacing:.12em}
+.success-panel h2{font-family:"Baloo 2";font-size:clamp(2.3rem,5vw,4rem);color:var(--purple);margin:8px 0}
+.success-panel p{font-size:1.1rem;color:var(--muted);max-width:620px;margin:0 auto 24px}
+.success-links{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+.success-links .schedule{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
+.success-links .return{background:#eee4f5;color:var(--purple)}
+footer{text-align:center;color:#61556a;padding:0 20px 38px;font-size:.9rem}
+footer strong{display:block;color:var(--purple);margin-bottom:4px}
+@media(max-width:760px){
+  .site-header{align-items:flex-start}.brand small{display:none}.brand img{width:56px;height:56px}
+  .hero{margin-top:18px;padding-top:8px}.hero-logo{width:96px}
+  .script{padding:0 12px}  h1{padding:0 10px 10px}  .form-top,.progress-region,form{padding-left:22px;padding-right:22px}
+  .grid-2,.review-list{grid-template-columns:1fr}.choice-grid.three{grid-template-columns:1fr 1fr}
+  .step-nav button{font-size:.75rem;padding:9px 5px}.form-actions{flex-direction:column-reverse}.action{width:100%}
+}
+@media(max-width:480px){
+  .choice-grid,.choice-grid.three{grid-template-columns:1fr}.form-card{border-radius:24px}
+  .step-heading h3{font-size:1.7rem}.step-number{width:40px;height:40px}
+  .back-link{padding:9px 13px;font-size:.86rem}
+}
+</style>
+<style>
+/* Form-specific use of the owner-approved Creation Station public design system. */
+.young-creators-form-page {
+  color: var(--ink);
+  background: var(--purple-950);
+  font-family: "Segoe UI", ui-sans-serif, system-ui, -apple-system, Roboto, Arial, sans-serif;
+}
+.young-creators-form-page .site-header { display: block; width: auto; margin: 0; padding: 0; }
+.young-creators-form-page .topbar .brand strong { font-family: inherit; }
+.young-creators-form-page main {
+  overflow: hidden;
+  background: #047f8b;
+}
+.registration-hero {
+  position: relative;
+  overflow: hidden;
+  width: auto;
+  margin: 0;
+  padding: clamp(2rem, 4vw, 3.2rem) 0 clamp(3.8rem, 6vw, 5rem);
+  color: #fff;
+  text-align: center;
+  background:
+    radial-gradient(circle at 88% 9%, rgba(255, 157, 207, .46), transparent 25%),
+    radial-gradient(circle at 8% 92%, rgba(48, 220, 213, .2), transparent 29%),
+    linear-gradient(135deg, #511c85 0%, #7131a4 40%, #a73793 70%, #ed4d92 100%);
+}
+.registration-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 6rem;
+  background: linear-gradient(0deg, rgba(47, 7, 77, .4), transparent);
+}
+.registration-hero .wrap { position: relative; z-index: 1; }
+.registration-hero .hero-logo { width: 6rem; margin: 0 auto .65rem; filter: drop-shadow(0 .9rem 1.5rem rgba(54, 15, 84, .28)); }
+.registration-hero .script { margin: 0 0 .6rem; padding: 0; color: #fff1a9; font-size: clamp(1.45rem, 3.4vw, 2.35rem); line-height: 1.05; transform: none; }
+.registration-hero .script .rainbow { display: inline; }
+.registration-hero h1 { display: block; max-width: 62rem; margin: 0 auto; padding: 0; font-family: inherit; font-size: clamp(2.8rem, 7.4vw, 5.65rem); line-height: .92; letter-spacing: -.07em; text-wrap: balance; }
+.r1 { color: #fff; }
+.r2 { color: #ffdc68; }
+.r3 { color: #79edf3; }
+.r4 { color: #ffd1e5; }
+.registration-hero .hero-copy { max-width: 50rem; margin: 1.4rem auto 0; color: #fff7fd; font-size: clamp(1.04rem, 2vw, 1.2rem); font-weight: 720; line-height: 1.65; }
+.registration-hero .hero-copy strong { color: #fff1a9; }
+.registration-hero .hero-copy .hero-orange { color: #8ef1e8; }
+.form-wrap { position: relative; z-index: 2; width: min(58rem, calc(100% - 2rem)); margin: -2rem auto clamp(3rem, 6vw, 4.5rem); }
+.form-card { position: relative; overflow: hidden; background: rgba(255, 255, 255, .97); border: 1px solid rgba(74, 24, 120, .15); border-radius: 1.75rem; box-shadow: var(--shadow); }
+.form-card::before { height: .5rem; background: var(--rainbow); }
+.form-top { padding: 2.6rem 2.4rem 1.3rem; }
+.form-top h2 { margin: 0 0 .7rem; color: var(--purple-800); font-family: inherit; font-size: clamp(2.25rem, 6vw, 3.7rem); line-height: .95; letter-spacing: -.055em; }
+.form-top p { max-width: 43rem; color: var(--text); font-size: 1.04rem; font-weight: 700; line-height: 1.65; }
+.progress-region { padding: 0 2.4rem 1.8rem; }
+.progress-label { margin-bottom: .55rem; color: var(--purple-800); font-size: .88rem; }
+.progress-track { height: .55rem; background: var(--lavender); border-radius: 999px; }
+.progress-fill { background: var(--primary); }
+.step-nav { gap: .55rem; margin-top: .8rem; }
+.step-nav button { min-height: 2.8rem; padding: .55rem; color: var(--text); border: 1px solid var(--line); border-radius: .75rem; font-size: .8rem; }
+.step-nav button:hover, .step-nav button:focus-visible { color: var(--purple-800); border-color: var(--purple-500); }
+.step-nav button[aria-current="step"] { color: var(--purple-800); background: var(--lavender); border-color: var(--purple-500); }
+#registrationForm { padding: 0 2.4rem 2.6rem; }
+.step-heading { gap: .9rem; margin-bottom: 1.5rem; }
+.step-number { width: 2.8rem; height: 2.8rem; color: #2f1634; background: var(--primary); border-radius: .85rem; box-shadow: var(--shadow-soft); font-family: inherit; font-size: 1.15rem; }
+.step-heading h3 { margin: .1rem 0 .25rem; color: var(--purple-800); font-family: inherit; font-size: clamp(1.75rem, 4vw, 2.25rem); line-height: 1; letter-spacing: -.035em; }
+.step-heading p { color: var(--text); font-weight: 700; }
+.grid-2 { gap: 1.2rem; }
+.field { margin-bottom: 1.2rem; }
+.field label, .field legend { margin-bottom: .5rem; color: var(--ink); }
+.hint { margin: -.1rem 0 .5rem; color: var(--text); font-size: .86rem; }
+.required { color: #c52c72; }
+input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="date"], select, textarea { padding: .85rem .9rem; color: var(--ink); border-color: rgba(74, 24, 120, .22); border-radius: .85rem; }
+textarea { min-height: 6rem; }
+input:focus, select:focus, textarea:focus { border-color: var(--teal); box-shadow: 0 0 0 4px rgba(3, 151, 164, .14); }
+.choice-grid { gap: .75rem; }
+.choice-card span { min-height: 3.6rem; padding: .75rem .8rem; border-color: rgba(74, 24, 120, .18); border-radius: .85rem; }
+.choice-card span::before { width: 1.2rem; height: 1.2rem; border-color: rgba(74, 24, 120, .38); border-radius: .3rem; }
+.choice-card:hover span { border-color: var(--purple-500); }
+.choice-card input:focus-visible + span { box-shadow: 0 0 0 4px rgba(147, 82, 200, .16); }
+.choice-card input:checked + span { color: var(--purple-800); background: var(--lavender); border-color: var(--purple-700); }
+.choice-card input:checked + span::before { background: var(--primary); border-color: var(--purple-700); box-shadow: inset 0 0 0 3px #fff; }
+.conditional, .review-box { margin: .6rem 0 1.2rem; padding: 1rem; color: #28565d; background: var(--sky); border-color: rgba(3, 151, 164, .2); border-radius: 1rem; }
+.conditional strong { color: #047f8b; }
+.conditional.stop { border-color: rgba(240, 75, 152, .34); }
+.agreement, .signature-box { padding: 1.35rem; background: #fff; border: 1px solid var(--line); border-radius: 1.2rem; box-shadow: var(--shadow-soft); }
+.agreement { margin-bottom: 1.15rem; }
+.agreement h4, .signature-box h4, .review-box h4 { margin: 0 0 .65rem; color: var(--purple-800); font-family: inherit; font-size: 1.4rem; line-height: 1.1; letter-spacing: -.025em; }
+.agreement p { margin-bottom: .9rem; color: var(--text); }
+.check-stack { gap: .8rem; }
+.signature-box { margin-top: 1.2rem; background: linear-gradient(135deg, #fff, #fbf6ff); }
+.review-box { color: var(--ink); background: #fffaf0; border-color: rgba(247, 201, 76, .7); }
+.review-box h4, .review-list strong { color: #7c5510; }
+.review-list { gap: .6rem 1.1rem; }
+.review-list li { padding: .6rem 0; }
+.form-actions { gap: .75rem; margin-top: 1.5rem; }
+.action, .success-links a { min-height: 3rem; padding: .8rem 1.1rem; border: 0; border-radius: .85rem; box-shadow: var(--shadow-soft); }
+.action.primary, .success-links .schedule { color: #2f1634; background: var(--primary); }
+.action.primary:hover, .action.primary:focus-visible, .success-links .schedule:hover, .success-links .schedule:focus-visible { color: #fff; background: var(--purple-gradient); }
+.action.secondary, .success-links .return { color: var(--purple-800); background: var(--lavender); }
+.action.submit { color: #2f1634; background: var(--primary); }
+.action.submit:hover, .action.submit:focus-visible { color: #fff; background: var(--purple-gradient); }
+.privacy-note { color: var(--text); }
+.success-panel h2 { color: var(--purple-800); font-family: inherit; letter-spacing: -.055em; }
+.success-panel p { color: var(--text); }
+@media (max-width: 47.5rem) {
+  .form-top, .progress-region, #registrationForm { padding-left: 1.35rem; padding-right: 1.35rem; }
+  .grid-2, .review-list { grid-template-columns: 1fr; gap: 0; }
+  .choice-grid.three { grid-template-columns: 1fr 1fr; }
+  .step-nav button { padding: .5rem .3rem; font-size: .72rem; }
+}
+@media (max-width: 30rem) {
+  .registration-hero { padding: 1.75rem 0 3.4rem; }
+  .registration-hero .hero-logo { width: 5.25rem; }
+  .choice-grid, .choice-grid.three { grid-template-columns: 1fr; }
+  .form-card { border-radius: 1.25rem; }
+  .step-number { width: 2.5rem; height: 2.5rem; }
+}
+</style>
+</head>
+<body class="young-creators-form-page">
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- OWNER-LOCKED: Approved Creation Station public header. Preserve this structure and treatment unless the owner explicitly authorizes a change. See docs/creation-station-visual-rules.md. -->
+<header class="site-header topbar" data-site-nav>
+  <div class="wrap site-nav">
+    <a class="brand" href="creation.html" aria-label="Creation Station home">
+      <img src="assets/creation-station-logo.png" alt="Creation Station logo" width="220" height="220">
+      <span class="brand-text"><strong>Creation Station</strong><small>by Rebel Ranch Ministries</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation" data-nav-toggle>
+      <span class="nav-toggle-bars" aria-hidden="true"></span>
+    </button>
+    <nav class="nav-menu" id="primary-navigation" aria-label="Primary" data-nav-menu data-open="false">
+      <a href="creation.html#paths">Choose Your Path</a>
+      <a href="creation.html#more-than-craft">What They Build</a>
+      <a href="creation-station-experience.html">See the Experience</a>
+      <a href="creation-station-live-classes.html">Live Sessions</a>
+      <a class="rrm-return" href="index.html">Rebel Ranch Ministries</a>
+      <a class="btn primary" href="#registration-heading">Start Creating</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="registration-hero" aria-labelledby="page-title">
+  <div class="wrap">
+    <img class="hero-logo" src="assets/creation-station-logo.png" alt="" aria-hidden="true">
+    <p class="script hand"><span class="rainbow">A creative hour</span> for them. A little <span class="rainbow">breathing room for you.</span></p>
+    <h1 id="page-title">Sign Up Now</h1>
+    <p class="hero-copy"><strong class="hero-orange">One live online hour each week</strong> where young creators <span class="hero-orange">make, talk, laugh, and create</span> alongside other children.</p>
+  </div>
+</section>
+
+<div class="form-wrap">
+<section class="form-card" aria-labelledby="registration-heading">
+<div id="formContent">
+  <div class="form-top">
+    <h2 id="registration-heading">Creation Station Parent Approval Form</h2>
+    <p>Three quick steps. A parent or legal guardian completes the form, then chooses a weekly session time.</p>
+  </div>
+
+  <div class="progress-region" aria-label="Registration progress">
+    <div class="progress-label"><span id="stepLabel">Step 1 of 3</span><span id="stepPercent">33% complete</span></div>
+    <div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="step-nav" role="navigation" aria-label="Registration steps">
+      <button type="button" data-jump="1" aria-current="step">1. Parent</button>
+      <button type="button" data-jump="2">2. Creator</button>
+      <button type="button" data-jump="3">3. Permission</button>
+    </div>
+  </div>
+
+  <form id="registrationForm" action="https://formspree.io/f/xnjrqydq" method="POST" novalidate>
+    <input type="hidden" name="_subject" value="New Creation Station Weekly Craft Circle Registration">
+    <input type="hidden" name="form_name" value="Creation Station Weekly Craft Circle Registration">
+    <input type="hidden" name="source_path" id="sourcePath" value="Direct registration">
+
+    <section class="form-step" data-step="1">
+      <div class="step-heading"><div class="step-number">1</div><div><h3>Parent Information</h3><p>Where should we send session details?</p></div></div>
+
+      <div class="grid-2">
+        <div class="field"><label for="guardianName">Parent / legal guardian name <span class="required">*</span></label><input id="guardianName" name="guardian_name" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="relationship">Your relationship to the child <span class="required">*</span></label><select id="relationship" name="relationship_to_child" required><option value="">Choose one</option><option>Parent</option><option>Legal guardian</option><option>I am not the parent or legal guardian</option></select></div>
+      </div>
+
+      <div id="otherAdultNotice" class="conditional stop" hidden><strong>A parent or legal guardian needs to complete this sign-up.</strong></div>
+
+      <div class="grid-2">
+        <div class="field"><label for="guardianEmail">Email <span class="required">*</span></label><input id="guardianEmail" name="guardian_email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="guardianPhone">Phone number <span class="required">*</span></label><input id="guardianPhone" name="guardian_phone" type="tel" autocomplete="tel" required></div>
+      </div>
+
+      <div class="form-actions"><button class="action primary" type="button" data-next>Next: Your Creator →</button></div>
+    </section>
+
+    <section class="form-step" data-step="2" hidden>
+      <div class="step-heading"><div class="step-number">2</div><div><h3>Your Young Creator</h3><p>Just the basics for their weekly craft circle.</p></div></div>
+
+      <div class="grid-2">
+        <div class="field"><label for="childName">Child's full name <span class="required">*</span></label><input id="childName" name="child_full_name" type="text" required></div>
+        <div class="field"><label for="screenName">First name or nickname used in class <span class="required">*</span></label><input id="screenName" name="child_session_name" type="text" required><p class="hint">Only this name will be used during the live session.</p></div>
+      </div>
+
+      <div class="field"><label for="childAge">Child's age <span class="required">*</span></label><input id="childAge" name="child_age" type="number" min="6" max="18" inputmode="numeric" required></div>
+      <div id="ageNote" class="conditional" hidden></div>
+
+      <fieldset class="field" data-required-group="creative_interests">
+        <legend>What do they enjoy making? <span class="required">*</span></legend>
+        <p class="hint">Choose one or more.</p>
+        <div class="choice-grid three">
+          <label class="choice-card"><input type="checkbox" name="creative_interests" value="Drawing and painting"><span>🎨 Drawing &amp; painting</span></label>
+          <label class="choice-card"><input type="checkbox" name="creative_interests" value="Paper crafts and collage"><span>✂️ Paper &amp; collage</span></label>
+          <label class="choice-card"><input type="checkbox" name="creative_interests" value="Yarn and fiber"><span>🧶 Yarn &amp; fiber</span></label>
+          <label class="choice-card"><input type="checkbox" name="creative_interests" value="Jewelry and beads"><span>📿 Jewelry &amp; beads</span></label>
+          <label class="choice-card"><input type="checkbox" name="creative_interests" value="Nature and recycled crafts"><span>🌿 Nature &amp; recycled</span></label>
+          <label class="choice-card"><input type="checkbox" name="creative_interests" value="Open to anything"><span>✨ Open to anything</span></label>
+        </div>
+      </fieldset>
+
+      <div class="field"><label for="creatorNotes">Anything simple you would like the host to know?</label><textarea id="creatorNotes" name="creator_notes" placeholder="Optional"></textarea></div>
+
+      <div class="form-actions"><button class="action secondary" type="button" data-back>← Back</button><button class="action primary" type="button" data-next>Next: Parent Permission →</button></div>
+    </section>
+
+    <section class="form-step" data-step="3" hidden>
+      <div class="step-heading"><div class="step-number">3</div><div><h3>Parent Permission &amp; Sign</h3><p>One quick agreement, one signature, and you are done.</p></div></div>
+
+      <div class="review-box">
+        <h4>Sign-Up Summary</h4>
+        <ul class="review-list">
+          <li><strong>Young creator</strong><span id="reviewChild">—</span></li>
+          <li><strong>Age</strong><span id="reviewAge">—</span></li>
+          <li><strong>Parent / guardian</strong><span id="reviewGuardian">—</span></li>
+          <li><strong>Contact</strong><span id="reviewContact">—</span></li>
+        </ul>
+      </div>
+
+      <div class="agreement">
+        <h4>Creation Station Club / Live Sessions Agreement</h4>
+        <p>I give permission for my child to join Creation Station's live online craft sessions. I understand the host provides online creative guidance while I remain responsible for my child, the workspace, and the tools and materials used in our home.</p>
+        <div class="check-stack">
+          <label class="check-line"><input type="checkbox" name="parent_supervision_agreement" value="Agreed" required><span>I will remain reachable during the session and provide help with any tool or material that requires adult assistance.</span></label>
+          <label class="check-line"><input type="checkbox" name="privacy_conduct_agreement" value="Agreed" required><span>My child will be respectful, will use only a first name or nickname, and no one in our household will record or share the live session. I understand Creation Station may pause or end my child's participation for not following session rules, disrespectful behavior, or violations of program policies.</span></label>
+          <label class="check-line"><input type="checkbox" name="participation_release" value="Agreed" required><span>I voluntarily approve my child's participation and, to the extent allowed by law, release Faith, Family &amp; Nature Church, Inc., Creation Station, and their programs, partners, affiliates, leaders, volunteers, and representatives from claims arising from ordinary participation in the online session or use of materials in our home.</span></label>
+        </div>
+      </div>
+
+      <div class="agreement">
+        <h4>Photo &amp; Project Sharing</h4>
+        <p>Choose whether Creation Station may share a still image, short clip, or picture of your child's finished project. A “no” does not affect participation.</p>
+        <fieldset class="field" data-required-group="media_consent">
+          <legend>Media choice <span class="required">*</span></legend>
+          <div class="choice-grid">
+            <label class="choice-card"><input type="radio" name="media_consent" value="No media permission" required checked><span>No, keep it private</span></label>
+            <label class="choice-card"><input type="radio" name="media_consent" value="Yes, no last name or private information"><span>Yes, with no last name or private information</span></label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="signature-box">
+        <h4>Electronic Signature</h4>
+        <p>By typing my name, I confirm that I am the child's parent or legal guardian and agree to the permissions and release above.</p>
+        <div class="grid-2">
+          <div class="field"><label for="signatureName">Type your full name <span class="required">*</span></label><input id="signatureName" name="electronic_signature" type="text" required></div>
+          <div class="field"><label for="signatureDate">Date <span class="required">*</span></label><input id="signatureDate" name="signature_date" type="date" required></div>
+        </div>
+        <label class="check-line"><input type="checkbox" name="final_certification" value="Certified and signed" required><span>I confirm and electronically sign this registration.</span></label>
+      </div>
+
+      <div class="form-actions"><button class="action secondary" type="button" data-back>← Back</button><button class="action submit" id="submitButton" type="submit">Complete Sign-Up &amp; Choose a Session</button></div>
+      <p class="privacy-note">Parent-controlled sign-up. No child email address is collected.</p>
+      <div class="status" id="formStatus" role="alert" aria-live="polite"></div>
+    </section>
+  </form>
+</div>
+
+<div id="successPanel" class="success-panel" hidden>
+  <div class="success-burst" aria-hidden="true">🎉 ✂️ 🎨</div>
+  <h2>You're all set!</h2>
+  <p>Your young creator's sign-up is complete. Choose the weekly session time that works best for your family.</p>
+  <div class="success-links">
+    <a class="schedule" href="https://calendly.com/rebelranchfl/live-from-the-creation-station">Choose a Session Time</a>
+    <a class="return" href="creation.html">Return to Creation Station</a>
+  </div>
+</div>
+</section>
+</div>
+</main>
+
+<!-- OWNER-LOCKED: Approved Creation Station public footer, RRM return path, and earnings disclosure. Preserve unless the owner explicitly authorizes a change. See docs/creation-station-visual-rules.md. -->
+<footer class="footer">
+  <div class="wrap footer-layout">
+    <div class="footer-brand-lockup">
+      <img src="assets/creation-station-logo.png" alt="Creation Station logo" width="220" height="220" loading="lazy">
+      <div>
+        <strong>Creation Station</strong>
+        <a class="footer-rrm-link" href="index.html">by Rebel Ranch Ministries · Return to the main website</a>
+      </div>
+    </div>
+    <div class="footer-message">
+      <strong class="footer-tagline rainbow">Create. Learn. Build. Grow.</strong>
+      <p>Creative projects with real-life purpose and application.</p>
+    </div>
+    <details class="footer-disclaimer">
+      <summary>Earnings Disclaimer</summary>
+      <p>Creation Station and Rebel Ranch Ministries provide the platform, tools, education, and opportunity. We do not guarantee sales, profits, income, earnings, cost recovery, or business success.</p>
+    </details>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const form = document.getElementById('registrationForm');
+  const steps = [...document.querySelectorAll('.form-step')];
+  const navButtons = [...document.querySelectorAll('[data-jump]')];
+  const progressFill = document.getElementById('progressFill');
+  const stepLabel = document.getElementById('stepLabel');
+  const stepPercent = document.getElementById('stepPercent');
+  const status = document.getElementById('formStatus');
+  let currentStep = 1;
+
+  const queryPath = new URLSearchParams(location.search).get('path');
+  if (queryPath) document.getElementById('sourcePath').value = queryPath;
+
+  const dateInput = document.getElementById('signatureDate');
+  const localToday = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0,10);
+  dateInput.value = localToday;
+
+  const showStep = (number) => {
+    currentStep = number;
+    steps.forEach(step => step.hidden = Number(step.dataset.step) !== number);
+    navButtons.forEach(btn => {
+      if (Number(btn.dataset.jump) === number) btn.setAttribute('aria-current','step');
+      else btn.removeAttribute('aria-current');
+    });
+    const pct = Math.round((number / 3) * 100);
+    progressFill.style.width = pct + '%';
+    stepLabel.textContent = `Step ${number} of 3`;
+    stepPercent.textContent = `${pct}% complete`;
+    if (number === 3) updateReview();
+    document.querySelector('.form-card').scrollIntoView({behavior:'smooth',block:'start'});
+  };
+
+  const clearErrors = (scope) => {
+    scope.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid'));
+    scope.querySelectorAll('.field-error').forEach(el => el.remove());
+    status.textContent = '';
+  };
+
+  const addError = (container, message) => {
+    if (container.querySelector('.field-error')) return;
+    const error = document.createElement('div');
+    error.className = 'field-error';
+    error.textContent = message;
+    container.appendChild(error);
+  };
+
+  const validateStep = (number) => {
+    const step = steps.find(s => Number(s.dataset.step) === number);
+    clearErrors(step);
+    let valid = true;
+    let firstInvalid = null;
+
+    step.querySelectorAll('input[required],select[required],textarea[required]').forEach(el => {
+      if (el.closest('[hidden]') || el.offsetParent === null) return;
+      if (!el.checkValidity()) {
+        valid = false;
+        el.classList.add('invalid');
+        firstInvalid ||= el;
+        const field = el.closest('.field,.signature-box,.agreement') || el.parentElement;
+        addError(field, el.type === 'checkbox' ? 'Please check this agreement.' : 'Please complete this required field.');
+      }
+    });
+
+    step.querySelectorAll('[data-required-group]').forEach(group => {
+      const name = group.dataset.requiredGroup;
+      if (!group.querySelector(`input[name="${name}"]:checked`)) {
+        valid = false;
+        firstInvalid ||= group.querySelector('input');
+        addError(group, 'Please choose at least one option.');
+      }
+    });
+
+    if (number === 1 && document.getElementById('relationship').value === 'I am not the parent or legal guardian') {
+      valid = false;
+      document.getElementById('relationship').classList.add('invalid');
+      firstInvalid ||= document.getElementById('relationship');
+      addError(document.getElementById('relationship').closest('.field'),'A parent or legal guardian needs to complete this form.');
+    }
+
+    if (!valid && firstInvalid) {
+      firstInvalid.focus({preventScroll:true});
+      firstInvalid.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+    return valid;
+  };
+
+  document.querySelectorAll('[data-next]').forEach(button => button.addEventListener('click', () => {
+    if (validateStep(currentStep)) showStep(Math.min(3,currentStep + 1));
+  }));
+  document.querySelectorAll('[data-back]').forEach(button => button.addEventListener('click', () => showStep(Math.max(1,currentStep - 1))));
+
+  navButtons.forEach(button => button.addEventListener('click', () => {
+    const target = Number(button.dataset.jump);
+    if (target <= currentStep) return showStep(target);
+    if (target === currentStep + 1 && validateStep(currentStep)) return showStep(target);
+    status.textContent = 'Complete the current step before jumping ahead.';
+  }));
+
+  const relationship = document.getElementById('relationship');
+  relationship.addEventListener('change', () => {
+    document.getElementById('otherAdultNotice').hidden = relationship.value !== 'I am not the parent or legal guardian';
+  });
+
+  document.getElementById('childAge').addEventListener('input', e => {
+    const age = Number(e.target.value);
+    const note = document.getElementById('ageNote');
+    if (!age || age < 6 || age > 18) return note.hidden = true;
+    note.hidden = false;
+    if (age <= 9) note.innerHTML = '<strong>For younger creators:</strong> you do not need to sit beside them for the full hour, but please stay nearby in case they need help.';
+    else note.innerHTML = '<strong>During the session:</strong> please remain reachable while your child creates.';
+  });
+
+  const value = (id) => document.getElementById(id).value.trim() || '—';
+  const updateReview = () => {
+    document.getElementById('reviewChild').textContent = `${value('screenName')} (${value('childName')})`;
+    document.getElementById('reviewAge').textContent = value('childAge');
+    document.getElementById('reviewGuardian').textContent = value('guardianName');
+    document.getElementById('reviewContact').textContent = `${value('guardianEmail')} • ${value('guardianPhone')}`;
+  };
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    for (let i = 1; i <= 3; i++) {
+      if (!validateStep(i)) {
+        showStep(i);
+        status.textContent = 'Please complete the highlighted item before submitting.';
+        return;
+      }
+    }
+
+    const button = document.getElementById('submitButton');
+    button.disabled = true;
+    button.textContent = 'Sending Sign-Up…';
+    status.textContent = '';
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {'Accept':'application/json'}
+      });
+      if (!response.ok) throw new Error('Submission failed');
+      document.getElementById('formContent').hidden = true;
+      document.getElementById('successPanel').hidden = false;
+      document.querySelector('.form-card').scrollIntoView({behavior:'smooth',block:'start'});
+      form.reset();
+    } catch (error) {
+      button.disabled = false;
+      button.textContent = 'Complete Sign-Up & Choose a Session';
+      status.textContent = 'The form could not send. Please check your connection and try again.';
+    }
+  });
+})();
+</script>
+<script src="assets/js/site-navigation.js" defer></script>
+</body>
+</html>
