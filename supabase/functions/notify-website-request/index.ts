@@ -42,7 +42,7 @@ Deno.serve(async (req: Request) => {
     const admin = createClient(supabaseUrl, serviceRoleKey);
     const { data: reqRow, error: reqErr } = await admin
       .from("creator_website_requests")
-      .select("id, brand_name, owner_user_id, creator_id, parent_approver_name, parent_approver_relationship, submitted_at")
+      .select("id, brand_name, owner_user_id, creator_id, parent_approver_name, parent_approver_relationship, submitted_at, public_slug")
       .eq("id", requestId)
       .single();
     if (reqErr || !reqRow) {
@@ -64,14 +64,18 @@ Deno.serve(async (req: Request) => {
     }
 
     const submittedDate = reqRow.submitted_at ? new Date(reqRow.submitted_at).toLocaleString() : "just now";
-    const subject = `Creation Station Studio request submitted: ${reqRow.brand_name}`;
+    const liveUrl = reqRow.public_slug
+      ? `https://rebelranchministries.org/creation-station-studio.html?studio=${encodeURIComponent(reqRow.public_slug)}`
+      : null;
+    const subject = `Creation Station Studio is live: ${reqRow.brand_name}`;
     const html = `
-      <p>A Creation Station Studio request has been submitted and is waiting for review.</p>
+      <p>A Creation Station Studio page has been approved and published — no review needed, this is a notice.</p>
       <p><strong>Brand / Studio name:</strong> ${reqRow.brand_name}</p>
       <p><strong>Creator:</strong> ${creator?.display_name ?? "Unknown"}</p>
       <p><strong>Parent/guardian approval on file:</strong> ${reqRow.parent_approver_name ?? "Not recorded"}${reqRow.parent_approver_relationship ? ` (${reqRow.parent_approver_relationship})` : ""}</p>
       <p><strong>Submitted:</strong> ${submittedDate}</p>
-      <p>Review it in the Creation Station dashboard's Admin view.</p>
+      ${liveUrl ? `<p><strong>Live page:</strong> <a href="${liveUrl}">${liveUrl}</a></p>` : ""}
+      <p>You can review it any time in the Creation Station dashboard's Admin view.</p>
     `;
 
     const resendResponse = await fetch("https://api.resend.com/emails", {
