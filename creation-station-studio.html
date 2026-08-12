@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Creation Station Studio</title>
+  <meta name="description" content="A young creator's own Creation Station Studio page — their story, their work, their way to sell what they make.">
+  <link rel="stylesheet" href="assets/css/site-core.css">
+  <link rel="stylesheet" href="assets/css/creation-station.css">
+  <style>
+    .studio-status-card { max-width: 40rem; margin: 6vh auto; padding: clamp(2rem, 5vw, 3.5rem); background: #fff; border: 1px solid var(--line); border-top: .3rem solid var(--pink); border-radius: 1.15rem; box-shadow: var(--shadow-soft); text-align: center; color: var(--purple-900); }
+    .studio-fine-print { margin-top: 1rem; color: var(--text); font-size: .92rem; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- OWNER-LOCKED: Approved Creation Station public header. Preserve this structure and treatment unless the owner explicitly authorizes a change. See docs/creation-station-visual-rules.md. -->
+  <header class="site-header topbar" data-site-nav>
+    <div class="wrap site-nav">
+      <a class="brand" href="creation.html" aria-label="Creation Station home">
+        <img src="assets/creation-station-logo.png" alt="Creation Station logo" width="220" height="220">
+        <span class="brand-text">
+          <strong>Creation Station</strong>
+          <small>by Rebel Ranch Ministries</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation" data-nav-toggle>
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+      </button>
+
+      <nav class="nav-menu" id="primary-navigation" aria-label="Primary" data-nav-menu data-open="false">
+        <a href="creation.html#paths">Choose Your Path</a>
+        <a href="creation-station-live-classes.html">Live Sessions</a>
+        <a href="creation-station-dashboard.html">My Studio</a>
+        <a class="rrm-return" href="index.html">Rebel Ranch Ministries</a>
+        <a class="btn primary" href="creation-station-membership.html">Start My Own Studio</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap" style="padding:clamp(2rem,6vw,4rem) 0">
+      <section id="loading" class="studio-status-card">
+        <p class="eyebrow">Creation Station Studio</p>
+        <h1>Loading this Studio…</h1>
+      </section>
+
+      <section id="not-found" class="studio-status-card hidden">
+        <p class="eyebrow">Creation Station Studio</p>
+        <h1>We couldn't find this Studio</h1>
+        <p>The link may be out of date, or this creator's Studio isn't published right now.</p>
+        <a class="btn primary" href="creation-station-membership.html">Start your own Studio</a>
+      </section>
+
+      <article id="studio-showcase" class="studio-showcase hidden" aria-labelledby="studio-title">
+        <div class="studio-header">
+          <div>
+            <p class="studio-kicker" id="studio-kicker">Creation Station Studio</p>
+            <h1 class="studio-title" id="studio-title"></h1>
+            <p class="studio-copy" id="studio-copy"></p>
+            <nav class="studio-nav" aria-label="Studio page sections">
+              <a href="#studio-story">Story</a>
+              <a href="#studio-products">Products</a>
+              <a href="#studio-contact">Contact &amp; ordering</a>
+            </nav>
+          </div>
+          <div class="featured-products" id="studio-featured" aria-label="Featured products"></div>
+        </div>
+
+        <div class="studio-body">
+          <aside class="studio-about" id="studio-story">
+            <div>
+              <h3>About this Creator</h3>
+              <p id="studio-about-text"></p>
+            </div>
+          </aside>
+
+          <div class="product-grid" id="studio-products"></div>
+
+          <aside class="studio-cart" id="studio-contact">
+            <h3>How to order</h3>
+            <div id="studio-payment"></div>
+            <div id="studio-delivery"></div>
+            <div id="studio-links"></div>
+            <p class="studio-fine-print">Payment and delivery happen directly with the creator and their family — Rebel Ranch Ministries hosts this page but is not part of the transaction. No sales or income are guaranteed.</p>
+          </aside>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <!-- OWNER-LOCKED: Shared Creation Station footer. Maintain the component in assets/components/creation-station-footer/. -->
+  <div data-creation-station-footer></div>
+
+  <script src="assets/components/creation-station-footer/footer.js?v=20260803-1" defer></script>
+  <script src="assets/js/site-navigation.js" defer></script>
+  <script type="module" src="assets/js/creation-station-studio-public.js"></script>
+</body>
+</html>
