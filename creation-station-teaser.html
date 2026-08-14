@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Creation Station | Now in Beta — Rebel Ranch Ministries</title>
+  <meta name="description" content="Creation Station is in active beta. See what we're building for young creators and sign up to be one of our first testers.">
+  <link rel="stylesheet" href="assets/css/site-core.css">
+  <link rel="stylesheet" href="assets/css/creation-station.css">
+  <style>
+    .beta-signup-dialog{width:min(520px,calc(100% - 32px));max-height:calc(100vh - 32px);padding:0;overflow:auto;border:1px solid var(--line);border-radius:20px;background:#fff;color:var(--ink);box-shadow:var(--shadow)}
+    .beta-signup-dialog::backdrop{background:rgba(20,4,40,.72);backdrop-filter:blur(4px)}
+    .beta-signup-inner{padding:24px}
+    .beta-signup-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:8px}
+    .beta-signup-dialog h3{margin:0;font-size:clamp(24px,4vw,30px);line-height:1.05;color:var(--purple-900)}
+    .beta-signup-intro{margin:0;color:var(--text);line-height:1.6}
+    .beta-signup-dialog .dialog-close{flex:0 0 auto;width:42px;height:42px;padding:0;border:1px solid var(--line);border-radius:50%;background:var(--lavender);color:var(--purple-900);font:800 24px/1 Arial,sans-serif;cursor:pointer}
+    .beta-signup-form{display:grid;gap:12px;margin-top:20px}
+    .beta-signup-form label{display:grid;gap:6px;color:var(--ink);font-size:14px;font-weight:800}
+    .beta-signup-form input{width:100%;min-height:44px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);font:inherit}
+    .beta-signup-form .btn{width:100%;margin-top:2px;cursor:pointer;font:inherit}
+    .beta-signup-form .form-note{margin:0;color:var(--text);font-size:12px;line-height:1.5}
+    .beta-signup-form .form-note a{color:var(--purple);font-weight:800}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- OWNER-LOCKED: Approved Creation Station public header. Preserve this structure and treatment unless the owner explicitly authorizes a change. See docs/creation-station-visual-rules.md. -->
+  <header class="site-header topbar" data-site-nav>
+    <div class="wrap site-nav">
+      <a class="brand" href="index.html" aria-label="Rebel Ranch Ministries home">
+        <img src="assets/creation-station-logo.png" alt="Creation Station logo" width="220" height="220">
+        <span class="brand-text">
+          <strong>Creation Station</strong>
+          <small>by Rebel Ranch Ministries</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation" data-nav-toggle>
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+      </button>
+
+      <nav class="nav-menu" id="primary-navigation" aria-label="Primary" data-nav-menu data-open="false">
+        <a href="#paths">Choose Your Path</a>
+        <a href="#more-than-craft">What They Build</a>
+        <a href="#experience">See the Experience</a>
+        <a class="rrm-return" href="index.html">Rebel Ranch Ministries</a>
+        <a class="btn primary beta-signup-trigger" href="#">Sign Up to Test</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Now in Beta — for busy parents raising kids in the real world</p>
+          <h1 id="hero-title">
+            <span>Your child has ideas.</span>
+            <span class="rainbow">You have a whole life to run.</span>
+          </h1>
+          <p class="hero-lead">Creation Station gives their creativity direction—without requiring you to plan every activity, explain every step, or hover over every half-finished project.</p>
+          <p class="hero-skills">Every project is built to strengthen problem-solving, follow-through, reflection, critical thinking, real-life application, and work a child can actually be proud to finish.</p>
+          <div class="hero-proof" aria-label="Creation Station benefits">
+            <span>Hands-on</span>
+            <span>Interactive</span>
+            <span>Parent-visible</span>
+            <span>Built for follow-through</span>
+          </div>
+          <div class="button-row hero-actions">
+            <a class="btn primary beta-signup-trigger" href="#">Sign Up to Test</a>
+            <a class="btn light beta-signup-trigger" href="#">Sign Up to Test</a>
+          </div>
+          <p class="hero-note hand">Creative projects with real-life purpose and application.</p>
+        </div>
+
+        <a class="hero-visual beta-signup-trigger" href="#" aria-label="Sign up to test Creation Station">
+          <span class="visual-tag">Inside Creation Station</span>
+          <img src="assets/creation-station-family-hero.png" alt="Creation Station Studio showing creator stories, product photos, and presentation tools" width="1122" height="1402" fetchpriority="high">
+          <span class="visual-caption">Sign up to see the real path.</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="path-section" id="paths" aria-labelledby="paths-title">
+      <div class="rainbow-rule" aria-hidden="true"></div>
+      <div class="wrap">
+        <div class="section-heading centered">
+          <p class="section-kicker">First, tell us who you are here for</p>
+          <h2 id="paths-title">Choose your <span class="hand">path</span>.</h2>
+          <p>The main Creation Station experience is built for parents and young creators. Adult Makers and live online sessions have their own clear routes.</p>
+        </div>
+
+        <div class="path-layout">
+          <article class="path-feature path-family">
+            <div class="path-number" aria-hidden="true">01</div>
+            <div>
+              <p class="path-label">The main family experience</p>
+              <h3>Parents &amp; Young Creators</h3>
+              <p>Give your child a guided place to plan, make, document, reflect, and finish—while you retain visibility and control.</p>
+              <ul class="mini-checks">
+                <li>Ages 6–12 and 13–17</li>
+                <li>Hands-on project guidance</li>
+                <li>Private progress and portfolio</li>
+              </ul>
+              <a class="btn primary beta-signup-trigger" href="#">Sign Up to Test</a>
+            </div>
+          </article>
+
+          <div class="path-secondary">
+            <article class="path-compact path-session">
+              <div class="path-number" aria-hidden="true">02</div>
+              <div>
+                <p class="path-label">Creation Station Club</p>
+                <h3>Live Online Sessions</h3>
+                <p>A weekly creative gathering where children can make, talk, laugh, share, and brainstorm together.</p>
+                <a class="text-link beta-signup-trigger" href="#">Sign up to test <span aria-hidden="true">→</span></a>
+              </div>
+            </article>
+
+            <article class="path-compact path-adult">
+              <div class="path-number" aria-hidden="true">03</div>
+              <div>
+                <p class="path-label">Adult Makers &amp; Crafters</p>
+                <h3>Already creating?</h3>
+                <p>Skip the child and teen journey. Choose a personal Studio page or a separate Marketplace application.</p>
+                <a class="text-link" href="#adult-path">Jump to the adult choices <span aria-hidden="true">↓</span></a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="relief-section" aria-labelledby="relief-title">
+      <div class="wrap relief-grid">
+        <div class="relief-copy">
+          <p class="section-kicker light">Built for the life parents actually live</p>
+          <h2 id="relief-title">They keep creating.<br>You keep the family <span class="hand">moving</span>.</h2>
+          <p>You should not have to sit beside every bead, sketch, batch of slime, or half-finished project just to keep it moving. Creation Station provides the prompts, stages, and visible next steps.</p>
+          <p>Your child gets useful direction. You get room to handle dinner, work, errands, appointments, siblings, and everything else.</p>
+        </div>
+
+        <div class="relief-visual" aria-label="How Creation Station supports busy families">
+          <div class="life-cloud" aria-hidden="true">
+            <span>Work</span><span>Dinner</span><span>Laundry</span><span>School</span><span>Errands</span><span>Practices</span>
+          </div>
+          <div class="relief-center">
+            <small>Creation Station gives them</small>
+            <strong>A clear next step</strong>
+            <span>without making you the project manager</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="value-section" id="more-than-craft" aria-labelledby="value-title">
+      <div class="wrap">
+        <div class="section-heading value-heading">
+          <p class="section-kicker">The value underneath the creativity</p>
+          <h2 id="value-title">This is <span class="rainbow">more than a craft.</span></h2>
+          <p>A finished candle, bracelet, drawing, or build is only the visible part. The deeper value is what children practice while moving an idea from “I want to make this” to “I finished it, and I can explain how.”</p>
+        </div>
+
+        <div class="skill-mosaic">
+          <details class="skill-panel skill-purple" open>
+            <summary><span>01</span><strong>Confidence &amp; Emotional Intelligence</strong></summary>
+            <p>Practice handling frustration, making choices, reflecting honestly, asking for help, and recognizing growth.</p>
+          </details>
+          <details class="skill-panel skill-pink">
+            <summary><span>02</span><strong>Planning &amp; Follow-Through</strong></summary>
+            <p>Break a big idea into manageable stages, gather what is needed, keep going, and finish with intention.</p>
+          </details>
+          <details class="skill-panel skill-teal">
+            <summary><span>03</span><strong>Problem-Solving &amp; Critical Thinking</strong></summary>
+            <p>Notice what is not working, consider options, make adjustments, and explain why a decision was made.</p>
+          </details>
+          <details class="skill-panel skill-gold">
+            <summary><span>04</span><strong>Business &amp; Life Skills</strong></summary>
+            <p>Build age-appropriate awareness of supplies, costs, inventory, pricing, presentation, communication, and responsibility.</p>
+          </details>
+          <details class="skill-panel skill-blue">
+            <summary><span>05</span><strong>Communication &amp; Storytelling</strong></summary>
+            <p>Photograph work, describe a process, share the story behind a creation, and present finished work clearly.</p>
+          </details>
+          <details class="skill-panel skill-coral">
+            <summary><span>06</span><strong>Ownership &amp; Independence</strong></summary>
+            <p>See progress, understand the next step, take responsibility for the work, and feel proud of a real result.</p>
+          </details>
+        </div>
+        <p class="expand-note">Open any skill to see what is being practiced.</p>
+      </div>
+    </section>
+
+    <section class="experience-section" id="experience" aria-labelledby="experience-title">
+      <div class="rainbow-rule" aria-hidden="true"></div>
+      <div class="wrap experience-grid">
+        <div class="experience-copy">
+          <p class="section-kicker light">One clear, interactive experience</p>
+          <h2 id="experience-title">See what does the <span class="hand">guiding</span>.</h2>
+          <p>The dashboard turns one big creative idea into visible stages. Children can see where they are, what comes next, and what they have already completed. Parents can see the structure and retain control over anything that could become public.</p>
+
+          <ol class="journey-track" aria-label="Creation Station project stages">
+            <li><span>01</span><b>Dream It</b><small>Choose an idea</small></li>
+            <li><span>02</span><b>Plan It</b><small>Think it through</small></li>
+            <li><span>03</span><b>Make It</b><small>Create the project</small></li>
+            <li><span>04</span><b>Capture It</b><small>Document the work</small></li>
+            <li><span>05</span><b>Share It</b><small>Tell the story</small></li>
+            <li><span>06</span><b>Grow It</b><small>Reflect and improve</small></li>
+          </ol>
+
+          <div class="button-row">
+            <a class="btn primary beta-signup-trigger" href="#">Sign Up to Test</a>
+            <a class="btn outline-light beta-signup-trigger" href="#">Sign Up to Test</a>
+          </div>
+        </div>
+
+        <a class="dashboard-preview beta-signup-trigger" href="#" aria-label="Sign up to test the Creation Station dashboard">
+          <div class="dashboard-mockup" aria-hidden="true">
+            <div class="mockup-top"><i></i><i></i><i></i><strong>Creation Station Dashboard</strong></div>
+            <div class="mockup-shell">
+              <aside>
+                <b>My Studio</b>
+                <span class="active">Today</span>
+                <span>Projects</span>
+                <span>Portfolio</span>
+                <span>Resources</span>
+              </aside>
+              <div class="mockup-main">
+                <div class="mockup-welcome"><small>Welcome back, Creator</small><strong>Ready to keep making?</strong></div>
+                <div class="mockup-progress"><span style="width:64%"></span></div>
+                <div class="mockup-stage-row"><b>Dream</b><b>Plan</b><b>Make</b><b>Capture</b><b>Share</b><b>Grow</b></div>
+                <div class="mockup-cards">
+                  <span>Current Project<strong>Make It · 64%</strong></span>
+                  <span>Parent View<strong>Progress visible</strong></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="preview-link-text">Step inside the experience <span aria-hidden="true">→</span></span>
+        </a>
+      </div>
+    </section>
+
+    <section class="portfolio-section" id="portfolio" aria-labelledby="portfolio-title">
+      <div class="wrap">
+        <div class="portfolio-grid">
+          <div>
+            <p class="section-kicker">Visible progress for Young and Teen Creators</p>
+            <h2 id="portfolio-title">A project can become <span class="hand">proof of growth.</span></h2>
+            <p class="section-intro">Their private portfolio is more than a gallery. It is a working record of ideas, decisions, effort, finished work, and reflection—kept under parent or guardian control.</p>
+          </div>
+
+          <div class="progress-story" aria-label="How a project becomes documented progress">
+            <div><span>Idea</span><strong>What do I want to make?</strong></div>
+            <i aria-hidden="true">→</i>
+            <div><span>Process</span><strong>How did I work through it?</strong></div>
+            <i aria-hidden="true">→</i>
+            <div><span>Proof</span><strong>What did I finish and learn?</strong></div>
+          </div>
+        </div>
+
+        <!-- OWNER-LOCKED COMPONENT: Preserve this full Creation Station Studio visual and structure unless the owner explicitly authorizes a redesign. -->
+        <article class="studio-showcase" aria-labelledby="studio-title">
+          <div class="studio-header">
+            <div>
+              <p class="studio-kicker">Creation Station Example</p>
+              <h3 class="studio-title" id="studio-title">Creation Station<br>Studio™</h3>
+              <p class="studio-copy">A creator page can organize real product photos, simple descriptions, contact options, and a clear cart-style layout in one place. A finished page would use the creator’s own photos, product names, story, and ordering details. This is the same kind of personal creator website and business tools that come with a Creation Station membership—a real place to showcase, share, and learn how to sell what they make. Creation Station teaches the skills and provides the tools; no income or sales are guaranteed.</p>
+              <nav class="studio-nav" aria-label="Creator page preview sections">
+                <a href="#studio-products">Products</a>
+                <a href="#studio-story">Story</a>
+                <a href="#studio-cart">Cart</a>
+                <a href="#studio-contact">Social</a>
+              </nav>
+            </div>
+
+            <div class="featured-products" aria-label="Featured creator products">
+              <picture>
+                <img src="assets/lavender candle.png" alt="Lavender candle created for a sample portfolio" width="1254" height="1254" loading="lazy">
+              </picture>
+              <picture>
+                <img src="assets/bracelets.png" alt="Colorful bracelet stack created for a sample portfolio" width="1254" height="1254" loading="lazy">
+              </picture>
+            </div>
+          </div>
+
+          <div class="studio-body">
+            <aside class="studio-about" id="studio-story">
+              <div>
+                <h3>About the Creator Page</h3>
+                <p>This sample shows how a young creator’s work can be organized with a short story, clear product photos, simple pricing, and an easy next step for supporters.</p>
+              </div>
+              <div class="studio-contact" id="studio-contact" aria-label="Sample creator contact options">
+                <a class="beta-signup-trigger" href="#">Sign Up to Test</a>
+              </div>
+            </aside>
+
+            <div class="product-grid" id="studio-products">
+              <article class="product-card">
+                <picture>
+                  <img src="assets/lavender candle.png" alt="Lavender candle product example" width="1254" height="1254" loading="lazy">
+                </picture>
+                <div class="product-card-content">
+                  <h4>Lavender Candle</h4>
+                  <p>Hand-poured lavender candle with a calming floral scent.</p>
+                  <span class="product-price">$16</span>
+                  <button class="btn preview" type="button" data-demo-add data-price="16">Add to Demo Cart</button>
+                </div>
+              </article>
+
+              <article class="product-card">
+                <picture>
+                  <img src="assets/bracelets.png" alt="Colorful bracelet stack product example" width="1254" height="1254" loading="lazy">
+                </picture>
+                <div class="product-card-content">
+                  <h4>Bracelet Stack</h4>
+                  <p>Colorful beaded bracelets with uplifting words and charms.</p>
+                  <span class="product-price">$12</span>
+                  <button class="btn preview" type="button" data-demo-add data-price="12">Add to Demo Cart</button>
+                </div>
+              </article>
+
+              <article class="product-card">
+                <picture>
+                  <img src="assets/lip gloss &amp; soap.png" alt="Lip gloss and handmade soap product example" width="1254" height="1254" loading="lazy">
+                </picture>
+                <div class="product-card-content">
+                  <h4>Lip Gloss &amp; Soap</h4>
+                  <p>Glossy lip color and handmade soap for a bright self-care set.</p>
+                  <span class="product-price">$14</span>
+                  <button class="btn preview" type="button" data-demo-add data-price="14">Add to Demo Cart</button>
+                </div>
+              </article>
+
+              <article class="product-card">
+                <picture>
+                  <img src="assets/tumbler.png" alt="Painted Creation Station tumbler product example" width="1254" height="1254" loading="lazy">
+                </picture>
+                <div class="product-card-content">
+                  <h4>Painted Tumbler</h4>
+                  <p>A bright, reusable tumbler made to carry creativity everywhere.</p>
+                  <span class="product-price">$18</span>
+                  <button class="btn preview" type="button" data-demo-add data-price="18">Add to Demo Cart</button>
+                </div>
+              </article>
+            </div>
+
+            <aside class="studio-cart" id="studio-cart">
+              <h3>Creator Cart</h3>
+              <p>Every share helps a young creator grow confidence, skills, and opportunity.</p>
+              <div class="cart-status" aria-live="polite">
+                <div class="cart-line"><span>Items</span><span data-demo-cart-count>0</span></div>
+                <div class="cart-line"><span>Total</span><span data-demo-cart-total>$0.00</span></div>
+                <p class="cart-message" data-demo-cart-message>Add a creation to see how the sample cart responds.</p>
+                <button class="cart-reset" type="button" data-demo-cart-reset>Reset demo cart</button>
+              </div>
+              <a class="btn primary beta-signup-trigger" href="#">Sign Up to Test</a>
+            </aside>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="adult-route" id="adult-path" aria-labelledby="adult-path-title">
+      <div class="wrap">
+        <div class="adult-heading">
+          <p class="section-kicker light">For Adult Makers and Crafters</p>
+          <h2 id="adult-path-title">Already making? Choose how people can <span class="hand">find you.</span></h2>
+          <p>Adults do not use the child and teen portfolio. Choose a paid personal Studio page, apply separately to the free Rebel Ranch Marketplace, or leave without choosing either.</p>
+        </div>
+
+        <div class="adult-choice-grid">
+          <article class="adult-choice studio-choice">
+            <div class="choice-topline"></div>
+            <p class="choice-kicker">Paid personal landing page</p>
+            <h3>Build My Creation Station Studio</h3>
+            <p>Create a colorful standalone home for your story, products or services, ordering information, contact choices, and social links.</p>
+            <a class="btn primary beta-signup-trigger" href="#">Sign Up to Test</a>
+          </article>
+
+          <!-- OWNER-LOCKED COMPONENT: Preserve this approved Rebel Ranch Marketplace card treatment unless the owner explicitly authorizes a redesign. -->
+          <article class="adult-choice marketplace-choice">
+            <div class="marketplace-brand">
+              <img src="assets/brand/rrm-logo-black.png" alt="" width="72" height="72" loading="lazy">
+              <div><small>A separate Rebel Ranch program</small><strong>Rebel Ranch Marketplace</strong></div>
+            </div>
+            <p class="choice-kicker">Free application and approval</p>
+            <h3>Apply for Local Visibility</h3>
+            <p>Already have a page—or only need local discovery? Apply for a free Marketplace listing. Creation Station membership is not required and never guarantees approval.</p>
+            <a class="btn marketplace" href="marketplace.html">Explore the Free Marketplace</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta" aria-labelledby="cta-title">
+      <div class="wrap cta-box">
+        <div>
+          <p class="section-kicker light">Ready when you are</p>
+          <h2 id="cta-title">Give their creativity somewhere <span class="hand">meaningful</span> to go.</h2>
+          <p>We're testing this with real families now. Sign up and we'll reach out about early access.</p>
+        </div>
+        <div class="button-row">
+          <a class="btn primary cta-primary beta-signup-trigger" href="#">Sign Up to Test</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- OWNER-LOCKED: Shared Creation Station footer. Maintain the component in assets/components/creation-station-footer/. -->
+  <div data-creation-station-footer></div>
+
+  <dialog class="beta-signup-dialog" id="beta-signup-dialog" aria-labelledby="beta-signup-title">
+    <div class="beta-signup-inner">
+      <div class="beta-signup-head">
+        <h3 id="beta-signup-title">Sign Up to Test Creation Station</h3>
+        <button class="dialog-close" id="beta-signup-close" type="button" aria-label="Close sign-up form">&times;</button>
+      </div>
+      <p class="beta-signup-intro">Creation Station is in active beta. Tell us about your creator and we'll reach out about early access.</p>
+      <form class="beta-signup-form" action="https://formspree.io/f/xnjrqydq" method="POST">
+        <input type="hidden" name="form_type" value="Creation Station Beta Tester">
+        <input type="hidden" name="_subject" value="Creation Station Beta Tester Sign-Up">
+        <label for="beta-signup-name">Your name
+          <input id="beta-signup-name" name="name" autocomplete="name" placeholder="Your name" required>
+        </label>
+        <label for="beta-signup-email">Email address
+          <input id="beta-signup-email" type="email" name="email" autocomplete="email" placeholder="you@example.com" required>
+        </label>
+        <label for="beta-signup-age">Creator's age
+          <input id="beta-signup-age" name="creator_age" placeholder="e.g. 9" required>
+        </label>
+        <button class="btn primary" type="submit">Sign Up to Test</button>
+        <p class="form-note">We'll only use this to reach out about Creation Station beta testing. See our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+      </form>
+    </div>
+  </dialog>
+
+  <script src="assets/components/creation-station-footer/footer.js?v=20260803-1" defer></script>
+  <script src="assets/js/site-navigation.js" defer></script>
+  <script>
+    (function(){
+      var dialog = document.getElementById('beta-signup-dialog');
+      var close = document.getElementById('beta-signup-close');
+      if (!dialog) return;
+      document.querySelectorAll('.beta-signup-trigger').forEach(function (el) {
+        el.addEventListener('click', function (e) {
+          e.preventDefault();
+          dialog.showModal();
+        });
+      });
+      if (close) close.addEventListener('click', function () { dialog.close(); });
+      dialog.addEventListener('click', function (e) {
+        if (e.target === dialog) dialog.close();
+      });
+    })();
+  </script>
+</body>
+</html>
