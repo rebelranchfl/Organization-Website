@@ -21,8 +21,6 @@
     .beta-signup-form .btn{width:100%;margin-top:2px;cursor:pointer;font:inherit}
     .beta-signup-form .form-note{margin:0;color:var(--text);font-size:12px;line-height:1.5}
     .beta-signup-form .form-note a{color:var(--purple);font-weight:800}
-    .beta-footer{padding:2rem clamp(1rem,4vw,2rem) 3rem;text-align:center;color:var(--text);font-size:.85rem}
-    .beta-footer a{color:var(--purple)}
   </style>
 </head>
 <body>
@@ -72,6 +70,7 @@
           </div>
           <div class="button-row hero-actions">
             <a class="btn primary beta-signup-trigger" href="#">Sign Up to Test</a>
+            <a class="btn light beta-signup-trigger" href="#">Sign Up to Test</a>
           </div>
           <p class="hero-note hand">Creative projects with real-life purpose and application.</p>
         </div>
@@ -213,6 +212,7 @@
 
           <div class="button-row">
             <a class="btn primary beta-signup-trigger" href="#">Sign Up to Test</a>
+            <a class="btn outline-light beta-signup-trigger" href="#">Sign Up to Test</a>
           </div>
         </div>
 
@@ -409,9 +409,8 @@
     </section>
   </main>
 
-  <footer class="beta-footer">
-    <p>Creation Station is a program of <a href="index.html">Rebel Ranch Ministries</a>. No sales, income, or outcomes are guaranteed — Creation Station provides tools and opportunity, not promises.</p>
-  </footer>
+  <!-- OWNER-LOCKED: Shared Creation Station footer. Maintain the component in assets/components/creation-station-footer/. -->
+  <div data-creation-station-footer></div>
 
   <dialog class="beta-signup-dialog" id="beta-signup-dialog" aria-labelledby="beta-signup-title">
     <div class="beta-signup-inner">
@@ -438,6 +437,7 @@
     </div>
   </dialog>
 
+  <script src="assets/components/creation-station-footer/footer.js?v=20260803-1" defer></script>
   <script src="assets/js/site-navigation.js" defer></script>
   <script>
     (function(){
