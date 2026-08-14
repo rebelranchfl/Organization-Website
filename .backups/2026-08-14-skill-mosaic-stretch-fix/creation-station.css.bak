@@ -399,7 +399,7 @@ img { display: block; max-width: 100%; }
 .value-section { background: #fbf8ff; }
 .value-section .wrap { padding-block: clamp(4rem, 8vw, 6.5rem); }
 .value-heading { max-width: 59rem; }
-.skill-mosaic { display: grid; gap: .8rem; margin-top: 2rem; align-items: start; }
+.skill-mosaic { display: grid; gap: .8rem; margin-top: 2rem; }
 .skill-panel {
   overflow: hidden;
   background: #fff;
