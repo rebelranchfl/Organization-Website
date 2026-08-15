@@ -169,9 +169,6 @@
     const title = document.createElement('h3');
     title.textContent = product.title || 'Rebel Ranch Merchandise';
 
-    const description = document.createElement('p');
-    description.textContent = product.description || 'Official Rebel Ranch Ministries merchandise.';
-
     const price = document.createElement('p');
     price.className = 'product-price';
     price.textContent = product.priceFrom == null
@@ -187,7 +184,7 @@
     link.rel = 'noopener';
     link.textContent = 'View Product';
 
-    copy.append(category, title, description, price, link);
+    copy.append(category, title, price, link);
     card.appendChild(copy);
     grid.appendChild(card);
   };
