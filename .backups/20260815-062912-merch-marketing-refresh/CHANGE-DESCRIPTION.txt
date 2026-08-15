@@ -1,0 +1,3 @@
+Approved scope: Refresh merch.html customer-facing marketing copy and replace the hero information card with a large official Rebel Ranch Ministries logo.
+Preserve: Product feed JavaScript, Printify checkout destination, shared site files, other pages, and unrelated working-tree changes.
+Excluded: Product creation, changes to 3P Help Me, Marketplace structure, Support page edits, commits, pushes, and deployment.

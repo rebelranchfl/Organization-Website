@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rebel Ranch Store | Rebel Ranch Ministries</title>
+<meta name="description" content="Shop official Rebel Ranch Ministries apparel, drinkware, bags, and other branded merchandise that helps support the mission."/>
+<link rel="icon" type="image/png" href="assets/brand/rrm-logo-black.png">
+<link rel="stylesheet" href="assets/css/public-surface.css">
+<script src="assets/js/public-shell.js" defer></script>
+<style>
+  :root{
+    --ink:#F0EDD8;
+    --muted:#D7D1B3;
+    --green:#97C459;
+    --green-dark:#4A7C59;
+    --gold:#C17F24;
+    --gold-bright:#EF9F27;
+    --shadow:0 18px 55px rgba(0,0,0,.32);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:#204227;
+    color:var(--ink);
+    font-family:Arial,Helvetica,sans-serif;
+    line-height:1.5;
+  }
+  a{color:inherit;text-decoration:none}
+  .store-hero{
+    width:100%;
+    margin:0;
+    padding:clamp(4.5rem,8vw,7rem) 0;
+    background:linear-gradient(180deg,#1D4024 0%,#122A18 100%);
+  }
+  .store-hero-inner,
+  .store-section-inner{width:min(1160px,92vw);margin:0 auto}
+  .store-hero-inner{display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:center}
+  .eyebrow{margin:0 0 14px;color:var(--gold-bright);font-size:12px;font-weight:800;letter-spacing:.22em;text-transform:uppercase}
+  h1{margin:0 0 18px;font-size:clamp(42px,7vw,82px);line-height:.96;letter-spacing:-.045em}
+  .lead{max-width:700px;margin:0;color:var(--muted);font-size:clamp(18px,2.3vw,24px)}
+  .buttons{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:13px 20px;border:1px solid var(--green-dark);border-radius:999px;background:#142617;color:var(--ink);font-weight:800;transition:.2s transform,.2s background}
+  .btn:hover{transform:translateY(-2px);background:#1B341F}
+  .btn.gold{border-color:var(--gold);background:linear-gradient(135deg,#C17F24,#7B4B13);color:#FFF7DE}
+  .mission-card,.product-card{
+    position:relative;
+    overflow:hidden;
+    border:1px solid #284A29;
+    border-radius:20px;
+    background:linear-gradient(180deg,#1D4024 0%,#122A18 100%);
+    box-shadow:var(--shadow);
+  }
+  .mission-card{padding:24px}
+  .mission-card::before,.product-card::before{
+    content:"";
+    position:absolute;
+    inset:0 0 auto;
+    height:3px;
+    background:linear-gradient(90deg,var(--gold),var(--green));
+  }
+  .mission-card h2{margin:8px 0 12px;font-size:28px}
+  .mission-card p{margin:0;color:var(--muted)}
+  .store-section{position:relative;padding:clamp(4.5rem,8vw,7rem) 0}
+  .store-section::before{content:"";position:absolute;top:0;left:0;width:100%;height:1px;background:rgba(151,196,89,.62)}
+  .store-section::after{content:"";position:absolute;top:-1px;left:50%;width:min(10rem,28vw);height:3px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,var(--gold-bright),transparent)}
+  .section-head{text-align:center;margin-bottom:clamp(2rem,4vw,3.25rem)}
+  .section-head h2{margin:0 0 14px;font-size:clamp(34px,5vw,60px);line-height:1}
+  .section-head p{max-width:780px;margin:0 auto;color:var(--muted);font-size:18px}
+  .store-status{max-width:760px;margin:0 auto;padding:28px;text-align:center;border:1px solid #284A29;border-radius:20px;background:linear-gradient(180deg,#1D4024 0%,#122A18 100%)}
+  .store-status h3{margin:0 0 10px;font-size:26px}
+  .store-status p{margin:0 0 20px;color:var(--muted)}
+  .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .product-card{display:flex;flex-direction:column}
+  .product-image{aspect-ratio:1/1;width:100%;object-fit:cover;background:#122A18}
+  .product-copy{display:flex;flex:1;flex-direction:column;padding:24px}
+  .product-category{margin:0 0 8px;color:var(--gold-bright);font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+  .product-copy h3{margin:0 0 10px;font-size:22px}
+  .product-copy p{margin:0 0 18px;color:var(--muted)}
+  .product-price{margin-top:auto!important;color:var(--ink)!important;font-weight:800}
+  .product-copy .btn{margin-top:14px}
+  .purchase-note{max-width:850px;margin:30px auto 0;text-align:center;color:var(--muted)}
+  [hidden]{display:none!important}
+  @media(max-width:900px){
+    .store-hero-inner{grid-template-columns:1fr}
+    .product-grid{grid-template-columns:1fr}
+    .rrm-public-footer-inner{width:100%}
+  }
+</style>
+</head>
+<body class="rrm-store-page">
+<main>
+  <section class="store-hero">
+    <div class="store-hero-inner">
+      <div>
+        <p class="eyebrow">Official Rebel Ranch Merchandise</p>
+        <h1>Wear the Mission.</h1>
+        <p class="lead">Shop Rebel Ranch Ministries shirts, hats, hoodies, bags, cups, tanks, sweaters, and more. Every purchase helps us keep building practical programs for families and communities.</p>
+        <div class="buttons">
+          <a class="btn gold" href="#store-products">Shop Merchandise</a>
+          <a class="btn" href="support.html">Other Ways to Support</a>
+        </div>
+      </div>
+      <aside class="mission-card" aria-label="About the Rebel Ranch Store">
+        <p class="eyebrow">Rebel Ranch Ministries Store</p>
+        <h2>Rebel Ranch only.</h2>
+        <p>This store is for official Rebel Ranch Ministries merchandise. It is separate from 3P Help Me and separate from the independent sellers in the Rebel Ranch Marketplace.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="store-section" id="store-products">
+    <div class="store-section-inner">
+      <div class="section-head">
+        <p class="eyebrow">Shop the Collection</p>
+        <h2>Rebel Ranch Merchandise</h2>
+        <p>Products are made and shipped through Printify. Selecting an item will take you to the Rebel Ranch Store on Printify to choose options and complete checkout.</p>
+      </div>
+
+      <div class="store-status" id="store-status">
+        <h3 id="store-status-heading">Products are being prepared.</h3>
+        <p id="store-status-message">Our first Rebel Ranch products are being connected now. You can visit the store while the collection finishes loading.</p>
+        <a class="btn gold" href="https://rebel-ranch-store.printify.me" target="_blank" rel="noopener">Visit the Rebel Ranch Store</a>
+      </div>
+
+      <div class="product-grid" id="product-grid" hidden></div>
+
+      <p class="purchase-note">This page is for merchandise purchases. If you want to support Rebel Ranch Ministries without purchasing an item, visit <a href="support.html"><strong>Support the Mission</strong></a>.</p>
+    </div>
+  </section>
+</main>
+
+<script>
+(() => {
+  const productFeed = 'https://rrm-printify-products.rebelranchfl.workers.dev/products';
+  const storeUrl = 'https://rebel-ranch-store.printify.me';
+  const grid = document.getElementById('product-grid');
+  const status = document.getElementById('store-status');
+
+  const money = (value) => Number.isFinite(Number(value))
+    ? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(value))
+    : '';
+
+  const addProduct = (product) => {
+    const card = document.createElement('article');
+    card.className = 'product-card';
+
+    const image = Array.isArray(product.images)
+      ? (product.images.find((item) => item.isDefault) || product.images[0])
+      : null;
+    if (image && image.src) {
+      const img = document.createElement('img');
+      img.className = 'product-image';
+      img.src = image.src;
+      img.alt = image.alt || product.title || 'Rebel Ranch merchandise';
+      img.loading = 'lazy';
+      card.appendChild(img);
+    }
+
+    const copy = document.createElement('div');
+    copy.className = 'product-copy';
+
+    const category = document.createElement('p');
+    category.className = 'product-category';
+    category.textContent = product.category || 'Rebel Ranch Merchandise';
+
+    const title = document.createElement('h3');
+    title.textContent = product.title || 'Rebel Ranch Merchandise';
+
+    const description = document.createElement('p');
+    description.textContent = product.description || 'Official Rebel Ranch Ministries merchandise.';
+
+    const price = document.createElement('p');
+    price.className = 'product-price';
+    price.textContent = product.priceFrom == null
+      ? 'See store for price'
+      : (product.priceTo && product.priceTo !== product.priceFrom
+        ? `${money(product.priceFrom)} – ${money(product.priceTo)}`
+        : money(product.priceFrom));
+
+    const link = document.createElement('a');
+    link.className = 'btn gold';
+    link.href = product.purchaseUrl || storeUrl;
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = 'View Product';
+
+    copy.append(category, title, description, price, link);
+    card.appendChild(copy);
+    grid.appendChild(card);
+  };
+
+  fetch(productFeed, { headers: { Accept: 'application/json' } })
+    .then((response) => {
+      if (!response.ok) throw new Error('Product feed unavailable');
+      return response.json();
+    })
+    .then((data) => {
+      if (!data || !Array.isArray(data.products)) throw new Error('Products are still being connected');
+      const products = data.products.filter((product) => product && product.visible === true);
+      if (!products.length) return;
+      products.forEach(addProduct);
+      status.hidden = true;
+      grid.hidden = false;
+    })
+    .catch(() => {
+      document.getElementById('store-status-heading').textContent = 'Products are being prepared.';
+    });
+})();
+</script>
+</body>
+</html>
