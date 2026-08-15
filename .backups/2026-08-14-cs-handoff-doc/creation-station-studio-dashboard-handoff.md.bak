@@ -1,11 +1,5 @@
 # Creation Station Studio & Real Dashboard — Handoff
 
-**SUPERSEDED (2026-08-14):** this file is historical background only. Most
-of what it scoped as "not yet built" has since been built. For current
-status, what's left, and the working protocol, read
-`docs/creation-station-handoff-2026-08-14.md` instead. Kept here for the
-original strategy context.
-
 Status: planning/discussion only. Nothing described here has been built yet
 unless explicitly marked "already exists." Written 2026-07-27 to capture a
 long strategy conversation before it's lost; update this file as the

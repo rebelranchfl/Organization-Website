@@ -85,7 +85,7 @@ background: linear-gradient(135deg, #f04b98 0%, #ff756d 20%, #f7c94c 43%, #b7d95
 
 ## 6. What this document does not settle
 
-Layout (sidebar vs. any other structure), navigation, feature scope, gamification design, and Companion/Nova work remain governed by `docs/creation-station-handoff-2026-08-14.md` (current status and open work) and future owner decisions — this document is colors, fonts, and button emphasis only. The older `creation-station-studio-dashboard-handoff.md` (2026-07-27) is historical background only; it is superseded and known stale in places (e.g., it claims no gamification exists; points/streaks/an achievement badge are now live and confirmed, see the charter's Gamification section).
+Layout (sidebar vs. any other structure), navigation, feature scope, gamification design, and Companion/Nova work remain governed by `creation-station-studio-dashboard-handoff.md` and future owner decisions — this document is colors, fonts, and button emphasis only. Before trusting that handoff document's feature-gap claims, re-verify against the current code — it was accurate when written (2026-07-27) but has already gone stale in places (e.g., it claims no gamification exists; points/streaks/an achievement badge are now live in `creation-station-views.js`'s `achievementPanel()`).
 
 ## Implementation check
 

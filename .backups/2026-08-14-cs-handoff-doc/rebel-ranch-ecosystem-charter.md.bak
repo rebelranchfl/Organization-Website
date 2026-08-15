@@ -367,5 +367,4 @@ Agents must read only the documents relevant to their assigned work, but this ch
 - `docs/creation-station-visual-rules.md` — approved Creation Station public-marketing baseline and locked shared component rules.
 - `docs/phase-3-architecture.md` — Creation Station record and dashboard architecture.
 - `docs/phase-4-creation-station.md` — Creation Station dashboard presentation and access boundaries.
-- `docs/creation-station-handoff-2026-08-14.md` — current Creation Station status: what's built, what's left, and the working protocol. Read this for active work on the program.
-- `docs/creation-station-studio-dashboard-handoff.md` — superseded historical planning notes (2026-07-27); useful background context only, but items may be outdated or undecided. This charter controls when any of these conflict unless the owner gives a newer explicit decision.
+- `docs/creation-station-studio-dashboard-handoff.md` — historical planning notes; useful context, but items may be outdated or undecided. This charter controls when the two conflict unless the owner gives a newer explicit decision.
