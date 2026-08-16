@@ -1,0 +1,3 @@
+Approved scope: Remove full Printify product descriptions from the product cards rendered on merch.html.
+Preserve: Product images, titles, categories, prices, order links, secure product feed, Printify product descriptions, all other pages, and unrelated working-tree files.
+Excluded: Printify product edits, product pricing, publishing, Git commit, Git push, and deployment.
