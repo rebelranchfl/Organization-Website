@@ -99,7 +99,6 @@ async function init(){
 
   const payMethods=(req.payment_methods||[]).map(m=>{
     if(m==='other'&&req.payment_other_note)return `Other (${esc(req.payment_other_note)})`;
-    if(m==='paypal'&&req.payment_link)return `<a href="${esc(req.payment_link)}" target="_blank" rel="noopener">PayPal — Pay Now ↗</a>`;
     const handle=req.payment_handles?.[m];
     return handle?`${esc(paymentLabels[m]||m)}: ${esc(handle)}`:esc(paymentLabels[m]||m);
   });
