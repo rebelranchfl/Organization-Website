@@ -113,7 +113,7 @@ function render(sp,categories,paymentMethods,region,listings,isOwner){
       <div class="stack">
         <section class="panel order-panel">
           <h2>How to order</h2>
-          <p>Message ${esc(sp.business_name)} directly to ask about placing an order or availability — no spam, no solicitations, no offers, just direct communication regarding purchases.</p>
+          <p>Message ${esc(sp.business_name)} directly to place an order or ask about availability — no spam, no solicitations, no offers, just direct communication regarding purchases.</p>
           <button class="button primary" id="show-inquiry-form" type="button">Message This Seller</button>
           <form id="inquiry-form" class="inquiry-form hidden">
             <label>Your name<input id="inquiry-name" required></label>

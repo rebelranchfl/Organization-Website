@@ -83,13 +83,7 @@ background: linear-gradient(135deg, #f04b98 0%, #ff756d 20%, #f7c94c 43%, #b7d95
 -webkit-background-clip: text; background-clip: text; color: transparent;
 ```
 
-## 6. Tags and badges must not look like buttons — standing rule
-
-**Confirmed 2026-08-15, after repeated owner complaints across sessions.** A non-interactive label (a `.tag`, a status badge, anything that doesn't click) must never be styled closely enough to a real `.button`/`.button.primary` that a user reasonably expects it to be clickable — same pill radius, same solid gradient fill, same font weight, sitting the same size next to real buttons. If it doesn't do anything when clicked, it must look clearly different from something that does.
-
-**Confirmed current violation, not yet fixed:** the Parent View's Membership panel (`parent()` in `assets/js/creation-station-views.js`) renders three `.tag` elements — "Private portfolio," "Progress tracking," "Parent control" — as solid purple pills sitting directly above the real "See all benefits" button. Visually they read as three more buttons, not labels. This needs a distinct treatment (e.g., outlined/lighter fill, smaller, or a different shape entirely) so they read as descriptive tags, not actions — a separate, not-yet-authorized fix from this documentation change.
-
-## 7. What this document does not settle
+## 6. What this document does not settle
 
 Layout (sidebar vs. any other structure), navigation, feature scope, gamification design, and Companion/Nova work remain governed by `docs/creation-station-handoff-2026-08-14.md` (current status and open work) and future owner decisions — this document is colors, fonts, and button emphasis only. The older `creation-station-studio-dashboard-handoff.md` (2026-07-27) is historical background only; it is superseded and known stale in places (e.g., it claims no gamification exists; points/streaks/an achievement badge are now live and confirmed, see the charter's Gamification section).
 
