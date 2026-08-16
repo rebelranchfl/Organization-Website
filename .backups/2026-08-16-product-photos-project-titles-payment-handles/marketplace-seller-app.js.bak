@@ -566,12 +566,6 @@ async function init(){
     }
     state.data=await loadSellerWorkspace(state.identity);
     if(state.identity.isAdmin)state.adminData=await loadSellerAdminSummary();
-    const sp=state.identity.sellerProfile;
-    if(sp.profile_status==='active'&&sp.public_slug){
-      const link=$('header-live-link');
-      link.href=`marketplace-seller-page.html?seller=${encodeURIComponent(sp.public_slug)}`;
-      link.classList.remove('hidden');
-    }
     state.view=chooseInitial();
     $('workspace').classList.remove('hidden');
     render();

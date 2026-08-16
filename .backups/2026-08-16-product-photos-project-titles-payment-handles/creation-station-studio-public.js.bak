@@ -52,7 +52,7 @@ async function init(){
   if(!slug)return showNotFound();
 
   const {data:req,error}=await supabase.from('creator_website_requests')
-    .select('id,brand_name,story,products,social_links,payment_methods,payment_other_note,payment_link,payment_handles,delivery_methods,public_slug')
+    .select('id,brand_name,story,products,social_links,payment_methods,payment_other_note,payment_link,delivery_methods,public_slug')
     .eq('public_slug',slug)
     .maybeSingle();
   if(error||!req)return showNotFound();
@@ -78,12 +78,8 @@ async function init(){
 
   $('studio-payment-link').innerHTML=req.payment_link?`<a class="btn primary" href="${esc(req.payment_link)}" target="_blank" rel="noopener">Pay via PayPal</a>`:'';
 
-  const payMethods=(req.payment_methods||[]).map(m=>{
-    if(m==='other'&&req.payment_other_note)return `Other (${esc(req.payment_other_note)})`;
-    const handle=req.payment_handles?.[m];
-    return handle?`${esc(paymentLabels[m]||m)}: ${esc(handle)}`:esc(paymentLabels[m]||m);
-  });
-  $('studio-payment').innerHTML=payMethods.length?payMethods.map(m=>`<p>${m}</p>`).join(''):'<p>Contact for payment options.</p>';
+  const payMethods=(req.payment_methods||[]).map(m=>m==='other'&&req.payment_other_note?`Other (${esc(req.payment_other_note)})`:esc(paymentLabels[m]||m));
+  $('studio-payment').innerHTML=`<p><strong>Payment:</strong> ${payMethods.length?payMethods.join(', '):'Contact for payment options.'}</p>`;
 
   const delivery=(req.delivery_methods||[]).map(m=>esc(deliveryLabels[m]||m));
   $('studio-delivery').innerHTML=`<p><strong>Delivery:</strong> ${delivery.length?delivery.join(', '):'Contact for delivery options.'}</p>`;

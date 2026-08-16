@@ -612,10 +612,6 @@ img { display: block; max-width: 100%; }
 .studio-order-form input, .studio-order-form textarea { width: 100%; padding: .6rem .7rem; border: 1px solid var(--line); border-radius: .5rem; background: #fff; color: var(--ink); font: inherit; }
 .studio-order-form textarea { min-height: 5.5rem; resize: vertical; }
 .studio-order-confirm { padding: .7rem .85rem; border-radius: .6rem; background: var(--sky); color: var(--ink); font-weight: 700; margin-top: .6rem; }
-.studio-info-card { padding: .85rem; border: 1px dashed var(--line); border-radius: .75rem; background: #fff; }
-.studio-info-card h3 { margin: 0 0 .5rem; color: #0098a5; }
-.studio-info-card p { margin: 0 0 .4rem; color: var(--text); font-weight: 700; line-height: 1.5; }
-.studio-info-card p:last-child { margin-bottom: 0; }
 
 .adult-route {
   color: #fff;
