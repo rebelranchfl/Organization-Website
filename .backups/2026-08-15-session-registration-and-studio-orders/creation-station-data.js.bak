@@ -26,27 +26,25 @@ export async function loadWorkspace(identity){
     supabase.from('creator_projects').select('id,creator_id,template_id,title,status,completion,notes,is_favorite,started_at,completed_at,updated_at').eq('owner_user_id',uid).order('updated_at',{ascending:false}),
     supabase.from('creator_portfolios').select('id,creator_id,title,bio,is_public,review_status,updated_at').eq('owner_user_id',uid),
     supabase.from('creation_resources').select('id,title,description,resource_type,external_url,storage_path,minimum_tier').eq('is_published',true).order('created_at',{ascending:false}).limit(12),
-    supabase.from('live_classes').select('id,title,description,starts_at,ends_at,supply_list,meeting_url,replay_url,minimum_tier,registration_link').eq('is_published',true).order('starts_at').limit(12),
+    supabase.from('live_classes').select('id,title,description,starts_at,ends_at,supply_list,meeting_url,replay_url,minimum_tier').eq('is_published',true).order('starts_at').limit(12),
     supabase.from('class_registrations').select('id,creator_id,class_id,attended_at').eq('owner_user_id',uid),
-    supabase.from('creator_website_requests').select('id,creator_id,status,brand_name,story,products,social_links,payment_methods,payment_other_note,payment_link,delivery_methods,owner_notes,admin_notes,submitted_at,approved_at,published_at,published_url,public_slug,updated_at,revision_number').eq('owner_user_id',uid).order('updated_at',{ascending:false}),
+    supabase.from('creator_website_requests').select('id,creator_id,status,brand_name,story,products,social_links,payment_methods,payment_other_note,delivery_methods,owner_notes,admin_notes,submitted_at,approved_at,published_at,published_url,public_slug,updated_at,revision_number').eq('owner_user_id',uid).order('updated_at',{ascending:false}),
     supabase.from('creation_activity').select('id,creator_id,activity_type,summary,created_at').eq('owner_user_id',uid).order('created_at',{ascending:false}),
     supabase.from('creator_studio_products').select('id,website_request_id,source_project_id,title,description,price_label,storage_path,is_active,sort_order').eq('owner_user_id',uid).order('sort_order'),
     supabase.from('portfolio_items').select('id,portfolio_id,project_id,asset_id,title,description').eq('owner_user_id',uid),
-    supabase.from('project_assets').select('id,project_id,storage_path,file_name,mime_type').eq('owner_user_id',uid),
-    supabase.from('studio_order_requests').select('id,website_request_id,sender_name,sender_contact,cart_summary,message,is_read,created_at').order('created_at',{ascending:false})
-  ]);fail(results);const [templates,projects,portfolios,resources,classes,registrations,websites,activity,studioProducts,portfolioItems,projectAssets,orderRequests]=results;
-  return {templates:templates.data,projects:projects.data,portfolios:portfolios.data,resources:resources.data,classes:classes.data,registrations:registrations.data,websites:websites.data,activity:activity.data,studioProducts:studioProducts.data,portfolioItems:portfolioItems.data,projectAssets:projectAssets.data,orderRequests:orderRequests.data};
+    supabase.from('project_assets').select('id,project_id,storage_path,file_name,mime_type').eq('owner_user_id',uid)
+  ]);fail(results);const [templates,projects,portfolios,resources,classes,registrations,websites,activity,studioProducts,portfolioItems,projectAssets]=results;
+  return {templates:templates.data,projects:projects.data,portfolios:portfolios.data,resources:resources.data,classes:classes.data,registrations:registrations.data,websites:websites.data,activity:activity.data,studioProducts:studioProducts.data,portfolioItems:portfolioItems.data,projectAssets:projectAssets.data};
 }
 
 export async function loadAdminSummary(){
   const results=await Promise.all([
     supabase.from('creator_portfolios').select('id,title,bio,review_status,moderation_note,owner_user_id,creator_id').in('review_status',['submitted','changes_requested']),
-    supabase.from('creator_website_requests').select('id,status,brand_name,story,products,social_links,payment_methods,payment_other_note,payment_link,delivery_methods,parent_approver_name,parent_approver_relationship,admin_notes,owner_user_id,creator_id,updated_at').in('status',['submitted','changes_requested','approved']),
+    supabase.from('creator_website_requests').select('id,status,brand_name,story,products,social_links,payment_methods,payment_other_note,delivery_methods,parent_approver_name,parent_approver_relationship,admin_notes,owner_user_id,creator_id,updated_at').in('status',['submitted','changes_requested','approved']),
     supabase.from('creator_projects').select('id,status,completion,owner_user_id'),
     supabase.from('creator_profiles').select('id,age_band,profile_status'),
-    supabase.from('live_classes').select('id,title,description,starts_at,ends_at,minimum_tier,capacity,meeting_url,replay_url,supply_list,is_published,registration_link').order('starts_at',{ascending:false}),
-    supabase.from('studio_order_requests').select('id,website_request_id,sender_name,sender_contact,cart_summary,message,is_read,created_at').order('created_at',{ascending:false})
-  ]);fail(results);return {portfolioQueue:results[0].data,websiteQueue:results[1].data,allProjects:results[2].data,allCreators:results[3].data,allClasses:results[4].data,orderRequests:results[5].data};
+    supabase.from('live_classes').select('id,title,description,starts_at,ends_at,minimum_tier,capacity,meeting_url,replay_url,supply_list,is_published').order('starts_at',{ascending:false})
+  ]);fail(results);return {portfolioQueue:results[0].data,websiteQueue:results[1].data,allProjects:results[2].data,allCreators:results[3].data,allClasses:results[4].data};
 }
 
 export const actions={
@@ -70,7 +68,5 @@ export const actions={
   async setParentPin(householdId,pin){return supabase.from('households').update({parent_pin:pin}).eq('id',householdId)},
   async createSession(payload){return supabase.from('live_classes').insert(payload)},
   async updateSession(id,updates){return supabase.from('live_classes').update(updates).eq('id',id)},
-  async registerForClass(identity,creatorId,classId){return supabase.from('class_registrations').insert({owner_user_id:identity.user.id,creator_id:creatorId,class_id:classId})},
-  async markOrderRequestRead(id){return supabase.from('studio_order_requests').update({is_read:true,read_at:new Date().toISOString()}).eq('id',id)},
   async signOut(){return supabase.auth.signOut()}
 };

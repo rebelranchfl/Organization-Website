@@ -81,20 +81,7 @@
           <div class="product-grid" id="studio-products"></div>
 
           <aside class="studio-cart" id="studio-contact">
-            <h3>Your cart</h3>
-            <div id="studio-cart-items"></div>
-            <div id="studio-cart-checkout" class="hidden">
-              <div id="studio-payment-link"></div>
-              <button class="btn preview" type="button" id="studio-order-toggle">Send Order Request</button>
-              <form id="studio-order-form" class="hidden studio-order-form">
-                <label>Your name<input id="studio-order-name" required></label>
-                <label>Phone or email <span style="font-weight:400">so they can reply to you</span><input id="studio-order-contact"></label>
-                <label>Message <span style="font-weight:400">optional</span><textarea id="studio-order-message"></textarea></label>
-                <button class="btn primary" type="submit">Send Order Request</button>
-              </form>
-              <p id="studio-order-confirm" class="hidden studio-order-confirm" role="status"></p>
-            </div>
-            <h3 style="margin-top:1.2rem">How to order</h3>
+            <h3>How to order</h3>
             <div id="studio-payment"></div>
             <div id="studio-delivery"></div>
             <div id="studio-links"></div>
