@@ -101,9 +101,6 @@
             <div class="studio-info-card" style="margin-top:.7rem">
               <h3>Pickup &amp; Delivery</h3>
               <div id="studio-delivery"></div>
-            </div>
-            <div id="studio-social-card" class="studio-info-card hidden" style="margin-top:.7rem">
-              <h3>Find Them Online</h3>
               <div id="studio-links"></div>
             </div>
             <p class="studio-fine-print">Payment and delivery happen directly with the creator and their family — Rebel Ranch Ministries hosts this page but is not part of the transaction. No sales or income are guaranteed.</p>

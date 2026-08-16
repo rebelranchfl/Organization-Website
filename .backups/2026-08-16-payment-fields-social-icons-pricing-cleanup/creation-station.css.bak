@@ -616,9 +616,6 @@ img { display: block; max-width: 100%; }
 .studio-info-card h3 { margin: 0 0 .5rem; color: #0098a5; }
 .studio-info-card p { margin: 0 0 .4rem; color: var(--text); font-weight: 700; line-height: 1.5; }
 .studio-info-card p:last-child { margin-bottom: 0; }
-.social-icon-row { display: flex; flex-wrap: wrap; gap: .5rem; }
-.social-icon-link { display: inline-flex; align-items: center; justify-content: center; width: 2.4rem; height: 2.4rem; border-radius: 50%; background: var(--social-color, var(--purple)); color: #fff; flex: none; }
-.social-icon-link:hover, .social-icon-link:focus-visible { filter: brightness(1.1); }
 
 .adult-route {
   color: #fff;
