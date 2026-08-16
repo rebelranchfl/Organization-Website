@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Rebel Ranch Store | Rebel Ranch Ministries</title>
 <meta name="description" content="Shop official Rebel Ranch Ministries apparel, drinkware, bags, and other branded merchandise that helps support the mission."/>
-<link rel="icon" type="image/png" href="assets/brand/rrm-logo-black.png">
+<link rel="icon" type="image/png" href="assets/brand/Rebel%20Ranch%20Ministries/rrm-logo-black.png">
 <link rel="stylesheet" href="assets/css/public-surface.css">
 <script src="assets/js/public-shell.js" defer></script>
 <style>
@@ -71,6 +71,30 @@
   .store-status{max-width:760px;margin:0 auto;padding:28px;text-align:center;border:1px solid #284A29;border-radius:20px;background:linear-gradient(180deg,#1D4024 0%,#122A18 100%)}
   .store-status h3{margin:0 0 10px;font-size:26px}
   .store-status p{margin:0 0 20px;color:var(--muted)}
+  .collection-browser{margin-bottom:clamp(2rem,5vw,4rem)}
+  .collection-browser h3{margin:0 0 8px;text-align:center;font-size:clamp(26px,4vw,38px)}
+  .collection-intro{max-width:720px;margin:0 auto 26px;text-align:center;color:var(--muted)}
+  .collection-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .collection-card{position:relative;overflow:hidden;display:flex;min-width:0;padding:0;text-align:left;color:var(--ink);border:1px solid #284A29;border-radius:20px;background:linear-gradient(180deg,#1D4024 0%,#122A18 100%);box-shadow:var(--shadow);cursor:pointer;transition:.2s transform,.2s border-color,.2s box-shadow}
+  .collection-card::before{content:"";position:absolute;z-index:2;inset:0 0 auto;height:3px;background:linear-gradient(90deg,var(--gold),var(--green))}
+  .collection-card:hover,.collection-card:focus-visible{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 22px 60px rgba(0,0,0,.4)}
+  .collection-card[aria-pressed="true"]{border-color:var(--gold);box-shadow:0 0 0 2px rgba(193,127,36,.3),var(--shadow)}
+  .collection-card-image{width:42%;min-height:210px;object-fit:contain;padding:20px;background:#0D1E11}
+  .collection-card.creation .collection-card-image{background:#F5F0E8}
+  .collection-card-copy{display:flex;flex:1;flex-direction:column;justify-content:center;padding:22px}
+  .collection-card-copy strong{font-size:22px;line-height:1.1}
+  .collection-card-copy span{margin-top:9px;color:var(--muted);font-size:15px}
+  .collection-card-copy small{margin-top:14px;color:var(--gold-bright);font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+  .product-tools{margin-top:28px;padding:22px;border:1px solid rgba(40,74,41,.85);border-radius:18px;background:rgba(18,42,24,.55)}
+  .product-tools-label{margin:0 0 12px;text-align:center;color:var(--muted);font-size:14px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+  .filter-list{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+  .filter-button{min-height:42px;padding:9px 16px;border:1px solid var(--green-dark);border-radius:999px;background:#142617;color:var(--ink);font:800 14px/1.2 Arial,Helvetica,sans-serif;cursor:pointer}
+  .filter-button:hover,.filter-button:focus-visible{background:#1B341F}
+  .filter-button[aria-pressed="true"]{border-color:var(--gold);background:linear-gradient(135deg,#C17F24,#7B4B13);color:#FFF7DE}
+  .filter-summary{margin:16px 0 0;text-align:center;color:var(--muted)}
+  .filter-empty{max-width:760px;margin:0 auto;padding:28px;text-align:center;border:1px solid #284A29;border-radius:20px;background:linear-gradient(180deg,#1D4024 0%,#122A18 100%)}
+  .filter-empty h3{margin:0 0 10px;font-size:26px}
+  .filter-empty p{margin:0 0 20px;color:var(--muted)}
   .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .product-card{display:flex;flex-direction:column}
   .product-image{aspect-ratio:1/1;width:100%;object-fit:cover;background:#122A18}
@@ -86,8 +110,14 @@
     .store-hero-inner{grid-template-columns:1fr}
     .hero-brand{margin-top:20px}
     .hero-brand img{width:min(320px,86vw)}
+    .collection-grid{grid-template-columns:1fr}
+    .collection-card-image{width:38%;min-height:180px}
     .product-grid{grid-template-columns:1fr}
     .rrm-public-footer-inner{width:100%}
+  }
+  @media(max-width:560px){
+    .collection-card{display:block;text-align:center}
+    .collection-card-image{width:100%;height:190px;min-height:0}
   }
 </style>
 </head>
@@ -105,7 +135,7 @@
         </div>
       </div>
       <div class="hero-brand" aria-label="Official Rebel Ranch Ministries merchandise">
-        <img src="assets/brand/rrm-logo-white.png" alt="Rebel Ranch Ministries — Faith, Family, Freedom">
+        <img src="assets/brand/Rebel%20Ranch%20Ministries/rrm-logo-white.png" alt="Rebel Ranch Ministries — Faith, Family, Freedom">
         <p>Official Rebel Ranch Ministries Merchandise</p>
       </div>
     </div>
@@ -119,6 +149,53 @@
         <p>Find your new favorite way to represent Rebel Ranch—from everyday apparel to drinkware, bags, and more. Choose what fits your style and carry the mission with you.</p>
       </div>
 
+      <div class="collection-browser" aria-labelledby="collection-heading">
+        <h3 id="collection-heading">Shop Your Way</h3>
+        <p class="collection-intro">Choose a collection, then narrow the products by what you are looking for. Everything stays right here until you select a product.</p>
+
+        <div class="collection-grid" aria-label="Merchandise collections">
+          <button class="collection-card" type="button" data-collection="rrm" aria-pressed="false">
+            <img class="collection-card-image" src="assets/brand/Rebel%20Ranch%20Ministries/rrm-logo-white.png" alt="">
+            <span class="collection-card-copy">
+              <strong>Official RRM</strong>
+              <span>Faith, Family &amp; Freedom apparel, gear, and everyday favorites.</span>
+              <small>Shop Official RRM</small>
+            </span>
+          </button>
+
+          <button class="collection-card creation" type="button" data-collection="creation-station" aria-pressed="false">
+            <img class="collection-card-image" src="assets/brand/Creation%20Station/creation-station-logo.png" alt="">
+            <span class="collection-card-copy">
+              <strong>Creation Station</strong>
+              <span>Colorful gear for creators, makers, learners, and growing ideas.</span>
+              <small>Shop Creation Station</small>
+            </span>
+          </button>
+
+          <button class="collection-card" type="button" data-collection="working-hands" aria-pressed="false">
+            <img class="collection-card-image" src="assets/brand/roots%20boots%20and%20animal%20poops/adult/roots-boots-and-animal-poops-adult%20logo.png" alt="">
+            <span class="collection-card-copy">
+              <strong>Working Hands</strong>
+              <span>Rustic, ranch-raised designs built around faith, grit, country, and real work.</span>
+              <small>Explore Working Hands</small>
+            </span>
+          </button>
+        </div>
+
+        <div class="product-tools" id="product-tools" hidden>
+          <p class="product-tools-label">Narrow by product</p>
+          <div class="filter-list" aria-label="Filter products by type">
+            <button class="filter-button" type="button" data-product-type="all" aria-pressed="true">All Products</button>
+            <button class="filter-button" type="button" data-product-type="apparel" aria-pressed="false">Apparel</button>
+            <button class="filter-button" type="button" data-product-type="hats" aria-pressed="false">Hats</button>
+            <button class="filter-button" type="button" data-product-type="drinkware" aria-pressed="false">Drinkware</button>
+            <button class="filter-button" type="button" data-product-type="bags" aria-pressed="false">Bags</button>
+            <button class="filter-button" type="button" data-product-type="accessories" aria-pressed="false">Accessories</button>
+          </div>
+          <p class="filter-summary" id="filter-summary" aria-live="polite"></p>
+        </div>
+      </div>
+
       <div class="store-status" id="store-status">
         <h3 id="store-status-heading">The first collection is almost here.</h3>
         <p id="store-status-message">We’re putting the finishing touches on our first official Rebel Ranch pieces. Check back soon—or visit the store for the latest arrivals.</p>
@@ -126,6 +203,12 @@
       </div>
 
       <div class="product-grid" id="product-grid" hidden></div>
+
+      <div class="filter-empty" id="filter-empty" hidden>
+        <h3 id="filter-empty-heading">More merchandise is on the way.</h3>
+        <p id="filter-empty-message">Try another collection or product type to see what is available now.</p>
+        <button class="btn gold" id="show-all-products" type="button">Show All Products</button>
+      </div>
 
       <p class="purchase-note">Looking for another way to make a difference? Visit <a href="support.html"><strong>Support the Mission</strong></a> to help strengthen Rebel Ranch Ministries programs.</p>
     </div>
@@ -138,14 +221,87 @@
   const storeUrl = 'https://rebel-ranch-store.printify.me';
   const grid = document.getElementById('product-grid');
   const status = document.getElementById('store-status');
+  const productTools = document.getElementById('product-tools');
+  const summary = document.getElementById('filter-summary');
+  const empty = document.getElementById('filter-empty');
+  const emptyHeading = document.getElementById('filter-empty-heading');
+  const emptyMessage = document.getElementById('filter-empty-message');
+  const collectionButtons = [...document.querySelectorAll('[data-collection]')];
+  const typeButtons = [...document.querySelectorAll('[data-product-type]')];
+  const productCards = [];
+  let activeCollection = 'all';
+  let activeType = 'all';
 
   const money = (value) => Number.isFinite(Number(value))
     ? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(value))
     : '';
 
+  const normalizedProductText = (product) => [product.title, product.category]
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase();
+
+  const productCollection = (product) => {
+    const text = normalizedProductText(product);
+    const workingHandsPhrases = [
+      'roots, boots', 'animal poops', 'working hands', 'real people. real work',
+      'ranch raised', 'dirt under our nails', 'purpose in our work', 'built by faith',
+      'work hard', 'stay humble', 'faith, grit', 'barn raised', 'country roots'
+    ];
+    if (workingHandsPhrases.some((phrase) => text.includes(phrase))) return 'working-hands';
+    if (text.includes('creation station') || text.includes('create. learn. build. grow') || text.includes('passion to possibility')) return 'creation-station';
+    return 'rrm';
+  };
+
+  const productType = (product) => {
+    const text = normalizedProductText(product);
+    if (/\b(hat|cap|snapback|trucker|beanie)\b/.test(text)) return 'hats';
+    if (/\b(mug|cup|tumbler|bottle|drinkware|can cooler)\b/.test(text)) return 'drinkware';
+    if (/\b(bag|tote|backpack|duffel|pouch|sack)\b/.test(text)) return 'bags';
+    if (/\b(shirt|tee|tank|hoodie|sweatshirt|sweater|jersey|sleeve|jacket|shorts|leggings)\b/.test(text)) return 'apparel';
+    return 'accessories';
+  };
+
+  const collectionName = (collection) => ({
+    rrm: 'Official RRM',
+    'creation-station': 'Creation Station',
+    'working-hands': 'Working Hands'
+  }[collection] || 'Rebel Ranch Merchandise');
+
+  const applyFilters = () => {
+    let visibleCount = 0;
+    productCards.forEach(({ card, collection, type }) => {
+      const visible = (activeCollection === 'all' || collection === activeCollection)
+        && (activeType === 'all' || type === activeType);
+      card.hidden = !visible;
+      if (visible) visibleCount += 1;
+    });
+
+    collectionButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.collection === activeCollection)));
+    typeButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.productType === activeType)));
+
+    const collectionLabel = activeCollection === 'all' ? 'all collections' : collectionName(activeCollection);
+    const typeLabel = activeType === 'all' ? 'products' : activeType;
+    summary.textContent = `${visibleCount} ${typeLabel} in ${collectionLabel}`;
+    grid.hidden = visibleCount === 0;
+    empty.hidden = visibleCount !== 0;
+
+    if (visibleCount === 0 && activeCollection === 'working-hands') {
+      emptyHeading.textContent = 'Working Hands is coming soon.';
+      emptyMessage.textContent = 'New ranch-raised designs are being prepared now. Shop another collection today and check back for the first Working Hands release.';
+    } else {
+      emptyHeading.textContent = 'No matching products yet.';
+      emptyMessage.textContent = 'Try another collection or product type to see what is available now.';
+    }
+  };
+
   const addProduct = (product) => {
     const card = document.createElement('article');
     card.className = 'product-card';
+    const collection = productCollection(product);
+    const type = productType(product);
+    card.dataset.collection = collection;
+    card.dataset.productType = type;
 
     const image = Array.isArray(product.images)
       ? (product.images.find((item) => item.isDefault) || product.images[0])
@@ -164,7 +320,7 @@
 
     const category = document.createElement('p');
     category.className = 'product-category';
-    category.textContent = product.category || 'Rebel Ranch Merchandise';
+    category.textContent = collectionName(collection);
 
     const title = document.createElement('h3');
     title.textContent = product.title || 'Rebel Ranch Merchandise';
@@ -187,7 +343,30 @@
     copy.append(category, title, price, link);
     card.appendChild(copy);
     grid.appendChild(card);
+    productCards.push({ card, collection, type });
   };
+
+  collectionButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      if (!productCards.length) return;
+      activeCollection = button.dataset.collection === activeCollection ? 'all' : button.dataset.collection;
+      applyFilters();
+      productTools.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
+
+  typeButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      activeType = button.dataset.productType;
+      applyFilters();
+    });
+  });
+
+  document.getElementById('show-all-products').addEventListener('click', () => {
+    activeCollection = 'all';
+    activeType = 'all';
+    applyFilters();
+  });
 
   fetch(productFeed, { headers: { Accept: 'application/json' } })
     .then((response) => {
@@ -200,7 +379,8 @@
       if (!products.length) return;
       products.forEach(addProduct);
       status.hidden = true;
-      grid.hidden = false;
+      productTools.hidden = false;
+      applyFilters();
     })
     .catch(() => {
       document.getElementById('store-status-heading').textContent = 'The first collection is almost here.';

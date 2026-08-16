@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="4500" height="3500" viewBox="0 0 4500 3500">
+  <title>Creation Station Studio rainbow logo</title>
+  <defs>
+    <linearGradient id="creation" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#ef176a"/><stop offset="44%" stop-color="#ff6542"/><stop offset="74%" stop-color="#ff9d00"/><stop offset="100%" stop-color="#ffc400"/></linearGradient>
+    <linearGradient id="station" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#ff9a00"/><stop offset="34%" stop-color="#ffd000"/><stop offset="66%" stop-color="#85cc32"/><stop offset="100%" stop-color="#08ae9f"/></linearGradient>
+    <linearGradient id="studio" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#00a7d6"/><stop offset="36%" stop-color="#1679c8"/><stop offset="72%" stop-color="#7044b5"/><stop offset="100%" stop-color="#b42d9d"/></linearGradient>
+  </defs>
+  <text x="2250" y="980" text-anchor="middle" fill="url(#creation)" font-family="Segoe UI Black, Arial Black, sans-serif" font-size="1100" font-weight="900" letter-spacing="-60">Creation</text>
+  <text x="2250" y="1960" text-anchor="middle" fill="url(#station)" font-family="Segoe UI Black, Arial Black, sans-serif" font-size="1100" font-weight="900" letter-spacing="-60">Station</text>
+  <text x="2250" y="2940" text-anchor="middle" fill="url(#studio)" font-family="Segoe UI Black, Arial Black, sans-serif" font-size="1100" font-weight="900" letter-spacing="-60">Studio™</text>
+</svg>
