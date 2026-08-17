@@ -529,9 +529,6 @@ function bindOnboardingForm(){
 }
 
 $('signout').onclick=async()=>{await actions.signOut();location.href='account.html'};
-$('header-feedback-btn').onclick=()=>$('feedback-dialog').showModal();
-$('feedback-close').onclick=()=>$('feedback-dialog').close();
-$('feedback-cancel').onclick=()=>$('feedback-dialog').close();
 {
   const menuToggle=$('menu-toggle');
   const accountActions=$('account-actions');

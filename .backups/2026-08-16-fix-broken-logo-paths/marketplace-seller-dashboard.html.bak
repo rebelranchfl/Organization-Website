@@ -13,9 +13,9 @@
   <a class="skip-link" href="#main-content">Skip to dashboard content</a>
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="marketplace.html" aria-label="Rebel Ranch Marketplace home"><img src="assets/brand/Rebel%20Ranch%20Ministries/rrm-logo-white.png" alt="" width="32" height="32"> Marketplace</a>
+      <a class="brand" href="marketplace.html" aria-label="Rebel Ranch Marketplace home"><img src="assets/brand/rrm-logo-white.png" alt="" width="32" height="32"> Marketplace</a>
       <button id="menu-toggle" class="menu-toggle" type="button" aria-label="Account menu" aria-expanded="false" aria-controls="account-actions"><span></span><span></span><span></span></button>
-      <div id="account-actions" class="account-actions"><a id="header-live-link" class="hidden" href="#" target="_blank" rel="noopener">View My Live Page ↗</a><button id="header-feedback-btn" type="button">Send Feedback</button><a href="account.html">RRM Account</a><button id="signout" type="button">Sign out</button></div>
+      <div id="account-actions" class="account-actions"><a id="header-live-link" class="hidden" href="#" target="_blank" rel="noopener">View My Live Page ↗</a><a href="account.html">RRM Account</a><button id="signout" type="button">Sign out</button></div>
     </div>
   </header>
 
@@ -128,24 +128,6 @@
       <div id="screen" tabindex="-1"></div>
     </div>
   </main>
-
-  <dialog id="feedback-dialog" aria-labelledby="feedback-title">
-    <form action="https://formspree.io/f/xnjrqydq" method="POST">
-      <div class="dialog-heading">
-        <div><p class="eyebrow">Marketplace Beta</p><h2 id="feedback-title">Send Feedback</h2></div>
-        <button class="icon-button" type="button" id="feedback-close" aria-label="Close">×</button>
-      </div>
-      <input name="form_type" type="hidden" value="Marketplace Beta Feedback"/>
-      <input name="_subject" type="hidden" value="Marketplace Beta Feedback"/>
-      <label>Name <span>optional</span><input name="name" type="text"></label>
-      <label>Email <span>optional, in case we want to follow up</span><input name="email" type="email"></label>
-      <label>What's confusing, broken, or missing?<textarea name="message" required></textarea></label>
-      <div class="dialog-actions">
-        <button type="button" id="feedback-cancel">Cancel</button>
-        <button type="submit" class="primary">Send Feedback</button>
-      </div>
-    </form>
-  </dialog>
 
   <dialog id="review-dialog" aria-labelledby="review-title">
     <form method="dialog">

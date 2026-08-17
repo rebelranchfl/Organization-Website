@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Disallow: /account.html
+Disallow: /auth-confirm.html
+Disallow: /reset-password.html
+Disallow: /membership-status.html
+Disallow: /creation-station-dashboard.html
+Disallow: /creation-station-account.html
+Disallow: /marketplace-seller-dashboard.html
+Disallow: /marketplace-seller-page-theme-preview.html
+Disallow: /supabase-connection-test.html
+Disallow: /phase3-visual-fixture.html
+
+Sitemap: https://rebelranchministries.org/sitemap.xml

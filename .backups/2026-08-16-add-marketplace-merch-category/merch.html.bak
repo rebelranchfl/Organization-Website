@@ -151,7 +151,7 @@
 
       <div class="collection-browser" aria-labelledby="collection-heading">
         <h3 id="collection-heading">Shop Your Way</h3>
-        <p class="collection-intro">Choose a collection, then narrow by product type — everything updates instantly on this page, no reloading needed.</p>
+        <p class="collection-intro">Choose a collection, then narrow the products by what you are looking for. Everything stays right here until you select a product.</p>
 
         <div class="collection-grid" aria-label="Merchandise collections">
           <button class="collection-card" type="button" data-collection="rrm" aria-pressed="false">
@@ -180,15 +180,6 @@
               <small>Explore Working Hands</small>
             </span>
           </button>
-
-          <button class="collection-card" type="button" data-collection="marketplace" aria-pressed="false">
-            <img class="collection-card-image" src="assets/Market%20Place/rebel-ranch-marketplace-graphic.png" alt="">
-            <span class="collection-card-copy">
-              <strong>Rebel Ranch Marketplace</strong>
-              <span>Gear for local makers, sellers, and the buy-local movement.</span>
-              <small>Shop Marketplace</small>
-            </span>
-          </button>
         </div>
 
         <div class="product-tools" id="product-tools" hidden>
@@ -206,8 +197,8 @@
       </div>
 
       <div class="store-status" id="store-status">
-        <h3 id="store-status-heading">Loading the shop…</h3>
-        <p id="store-status-message">Just a moment while we pull in the latest items from our store.</p>
+        <h3 id="store-status-heading">The first collection is almost here.</h3>
+        <p id="store-status-message">We’re putting the finishing touches on our first official Rebel Ranch pieces. Check back soon—or visit the store for the latest arrivals.</p>
         <a class="btn gold" href="https://rebel-ranch-store.printify.me" target="_blank" rel="noopener">Visit the Rebel Ranch Store</a>
       </div>
 
@@ -259,8 +250,6 @@
     ];
     if (workingHandsPhrases.some((phrase) => text.includes(phrase))) return 'working-hands';
     if (text.includes('creation station') || text.includes('create. learn. build. grow') || text.includes('passion to possibility')) return 'creation-station';
-    const marketplacePhrases = ['marketplace', 'digital farmers market', 'buy local', 'shop local', 'local makers'];
-    if (marketplacePhrases.some((phrase) => text.includes(phrase))) return 'marketplace';
     return 'rrm';
   };
 
@@ -276,8 +265,7 @@
   const collectionName = (collection) => ({
     rrm: 'Official RRM',
     'creation-station': 'Creation Station',
-    'working-hands': 'Working Hands',
-    marketplace: 'Rebel Ranch Marketplace'
+    'working-hands': 'Working Hands'
   }[collection] || 'Rebel Ranch Merchandise');
 
   const applyFilters = () => {
@@ -301,9 +289,6 @@
     if (visibleCount === 0 && activeCollection === 'working-hands') {
       emptyHeading.textContent = 'Working Hands is coming soon.';
       emptyMessage.textContent = 'New ranch-raised designs are being prepared now. Shop another collection today and check back for the first Working Hands release.';
-    } else if (visibleCount === 0 && activeCollection === 'marketplace') {
-      emptyHeading.textContent = 'Rebel Ranch Marketplace gear is coming soon.';
-      emptyMessage.textContent = 'New designs for local makers and buy-local supporters are being prepared now. Shop another collection today and check back soon.';
     } else {
       emptyHeading.textContent = 'No matching products yet.';
       emptyMessage.textContent = 'Try another collection or product type to see what is available now.';
@@ -391,19 +376,14 @@
     .then((data) => {
       if (!data || !Array.isArray(data.products)) throw new Error('Product collection unavailable');
       const products = data.products.filter((product) => product && product.visible === true);
-      if (!products.length) {
-        document.getElementById('store-status-heading').textContent = 'The first collection is almost here.';
-        document.getElementById('store-status-message').textContent = 'We’re putting the finishing touches on our first official Rebel Ranch pieces. Check back soon—or visit the store for the latest arrivals.';
-        return;
-      }
+      if (!products.length) return;
       products.forEach(addProduct);
       status.hidden = true;
       productTools.hidden = false;
       applyFilters();
     })
     .catch(() => {
-      document.getElementById('store-status-heading').textContent = "We couldn't load the shop right now.";
-      document.getElementById('store-status-message').textContent = 'Please refresh the page, or visit the store directly using the link below.';
+      document.getElementById('store-status-heading').textContent = 'The first collection is almost here.';
     });
 })();
 </script>
