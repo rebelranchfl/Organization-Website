@@ -298,13 +298,104 @@
     .status-box.success {
       border-color: var(--rrm-green);
       background: rgba(151, 196, 89, 0.12);
-      color: var(--rrm-green);
+      color: var(--rrm-ink);
     }
 
     .status-box.error {
       border-color: var(--rrm-rust);
       background: rgba(169, 76, 62, 0.16);
-      color: var(--rrm-rust);
+      color: var(--rrm-ink);
+    }
+
+    .submitted-card {
+      margin: 24px 0 0;
+      padding: 28px 24px;
+      text-align: center;
+      border: 1px solid var(--rrm-green);
+      border-radius: 14px;
+      background: linear-gradient(180deg, #1D4024, #122A18);
+      color: var(--rrm-ink);
+    }
+
+    .submitted-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 14px;
+      border-radius: 50%;
+      background: var(--rrm-green);
+      color: #07120A;
+      font-size: 1.4rem;
+      font-weight: 900;
+    }
+
+    .submitted-card h3 {
+      margin: 0 0 10px;
+      color: var(--rrm-ink);
+    }
+
+    .submitted-card p {
+      margin: 0 auto 18px;
+      max-width: 420px;
+      color: var(--rrm-muted);
+      line-height: 1.55;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .text-link {
+      background: none;
+      border: none;
+      padding: 0;
+      color: var(--rrm-gold-bright);
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: underline;
+      font: inherit;
+    }
+
+    #edit-name-button {
+      display: block;
+      margin: 4px 0 0;
+      font-size: 0.85rem;
+    }
+
+    .edit-name-form {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 10px 0 0;
+    }
+
+    .edit-name-form input {
+      min-width: 220px;
+    }
+
+    .edit-name-form .primary-button {
+      width: auto;
+      padding: 8px 16px;
+    }
+
+    .submitted-card .text-link {
+      background: none;
+      border: none;
+      color: var(--rrm-gold-bright);
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: underline;
     }
 
     .dashboard {
@@ -736,6 +827,24 @@
               role="status"
               aria-live="polite"
             ></div>
+
+            <div
+              id="signup-submitted-card"
+              class="submitted-card"
+              role="status"
+              aria-live="polite"
+              hidden
+            >
+              <span class="submitted-icon" aria-hidden="true">&#10003;</span>
+              <h3 id="signup-submitted-title">Account request received.</h3>
+              <p id="signup-submitted-copy">
+                Check your email and use the confirmation link before
+                signing in.
+              </p>
+              <button type="button" id="signup-start-over" class="text-link">
+                Use a different email
+              </button>
+            </div>
           </section>
         </div>
       </div>
@@ -747,6 +856,28 @@
           <h2 id="dashboard-name" class="dashboard-name">
             Welcome
           </h2>
+
+          <button type="button" id="edit-name-button" class="text-link">
+            Edit name
+          </button>
+
+          <form id="edit-name-form" class="edit-name-form" hidden>
+            <label for="edit-name-input" class="sr-only">Display name</label>
+            <input id="edit-name-input" type="text" maxlength="100" required>
+            <button id="edit-name-save" class="primary-button" type="submit">
+              Save
+            </button>
+            <button type="button" id="edit-name-cancel" class="text-link">
+              Cancel
+            </button>
+          </form>
+
+          <p
+            id="edit-name-status"
+            class="status-box"
+            role="status"
+            aria-live="polite"
+          ></p>
 
           <p id="dashboard-email" class="dashboard-email"></p>
 
@@ -815,12 +946,6 @@
         </div>
 
         <div class="dashboard-actions">
-          <a class="primary-button" href="creation-station-membership.html">
-            View Membership Options
-          </a>
-          <a class="secondary-button" href="membership-status.html">
-            Membership Status
-          </a>
           <button
             id="signout-button"
             class="secondary-button"
@@ -862,6 +987,14 @@
     const resetRequestButton =
       document.getElementById("reset-request-button");
 
+    const editNameButton = document.getElementById("edit-name-button");
+    const editNameForm = document.getElementById("edit-name-form");
+    const editNameInput = document.getElementById("edit-name-input");
+    const editNameSave = document.getElementById("edit-name-save");
+    const editNameCancel = document.getElementById("edit-name-cancel");
+    const editNameStatus = document.getElementById("edit-name-status");
+    let currentAccountUserId = null;
+
     const showResetButton =
       document.getElementById("show-reset-button");
 
@@ -870,6 +1003,14 @@
 
     const signinStatus = document.getElementById("signin-status");
     const signupStatus = document.getElementById("signup-status");
+    const signupSubmittedCard =
+      document.getElementById("signup-submitted-card");
+    const signupSubmittedTitle =
+      document.getElementById("signup-submitted-title");
+    const signupSubmittedCopy =
+      document.getElementById("signup-submitted-copy");
+    const signupStartOverButton =
+      document.getElementById("signup-start-over");
     const dashboardStatus =
       document.getElementById("dashboard-status");
 
@@ -911,6 +1052,8 @@
 
       clearStatus(signinStatus);
       clearStatus(signupStatus);
+      signupSubmittedCard.hidden = true;
+      signupForm.hidden = false;
     }
 
     function showAuth() {
@@ -981,6 +1124,9 @@
           `Your account was authenticated, but its membership could not be loaded: ${membershipsError.message}`
         );
       }
+
+      currentAccountUserId = user.id;
+      editNameInput.value = profile.display_name || "";
 
       document.getElementById("dashboard-name").textContent =
         `Welcome, ${profile.display_name}`;
@@ -1128,17 +1274,31 @@
           throw error;
         }
 
-        signupForm.reset();
-
-        setStatus(
-          signupStatus,
-          "Your account request was received. Check your email and use the confirmation link before signing in.",
-          "success"
-        );
-
         if (data.session) {
+          signupForm.reset();
           await loadDashboard(data.user);
+          return;
         }
+
+        const alreadyRegistered =
+          Array.isArray(data?.user?.identities) &&
+          data.user.identities.length === 0;
+
+        if (alreadyRegistered) {
+          signupSubmittedTitle.textContent =
+            "You already have an account with this email.";
+          signupSubmittedCopy.textContent =
+            "No new email was sent. Sign in instead, or use “Forgot password” if you don’t remember it.";
+        } else {
+          signupSubmittedTitle.textContent =
+            "Account request received.";
+          signupSubmittedCopy.textContent =
+            "Check your email and use the confirmation link before signing in.";
+        }
+
+        signupForm.reset();
+        signupForm.hidden = true;
+        signupSubmittedCard.hidden = false;
       } catch (error) {
         setStatus(
           signupStatus,
@@ -1150,6 +1310,76 @@
         signupButton.disabled = false;
         signupButton.textContent =
           "Create Secure Account";
+      }
+    });
+
+    signupStartOverButton.addEventListener("click", () => {
+      signupSubmittedCard.hidden = true;
+      signupForm.hidden = false;
+      clearStatus(signupStatus);
+    });
+
+    editNameButton.addEventListener("click", () => {
+      editNameButton.hidden = true;
+      editNameForm.hidden = false;
+      clearStatus(editNameStatus);
+      editNameInput.focus();
+      editNameInput.select();
+    });
+
+    editNameCancel.addEventListener("click", () => {
+      editNameForm.hidden = true;
+      editNameButton.hidden = false;
+      clearStatus(editNameStatus);
+    });
+
+    editNameForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const newName = editNameInput.value.trim();
+
+      if (!newName) {
+        setStatus(editNameStatus, "Enter a name.", "error");
+        return;
+      }
+
+      if (!currentAccountUserId) {
+        setStatus(
+          editNameStatus,
+          "Your account could not be verified. Refresh and try again.",
+          "error"
+        );
+        return;
+      }
+
+      editNameSave.disabled = true;
+      editNameSave.textContent = "Saving...";
+
+      try {
+        const { error } = await supabase
+          .from("profiles")
+          .update({ display_name: newName })
+          .eq("id", currentAccountUserId);
+
+        if (error) {
+          throw error;
+        }
+
+        document.getElementById("dashboard-name").textContent =
+          `Welcome, ${newName}`;
+
+        editNameForm.hidden = true;
+        editNameButton.hidden = false;
+        setStatus(editNameStatus, "Name updated.", "success");
+      } catch (error) {
+        setStatus(
+          editNameStatus,
+          error?.message || "That name could not be saved.",
+          "error"
+        );
+      } finally {
+        editNameSave.disabled = false;
+        editNameSave.textContent = "Save";
       }
     });
 

@@ -33,8 +33,16 @@ stays open to anyone, but our compass points at the family first.
 
 ## Entity Relationship Map
 
-- **FFN (Faith, Family & Nature Church, Inc.)** — the 501(c)(3) nonprofit.
-  The parent organization.
+- **FFN (Faith, Family & Nature Church, Inc.)** — the parent organization.
+  FFN operates as a tax-exempt church under Section 501(c)(3) of the
+  Internal Revenue Code, organized under Section 508(c)(1)(a) — the same
+  language used consistently across the live site's legal disclaimer.
+  FFN does **not** currently hold an IRS 501(c)(3) determination letter;
+  that exemption is automatic by law and does not require one. This
+  matters for grant eligibility specifically — see
+  `marketing/funding/funding-rules.md` — because many grantors ask for a
+  determination letter as proof even though it isn't legally required.
+  Confirmed directly by the owner 2026-08-16.
 - **RRM (Rebel Ranch Ministries)** — a *ministry program under FFN*, not a
   separate legal entity. Everything RRM does is FFN's work.
 - **3P (3P Help Me)** — a separate for-profit business, owned and run

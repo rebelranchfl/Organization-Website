@@ -19,6 +19,12 @@ function publicUrl(path){
   return supabase.storage.from('marketplace-seller-public').getPublicUrl(path).data.publicUrl;
 }
 
+function formatPriceLabel(v){
+  const trimmed=String(v).trim();
+  if(!trimmed)return trimmed;
+  return /^\d/.test(trimmed)&&!trimmed.startsWith('$')?`$${trimmed}`:trimmed;
+}
+
 function renderListings(listings){
   if(!listings.length)return '';
   return `<section class="panel">
@@ -27,9 +33,9 @@ function renderListings(listings){
       <article class="listing-card">
         <span class="tag">${esc((item.listing_type||'').replaceAll('_',' '))}</span>
         <h3>${esc(item.title)}</h3>
-        ${item.price_label?`<p class="listing-price">${esc(item.price_label)}</p>`:''}
-        ${item.description?`<p>${esc(item.description)}</p>`:''}
         ${(item.seller_listing_images||[]).length?`<div class="gallery">${item.seller_listing_images.map(img=>`<div><img src="${esc(publicUrl(img.object_path))}" alt=""></div>`).join('')}</div>`:''}
+        ${item.description?`<p>${esc(item.description)}</p>`:''}
+        ${item.price_label?`<p class="listing-price">${esc(formatPriceLabel(item.price_label))}</p>`:''}
       </article>`).join('')}</div>
   </section>`;
 }

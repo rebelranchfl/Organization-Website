@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rebel Ranch Marketing Dashboard</title>
+<style>
+  :root {
+    --green: #1f4d2c;
+    --gold: #b8892b;
+    --bg: #f6f4ef;
+    --card: #ffffff;
+    --border: #ddd6c9;
+    --text: #2a2a26;
+    --muted: #746f63;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0 0 60px 0;
+  }
+  header {
+    background: var(--green);
+    color: #fff;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  header h1 { margin: 0; font-size: 1.4rem; }
+  header .sub { font-size: 0.85rem; opacity: 0.85; font-family: Arial, sans-serif; }
+  button {
+    font-family: Arial, sans-serif;
+    background: var(--gold);
+    color: #2a2a26;
+    border: none;
+    padding: 9px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+  button:hover { filter: brightness(1.08); }
+  button.secondary { background: #e9e4d8; }
+  button.small { padding: 5px 10px; font-size: 0.8rem; }
+  #status-bar {
+    max-width: 900px;
+    margin: 16px auto 0 auto;
+    padding: 0 20px;
+    font-family: Arial, sans-serif;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  #picker-screen {
+    max-width: 640px;
+    margin: 60px auto;
+    text-align: center;
+    padding: 30px;
+  }
+  #picker-screen p { font-family: Arial, sans-serif; line-height: 1.5; color: var(--muted); }
+  nav#tabs {
+    max-width: 1000px;
+    margin: 18px auto 0 auto;
+    padding: 0 20px;
+    display: none;
+    gap: 8px;
+    font-family: Arial, sans-serif;
+  }
+  nav#tabs.visible { display: flex; flex-wrap: wrap; }
+  nav#tabs button.tab {
+    background: #e9e4d8;
+    color: var(--text);
+    font-weight: normal;
+  }
+  nav#tabs button.tab.active {
+    background: var(--green);
+    color: #fff;
+  }
+  main {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 0 20px;
+  }
+  .panel { display: none; }
+  .panel.active { display: block; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+  }
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .card h3 { margin: 0 0 4px 0; font-size: 1.1rem; }
+  .meta-row {
+    font-family: Arial, sans-serif;
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .badge {
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 3px 9px;
+    border-radius: 12px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .badge.draft { background: #dbe6f5; color: #1a4a7a; }
+  .badge.researched, .badge.needsedit { background: #f0e6c8; color: #7a5a1a; }
+  .badge.approved { background: #d6ecd9; color: #1f6b31; }
+  .badge.sent, .badge.submitted, .badge.posted, .badge.awarded { background: #e2d6f0; color: #5a2b8a; }
+  .badge.rejected, .badge.declined { background: #f3d6d6; color: #8a2b2b; }
+  .badge.other { background: #e9e4d8; color: var(--muted); }
+  .body-text {
+    font-family: Arial, sans-serif;
+    white-space: pre-wrap;
+    background: #fbfaf6;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-top: 8px;
+    font-size: 0.92rem;
+    line-height: 1.45;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease;
+  }
+  .body-text.open { max-height: 2000px; }
+  .toggle-link {
+    font-family: Arial, sans-serif;
+    font-size: 0.82rem;
+    color: var(--green);
+    cursor: pointer;
+    text-decoration: underline;
+    margin-top: 8px;
+    display: inline-block;
+  }
+  .controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    font-family: Arial, sans-serif;
+  }
+  select {
+    font-family: Arial, sans-serif;
+    padding: 6px 8px;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+  }
+  .save-msg {
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+    color: var(--green);
+    font-weight: bold;
+  }
+  #ref-select {
+    margin-bottom: 14px;
+  }
+  #ref-content h1, #ref-content h2, #ref-content h3 { color: var(--green); }
+  #ref-content { font-family: Arial, sans-serif; line-height: 1.5; }
+  #ref-content hr { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
+  .empty-note { font-family: Arial, sans-serif; color: var(--muted); font-style: italic; }
+  .filter-row {
+    font-family: Arial, sans-serif;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .filter-row button {
+    background: #e9e4d8;
+    font-weight: normal;
+    font-size: 0.82rem;
+    padding: 6px 12px;
+  }
+  .filter-row button.active { background: var(--gold); font-weight: bold; }
+  .needs-category { margin-bottom: 22px; }
+  .needs-category h2 { font-size: 1.05rem; color: var(--green); border-bottom: 1px solid var(--border); padding-bottom: 4px; }
+  .needs-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 4px;
+    border-bottom: 1px dashed var(--border);
+    font-family: Arial, sans-serif;
+  }
+  .needs-item.fulfilled { opacity: 0.5; }
+  .needs-item.fulfilled .needs-item-name { text-decoration: line-through; }
+  .needs-item input[type="checkbox"] { margin-top: 4px; width: 16px; height: 16px; }
+  .needs-item-body { flex: 1; }
+  .needs-item-name { font-weight: bold; font-size: 0.95rem; }
+  .needs-item-meta { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+  .prio-select { font-size: 0.78rem; padding: 2px 4px; border-radius: 4px; border: 1px solid var(--border); margin-left: 6px; }
+  .prio-High { color: #8a2b2b; font-weight: bold; }
+  .prio-Medium { color: #7a5a1a; font-weight: bold; }
+  .prio-Low { color: #1f6b31; font-weight: bold; }
+  .prio-Unset { color: var(--muted); }
+  .add-item-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+    align-items: center;
+  }
+  .add-item-row input[type="text"] {
+    font-family: Arial, sans-serif;
+    padding: 6px 8px;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+  }
+  .add-item-row input.item-name { flex: 1; min-width: 160px; }
+  .new-category-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    margin: 16px 0;
+    padding: 12px;
+    background: #fbfaf6;
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+  }
+  .donation-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; margin-bottom: 12px; }
+  .donation-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap; }
+  .donation-top h3 { margin: 0; font-size: 1.05rem; }
+  .add-donation-form {
+    font-family: Arial, sans-serif;
+    background: #fbfaf6;
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 18px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .add-donation-form label { display: flex; flex-direction: column; gap: 3px; font-size: 0.82rem; color: var(--muted); }
+  .add-donation-form input, .add-donation-form select, .add-donation-form textarea {
+    font-family: Arial, sans-serif; padding: 7px 8px; border-radius: 5px; border: 1px solid var(--border);
+  }
+  .add-donation-form .full { grid-column: 1 / -1; }
+  #letter-modal-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(20,20,15,0.55);
+    z-index: 1000; align-items: center; justify-content: center; padding: 20px;
+  }
+  #letter-modal-overlay.open { display: flex; }
+  #letter-modal {
+    background: #fff; border-radius: 10px; max-width: 680px; width: 100%;
+    max-height: 90vh; overflow-y: auto; padding: 0;
+  }
+  #letter-modal .modal-controls {
+    font-family: Arial, sans-serif; display: flex; gap: 8px; padding: 14px 20px;
+    background: #f3f1ea; border-top: 1px solid #ddd;
+  }
+  /* ---- Formal receipt document ---- */
+  #receipt-doc {
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #1A2E1A;
+    padding: 40px 44px;
+    border: 6px double #B97818;
+    margin: 18px;
+    position: relative;
+  }
+  #receipt-doc .receipt-header {
+    text-align: center;
+    border-bottom: 2px solid #1E3D2A;
+    padding-bottom: 16px;
+    margin-bottom: 22px;
+  }
+  #receipt-doc .receipt-org-name {
+    font-size: 1.5rem; font-weight: bold; color: #1E3D2A;
+    letter-spacing: 0.03em; margin: 0;
+  }
+  #receipt-doc .receipt-tagline {
+    font-size: 0.85rem; color: #5A6B5A; letter-spacing: 0.15em;
+    text-transform: uppercase; margin: 4px 0 0;
+  }
+  #receipt-doc .receipt-contact { font-size: 0.8rem; color: #5A6B5A; margin: 6px 0 0; }
+  #receipt-doc .receipt-title {
+    text-align: center; font-size: 1.05rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #B97818; font-weight: bold; margin: 0 0 20px;
+  }
+  #receipt-doc .receipt-meta {
+    display: flex; justify-content: space-between; font-size: 0.85rem;
+    color: #5A6B5A; margin-bottom: 22px; font-family: Arial, sans-serif;
+  }
+  #receipt-doc .receipt-field-row {
+    display: grid; grid-template-columns: 160px 1fr; gap: 10px;
+    padding: 7px 0; border-bottom: 1px dotted #D8D0C8; font-size: 0.95rem;
+  }
+  #receipt-doc .receipt-field-row strong { color: #1E3D2A; font-family: Arial, sans-serif; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.04em; align-self: center; }
+  #receipt-doc .receipt-statement {
+    margin-top: 24px; font-size: 0.92rem; line-height: 1.6; color: #1A2E1A;
+  }
+  #receipt-doc .receipt-signoff { margin-top: 30px; font-size: 0.95rem; }
+  #receipt-doc .receipt-sign-row {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px; margin-top: 40px;
+  }
+  #receipt-doc .receipt-sig-block { max-width: 380px; }
+  #receipt-doc .receipt-sig-script {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    white-space: nowrap;
+    color: #1E3D2A;
+    margin: 0 0 6px;
+  }
+  #receipt-doc .receipt-sig-printed {
+    border-top: 1px solid #1A2E1A; width: 300px;
+    padding-top: 7px; font-size: 0.9rem; color: #1A2E1A;
+    font-family: Arial, sans-serif; line-height: 1.55;
+  }
+  #receipt-doc .receipt-seal {
+    width: 88px; height: 88px; object-fit: contain;
+    flex-shrink: 0;
+  }
+  @media print {
+    body * { visibility: hidden; }
+    #letter-modal, #letter-modal * { visibility: visible; }
+    #letter-modal { position: absolute; top: 0; left: 0; max-height: none; box-shadow: none; width: 100%; }
+    #letter-modal .modal-controls { display: none; }
+    #receipt-doc { margin: 0; border-width: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Rebel Ranch Marketing Dashboard</h1>
+    <div class="sub">Partner outreach, funding, and social — read, review, and update straight from your repo files.</div>
+  </div>
+  <div>
+    <button id="reconnect-btn" class="secondary" style="display:none;">Reconnect folder</button>
+    <button id="refresh-btn" class="secondary" style="display:none;">Refresh</button>
+  </div>
+</header>
+
+<div id="status-bar"></div>
+
+<div id="picker-screen">
+  <p><strong>First time here:</strong> click below and choose the <code>marketing</code> folder inside your Rebel Ranch Organization-Website repo. Your browser will ask permission once — after that this page remembers it (until you clear browser data or move the folder).</p>
+  <button id="pick-btn">Open the marketing folder</button>
+  <p id="picker-error" style="color:#8a2b2b; font-weight:bold;"></p>
+  <p style="font-size:0.85rem;">Needs Edge or Chrome. If the button does nothing, your browser doesn't support this — tell me and I'll build a fallback.</p>
+</div>
+
+<nav id="tabs">
+  <button class="tab active" data-tab="outreach">Partner Outreach</button>
+  <button class="tab" data-tab="funding">Funding</button>
+  <button class="tab" data-tab="social">Social Posts</button>
+  <button class="tab" data-tab="needs">Needs List</button>
+  <button class="tab" data-tab="donations">Donations Received</button>
+  <button class="tab" data-tab="reference">Reference docs</button>
+</nav>
+
+<main>
+  <div class="panel active" id="panel-outreach">
+    <div class="filter-row" id="outreach-filters"></div>
+    <div id="outreach-list"></div>
+  </div>
+  <div class="panel" id="panel-funding">
+    <div class="filter-row" id="funding-filters"></div>
+    <div id="funding-list"></div>
+  </div>
+  <div class="panel" id="panel-social">
+    <div class="filter-row" id="social-filters"></div>
+    <div id="social-list"></div>
+  </div>
+  <div class="panel" id="panel-needs">
+    <div id="needs-list"></div>
+  </div>
+  <div class="panel" id="panel-donations">
+    <div id="add-donation-container"></div>
+    <div id="donations-list"></div>
+  </div>
+  <div class="panel" id="panel-reference">
+    <select id="ref-select"></select>
+    <div id="ref-content"></div>
+  </div>
+</main>
+
+<div id="letter-modal-overlay">
+  <div id="letter-modal">
+    <div id="receipt-doc"></div>
+    <div class="modal-controls">
+      <label style="display:flex; align-items:center; gap:6px;">
+        Signed by:
+        <select id="signer-select">
+          <option value="brooklyn">Brooklyn Ritchie — Director</option>
+          <option value="amber">Amber Filkins — Treasurer</option>
+        </select>
+      </label>
+      <button id="letter-print-btn" class="small">Print / Save as PDF</button>
+      <button id="letter-copy-btn" class="small secondary">Copy as plain text (for email/text)</button>
+      <button id="letter-close-btn" class="small secondary">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const STATUS_OPTIONS = {
+  outreach: ['Researched', 'Draft', 'Needs edit', 'Approved', 'Sent', 'Rejected'],
+  funding:  ['Researched', 'Draft', 'Needs edit', 'Approved', 'Submitted', 'Awarded', 'Declined'],
+  social:   ['Draft', 'Needs edit', 'Approved', 'Posted', 'Rejected']
+};
+
+const QUEUES = {
+  outreach: { path: ['partner-outreach', 'outreach-queue.md'], headerWord: 'Outreach Entry', bodyHeadings: ['Message Draft'] },
+  funding:  { path: ['funding', 'grant-queue.md'], headerWord: 'Grant Entry', bodyHeadings: ['Application Draft'] },
+  social:   { path: ['social-media', 'draft-posts.md'], headerWord: 'Draft Post', bodyHeadings: ['Post Text'] }
+};
+
+const NEEDS_LIST_PATH = ['partner-outreach', 'in-kind-needs-list.md'];
+const PRIORITY_OPTIONS = ['Unset', 'Low', 'Medium', 'High'];
+
+const REFERENCE_DOCS = [
+  { label: 'Partner outreach — rules', path: ['partner-outreach', 'partner-rules.md'] },
+  { label: 'Partner outreach — local landscape (research)', path: ['partner-outreach', 'local-landscape.md'] },
+  { label: 'Partner outreach — sent history', path: ['partner-outreach', 'outreach-archive.md'] },
+  { label: 'Funding — rules', path: ['funding', 'funding-rules.md'] },
+  { label: 'Funding — grant research', path: ['funding', 'grant-research.md'] },
+  { label: 'Funding — submission history', path: ['funding', 'funding-archive.md'] },
+  { label: 'Social — brand rules', path: ['social-media', 'brand-rules.md'] },
+  { label: 'Social — content calendar', path: ['social-media', 'content-calendar.md'] },
+  { label: 'Social — Facebook group rules', path: ['social-media', 'group-rules.md'] },
+  { label: 'Social — image library', path: ['social-media', 'image-library.md'] },
+  { label: 'Social — posted history', path: ['social-media', 'posted-archive.md'] }
+];
+
+let rootHandle = null;
+const fileCache = {}; // key: joined path -> { handle, text, eol }
+
+// ---------- IndexedDB handle persistence ----------
+function idbOpen() {
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open('rrm-dashboard', 1);
+    req.onupgradeneeded = () => req.result.createObjectStore('handles');
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
+}
+async function idbSet(key, val) {
+  const db = await idbOpen();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction('handles', 'readwrite');
+    tx.objectStore('handles').put(val, key);
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject(tx.error);
+  });
+}
+async function idbGet(key) {
+  const db = await idbOpen();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction('handles', 'readonly');
+    const req = tx.objectStore('handles').get(key);
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
+}
+
+// ---------- File access helpers ----------
+async function getFileHandle(pathParts, create = false) {
+  let dir = rootHandle;
+  for (let i = 0; i < pathParts.length - 1; i++) {
+    dir = await dir.getDirectoryHandle(pathParts[i]);
+  }
+  return dir.getFileHandle(pathParts[pathParts.length - 1], { create });
+}
+
+async function readFileByPath(pathParts) {
+  const key = pathParts.join('/');
+  const handle = await getFileHandle(pathParts);
+  const file = await handle.getFile();
+  const text = await file.text();
+  const eol = text.includes('\r\n') ? '\r\n' : '\n';
+  fileCache[key] = { handle, text, eol };
+  return fileCache[key];
+}
+
+async function writeFileByPath(pathParts, newText) {
+  const key = pathParts.join('/');
+  const handle = fileCache[key].handle;
+  const writable = await handle.createWritable();
+  await writable.write(newText);
+  await writable.close();
+  fileCache[key].text = newText;
+}
+
+// ---------- Parser ----------
+function parseQueueFile(text, eol, headerWord) {
+  const lines = text.split(/\r\n|\n/);
+  const headerRe = new RegExp('^## ' + headerWord + ' (\\d+)\\s*$');
+  const fieldRe = /^(?!https?:\/\/)([A-Za-z][A-Za-z0-9 /()#'`.-]*):\s*(.*)$/;
+  const entries = [];
+  let current = null;
+  for (let i = 0; i < lines.length; i++) {
+    const m = lines[i].match(headerRe);
+    if (m) {
+      if (current) { current.endLine = i - 1; entries.push(current); }
+      current = { number: m[1], startLine: i, fields: {}, statusLine: -1, status: '', bodies: {} };
+    }
+  }
+  if (current) { current.endLine = lines.length - 1; entries.push(current); }
+
+  for (const e of entries) {
+    let i = e.startLine + 1;
+    while (i <= e.endLine) {
+      const line = lines[i];
+      const statusM = line.match(/^Status:\s*(.*)$/);
+      if (statusM) {
+        e.statusLine = i;
+        e.status = statusM[1].trim();
+        i++;
+        continue;
+      }
+      if (line.trim() === '---') { i++; continue; }
+      const headingM = line.match(/^## (.+?)\s*$/);
+      if (headingM) {
+        const heading = headingM[1].trim();
+        let j = i + 1;
+        const body = [];
+        while (j <= e.endLine && !lines[j].match(/^## /)) { body.push(lines[j]); j++; }
+        // trim leading/trailing blank lines
+        while (body.length && body[0].trim() === '') body.shift();
+        while (body.length && body[body.length - 1].trim() === '') body.pop();
+        // drop a trailing lone '---' line if present
+        if (body.length && body[body.length - 1].trim() === '---') body.pop();
+        e.bodies[heading] = body.join('\n').trim();
+        i = j;
+        continue;
+      }
+      const fieldM = line.match(fieldRe);
+      if (fieldM) {
+        const key = fieldM[1].trim();
+        let val = fieldM[2].trim();
+        if (!val) {
+          let j = i + 1;
+          const collected = [];
+          while (j <= e.endLine && lines[j].trim() !== '' &&
+                 !lines[j].match(fieldRe) && lines[j].trim() !== '---' && !lines[j].match(/^## /)) {
+            collected.push(lines[j].trim());
+            j++;
+          }
+          val = collected.join(' ').trim();
+          e.fields[key] = val;
+          i = j;
+          continue;
+        }
+        e.fields[key] = val;
+      }
+      i++;
+    }
+  }
+  return { lines, entries };
+}
+
+function badgeClass(status) {
+  const key = status.split(/[—-]/)[0].trim().toLowerCase().replace(/\s+/g, '');
+  const known = ['draft','researched','needsedit','approved','sent','submitted','posted','awarded','rejected','declined'];
+  return known.includes(key) ? key : 'other';
+}
+function statusLabel(status) {
+  return status.split(/[—-]/)[0].trim() || status;
+}
+
+// ---------- Rendering ----------
+function fieldRow(entry, label, fallback) {
+  const v = entry.fields[label];
+  return v ? `<div class="meta-row"><strong>${label}:</strong> ${linkify(escapeHtml(v))}</div>` : '';
+}
+function escapeHtml(s) {
+  return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function linkify(escapedText) {
+  return escapedText.replace(
+    /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|(https?:\/\/[^\s<]+)/g,
+    (match, label, mdUrl, bareUrl) => {
+      if (mdUrl) {
+        return `<a href="${mdUrl}" target="_blank" rel="noopener">${label}</a>`;
+      }
+      let url = bareUrl;
+      let trail = '';
+      const m = url.match(/[).,;:!?]+$/);
+      if (m) { trail = m[0]; url = url.slice(0, -trail.length); }
+      return `<a href="${url}" target="_blank" rel="noopener">${url}</a>${trail}`;
+    }
+  );
+}
+
+function renderQueue(kind) {
+  const q = QUEUES[kind];
+  const key = q.path.join('/');
+  const cached = fileCache[key];
+  const listEl = document.getElementById(kind + '-list');
+  const filterEl = document.getElementById(kind + '-filters');
+  if (!cached) { listEl.innerHTML = '<p class="empty-note">Not loaded.</p>'; return; }
+
+  const parsed = parseQueueFile(cached.text, cached.eol, q.headerWord);
+  window['__parsed_' + kind] = parsed; // stash for save handler
+
+  const statuses = ['All', ...STATUS_OPTIONS[kind]];
+  const activeFilter = window['__filter_' + kind] || 'All';
+  filterEl.innerHTML = statuses.map(s =>
+    `<button data-filter="${s}" class="${s === activeFilter ? 'active' : ''}">${s}</button>`
+  ).join('');
+  filterEl.querySelectorAll('button').forEach(btn => {
+    btn.onclick = () => { window['__filter_' + kind] = btn.dataset.filter; renderQueue(kind); };
+  });
+
+  const titleField = kind === 'social' ? 'Content bucket' : (kind === 'funding' ? 'Grant name' : 'Target name');
+  const visible = parsed.entries.filter(e => activeFilter === 'All' || statusLabel(e.status) === activeFilter);
+
+  if (!visible.length) {
+    listEl.innerHTML = '<p class="empty-note">Nothing here.</p>';
+    return;
+  }
+
+  listEl.innerHTML = visible.map(e => {
+    const title = e.fields[titleField] || (q.headerWord + ' ' + e.number);
+    const bClass = badgeClass(e.status);
+    const bodyKey = q.bodyHeadings.find(h => e.bodies[h] !== undefined) || q.bodyHeadings[0];
+    const bodyText = e.bodies[bodyKey] || '';
+    const notesText = e.bodies['Notes'] || '';
+    const otherFields = Object.keys(e.fields).filter(k => k !== titleField);
+    return `
+    <div class="card" data-kind="${kind}" data-num="${e.number}">
+      <div class="card-top">
+        <h3>${escapeHtml(title)}</h3>
+        <span class="badge ${bClass}">${escapeHtml(statusLabel(e.status))}</span>
+      </div>
+      ${otherFields.map(k => fieldRow(e, k)).join('')}
+      ${bodyText ? `<div class="toggle-link" data-toggle="body-${kind}-${e.number}">Show ${bodyKey.toLowerCase()}</div>
+      <div class="body-text" id="body-${kind}-${e.number}">${linkify(escapeHtml(bodyText))}</div>` : ''}
+      ${notesText ? `<div class="toggle-link" data-toggle="notes-${kind}-${e.number}">Show notes</div>
+      <div class="body-text" id="notes-${kind}-${e.number}">${linkify(escapeHtml(notesText))}</div>` : ''}
+      <div class="controls">
+        <label>Status:
+          <select data-num="${e.number}">
+            ${STATUS_OPTIONS[kind].map(s => `<option ${statusLabel(e.status) === s ? 'selected' : ''}>${s}</option>`).join('')}
+          </select>
+        </label>
+        <button class="small save-btn" data-num="${e.number}">Save status</button>
+        <span class="save-msg" id="savemsg-${kind}-${e.number}"></span>
+      </div>
+    </div>`;
+  }).join('');
+
+  listEl.querySelectorAll('.toggle-link').forEach(el => {
+    el.onclick = () => {
+      const target = document.getElementById(el.dataset.toggle);
+      target.classList.toggle('open');
+      el.textContent = target.classList.contains('open')
+        ? el.textContent.replace('Show', 'Hide')
+        : el.textContent.replace('Hide', 'Show');
+    };
+  });
+  listEl.querySelectorAll('.save-btn').forEach(btn => {
+    btn.onclick = () => saveStatus(kind, btn.dataset.num);
+  });
+}
+
+async function saveStatus(kind, num) {
+  const q = QUEUES[kind];
+  const parsed = window['__parsed_' + kind];
+  const entry = parsed.entries.find(e => e.number === num);
+  const card = document.querySelector(`.card[data-kind="${kind}"][data-num="${num}"]`);
+  const select = card.querySelector('select');
+  const newStatus = select.value;
+  const msgEl = document.getElementById(`savemsg-${kind}-${num}`);
+
+  const key = q.path.join('/');
+  const cached = fileCache[key];
+  const eol = cached.eol;
+  const lines = cached.text.split(/\r\n|\n/);
+  if (entry.statusLine === -1) {
+    msgEl.textContent = 'Could not find a Status line to update — no changes made.';
+    msgEl.style.color = '#8a2b2b';
+    return;
+  }
+  lines[entry.statusLine] = 'Status: ' + newStatus;
+  const newText = lines.join(eol);
+
+  try {
+    await writeFileByPath(q.path, newText);
+    msgEl.style.color = '';
+    msgEl.textContent = 'Saved.';
+    setTimeout(() => renderQueue(kind), 400);
+  } catch (err) {
+    msgEl.style.color = '#8a2b2b';
+    msgEl.textContent = 'Save failed: ' + err.message;
+  }
+}
+
+// ---------- Needs List ----------
+const ITEM_RE = /^- \[([ xX])\] (.+)$/;
+
+function parseNeedsList(text) {
+  const lines = text.split(/\r\n|\n/);
+  const categories = [];
+  let current = null;
+  for (let i = 0; i < lines.length; i++) {
+    const headM = lines[i].match(/^## (.+?)\s*$/);
+    if (headM) {
+      current = { name: headM[1].trim(), headerLine: i, items: [] };
+      categories.push(current);
+      continue;
+    }
+    if (!current) continue;
+    const itemM = lines[i].match(ITEM_RE);
+    if (itemM) {
+      const checked = itemM[1].toLowerCase() === 'x';
+      const parts = itemM[2].split('::').map(s => s.trim());
+      const name = parts[0] || '(unnamed item)';
+      const fields = {};
+      for (let p = 1; p < parts.length; p++) {
+        const fm = parts[p].match(/^(\w+):\s*(.*)$/);
+        if (fm) fields[fm[1]] = fm[2].trim();
+      }
+      current.items.push({
+        lineIndex: i,
+        checked,
+        name,
+        priority: fields.Priority || 'Unset',
+        source: fields.Source || '',
+        notes: fields.Notes || ''
+      });
+    }
+  }
+  return { lines, categories };
+}
+
+function buildItemLine(checked, name, priority, source, notes) {
+  return `- [${checked ? 'x' : ' '}] ${name} :: Priority: ${priority} :: Source: ${source} :: Notes: ${notes}`;
+}
+
+async function renderNeedsList() {
+  const key = NEEDS_LIST_PATH.join('/');
+  const cached = fileCache[key];
+  const container = document.getElementById('needs-list');
+  if (!cached) { container.innerHTML = '<p class="empty-note">Not loaded.</p>'; return; }
+
+  const parsed = parseNeedsList(cached.text);
+  window.__needsParsed = parsed;
+
+  const existingCategoryNames = parsed.categories.map(c => c.name);
+
+  container.innerHTML = parsed.categories.map(cat => `
+    <div class="needs-category" data-category="${escapeAttr(cat.name)}">
+      <h2>${escapeHtml(cat.name)}</h2>
+      ${cat.items.map(item => `
+        <div class="needs-item ${item.checked ? 'fulfilled' : ''}" data-line="${item.lineIndex}">
+          <input type="checkbox" ${item.checked ? 'checked' : ''} data-action="toggle" data-line="${item.lineIndex}">
+          <div class="needs-item-body">
+            <div class="needs-item-name">${escapeHtml(item.name)}</div>
+            <div class="needs-item-meta">
+              Priority:
+              <select class="prio-select prio-${item.priority}" data-action="priority" data-line="${item.lineIndex}">
+                ${PRIORITY_OPTIONS.map(p => `<option ${p === item.priority ? 'selected' : ''}>${p}</option>`).join('')}
+              </select>
+              ${item.source ? ' · Source: ' + linkify(escapeHtml(item.source)) : ''}
+              ${item.notes ? ' · ' + linkify(escapeHtml(item.notes)) : ''}
+            </div>
+          </div>
+        </div>
+      `).join('')}
+      <div class="add-item-row">
+        <input type="text" class="item-name" placeholder="Add item to ${escapeAttr(cat.name)}..." data-add-name="${escapeAttr(cat.name)}">
+        <select data-add-prio="${escapeAttr(cat.name)}">
+          ${PRIORITY_OPTIONS.map(p => `<option>${p}</option>`).join('')}
+        </select>
+        <input type="text" class="item-source" placeholder="Source (optional)" data-add-source="${escapeAttr(cat.name)}" style="width:160px;">
+        <button class="small" data-add-btn="${escapeAttr(cat.name)}">Add</button>
+      </div>
+    </div>
+  `).join('') + `
+    <div class="new-category-row">
+      <input type="text" id="new-cat-name" placeholder="New category name...">
+      <input type="text" id="new-cat-item" placeholder="First item in it...">
+      <button class="small" id="new-cat-btn">Add category + item</button>
+    </div>
+  `;
+
+  container.querySelectorAll('[data-action="toggle"]').forEach(cb => {
+    cb.onchange = () => saveNeedsToggle(parseInt(cb.dataset.line, 10), cb.checked);
+  });
+  container.querySelectorAll('[data-action="priority"]').forEach(sel => {
+    sel.onchange = () => saveNeedsPriority(parseInt(sel.dataset.line, 10), sel.value);
+  });
+  container.querySelectorAll('[data-add-btn]').forEach(btn => {
+    btn.onclick = () => {
+      const cat = btn.dataset.addBtn;
+      const nameInput = container.querySelector(`[data-add-name="${cssEscape(cat)}"]`);
+      const prioSelect = container.querySelector(`[data-add-prio="${cssEscape(cat)}"]`);
+      const sourceInput = container.querySelector(`[data-add-source="${cssEscape(cat)}"]`);
+      const name = nameInput.value.trim();
+      if (!name) return;
+      addNeedsItem(cat, name, prioSelect.value, sourceInput.value.trim());
+    };
+  });
+  document.getElementById('new-cat-btn').onclick = () => {
+    const catName = document.getElementById('new-cat-name').value.trim();
+    const itemName = document.getElementById('new-cat-item').value.trim();
+    if (!catName || !itemName) return;
+    addNeedsItem(catName, itemName, 'Unset', '', true);
+  };
+}
+function cssEscape(s) { return s.replace(/["\\]/g, '\\$&'); }
+function escapeAttr(s) { return escapeHtml(s).replace(/"/g, '&quot;'); }
+
+async function writeNeedsList(newLines) {
+  const eol = fileCache[NEEDS_LIST_PATH.join('/')].eol;
+  await writeFileByPath(NEEDS_LIST_PATH, newLines.join(eol));
+}
+
+async function saveNeedsToggle(lineIndex, checked) {
+  const parsed = window.__needsParsed;
+  const line = parsed.lines[lineIndex];
+  const m = line.match(ITEM_RE);
+  if (!m) return;
+  parsed.lines[lineIndex] = line.replace(ITEM_RE, `- [${checked ? 'x' : ' '}] $2`);
+  await writeNeedsList(parsed.lines);
+  renderNeedsList();
+}
+
+async function saveNeedsPriority(lineIndex, newPriority) {
+  const parsed = window.__needsParsed;
+  const line = parsed.lines[lineIndex];
+  const m = line.match(ITEM_RE);
+  if (!m) return;
+  const checked = m[1].toLowerCase() === 'x';
+  const parts = m[2].split('::').map(s => s.trim());
+  const name = parts[0];
+  const fields = {};
+  for (let p = 1; p < parts.length; p++) {
+    const fm = parts[p].match(/^(\w+):\s*(.*)$/);
+    if (fm) fields[fm[1]] = fm[2].trim();
+  }
+  fields.Priority = newPriority;
+  parsed.lines[lineIndex] = buildItemLine(checked, name, fields.Priority || 'Unset', fields.Source || '', fields.Notes || '');
+  await writeNeedsList(parsed.lines);
+  renderNeedsList();
+}
+
+async function addNeedsItem(categoryName, itemName, priority, source, isNewCategory) {
+  const parsed = window.__needsParsed;
+  const newLine = buildItemLine(false, itemName, priority || 'Unset', source || '', '');
+  let cat = parsed.categories.find(c => c.name.toLowerCase() === categoryName.toLowerCase());
+  if (cat && !isNewCategory) {
+    const insertAt = cat.items.length ? cat.items[cat.items.length - 1].lineIndex + 1 : cat.headerLine + 1;
+    parsed.lines.splice(insertAt, 0, newLine);
+  } else {
+    parsed.lines.push('', `## ${categoryName}`, '', newLine);
+  }
+  await writeNeedsList(parsed.lines);
+  await readFileByPath(NEEDS_LIST_PATH);
+  renderNeedsList();
+}
+
+// ---------- Donations Received ----------
+const DONATIONS_PATH = ['funding', 'donations-received.md'];
+
+function parseDonations(text) {
+  const lines = text.split(/\r\n|\n/);
+  const items = [];
+  for (let i = 0; i < lines.length; i++) {
+    const m = lines[i].match(ITEM_RE);
+    if (!m) continue;
+    const checked = m[1].toLowerCase() === 'x';
+    const parts = m[2].split('::').map(s => s.trim());
+    const name = parts[0] || '(unnamed donor)';
+    const fields = {};
+    for (let p = 1; p < parts.length; p++) {
+      const fm = parts[p].match(/^(\w+):\s*(.*)$/);
+      if (fm) fields[fm[1]] = fm[2].trim();
+    }
+    items.push({
+      lineIndex: i,
+      checked,
+      name,
+      date: fields.Date || '',
+      type: fields.Type || 'Cash',
+      amount: fields.Amount || '',
+      category: fields.Category || '',
+      contact: fields.Contact || '',
+      letterSent: (fields.LetterSent || 'No'),
+      notes: fields.Notes || ''
+    });
+  }
+  return { lines, items };
+}
+
+function buildDonationLine(checked, name, d) {
+  return `- [${checked ? 'x' : ' '}] ${name} :: Date: ${d.date} :: Type: ${d.type} :: Amount: ${d.amount} :: Category: ${d.category} :: Contact: ${d.contact} :: LetterSent: ${d.letterSent} :: Notes: ${d.notes}`;
+}
+
+async function renderDonations() {
+  const key = DONATIONS_PATH.join('/');
+  const cached = fileCache[key];
+  const listEl = document.getElementById('donations-list');
+  const formEl = document.getElementById('add-donation-container');
+  if (!cached) { listEl.innerHTML = '<p class="empty-note">Not loaded.</p>'; return; }
+
+  const parsed = parseDonations(cached.text);
+  window.__donationsParsed = parsed;
+
+  formEl.innerHTML = `
+    <div class="add-donation-form">
+      <label>Donor name <input type="text" id="dn-name"></label>
+      <label>Date received <input type="date" id="dn-date"></label>
+      <label>Type
+        <select id="dn-type">
+          <option>Cash</option>
+          <option>In-kind</option>
+        </select>
+      </label>
+      <label>Amount / item description <input type="text" id="dn-amount" placeholder="$250, or '10 bags of feed'"></label>
+      <label>Category <input type="text" id="dn-category" placeholder="Feed, Fencing, Equipment, General..."></label>
+      <label>Contact info <input type="text" id="dn-contact" placeholder="email or phone"></label>
+      <label class="full">Notes <input type="text" id="dn-notes"></label>
+      <div class="full"><button class="small" id="dn-add-btn">Add donation</button></div>
+    </div>
+  `;
+  document.getElementById('dn-add-btn').onclick = async () => {
+    const name = document.getElementById('dn-name').value.trim();
+    if (!name) return;
+    const d = {
+      date: document.getElementById('dn-date').value || new Date().toISOString().slice(0, 10),
+      type: document.getElementById('dn-type').value,
+      amount: document.getElementById('dn-amount').value.trim(),
+      category: document.getElementById('dn-category').value.trim(),
+      contact: document.getElementById('dn-contact').value.trim(),
+      letterSent: 'No',
+      notes: document.getElementById('dn-notes').value.trim()
+    };
+    const newLine = buildDonationLine(false, name, d);
+    const p = window.__donationsParsed;
+    let insertAt = p.lines.length;
+    for (let i = p.lines.length - 1; i >= 0; i--) {
+      if (ITEM_RE.test(p.lines[i])) { insertAt = i + 1; break; }
+    }
+    if (/No donations recorded yet/.test(p.lines.join('\n'))) {
+      insertAt = p.lines.findIndex(l => /No donations recorded yet/.test(l));
+      p.lines.splice(insertAt, 1, newLine);
+    } else {
+      p.lines.splice(insertAt, 0, newLine);
+    }
+    const eol = cached.eol;
+    await writeFileByPath(DONATIONS_PATH, p.lines.join(eol));
+    await readFileByPath(DONATIONS_PATH);
+    renderDonations();
+  };
+
+  if (!parsed.items.length) {
+    listEl.innerHTML = '<p class="empty-note">No donations recorded yet.</p>';
+    return;
+  }
+
+  listEl.innerHTML = parsed.items.map(item => `
+    <div class="donation-card">
+      <div class="donation-top">
+        <h3>${escapeHtml(item.name)}</h3>
+        <span class="badge ${item.letterSent === 'Yes' ? 'approved' : 'draft'}">Letter ${item.letterSent === 'Yes' ? 'Sent' : 'Not Sent'}</span>
+      </div>
+      <div class="meta-row"><strong>Date:</strong> ${escapeHtml(item.date)} · <strong>Type:</strong> ${escapeHtml(item.type)}</div>
+      <div class="meta-row"><strong>Amount/Item:</strong> ${escapeHtml(item.amount)}</div>
+      ${item.category ? `<div class="meta-row"><strong>Category:</strong> ${escapeHtml(item.category)}</div>` : ''}
+      ${item.contact ? `<div class="meta-row"><strong>Contact:</strong> ${linkify(escapeHtml(item.contact))}</div>` : ''}
+      ${item.notes ? `<div class="meta-row"><strong>Notes:</strong> ${escapeHtml(item.notes)}</div>` : ''}
+      <div class="controls">
+        <button class="small" data-gen="${item.lineIndex}">Generate receipt</button>
+        <label style="font-size:0.82rem;">
+          <input type="checkbox" data-letter-toggle="${item.lineIndex}" ${item.letterSent === 'Yes' ? 'checked' : ''}> Letter sent
+        </label>
+      </div>
+    </div>
+  `).join('');
+
+  listEl.querySelectorAll('[data-gen]').forEach(btn => {
+    btn.onclick = () => openLetterModal(parseInt(btn.dataset.gen, 10));
+  });
+  listEl.querySelectorAll('[data-letter-toggle]').forEach(cb => {
+    cb.onchange = () => saveDonationLetterSent(parseInt(cb.dataset.letterToggle, 10), cb.checked);
+  });
+}
+
+async function saveDonationLetterSent(lineIndex, sent) {
+  const p = window.__donationsParsed;
+  const item = p.items.find(it => it.lineIndex === lineIndex);
+  item.letterSent = sent ? 'Yes' : 'No';
+  p.lines[lineIndex] = buildDonationLine(item.checked, item.name, item);
+  await writeFileByPath(DONATIONS_PATH, p.lines.join(fileCache[DONATIONS_PATH.join('/')].eol));
+  renderDonations();
+}
+
+const SIGNERS = {
+  brooklyn: { name: 'Brooklyn Ritchie', title: 'Director' },
+  amber: { name: 'Amber Filkins', title: 'Treasurer' }
+};
+
+function receiptNumber(item) {
+  const p = window.__donationsParsed;
+  const posInDate = p.items.filter(it => it.date === item.date && it.lineIndex <= item.lineIndex).length;
+  const datePart = (item.date || '').replace(/-/g, '') || 'NODATE';
+  return `FFN-${datePart}-${String(posInDate).padStart(3, '0')}`;
+}
+
+function receiptStatementText(item) {
+  if (item.type === 'Cash') {
+    return `Faith Family & Nature Church, Inc. is a church and is automatically tax-exempt under Section 508(c)(1)(a) of the Internal Revenue Code. No goods or services were provided in exchange for this contribution. This gift may be tax-deductible as allowed by law; please consult your tax advisor regarding your specific situation.`;
+  }
+  return `Faith Family & Nature Church, Inc. is a church and is automatically tax-exempt under Section 508(c)(1)(a) of the Internal Revenue Code. No goods or services were provided in exchange for this donation. In keeping with IRS guidance, we do not assign a dollar value to in-kind gifts — determining fair market value for tax purposes is the donor's responsibility. For non-cash gifts valued over $500, IRS Form 8283 may be required with your tax return; gifts valued over $5,000 generally require a qualified appraisal.`;
+}
+
+function generateReceiptHTML(item, receiptNo, signerKey) {
+  const signer = SIGNERS[signerKey] || SIGNERS.brooklyn;
+  const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  const dateReceived = item.date
+    ? new Date(item.date + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+    : today;
+  return `
+    <div class="receipt-header">
+      <p class="receipt-org-name">Faith Family &amp; Nature Church, Inc.</p>
+      <p class="receipt-tagline">Faith &middot; Family &middot; Nature</p>
+      <p class="receipt-contact">info@ffnchurch.org &middot; ffnchurch.org</p>
+    </div>
+    <p class="receipt-title">Official Donation Receipt</p>
+    <div class="receipt-meta">
+      <span>Receipt #: ${escapeHtml(receiptNo)}</span>
+      <span>Issued: ${today}</span>
+    </div>
+    <div class="receipt-field-row"><strong>Donor</strong><span>${escapeHtml(item.name)}</span></div>
+    ${item.contact ? `<div class="receipt-field-row"><strong>Contact</strong><span>${escapeHtml(item.contact)}</span></div>` : ''}
+    <div class="receipt-field-row"><strong>Date Received</strong><span>${dateReceived}</span></div>
+    <div class="receipt-field-row"><strong>Donation Type</strong><span>${escapeHtml(item.type)}</span></div>
+    <div class="receipt-field-row"><strong>${item.type === 'Cash' ? 'Amount' : 'Description'}</strong><span>${escapeHtml(item.amount) || '&mdash;'}</span></div>
+    ${item.category ? `<div class="receipt-field-row"><strong>Category</strong><span>${escapeHtml(item.category)}</span></div>` : ''}
+    <p class="receipt-statement">${receiptStatementText(item)}</p>
+    <p class="receipt-signoff">With gratitude,<br><strong>Faith Family &amp; Nature Church, Inc.</strong></p>
+    <div class="receipt-sign-row">
+      <div class="receipt-sig-block">
+        <p class="receipt-sig-script">${escapeHtml(signer.name)}, ${escapeHtml(signer.title)}</p>
+        <div class="receipt-sig-printed">
+          ${escapeHtml(signer.name)}, ${escapeHtml(signer.title)}<br>
+          Faith Family &amp; Nature Church, Inc.
+        </div>
+      </div>
+      <img class="receipt-seal" src="assets/ffn-corporate-seal.png" alt="Faith Family &amp; Nature Church corporate seal" onerror="this.style.display='none'">
+    </div>
+  `;
+}
+
+function generateReceiptPlainText(item, receiptNo, signerKey) {
+  const signer = SIGNERS[signerKey] || SIGNERS.brooklyn;
+  const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  const dateReceived = item.date || today;
+  const label = item.type === 'Cash' ? 'Amount' : 'Description';
+  return `FAITH FAMILY & NATURE CHURCH, INC.
+Official Donation Receipt
+Receipt #: ${receiptNo}
+Issued: ${today}
+
+Donor: ${item.name}
+Date Received: ${dateReceived}
+Donation Type: ${item.type}
+${label}: ${item.amount || '—'}
+${item.category ? 'Category: ' + item.category + '\n' : ''}
+${receiptStatementText(item)}
+
+With gratitude,
+
+${signer.name}, ${signer.title}
+Faith Family & Nature Church, Inc.
+info@ffnchurch.org`;
+}
+
+let currentReceiptItem = null;
+let currentReceiptNo = null;
+
+function renderReceipt() {
+  if (!currentReceiptItem) return;
+  const signerKey = document.getElementById('signer-select').value;
+  document.getElementById('receipt-doc').innerHTML = generateReceiptHTML(currentReceiptItem, currentReceiptNo, signerKey);
+  document.getElementById('receipt-doc').dataset.plainText = generateReceiptPlainText(currentReceiptItem, currentReceiptNo, signerKey);
+}
+
+function openLetterModal(lineIndex) {
+  const p = window.__donationsParsed;
+  currentReceiptItem = p.items.find(it => it.lineIndex === lineIndex);
+  currentReceiptNo = receiptNumber(currentReceiptItem);
+  renderReceipt();
+  document.getElementById('letter-modal-overlay').classList.add('open');
+}
+document.getElementById('signer-select').onchange = renderReceipt;
+document.getElementById('letter-close-btn').onclick = () => {
+  document.getElementById('letter-modal-overlay').classList.remove('open');
+};
+document.getElementById('letter-copy-btn').onclick = () => {
+  const text = document.getElementById('receipt-doc').dataset.plainText || '';
+  navigator.clipboard.writeText(text).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  });
+};
+document.getElementById('letter-print-btn').onclick = () => window.print();
+
+// ---------- Reference tab ----------
+function mdToHtml(md) {
+  const lines = md.split(/\r\n|\n/);
+  let html = '';
+  let inList = false;
+  for (const raw of lines) {
+    const line = raw;
+    if (line.trim() === '---') { if (inList) { html += '</ul>'; inList = false; } html += '<hr>'; continue; }
+    let m;
+    if ((m = line.match(/^(#{1,3})\s+(.*)$/))) {
+      if (inList) { html += '</ul>'; inList = false; }
+      const level = m[1].length + 1;
+      html += `<h${level}>${escapeHtml(m[2])}</h${level}>`;
+      continue;
+    }
+    if ((m = line.match(/^[-*]\s+(.*)$/))) {
+      if (!inList) { html += '<ul>'; inList = true; }
+      html += `<li>${inlineMd(m[1])}</li>`;
+      continue;
+    }
+    if (inList) { html += '</ul>'; inList = false; }
+    if (line.trim() === '') { html += ''; continue; }
+    html += `<p>${inlineMd(line)}</p>`;
+  }
+  if (inList) html += '</ul>';
+  return html;
+}
+function inlineMd(s) {
+  let out = escapeHtml(s);
+  out = out.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  out = out.replace(/`(.+?)`/g, '<code>$1</code>');
+  out = linkify(out);
+  return out;
+}
+
+async function loadReferenceDoc(idx) {
+  const doc = REFERENCE_DOCS[idx];
+  const contentEl = document.getElementById('ref-content');
+  try {
+    const cached = await readFileByPath(doc.path);
+    contentEl.innerHTML = mdToHtml(cached.text);
+  } catch (err) {
+    contentEl.innerHTML = `<p class="empty-note">Could not read ${doc.path.join('/')}: ${err.message}</p>`;
+  }
+}
+
+function setupReferenceTab() {
+  const sel = document.getElementById('ref-select');
+  sel.innerHTML = REFERENCE_DOCS.map((d, i) => `<option value="${i}">${d.label}</option>`).join('');
+  sel.onchange = () => loadReferenceDoc(sel.value);
+}
+
+// ---------- Tabs ----------
+function setupTabs() {
+  document.querySelectorAll('nav#tabs button.tab').forEach(btn => {
+    btn.onclick = () => {
+      document.querySelectorAll('nav#tabs button.tab').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('main .panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+      if (btn.dataset.tab === 'reference' && !document.getElementById('ref-content').innerHTML) {
+        loadReferenceDoc(0);
+      }
+    };
+  });
+}
+
+// ---------- Load everything ----------
+async function loadAll() {
+  document.getElementById('status-bar').textContent = 'Loading...';
+  for (const kind of Object.keys(QUEUES)) {
+    await readFileByPath(QUEUES[kind].path);
+    renderQueue(kind);
+  }
+  await readFileByPath(NEEDS_LIST_PATH);
+  renderNeedsList();
+  await readFileByPath(DONATIONS_PATH);
+  renderDonations();
+  setupReferenceTab();
+  document.getElementById('tabs').classList.add('visible');
+  document.getElementById('picker-screen').style.display = 'none';
+  document.getElementById('refresh-btn').style.display = 'inline-block';
+  document.getElementById('reconnect-btn').style.display = 'none';
+  document.getElementById('status-bar').textContent = 'Connected to: ' + rootHandle.name + '/  (loaded ' + new Date().toLocaleTimeString() + ')';
+}
+
+async function pickFolder() {
+  const errEl = document.getElementById('picker-error');
+  errEl.textContent = '';
+  try {
+    const handle = await window.showDirectoryPicker({ mode: 'readwrite' });
+    // sanity check: must contain the three expected subfolders
+    const required = ['partner-outreach', 'funding', 'social-media'];
+    for (const r of required) {
+      try { await handle.getDirectoryHandle(r); }
+      catch { throw new Error('This folder is missing "' + r + '" — please select the "marketing" folder specifically.'); }
+    }
+    rootHandle = handle;
+    await idbSet('rootHandle', handle);
+    await loadAll();
+  } catch (err) {
+    if (err.name === 'AbortError') return;
+    errEl.textContent = err.message;
+  }
+}
+
+async function tryRestore() {
+  if (!('showDirectoryPicker' in window)) {
+    document.getElementById('picker-error').textContent =
+      'This browser does not support the File System Access API. Open this page in Edge or Chrome instead.';
+    document.getElementById('pick-btn').disabled = true;
+    return;
+  }
+  let saved;
+  try { saved = await idbGet('rootHandle'); } catch { saved = null; }
+  if (!saved) return;
+  const perm = await saved.queryPermission({ mode: 'readwrite' });
+  if (perm === 'granted') {
+    rootHandle = saved;
+    await loadAll();
+  } else {
+    document.getElementById('reconnect-btn').style.display = 'inline-block';
+    document.getElementById('reconnect-btn').onclick = async () => {
+      const p = await saved.requestPermission({ mode: 'readwrite' });
+      if (p === 'granted') { rootHandle = saved; await loadAll(); }
+    };
+    document.getElementById('status-bar').textContent = 'Found a remembered folder — click "Reconnect folder" above to grant access again.';
+  }
+}
+
+document.getElementById('pick-btn').onclick = pickFolder;
+document.getElementById('refresh-btn').onclick = loadAll;
+setupTabs();
+tryRestore();
+</script>
+</body>
+</html>

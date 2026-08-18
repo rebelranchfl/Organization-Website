@@ -33,9 +33,10 @@ export async function loadWorkspace(identity){
     supabase.from('creator_studio_products').select('id,website_request_id,source_project_id,title,description,price_label,storage_path,is_active,sort_order').eq('owner_user_id',uid).order('sort_order'),
     supabase.from('portfolio_items').select('id,portfolio_id,project_id,asset_id,title,description').eq('owner_user_id',uid),
     supabase.from('project_assets').select('id,project_id,storage_path,file_name,mime_type').eq('owner_user_id',uid),
-    supabase.from('studio_order_requests').select('id,website_request_id,sender_name,sender_contact,cart_summary,message,is_read,created_at').order('created_at',{ascending:false})
-  ]);fail(results);const [templates,projects,portfolios,resources,classes,registrations,websites,activity,studioProducts,portfolioItems,projectAssets,orderRequests]=results;
-  return {templates:templates.data,projects:projects.data,portfolios:portfolios.data,resources:resources.data,classes:classes.data,registrations:registrations.data,websites:websites.data,activity:activity.data,studioProducts:studioProducts.data,portfolioItems:portfolioItems.data,projectAssets:projectAssets.data,orderRequests:orderRequests.data};
+    supabase.from('studio_order_requests').select('id,website_request_id,sender_name,sender_contact,cart_summary,message,is_read,created_at').order('created_at',{ascending:false}),
+    supabase.from('creator_companions').select('id,creator_id,companion_name,catchphrase,color').eq('owner_user_id',uid)
+  ]);fail(results);const [templates,projects,portfolios,resources,classes,registrations,websites,activity,studioProducts,portfolioItems,projectAssets,orderRequests,companions]=results;
+  return {templates:templates.data,projects:projects.data,portfolios:portfolios.data,resources:resources.data,classes:classes.data,registrations:registrations.data,websites:websites.data,activity:activity.data,studioProducts:studioProducts.data,portfolioItems:portfolioItems.data,projectAssets:projectAssets.data,orderRequests:orderRequests.data,companions:companions.data};
 }
 
 export async function loadProjectAssetUrls(paths){
@@ -80,5 +81,6 @@ export const actions={
   async updateSession(id,updates){return supabase.from('live_classes').update(updates).eq('id',id)},
   async registerForClass(identity,creatorId,classId){return supabase.from('class_registrations').insert({owner_user_id:identity.user.id,creator_id:creatorId,class_id:classId})},
   async markOrderRequestRead(id){return supabase.from('studio_order_requests').update({is_read:true,read_at:new Date().toISOString()}).eq('id',id)},
+  async saveCompanion(identity,creatorId,payload){return supabase.from('creator_companions').upsert({owner_user_id:identity.user.id,creator_id:creatorId,...payload,updated_at:new Date().toISOString()},{onConflict:'creator_id'})},
   async signOut(){return supabase.auth.signOut()}
 };

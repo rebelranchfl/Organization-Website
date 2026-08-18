@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Create or access your secure Rebel Ranch Ministries account for Creation Station and Rebel Ranch Marketplace."
+  >
+
+  <title>My Account | Rebel Ranch Ministries</title>
+
+  <link rel="stylesheet" href="assets/css/brand-tokens.css">
+  <link rel="stylesheet" href="assets/css/public-surface.css">
+  <script src="assets/js/public-shell.js" defer></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: #204227;
+      color: var(--rrm-ink);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    main {
+      width: min(1160px, 92vw);
+      margin: 0 auto;
+      padding: 54px 0 80px;
+    }
+
+    .page-intro {
+      max-width: 790px;
+      margin: 0 auto 34px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--rrm-gold-bright);
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--rrm-ink);
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+    }
+
+    .intro-copy {
+      max-width: 680px;
+      margin: 20px auto 0;
+      color: var(--rrm-muted);
+      font-size: 1.06rem;
+      line-height: 1.7;
+    }
+
+    .account-shell {
+      position: relative;
+      width: min(100%, 920px);
+      margin: 0 auto;
+      overflow: hidden;
+      background: linear-gradient(180deg, #1D4024, #122A18);
+      border: 1px solid #284A29;
+      border-radius: 20px;
+      box-shadow: var(--rrm-shadow);
+    }
+
+    .account-shell::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #C17F24, #97C459);
+    }
+
+    .auth-navigation {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border-bottom: 1px solid #284A29;
+    }
+
+    .auth-tab {
+      min-height: 62px;
+      padding: 14px 18px;
+      border: 0;
+      border-bottom: 4px solid transparent;
+      background: transparent;
+      color: var(--rrm-muted);
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .auth-tab:hover,
+    .auth-tab:focus-visible {
+      background: var(--rrm-green-fill);
+      color: var(--rrm-green);
+    }
+
+    .auth-tab.active {
+      border-bottom-color: var(--rrm-gold);
+      background: transparent;
+      color: var(--rrm-ink);
+    }
+
+    .account-content {
+      padding: clamp(24px, 5vw, 48px);
+    }
+
+    .auth-panel {
+      display: none;
+    }
+
+    .auth-panel.active {
+      display: block;
+    }
+
+    .section-heading {
+      margin: 0 0 8px;
+      color: var(--rrm-ink);
+      font-size: clamp(1.8rem, 4vw, 2.65rem);
+      line-height: 1.08;
+    }
+
+    .section-copy {
+      margin: 0 0 28px;
+      color: var(--rrm-muted);
+      line-height: 1.65;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--rrm-ink);
+      font-weight: 850;
+    }
+
+    input {
+      width: 100%;
+      min-height: 52px;
+      padding: 13px 14px;
+      border: 1px solid #284A29;
+      border-radius: 8px;
+      background: var(--rrm-card-2);
+      color: var(--rrm-ink);
+    }
+
+    input:focus {
+      border-color: var(--rrm-gold-bright);
+      outline: 3px solid rgba(239, 159, 39, 0.18);
+    }
+
+    .password-guidance {
+      margin: -7px 0 20px;
+      color: var(--rrm-muted);
+      font-size: 0.86rem;
+      line-height: 1.5;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    .checkbox-row input {
+      width: 19px;
+      min-height: 19px;
+      margin: 2px 0 0;
+      flex: 0 0 auto;
+    }
+
+    .checkbox-row label {
+      margin: 0;
+      color: var(--rrm-muted);
+      font-size: 0.92rem;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .primary-button,
+    .secondary-button,
+    .text-button {
+      min-height: 52px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .primary-button {
+      width: 100%;
+      padding: 13px 20px;
+      border: 1px solid var(--rrm-gold);
+      background: linear-gradient(135deg, var(--rrm-gold), var(--rrm-gold-dark));
+      color: #fff7de;
+    }
+
+    .primary-button:hover,
+    .primary-button:focus-visible {
+      background: linear-gradient(135deg, var(--rrm-gold-dark), var(--rrm-gold-dark));
+    }
+
+    .secondary-button {
+      padding: 12px 18px;
+      border: 1px solid var(--rrm-green-dark);
+      background: #28502F;
+      color: var(--rrm-ink);
+    }
+
+    .secondary-button:hover,
+    .secondary-button:focus-visible {
+      background: #325c39;
+      color: var(--rrm-ink);
+    }
+
+    .text-button {
+      min-height: auto;
+      padding: 8px 0;
+      border: 0;
+      background: transparent;
+      color: var(--rrm-gold-bright);
+      text-decoration: underline;
+    }
+
+    button:disabled {
+      cursor: wait;
+      opacity: 0.64;
+    }
+
+    .form-links {
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    .status-box {
+      display: none;
+      margin: 24px 0 0;
+      padding: 16px;
+      border-left: 5px solid var(--rrm-gold);
+      background: linear-gradient(180deg, #1D4024, #122A18);
+      color: var(--rrm-ink);
+      line-height: 1.55;
+    }
+
+    .status-box.visible {
+      display: block;
+    }
+
+    .status-box.success {
+      border-color: var(--rrm-green);
+      background: rgba(151, 196, 89, 0.12);
+      color: var(--rrm-ink);
+    }
+
+    .status-box.error {
+      border-color: var(--rrm-rust);
+      background: rgba(169, 76, 62, 0.16);
+      color: var(--rrm-ink);
+    }
+
+    .submitted-card {
+      margin: 24px 0 0;
+      padding: 28px 24px;
+      text-align: center;
+      border: 1px solid var(--rrm-green);
+      border-radius: 14px;
+      background: linear-gradient(180deg, #1D4024, #122A18);
+      color: var(--rrm-ink);
+    }
+
+    .submitted-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 14px;
+      border-radius: 50%;
+      background: var(--rrm-green);
+      color: #07120A;
+      font-size: 1.4rem;
+      font-weight: 900;
+    }
+
+    .submitted-card h3 {
+      margin: 0 0 10px;
+      color: var(--rrm-ink);
+    }
+
+    .submitted-card p {
+      margin: 0 auto 18px;
+      max-width: 420px;
+      color: var(--rrm-muted);
+      line-height: 1.55;
+    }
+
+    .submitted-card .text-link {
+      background: none;
+      border: none;
+      color: var(--rrm-gold-bright);
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .dashboard {
+      display: none;
+    }
+
+    .dashboard.visible {
+      display: block;
+    }
+
+    .dashboard-header {
+      padding-bottom: 24px;
+      border-bottom: 1px solid #284A29;
+    }
+
+    .dashboard-name {
+      margin: 0 0 8px;
+      color: var(--rrm-ink);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1;
+    }
+
+    .dashboard-email {
+      margin: 0;
+      color: var(--rrm-muted);
+      overflow-wrap: anywhere;
+    }
+
+    .role-line {
+      margin: 12px 0 0;
+      color: var(--rrm-green);
+      font-weight: 800;
+    }
+
+    .path-heading {
+      margin: 34px 0 10px;
+      color: var(--rrm-ink);
+      font-size: 1.55rem;
+    }
+
+    .path-intro {
+      margin: 0 0 22px;
+      color: var(--rrm-muted);
+      line-height: 1.6;
+    }
+
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .path-card {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      min-height: 220px;
+      padding: 24px;
+      border: 1px solid #284A29;
+      border-radius: 20px;
+      background: linear-gradient(180deg, #1D4024, #122A18);
+      color: var(--rrm-ink);
+      text-decoration: none;
+      transition:
+        transform 160ms ease,
+        box-shadow 160ms ease;
+    }
+
+    .path-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #C17F24, #97C459);
+    }
+
+    .path-card:hover,
+    .path-card:focus-visible {
+      transform: translateY(-4px);
+      box-shadow: var(--rrm-shadow);
+    }
+
+    .path-card h3 {
+      margin: 0 0 12px;
+      color: var(--rrm-ink);
+      font-size: 1.75rem;
+      line-height: 1.05;
+    }
+
+    .path-card p {
+      margin: 0;
+      color: var(--rrm-muted);
+      line-height: 1.55;
+    }
+
+    .path-link-text {
+      display: block;
+      margin-top: 24px;
+      color: var(--rrm-gold-bright);
+      font-weight: 900;
+      text-decoration: underline;
+    }
+
+    .dashboard-actions {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid #284A29;
+    }
+
+    .reset-panel {
+      display: none;
+      margin-top: 26px;
+      padding: 24px;
+      border: 1px solid #284A29;
+      border-radius: 12px;
+      background: var(--rrm-card-2);
+    }
+
+    .reset-panel.visible {
+      display: block;
+    }
+
+    .reset-panel h3 {
+      margin: 0 0 8px;
+      color: var(--rrm-ink);
+    }
+
+    .reset-panel p {
+      margin: 0 0 18px;
+      color: var(--rrm-muted);
+      line-height: 1.55;
+    }
+
+    .loading-message {
+      text-align: center;
+      color: var(--rrm-muted);
+    }
+
+    @media (max-width: 700px) {
+      main {
+        width: min(100% - 20px, 1180px);
+        padding-top: 38px;
+      }
+
+      .form-grid,
+      .path-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .account-content {
+        padding: 25px 20px;
+      }
+
+      .auth-tab {
+        padding-inline: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <section class="page-intro">
+      <p class="eyebrow">One Account. More Opportunity.</p>
+
+      <h1>Your Rebel Ranch Ministries Account</h1>
+
+      <p class="intro-copy">
+        Use one secure account to access Creation Station, manage creator
+        profiles, participate in Rebel Ranch Marketplace, and grow into
+        new opportunities across the Rebel Ranch Ministries ecosystem.
+      </p>
+    </section>
+
+    <section class="account-shell">
+      <div id="loading-area" class="account-content">
+        <p class="loading-message">
+          Checking your secure account session...
+        </p>
+      </div>
+
+      <div id="auth-area" hidden>
+        <nav class="auth-navigation" aria-label="Account options">
+          <button
+            id="signin-tab"
+            class="auth-tab active"
+            type="button"
+            aria-controls="signin-panel"
+            aria-selected="true"
+          >
+            Sign In
+          </button>
+
+          <button
+            id="signup-tab"
+            class="auth-tab"
+            type="button"
+            aria-controls="signup-panel"
+            aria-selected="false"
+          >
+            Create Account
+          </button>
+        </nav>
+
+        <div class="account-content">
+          <section
+            id="signin-panel"
+            class="auth-panel active"
+            aria-labelledby="signin-tab"
+          >
+            <h2 class="section-heading">Welcome back.</h2>
+
+            <p class="section-copy">
+              Sign in to continue to your Rebel Ranch Ministries account.
+            </p>
+
+            <form id="signin-form">
+              <div class="field">
+                <label for="signin-email">Email address</label>
+
+                <input
+                  id="signin-email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  required
+                >
+              </div>
+
+              <div class="field">
+                <label for="signin-password">Password</label>
+
+                <input
+                  id="signin-password"
+                  name="password"
+                  type="password"
+                  autocomplete="current-password"
+                  required
+                >
+              </div>
+
+              <button
+                id="signin-button"
+                class="primary-button"
+                type="submit"
+              >
+                Sign In Securely
+              </button>
+            </form>
+
+            <div class="form-links">
+              <button
+                id="show-reset-button"
+                class="text-button"
+                type="button"
+              >
+                Forgot your password?
+              </button>
+            </div>
+
+            <section id="reset-panel" class="reset-panel">
+              <h3>Reset your password</h3>
+
+              <p>
+                Enter your email address and we will send a secure
+                password-reset link.
+              </p>
+
+              <form id="reset-request-form">
+                <div class="field">
+                  <label for="reset-email">Email address</label>
+
+                  <input
+                    id="reset-email"
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    required
+                  >
+                </div>
+
+                <button
+                  id="reset-request-button"
+                  class="secondary-button"
+                  type="submit"
+                >
+                  Send Reset Link
+                </button>
+              </form>
+            </section>
+
+            <div
+              id="signin-status"
+              class="status-box"
+              role="status"
+              aria-live="polite"
+            ></div>
+          </section>
+
+          <section
+            id="signup-panel"
+            class="auth-panel"
+            aria-labelledby="signup-tab"
+          >
+            <h2 class="section-heading">Create your account.</h2>
+
+            <p class="section-copy">
+              Begin with the adult account holder. Young creator profiles
+              will be added securely beneath a parent or guardian account.
+            </p>
+
+            <form id="signup-form">
+              <div class="form-grid">
+                <div class="field">
+                  <label for="first-name">First name</label>
+
+                  <input
+                    id="first-name"
+                    name="first_name"
+                    type="text"
+                    autocomplete="given-name"
+                    maxlength="80"
+                    required
+                  >
+                </div>
+
+                <div class="field">
+                  <label for="last-name">Last name</label>
+
+                  <input
+                    id="last-name"
+                    name="last_name"
+                    type="text"
+                    autocomplete="family-name"
+                    maxlength="80"
+                    required
+                  >
+                </div>
+
+                <div class="field full">
+                  <label for="display-name">
+                    Display name
+                  </label>
+
+                  <input
+                    id="display-name"
+                    name="display_name"
+                    type="text"
+                    maxlength="100"
+                    required
+                  >
+                </div>
+
+                <div class="field full">
+                  <label for="signup-email">Email address</label>
+
+                  <input
+                    id="signup-email"
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    required
+                  >
+                </div>
+
+                <div class="field">
+                  <label for="signup-password">Password</label>
+
+                  <input
+                    id="signup-password"
+                    name="password"
+                    type="password"
+                    autocomplete="new-password"
+                    minlength="10"
+                    required
+                  >
+                </div>
+
+                <div class="field">
+                  <label for="confirm-password">
+                    Confirm password
+                  </label>
+
+                  <input
+                    id="confirm-password"
+                    name="confirm_password"
+                    type="password"
+                    autocomplete="new-password"
+                    minlength="10"
+                    required
+                  >
+                </div>
+              </div>
+
+              <p class="password-guidance">
+                Use at least 10 characters with an uppercase letter,
+                lowercase letter, number, and symbol.
+              </p>
+
+              <div class="checkbox-row">
+                <input
+                  id="adult-confirmation"
+                  name="adult_confirmation"
+                  type="checkbox"
+                  required
+                >
+
+                <label for="adult-confirmation">
+                  I confirm that I am an adult creating this account for
+                  myself, my household, or a business I am authorized to
+                  manage.
+                </label>
+              </div>
+
+              <button
+                id="signup-button"
+                class="primary-button"
+                type="submit"
+              >
+                Create Secure Account
+              </button>
+            </form>
+
+            <div
+              id="signup-status"
+              class="status-box"
+              role="status"
+              aria-live="polite"
+            ></div>
+
+            <div
+              id="signup-submitted-card"
+              class="submitted-card"
+              role="status"
+              aria-live="polite"
+              hidden
+            >
+              <span class="submitted-icon" aria-hidden="true">&#10003;</span>
+              <h3 id="signup-submitted-title">Account request received.</h3>
+              <p id="signup-submitted-copy">
+                Check your email and use the confirmation link before
+                signing in.
+              </p>
+              <button type="button" id="signup-start-over" class="text-link">
+                Use a different email
+              </button>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <section id="dashboard" class="account-content dashboard">
+        <div class="dashboard-header">
+          <p class="eyebrow">Secure Member Account</p>
+
+          <h2 id="dashboard-name" class="dashboard-name">
+            Welcome
+          </h2>
+
+          <p id="dashboard-email" class="dashboard-email"></p>
+
+          <p id="dashboard-roles" class="role-line"></p>
+        </div>
+
+        <h3 class="path-heading">Where are you headed today?</h3>
+
+        <p class="path-intro">
+          Your account connects you to both sides of the Rebel Ranch
+          Ministries ecosystem. Choose the path you want to explore.
+        </p>
+
+        <div class="path-grid">
+         <a class="path-card creation" href="creation-station-account.html">
+            <h3>Creation Station</h3>
+
+            <p>
+              Create, learn, build a portfolio, develop real skills, and
+              turn strong work into real opportunity.
+            </p>
+
+            <span class="path-link-text">
+              Enter Creation Station
+            </span>
+          </a>
+
+          <a class="path-card marketplace" href="marketplace-seller-dashboard.html">
+            <h3>Rebel Ranch Marketplace</h3>
+
+            <p>
+              Discover local businesses or begin building your permanent
+              seller presence in the local marketplace.
+            </p>
+
+            <span class="path-link-text">
+              Enter the Marketplace
+            </span>
+          </a>
+
+          <a class="path-card business" href="index.html#business-freedom">
+            <h3>Business Freedom</h3>
+
+            <p>
+              Practical help right now for a small business that's
+              struggling or overwhelmed.
+            </p>
+
+            <span class="path-link-text">
+              Explore Business Freedom
+            </span>
+          </a>
+
+          <a class="path-card academy" href="academy.html">
+            <h3>Rebel Ranch Academy</h3>
+
+            <p>
+              Life, financial, and business skills education for children
+              and adults — see what's coming.
+            </p>
+
+            <span class="path-link-text">
+              Visit the Academy
+            </span>
+          </a>
+        </div>
+
+        <div class="dashboard-actions">
+          <a class="primary-button" href="creation-station-membership.html">
+            View Membership Options
+          </a>
+          <a class="secondary-button" href="membership-status.html">
+            Membership Status
+          </a>
+          <button
+            id="signout-button"
+            class="secondary-button"
+            type="button"
+          >
+            Sign Out
+          </button>
+        </div>
+
+        <div
+          id="dashboard-status"
+          class="status-box"
+          role="status"
+          aria-live="polite"
+        ></div>
+      </section>
+    </section>
+  </main>
+
+  <script type="module">
+    import { supabase } from "./assets/js/supabase-client.js";
+
+    const loadingArea = document.getElementById("loading-area");
+    const authArea = document.getElementById("auth-area");
+    const dashboard = document.getElementById("dashboard");
+
+    const signinTab = document.getElementById("signin-tab");
+    const signupTab = document.getElementById("signup-tab");
+    const signinPanel = document.getElementById("signin-panel");
+    const signupPanel = document.getElementById("signup-panel");
+
+    const signinForm = document.getElementById("signin-form");
+    const signupForm = document.getElementById("signup-form");
+    const resetRequestForm =
+      document.getElementById("reset-request-form");
+
+    const signinButton = document.getElementById("signin-button");
+    const signupButton = document.getElementById("signup-button");
+    const resetRequestButton =
+      document.getElementById("reset-request-button");
+
+    const showResetButton =
+      document.getElementById("show-reset-button");
+
+    const resetPanel = document.getElementById("reset-panel");
+    const signoutButton = document.getElementById("signout-button");
+
+    const signinStatus = document.getElementById("signin-status");
+    const signupStatus = document.getElementById("signup-status");
+    const signupSubmittedCard =
+      document.getElementById("signup-submitted-card");
+    const signupSubmittedTitle =
+      document.getElementById("signup-submitted-title");
+    const signupSubmittedCopy =
+      document.getElementById("signup-submitted-copy");
+    const signupStartOverButton =
+      document.getElementById("signup-start-over");
+    const dashboardStatus =
+      document.getElementById("dashboard-status");
+
+    const CONFIRM_REDIRECT =
+      "https://rebelranchministries.org/auth-confirm.html";
+
+    const RESET_REDIRECT =
+      "https://rebelranchministries.org/reset-password.html";
+
+    function setStatus(element, message, type = "") {
+      element.textContent = message;
+      element.className =
+        `status-box visible ${type}`.trim();
+    }
+
+    function clearStatus(element) {
+      element.textContent = "";
+      element.className = "status-box";
+    }
+
+    function setActivePanel(panelName) {
+      const showingSignin = panelName === "signin";
+
+      signinTab.classList.toggle("active", showingSignin);
+      signupTab.classList.toggle("active", !showingSignin);
+
+      signinTab.setAttribute(
+        "aria-selected",
+        String(showingSignin)
+      );
+
+      signupTab.setAttribute(
+        "aria-selected",
+        String(!showingSignin)
+      );
+
+      signinPanel.classList.toggle("active", showingSignin);
+      signupPanel.classList.toggle("active", !showingSignin);
+
+      clearStatus(signinStatus);
+      clearStatus(signupStatus);
+      signupSubmittedCard.hidden = true;
+      signupForm.hidden = false;
+    }
+
+    function showAuth() {
+      loadingArea.hidden = true;
+      authArea.hidden = false;
+      dashboard.classList.remove("visible");
+    }
+
+    function showDashboard() {
+      loadingArea.hidden = true;
+      authArea.hidden = true;
+      dashboard.classList.add("visible");
+    }
+
+    function passwordIsStrong(password) {
+      return (
+        password.length >= 10 &&
+        /[a-z]/.test(password) &&
+        /[A-Z]/.test(password) &&
+        /[0-9]/.test(password) &&
+        /[^A-Za-z0-9]/.test(password)
+      );
+    }
+
+    async function loadDashboard(user) {
+      clearStatus(dashboardStatus);
+
+      const { data: profile, error: profileError } =
+        await supabase
+          .from("profiles")
+          .select("display_name")
+          .eq("id", user.id)
+          .single();
+
+      if (profileError) {
+        throw new Error(
+          `Your account was authenticated, but the profile could not be loaded: ${profileError.message}`
+        );
+      }
+
+      const { data: roles, error: rolesError } =
+        await supabase
+          .from("user_roles")
+          .select("role")
+          .eq("user_id", user.id)
+          .order("role");
+
+      if (rolesError) {
+        throw new Error(
+          `Your account was authenticated, but its access roles could not be loaded: ${rolesError.message}`
+        );
+      }
+
+      const now = new Date().toISOString();
+      const { data: memberships, error: membershipsError } =
+        await supabase
+          .from("memberships")
+          .select("membership_status,starts_at,ends_at")
+          .eq("user_id", user.id)
+          .eq("program_code", "creation_station")
+          .in("membership_status", ["active", "past_due"])
+          .lte("starts_at", now)
+          .or(`ends_at.is.null,ends_at.gt.${now}`)
+          .limit(1);
+
+      if (membershipsError) {
+        throw new Error(
+          `Your account was authenticated, but its membership could not be loaded: ${membershipsError.message}`
+        );
+      }
+
+      document.getElementById("dashboard-name").textContent =
+        `Welcome, ${profile.display_name}`;
+
+      document.getElementById("dashboard-email").textContent =
+        user.email || "";
+
+      const isAdmin = roles.some((item) => item.role === "admin");
+      document.getElementById("dashboard-roles").textContent =
+        isAdmin
+          ? "Account access: administrator"
+          : memberships.length
+            ? "Account access: Creation Station member"
+            : "Account access: signed-in nonmember";
+
+      showDashboard();
+    }
+
+    signinTab.addEventListener("click", () => {
+      setActivePanel("signin");
+    });
+
+    signupTab.addEventListener("click", () => {
+      setActivePanel("signup");
+    });
+
+    showResetButton.addEventListener("click", () => {
+      resetPanel.classList.toggle("visible");
+
+      const signinEmail =
+        document.getElementById("signin-email").value.trim();
+
+      if (signinEmail) {
+        document.getElementById("reset-email").value =
+          signinEmail;
+      }
+    });
+
+    signinForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      clearStatus(signinStatus);
+
+      signinButton.disabled = true;
+      signinButton.textContent = "Signing In...";
+
+      const email =
+        document.getElementById("signin-email").value.trim();
+
+      const password =
+        document.getElementById("signin-password").value;
+
+      try {
+        const { data, error } =
+          await supabase.auth.signInWithPassword({
+            email,
+            password
+          });
+
+        if (error) {
+          throw error;
+        }
+
+        if (!data.user) {
+          throw new Error(
+            "No signed-in account was returned."
+          );
+        }
+
+        document.getElementById("signin-password").value = "";
+
+        await loadDashboard(data.user);
+      } catch (error) {
+        setStatus(
+          signinStatus,
+          error?.message ||
+            "We could not sign in to this account.",
+          "error"
+        );
+      } finally {
+        signinButton.disabled = false;
+        signinButton.textContent = "Sign In Securely";
+      }
+    });
+
+    signupForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      clearStatus(signupStatus);
+
+      const firstName =
+        document.getElementById("first-name").value.trim();
+
+      const lastName =
+        document.getElementById("last-name").value.trim();
+
+      const displayName =
+        document.getElementById("display-name").value.trim();
+
+      const email =
+        document.getElementById("signup-email").value.trim();
+
+      const password =
+        document.getElementById("signup-password").value;
+
+      const confirmPassword =
+        document.getElementById("confirm-password").value;
+
+      if (password !== confirmPassword) {
+        setStatus(
+          signupStatus,
+          "The two password entries do not match.",
+          "error"
+        );
+        return;
+      }
+
+      if (!passwordIsStrong(password)) {
+        setStatus(
+          signupStatus,
+          "Use at least 10 characters with an uppercase letter, lowercase letter, number, and symbol.",
+          "error"
+        );
+        return;
+      }
+
+      signupButton.disabled = true;
+      signupButton.textContent = "Creating Account...";
+
+      try {
+        const { data, error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            emailRedirectTo: CONFIRM_REDIRECT,
+            data: {
+              first_name: firstName,
+              last_name: lastName,
+              display_name: displayName
+            }
+          }
+        });
+
+        if (error) {
+          throw error;
+        }
+
+        if (data.session) {
+          signupForm.reset();
+          await loadDashboard(data.user);
+          return;
+        }
+
+        const alreadyRegistered =
+          Array.isArray(data?.user?.identities) &&
+          data.user.identities.length === 0;
+
+        if (alreadyRegistered) {
+          signupSubmittedTitle.textContent =
+            "You already have an account with this email.";
+          signupSubmittedCopy.textContent =
+            "No new email was sent. Sign in instead, or use “Forgot password” if you don’t remember it.";
+        } else {
+          signupSubmittedTitle.textContent =
+            "Account request received.";
+          signupSubmittedCopy.textContent =
+            "Check your email and use the confirmation link before signing in.";
+        }
+
+        signupForm.reset();
+        signupForm.hidden = true;
+        signupSubmittedCard.hidden = false;
+      } catch (error) {
+        setStatus(
+          signupStatus,
+          error?.message ||
+            "The account could not be created.",
+          "error"
+        );
+      } finally {
+        signupButton.disabled = false;
+        signupButton.textContent =
+          "Create Secure Account";
+      }
+    });
+
+    signupStartOverButton.addEventListener("click", () => {
+      signupSubmittedCard.hidden = true;
+      signupForm.hidden = false;
+      clearStatus(signupStatus);
+    });
+
+    resetRequestForm.addEventListener(
+      "submit",
+      async (event) => {
+        event.preventDefault();
+
+        clearStatus(signinStatus);
+
+        resetRequestButton.disabled = true;
+        resetRequestButton.textContent =
+          "Sending Reset Link...";
+
+        const email =
+          document.getElementById("reset-email").value.trim();
+
+        try {
+          const { error } =
+            await supabase.auth.resetPasswordForEmail(
+              email,
+              {
+                redirectTo: RESET_REDIRECT
+              }
+            );
+
+          if (error) {
+            throw error;
+          }
+
+          resetRequestForm.reset();
+
+          setStatus(
+            signinStatus,
+            "If an account is associated with that email address, a password-reset message has been sent.",
+            "success"
+          );
+        } catch (error) {
+          setStatus(
+            signinStatus,
+            error?.message ||
+              "The password-reset request could not be completed.",
+            "error"
+          );
+        } finally {
+          resetRequestButton.disabled = false;
+          resetRequestButton.textContent =
+            "Send Reset Link";
+        }
+      }
+    );
+
+    signoutButton.addEventListener("click", async () => {
+      signoutButton.disabled = true;
+      signoutButton.textContent = "Signing Out...";
+
+      const { error } = await supabase.auth.signOut();
+
+      signoutButton.disabled = false;
+      signoutButton.textContent = "Sign Out";
+
+      if (error) {
+        setStatus(
+          dashboardStatus,
+          `Sign-out error: ${error.message}`,
+          "error"
+        );
+        return;
+      }
+
+      signinForm.reset();
+      signupForm.reset();
+      showAuth();
+      setActivePanel("signin");
+    });
+
+    async function initializeAccountPage() {
+      try {
+        const { data, error } =
+          await supabase.auth.getSession();
+
+        if (error) {
+          throw error;
+        }
+
+        if (data.session?.user) {
+          await loadDashboard(data.session.user);
+          return;
+        }
+
+        showAuth();
+      } catch (error) {
+        showAuth();
+
+        setStatus(
+          signinStatus,
+          error?.message ||
+            "The account page could not verify your session.",
+          "error"
+        );
+      }
+    }
+
+    supabase.auth.onAuthStateChange((event, session) => {
+      if (event === "SIGNED_OUT") {
+        showAuth();
+      }
+
+      if (
+        event === "SIGNED_IN" &&
+        session?.user &&
+        !dashboard.classList.contains("visible")
+      ) {
+        setTimeout(() => {
+          loadDashboard(session.user).catch((error) => {
+            showAuth();
+
+            setStatus(
+              signinStatus,
+              error.message,
+              "error"
+            );
+          });
+        }, 0);
+      }
+    });
+
+    initializeAccountPage();
+  </script>
+</body>
+</html>

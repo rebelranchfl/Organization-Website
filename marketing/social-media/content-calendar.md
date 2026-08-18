@@ -10,6 +10,25 @@ Brooke only approves, rejects, or corrects content. The agent creates the conten
 
 `draft-posts.md` is the only working queue. Do not create or use `approved-posts.md` or another duplicate tracker.
 
+## Educate-First Principle
+
+Locked 2026-08-16: social content should lead with teaching, not asking.
+Default to content that explains how something works, what a program
+actually does, a real skill, or a piece of practical knowledge — donation
+and support asks are one part of the mix, not the default mode.
+
+This does not remove donation/support content from the calendar. It
+means:
+
+- When a post could be framed either as a straight ask or as something
+  useful/educational that naturally leads to the same CTA, choose the
+  educational framing.
+- Do not let donation asks become the most common post type in a given
+  week. See the Weekly Minimum below for the specific floor on
+  educational content and the cap on asks.
+- "Educational" content still follows every rule in `brand-rules.md` —
+  plain-spoken, not corporate, not generic nonprofit language.
+
 ## Posting History Rule
 
 Before creating, scheduling, or posting new content, the agent must check `posted-archive.md`.
@@ -23,6 +42,30 @@ The agent must avoid:
 - ignoring prior engagement or follow-up notes
 
 `posted-archive.md` is the source of truth for what has already gone live.
+
+## Insights-Informed Adjustments
+
+The Weekly Posting Rhythm and Weekly Minimum below are a starting structure, not
+a permanent one. They get adjusted over time based on what Facebook and Instagram
+Insights actually show — see `insights-analysis.md` for the full workflow.
+
+The loop:
+
+1. The agent logs a dated Insights Snapshot in `insights-analysis.md` on the
+   cadence set there, covering both Facebook and Instagram.
+2. When the same pattern (a format, a content bucket, a posting day/time)
+   repeats across 2 or more consecutive snapshots, the agent adds a
+   Recommendation entry in `insights-analysis.md` proposing a specific change to
+   this calendar — for example, adding a Reel option to a day that currently
+   only has a static post, or changing the Weekly Minimum's Reel/video count.
+3. Brooke approves, rejects, or corrects the recommendation in
+   `insights-analysis.md`, the same way she handles a draft post.
+4. Only after a recommendation is `Approved` does the agent edit the specific
+   section of this calendar and mark the recommendation `Applied`.
+
+This is how "should we be making reels, posts, etc." gets answered on an ongoing
+basis — by what the data shows, not by guessing once and locking it in. Nothing
+below should be read as a fixed answer to that question.
 
 ## Locked Visual Matching Rule
 
@@ -185,10 +228,16 @@ The agent should create and place in `draft-posts.md` at least:
 
 - 3 Rebel Ranch page posts
 - 2 Facebook group post options
-- 1 donation/support post
+- 2 educational posts (how something works, a real skill, practical knowledge tied to a program) — per the Educate-First Principle above
+- 1 donation/support post — do not exceed 1 donation/support post per week unless there is a real, specific, current need Brooke has flagged
 - 1 community engagement post
 - 1 behind-the-scenes update; use farm/sustainability content only when that is the actual subject
 - 1 program-focused post
+
+Educational posts can satisfy the program-focused or behind-the-scenes
+minimums when they naturally overlap — they are not required to be a
+fully separate seventh post, as long as the 2-educational-post floor is
+still met somewhere in the batch.
 
 ---
 

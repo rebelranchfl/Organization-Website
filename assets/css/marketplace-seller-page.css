@@ -45,8 +45,9 @@ a{color:inherit}button,input{font:inherit}
 .gallery div{aspect-ratio:1;border-radius:14px;background:linear-gradient(135deg,#152A18,#0A160D);border:1px solid var(--rrm-card-line);overflow:hidden}
 .gallery img{width:100%;height:100%;object-fit:cover;display:block}
 
-.listing-grid{display:grid;gap:16px}
-.listing-card{padding:16px;border:1px solid var(--rrm-card-line);border-radius:14px;background:linear-gradient(180deg,var(--rrm-card-1),var(--rrm-card-2))}
+.listing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.listing-card{padding:16px;border:1px solid var(--rrm-card-line);border-radius:14px;background:linear-gradient(180deg,var(--rrm-card-1),var(--rrm-card-2));display:flex;flex-direction:column}
+.listing-card .gallery{margin:8px 0}
 .listing-card h3{margin:6px 0;color:var(--rrm-ink)}
 .listing-card p{color:var(--rrm-muted)}
 .listing-price{color:var(--rrm-gold-bright);font-weight:850}
@@ -69,7 +70,8 @@ a{color:inherit}button,input{font:inherit}
 
 .trust-panel .list-plain li:before{background:var(--rrm-gold-bright)}
 
-@media(max-width:760px){.seller-hero{grid-template-columns:1fr;text-align:center}.seller-mark{margin:0 auto}.meta-row{justify-content:center}.layout{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:900px){.listing-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.seller-hero{grid-template-columns:1fr;text-align:center}.seller-mark{margin:0 auto}.meta-row{justify-content:center}.layout{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(3,1fr)}.listing-grid{grid-template-columns:1fr}}
 
 /* Seller-chosen page tone. The directory page itself never uses these —
    only an individual seller's own page, per their own page_theme choice.

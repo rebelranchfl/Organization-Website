@@ -18,13 +18,13 @@ let sellers=[];
 
 function sellerCard(sp){
   const categoryNames=(sp.seller_category_assignments||[]).map(a=>a.marketplace_categories?.name).filter(Boolean);
-  const primaryCategory=categoryNames[0]||'';
+  const categoryLabel=categoryNames.join(', ');
   const regionLabel=sp._regionLabel||'';
   return `<a class="card seller-directory-card" href="marketplace-seller-page.html?seller=${encodeURIComponent(sp.public_slug)}">
     <span class="seller-directory-mark" aria-hidden="true">${sp.logo_object_path?`<img src="${esc(publicUrl(sp.logo_object_path))}" alt="">`:esc(initials(sp.business_name))}</span>
     <span class="seller-directory-info">
       <h3>${esc(sp.business_name)}</h3>
-      ${primaryCategory||regionLabel?`<p class="seller-directory-meta">${[primaryCategory,regionLabel].filter(Boolean).map(esc).join(' · ')}</p>`:''}
+      ${categoryLabel||regionLabel?`<p class="seller-directory-meta">${[categoryLabel,regionLabel].filter(Boolean).map(esc).join(' · ')}</p>`:''}
       ${sp.short_description?`<p>${esc(sp.short_description)}</p>`:''}
     </span>
   </a>`;

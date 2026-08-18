@@ -248,16 +248,21 @@ Brooke's role is limited to approving, rejecting, or correcting drafts and makin
 The agent must:
 create and revise drafts in draft-posts.md
 find posts marked Approved in draft-posts.md
-check brand-rules.md, content-calendar.md, group-rules.md, image-library.md, and posted-archive.md before using an approved post
+check brand-rules.md, content-calendar.md, group-rules.md, image-library.md, insights-analysis.md, and posted-archive.md before using an approved post
 review Facebook group rules through available browser access and record the findings in group-rules.md
+review Facebook and Instagram performance data on the cadence set in insights-analysis.md and log findings there
 schedule or post only after the specific content is Approved and scheduling or posting has been separately authorized
 mark the original draft Posted after it goes live
 copy the final live post and posting details into posted-archive.md
 maintain the image records in image-library.md
-The agent must not tell Brooke to manually check group rules, copy or move posts, or maintain a second tracker when the agent can do that work.
+The agent must not tell Brooke to manually check group rules, pull insights, copy or move posts, or maintain a second tracker when the agent can do that work.
 draft-posts.md is the only working queue.
 posted-archive.md is the only source of truth for posting history, reuse timing, and frequency tracking.
+insights-analysis.md is the only source of truth for Facebook/Instagram performance data and format-mix recommendations.
 Do not create or use approved-posts.md or any duplicate approval/history tracker.
+
+Performance-informed content rule:
+Whether Rebel Ranch should be making more Reels, more static posts, or shifting a content bucket's emphasis is a data question, not a guess. The agent answers it from insights-analysis.md, not from assumption or a single post's result. A Reel and a static post follow every brand-voice, program-status, and image-matching rule in this document equally — performance data decides the format mix, not whether the rules apply.
 Post CTA rules
 Approved CTAs:
 Support the mission.

@@ -1,6 +1,12 @@
 import {supabase} from './supabase-client.js';
 
 const esc=(v='')=>{const d=document.createElement('div');d.textContent=String(v??'');return d.innerHTML};
+function initials(name){
+  return (name||'').split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join('')||'?';
+}
+function publicUrl(path){
+  return supabase.storage.from('marketplace-seller-public').getPublicUrl(path).data.publicUrl;
+}
 const grid=document.getElementById('seller-directory-grid');
 const eyebrowEl=document.getElementById('seller-directory-eyebrow');
 const headingEl=document.getElementById('seller-directory-heading');
@@ -20,7 +26,7 @@ if(grid){grid.addEventListener('scroll',updateCarouselNav);window.addEventListen
 
 async function init(){
   const {data,error}=await supabase.from('seller_profiles')
-    .select('business_name,public_slug,marketplace_path,short_description,seller_category_assignments(is_primary,marketplace_categories(name))')
+    .select('business_name,public_slug,marketplace_path,short_description,logo_object_path,seller_category_assignments(is_primary,marketplace_categories(name))')
     .order('business_name');
 
   const sellers=(data||[]).filter(sp=>sp.public_slug);
@@ -46,6 +52,7 @@ async function init(){
     const primary=assignments.find(c=>c.is_primary)||assignments[0];
     const categoryName=primary?.marketplace_categories?.name||'';
     return `<a class="card" href="marketplace-seller-page.html?seller=${encodeURIComponent(sp.public_slug)}" style="text-decoration:none;display:block">
+      <span class="seller-directory-mark" aria-hidden="true">${sp.logo_object_path?`<img src="${esc(publicUrl(sp.logo_object_path))}" alt="">`:esc(initials(sp.business_name))}</span>
       <h3>${esc(sp.business_name)}</h3>
       ${categoryName?`<p>${esc(categoryName)}</p>`:''}
       ${sp.short_description?`<p>${esc(sp.short_description)}</p>`:''}
