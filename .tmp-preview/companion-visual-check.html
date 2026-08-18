@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Companion Visual Check (throwaway, not part of the site)</title>
+<link rel="stylesheet" href="../assets/css/creation-station-dashboard.css">
+<style>
+  body{padding:32px}
+  .wrap{max-width:900px;margin:0 auto;display:grid;gap:24px}
+  .label{font:900 .8rem/1 system-ui;color:#9c2547;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div>
+    <p class="label">This file is throwaway — real CSS/JS from assets/, deleted after this check</p>
+    <p class="label" style="color:#247a55">Dashboard panel (real companionSvg + real .companion-panel CSS)</p>
+    <section class="panel companion-panel" id="panel-target"></section>
+  </div>
+  <div>
+    <p class="label" style="color:#247a55">Customize dialog, opened inline (real markup, real color logic)</p>
+    <dialog id="companion-dialog" open style="position:static;margin:0"></dialog>
+  </div>
+</div>
+
+<script type="module">
+import {companionSvg} from '../assets/js/creation-station-views.js';
+
+document.getElementById('panel-target').innerHTML = `
+  <div class="companion-avatar" aria-hidden="true">${companionSvg('#65299a',68)}</div>
+  <div class="companion-body">
+    <p class="eyebrow">SPARK</p>
+    <p class="companion-speech">&ldquo;hey hey&rdquo; What's the plan? Write down what you'll need.</p>
+  </div>
+  <button>Customize</button>
+`;
+
+document.getElementById('companion-dialog').innerHTML = `<form method="dialog" id="companion-form"><div class="dialog-heading"><div><p class="eyebrow">Creation Companion</p><h2>Customize your Companion</h2></div><button class="icon-button" value="cancel" formnovalidate aria-label="Close">×</button></div><div class="companion-editor-grid"><div><label>Companion name<input id="companion-name" maxlength="40" required value="Spark"></label><label>Catchphrase <span>Optional — something your Companion likes to say</span><input id="companion-catchphrase" maxlength="80" value="hey hey"></label><label>Pick companion colors<span>Choose a Creation Station color or open the color wheel.</span></label><div class="color-row" id="companion-color-row"><button type="button" class="color-swatch" data-color="#6B3BB0" style="background:#6B3BB0" aria-label="Purple"></button><button type="button" class="color-swatch" data-color="#00A7B7" style="background:#00A7B7" aria-label="Teal"></button><button type="button" class="color-swatch" data-color="#EF6AA7" style="background:#EF6AA7" aria-label="Pink"></button><button type="button" class="color-swatch" data-color="#FFC857" style="background:#FFC857" aria-label="Gold"></button><button type="button" class="color-swatch" data-color="#F9A03F" style="background:#F9A03F" aria-label="Orange"></button></div><div class="color-picker-wrap"><input id="companion-custom-color" type="color" value="#65299a" aria-label="Choose a custom companion color"><div><label for="companion-custom-color">Custom color wheel</label><div class="selected-color-line"><span id="companion-selected-swatch" class="selected-color-swatch" aria-hidden="true"></span><span id="companion-selected-text">Selected color: #65299A</span></div></div></div></div><div class="companion-preview" id="companion-preview"><div id="companion-preview-art"></div><strong id="companion-preview-name">My Companion</strong><p class="companion-speech" id="companion-preview-words">&ldquo;hey hey&rdquo;</p></div></div><div class="dialog-actions"><button value="cancel" formnovalidate>Cancel</button><button class="primary" id="save-companion" value="default">Save Companion</button></div>`;
+
+const $=id=>document.getElementById(id);
+let activeColor='#65299a';
+function updatePreview(){
+  const name=$('companion-name').value.trim()||'My Companion';
+  const phrase=$('companion-catchphrase').value.trim()||"Let's build something real.";
+  $('companion-preview-art').innerHTML=companionSvg(activeColor,140);
+  $('companion-preview-name').textContent=name;
+  $('companion-preview-words').innerHTML=`&ldquo;${phrase}&rdquo;`;
+  $('companion-selected-swatch').style.background=activeColor;
+  $('companion-selected-text').textContent=`Selected color: ${activeColor.toUpperCase()}`;
+  $('companion-custom-color').value=activeColor;
+  document.querySelectorAll('#companion-color-row .color-swatch').forEach(b=>b.classList.toggle('selected',b.dataset.color.toLowerCase()===activeColor.toLowerCase()));
+}
+document.querySelectorAll('#companion-color-row .color-swatch').forEach(b=>b.onclick=()=>{activeColor=b.dataset.color;updatePreview()});
+$('companion-custom-color').oninput=()=>{activeColor=$('companion-custom-color').value;updatePreview()};
+$('companion-name').oninput=updatePreview;
+$('companion-catchphrase').oninput=updatePreview;
+updatePreview();
+</script>
+</body>
+</html>

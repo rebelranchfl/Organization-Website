@@ -41,6 +41,7 @@ const companionPhrases={
   grow:{arrival:[`You finished making it! Let's think about what you learned.`],nudge:[`What worked? What would you change next time?`,`What's one thing you'd do differently if you made this again?`],celebrate:[`You told your story — that takes courage!`,`We did it! Project complete. I'm so proud of you.`,`You finished it! What should we dream up next?`]}
 };
 const pick=arr=>arr[Math.floor(Math.random()*arr.length)];
+export const companionSvg=(color,size=68)=>`<svg class="companion-svg" viewBox="0 0 320 320" width="${size}" height="${size}" role="img" aria-hidden="true"><path d="M58 252c36 18 166 18 204 0" fill="none" stroke="#F7C94C" stroke-width="18" stroke-linecap="round" opacity=".85"/><rect x="83" y="90" width="154" height="142" rx="40" fill="${esc(color)}"/><rect x="100" y="115" width="120" height="74" rx="22" fill="#E8FBF8"/><circle cx="132" cy="150" r="11" fill="#34105B"/><circle cx="188" cy="150" r="11" fill="#34105B"/><path d="M137 171c15 12 31 12 46 0" fill="none" stroke="#F04B98" stroke-width="8" stroke-linecap="round"/><rect x="133" y="52" width="54" height="46" rx="17" fill="#F7C94C"/><path d="M160 52V32" stroke="#fff" stroke-width="8" stroke-linecap="round"/><circle cx="160" cy="25" r="11" fill="#F04B98"/><path d="M82 143H52c-12 0-18 10-18 20v48" fill="none" stroke="#0397A4" stroke-width="18" stroke-linecap="round"/><path d="M238 143h30c12 0 18 10 18 20v48" fill="none" stroke="${esc(color)}" stroke-width="18" stroke-linecap="round"/><path d="M64 208l-18 38M256 208l18 38" stroke="#F7C94C" stroke-width="12" stroke-linecap="round"/><circle cx="46" cy="248" r="13" fill="#F04B98"/><circle cx="274" cy="248" r="13" fill="#F59B45"/></svg>`;
 function companionMoment(creatorId,project){
   if(!project)return pick(companionStart);
   const idx=stageIndexFor(project),stageKey=journeyStages[idx][2],phrases=companionPhrases[stageKey];
@@ -62,10 +63,7 @@ function companionPanel(state){
   const color=companion?.color||'#65299a';
   const msg=companion?companionMoment(creator.id,active):`Name your Creation Companion to get started!`;
   return `<section class="panel companion-panel">
-    <div class="companion-avatar" style="background:${esc(color)}" aria-hidden="true">
-      <span class="companion-eye"></span><span class="companion-eye"></span>
-      <span class="companion-antenna"></span>
-    </div>
+    <div class="companion-avatar" aria-hidden="true">${companionSvg(color,68)}</div>
     <div class="companion-body">
       <p class="eyebrow">${esc(name)}</p>
       <p class="companion-speech">${companion?.catchphrase?`&ldquo;${esc(companion.catchphrase)}&rdquo; `:''}${esc(msg)}</p>
