@@ -235,7 +235,7 @@
         <div class="portfolio-grid">
           <div>
             <p class="section-kicker">Visible progress for Young and Teen Creators</p>
-            <h2 id="portfolio-title">From Passion to <span class="hand">Profit.</span></h2>
+            <h2 id="portfolio-title">From Project to <span class="hand">Profit.</span></h2>
             <p class="section-intro">Their private portfolio is more than a gallery. It is a working record of ideas, decisions, effort, finished work, and reflection—kept under parent or guardian control. When they're ready, that portfolio can turn into a real business for young entrepreneurs — with a free listing on Rebel Ranch Marketplace so local shoppers can find them.</p>
           </div>
 
@@ -244,11 +244,9 @@
             <i aria-hidden="true">→</i>
             <div><span>Process</span><strong>How did I work through it?</strong></div>
             <i aria-hidden="true">→</i>
-            <div><span>Payoff</span><strong>What can it become?</strong></div>
+            <div><span>Proof</span><strong>What did I finish and learn?</strong></div>
           </div>
         </div>
-
-        <p class="preview-link-text">See what that payoff looks like <span aria-hidden="true">→</span></p>
 
         <!-- OWNER-LOCKED COMPONENT: Preserve this full Creation Station Studio visual and structure unless the owner explicitly authorizes a redesign. -->
         <article class="studio-showcase" aria-labelledby="studio-title">
@@ -350,8 +348,6 @@
             </aside>
           </div>
         </article>
-
-        <p class="preview-link-text">Real Creation Station kids wear the brand — <a href="merch.html?collection=creation-station">Shop merch <span aria-hidden="true">→</span></a></p>
       </div>
     </section>
 

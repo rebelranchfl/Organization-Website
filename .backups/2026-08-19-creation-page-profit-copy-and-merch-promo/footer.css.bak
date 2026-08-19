@@ -91,17 +91,6 @@
 
 .cs-footer__links .cs-footer__disclaimer { color: #d9cce3; }
 
-.cs-footer__links .cs-footer__merch {
-  padding: .3rem .75rem;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #f04b98 0%, #ff756d 20%, #f7c94c 43%, #b7d957 65%, #55d7d1 100%);
-  color: #23043d;
-  text-decoration: none;
-}
-
-.cs-footer__links .cs-footer__merch:hover,
-.cs-footer__links .cs-footer__merch:focus-visible { filter: brightness(1.06); color: #23043d; }
-
 .cs-footer__load-error {
   margin: 0;
   padding: 1rem;
