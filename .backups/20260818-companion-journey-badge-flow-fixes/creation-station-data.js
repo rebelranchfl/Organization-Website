@@ -59,7 +59,7 @@ export async function loadAdminSummary(){
 }
 
 export const actions={
-  async startProject(identity,template,creatorId,title,notes){return supabase.from('creator_projects').insert({owner_user_id:identity.user.id,creator_id:creatorId,template_id:template.id,membership_offer_code:identity.membership?.offer_code||'creator_website',title:title||template.title,notes:notes||null}).select('id').single()},
+  async startProject(identity,template,creatorId,title){return supabase.from('creator_projects').insert({owner_user_id:identity.user.id,creator_id:creatorId,template_id:template.id,membership_offer_code:identity.membership?.offer_code||'creator_website',title:title||template.title,status:'in_progress',completion:5,started_at:new Date().toISOString()})},
   async updateProject(identity,id,updates){return supabase.from('creator_projects').update({...updates,updated_at:new Date().toISOString()}).eq('id',id).eq('owner_user_id',identity.user.id)},
   async uploadProjectAsset(identity,project,file){const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,'-'),path=`${identity.user.id}/${project.creator_id}/${project.id}/${crypto.randomUUID()}-${safe}`;const upload=await supabase.storage.from('creation-station-private').upload(path,file);if(upload.error)return upload;return supabase.from('project_assets').insert({owner_user_id:identity.user.id,creator_id:project.creator_id,project_id:project.id,storage_path:path,file_name:file.name,mime_type:file.type,file_size:file.size})},
   async createPortfolio(identity,creator){return supabase.from('creator_portfolios').insert({owner_user_id:identity.user.id,creator_id:creator.id,title:`${creator.display_name}'s Portfolio`})},

@@ -83,7 +83,6 @@ Check for more specific `AGENTS.md` files in the target folder. More specific in
 - When a requested change appears to conflict with the approved visual rules or applicable CSS, stop, identify the conflict, and ask the user before overriding the established styling.
 - After styling work, verify the result against the governing visual-rule documents and the target page's applicable CSS at both desktop and mobile widths.
 - Never style a non-interactive element (a label, tag, or status badge) so that it is visually indistinguishable from a real clickable button — same pill shape, same solid gradient fill, same weight and sizing as a nearby real button. If it does not click, it must not look like it clicks. Confirmed a hard rule 2026-08-15 after the owner found this exact pattern on the Creation Station dashboard and said it has been raised before and needs to stop being reintroduced.
-- Full pill radius (a rounded-capsule shape, e.g. `border-radius:999px`) is reserved for real clickable buttons only, everywhere in this codebase. Non-interactive status or info chips (tags, badges, metric pills) must use a visibly smaller/different radius so the shape alone signals "not a button," not just surrounding context. Confirmed a hard rule 2026-08-18 after the owner asked for a blanket fix instead of chasing individual pill violations one at a time.
 
 ## Verification and reporting
 
