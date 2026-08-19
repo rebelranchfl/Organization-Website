@@ -281,14 +281,6 @@ img { display: block; max-width: 100%; }
   padding: 1.35rem;
   border-radius: 1.5rem;
 }
-.path-visual {
-  grid-column: 1 / -1;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  border-radius: 1.15rem;
-  box-shadow: var(--shadow-soft);
-}
 .path-feature {
   color: #fff;
   background:

@@ -81,7 +81,6 @@
 
         <div class="path-layout">
           <article class="path-feature path-family">
-            <img class="path-visual" src="assets/bracelets.png" alt="Colorful bracelets made by a young Creation Station creator">
             <div class="path-number" aria-hidden="true">01</div>
             <div>
               <p class="path-label">The main family experience</p>
@@ -98,7 +97,6 @@
 
           <div class="path-secondary">
             <article class="path-compact path-session">
-              <img class="path-visual" src="assets/creation-station-live-class-card.png" alt="Colorful preview for the weekly Creation Station live creative gathering">
               <div class="path-number" aria-hidden="true">02</div>
               <div>
                 <p class="path-label">Creation Station Club</p>
@@ -109,7 +107,6 @@
             </article>
 
             <article class="path-compact path-adult">
-              <img class="path-visual" src="assets/lavender candle.png" alt="Hand-poured lavender candle example from Creation Station Studio">
               <div class="path-number" aria-hidden="true">03</div>
               <div>
                 <p class="path-label">Adult Makers &amp; Crafters</p>
