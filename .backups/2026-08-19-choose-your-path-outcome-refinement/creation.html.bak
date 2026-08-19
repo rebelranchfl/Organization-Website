@@ -74,9 +74,9 @@
       <div class="rainbow-rule" aria-hidden="true"></div>
       <div class="wrap">
         <div class="section-heading centered">
-          <p class="section-kicker">First, tell us what you're looking for</p>
+          <p class="section-kicker">First, tell us who you are here for</p>
           <h2 id="paths-title">Choose your <span class="hand">path</span>.</h2>
-          <p>Pick what matters most for your child right now — you can always add more later. Already an adult maker, not shopping for a child? <a href="#adult-path">Jump to the adult options <span aria-hidden="true">↓</span></a></p>
+          <p>The main Creation Station experience is built for parents and young creators. Adult Makers and live online sessions have their own clear routes.</p>
         </div>
 
         <div class="path-layout">
@@ -84,9 +84,9 @@
             <img class="path-visual" src="assets/bracelets.png" alt="Colorful bracelets made by a young Creation Station creator">
             <div class="path-number" aria-hidden="true">01</div>
             <div>
-              <p class="path-label">Included in every membership</p>
-              <h3>A Place to Store Their Crafts</h3>
-              <p>A private, guided dashboard where your child plans, documents, and keeps a real record of everything they make—visible to you, private from everyone else.</p>
+              <p class="path-label">The main family experience</p>
+              <h3>Parents &amp; Young Creators</h3>
+              <p>Give your child a guided place to plan, make, document, reflect, and finish—while you retain visibility and control.</p>
               <ul class="mini-checks">
                 <li>Ages 6–12 and 13–17</li>
                 <li>Hands-on project guidance</li>
@@ -101,21 +101,21 @@
               <img class="path-visual" src="assets/creation-station-live-class-card.png" alt="Colorful preview for the weekly Creation Station live creative gathering">
               <div class="path-number" aria-hidden="true">02</div>
               <div>
-                <p class="path-label">Live, social, and hands-on</p>
-                <h3>Make Friends Who Get It</h3>
+                <p class="path-label">Creation Station Club</p>
+                <h3>Live Online Sessions</h3>
                 <p>A weekly creative gathering where children can make, talk, laugh, share, and brainstorm together. For kids who get teased for loving to make things instead of just consuming — a room full of people who get it.</p>
                 <a class="text-link" href="creation-station-live-classes.html">Explore live sessions <span aria-hidden="true">→</span></a>
               </div>
             </article>
 
             <article class="path-compact path-adult">
-              <img class="path-visual" src="assets/lavender candle.png" alt="Hand-poured lavender candle — an example of what a Creation Station Studio page can sell">
+              <img class="path-visual" src="assets/lavender candle.png" alt="Hand-poured lavender candle example from Creation Station Studio">
               <div class="path-number" aria-hidden="true">03</div>
               <div>
-                <p class="path-label">For older kids, with your approval</p>
-                <h3>Sell What They Make</h3>
-                <p>Upgrade to a personal Studio landing page where an older creator can share their story and real work—every public step still goes through you first.</p>
-                <a class="text-link" href="creation-station-membership.html#inside">See the Studio option <span aria-hidden="true">→</span></a>
+                <p class="path-label">Adult Makers &amp; Crafters</p>
+                <h3>Already creating?</h3>
+                <p>Skip the child and teen journey. Choose a personal Studio page or a separate Marketplace application.</p>
+                <a class="text-link" href="#adult-path">Jump to the adult choices <span aria-hidden="true">↓</span></a>
               </div>
             </article>
           </div>
