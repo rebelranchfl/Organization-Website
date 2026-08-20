@@ -103,10 +103,3 @@
 .focus-checklist{display:grid;gap:8px;margin:10px 0}
 .checkline{display:flex!important;align-items:flex-start;gap:10px;margin:0!important;font-weight:700!important;padding:10px 12px;background:var(--paper);border-radius:10px}
 .checkline input{width:auto;min-height:auto;margin-top:3px}
-.confetti{position:fixed;inset:0;pointer-events:none;z-index:100;display:none}
-.confetti.show{display:block}
-.confetti .dot{position:absolute;width:12px;height:12px;border-radius:4px;animation:cs-confetti-fall 1600ms ease-in forwards}
-@keyframes cs-confetti-fall{0%{transform:translateY(-30px) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(300deg);opacity:0}}
-.confetti-message{position:absolute;top:38%;left:50%;transform:translate(-50%,-50%) scale(.85);text-align:center;width:min(90%,26rem);font-size:clamp(1.5rem,4vw,2.4rem);font-weight:900;background:var(--rainbow);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 6px 20px rgba(29,6,55,.18);animation:cs-confetti-message 2.6s ease forwards}
-@keyframes cs-confetti-message{0%{opacity:0;transform:translate(-50%,-50%) scale(.8)}12%{opacity:1;transform:translate(-50%,-50%) scale(1.05)}20%{transform:translate(-50%,-50%) scale(1)}82%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(1)}}
-@media(prefers-reduced-motion:reduce){.confetti .dot,.confetti-message{animation:none}}

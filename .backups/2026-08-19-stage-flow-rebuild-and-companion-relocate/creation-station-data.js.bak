@@ -23,7 +23,7 @@ export async function loadWorkspace(identity){
   const uid=identity.user.id;
   const results=await Promise.all([
     supabase.from('project_templates').select('id,title,summary,instructions,category,difficulty,minimum_tier,estimated_minutes,supply_list').eq('is_active',true).order('minimum_tier'),
-    supabase.from('creator_projects').select('id,creator_id,template_id,title,status,completion,notes,stage_data,is_favorite,started_at,completed_at,updated_at').eq('owner_user_id',uid).order('updated_at',{ascending:false}),
+    supabase.from('creator_projects').select('id,creator_id,template_id,title,status,completion,notes,is_favorite,started_at,completed_at,updated_at').eq('owner_user_id',uid).order('updated_at',{ascending:false}),
     supabase.from('creator_portfolios').select('id,creator_id,title,bio,is_public,review_status,updated_at').eq('owner_user_id',uid),
     supabase.from('creation_resources').select('id,title,description,resource_type,external_url,storage_path,minimum_tier').eq('is_published',true).order('created_at',{ascending:false}).limit(12),
     supabase.from('live_classes').select('id,title,description,starts_at,ends_at,supply_list,meeting_url,replay_url,minimum_tier,registration_link').eq('is_published',true).order('starts_at').limit(12),

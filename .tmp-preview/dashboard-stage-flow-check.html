@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Create, learn, build a portfolio, and track growth in your Creation Station Dashboard.">
   <title>Creation Station Dashboard | Rebel Ranch Ministries</title>
-  <link rel="stylesheet" href="assets/css/creation-station-dashboard.css">
+  <link rel="stylesheet" href="../assets/css/creation-station-dashboard.css">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to studio content</a>
@@ -21,7 +21,7 @@
       <nav id="primary-nav" class="primary-nav" aria-label="Creation Station">
         <a href="#studio" data-route="studio"><span class="nav-icon" aria-hidden="true" style="background:var(--teal)">⌂</span>Dashboard</a><p class="nav-group">Create</p><a href="#projects" data-route="projects"><span class="nav-icon" aria-hidden="true" style="background:var(--pink)">◇</span>Projects</a><a href="#portfolio" data-route="portfolio"><span class="nav-icon" aria-hidden="true" style="background:var(--purple)">◆</span>Portfolio</a><p class="nav-group">Learn</p><a href="#classes" data-route="classes"><span class="nav-icon" aria-hidden="true" style="background:var(--lavender)">▣</span>Sessions</a><p class="nav-group">Grow</p><a href="#growth" data-route="growth"><span class="nav-icon" aria-hidden="true" style="background:#3a8fd4">↗</span>Growth</a><a href="#website" data-route="website"><span class="nav-icon" aria-hidden="true" style="background:var(--gold);color:var(--ink)">✦</span>Creation Station Studio</a><a href="#parent" data-route="parent"><span class="nav-icon" aria-hidden="true" style="background:#e2578f">♥</span>Parent View</a><a href="#admin" data-route="admin"><span class="nav-icon" aria-hidden="true" style="background:#6c6470">▦</span>Admin</a>
       </nav>
-      <div class="account-actions"><div class="account-chip"><span id="user-avatar" class="user-avatar" aria-hidden="true"></span><div class="account-chip-text"><strong id="user-name">Creator</strong><small>Member</small></div></div><button id="kid-mode-toggle" class="hidden" type="button">Enter Kid Mode</button><a href="account.html" class="rrm-account-link"><img src="assets/brand/Rebel Ranch Ministries/rrm-logo-white.png" alt="" aria-hidden="true">RRM Account</a><button id="signout" type="button">Sign out</button></div>
+      <div class="account-actions"><div class="account-chip"><span id="user-avatar" class="user-avatar" aria-hidden="true"></span><div class="account-chip-text"><strong id="user-name">Creator</strong><small>Member</small></div></div><button id="kid-mode-toggle" class="hidden" type="button">Enter Kid Mode</button><a href="account.html" class="rrm-account-link"><img src="../assets/brand/Rebel Ranch Ministries/rrm-logo-white.png" alt="" aria-hidden="true">RRM Account</a><button id="signout" type="button">Sign out</button></div>
     </aside>
 
   <main id="main-content" class="shell" tabindex="-1">
@@ -74,8 +74,30 @@
 
   <dialog id="pin-dialog" aria-labelledby="pin-dialog-title"><form method="dialog" id="pin-form"><div class="dialog-heading"><div><p class="eyebrow">Kid Mode</p><h2 id="pin-dialog-title">Enter PIN</h2></div><button class="icon-button" value="cancel" formnovalidate aria-label="Close">×</button></div><p id="pin-dialog-copy" class="soft-panel"></p><label>PIN <span>4-6 digits</span><input id="pin-input" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="off"></label><div class="dialog-actions"><button value="cancel" formnovalidate>Cancel</button><button class="primary" value="default">Continue</button></div></form></dialog>
 
-  <div class="confetti" id="cs-confetti" aria-hidden="true"></div>
-
-  <script type="module" src="assets/js/creation-station-app.js"></script>
+  <script>
+    window.__RRM_STUDIO_TEST_DATA__ = {
+      identity: {
+        user: { id: 'test-user-1' },
+        displayName: 'Test Parent',
+        isAdmin: false,
+        membership: { offer_code: 'young_creator_family', membership_status: 'active', starts_at: null, ends_at: null },
+        tier: 1,
+        household: { id: 'house-1', household_name: 'Test Household', parent_pin: null },
+        creators: [{ id: 'creator-1', display_name: 'Jamie', public_name: 'Jamie', creator_type: 'child', age_band: 'young_6_12', profile_status: 'active', kid_pin: null }]
+      },
+      data: {
+        templates: [{ id: 'tpl-1', title: 'Painted Tote', summary: '', instructions: '', category: 'craft', difficulty: 'easy', minimum_tier: 1, estimated_minutes: 60, supply_list: [] }],
+        projects: [
+          { id: 'proj-1', creator_id: 'creator-1', template_id: 'tpl-1', title: 'My Garden Tote', status: 'in_progress', completion: 5, notes: 'What are you making? Tell us about it!\nA tote for my grandma', stage_data: {}, is_favorite: false, started_at: null, completed_at: null, updated_at: new Date().toISOString() },
+          { id: 'proj-2', creator_id: 'creator-1', template_id: 'tpl-1', title: 'Friendship Bracelet', status: 'not_started', completion: 0, notes: '', stage_data: {}, is_favorite: false, started_at: null, completed_at: null, updated_at: new Date().toISOString() }
+        ],
+        portfolios: [], resources: [], classes: [], registrations: [], websites: [], activity: [],
+        studioProducts: [], portfolioItems: [], projectAssets: [], orderRequests: [],
+        companions: [{ id: 'comp-1', creator_id: 'creator-1', companion_name: 'Sparks', catchphrase: "Let's build something real.", color: '#65299a' }]
+      },
+      assetUrls: {}
+    };
+  </script>
+  <script type="module" src="../assets/js/creation-station-app.js"></script>
 </body>
 </html>

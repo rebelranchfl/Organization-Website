@@ -74,8 +74,6 @@
 
   <dialog id="pin-dialog" aria-labelledby="pin-dialog-title"><form method="dialog" id="pin-form"><div class="dialog-heading"><div><p class="eyebrow">Kid Mode</p><h2 id="pin-dialog-title">Enter PIN</h2></div><button class="icon-button" value="cancel" formnovalidate aria-label="Close">×</button></div><p id="pin-dialog-copy" class="soft-panel"></p><label>PIN <span>4-6 digits</span><input id="pin-input" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="off"></label><div class="dialog-actions"><button value="cancel" formnovalidate>Cancel</button><button class="primary" value="default">Continue</button></div></form></dialog>
 
-  <div class="confetti" id="cs-confetti" aria-hidden="true"></div>
-
   <script type="module" src="assets/js/creation-station-app.js"></script>
 </body>
 </html>

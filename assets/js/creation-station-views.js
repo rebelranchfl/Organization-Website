@@ -29,7 +29,7 @@ function achievementPanel(state,eng){if(!eng.badgeEarned)return'';return `<secti
 
 export function audience(state){const c=state.identity.creators.find(x=>x.id===state.creatorId)||state.identity.creators[0];if(state.view==='parent')return'parent';if(state.view==='admin')return'admin';if(!c)return'adult';if(c.age_band==='young_6_12')return'young';if(c.age_band==='teen_13_17')return'teen';return'adult'}
 export function viewHeroCopy(view){return {projects:{line1:"You're in",line2:'Projects',copy:'Pick up where you left off.'},portfolio:{line1:"You're in",line2:'Portfolio',copy:'Your finished work lives here.'},classes:{line1:"You're in",line2:'Sessions',copy:'Your weekly live Creation Station Club.'},growth:{line1:"You're in",line2:'Growth',copy:"Here's how far you've come."},website:{line1:"You're in your",line2:'Studio',copy:'Manage your Creation Station Studio page.'}}[view]}
-export function copyForAudience(a,name){return {young:{line1:'Ready to make something,',line2:`${name}?`,copy:'Choose your next creative step, keep going, and celebrate what you learn.'},teen:{line1:'Build what is yours,',line2:`${name}.`,copy:'Own the process, sharpen your skills, and turn strong work into a portfolio.'},adult:{line1:'Welcome back to your Dashboard,',line2:`${name}.`,copy:'Move your creative work forward while building the portfolio and readiness behind it.'},parent:{line1:'See the growth',line2:'behind the making.',copy:'Support each creator with useful context, clear approvals, and encouraging next steps.'},admin:{line1:'Creation Station',line2:'operations.',copy:'Monitor readiness and review queues without changing the member experience.'}}[a]}
+export function copyForAudience(a,name){return {young:{line1:'Welcome to your Creation Station Dashboard,',line2:`${name}!`,copy:"This is your own personal place to create and share your work! Pick your project, enter your description, and let's turn your passion into possibility."},teen:{line1:'Build what is yours,',line2:`${name}.`,copy:'Own the process, sharpen your skills, and turn strong work into a portfolio.'},adult:{line1:'Welcome back to your Dashboard,',line2:`${name}.`,copy:'Move your creative work forward while building the portfolio and readiness behind it.'},parent:{line1:'See the growth',line2:'behind the making.',copy:'Support each creator with useful context, clear approvals, and encouraging next steps.'},admin:{line1:'Creation Station',line2:'operations.',copy:'Monitor readiness and review queues without changing the member experience.'}}[a]}
 
 const companionStart=[`Ready when you are — let's start something new together!`,`I've got an idea... do YOU have an idea? Let's start a project!`];
 export const companionPhrases={
@@ -52,24 +52,80 @@ function companionMoment(creatorId,project){
   if(!sessionStorage.getItem(greetKey)){sessionStorage.setItem(greetKey,'1');return pick(phrases.arrival)}
   return pick(phrases.nudge);
 }
-function journeyCompanionPanel(state){
-  const ps=filtered(state,state.data.projects).filter(p=>p.status!=='archived');
-  const active=ps.find(p=>p.status==='in_progress')||ps[0]||null;
-  const idx=stageIndexFor(active);
+export const stagePanelDefs=[
+  {intro:'Choose what you want to make and why it matters to you.',fields:[
+    {key:'description',source:'notes',label:'What do you want to make?',placeholder:'A phrase, pattern, picture, theme, or purpose...'},
+    {key:'purpose',source:'stage',label:"Who is it for, and how will they use it?",placeholder:'For me, a family member, a friend, to sell...'}
+  ]},
+  {intro:'Think through materials, time, cost, safety, and steps.',checklist:['Gather your materials and set up your workspace','Sketch or write out your plan before you start',"Decide what's most important to get right",'Ask an adult about anything that needs supervision or safety help'],fields:[
+    {key:'time',source:'stage',label:'How much time do you think it will take?',placeholder:'Example: 45 minutes plus drying time'},
+    {key:'cost',source:'stage',label:'What will you need, and what might it cost?',placeholder:'List what you already have and what you would need to buy.'}
+  ]},
+  {intro:'Create, test, solve problems, and keep moving.',checklist:['Protect your workspace and gather your tools','Follow your plan, one step at a time','Build the biggest parts first, then add the details','Step back, look at your work, and decide what needs fixing'],fields:[
+    {key:'tricky',source:'notes',label:'What problem came up, and what did you do about it?',placeholder:'The paint bled, a piece broke, I changed my plan...'}
+  ]},
+  {intro:'Collect a photo and evidence of the process and result.',photo:true,fields:[
+    {key:'evidence',source:'stage',label:'What should this photo show or prove?',placeholder:'How the design changed, how I solved a problem, the finished details...'}
+  ]},
+  {intro:'Explain the work, the purpose, and the creator story.',fields:[
+    {key:'story',source:'stage',label:'Tell the story behind what you made.',placeholder:'I made this because... The hardest part was... I am proud that...'},
+    {key:'pricing',source:'stage',label:'Could this be sold, gifted, displayed, or used? Explain.',placeholder:'I could gift it, use it, list it, or make another version...'}
+  ]},
+  {intro:'Reflect on what worked and what you will improve.',fields:[
+    {key:'best',source:'notes',label:'What worked well?',placeholder:''},
+    {key:'change',source:'notes',label:'What would you change next time?',placeholder:''},
+    {key:'learned',source:'notes',label:'What skill did you practice that you can use again?',placeholder:''}
+  ]}
+];
+export function focusTrack(idx,maxIdx){
+  return `<div class="journey-track">${journeyStages.map(([label,sub,key],i)=>{const locked=i>maxIdx;return `<div class="journey-stage stage-${key} ${i===idx?'is-current':''} ${i<idx?'is-done':''} ${locked?'is-locked':''}" ${locked?'':`role="button" tabindex="0" data-track-stage="${i}"`} aria-pressed="${i===idx}"><span class="journey-dot" aria-hidden="true">${i<idx?'✓':i+1}</span><strong>${esc(label)}</strong><small>${esc(sub)}</small></div>`}).join('<span class="journey-line" aria-hidden="true"></span>')}</div>`;
+}
+export function focusStagePanel(state,project,idx,gateAnswered){
+  if(!project)return '<div class="focus-stage-panel"><p>Start a project above to begin the journey.</p></div>';
+  const [label,sub,stageKey]=journeyStages[idx];
+  const def=stagePanelDefs[idx];
+  const reflection=parseReflection(project.notes);
+  const stageEntry=(project.stage_data||{})[stageKey]||{};
+  const isYoung=audience(state)==='young';
+  const isFinal=idx===5;
+  if(isYoung&&isFinal&&!gateAnswered){
+    return `<div class="focus-stage-panel"><p class="stage-prompt-question">${esc(def.intro)}</p><div class="soft-panel"><p><strong>Are you still working on this, or did you finish it?</strong></p><div class="dialog-actions" style="justify-content:flex-start"><button type="button" data-action="focus-still-working">Still working on it</button><button type="button" class="primary" data-action="focus-all-finished">All finished!</button></div></div></div>`;
+  }
+  const fieldHtml=f=>{const val=f.source==='notes'?(reflection[f.key]||''):(stageEntry[f.key]||'');return `<label>${esc(f.label)}<textarea id="focus-${f.key}" placeholder="${esc(f.placeholder||'')}">${esc(val)}</textarea></label>`};
+  const checklistHtml=def.checklist?`<div class="focus-checklist">${def.checklist.map((item,i)=>`<label class="checkline"><input type="checkbox" id="focus-check-${stageKey}-${i}" ${stageEntry.checklist?.[i]?'checked':''}><span>${esc(item)}</span></label>`).join('')}</div>`:'';
+  const photoHtml=def.photo?`<label>Add a photo <span>JPEG, PNG, or WebP, 20 MB max — replaces your last photo for this project</span><input id="focus-photo" type="file" accept="image/jpeg,image/png,image/webp"></label>`:'';
+  const btnClass=isFinal?'primary':'';
+  const btnLabel=isFinal?'Finish the Project':`Mark ${esc(label)} Complete`;
+  return `<div class="focus-stage-panel"><p class="stage-prompt-question">${esc(def.intro)}</p>${checklistHtml}${def.fields.map(fieldHtml).join('')}${photoHtml}<button class="button ${btnClass}" type="button" data-action="focus-mark-complete">${btnLabel}</button></div>`;
+}
+export function journeyCompanionPanel(state,activeProject,focusStage){
   const isYoung=audience(state)==='young';
   const creator=isYoung?(state.identity.creators.find(x=>x.id===state.creatorId)||state.identity.creators[0]):null;
   const companion=creator?(state.data.companions||[]).find(c=>c.creator_id===creator.id):null;
   const name=companion?.companion_name||'Your Companion';
   const color=companion?.color||'#65299a';
-  const msg=creator?(companion?companionMoment(creator.id,active):`Name your Creation Companion to get started!`):'';
+  const msg=creator?(companion?companionMoment(creator.id,activeProject):`Name your Creation Companion to get started!`):'';
   const bubbleText=`${companion?.catchphrase?`&ldquo;${esc(companion.catchphrase)}&rdquo; `:''}${esc(msg)}`;
-  const companionRow=creator?`<div class="journey-companion-row"><div class="journey-companion-character" aria-hidden="true">${companionSvg(color,64)}</div><div class="companion-bubble companion-bubble-standalone"><strong>${esc(name)}:</strong> ${bubbleText}</div></div>`:'';
-  const track=`<div class="journey-track">${journeyStages.map(([label,sub,key],i)=>`<div class="journey-stage stage-${key} ${i===idx?'is-current':''} ${i<idx?'is-done':''}"><span class="journey-dot" aria-hidden="true">${i<idx?'✓':i+1}</span><strong>${label}</strong><small>${sub}</small></div>`).join('<span class="journey-line" aria-hidden="true"></span>')}</div>`;
-  const footer=creator?`<div class="companion-footer"><button data-action="edit-companion">${companion?'Customize Companion':'Name your Companion'}</button></div>`:'';
-  return `<section class="panel journey-panel" id="journey-panel"><p class="eyebrow">Your Creation Journey</p><h2>${active?esc(active.title):'Start your first project to begin the journey'}</h2>${companionRow}${track}${footer}</section>`;
+  const peek=creator?`<button class="companion-peek" type="button" data-action="toggle-companion" aria-expanded="${state._companionOpen?'true':'false'}" aria-controls="companion-popover" aria-label="${state._companionOpen?'Close':'Open'} your Companion">${companionSvg(color,28)}</button>`:'';
+  const popover=creator?`<div class="companion-popover ${state._companionOpen?'':'hidden'}" id="companion-popover"><div class="companion-popover-inner"><div class="companion-avatar" aria-hidden="true">${companionSvg(color,64)}</div><div class="companion-body"><strong>${esc(name)}</strong><p class="companion-speech">${bubbleText}</p></div></div><div class="companion-footer"><button data-action="edit-companion">${companion?'Customize Companion':'Name your Companion'}</button></div></div>`:'';
+  const maxIdx=(isYoung&&!state._focusGateAnswered)?4:5;
+  const track=focusTrack(focusStage,activeProject?maxIdx:-1);
+  const [stageLabel]=journeyStages[focusStage];
+  const pct=Math.round(focusStage/5*100);
+  return `<section class="panel journey-panel" id="journey-panel"><div class="journey-summary-bar"><button class="journey-toggle" type="button" data-action="toggle-journey" aria-expanded="true" aria-controls="journey-panel-body"><span class="journey-summary-stage">${esc(stageLabel)}</span><span class="journey-summary-progress" aria-hidden="true"><span style="width:${pct}%"></span></span><span class="journey-toggle-icon" aria-hidden="true">&#9662;</span></button>${peek}</div>${popover}<div class="journey-panel-body" id="journey-panel-body"><p class="eyebrow">Your Creation Journey</p><h2>${activeProject?esc(activeProject.title):'Start your first project to begin the journey'}</h2>${track}</div></section>`;
 }
 function nextStepsPanel(state,eng){if(!eng.badgeEarned)return'';const readyForStudio=state.identity.tier>=3;const studioAction=readyForStudio?'<button class="button primary" data-action="website-request">Set Up My Studio</button>':'<a class="button primary" href="creation-station-membership.html">Set Up My Studio</a>';return `<section class="panel" style="margin-top:18px"><p class="eyebrow">Next step</p><h2>Ready to run it like a pro?</h2><p>You've got real work to show for it. Here's where to take it from here.</p><div class="achievement-choices"><div class="achievement-choice"><strong>Ready to sell what you made?</strong><span>Go straight to your own Creation Station Studio website.</span>${studioAction}</div><div class="achievement-choice"><strong>Not quite ready yet? That's okay!</strong><span>Keep creating and practicing here.</span><button class="button" data-action="new-project">Keep Practicing</button></div><div class="achievement-choice"><strong>Want help doing it right?</strong><span>Need help with pricing, marketing, listing your product, or setting up your shop the right way? Our business sessions get you ready to launch.</span><a class="button" href="academy-learning-interest.html" target="_blank" rel="noopener">Business Sessions at Academy</a></div></div></section>`}
-export function studio(state){const ps=filtered(state,state.data.projects),active=ps.find(p=>p.status==='in_progress'),complete=ps.filter(p=>p.status==='completed').length,eng=engagement(state);return `${heading('Your Dashboard','Make, learn, and keep moving','Your creative home for projects, portfolios, sessions, and the next useful step.')}${achievementPanel(state,eng)}<div class="metric-grid metric-grid-compact"><div class="metric"><span>Active projects</span><strong>${ps.filter(p=>p.status==='in_progress').length}</strong><small>Ready to resume</small></div><div class="metric"><span>Completed</span><strong>${complete}</strong><small>Milestones reached</small></div></div>${journeyCompanionPanel(state)}<div class="layout" style="margin-top:18px"><div class="stack"><section class="panel"><div class="panel-header"><div><p class="eyebrow">On your workbench</p><h2>${active?'Continue your project':'Choose your next project'}</h2></div></div>${projectGrid(state,4)}</section></div><aside class="stack"><section class="panel next-action"><p class="eyebrow">Recommended next action</p><h2>${active?`Keep going on ${esc(active.title)}`:'Start with one guided project'}</h2><p>${active?`${100-active.completion}% remains. Save one useful step today.`:'The Studio will help you plan, make, reflect, and build a portfolio.'}</p><button class="primary" ${active?`data-edit="${active.id}"`:'data-action="new-project"'}>${active?'Resume project':'Start now'}</button></section></aside></div>${nextStepsPanel(state,eng)}`}
+const miniProjectCard=(state,p)=>{const asset=(state.data.projectAssets||[]).find(a=>a.project_id===p.id&&a.mime_type?.startsWith('image/'));const imgUrl=asset&&state.assetUrls?.[asset.storage_path];const [stageLabel]=journeyStages[stageIndexFor(p)];return `<button class="mini-project-card" type="button" data-edit="${p.id}"><span class="mini-project-art" aria-hidden="true">${imgUrl?`<img src="${esc(imgUrl)}" alt="">`:''}</span><span class="mini-project-body"><strong>${esc(p.title)}</strong><small>${esc(stageLabel)}</small></span></button>`};
+export function studio(state){
+  const ps=filtered(state,state.data.projects).filter(p=>p.status!=='archived'),workable=ps.filter(p=>p.status!=='completed'),eng=engagement(state);
+  const activeProject=ps.find(p=>p.id===state._activeProjectId)||workable[0]||ps[0]||null;
+  if(activeProject){if(state._activeProjectId!==activeProject.id||state._focusStage==null){state._activeProjectId=activeProject.id;state._focusStage=stageIndexFor(activeProject);state._focusGateAnswered=activeProject.status==='completed'}}
+  else{state._activeProjectId=null;state._focusStage=0;state._focusGateAnswered=false}
+  let workArea;
+  if(!workable.length){workArea=`<section class="panel"><div class="panel-header"><div><p class="eyebrow">On your workbench</p><h2>Choose your next project</h2></div></div>${projectGrid(state,4)}</section>`}
+  else{const picker=workable.length>1?`<div class="project-picker-row" aria-label="Choose which project to continue">${workable.map(p=>miniProjectCard(state,p)).join('')}</div>`:'';workArea=`${picker}<section class="panel stage-focus-panel" id="focus-panel-wrap">${focusStagePanel(state,activeProject,state._focusStage,state._focusGateAnswered)}</section>`}
+  return `${heading('Your Dashboard','Make, learn, and keep moving','Your creative home for projects, portfolios, sessions, and the next useful step.')}${journeyCompanionPanel(state,activeProject,state._focusStage)}<div class="layout" style="margin-top:18px"><div class="stack">${workArea}</div><aside class="stack"><section class="panel"><p class="eyebrow">Finished work</p><h2>See it all in your Portfolio</h2><p>Every completed project lives in your Portfolio, ready to look back on.</p><button class="button" data-route-go="portfolio">Go to Portfolio</button></section></aside></div>${nextStepsPanel(state,eng)}`
+}
 
 function portfolioCards(state){const ports=filtered(state,state.data.portfolios);return ports.length?`<div class="portfolio-grid">${ports.map(p=>{const detail=p.is_public?'':status(p.review_status);return `<article class="portfolio-card"><span class="status-badge ${p.is_public?'':'private'}">${p.is_public?'🌐 Published':'🔒 Private'}</span><h3>${esc(p.title)}</h3><p>${esc(p.bio||'Add a short creator story when you are ready.')}</p>${detail?`<small>Status: ${esc(detail)}</small>`:''}</article>`}).join('')}</div>`:empty('No portfolio yet','Create a private portfolio for finished work. Publishing still requires the existing parent and admin review process.','create-portfolio','Create portfolio')}
 export function projects(state){return `${heading('Project workshop','Projects','Visual progress, useful next actions, and every saved step from the existing project records.','<button class="primary" data-action="new-project">Start a project</button>')}<section class="panel">${projectGrid(state)}</section>${archivedProjects(state)}`}
