@@ -76,17 +76,17 @@
         <div class="section-heading centered">
           <p class="section-kicker">First, tell us what you're looking for</p>
           <h2 id="paths-title">Choose your <span class="hand">path</span>.</h2>
-          <p>You get a little quiet. They get screen time that actually builds something—not another feed to scroll. Give them a private place to document what they make, real friends who love making things too, or the tools to start turning their passion into real business skills.</p>
-          <p>Pick what matters most right now—you can add more later, or <a href="creation-station-membership.html#join">bundle two or more and save</a>. Already an adult maker, not shopping for a child? <a href="#adult-path">Jump to the adult options <span aria-hidden="true">↓</span></a></p>
+          <p>Pick what matters most for your child right now — you can always add more later. Already an adult maker, not shopping for a child? <a href="#adult-path">Jump to the adult options <span aria-hidden="true">↓</span></a></p>
         </div>
 
         <div class="path-layout">
           <article class="path-feature path-family">
-            <img class="path-visual" src="assets/creation-station-dashboard-preview.png" alt="The real Creation Station dashboard, showing a finished project, journey progress, and the creative workbench">
+            <img class="path-visual" src="assets/bracelets.png" alt="Colorful bracelets made by a young Creation Station creator">
+            <div class="path-number" aria-hidden="true">01</div>
             <div>
               <p class="path-label">Included in every membership</p>
               <h3>A Place to Store Their Crafts</h3>
-              <p>Buy yourself some real, uninterrupted time while they get screen time that builds something real. A private dashboard where your child documents every project, start to finish—visible to you, private from everyone else.</p>
+              <p>A private, guided dashboard where your child plans, documents, and keeps a real record of everything they make—visible to you, private from everyone else.</p>
               <ul class="mini-checks">
                 <li>Ages 6–12 and 13–17</li>
                 <li>Hands-on project guidance</li>
@@ -99,20 +99,22 @@
           <div class="path-secondary">
             <article class="path-compact path-session">
               <img class="path-visual" src="assets/creation-station-live-class-card.png" alt="Colorful preview for the weekly Creation Station live creative gathering">
+              <div class="path-number" aria-hidden="true">02</div>
               <div>
                 <p class="path-label">Live, social, and hands-on</p>
                 <h3>Make Friends Who Get It</h3>
-                <p>Wish they had more wholesome friends—kids more interested in <em>doing</em> things than <em>watching</em> things? A weekly creative gathering to make, talk, laugh, share, and brainstorm with a room full of people who get it.</p>
+                <p>A weekly creative gathering where children can make, talk, laugh, share, and brainstorm together. For kids who get teased for loving to make things instead of just consuming — a room full of people who get it.</p>
                 <a class="text-link" href="creation-station-live-classes.html">Explore live sessions <span aria-hidden="true">→</span></a>
               </div>
             </article>
 
             <article class="path-compact path-adult">
               <img class="path-visual" src="assets/lavender candle.png" alt="Hand-poured lavender candle — an example of what a Creation Station Studio page can sell">
+              <div class="path-number" aria-hidden="true">03</div>
               <div>
                 <p class="path-label">For older kids, with your approval</p>
                 <h3>Sell What They Make</h3>
-                <p>Set them up for success with their own live storefront, plus business sessions at the Academy for pricing, marketing, and getting ready to launch—every public step still goes through you first.</p>
+                <p>Upgrade to a personal Studio landing page where an older creator can share their story and real work—every public step still goes through you first.</p>
                 <a class="text-link" href="creation-station-membership.html#inside">See the Studio option <span aria-hidden="true">→</span></a>
               </div>
             </article>
@@ -186,7 +188,7 @@
       <div class="wrap experience-grid">
         <div class="experience-copy">
           <p class="section-kicker light">One clear, interactive experience</p>
-          <h2 id="experience-title">See what keeps them on <span class="hand">track</span>.</h2>
+          <h2 id="experience-title">See what does the <span class="hand">guiding</span>.</h2>
           <p>The dashboard turns one big creative idea into visible stages. Children can see where they are, what comes next, and what they have already completed. Parents can see the structure and retain control over anything that could become public.</p>
 
           <ol class="journey-track" aria-label="Creation Station project stages">
