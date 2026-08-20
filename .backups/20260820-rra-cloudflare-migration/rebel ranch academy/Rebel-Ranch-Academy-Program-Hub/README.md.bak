@@ -6,7 +6,7 @@ RRA is respectable, responsible, accountable, confident, independent, strong, an
 
 ## Current public home
 
-**Live Academy hub:** https://academy.rebelranchministries.org
+**Live Academy hub:** https://rebel-ranch-academy-hub.brookeritchie.chatgpt.site
 
 This public hub is now the primary Academy destination linked from the RRM website.
 
@@ -17,7 +17,7 @@ The existing RRM file `academy.html` is intentionally unchanged and on hold. It 
 - A general link labeled “Academy,” “Rebel Ranch Academy,” “Explore the Academy,” or similar must open the live Academy hub.
 - A link clearly labeled as an Academy interest form may continue to open `academy-learning-interest.html` directly.
 - Do not redirect or delete `academy.html` without separate approval.
-- The Academy is published from this GitHub folder through the owner's Cloudflare account. The custom address and all general RRM Academy links must be updated together.
+- If a custom address such as `academy.rebelranchministries.org` is approved and connected later, update this README and all general Academy links together.
 
 ## What the hub is
 
@@ -324,33 +324,19 @@ Do not describe SEO or analytics as complete until they have been installed, ver
 - Do not promise outcomes, credentials, legal advice, tax advice, financial advice, or other regulated services.
 - Keep Creation Station, Marketplace, Business Freedom, and other RRM programs distinct while making useful connections between them.
 
-## Source of truth and hosting
+## Source-of-truth warning
 
-This GitHub folder is the source of truth for the approved polished Academy hub. It contains the navy, gold, and cream design, official RRA and Roots, Boots & Animal Poops logos, interactive audience and learning-area filters, sample activities, and the device-local learning plan.
+The code currently stored in this GitHub Program Hub folder may not match the newest polished version of the live Academy site. The live site was refined after the folder was first uploaded.
 
-The production copy is built from this folder and hosted in the owner's Cloudflare account at `https://academy.rebelranchministries.org`. The earlier ChatGPT Sites copy is a temporary migration safety copy only and must not be treated as the long-term publishing source.
+Before changing application code:
 
-Before future application changes:
+1. compare the GitHub folder with the currently deployed Academy site source;
+2. preserve the approved polished navy, gold, and cream design;
+3. do not publish an older copy over the live site;
+4. reconcile the sources through a separately reviewed change;
+5. update this warning once GitHub and the deployed source are confirmed to match.
 
-1. start from the current GitHub main branch;
-2. preserve the approved polished design and readable light-surface contrast;
-3. create the required backup and change record;
-4. test desktop, mobile, keyboard use, links, filters, activities, and learning-plan storage; and
-5. publish through the connected Cloudflare project only after review.
-
-### Cloudflare publishing handoff
-
-The Cloudflare project must use these repository settings:
-
-- **Repository:** `rebelranchfl/Organization-Website`
-- **Production branch:** `main`
-- **Project folder:** `rebel ranch academy/Rebel-Ranch-Academy-Program-Hub`
-- **Install command:** `npm ci`
-- **Build command:** `npm run build`
-- **Deploy command:** `npx wrangler deploy --config dist/server/wrangler.json`
-- **Public address:** `academy.rebelranchministries.org`
-
-The current hub does not need a database. Its learning plan and completed-activity marks stay in the visitor's browser on that device. No ChatGPT account or ChatGPT hosting is required for the Cloudflare copy.
+This warning does not prevent documentation or RRM link updates. It protects the approved live design from accidental rollback.
 
 ## Instructions for future agents and contributors
 
@@ -378,7 +364,7 @@ Before making RRA changes:
 Separate approval is required before:
 
 - changing or retiring `academy.html`;
-- changing or disconnecting the Academy subdomain;
+- connecting a custom Academy subdomain;
 - changing the Academy logo or core color system;
 - adding accounts or server-saved learning records;
 - collecting additional personal information;
@@ -391,7 +377,7 @@ Separate approval is required before:
 ## Immediate next priorities
 
 1. Keep all general RRM Academy links pointed to the live hub.
-2. Keep the GitHub source and Cloudflare deployment synchronized.
+2. Reconcile the GitHub application source with the approved deployed source.
 3. Build a clear search and analytics plan before claiming SEO is complete.
 4. Turn the six learning areas into focused marketing and educational content.
 5. Use interest submissions to decide which real learning collections should be built first.

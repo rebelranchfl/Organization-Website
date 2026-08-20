@@ -338,8 +338,8 @@ Do not make every RRA campaign faith-centered. Faith, Family & Freedom is part o
 The intended website path is:
 
 1. the RRM website introduces Rebel Ranch Ministries programs;
-2. the interactive RRA Program Hub at `https://academy.rebelranchministries.org` is the live public Academy destination;
-3. the existing `academy.html` remains unchanged and on hold for a later content review;
+2. the existing `academy.html` remains the public introduction to RRA until the owner separately approves changes;
+3. the interactive RRA Program Hub becomes the organized program catalog and exploration experience;
 4. visitors choose an audience, need, or learning area;
 5. the hub presents relevant programs, classes, or interest paths; and
 6. focused program pages or forms collect interest when an offer is not yet open.
@@ -378,15 +378,17 @@ It should feel like Academy-level credibility without institutional conformity.
 
 Use the existing approved RRA logo as the starting point. Do not create a substitute wordmark or redraw the emblem.
 
-The approved public-hub color direction is:
+The approved color direction is:
 
-- midnight and deep navy for strength and Academy-level credibility;
-- antique gold for accents and important actions;
-- warm cream and paper for readable learning surfaces;
-- charcoal and navy text on every cream or paper surface; and
+- deep red or oxblood;
+- antique gold;
+- charcoal;
+- warm cream; and
 - limited visual connections back to RRM where needed.
 
-The approved implementation is documented in the Program Hub source, especially `app/globals.css`. Gold or pale yellow text must not be used on cream or other light surfaces. The polished public hub uses Georgia for formal headings and Arial/Helvetica for clear body content.
+Exact color values, typography, logo sizing, spacing, components, and responsive rules must be documented in a separate owner-approved RRA visual standard before they are treated as locked implementation rules.
+
+RRA may use a more formal heading style than the main RRM site once the owner approves the exact typography. Body content must remain clear and easy to read.
 
 Do not use visual rebellion as an excuse for distressed clutter, graffiti, chaos, aggression, or disrespect.
 
@@ -424,7 +426,9 @@ This concept locks the direction and organization of RRA. It does not by itself 
 
 Separate owner approval is still required for:
 
-- changes to the approved public-hub logo treatment, color system, typography, or visual standard;
+- the final RRA visual-standard document;
+- exact logo treatment and sizing;
+- exact color values and typography;
 - the final public tagline;
 - final course and curriculum names;
 - which subjects launch first;
