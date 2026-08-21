@@ -7,160 +7,57 @@
   "created_at": "2026-08-20T21:01:00-04:00",
   "created_by": "owner",
   "current_status": "READY_FOR_REVIEW",
-  "revision_number": 1,
+  "revision_number": 2,
   "owner_input": {
     "idea": "Purifying water with natural materials",
-    "owner_notes": "",
+    "owner_notes": "Revision 2: expand into how people without grid power/running water historically and currently treat water; named examples rather than generic Africa; investigate Indian copper storage; why water practices differ globally; frequency/energy effects on water; and evidence concerning lunar effects on humans.",
     "requested_audience": [],
-    "requested_angle": "",
+    "requested_angle": "lost knowledge, global practices, mechanism, evidence, practical application",
     "requested_sources": [],
     "excluded_sources": []
   },
   "context_review": {
     "status": "COMPLETE",
-    "completed_at": "2026-08-20T21:08:00-04:00",
-    "documents_reviewed": [
-      "/AGENTS.md",
-      "/docs/rebel-ranch-ecosystem-charter.md",
-      "/docs/non-negotiables.md",
-      "/rebel ranch academy/REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md",
-      "/rebel ranch academy/Rebel-Ranch-Academy-Program-Hub/README.md",
-      "/rebel ranch academy/ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md",
-      "/rebel ranch academy/ACADEMY-CONTENT-PROJECT-SCHEMA.md"
-    ],
-    "websites_reviewed": [
-      "https://rebelranchministries.org",
-      "https://academy.rebelranchministries.org (attempted; browsing tool could not retrieve during this run)"
-    ],
-    "audiences_identified": [
-      "adults and families",
-      "homeschool families",
-      "teens with adult supervision",
-      "homesteaders and agriculture learners",
-      "household resilience learners"
-    ],
-    "learning_area_reason": "The subject supports water systems, sustainability, resourcefulness, practical self-reliance and household resilience while transferring naturally into other RRA learning areas.",
+    "completed_at": "2026-08-21T01:10:00-04:00",
+    "documents_reviewed": ["/AGENTS.md","/docs/rebel-ranch-ecosystem-charter.md","/docs/non-negotiables.md","/rebel ranch academy/REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md","/rebel ranch academy/Rebel-Ranch-Academy-Program-Hub/README.md","/rebel ranch academy/ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md","/rebel ranch academy/ACADEMY-CONTENT-PROJECT-SCHEMA.md"],
+    "websites_reviewed": ["https://rebelranchministries.org","https://academy.rebelranchministries.org (direct retrieval attempted; repository README used for current hub direction when retrieval failed)"],
+    "audiences_identified": ["adults and families","homeschool families","teens with adult supervision","homesteaders and agriculture learners","household resilience learners"],
+    "learning_area_reason": "Water systems, resourcefulness, sustainability and practical independence are core Sustainability & Agriculture subjects; evidence-literacy transfers across RRA.",
     "conflicts_found": []
   },
   "research": {
     "status": "COMPLETE",
-    "started_at": "2026-08-20T21:08:00-04:00",
-    "completed_at": "2026-08-20T21:24:00-04:00",
-    "source_count": 18,
-    "primary_or_direct_source_count": 16,
-    "conflicts_found": [
-      "Performance claims for slow-sand filtration vary by design, maturity, organism, source water, operation and study setting.",
-      "Online language frequently treats ordinary charcoal and activated carbon as interchangeable; the project rejects that simplification."
-    ],
-    "unresolved_questions": [
-      "Owner source acceptance/rejection remains pending.",
-      "The live Academy website should be re-checked when the browsing tool can retrieve it."
-    ],
+    "started_at": "2026-08-21T01:10:00-04:00",
+    "completed_at": "2026-08-21T01:40:00-04:00",
+    "source_count": 24,
+    "primary_or_direct_source_count": 17,
+    "conflicts_found": ["Lunar-human sleep literature contains positive studies and direct non-replication/publication-bias concerns.","Visible acoustic patterns and molecular frequency responses demonstrate effects while not establishing permanent beneficial restructuring of ordinary drinking water.","Traditional water practices document use; efficacy varies by mechanism, preparation and conditions."],
+    "unresolved_questions": ["Owner source acceptance/rejection remains pending.","Final visual production may reveal additional source needs for specific diagrams."],
     "sources_file": "sources.md",
     "research_file": "research.md"
   },
   "concept": {
     "status": "COMPLETE",
-    "learning_outcome": "Explain the distinct jobs in water treatment, identify why treatment must match the contaminant, safely demonstrate physical filtration, and transfer the diagnosis-before-prescription principle into other areas of life.",
-    "central_question": "What are you actually trying to remove?",
-    "major_principles": [
-      "Clear water is not automatically safe water.",
-      "Water treatment is a system, not a magic ingredient.",
-      "Different materials solve different problems.",
-      "Filtration and disinfection are not the same thing.",
-      "Activated carbon and ordinary charcoal are not the same thing.",
-      "Source protection can matter more than downstream treatment.",
-      "Maintenance and safe storage affect performance.",
-      "Diagnose before prescribing.",
-      "Do not claim more than the evidence proves."
-    ],
-    "historical_or_lost_knowledge_angle": "Historical rural households had to understand the entire source-to-storage water system; early farm guidance already warned that filtration was not a guarantee of drinking-water safety.",
-    "current_use_angle": "Use the framework to understand wells, rainwater, emergencies, household filters, source protection, contaminant-specific treatment and filter marketing.",
-    "transfer_the_principle_summary": "Diagnose before prescribing. Match the solution to the actual problem; use layered defenses; verify what changed.",
-    "proposed_format": [
-      "Illustrated RRA Field Guide",
-      "Family Lab",
-      "Free public sample"
-    ],
-    "activity_types": [
-      "build-and-observe filtration demonstration",
-      "scenario diagnosis",
-      "claim-vs-evidence sorting",
-      "historical comparison",
-      "transfer-the-principle exercise"
-    ],
-    "visual_needs": [
-      "source-to-cup system diagram",
-      "filter cutaway",
-      "slow-sand versus bottle-demo comparison",
-      "ordinary charcoal versus activated carbon",
-      "contaminant decision map",
-      "historical rural water system",
-      "layered-defense diagram"
-    ]
+    "learning_outcome": "Compare global/traditional water practices, identify mechanisms, distinguish practice from demonstrated efficacy, evaluate copper/frequency/lunar claims at the evidence level they earned, and apply the same evidence discipline elsewhere.",
+    "central_question": "What is the water problem — and what evidence shows this method actually solves it?",
+    "major_principles": ["Water treatment is a chain, not a magic ingredient.","Traditional and modern describe context, not truth value.","Local source, climate, fuel, materials and infrastructure shape water systems.","A real mechanism does not make a method universal.","Observation, mechanism, correlation, causation and health benefit are different levels of claim.","Prove only what the evidence proves."],
+    "historical_or_lost_knowledge_angle": "Recover whole-system water knowledge and named regional practices without romanticizing unsafe history.",
+    "current_use_angle": "Use current experiments to test older practices and modern claims, including copper, Moringa, acoustics/frequency and lunar-human research.",
+    "transfer_the_principle_summary": "Match the claim to the mechanism and the evidence; respect observation without skipping the steps needed to establish causation or a practical recommendation.",
+    "proposed_format": ["45–60 page illustrated RRA Field Guide","Family Investigation Lab","Free evidence-literacy sample"],
+    "activity_types": ["simulated-water filtration","global-method matching","copper-study evidence analysis","safe sound/water observation","lunar sleep journal","evidence ladder","scenario diagnosis"],
+    "visual_needs": ["global water-practice map","source-to-storage system","copper evidence spread","Moringa coagulation sequence","acoustic water diagram","molecular rapid-rearrangement graphic","Moon/tide vs human-evidence panel","evidence ladder","treatment decision map"]
   },
-  "content": {
-    "status": "COMPLETE_WORKING_DRAFT",
-    "master_content_file": "master-content.md"
-  },
+  "content": {"status":"COMPLETE_WORKING_DRAFT","master_content_file":"master-content.md"},
   "materials": {
-    "status": "WORKING_DRAFT_COMPLETE",
-    "material_types": [
-      "field guide master content",
-      "family lab activity",
-      "source audit"
-    ],
-    "files": [
-      "context-review.md",
-      "sources.md",
-      "research.md",
-      "concept.md",
-      "master-content.md",
-      "activities/dirty-is-visible-danger-isnt.md",
-      "pricing.md",
-      "qa-review.md",
-      "owner-review.md"
-    ],
-    "preview_files": [
-      "master-content.md",
-      "activities/dirty-is-visible-danger-isnt.md"
-    ]
+    "status":"WORKING_DRAFT_COMPLETE",
+    "material_types":["expanded field guide master content","family investigations","source audit","pricing proposal"],
+    "files":["context-review.md","sources.md","research.md","concept.md","master-content.md","activities/dirty-is-visible-danger-isnt.md","pricing.md","qa-review.md","owner-review.md"],
+    "preview_files":["master-content.md","concept.md","sources.md"]
   },
-  "pricing": {
-    "status": "PROPOSED",
-    "proposed_price": 29,
-    "currency": "USD",
-    "role": "paid core field guide with free public sample",
-    "reasoning_file": "pricing.md",
-    "owner_approved_price": null
-  },
-  "qa": {
-    "status": "PASS_WITH_OWNER_REVIEW_ITEMS",
-    "completed_at": "2026-08-20T21:24:00-04:00",
-    "qa_file": "qa-review.md",
-    "blockers": []
-  },
-  "owner_review": {
-    "status": "PENDING",
-    "latest_decision": null,
-    "latest_comment": "",
-    "reviewed_at": null,
-    "review_history_file": "owner-review.md",
-    "source_decisions_complete": false
-  },
-  "release": {
-    "status": "NOT_STARTED",
-    "approved_at": null,
-    "published_at": null,
-    "destination": "",
-    "live_url": "",
-    "release_files": [],
-    "release_notes": ""
-  },
-  "agent": {
-    "active_agent": null,
-    "last_agent": "ChatGPT/GPT-5.6 Sol",
-    "session_title": "RRA Content Agent automation run 1",
-    "last_updated_at": "2026-08-20T21:24:00-04:00"
-  }
+  "pricing": {"status":"PROPOSED","proposed_price":39,"currency":"USD","role":"paid core field guide with free public evidence-literacy sample","reasoning_file":"pricing.md","owner_approved_price":null},
+  "qa": {"status":"PASS_READY_FOR_OWNER_REVIEW","completed_at":"2026-08-21T01:55:00-04:00","qa_file":"qa-review.md","blockers":[]},
+  "owner_review": {"status":"PENDING_REVISION_2","latest_decision":"NEEDS_MORE_WORK","latest_comment":"Expand global/traditional water practices, copper, frequency/energy and lunar-human evidence.","reviewed_at":"2026-08-21T01:55:29Z","review_history_file":"owner-review.md","source_decisions_complete":false},
+  "release": {"status":"NOT_STARTED","approved_at":null,"published_at":null,"destination":"","live_url":"","release_files":[],"release_notes":""},
+  "agent": {"active_agent":null,"last_agent":"ChatGPT/GPT-5.6 Sol","session_title":"RRA Content Agent automation run 1","last_updated_at":"2026-08-21T02:00:00-04:00"}
 }
