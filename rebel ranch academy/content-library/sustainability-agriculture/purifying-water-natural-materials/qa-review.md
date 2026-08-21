@@ -1,93 +1,108 @@
-# RRA-2026-0001 — QA Review
+# RRA-2026-0001 — QA Review — Revision 2
 
-**QA status:** PASS WITH OWNER-REVIEW ITEMS
+**QA status:** PASS — READY FOR OWNER REVIEW
+
+## Owner-feedback coverage
+Owner asked for substantially deeper treatment of global water practices, copper storage in India, cultural differences in water handling, frequency/energy effects on water, and possible lunar effects on humans.
+
+Coverage check:
+- named examples from places without centralized/running water: **pass**;
+- avoids treating Africa as one culture/practice: **pass**;
+- West African Moringa evidence included: **pass**;
+- Indian historical water practices included: **pass**;
+- copper-vessel antimicrobial studies included: **pass**;
+- explains why water systems differ by source/climate/fuel/material/infrastructure: **pass**;
+- acoustic/frequency effects on water supported with original experimental research: **pass**;
+- molecular-frequency response of water supported: **pass**;
+- permanent-water-memory extrapolation explicitly separated from demonstrated effects: **pass**;
+- Moon/ocean question treated as legitimate rather than dismissed: **pass**;
+- positive lunar-human studies included: **pass**;
+- non-replication/publication-bias challenge included: **pass**;
+- new 2026 gravimetric sleep study included and clearly labeled new/not settled: **pass**.
 
 ## Context and Academy alignment
-- Full governing-doc review completed: yes
-- RRM live website reviewed: yes
-- RRA live website attempted: yes; browsing tool could not retrieve it during this run
-- Current Academy source/README used to confirm live direction: yes
-- Correct learning area: Sustainability & Agriculture
-- RRA not reduced to agriculture-only identity: pass
-- Transfer connections to other learning areas: pass
-
-## Voice and teaching quality
-- Plain-spoken: pass
-- Practical: pass
-- Evidence-driven: pass
-- Historically aware without romanticizing unsafe practices: pass
-- Not generic school/textbook filler: pass
-- Not survivalist fear copy: pass
-- Uses real examples and learner action: pass
-- Mandatory TRANSFER THE PRINCIPLE section present: pass
-- Ends with application rather than knowledge-only: pass
+- Governing documents re-read: yes
+- Current RRM public website reviewed: yes
+- Academy live URL retrieval attempted; current repository README used as authoritative public-hub direction when direct retrieval failed: yes
+- Learning area remains Sustainability & Agriculture: pass
+- Material does not turn RRA into agriculture-only education: pass
+- Responsible rebellion/evidence-first voice: pass
+- Required **TRANSFER THE PRINCIPLE** section: present
+- Required rule **Teach transferable principles, not isolated facts.**: satisfied
 
 ## Research integrity
-- Primary/direct sources sought where practical: pass
-- Multiple sources used: pass
-- Institutional prestige not treated as proof: pass
-- Historical practice separated from current recommendation: pass
-- Conflicts/limitations recorded: pass
-- Direct owner-review links provided: pass
-- Unsupported claims presented as fact: none identified
+- Original copper studies used: yes
+- Original Moringa studies used: yes
+- Original acoustofluidic/water spectroscopy studies used: yes
+- Original lunar-sleep studies and direct challenge used: yes
+- Important conflicts shown rather than hidden: yes
+- Historical use separated from efficacy: yes
+- Correlation separated from mechanism/causation: yes
+- Authority treated as evidence source, not automatic proof: pass
 
-## Safety review
-### Drinking-water safety
-Pass with strong boundary.
+## Safety
+### Drinking water
+Pass. The material does not instruct learners to drink output from demonstration filters, Moringa experiments, copper experiments or unknown water. It does not turn laboratory copper findings into a universal potable-water protocol.
 
-The material repeatedly states that:
-- clear water is not automatically safe;
-- filtration is not automatically disinfection;
-- homemade sand/gravel demonstration filters are not proof of potable water;
-- activated carbon is not universal treatment;
-- boiling does not solve most dissolved chemical contamination;
-- the learner activity output must not be consumed.
+### Biological experiments
+Pass. Learners are specifically directed to analyze published pathogen studies rather than culture pathogens at home.
 
-### Activity safety
-Pass.
+### Acoustic activity
+Pass with ordinary household caution. The activity uses modest vibration/sound for surface observation and makes no medical exposure recommendation. Final designed activity should add the practical instruction to keep water away from exposed electrical connections/equipment.
 
-The activity uses simulated dirty water made from nonhazardous materials and does not direct learners to collect or drink contaminated natural water.
+### Lunar activity
+Pass. Sleep journaling is observational and does not recommend changing medical treatment or making health decisions from lunar phase.
 
-### Historical instructions
-Pass.
+## Claim-boundary audit
+**Supported at the stated level:**
+- copper contact can inactivate specific tested bacteria under defined conditions;
+- Moringa seed proteins can act as natural coagulants and have been studied for household treatment;
+- acoustic energy can move/pattern liquids;
+- THz/IR energy can excite water molecular/intermolecular modes;
+- liquid water’s hydrogen-bond network is highly dynamic;
+- multiple studies report lunar-linked sleep changes.
 
-Historical disinfection recipes are not reproduced as modern instructions.
+**Explicitly NOT claimed:**
+- copper universally purifies unknown water;
+- Moringa alone universally makes water potable;
+- ordinary music permanently restructures drinking water;
+- visible cymatic patterns prove a health benefit;
+- body-water percentage proves ocean-like human tides;
+- lunar phase broadly controls human health/behavior.
 
-## Product-value review
-Current master content contains enough distinct educational value to justify development into a substantial illustrated guide rather than a mini worksheet.
+## Voice/value QA
+The Revision 2 material is materially more distinctive than Revision 1. It does not read as a generic “DIY survival filter” ebook. Its strongest differentiator is the evidence ladder: learners are allowed to investigate unusual observations while being taught not to overclaim them.
 
-Strongest differentiators:
-1. “What are you actually trying to remove?” diagnostic structure.
-2. Separation of sediment, filtration, adsorption, biological treatment, disinfection and chemical treatment.
-3. Historical continuity showing that serious older rural guidance already distinguished filtration from a guarantee of safety.
-4. Evidence experiment where the learner must distinguish observation from assumption.
-5. TRANSFER THE PRINCIPLE connections into business, money, family, leadership and emotional intelligence.
+The line of thought is consistent with RRA: question systems, recover useful knowledge, test both conventional and alternative claims, understand mechanisms, and take responsible action.
 
-## Visual-production review
-Not yet produced. Proposed visual direction is appropriate but requires separate design/illustration production after owner approval of the content concept.
+## Product scope and pricing QA
+Planned scope increased to roughly 45–60 designed pages with several custom diagrams/investigations. Proposed $39 is defensible **only if** that visual/interactivity scope is actually produced. If the final product remains primarily text, the pricing file correctly falls back toward $29.
 
-Recommended future visuals:
-- source-to-cup treatment map;
-- cross-section of demonstration filter;
-- proper slow-sand system vs quick bottle demo comparison;
-- ordinary charcoal vs activated carbon diagram;
-- contaminant/category decision map;
-- historic farm-water system spread;
-- layered-defense / transfer-principle diagram.
+Final price remains owner-controlled.
 
-## Pricing QA
-Proposed $29 is internally consistent with the current RRA working pricing ladder for a substantial illustrated guide. Final price should wait until visual scope is confirmed.
+## Visual-production needs after content approval
+- named global-water-practice map;
+- source-to-storage system diagram;
+- copper-vessel evidence spread;
+- Moringa coagulation diagram;
+- treatment-job decision map;
+- acoustic standing-wave/water surface illustration;
+- molecular energy/rapid-rearrangement graphic;
+- Moon–Earth tide vs human-evidence comparison;
+- evidence ladder;
+- printable investigation/journal pages.
 
-## Owner-review items
-1. Does the working title **Water Through the Layers** fit the RRA voice?
-2. Approve / reject / replace any sources in `sources.md`.
-3. Is $29 the right proposed price direction?
-4. Should the free “Clear Does Not Mean Safe” sample be included?
-5. Does the current master content sound sufficiently like the owner's RRM/RRA voice before illustration/layout production begins?
-6. If approved, should the next production pass create the designed/illustrated Field Guide or revise content first?
+## Owner-review questions
+1. Keep or change the working title **Water Through the Layers**?
+2. Does the new global/traditional direction now match what you meant by “lost knowledge”?
+3. Does the frequency section strike the correct balance: acknowledging demonstrated physical effects without pretending they prove every popular water-frequency claim?
+4. Does the Moon section go far enough in treating the question seriously while showing the conflicting evidence?
+5. Approve / reject / replace any sources in `sources.md`.
+6. Is the revised **$39** direction appropriate if the full illustrated 45–60 page scope is produced?
+7. If content is approved, the next stage would be actual designed/illustrated material production; approval here still does not publish it.
 
 ## Blockers
-No technical or research blocker prevents owner review.
+None. Revision 2 is ready for meaningful owner review.
 
 ## QA decision
-Ready for owner review. No publishing, pricing approval, deployment, or sale is authorized by this QA pass.
+**READY FOR OWNER REVIEW.** No publication, deployment, sale, or final public price is authorized.
