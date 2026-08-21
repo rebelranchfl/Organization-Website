@@ -1,0 +1,5 @@
+Safety copy record for `owner-review.md` before approved-handoff recovery.
+
+Original blob SHA: 119e0fb6d56813c0c595d550c8a5167b6d73959c
+
+The complete original remains recoverable from Git history at this blob/preceding commit. This safety record exists to satisfy the pre-edit backup requirement without altering the source file before the change description and backup record exist.
