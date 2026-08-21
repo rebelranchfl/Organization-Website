@@ -1,365 +1,429 @@
 # Water Through the Layers
-## What Sand, Gravel & Carbon Can Do — What They Cannot — and How to Think About Safe Water
+## Lost Water Knowledge, Modern Evidence & What Actually Makes Water Safer
 
-> Working master content for owner review. Not approved for public release.
+> Revision 2 working master content. Not approved for public release.
 
-## Start here: what are you actually trying to remove?
+# Start before the filter
+Turn on a faucet in most American homes and the water system disappears.
 
-Most people look at dirty water and think the job is simple: make it look clean.
+You see the last six inches of a process that may have started miles away.
 
-That is only one part of the problem.
+That convenience is useful. But it can also hide knowledge people once had to carry themselves: where water came from, what could foul it, how to move it, what to settle out, what to heat, what to filter, what to store it in, and how to keep clean water from becoming dirty again.
 
-Water can carry visible dirt, tiny suspended particles, microorganisms, dissolved minerals, metals, salts, pesticides, fuels, and other chemicals. Some make water cloudy. Some change taste or smell. Some do none of those things at all.
+In a home without a pipe, the system does not disappear. **The household becomes part of the system.**
 
-That means a filter can appear to work beautifully and still fail at the job that matters most.
+That is where this lesson begins.
 
-The first RRA rule in this guide is simple:
+The question is not “old or modern?” It is not “natural or chemical?” It is not “government approved or alternative?”
 
-**Do not start with the filter. Start with the problem.**
+The question is:
 
-## The six jobs people confuse
+**What is the water problem — and what evidence shows this method actually solves it?**
 
-### 1. Settling and straining
-This removes larger visible material. Letting muddy water sit can allow heavier particles to fall to the bottom. Cloth or another coarse barrier can catch leaves, insects, and larger debris.
+---
 
-Useful? Yes.
+# PART I — WATER BEFORE THE FAUCET
 
-Proof the water is safe? No.
+## No running water does not mean no water system
+A family carrying water from a well, collecting rain from a roof, storing monsoon water in a reservoir, drawing from a river, or protecting a spring is still operating a water system.
 
-### 2. Filtration
-Filtration passes water through material that catches or retains particles. Fine sand can remove much smaller suspended material than gravel. Properly designed slow-sand systems also rely on biological activity near the top of the sand bed.
+The pieces may be simple:
 
-### 3. Adsorption
-Activated carbon works differently. Contaminants can attach to its enormous internal surface area. This can help with certain chemicals, tastes, and odors depending on the carbon and system.
+**SOURCE → COLLECTION → CLARIFICATION → TREATMENT → STORAGE → USE**
+
+But simple does not mean thoughtless.
+
+Where centralized treatment is absent, people have had to solve water problems with what their place provides: sunlight, fuel, cloth, clay, sand, stone, metals, seeds, reservoirs, cisterns, gravity, time and community labor.
+
+That is why water practices differ around the world.
+
+### Climate changes the problem
+A monsoon region may need to capture enormous amounts of seasonal rain and hold it through dry months. An arid region may organize life around wells, tanks or reservoirs. A cold region may have abundant water locked in ice and snow. A tropical household may fight rapid biological growth and contamination in warm stored water.
+
+### Source changes the problem
+Clear groundwater and muddy river water do not start with the same risks. Rainwater collected from a roof can pick up debris, animal waste and roofing materials. A spring can be clean at the emergence point and contaminated downstream.
+
+### Fuel changes the solution
+Boiling requires energy. Where wood, gas or electricity is expensive or scarce, a method that depends on long heating times can be unrealistic even if it works microbiologically.
+
+### Materials change the solution
+A community with local sand, cloth, ceramic vessels, copper, Moringa trees or intense sunlight has a different tool kit from a household with disposable filter cartridges and pressurized plumbing.
+
+The first “lost knowledge” lesson is this:
+
+**A method makes sense inside a place. Learn the place before judging the method.**
+
+---
+
+# PART II — A WORLD OF WATER SOLUTIONS
+
+## India — water as collection, inspection, treatment and storage
+Historical Indian records do not describe one single purification trick. They describe a collection of practices.
+
+Texts and later analyses document water inspection, cloth filtration, settling/clarification, heat, sunlight, plant materials and deliberate storage. Ancient and medieval water engineering also included reservoirs, linked ponds, stepwells, rain harvesting and desilting.
+
+At Dholavira, in an arid part of what is now Gujarat, a large portion of the fortified city was devoted to interconnected reservoirs supplied by harvested rain and seasonal streams.
+
+That is not a kitchen filter. It is water knowledge at the settlement scale.
+
+## West Africa — local plants can become treatment tools
+Moringa oleifera seeds contain proteins that can act as coagulants. Coagulation means helping tiny suspended particles clump together so they can settle or be removed more easily.
+
+Researchers have studied Moringa-based treatment in African settings, including Nigeria and Guinea-Bissau. The science is interesting because it shows that “plant based” does not have to mean mystical. A natural material can have a measurable chemical/physical job.
+
+But do not skip the next question.
+
+**Does clearer water equal safe drinking water?**
+
+No. A coagulation step can be valuable and still need another step for microbial safety. Preparation, dose, source water and handling matter.
+
+## The important comparison
+A municipal plant may add a manufactured coagulant. A household may use a locally available plant protein. The deeper principle is the same:
+
+**tiny particles can be easier to remove after you make them gather into larger groups.**
+
+Different tool. Same job.
+
+That is the kind of comparison RRA cares about.
+
+---
+
+# PART III — INDIA & COPPER: WHEN TRADITION MEETS A LAB
+
+People have stored water in copper vessels in India for generations. That historical fact alone does not prove the practice works.
+
+So researchers tested it.
+
+In a 2009 laboratory study, water was deliberately inoculated with enteric bacteria including **E. coli, Salmonella Typhi and Vibrio cholerae**. After overnight storage in copper pots or contact with a copper device, the organisms were no longer recoverable by the culture method used, while control glass bottles still contained them. The copper measured in the water remained below the safety limit cited by the researchers.
+
+A separate study tested E. coli in copper vessels under different temperatures and pH levels. The rate of inactivation changed with those conditions.
+
+That gives us something stronger than “Grandma said copper is good.”
+
+It also gives us something narrower than “copper purifies water.”
+
+## What the evidence supports
+**Copper contact can inactivate certain bacteria under defined conditions.**
+
+## What it does not prove
+It does not prove that:
+- copper removes every pathogen;
+- copper removes arsenic, salt, pesticides or fuel;
+- every copper vessel performs the same;
+- five minutes is the same as overnight contact;
+- any unknown water becomes safe;
+- drinking copper-stored water treats disease or improves health beyond the demonstrated antimicrobial effect.
+
+This is how old knowledge and modern evidence should meet.
+
+Do not worship tradition.
+
+Do not dismiss it either.
+
+**Ask what people observed. Find a plausible mechanism. Test it. State the result at the size the evidence earned.**
+
+---
+
+# PART IV — THE SIX WATER JOBS PEOPLE MIX TOGETHER
+
+## 1. Collection and source protection
+The cheapest contaminant to remove is the one that never reaches the water.
+
+Where are animals, septic systems, waste, fuel, chemicals and floodwater in relation to the source? What runs downhill? What lands on the roof? What happens after a storm?
+
+## 2. Settling and clarification
+Let gravity do work. Larger particles settle. Coagulants can help smaller suspended material clump together.
+
+This can make later filtration or disinfection more effective.
+
+## 3. Filtration
+Cloth catches larger debris. Gravel supports and prefilters. Fine sand can retain smaller particles. Proper slow-sand/biosand systems can also develop biological activity that contributes to microbial reduction.
+
+A bottle filled with sand for ten minutes is not automatically a mature biosand filter.
+
+## 4. Adsorption
+Activated carbon has enormous internal surface area. Certain compounds stick to that surface.
 
 **Ordinary charcoal is not automatically activated carbon.**
 
-Burned wood from a campfire may look similar, but documented activated-carbon performance comes from carbon processed to create a highly porous adsorption medium.
+## 5. Disinfection
+Heat, chemical disinfectants and other validated processes can kill or inactivate microorganisms.
 
-### 4. Biological treatment
-A mature slow-sand filter can develop a biologically active layer that contributes to microorganism reduction. That process takes time and depends on correct construction, flow, maintenance, and source water.
+Filtration and disinfection are different jobs.
 
-A plastic bottle filled with sand five minutes ago is not the same system.
+## 6. Storage and handling
+Treatment can succeed and the system can still fail afterward. Dirty hands, cups, containers, lids or ladles can recontaminate water.
 
-### 5. Disinfection
-Disinfection is intended to kill or inactivate disease-causing microorganisms. Boiling and correctly used disinfectants can perform this job.
-
-Filtration and disinfection are not interchangeable words.
-
-### 6. Specialized chemical treatment
-Some dissolved contaminants require technologies completely different from a simple sand or carbon filter. Depending on the contaminant, treatment can involve reverse osmosis, ion exchange, specialized adsorption media, distillation, or abandoning the contaminated source.
-
-This is why **“I have a filter”** is not enough information.
+The container is part of the system. Copper research makes that especially interesting because the container material itself can interact with microorganisms.
 
 ---
 
-# THEN — Household water was a whole system
+# PART V — SOUND, FREQUENCY & WATER
 
-Before most households could assume treated municipal water would arrive at the tap, families had to think about the full chain:
+Here is where people often split into two camps too quickly.
 
-**Where is the water coming from?**
+One side says, “Frequency changes water.”
 
-**What could contaminate it?**
+The other says, “That is nonsense.”
 
-**How do we move it?**
+Both statements are too broad.
 
-**Where do we store it?**
+## Sound is energy moving through matter
+Sound waves create pressure changes. In water and other liquids, acoustic fields can create currents, standing-wave patterns and forces.
 
-**Does it need filtering?**
+Engineers use those forces on purpose.
 
-**Does it need sterilizing or disinfecting?**
+Modern **acoustofluidics** can move, merge and split tiny droplets without touching them. Standing acoustic fields can organize water-rich droplets into repeating patterns.
 
-**How do we keep clean water clean after treatment?**
+So if you have watched water or particles form patterns while a surface or speaker vibrates, you did not imagine the basic physics.
 
-A 1918 USDA farm-water bulletin discussed wells, springs, drainage, storage, filters and treatment as parts of the same household system. It also warned that a filter could improve purity and safety without being a guarantee.
+**Applied vibration can change the motion and visible organization of a liquid.**
 
-That matters because one of the useful things modern convenience can remove is not merely labor. It can remove **understanding of the system behind the convenience**.
+## Molecular water responds to frequency too
+Water molecules are connected by a constantly changing hydrogen-bond network. Infrared and terahertz spectroscopy lets researchers excite and measure specific molecular and intermolecular motions.
 
-We should not romanticize the old days. Waterborne disease was real and deadly. The valuable lesson is that serious water management required people to understand sources, contamination routes, maintenance and multiple defenses.
+Experiments show frequency-dependent responses in those motions.
 
----
+Again: energy at particular frequencies can affect water.
 
-# WHAT CHANGED?
+But now comes the evidence question that separates a demonstration from a conclusion.
 
-Modern public water systems moved much of this work away from the household.
+## What happens when the energy stops?
+Liquid water is extremely dynamic. Its hydrogen-bond network rearranges on astonishingly short timescales. Ultrafast studies have shown that persistent structural correlations can disappear in tens of femtoseconds.
 
-That is a major public-health achievement, but it also means many people no longer know what happens between a river, aquifer, well or reservoir and the glass in their hand.
+A femtosecond is one quadrillionth of a second.
 
-A treatment plant may use several stages:
+That means a beautiful pattern while vibration is being applied is **not automatically evidence that ordinary drinking water has been permanently restructured after the vibration stops**.
 
-**coagulation → flocculation → sedimentation → filtration → disinfection**
+To prove a lasting change, we would need to define the change, measure it after exposure, show how long it lasts, reproduce it and rule out simpler explanations such as temperature, dissolved gas, particles, container vibration or ongoing mechanical forcing.
 
-The order and technology vary, but the larger lesson is consistent:
+## THE CLAIM LADDER
+Use this every time a water-frequency claim appears:
 
-**different stages solve different problems.**
+1. **Observation:** What visibly or measurably changed?
+2. **Mechanism:** What force/process could cause it?
+3. **Persistence:** Does the change remain after the force stops?
+4. **Replication:** Can independent experiments reproduce it?
+5. **Biological effect:** Does it change a living system?
+6. **Health effect:** Does that biological change improve or harm health?
+7. **Practical recommendation:** Is the effect large, reliable and safe enough to tell people to act on it?
 
-That exact principle matters on a homestead, in an emergency, with a private well, when evaluating a household filter, and when someone online tells you that three layers of natural material can “purify” anything.
+Evidence at Step 1 does not automatically carry you to Step 7.
 
----
-
-# THE MATERIALS
-
-## Cloth
-Good for: larger debris and some suspended material.
-
-Not proof of: microbial safety or dissolved-chemical removal.
-
-Think of cloth as a first screen, not a complete treatment system.
-
-## Gravel
-Good for: catching larger particles, supporting finer filter layers, helping distribute flow and preventing fine media from washing out of a properly designed filter.
-
-Not good for: being treated as the layer that magically makes water potable.
-
-## Sand
-Fine sand can trap smaller suspended material. In a mature, correctly designed slow-sand system, the surface biological layer can also contribute to microorganism reduction.
-
-What matters:
-- grain size;
-- depth;
-- flow rate;
-- source-water quality;
-- biological maturity;
-- maintenance;
-- safe storage after filtration.
-
-That is a real process—not “throw some playground sand in a bottle.”
-
-## Ordinary charcoal
-Historically used in filters and still common in homemade-filter demonstrations.
-
-But be precise: ordinary charcoal is not automatically a tested activated-carbon treatment medium.
-
-## Activated carbon
-Activated carbon is manufactured to create enormous internal surface area. It can adsorb certain compounds and often improves taste and odor. Depending on the product and design, it can reduce particular contaminants.
-
-But carbon is not a universal answer. It does not automatically remove every chemical and generally should not be treated as the germ-killing stage.
-
-## Heat / boiling
-Boiling can inactivate disease-causing microorganisms when properly performed.
-
-It does not remove most salts, metals or many other dissolved chemicals. In some contamination situations, boiling can actually concentrate nonvolatile contaminants as water evaporates.
-
-Again: match the treatment to the problem.
+That does not make Step 1 unimportant. It tells you what to investigate next.
 
 ---
 
-# LOST KNOWLEDGE — Source protection comes first
-
-People tend to start thinking about water when they are standing at the sink looking for a filter.
-
-A stronger system starts farther upstream.
-
-Historical rural guidance paid close attention to where a well or spring sat in relation to drainage, livestock, waste, flooding and surrounding land.
-
-That is still powerful thinking.
-
-Ask:
-- Where does the water originate?
-- What is uphill or upstream?
-- Where does stormwater flow?
-- Could flooding reach the source?
-- Where are septic systems, animal areas, fuel, chemicals or waste stored?
-- How is the water stored after collection?
-- What changes seasonally?
-
-A contaminant that never reaches the source does not need to be removed later.
-
-**Prevention is a treatment stage too.**
-
----
-
-# MYTH VS EVIDENCE
-
-## “If the water comes out clear, the filter worked.”
-It proved that the filter changed something visible. It did not prove the water is microbiologically or chemically safe.
-
-## “Charcoal purifies water.”
-Too broad. Proper activated carbon can adsorb specific contaminants. Ordinary charcoal and activated carbon are not automatically equivalent, and carbon does not solve every hazard.
-
-## “Natural means safe.”
-Nature produces arsenic, pathogens, toxic metals, harmful algae, parasites and many other hazards. Natural is a description of origin, not a safety test.
-
-## “Boiling fixes everything.”
-Boiling is powerful for microbial risk, but it is not a universal chemical-removal process.
-
-## “Modern means better.”
-Not automatically. Modern treatment can be highly effective because it combines tested processes, monitoring and verification. But a complicated product can also be poorly matched to the actual contaminant. Judge the method by what it does and the evidence supporting it.
-
-## “Old methods were better because people survived using them.”
-Survival is not proof of reliability. Historical communities also suffered epidemics and preventable disease. Keep what worked; understand what did not.
-
----
-
-# FAMILY LAB — Dirty Is Visible. Danger Isn't.
+# FAMILY INVESTIGATION — MAKE WATER MOVE
 
 ## Purpose
-Build a safe demonstration filter and learn the difference between **what you observed** and **what you assumed**.
+Observe a real effect of vibration on water and practice stopping at what the experiment proves.
 
-## Do not drink the experiment
-This lab uses simulated dirty water. The finished water is for observation only.
+## Setup
+Use a shallow transparent dish with clean water and a safe low-amplitude vibration source such as a speaker positioned so the container cannot fall or spill onto electronics. An adult controls the setup.
 
-## Materials
-- clear bottle or transparent column;
-- clean collection container;
-- washed gravel;
-- washed sand;
-- clean cloth or filter fabric;
-- optional commercially sold activated carbon for demonstration;
-- clean water;
-- potting soil;
-- small leaves or plant bits;
-- optional tiny amount of food coloring;
-- measuring cup;
-- timer;
-- notebook.
+Optional: add a few tiny inert floating particles only to make surface motion easier to see.
 
-## Build
-Design the layers before you assemble them.
+## Test
+Try several tones/notes at modest volume. Photograph or video the surface from the same angle.
 
 Record:
-1. Which layer is first?
-2. Why did you put it there?
-3. What do you predict each material will remove?
-4. Which material do you think controls flow rate?
+- frequency/note if known;
+- volume setting;
+- water depth;
+- container shape;
+- visible pattern/motion;
+- what happens when the sound stops;
+- whether the same setup repeats the result.
 
-## Run 1
-Mix your simulated dirty water.
+## What did you prove?
+You may prove that vibration at your setup conditions changes surface motion or particle arrangement.
 
-Before filtration, record:
-- color;
-- cloudiness;
-- visible particles;
-- odor if any safe ingredient creates one;
-- volume;
-- temperature;
-- photo.
+You did **not** prove:
+- the water became healthier;
+- molecules stayed in that pattern;
+- the same tone does the same thing in every container;
+- a human body responds the same way;
+- a health condition can be treated with that frequency.
 
-Pour a measured amount through the filter.
+That boundary is not designed to kill curiosity.
 
-Record:
-- how long it takes;
-- final volume;
-- clarity;
-- remaining color;
-- visible particles;
-- changes in the layers;
-- where material accumulated.
-
-## The evidence question
-Now answer:
-
-**What did this experiment actually prove?**
-
-It may show that your media removed some visible material. It may show a change in color or flow. It may show which layer clogged first.
-
-It did **not** prove that the water is free of bacteria, viruses, parasites, arsenic, lead, pesticides or other contaminants you did not test.
-
-That distinction is the point of the experiment.
-
-## Run 2 — Change one thing
-Change only one variable:
-- reverse two layers;
-- change sand depth;
-- remove gravel;
-- compare with and without activated carbon;
-- slow the flow;
-- pre-settle the water first.
-
-Ask what changed and why.
+It is how curiosity becomes useful knowledge.
 
 ---
 
-# SOLVE IT — Water scenarios
+# PART VI — THE MOON, THE OCEAN & US
 
-## Scenario A — Muddy rain barrel after a storm
-Visible problem: suspended sediment.
-Unknowns: microorganisms, roof contamination, animal feces, metals/materials from roofing.
+The Moon moves oceans. That is not disputed.
 
-Question: Would a clearer appearance prove it is potable?
+So asking whether the Moon affects people is a fair question.
 
-No. Clarification solves only part of the unknown.
+But “the body is mostly water” is the beginning of the question, not the answer.
 
-## Scenario B — Clear private well water with arsenic above a health limit
-Would sand and gravel solve the problem?
+## Why oceans have tides
+The Moon’s gravity is not identical at every point across Earth. The difference in gravitational pull across an extended body contributes to tidal forces. Oceans can move across enormous basins, so that small differential force can produce large visible changes in sea level.
 
-Not simply because they are filters. Dissolved arsenic requires contaminant-specific treatment or another safe source.
+A human body is much smaller, its fluids are contained in tissues and vessels, and it is governed by many other forces. Water percentage by itself does not tell us the size of a lunar effect.
 
-## Scenario C — Backcountry surface water that looks perfectly clear
-Could microorganisms still be present?
+So we look for measurements.
 
-Yes. Appearance does not establish microbiological safety.
+## What human sleep studies found
+A 2013 laboratory analysis reported that around full moon participants took longer to fall asleep, slept less, had lower deep-sleep EEG activity and had lower melatonin. The volunteers were in controlled laboratory conditions, so direct moonlight did not explain the reported pattern.
 
-## Scenario D — Municipal water with unpleasant chlorine taste but no identified safety problem
-An appropriate activated-carbon filter may improve taste/odor, but removing residual disinfectant also means maintenance matters because microbial growth can occur in neglected systems.
+A 2014 analysis reported additional lunar-phase differences in sleep and cortical responsiveness.
+
+A 2021 field study followed Indigenous Toba/Qom communities in Argentina with different access to electric light and also examined an urban U.S. sample. Sleep tended to begin later and be shorter in the days before full moon. Moonlight in the early night was a plausible explanation, especially in communities with less artificial light.
+
+Then comes the part that must not be hidden.
+
+## Other researchers did not reproduce the original result
+A 2014 re-analysis of three larger sleep datasets failed to replicate the original lunar-sleep finding and raised the possibility that unpublished null findings could distort the literature.
+
+That is a real conflict.
+
+## New evidence keeps the question open
+A 2026 study reports that sleep timing in human groups and captive non-human primates synchronized with combined Moon/Sun gravimetric cycles. The authors propose gravitational variation as a candidate mechanism that could explain patterns not explained by moonlight alone.
+
+That is new and interesting.
+
+It is not permission to jump to “the Moon controls all human biology.”
+
+The responsible conclusion today is:
+
+**Some studies have measured lunar-linked sleep patterns. Other datasets have not reproduced them. Light is one plausible mechanism; newer work is investigating gravitational timing. The question is scientifically legitimate and not fully settled.**
+
+That is more interesting than either blind belief or automatic dismissal.
+
+---
+
+# FAMILY INVESTIGATION — MOON DATA, NOT MOON STORIES
+
+Track for at least several weeks:
+- bedtime;
+- estimated time to fall asleep;
+- wake time;
+- sleep quality (same 1–5 scale each day);
+- caffeine timing;
+- unusual stress/exercise;
+- artificial light/screens before bed;
+- whether moonlight was actually visible to you;
+- lunar phase, added after the daily observation if possible.
+
+Then ask:
+- Do you see a repeating pattern?
+- Is it large or tiny?
+- Does it remain after obvious schedule changes are considered?
+- Could light exposure explain it?
+- Does your personal pattern match published group data?
+
+Your journal is evidence about **you during that period**. It is not proof of a universal lunar law.
+
+---
+
+# PART VII — MYTH, EVIDENCE OR OPEN QUESTION?
+
+## “Natural means safe.”
+False. Nature produces pathogens, arsenic, toxic metals and poisons.
+
+## “Modern means better.”
+Not automatically. A modern device aimed at the wrong contaminant can fail while a simple old process aimed at the correct mechanism works.
+
+## “Traditional means proven.”
+No. Tradition proves that a practice was transmitted. It may point toward useful empirical knowledge, but efficacy still needs evidence.
+
+## “Copper water kills bacteria.”
+Too broad. Defined copper-contact experiments killed/inactivated certain tested bacteria under defined conditions. That is meaningful and narrower.
+
+## “Frequency cannot affect water.”
+False as a blanket statement. Acoustic and electromagnetic energy can measurably affect water systems.
+
+## “If frequency makes a pattern, the water is permanently structured.”
+Not established by the pattern alone.
+
+## “The Moon affects oceans, so it must affect human health through our body water.”
+The premise about tides is true. The health conclusion does not automatically follow. Human lunar research should be evaluated directly.
+
+## “Scientists proved the Moon affects sleep.”
+Too broad. Several studies report lunar-linked sleep effects; other analyses failed to replicate them. New work continues to investigate mechanism.
 
 ---
 
 # TRANSFER THE PRINCIPLE
 
 ## The principle
-**Diagnose before prescribing. Match the solution to the actual problem.**
+**Match the claim to the mechanism and the evidence.**
 
-Water makes this principle impossible to ignore because the wrong solution can fail even when it visibly appears successful.
+### Personal capability
+If you notice something other people dismiss, record it carefully. Define what you actually observed. Try to repeat it. Search for mechanisms and competing explanations. Curiosity becomes strength when it can survive testing.
 
-### Personal life
-Working harder is not always the solution. If the real problem is exhaustion, poor boundaries, missing skill, a bad process or an impossible workload, more effort may only push the same problem through the same broken system faster.
+### Communication & emotional intelligence
+Arguments often skip the observation and fight over explanations.
 
-### Emotional intelligence
-The behavior you see can be the sediment, not the source. Anger may sit on top of fear. Silence may come from overwhelm. Conflict may grow from unspoken expectations. Treating only the visible behavior can miss the thing feeding it.
+“I noticed you got quiet” is an observation.
 
-### Family
-If a family is strained by time, money and responsibility, a communication exercise may help—but it cannot manufacture hours or income. If communication is the problem, spending more money may not solve it either.
+“You got quiet because you do not care” is an explanation.
+
+Those are not the same level of claim.
 
 ### Business
-A company says, “We need more leads.” But what if existing leads are not answered? What if estimates take seven days? What if capacity is already full? Marketing could add more water to a clogged filter.
-
-Find the actual constraint first.
+A big company says a process increased productivity. Before copying it, ask: What was their staffing, volume, technology, customer type and bottleneck? A method can work in one environment and fail in another for the same reason a water method changes with climate and source.
 
 ### Money
-Cutting coffee is a favorite piece of generic financial advice. But if the real problem is a high-interest debt structure, unstable income, insurance cost or recurring contractual obligation, the coffee may not be the meaningful variable.
+An expensive filter does not prove the filter targets your contaminant. An expensive business tool does not prove it targets your bottleneck. **Cost is not fit.**
 
-### Leadership and community
-Good systems use layers:
-- prevent problems when possible;
-- detect what gets through;
-- respond appropriately;
-- verify the response worked;
-- maintain the system.
+### Family & community
+Tradition can carry generations of observation. Institutions can carry accumulated testing and infrastructure. Neither deserves automatic obedience. Neither deserves automatic rejection.
 
-One person, one rule, one filter or one institution should not have to be perfect for the whole system to survive.
+Use the evidence.
 
-## Where the analogy stops
-Humans are not contaminants and relationships are not plumbing systems. Use the analogy to understand diagnosis, layers, maintenance and matching solutions to problems—not to treat people as mechanical parts.
+### Leadership
+Strong leaders can say:
+- “This is demonstrated.”
+- “This is likely.”
+- “This is interesting but disputed.”
+- “We do not know yet.”
+- “This is a real observation, but the popular explanation outruns the evidence.”
+
+Knowing the difference is not weakness. It is judgment.
+
+## Where the comparison stops
+A physical water mechanism does not automatically explain emotions, spirituality, disease or human behavior. An analogy earns a question—not an answer.
 
 ---
 
-# FIELD NOTES — Questions worth keeping
+# FIELD NOTES — THE SEVEN QUESTIONS
+Whenever someone claims a water method works, ask:
 
-- What is my water source?
-- What are the realistic contamination pathways?
-- Am I trying to remove sediment, microorganisms, chemicals, taste/odor, salts, or something unknown?
-- What evidence shows my treatment addresses that problem?
-- What does the treatment **not** remove?
-- What maintenance does it require?
-- How could treated water become contaminated again?
-- How would I verify the system if the consequences were serious?
+1. **SOURCE —** Where did the water come from?
+2. **PROBLEM —** What exactly are we trying to remove or change?
+3. **METHOD —** What material/process is being used?
+4. **MECHANISM —** Why should it work?
+5. **CONDITIONS —** What time, energy, dose, flow, temperature or pH does it require?
+6. **STORAGE —** What happens after treatment?
+7. **VERIFICATION —** What evidence proves the claimed result?
+
+These questions work on a copper pot, a Moringa seed, a sand bed, a $500 filter, a vibrating speaker and a scientific paper.
 
 ---
 
 # Final lesson
+People did not wait for electricity, plumbing or disposable cartridges to begin solving water problems.
 
-The deepest lesson is not “sand filters water.”
+They observed. They adapted. They used local materials. Sometimes they found methods that modern experiments can explain. Sometimes they preserved beliefs that do not survive testing. Sometimes modern systems improved the method. Sometimes modern convenience made the underlying knowledge easier to forget.
 
-It is this:
+The Academy’s job is not to choose “old” or “new.”
 
-**Understand the system. Identify the problem. Choose the right process. Verify what happened. Do not claim more than you proved.**
+It is to recover the useful question:
+
+**What is happening here, why might it work, what does the evidence actually show, and what should we do with that knowledge now?**
 
 That is water knowledge.
 
-It is also life knowledge.
+That is responsible rebellion.
+
+And that way of thinking transfers almost everywhere.
 
 ---
 
 ## Research record
-The full clickable source audit for this working draft is stored in `sources.md`. Historical claims, current treatment distinctions and safety boundaries should remain linked to that record through final production.
+The full clickable source audit for this Revision 2 working draft is stored in `sources.md`. The source record deliberately includes supporting, limiting and conflicting evidence. No drinking-water treatment or health claim should be expanded beyond that record during design/layout.
