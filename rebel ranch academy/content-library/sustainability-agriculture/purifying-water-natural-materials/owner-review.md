@@ -1,9 +1,9 @@
 # RRA-2026-0001 — Owner Review History
 
 ## Current review status
-**REVISION 2 — APPROVED FOR FINAL PRODUCTION**
+**REVISION 3 — CORRECTIVE ADDITIVE INTEGRATION REQUIRED**
 
-Public release is **not** authorized by this approval.
+Public release is **not** authorized.
 
 ## Review package
 - `context-review.md`
@@ -14,6 +14,7 @@ Public release is **not** authorized by this approval.
 - `activities/dirty-is-visible-danger-isnt.md`
 - `pricing.md`
 - `qa-review.md`
+- `revision-impact.md`
 
 ## Review history
 
@@ -47,10 +48,27 @@ Public release is **not** authorized by this approval.
 - Sources approved as the reviewed working source set: **Yes**
 - Release approved: **No**
 
-## What changed from Revision 1
-Revision 2 expands the project from a mainly filtration-centered guide into a broader “lost water knowledge + modern evidence” investigation. It adds named global/traditional practices, Indian copper-vessel research, West African Moringa research, physical frequency/acoustic effects on water, molecular water-frequency evidence, lunar-human sleep research with conflicting results, and multiple new learner investigations.
+### Revision 3 — corrective integration
+- Opened: 2026-08-21
+- Reason: owner identified that Revision 2 effectively replaced substantial Revision 1 concept/research/content instead of adding to it.
+- Owner decision: **CORRECT ADDITIVELY**
+- Binding direction: preserve the useful Revision 1 filtration/natural-material foundation and integrate Revision 2 global/copper/frequency/lunar expansion into it.
+- Replacement/removal authorized: **No**
+- Baseline: Git commit `912bb980164cfc75bd8243ae32af61af7ceb27d8`
+- Revision impact record: `revision-impact.md`
+- Price direction: $39 remains a working approved direction, subject to final integrated-product scope check.
+- Sources: both Revision 1 and Revision 2 source value must remain auditable.
+- Release approved: **No**
 
-## Next controlled stage
-The approved research/content package may now move into final product production: editorial refinement, illustrations/diagrams, layout, Family Investigation Lab packaging, free evidence-literacy sample, and final production QA.
+## What Revision 3 must produce
 
-This approval does **not** authorize public release, deployment, sale, or publication. A separate release decision is required after final production is ready for owner review.
+Revision 3 must create one comprehensive project:
+
+**Revision 1 filtration/natural-material foundation + Revision 2 global/copper/frequency/lunar expansion.**
+
+The original filtration detail, experiments, scenarios, source-protection teaching, treatment distinctions, and `Diagnose before prescribing` transfer lesson must not disappear. The newer global practices, copper, Moringa, water-frequency, lunar research, and evidence-ladder teaching must be added to that foundation.
+
+## Required rule
+A `NEEDS MORE WORK` request is additive by default under `ACADEMY-REVISION-PRESERVATION-STANDARD.md`. A later approval does not authorize accidental loss of earlier material the owner expected to remain.
+
+This corrective revision must return to owner review before final designed/illustrated production proceeds.
