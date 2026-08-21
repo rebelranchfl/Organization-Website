@@ -1,0 +1,5 @@
+Safety copy of `project.json` before approved-handoff recovery.
+
+Original blob SHA: 31dd2c3855563d1261001fa4bb1a77f658d91427
+
+The complete original remains recoverable from Git history at this blob/preceding commit. This safety record exists to satisfy the pre-edit backup requirement without altering the source file before the change description and backup record exist.
