@@ -9,3 +9,7 @@ export const supabase = createClient(
   SUPABASE_URL,
   SUPABASE_PUBLISHABLE_KEY
 );
+
+if (window.location.pathname.endsWith('/operations-review.html') || window.location.pathname === '/operations-review.html') {
+  import('./operations-review-enhancements.js');
+}
