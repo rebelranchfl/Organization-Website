@@ -35,15 +35,26 @@
     const addAdminOperationsPath = () => {
       const roleLine = document.getElementById('dashboard-roles');
       const pathGrid = document.querySelector('#dashboard .path-grid');
-      if (!roleLine || !pathGrid || document.getElementById('admin-operations-review-path')) return;
+      if (!roleLine || !pathGrid) return;
       if (!/administrator/i.test(roleLine.textContent || '')) return;
 
-      const card = document.createElement('a');
-      card.id = 'admin-operations-review-path';
-      card.className = 'path-card';
-      card.href = 'operations-review.html';
-      card.innerHTML = `<h3>Operations Review</h3><p>Owner control for Academy content development, live agent progress, source review, revisions, and approval decisions.</p><span class="path-link-text">Open Operations Review</span>`;
-      pathGrid.append(card);
+      if (!document.getElementById('admin-operations-review-path')) {
+        const card = document.createElement('a');
+        card.id = 'admin-operations-review-path';
+        card.className = 'path-card';
+        card.href = 'operations-review.html';
+        card.innerHTML = `<h3>Operations Review</h3><p>Owner control for Academy content development, live agent progress, source review, revisions, and approval decisions.</p><span class="path-link-text">Open Operations Review</span>`;
+        pathGrid.append(card);
+      }
+
+      if (!document.getElementById('admin-store-manager-path')) {
+        const storeCard = document.createElement('a');
+        storeCard.id = 'admin-store-manager-path';
+        storeCard.className = 'path-card';
+        storeCard.href = 'store-manager.html';
+        storeCard.innerHTML = `<h3>Store Manager</h3><p>Owner control for what's visible and featured on the Rebel Ranch store, independent of Printify.</p><span class="path-link-text">Open Store Manager</span>`;
+        pathGrid.append(storeCard);
+      }
     };
 
     addAdminOperationsPath();
