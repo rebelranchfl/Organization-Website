@@ -1,0 +1,67 @@
+{
+  "project_id": "RRA-2026-0002",
+  "working_title": "Know Your Water — Home & Well Testing",
+  "slug": "know-your-water-home-well-testing",
+  "learning_area": "sustainability-agriculture",
+  "named_program": null,
+  "created_at": "2026-08-21T18:12:07-04:00",
+  "created_by": "RRA Opportunity Intelligence / Research Agent",
+  "current_status": "READY_FOR_REVIEW",
+  "workflow_stage": "RESEARCH_REVIEW",
+  "revision_number": 1,
+  "source_opportunity": {
+    "opportunity_id": "5dd2b223-3f39-45d9-ba43-fa749a31be7c",
+    "opportunity_key": "water-testing-results",
+    "parent_project_id": "RRA-2026-0001",
+    "opportunity_score": 91,
+    "score_confidence": "HIGH",
+    "recommendation": "PURSUE_NOW"
+  },
+  "owner_input": {
+    "idea": "Opportunity Intelligence spin-off: teach home/private-well testing as the diagnostic front door for safe water decisions.",
+    "owner_notes": "Use Academy Opportunity Intelligence to spin strong branches into research without waiting for the parent Water product to finish.",
+    "requested_audience": [],
+    "requested_angle": "Function before form; diagnose before prescribing; use existing Water research without duplicating the parent product.",
+    "requested_sources": [],
+    "excluded_sources": []
+  },
+  "context_review": {
+    "status": "COMPLETE",
+    "completed_at": "2026-08-21T18:12:07-04:00",
+    "documents_reviewed": ["AGENTS.md", "docs/rebel-ranch-ecosystem-charter.md", "docs/non-negotiables.md", "REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md", "Program Hub README.md", "ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md", "ACADEMY-CONTENT-PROJECT-SCHEMA.md", "ACADEMY-REVISION-PRESERVATION-STANDARD.md", "ACADEMY-SOURCE-REVIEW-POLICY.md", "ACADEMY-PRODUCT-PHASE-WORKFLOW-EXTENSION.md", "ACADEMY-THINK-LIKE-A-REBEL-FRAMEWORK.md"],
+    "websites_reviewed": ["https://rebelranchministries.org", "https://academy.rebelranchministries.org (crawler attempted; internal fetch error; current GitHub hub source reviewed instead)"],
+    "audiences_identified": ["private-well households", "rural Florida families", "homesteaders", "homeowners", "parents/homeschool families"],
+    "learning_area_reason": "Water testing is a practical Sustainability & Agriculture skill and a prerequisite to responsible treatment decisions.",
+    "conflicts_found": []
+  },
+  "research": {
+    "status": "COMPLETE",
+    "started_at": "2026-08-21T18:12:07-04:00",
+    "completed_at": "2026-08-21T18:12:07-04:00",
+    "source_count": 9,
+    "primary_or_direct_source_count": 9,
+    "conflicts_found": ["EPA's broad annual baseline includes total coliform, nitrate, TDS and pH; Florida's routine recommendation emphasizes bacteria and nitrate and adds lead periodically for most homeowners. The difference is preserved as jurisdiction/context guidance, not forced into one universal panel."],
+    "unresolved_questions": ["consumer home-test-kit performance and certification", "nationwide state-by-state contaminant matrices", "location-specific specialized panel logic"],
+    "sources_file": "sources.md",
+    "research_file": "research.md"
+  },
+  "concept": {
+    "status": "NOT_STARTED",
+    "learning_outcome": null,
+    "central_question": null,
+    "major_principles": [],
+    "historical_or_lost_knowledge_angle": null,
+    "current_use_angle": null,
+    "transfer_the_principle_summary": null,
+    "proposed_format": null,
+    "activity_types": [],
+    "visual_needs": []
+  },
+  "content": {"status": "NOT_STARTED", "master_content_file": null},
+  "materials": {"status": "NOT_STARTED", "material_types": [], "files": [], "preview_files": []},
+  "pricing": {"status": "NOT_STARTED", "proposed_price": null, "currency": "USD", "role": null, "reasoning_file": null, "owner_approved_price": null},
+  "qa": {"status": "COMPLETE", "completed_at": "2026-08-21T18:12:07-04:00", "qa_file": "qa-review.md", "blockers": []},
+  "owner_review": {"status": "PENDING", "latest_decision": null, "latest_comment": null, "reviewed_at": null, "review_history_file": "owner-review.md", "source_decisions_complete": false},
+  "release": {"status": "NOT_STARTED", "approved_at": null, "published_at": null, "destination": null, "live_url": null, "release_files": [], "release_notes": null},
+  "agent": {"active_agent": null, "last_agent": "RRA Research/Content Agent", "session_title": "RRA Content Agent", "last_updated_at": "2026-08-21T18:12:07-04:00"}
+}
