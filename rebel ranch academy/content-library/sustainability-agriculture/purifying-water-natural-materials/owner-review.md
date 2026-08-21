@@ -1,7 +1,7 @@
 # RRA-2026-0001 — Owner Review History
 
 ## Current review status
-**REVISION 2 — AGENT WORKING**
+**REVISION 2 — READY FOR OWNER REVIEW**
 
 ## Review package
 - `context-review.md`
@@ -27,10 +27,24 @@
 
 ### Revision 2
 - Started: 2026-08-21
+- Completed for review: 2026-08-21
 - Assigned to: ChatGPT/GPT-5.6 Sol
-- Required reopened stages: research/source audit, concept, content, pricing check, QA, owner-review packaging
-- Direction: Expand beyond the original U.S.-centered treatment frame. Investigate documented household and traditional practices across different regions; distinguish water collection/storage/clarification/disinfection; investigate copper-vessel evidence; examine acoustic/frequency effects on water without converting physical demonstrations into unsupported health claims; and examine lunar effects on human physiology with both supporting and non-replicating evidence.
-- Current decision: Pending Revision 2 completion
+- Owner feedback addressed: yes
+- Research/source audit expanded: yes
+- Master content rewritten: yes
+- QA passed: yes
+- Proposed format: 45–60 page illustrated RRA Field Guide + Family Investigation Lab + free evidence-literacy sample
+- Proposed price: $39 (proposal only)
+- Source count: 24 audited source entries
+- Key evidence conflict: lunar-human sleep research contains both positive findings and direct non-replication; new 2026 gravimetric evidence is included as new, not settled.
+- Key claim boundary: frequency/acoustic energy demonstrably affects water systems, but that does not by itself establish permanent beneficial restructuring or a health effect.
+- Owner decision: Pending
+- Price approved: No
+- Sources approved: Pending
+- Release approved: No
+
+## What changed from Revision 1
+Revision 2 expands the project from a mainly filtration-centered guide into a broader “lost water knowledge + modern evidence” investigation. It adds named global/traditional practices, Indian copper-vessel research, West African Moringa research, physical frequency/acoustic effects on water, molecular water-frequency evidence, lunar-human sleep research with conflicting results, and multiple new learner investigations.
 
 ## Required rule
-Approval of research/content does not automatically authorize public release unless the owner's dashboard action explicitly authorizes the release stage.
+Approval of research/content does not automatically authorize public release. Designed/illustrated production and any public release remain separate controlled stages.
