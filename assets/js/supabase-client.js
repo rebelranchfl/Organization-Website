@@ -13,4 +13,5 @@ export const supabase = createClient(
 if (window.location.pathname.endsWith('/operations-review.html') || window.location.pathname === '/operations-review.html') {
   import('./operations-review-enhancements.js');
   import('./operations-review-owner-controls.js');
+  import('./operations-review-diff-edit.js');
 }
