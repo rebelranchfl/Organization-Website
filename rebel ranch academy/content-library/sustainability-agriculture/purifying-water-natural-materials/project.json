@@ -6,7 +6,7 @@
   "named_program": null,
   "created_at": "2026-08-20T21:01:00-04:00",
   "created_by": "owner",
-  "current_status": "READY_FOR_REVIEW",
+  "current_status": "APPROVED",
   "revision_number": 2,
   "owner_input": {
     "idea": "Purifying water with natural materials",
@@ -32,7 +32,7 @@
     "source_count": 24,
     "primary_or_direct_source_count": 17,
     "conflicts_found": ["Lunar-human sleep literature contains positive studies and direct non-replication/publication-bias concerns.","Visible acoustic patterns and molecular frequency responses demonstrate effects while not establishing permanent beneficial restructuring of ordinary drinking water.","Traditional water practices document use; efficacy varies by mechanism, preparation and conditions."],
-    "unresolved_questions": ["Owner source acceptance/rejection remains pending.","Final visual production may reveal additional source needs for specific diagrams."],
+    "unresolved_questions": ["Final visual production may reveal additional source needs for specific diagrams."],
     "sources_file": "sources.md",
     "research_file": "research.md"
   },
@@ -48,16 +48,16 @@
     "activity_types": ["simulated-water filtration","global-method matching","copper-study evidence analysis","safe sound/water observation","lunar sleep journal","evidence ladder","scenario diagnosis"],
     "visual_needs": ["global water-practice map","source-to-storage system","copper evidence spread","Moringa coagulation sequence","acoustic water diagram","molecular rapid-rearrangement graphic","Moon/tide vs human-evidence panel","evidence ladder","treatment decision map"]
   },
-  "content": {"status":"COMPLETE_WORKING_DRAFT","master_content_file":"master-content.md"},
+  "content": {"status":"APPROVED_FOR_FINAL_PRODUCTION","master_content_file":"master-content.md"},
   "materials": {
-    "status":"WORKING_DRAFT_COMPLETE",
+    "status":"APPROVED_FOR_FINAL_PRODUCTION",
     "material_types":["expanded field guide master content","family investigations","source audit","pricing proposal"],
     "files":["context-review.md","sources.md","research.md","concept.md","master-content.md","activities/dirty-is-visible-danger-isnt.md","pricing.md","qa-review.md","owner-review.md"],
     "preview_files":["master-content.md","concept.md","sources.md"]
   },
-  "pricing": {"status":"PROPOSED","proposed_price":39,"currency":"USD","role":"paid core field guide with free public evidence-literacy sample","reasoning_file":"pricing.md","owner_approved_price":null},
+  "pricing": {"status":"OWNER_APPROVED_DIRECTION","proposed_price":39,"currency":"USD","role":"paid core field guide with free public evidence-literacy sample","reasoning_file":"pricing.md","owner_approved_price":39},
   "qa": {"status":"PASS_READY_FOR_OWNER_REVIEW","completed_at":"2026-08-21T01:55:00-04:00","qa_file":"qa-review.md","blockers":[]},
-  "owner_review": {"status":"PENDING_REVISION_2","latest_decision":"NEEDS_MORE_WORK","latest_comment":"Expand global/traditional water practices, copper, frequency/energy and lunar-human evidence.","reviewed_at":"2026-08-21T01:55:29Z","review_history_file":"owner-review.md","source_decisions_complete":false},
-  "release": {"status":"NOT_STARTED","approved_at":null,"published_at":null,"destination":"","live_url":"","release_files":[],"release_notes":""},
-  "agent": {"active_agent":null,"last_agent":"ChatGPT/GPT-5.6 Sol","session_title":"RRA Content Agent automation run 1","last_updated_at":"2026-08-21T02:00:00-04:00"}
+  "owner_review": {"status":"APPROVED","latest_decision":"APPROVE","latest_comment":"","reviewed_at":"2026-08-21T06:54:56-04:00","review_history_file":"owner-review.md","source_decisions_complete":true},
+  "release": {"status":"NOT_STARTED","approved_at":"2026-08-21T06:54:56-04:00","published_at":null,"destination":"","live_url":"","release_files":[],"release_notes":"Content/research/pricing direction approved for final production. Public release not authorized."},
+  "agent": {"active_agent":null,"last_agent":"ChatGPT/GPT-5.6 Sol","session_title":"RRA Content Agent approval processing","last_updated_at":"2026-08-21T06:57:00-04:00"}
 }
