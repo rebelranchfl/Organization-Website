@@ -354,9 +354,9 @@ Consider:
 - what is useful for social marketing and trust-building;
 - what supports the ministry mission even when it does not directly generate revenue.
 
-Where documented market comparables support it, RRA may communicate the approximate market value of a free resource, for example explaining that comparable learning materials commonly sell within a documented range while RRA provides the resource free as part of its educational mission.
+Where documented market comparables support it, RRA may communicate the approximate market value of a free resource, for example explaining that comparable learning materials addressing the same or materially similar learning job commonly sell within a documented range while RRA provides the resource free as part of its educational mission.
 
-Do not invent comparison values or imply equivalence to products that are materially different.
+Do not invent comparison values, cherry-pick extreme prices, or imply equivalence to products that are materially different.
 
 ---
 
