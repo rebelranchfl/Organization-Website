@@ -6,7 +6,7 @@
   "named_program": null,
   "created_at": "2026-08-20T21:01:00-04:00",
   "created_by": "owner",
-  "current_status": "NEEDS_MORE_WORK",
+  "current_status": "READY_FOR_REVIEW",
   "revision_number": 3,
   "owner_input": {
     "idea": "Purifying water with natural materials",
@@ -19,45 +19,179 @@
   "context_review": {
     "status": "COMPLETE",
     "completed_at": "2026-08-21T01:10:00-04:00",
-    "documents_reviewed": ["/AGENTS.md","/docs/rebel-ranch-ecosystem-charter.md","/docs/non-negotiables.md","/rebel ranch academy/REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md","/rebel ranch academy/Rebel-Ranch-Academy-Program-Hub/README.md","/rebel ranch academy/ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md","/rebel ranch academy/ACADEMY-CONTENT-PROJECT-SCHEMA.md","/rebel ranch academy/ACADEMY-REVISION-PRESERVATION-STANDARD.md"],
-    "websites_reviewed": ["https://rebelranchministries.org","https://academy.rebelranchministries.org (direct retrieval attempted; repository README used for current hub direction when retrieval failed)"],
-    "audiences_identified": ["adults and families","homeschool families","teens with adult supervision","homesteaders and agriculture learners","household resilience learners"],
+    "documents_reviewed": [
+      "/AGENTS.md",
+      "/docs/rebel-ranch-ecosystem-charter.md",
+      "/docs/non-negotiables.md",
+      "/rebel ranch academy/REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md",
+      "/rebel ranch academy/Rebel-Ranch-Academy-Program-Hub/README.md",
+      "/rebel ranch academy/ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md",
+      "/rebel ranch academy/ACADEMY-CONTENT-PROJECT-SCHEMA.md",
+      "/rebel ranch academy/ACADEMY-REVISION-PRESERVATION-STANDARD.md"
+    ],
+    "websites_reviewed": [
+      "https://rebelranchministries.org",
+      "https://academy.rebelranchministries.org (direct retrieval attempted; repository README used for current hub direction when retrieval failed)"
+    ],
+    "audiences_identified": [
+      "adults and families",
+      "homeschool families",
+      "teens with adult supervision",
+      "homesteaders and agriculture learners",
+      "household resilience learners"
+    ],
     "learning_area_reason": "Water systems, resourcefulness, sustainability and practical independence are core Sustainability & Agriculture subjects; evidence-literacy transfers across RRA.",
-    "conflicts_found": ["Revision 2 broadened the project but displaced substantial Revision 1 material; Revision 3 must integrate additively against the preserved pre-Revision-2 baseline."]
+    "conflicts_found": [
+      "Revision 2 broadened the project but displaced substantial Revision 1 material; Revision 3 corrected this by restoring the pre-Revision-2 foundation and integrating the expansion additively."
+    ]
   },
   "research": {
-    "status": "REVISION_3_INTEGRATION_REQUIRED",
+    "status": "COMPLETE_REVISION_3_INTEGRATED",
     "started_at": "2026-08-21T07:01:00-04:00",
-    "completed_at": null,
+    "completed_at": "2026-08-21T08:00:00-04:00",
     "source_count": 24,
     "primary_or_direct_source_count": 17,
-    "conflicts_found": ["Lunar-human sleep literature contains positive studies and direct non-replication/publication-bias concerns.","Visible acoustic patterns and molecular frequency responses demonstrate effects while not establishing permanent beneficial restructuring of ordinary drinking water.","Traditional water practices document use; efficacy varies by mechanism, preparation and conditions.","Revision 1 filtration research must be restored as a distinct foundation rather than compressed away."],
-    "unresolved_questions": ["Integrated source audit must confirm Revision 1 filtration evidence and Revision 2 expansion evidence are both retained.","Final visual production may reveal additional source needs for specific diagrams."],
+    "conflicts_found": [
+      "Lunar-human sleep literature contains positive studies and direct non-replication/publication-bias concerns.",
+      "Visible acoustic patterns and molecular frequency responses demonstrate effects while not establishing permanent beneficial restructuring of ordinary drinking water.",
+      "Traditional water practices document use; efficacy varies by mechanism, preparation and conditions."
+    ],
+    "unresolved_questions": [
+      "Final visual production may reveal additional source needs for specific diagrams or captions."
+    ],
     "sources_file": "sources.md",
-    "research_file": "research.md"
+    "research_file": "research.md",
+    "baseline_commit": "912bb980164cfc75bd8243ae32af61af7ceb27d8",
+    "integration_result": "Revision 1 filtration, natural-material, source-protection and treatment-job research restored as the foundation; Revision 2 global, copper, Moringa, acoustic/frequency and lunar-human evidence retained as additive expansion."
   },
   "concept": {
-    "status": "REVISION_3_INTEGRATION_REQUIRED",
-    "learning_outcome": "Understand natural-material water treatment from source and contaminant through specific treatment jobs and limitations, then broaden that foundation into global/traditional practices, copper, Moringa, frequency/energy and lunar-human evidence while learning how to match claims to mechanisms and evidence.",
+    "status": "COMPLETE_REVISION_3_INTEGRATED",
+    "learning_outcome": "Identify the actual water problem before choosing treatment; understand the distinct jobs and limits of natural/material treatment methods; compare historical/global water systems by place and mechanism; investigate copper, Moringa, frequency and lunar-human questions with appropriate evidence boundaries; transfer diagnostic and evidence-literacy principles elsewhere.",
     "central_question": "What is the water problem, what can each method actually do, and what evidence shows the claim is the right size?",
-    "major_principles": ["Clear water is not automatically safe water.","Diagnose before prescribing; match treatment to the actual contaminant/problem.","Water treatment is a chain, not a magic ingredient.","Different materials solve different jobs.","Traditional and modern describe context, not truth value.","Local source, climate, fuel, materials and infrastructure shape water systems.","A real mechanism does not make a method universal.","Observation, mechanism, correlation, causation and health benefit are different levels of claim.","Prove only what the evidence proves."],
+    "major_principles": [
+      "Clear water is not automatically safe water.",
+      "Diagnose before prescribing; match treatment to the actual contaminant/problem.",
+      "Water treatment is a chain, not a magic ingredient.",
+      "Different materials solve different jobs.",
+      "Source protection is part of treatment.",
+      "Traditional and modern describe context, not truth value.",
+      "Local source, climate, fuel, materials and infrastructure shape water systems.",
+      "A real mechanism does not make a method universal.",
+      "Match the claim to the mechanism and evidence.",
+      "Observation, mechanism, persistence, replication, biological effect, health effect and recommendation are different levels of claim.",
+      "Prove only what the evidence proves."
+    ],
     "historical_or_lost_knowledge_angle": "Preserve the original whole-household/source-protection water-system teaching, then expand it with named global practices and laboratory testing of traditional methods.",
     "current_use_angle": "Use filtration, source protection, copper, Moringa, acoustics/frequency and lunar-human research to teach practical water knowledge and evidence literacy.",
-    "transfer_the_principle_summary": "Keep both transferable principles: Diagnose before prescribing / match the solution to the actual problem; and match the claim to the mechanism and evidence.",
-    "proposed_format": ["comprehensive illustrated RRA Field Guide","Family Investigation Lab","Free evidence-literacy sample"],
-    "activity_types": ["simulated-water filtration","scenario diagnosis","global-method matching","copper-study evidence analysis","safe sound/water observation","lunar sleep journal","evidence ladder","transfer-the-principle exercises"],
-    "visual_needs": ["source-to-cup treatment map","filter cutaway","slow-sand versus bottle-demo comparison","ordinary charcoal versus activated carbon","contaminant decision map","historical rural water system","global water-practice map","copper evidence spread","Moringa coagulation sequence","acoustic water diagram","molecular rapid-rearrangement graphic","Moon/tide vs human-evidence panel","evidence ladder","layered-defense diagram"]
+    "transfer_the_principle_summary": "Both transferable principles are preserved separately: Diagnose before prescribing / match the solution to the actual problem; and match the claim to the mechanism and evidence.",
+    "proposed_format": [
+      "45–60 page illustrated RRA Field Guide",
+      "Family Investigation Lab",
+      "2–3 page free evidence-literacy sample"
+    ],
+    "activity_types": [
+      "simulated-water filtration",
+      "change-one-variable comparison",
+      "four scenario diagnosis challenges",
+      "treatment-job matching",
+      "global-method matching",
+      "copper-study evidence analysis",
+      "safe sound/water observation",
+      "lunar sleep journal",
+      "evidence claim ladder",
+      "two transfer-the-principle exercises"
+    ],
+    "visual_needs": [
+      "source-to-cup treatment map",
+      "filter cutaway",
+      "slow-sand versus bottle-demo comparison",
+      "ordinary charcoal versus activated carbon",
+      "contaminant decision map",
+      "historical rural water system",
+      "four scenario cards",
+      "global water-practice map",
+      "copper evidence spread",
+      "Moringa coagulation sequence",
+      "acoustic water diagram",
+      "molecular rapid-rearrangement graphic",
+      "Moon/tide versus human-evidence panel",
+      "evidence claim ladder",
+      "layered-defense / diagnose-before-prescribing visual"
+    ]
   },
-  "content": {"status":"REVISION_3_INTEGRATION_REQUIRED","master_content_file":"master-content.md"},
+  "content": {
+    "status": "COMPLETE_REVISION_3_INTEGRATED",
+    "master_content_file": "master-content.md",
+    "preservation_check": "PASS — baseline-comparison QA confirms distinct Revision 1 teaching value remains and Revision 2 is additive."
+  },
   "materials": {
-    "status":"REVISION_3_INTEGRATION_REQUIRED",
-    "material_types":["integrated field guide master content","family investigations","source audit","pricing proposal"],
-    "files":["context-review.md","sources.md","research.md","concept.md","master-content.md","activities/dirty-is-visible-danger-isnt.md","pricing.md","qa-review.md","owner-review.md","revision-impact.md"],
-    "preview_files":["master-content.md","concept.md","sources.md","revision-impact.md"]
+    "status": "READY_FOR_OWNER_CONTENT_REVIEW",
+    "material_types": [
+      "integrated field guide master content",
+      "family investigations",
+      "source audit",
+      "pricing proposal",
+      "revision-impact record",
+      "baseline-comparison QA"
+    ],
+    "files": [
+      "context-review.md",
+      "sources.md",
+      "research.md",
+      "concept.md",
+      "master-content.md",
+      "activities/dirty-is-visible-danger-isnt.md",
+      "pricing.md",
+      "qa-review.md",
+      "owner-review.md",
+      "revision-impact.md"
+    ],
+    "preview_files": [
+      "master-content.md",
+      "concept.md",
+      "sources.md",
+      "revision-impact.md",
+      "qa-review.md"
+    ]
   },
-  "pricing": {"status":"OWNER_APPROVED_DIRECTION_RECHECK_AFTER_INTEGRATION","proposed_price":39,"currency":"USD","role":"paid core field guide with free public evidence-literacy sample","reasoning_file":"pricing.md","owner_approved_price":39},
-  "qa": {"status":"PENDING_REVISION_3_BASELINE_COMPARISON","completed_at":null,"qa_file":"qa-review.md","blockers":[]},
-  "owner_review": {"status":"NEEDS_MORE_WORK","latest_decision":"CORRECT_ADDITIVELY","latest_comment":"Revision 2 looked like it took over/replaced the initial concept and research rather than adding to it. Restore the initial foundation and add Revision 2 to it.","reviewed_at":"2026-08-21T07:01:00-04:00","review_history_file":"owner-review.md","source_decisions_complete":false},
-  "release": {"status":"NOT_STARTED","approved_at":null,"published_at":null,"destination":"","live_url":"","release_files":[],"release_notes":"Revision 2 approval remains in history, but final production is reopened because the owner identified unintended replacement of Revision 1 material. Public release not authorized."},
-  "agent": {"active_agent":null,"last_agent":"ChatGPT/GPT-5.6 Sol","session_title":"RRA revision preservation correction","last_updated_at":"2026-08-21T07:03:00-04:00"}
+  "pricing": {
+    "status": "PROPOSED_OWNER_REVIEW",
+    "proposed_price": 39,
+    "currency": "USD",
+    "role": "paid core illustrated field guide with free public evidence-literacy sample",
+    "reasoning_file": "pricing.md",
+    "owner_approved_price": 39,
+    "release_note": "Prior owner price direction is preserved; final public price still requires release authorization after production scope is delivered."
+  },
+  "qa": {
+    "status": "PASS_REVISION_3_BASELINE_COMPARISON",
+    "completed_at": "2026-08-21T08:00:00-04:00",
+    "qa_file": "qa-review.md",
+    "baseline_commit": "912bb980164cfc75bd8243ae32af61af7ceb27d8",
+    "blockers": []
+  },
+  "owner_review": {
+    "status": "PENDING",
+    "latest_decision": "CORRECT_ADDITIVELY",
+    "latest_comment": "Revision 2 looked like it took over/replaced the initial concept and research rather than adding to it. Restore the initial foundation and add Revision 2 to it.",
+    "reviewed_at": "2026-08-21T07:01:00-04:00",
+    "review_history_file": "owner-review.md",
+    "source_decisions_complete": false,
+    "next_decision": "Approve, Needs More Work, or Reject Revision 3 in Operations Review"
+  },
+  "release": {
+    "status": "NOT_STARTED",
+    "approved_at": null,
+    "published_at": null,
+    "destination": "",
+    "live_url": "",
+    "release_files": [],
+    "release_notes": "Content integration is ready for owner review. No publishing, deployment, sale, or final public price is authorized."
+  },
+  "agent": {
+    "active_agent": null,
+    "last_agent": "ChatGPT/GPT-5.6 Sol",
+    "session_title": "RRA Content Agent — Revision 3 additive integration",
+    "last_updated_at": "2026-08-21T08:00:00-04:00"
+  }
 }
