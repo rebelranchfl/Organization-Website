@@ -30,5 +30,38 @@
   const existingFooters = document.querySelectorAll('footer');
   const oldFooter = existingFooters[existingFooters.length - 1];
   if (oldFooter) oldFooter.replaceWith(footer); else root.append(footer);
+
+  if (window.location.pathname.endsWith('/account.html') || window.location.pathname === '/account.html') {
+    const addAdminOperationsPath = () => {
+      const roleLine = document.getElementById('dashboard-roles');
+      const pathGrid = document.querySelector('#dashboard .path-grid');
+      if (!roleLine || !pathGrid || document.getElementById('admin-operations-review-path')) return;
+      if (!/administrator/i.test(roleLine.textContent || '')) return;
+
+      const card = document.createElement('a');
+      card.id = 'admin-operations-review-path';
+      card.className = 'path-card';
+      card.href = 'operations-review.html';
+      card.innerHTML = `<h3>Operations Review</h3><p>Owner control for Academy content development, live agent progress, source review, revisions, and approval decisions.</p><span class="path-link-text">Open Operations Review</span>`;
+      pathGrid.append(card);
+    };
+
+    addAdminOperationsPath();
+    const roleLine = document.getElementById('dashboard-roles');
+    if (roleLine) {
+      const observer = new MutationObserver(addAdminOperationsPath);
+      observer.observe(roleLine, { childList: true, characterData: true, subtree: true });
+    } else {
+      const accountObserver = new MutationObserver(() => {
+        const loadedRoleLine = document.getElementById('dashboard-roles');
+        if (!loadedRoleLine) return;
+        addAdminOperationsPath();
+        accountObserver.disconnect();
+        const roleObserver = new MutationObserver(addAdminOperationsPath);
+        roleObserver.observe(loadedRoleLine, { childList: true, characterData: true, subtree: true });
+      });
+      accountObserver.observe(root, { childList: true, subtree: true });
+    }
+  }
 })();
 
