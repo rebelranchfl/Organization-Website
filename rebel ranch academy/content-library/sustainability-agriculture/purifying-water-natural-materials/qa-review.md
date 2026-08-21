@@ -1,108 +1,180 @@
-# RRA-2026-0001 — QA Review — Revision 2
+# RRA-2026-0001 — QA Review — Revision 3 Integrated
 
 **QA status:** PASS — READY FOR OWNER REVIEW
 
-## Owner-feedback coverage
-Owner asked for substantially deeper treatment of global water practices, copper storage in India, cultural differences in water handling, frequency/energy effects on water, and possible lunar effects on humans.
+**Baseline used:** pre-Revision-2 commit `912bb980164cfc75bd8243ae32af61af7ceb27d8`
 
-Coverage check:
-- named examples from places without centralized/running water: **pass**;
-- avoids treating Africa as one culture/practice: **pass**;
-- West African Moringa evidence included: **pass**;
-- Indian historical water practices included: **pass**;
-- copper-vessel antimicrobial studies included: **pass**;
-- explains why water systems differ by source/climate/fuel/material/infrastructure: **pass**;
-- acoustic/frequency effects on water supported with original experimental research: **pass**;
-- molecular-frequency response of water supported: **pass**;
-- permanent-water-memory extrapolation explicitly separated from demonstrated effects: **pass**;
-- Moon/ocean question treated as legitimate rather than dismissed: **pass**;
-- positive lunar-human studies included: **pass**;
-- non-replication/publication-bias challenge included: **pass**;
-- new 2026 gravimetric sleep study included and clearly labeled new/not settled: **pass**.
+**Revision rule:** Revision 1 filtration/natural-material foundation + Revision 2 global/copper/frequency/lunar expansion = one comprehensive project.
 
-## Context and Academy alignment
-- Governing documents re-read: yes
-- Current RRM public website reviewed: yes
-- Academy live URL retrieval attempted; current repository README used as authoritative public-hub direction when direct retrieval failed: yes
-- Learning area remains Sustainability & Agriculture: pass
-- Material does not turn RRA into agriculture-only education: pass
-- Responsible rebellion/evidence-first voice: pass
-- Required **TRANSFER THE PRINCIPLE** section: present
-- Required rule **Teach transferable principles, not isolated facts.**: satisfied
+---
 
-## Research integrity
-- Original copper studies used: yes
-- Original Moringa studies used: yes
-- Original acoustofluidic/water spectroscopy studies used: yes
-- Original lunar-sleep studies and direct challenge used: yes
-- Important conflicts shown rather than hidden: yes
-- Historical use separated from efficacy: yes
-- Correlation separated from mechanism/causation: yes
-- Authority treated as evidence source, not automatic proof: pass
+# 1. Mandatory baseline-preservation comparison
 
-## Safety
-### Drinking water
-Pass. The material does not instruct learners to drink output from demonstration filters, Moringa experiments, copper experiments or unknown water. It does not turn laboratory copper findings into a universal potable-water protocol.
+## KEEP — Revision 1 distinct teaching value
 
-### Biological experiments
-Pass. Learners are specifically directed to analyze published pathogen studies rather than culture pathogens at home.
+| Baseline element | Revision 3 result |
+|---|---|
+| Original question: what are you actually trying to remove? | **PASS — restored as opening foundation** |
+| Clear water is not automatically safe water | **PASS — explicit opening lesson** |
+| Separate treatment jobs rather than “one filter” | **PASS — expanded to seven jobs including safe storage** |
+| Cloth role/limits | **PASS** |
+| Gravel role/limits | **PASS** |
+| Sand role/limits | **PASS** |
+| Slow-sand/biosand vs quick bottle demo distinction | **PASS — explicit** |
+| Ordinary charcoal vs activated carbon | **PASS — explicit** |
+| Boiling/heat limitations | **PASS — explicit** |
+| Source protection as a treatment stage | **PASS — full dedicated section restored** |
+| Historical whole-household water-system framing | **PASS — dedicated section restored** |
+| Original Myth vs Evidence teaching | **PASS — expanded into Myth / Evidence / Open Question** |
+| `Dirty Is Visible. Danger Isn't.` full family lab | **PASS — full lab restored with Run 2 controlled variable** |
+| Original four water scenarios | **PASS — all four restored** |
+| Original TRANSFER THE PRINCIPLE: Diagnose before prescribing | **PASS — restored as its own full section** |
+| Personal/EI/family/business/money/leadership applications | **PASS — retained** |
+| Original Field Notes questions | **PASS — retained and expanded** |
+| Original final lesson: understand system / identify problem / verify | **PASS — preserved and broadened** |
 
-### Acoustic activity
-Pass with ordinary household caution. The activity uses modest vibration/sound for surface observation and makes no medical exposure recommendation. Final designed activity should add the practical instruction to keep water away from exposed electrical connections/equipment.
+**Baseline result:** No distinct Revision 1 concept, example, activity, scenario or transfer lesson identified in `revision-impact.md` disappeared without reason.
 
-### Lunar activity
-Pass. Sleep journaling is observational and does not recommend changing medical treatment or making health decisions from lunar phase.
+---
 
-## Claim-boundary audit
-**Supported at the stated level:**
-- copper contact can inactivate specific tested bacteria under defined conditions;
-- Moringa seed proteins can act as natural coagulants and have been studied for household treatment;
-- acoustic energy can move/pattern liquids;
-- THz/IR energy can excite water molecular/intermolecular modes;
-- liquid water’s hydrogen-bond network is highly dynamic;
-- multiple studies report lunar-linked sleep changes.
+# 2. ADD — Owner-requested Revision 2 expansion
 
-**Explicitly NOT claimed:**
-- copper universally purifies unknown water;
-- Moringa alone universally makes water potable;
-- ordinary music permanently restructures drinking water;
-- visible cymatic patterns prove a health benefit;
-- body-water percentage proves ocean-like human tides;
-- lunar phase broadly controls human health/behavior.
+| Requested expansion | Revision 3 result |
+|---|---|
+| Named global/traditional water systems | **PASS — added after practical foundation** |
+| Avoid “Africa has one practice” framing | **PASS — named West African Moringa research used** |
+| Explain why practices differ by source/climate/fuel/material/infrastructure | **PASS** |
+| Indian historical water-system context | **PASS** |
+| Copper-vessel antimicrobial research | **PASS — narrow claim + limits** |
+| Moringa coagulation research | **PASS — mechanism + potable-water limit** |
+| Acoustic/frequency effects on water | **PASS — demonstrated physics retained** |
+| Molecular frequency response / dynamic water structure | **PASS** |
+| Permanent-structured-water overclaim boundary | **PASS — persistence requirement explicit** |
+| Evidence/claim ladder | **PASS — full seven-step ladder retained** |
+| Safe sound/water investigation | **PASS — electrical-water caution added** |
+| Moon/ocean tidal mechanism | **PASS** |
+| Positive human lunar-sleep studies | **PASS** |
+| Non-replication/publication-bias challenge | **PASS** |
+| New 2026 gravimetric sleep research | **PASS — explicitly described as new/not settled** |
+| Moon-data journal | **PASS** |
+| Revision 2 evidence-literacy TRANSFER THE PRINCIPLE | **PASS — retained as second distinct transfer lesson** |
 
-## Voice/value QA
-The Revision 2 material is materially more distinctive than Revision 1. It does not read as a generic “DIY survival filter” ebook. Its strongest differentiator is the evidence ladder: learners are allowed to investigate unusual observations while being taught not to overclaim them.
+**Expansion result:** Revision 2 remains fully represented as an additive second layer, not a replacement direction.
 
-The line of thought is consistent with RRA: question systems, recover useful knowledge, test both conventional and alternative claims, understand mechanisms, and take responsible action.
+---
 
-## Product scope and pricing QA
-Planned scope increased to roughly 45–60 designed pages with several custom diagrams/investigations. Proposed $39 is defensible **only if** that visual/interactivity scope is actually produced. If the final product remains primarily text, the pricing file correctly falls back toward $29.
+# 3. Research and source integrity
 
-Final price remains owner-controlled.
+- `research.md` now begins with Revision 1 findings and explicitly preserves them before the later expansion: **PASS**.
+- `sources.md` retains core Revision 1 treatment/safety sources and the Revision 2 global/copper/frequency/lunar sources in one 24-source owner-review record: **PASS**.
+- High-consequence water-safety claims remain bounded: **PASS**.
+- Historical use is separated from demonstrated efficacy: **PASS**.
+- Copper evidence is stated narrowly and does not become a universal-potability claim: **PASS**.
+- Moringa clarification is not represented as a universal potable-water recipe: **PASS**.
+- Acoustic/molecular effects are separated from persistence, biological effect and health benefit: **PASS**.
+- Supporting and non-replicating lunar studies are shown together: **PASS**.
+- Source decisions remain pending owner review: **PASS — appropriate**.
 
-## Visual-production needs after content approval
-- named global-water-practice map;
-- source-to-storage system diagram;
-- copper-vessel evidence spread;
-- Moringa coagulation diagram;
-- treatment-job decision map;
-- acoustic standing-wave/water surface illustration;
-- molecular energy/rapid-rearrangement graphic;
+Required standard preserved:
+
+**Authority does not replace evidence. Proximity to the source, transparency, corroboration, and relevance matter more than institutional prestige.**
+
+Required standard preserved:
+
+**Teach transferable principles, not isolated facts.**
+
+---
+
+# 4. Teaching architecture QA
+
+Revision 3 order is now intentionally:
+
+1. actual contaminant/problem;
+2. treatment jobs;
+3. material roles and limits;
+4. source protection;
+5. whole-household historical systems thinking;
+6. full filtration investigation;
+7. original scenario diagnosis;
+8. global/historical expansion;
+9. Moringa;
+10. copper;
+11. frequency/acoustic investigation;
+12. lunar-human evidence;
+13. myth/evidence/open-question classification;
+14. Diagnose Before Prescribing transfer lesson;
+15. Match the Claim to the Mechanism/Evidence transfer lesson;
+16. field/evidence notes.
+
+This is a coherent progression from practical household water knowledge into broader lost-knowledge and evidence-literacy questions rather than two unrelated guides pasted together: **PASS**.
+
+---
+
+# 5. Safety QA
+
+## Drinking water
+**PASS.** Learner demonstration outputs are explicitly not consumed. No homemade filter, copper vessel, Moringa preparation or unknown-water method is represented as a validated potable-water guarantee.
+
+## Biological experiments
+**PASS.** The learner is directed to analyze published copper pathogen studies rather than culture pathogens at home.
+
+## Acoustic activity
+**PASS.** Low-amplitude household observation only; no medical exposure recommendation. Revision 3 adds an explicit instruction to keep water away from exposed electrical connections/equipment.
+
+## Lunar activity
+**PASS.** Observational sleep journaling only. No diagnosis, medical advice or treatment recommendation.
+
+## Chemical contamination
+**PASS.** Boiling and filtration are explicitly not presented as universal chemical-removal processes.
+
+---
+
+# 6. Product scope / pricing QA
+
+Proposed finished format remains:
+
+**Illustrated RRA Field Guide + Family Investigation Lab, approximately 45–60 designed pages, plus a 2–3 page free evidence-literacy sample.**
+
+Current proposed price: **$39 USD**.
+
+The $39 proposal remains defensible only if the visual/interactivity scope described in `concept.md` is actually produced. If final production becomes primarily plain text, pricing should be re-evaluated before release.
+
+Final public price remains owner-controlled. No release is authorized by QA.
+
+---
+
+# 7. Visual-production requirements after owner content approval
+
+- source-to-cup treatment-chain illustration;
+- layered filter cutaway;
+- slow-sand/biosand vs quick bottle demo;
+- ordinary charcoal vs activated carbon visual;
+- contaminant/treatment decision map;
+- source-protection/whole-household water-system illustration;
+- four scenario cards;
+- named global water-practice map;
+- Moringa coagulation sequence;
+- copper-study evidence spread;
+- acoustic surface-wave diagram;
+- molecular rapid-rearrangement graphic;
 - Moon–Earth tide vs human-evidence comparison;
-- evidence ladder;
-- printable investigation/journal pages.
+- evidence claim ladder;
+- printable lab, scenario, field-note and journal pages.
 
-## Owner-review questions
-1. Keep or change the working title **Water Through the Layers**?
-2. Does the new global/traditional direction now match what you meant by “lost knowledge”?
-3. Does the frequency section strike the correct balance: acknowledging demonstrated physical effects without pretending they prove every popular water-frequency claim?
-4. Does the Moon section go far enough in treating the question seriously while showing the conflicting evidence?
-5. Approve / reject / replace any sources in `sources.md`.
-6. Is the revised **$39** direction appropriate if the full illustrated 45–60 page scope is produced?
-7. If content is approved, the next stage would be actual designed/illustrated material production; approval here still does not publish it.
+---
+
+# 8. Remaining owner decisions
+
+1. Approve / Needs More Work / Reject the integrated Revision 3 content.
+2. Approve, reject or replace individual sources in `sources.md` using Operations Review.
+3. Confirm the product direction and proposed $39 price when reviewing the complete integrated concept.
+4. Content approval does **not** authorize publishing, deploying, selling or making the proposed price public.
 
 ## Blockers
-None. Revision 2 is ready for meaningful owner review.
+None.
 
 ## QA decision
-**READY FOR OWNER REVIEW.** No publication, deployment, sale, or final public price is authorized.
+
+**READY FOR OWNER REVIEW.**
+
+Revision 3 corrects the replacement problem identified by the owner. The pre-Revision-2 practical filtration foundation is restored and the later global/copper/Moringa/frequency/lunar work is preserved as additive expansion.
