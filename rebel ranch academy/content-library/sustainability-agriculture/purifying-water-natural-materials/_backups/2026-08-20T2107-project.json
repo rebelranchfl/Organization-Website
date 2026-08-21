@@ -1,0 +1,22 @@
+{
+  "project_id": "RRA-2026-0001",
+  "working_title": "Purifying Water with Natural Materials",
+  "slug": "purifying-water-natural-materials",
+  "learning_area": "Sustainability & Agriculture",
+  "named_program": null,
+  "created_at": "2026-08-20T21:01:00-04:00",
+  "created_by": "owner",
+  "current_status": "NEW_IDEA",
+  "revision_number": 1,
+  "owner_input": {"idea":"Purifying water with natural materials","owner_notes":"","requested_audience":[],"requested_angle":"","requested_sources":[],"excluded_sources":[]},
+  "context_review": {"status":"NOT_STARTED","completed_at":null,"documents_reviewed":[],"websites_reviewed":[],"audiences_identified":[],"learning_area_reason":"","conflicts_found":[]},
+  "research": {"status":"NOT_STARTED","started_at":null,"completed_at":null,"source_count":0,"primary_or_direct_source_count":0,"conflicts_found":[],"unresolved_questions":[],"sources_file":"sources.md","research_file":"research.md"},
+  "concept": {"status":"NOT_STARTED","learning_outcome":"","central_question":"","major_principles":[],"historical_or_lost_knowledge_angle":"","current_use_angle":"","transfer_the_principle_summary":"","proposed_format":[],"activity_types":[],"visual_needs":[]},
+  "content": {"status":"NOT_STARTED","master_content_file":"master-content.md"},
+  "materials": {"status":"NOT_STARTED","material_types":[],"files":[],"preview_files":[]},
+  "pricing": {"status":"NOT_STARTED","proposed_price":null,"currency":"USD","role":null,"reasoning_file":"pricing.md","owner_approved_price":null},
+  "qa": {"status":"NOT_STARTED","completed_at":null,"qa_file":"qa-review.md","blockers":[]},
+  "owner_review": {"status":"PENDING","latest_decision":null,"latest_comment":"","reviewed_at":null,"review_history_file":"owner-review.md","source_decisions_complete":false},
+  "release": {"status":"NOT_STARTED","approved_at":null,"published_at":null,"destination":"","live_url":"","release_files":[],"release_notes":""},
+  "agent": {"active_agent":null,"last_agent":null,"session_title":null,"last_updated_at":null}
+}
