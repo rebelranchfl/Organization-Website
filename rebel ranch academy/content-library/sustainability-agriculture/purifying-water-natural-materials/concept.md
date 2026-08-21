@@ -1,10 +1,10 @@
-# RRA-2026-0001 — Concept Proposal — Revision 2
+# RRA-2026-0001 — Concept Proposal — Revision 3 Integrated
 
 ## Working title
 **Water Through the Layers**
 
-### Revised subtitle
-**Lost Water Knowledge, Modern Evidence & What Actually Makes Water Safer**
+### Subtitle
+**What Natural Materials Can Do, What They Cannot, and What Lost Water Knowledge Still Teaches Us**
 
 ## Learning area
 Sustainability & Agriculture
@@ -12,92 +12,122 @@ Sustainability & Agriculture
 ## Primary audience
 Families, homeschool learners, teens with adult supervision, adults, homesteaders, and people building practical household resilience.
 
-## Revised learning outcome
-The learner should be able to compare how people in different places have collected, clarified, treated and stored water; identify the mechanism a method is supposed to use; distinguish documented practice from demonstrated efficacy; explain what copper, sand, carbon, plant coagulants, heat and acoustic energy can and cannot prove; evaluate competing claims; and apply the same evidence discipline elsewhere.
+## Learning outcome
+The learner should be able to identify the actual water problem before choosing a treatment; explain the different jobs of source protection, settling/straining, filtration, adsorption, biological treatment, disinfection, specialized chemical treatment and safe storage; describe what cloth, gravel, sand, activated carbon, heat, Moringa and copper can and cannot do; compare named historical/global water systems without romanticizing them; investigate water-frequency and lunar-human questions without overclaiming; and transfer both diagnostic thinking and evidence discipline into other parts of life.
 
 ## Central question
-**What is the water problem — and what evidence shows this method actually solves it?**
+**What is the water problem, what can each method actually do, and what evidence shows the claim is the right size?**
 
 ## Major principles
-1. Water treatment is a chain: source, collection, treatment, storage and verification.
-2. “Traditional” and “modern” describe context, not truth value.
-3. People adapt water systems to local source, climate, fuel, materials and infrastructure.
-4. A material can have a real mechanism without being a universal purifier.
-5. Copper contact has demonstrated antibacterial effects under defined conditions.
-6. Plant-based coagulation such as Moringa can be real treatment science without being a complete potable-water guarantee.
-7. Frequency/energy can physically affect water; the exact frequency, energy, mechanism and persistence matter.
-8. Observation, mechanism, correlation, causation and health benefit are different levels of claim.
-9. Lunar-human research should be investigated with positive, null and new evidence shown together.
-10. Prove only what the evidence proves.
+1. Clear water is not automatically safe water.
+2. **Diagnose before prescribing. Match the solution to the actual problem.**
+3. Water treatment is a chain, not a magic ingredient.
+4. Different materials and processes solve different jobs.
+5. Source protection is part of treatment.
+6. A quick demonstration filter is not a validated slow-sand/biosand system.
+7. Ordinary charcoal is not automatically activated carbon.
+8. Traditional and modern describe context, not truth value.
+9. Local source, climate, fuel, materials and infrastructure shape water systems.
+10. A real mechanism does not make a method universal.
+11. **Match the claim to the mechanism and the evidence.**
+12. Observation, mechanism, persistence, replication, biological effect, health effect and recommendation are different levels of claim.
+13. Prove only what the evidence proves.
 
 ## Historical / lost-knowledge angle
-Broaden beyond early U.S. farm manuals. Compare named examples from India, West Africa and other documented historical systems. Show how decentralized households and communities had to understand water source, storage, sediment, materials, heat, sunlight, local plants and handling because there was no assumption that a municipal utility would solve the chain.
+The original whole-household water-system lesson remains the foundation: households once had to understand source, contamination routes, drainage, collection, storage, filtration, sanitation and maintenance because the system did not disappear behind a faucet.
 
-The “lost” part is not that every old method was secretly superior. It is that many people no longer have to understand the **whole water system**, the local conditions that shaped a method, or the mechanism behind a practice.
+Revision 3 then broadens that foundation with named examples from India and West Africa and controlled research on traditional materials such as copper and Moringa. The “lost” knowledge is not that every old practice was secretly superior. It is the practical responsibility to understand the entire water chain, local conditions, material limits and the mechanism behind a method.
 
 ## Modern-use angle
-Use current experiments to revisit older practices rather than automatically dismiss or romanticize them. Copper is the model case: historical/traditional use creates the question; modern microbiology tests a mechanism; the result supports a narrow claim while leaving other hazards unresolved.
+Start with the learner’s real-world decision: **What are you trying to remove?** Then use current evidence to compare low-tech, natural, traditional and modern methods by the job each actually performs.
 
-Use acoustic/frequency research as a second model: visible and molecular effects are real, but they do not automatically establish permanent “structured water” or a health benefit. Teach the learner how to keep asking the next evidence question.
+The later frequency and lunar sections are not a new direction; they are advanced evidence-literacy applications. They show how RRA handles a question that is physically real at one level but commonly overextended at another.
 
-## Proposed product format
+## Product architecture
 ### Paid core product
-Illustrated digital **RRA Field Guide + Family Investigation Lab**, approximately 45–60 designed pages after illustration/layout because Revision 2 materially expands the original scope.
+Illustrated digital **RRA Field Guide + Family Investigation Lab**, approximately 45–60 designed pages if the full visual/interactivity scope is produced.
 
-Planned sections:
-- Water Before the Faucet — how decentralized water systems work;
-- A World of Water Solutions — named regional/historical examples;
-- What Job Is This Method Doing? — collection, clarification, filtration, adsorption, disinfection, storage;
-- India & Copper — tradition meets laboratory evidence;
-- Moringa & Natural Coagulation — what plant proteins can do;
-- Sand, Gravel, Cloth & Carbon — mechanism cards;
-- Sound, Frequency & Water — demonstrated physics vs extrapolation;
-- The Moon & Us — tides, sleep research, competing evidence and mechanism questions;
-- Myth / Evidence / Unknown — claim-classification exercises;
-- Family labs and observation journal;
-- TRANSFER THE PRINCIPLE;
-- full clickable source audit.
+### Required sequence
+1. **Start Here — What Are You Actually Trying to Remove?**
+2. **The Water Treatment Jobs** — settling/straining, filtration, adsorption, biological treatment, disinfection, specialized treatment, storage.
+3. **The Materials** — cloth, gravel, sand, ordinary charcoal vs activated carbon, heat/boiling.
+4. **Lost Knowledge — Source Protection Comes First**.
+5. **Dirty Is Visible. Danger Isn’t.** — full simulated-water filtration lab.
+6. **Solve It — Water Scenarios** — rain barrel, arsenic well, clear backcountry water, municipal taste/odor.
+7. **Water Before the Faucet** — decentralized whole-system thinking.
+8. **A World of Water Solutions** — named historical/global examples and why methods differ.
+9. **India & Copper** — tradition meets laboratory evidence.
+10. **Moringa & Natural Coagulation** — real mechanism, real limits.
+11. **Sound, Frequency & Water** — demonstrated physics, persistence question and claim ladder.
+12. **The Moon, the Ocean & Us** — tides, human sleep research, conflicting evidence and mechanism questions.
+13. **Myth / Evidence / Open Question** — classification exercises.
+14. **TRANSFER THE PRINCIPLE — Diagnose Before Prescribing.**
+15. **TRANSFER THE PRINCIPLE — Match the Claim to the Mechanism and Evidence.**
+16. **Field Notes / Evidence Notes / Full Source Audit.**
+
+This sequence is intentionally additive: the practical Revision 1 foundation comes first; the Revision 2 expansion deepens and broadens it later.
 
 ### Free public sample
-**“Observation Is Not the Conclusion.”** A 2–3 page activity using a safe water-wave demonstration plus a claim ladder: What did I see? What mechanism could explain it? What would I need to test next?
+**“Observation Is Not the Conclusion.”** A 2–3 page safe water-wave activity plus the claim ladder: What did I see? What mechanism could explain it? What would I need to test next?
 
-This is more distinctive than a generic filter worksheet and previews the Academy’s evidence-first method.
+The free sample supports discovery without giving away the complete paid guide.
 
 ## Interactivity
-- global method map: learner matches method to source/climate/material constraint;
-- “What job is it doing?” treatment-chain sort;
-- copper-study evidence table: organism, contact time, pH/temperature, result, limits;
-- safe simulated-dirty-water filtration lab;
-- safe sound/water surface-pattern observation;
-- lunar sleep journal with confounders such as artificial light/caffeine/schedule;
-- evidence ladder: observation → mechanism → replication → causation → practical recommendation;
-- scenario challenges where the most expensive or modern option is not automatically correct.
+- full simulated-dirty-water filtration lab;
+- “change one thing” controlled comparison;
+- four original water-scenario diagnosis challenges;
+- treatment-job matching cards;
+- contaminant-to-treatment decision map;
+- global method map matched to source/climate/material constraints;
+- copper-study evidence table;
+- Moringa coagulation sequence analysis;
+- safe sound/water surface observation;
+- lunar sleep/data journal;
+- evidence claim ladder;
+- myth/evidence/open-question classification;
+- two separate transfer-the-principle exercises.
 
-# TRANSFER THE PRINCIPLE
+# TRANSFER THE PRINCIPLE — 1
 
-Primary transferable principle: **Match the claim to the mechanism and the evidence.**
+**Diagnose before prescribing. Match the solution to the actual problem.**
 
-Connections:
-- Personal capability: curiosity is useful when it becomes disciplined investigation.
-- Communication: separate what happened from the story about why it happened.
-- Business: copy a process only after understanding the conditions that made it work.
-- Money: price and sophistication do not prove fit.
-- Family/community: respect lived knowledge while verifying high-consequence claims.
-- Leadership: do not make either authority or rebellion a substitute for evidence.
+This original principle remains mandatory because it is the core practical lesson of filtration and treatment choice.
+
+Connections: personal capacity, emotional intelligence, family constraints, business bottlenecks, money problems and layered community controls.
 
 ## Where the analogy stops
-Physical effects in water do not automatically establish emotional, spiritual or medical effects in people. Connections generate research questions; they do not manufacture proof.
+People are not contaminants and relationships are not plumbing systems. Use the analogy for diagnosis, fit, layered defenses and maintenance.
+
+# TRANSFER THE PRINCIPLE — 2
+
+**Match the claim to the mechanism and the evidence.**
+
+This second principle comes from the Revision 2 expansion and remains distinct because it teaches evidence literacy.
+
+Connections: careful observation, communication, business benchmarking, spending/resource decisions, family tradition, institutional claims and leadership judgment.
+
+## Where the analogy stops
+Physical effects in water do not automatically establish emotional, spiritual or medical effects in people. Connections create questions; they do not manufacture proof.
 
 ## Visual needs
-- world map with named water practices (not continent-wide stereotypes);
-- source-to-storage treatment-chain illustration;
-- Indian copper-vessel spread with laboratory-study callouts;
+- source-to-cup treatment-chain illustration;
+- cutaway layered demonstration filter;
+- slow-sand/biosand vs quick bottle-demo comparison;
+- ordinary charcoal vs activated carbon visual;
+- contaminant/job decision map;
+- historical household/well/spring source-protection scene;
+- original four scenario cards;
+- named world water-practice map;
+- copper-vessel evidence spread;
 - Moringa coagulation sequence;
 - acoustic standing-wave/water-surface diagram;
-- molecular-scale “energy in / rapid rearrangement” illustration;
+- molecular “energy in / rapid rearrangement” illustration;
 - Moon–Earth tide diagram beside a separate human-evidence panel;
-- evidence ladder graphic;
-- treatment-method decision map.
+- evidence claim-ladder graphic;
+- layered-defense / diagnose-before-prescribing visual.
 
 ## Safety boundary
-No learner-built filter, copper experiment, Moringa preparation or frequency exposure in this product is represented as a validated drinking-water treatment or medical intervention. Simulated-water activities are not consumed. Published pathogen studies are analyzed on paper rather than recreated at home.
+No learner-built filter, copper experiment, Moringa preparation or frequency exposure in this product is represented as a validated drinking-water treatment or medical intervention. Simulated-water activities are not consumed. Published pathogen studies are analyzed on paper rather than recreated at home. Any future potable-water protocol requires separate validated research and owner approval.
+
+## Pricing direction
+The current $39 proposal is defensible only if the full 45–60 page illustrated/interactivity scope is actually produced. Pricing remains owner-controlled and is not a release authorization.
