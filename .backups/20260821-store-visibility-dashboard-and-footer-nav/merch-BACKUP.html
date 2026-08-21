@@ -191,15 +191,6 @@
               <small>Shop Marketplace</small>
             </span>
           </button>
-
-          <button class="collection-card" type="button" data-collection="academy" aria-pressed="false">
-            <img class="collection-card-image" src="assets/rebel_ranch_academy_logo_transparent.png" alt="">
-            <span class="collection-card-copy">
-              <strong>Rebel Ranch Academy</strong>
-              <span>Real Skills for Real Life — gear for hands-on learners of every age.</span>
-              <small>Shop Academy</small>
-            </span>
-          </button>
         </div>
 
         <div class="product-tools" id="product-tools" hidden>
@@ -235,11 +226,8 @@
   </section>
 </main>
 
-<script type="module">
-import { supabase } from './assets/js/supabase-client.js';
-import { validCollections, resolveCollection, resolveType, collectionName } from './assets/js/merch-taxonomy.js';
-
-(async () => {
+<script>
+(() => {
   const productFeed = 'https://rrm-printify-products.rebelranchfl.workers.dev/products';
   const storeUrl = 'https://rebel-ranch-store.printify.me';
   const grid = document.getElementById('product-grid');
@@ -252,6 +240,7 @@ import { validCollections, resolveCollection, resolveType, collectionName } from
   const collectionButtons = [...document.querySelectorAll('[data-collection]')];
   const typeButtons = [...document.querySelectorAll('[data-product-type]')];
   const productCards = [];
+  const validCollections = ['rrm', 'creation-station', 'working-hands', 'marketplace'];
   const requestedCollection = new URLSearchParams(location.search).get('collection');
   let activeCollection = validCollections.includes(requestedCollection) ? requestedCollection : 'all';
   let activeType = 'all';
@@ -263,6 +252,41 @@ import { validCollections, resolveCollection, resolveType, collectionName } from
   const money = (value) => Number.isFinite(Number(value))
     ? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(value))
     : '';
+
+  const normalizedProductText = (product) => [product.title, product.category]
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase();
+
+  const productCollection = (product) => {
+    const text = normalizedProductText(product);
+    const workingHandsPhrases = [
+      'roots, boots', 'animal poops', 'working hands', 'real people. real work',
+      'ranch raised', 'dirt under our nails', 'purpose in our work', 'built by faith',
+      'work hard', 'stay humble', 'faith, grit', 'barn raised', 'country roots'
+    ];
+    if (workingHandsPhrases.some((phrase) => text.includes(phrase))) return 'working-hands';
+    if (text.includes('creation station') || text.includes('create. learn. build. grow') || text.includes('passion to possibility')) return 'creation-station';
+    const marketplacePhrases = ['marketplace', 'digital farmers market', 'buy local', 'shop local', 'local makers'];
+    if (marketplacePhrases.some((phrase) => text.includes(phrase))) return 'marketplace';
+    return 'rrm';
+  };
+
+  const productType = (product) => {
+    const text = normalizedProductText(product);
+    if (/\b(hat|cap|snapback|trucker|beanie)\b/.test(text)) return 'hats';
+    if (/\b(mug|cup|tumbler|bottle|drinkware|can cooler)\b/.test(text)) return 'drinkware';
+    if (/\b(bag|tote|backpack|duffel|pouch|sack)\b/.test(text)) return 'bags';
+    if (/\b(shirt|tee|tank|hoodie|sweatshirt|sweater|jersey|sleeve|jacket|shorts|leggings)\b/.test(text)) return 'apparel';
+    return 'accessories';
+  };
+
+  const collectionName = (collection) => ({
+    rrm: 'Official RRM',
+    'creation-station': 'Creation Station',
+    'working-hands': 'Working Hands',
+    marketplace: 'Rebel Ranch Marketplace'
+  }[collection] || 'Rebel Ranch Merchandise');
 
   const applyFilters = () => {
     let visibleCount = 0;
@@ -288,20 +312,17 @@ import { validCollections, resolveCollection, resolveType, collectionName } from
     } else if (visibleCount === 0 && activeCollection === 'marketplace') {
       emptyHeading.textContent = 'Rebel Ranch Marketplace gear is coming soon.';
       emptyMessage.textContent = 'New designs for local makers and buy-local supporters are being prepared now. Shop another collection today and check back soon.';
-    } else if (visibleCount === 0 && activeCollection === 'academy') {
-      emptyHeading.textContent = 'Rebel Ranch Academy gear is coming soon.';
-      emptyMessage.textContent = 'New Real Skills for Real Life designs are being prepared now. Shop another collection today and check back soon.';
     } else {
       emptyHeading.textContent = 'No matching products yet.';
       emptyMessage.textContent = 'Try another collection or product type to see what is available now.';
     }
   };
 
-  const addProduct = (product, override) => {
+  const addProduct = (product) => {
     const card = document.createElement('article');
     card.className = 'product-card';
-    const collection = resolveCollection(product, override);
-    const type = resolveType(product, override);
+    const collection = productCollection(product);
+    const type = productType(product);
     card.dataset.collection = collection;
     card.dataset.productType = type;
 
@@ -370,49 +391,28 @@ import { validCollections, resolveCollection, resolveType, collectionName } from
     applyFilters();
   });
 
-  try {
-    const [feedResponse, overridesResult] = await Promise.all([
-      fetch(productFeed, { headers: { Accept: 'application/json' } }),
-      supabase.from('merch_product_overrides').select('*')
-    ]);
-    if (!feedResponse.ok) throw new Error('Product feed unavailable');
-    const data = await feedResponse.json();
-    if (!data || !Array.isArray(data.products)) throw new Error('Product collection unavailable');
-    if (overridesResult.error) throw overridesResult.error;
-
-    const overridesById = new Map((overridesResult.data || []).map((row) => [row.printify_product_id, row]));
-
-    // The owner's dashboard is the sole gate for what shows on the public store — a product
-    // with no override row, or site_visible = false, simply does not appear here, regardless
-    // of Printify's own visibility toggle.
-    const visibleProducts = data.products
-      .map((product, index) => ({ product, override: overridesById.get(product.id), index }))
-      .filter(({ override }) => override && override.site_visible === true);
-
-    visibleProducts.sort((a, b) => {
-      const featuredDiff = (b.override.featured ? 1 : 0) - (a.override.featured ? 1 : 0);
-      if (featuredDiff !== 0) return featuredDiff;
-      const orderA = a.override.display_order;
-      const orderB = b.override.display_order;
-      if (orderA != null && orderB != null) return orderA - orderB;
-      if (orderA != null) return -1;
-      if (orderB != null) return 1;
-      return a.index - b.index;
+  fetch(productFeed, { headers: { Accept: 'application/json' } })
+    .then((response) => {
+      if (!response.ok) throw new Error('Product feed unavailable');
+      return response.json();
+    })
+    .then((data) => {
+      if (!data || !Array.isArray(data.products)) throw new Error('Product collection unavailable');
+      const products = data.products.filter((product) => product && product.visible === true);
+      if (!products.length) {
+        document.getElementById('store-status-heading').textContent = 'The first collection is almost here.';
+        document.getElementById('store-status-message').textContent = 'We’re putting the finishing touches on our first official Rebel Ranch pieces. Check back soon—or visit the store for the latest arrivals.';
+        return;
+      }
+      products.forEach(addProduct);
+      status.hidden = true;
+      productTools.hidden = false;
+      applyFilters();
+    })
+    .catch(() => {
+      document.getElementById('store-status-heading').textContent = "We couldn't load the shop right now.";
+      document.getElementById('store-status-message').textContent = 'Please refresh the page, or visit the store directly using the link below.';
     });
-
-    if (!visibleProducts.length) {
-      document.getElementById('store-status-heading').textContent = 'The first collection is almost here.';
-      document.getElementById('store-status-message').textContent = 'We’re putting the finishing touches on our first official Rebel Ranch pieces. Check back soon—or visit the store for the latest arrivals.';
-      return;
-    }
-    visibleProducts.forEach(({ product, override }) => addProduct(product, override));
-    status.hidden = true;
-    productTools.hidden = false;
-    applyFilters();
-  } catch (err) {
-    document.getElementById('store-status-heading').textContent = "We couldn't load the shop right now.";
-    document.getElementById('store-status-message').textContent = 'Please refresh the page, or visit the store directly using the link below.';
-  }
 })();
 </script>
 </body>

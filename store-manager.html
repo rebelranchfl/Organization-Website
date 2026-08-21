@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Protected Rebel Ranch Ministries store manager — control what is visible, featured, and how it is categorized on the public store.">
+<title>Store Manager | Rebel Ranch Ministries</title>
+<link rel="stylesheet" href="assets/css/brand-tokens.css"><link rel="stylesheet" href="assets/css/public-surface.css">
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:#15331d;color:var(--rrm-ink);font-family:Arial,Helvetica,sans-serif}a{color:inherit}button,textarea,input,select{font:inherit}main{width:min(1280px,94vw);margin:auto;padding:40px 0 80px}.topbar{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}.eyebrow{margin:0 0 8px;color:var(--rrm-gold-bright);font-size:.8rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}h1{margin:0;font-size:clamp(2.1rem,5vw,4rem);line-height:1}.intro{color:var(--rrm-muted);line-height:1.55}.back-link{padding:11px 15px;border-radius:8px;border:1px solid #3b5a40;text-decoration:none;font-weight:800;background:#1d4024}.notice{display:none;margin:20px 0;padding:15px 17px;border-left:5px solid var(--rrm-gold);background:#1d4024;border-radius:8px}.notice.visible{display:block}.notice.error{border-left-color:#c96f5b}.notice.success{border-left-color:#97c459}.panel{margin-top:24px;padding:24px;border:1px solid #315239;border-radius:16px;background:linear-gradient(180deg,#1d4024,#122a18);box-shadow:var(--rrm-shadow)}.panel h2{margin:0 0 8px}.muted{color:var(--rrm-muted)}
+.toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:16px}
+.search{flex:1;min-width:220px;padding:11px 13px;border:1px solid #45634a;border-radius:8px;background:#102718;color:var(--rrm-ink)}
+.count{color:var(--rrm-muted);font-size:.85rem;white-space:nowrap}
+.rows{display:grid;gap:12px}
+.row{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px;border:1px solid #3b5a40;border-radius:12px;background:#18351f}
+.row img{width:64px;height:64px;object-fit:cover;border-radius:8px;background:#0d2213}
+.row-title{font-weight:850;line-height:1.3}
+.row-detected{margin-top:3px;color:var(--rrm-muted);font-size:.78rem}
+.row-controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:flex-end}
+.field{display:flex;flex-direction:column;gap:4px;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--rrm-muted)}
+.field select,.field input[type="number"]{padding:8px 10px;border:1px solid #45634a;border-radius:7px;background:#102718;color:var(--rrm-ink);min-width:0}
+.field input[type="number"]{width:80px}
+.check{display:flex;align-items:center;gap:6px;font-size:.78rem;font-weight:800;color:var(--rrm-ink);text-transform:none;letter-spacing:0}
+.check input{width:17px;height:17px}
+.row-status{font-size:.72rem;font-weight:800;min-width:52px;text-align:center}
+.row-status.saved{color:#97c459}
+.row-status.error{color:#c96f5b}
+.row-status.saving{color:#f2d38b}
+@media(max-width:820px){.row{grid-template-columns:48px minmax(0,1fr)}.row img{width:48px;height:48px}.row-controls{grid-column:1/-1;justify-content:flex-start}}
+</style>
+</head>
+<body><main>
+<div class="topbar"><div><p class="eyebrow">Rebel Ranch Ministries • Owner Control</p><h1>Store Manager</h1><p class="intro">Choose exactly what shows on the public store, what's featured, and fix any product that landed in the wrong collection or type. Nothing here changes Printify — this only controls the public site.</p></div><a class="back-link" href="account.html">Back to My Account</a></div>
+<div id="notice" class="notice" role="status"></div><section id="loading" class="panel"><strong>Checking administrator access…</strong></section>
+<div id="content" class="hidden" style="display:none">
+<section class="panel">
+  <h2>Products</h2>
+  <p class="muted">Toggle Visible to control whether a product shows on the public store at all. Featured items are pinned to the front of their collection. Order only matters among items that share the same featured state (lower shows first) — leave it blank to use the default order.</p>
+  <div class="toolbar">
+    <input type="search" id="search" class="search" placeholder="Search products by title…">
+    <span class="count" id="count"></span>
+  </div>
+  <div class="rows" id="rows"></div>
+</section>
+</div>
+</main>
+<script type="module">
+import { supabase } from './assets/js/supabase-client.js';
+import { validCollections, validTypes, detectCollection, detectType, collectionName, typeName } from './assets/js/merch-taxonomy.js';
+
+const notice = document.getElementById('notice');
+const loading = document.getElementById('loading');
+const content = document.getElementById('content');
+const rowsEl = document.getElementById('rows');
+const countEl = document.getElementById('count');
+const searchEl = document.getElementById('search');
+const productFeed = 'https://rrm-printify-products.rebelranchfl.workers.dev/products';
+
+let allEntries = [];
+
+function msg(t, type = '') { notice.textContent = t; notice.className = `notice visible ${type}`.trim(); }
+
+function overrideDefaults(id, title) {
+  return { printify_product_id: id, product_title_cache: title, site_visible: false, featured: false, display_order: null, collection_override: null, type_override: null };
+}
+
+async function save(entry, patch, statusEl) {
+  statusEl.textContent = 'Saving…';
+  statusEl.className = 'row-status saving';
+  const next = { ...entry.override, ...patch, printify_product_id: entry.product.id, product_title_cache: entry.product.title };
+  const { error } = await supabase.from('merch_product_overrides').upsert(next, { onConflict: 'printify_product_id' });
+  if (error) {
+    statusEl.textContent = 'Error';
+    statusEl.className = 'row-status error';
+    msg(`Could not save "${entry.product.title}": ${error.message}`, 'error');
+    return;
+  }
+  entry.override = next;
+  statusEl.textContent = 'Saved';
+  statusEl.className = 'row-status saved';
+  setTimeout(() => { if (statusEl.textContent === 'Saved') statusEl.textContent = ''; }, 2000);
+}
+
+function renderRow(entry) {
+  const { product, override } = entry;
+  const row = document.createElement('div');
+  row.className = 'row';
+
+  const img = document.createElement('img');
+  const image = Array.isArray(product.images) ? (product.images.find((i) => i.isDefault) || product.images[0]) : null;
+  img.src = image?.src || '';
+  img.alt = '';
+  img.loading = 'lazy';
+  row.appendChild(img);
+
+  const info = document.createElement('div');
+  const title = document.createElement('div');
+  title.className = 'row-title';
+  title.textContent = product.title;
+  const detected = document.createElement('div');
+  detected.className = 'row-detected';
+  detected.textContent = `Auto-detected: ${collectionName(detectCollection(product))} / ${typeName(detectType(product))}`;
+  info.append(title, detected);
+  row.appendChild(info);
+
+  const controls = document.createElement('div');
+  controls.className = 'row-controls';
+
+  const status = document.createElement('span');
+  status.className = 'row-status';
+
+  const visibleField = document.createElement('label');
+  visibleField.className = 'check';
+  const visibleInput = document.createElement('input');
+  visibleInput.type = 'checkbox';
+  visibleInput.checked = override.site_visible === true;
+  visibleInput.addEventListener('change', () => save(entry, { site_visible: visibleInput.checked }, status));
+  visibleField.append(visibleInput, document.createTextNode('Visible'));
+
+  const featuredField = document.createElement('label');
+  featuredField.className = 'check';
+  const featuredInput = document.createElement('input');
+  featuredInput.type = 'checkbox';
+  featuredInput.checked = override.featured === true;
+  featuredInput.addEventListener('change', () => save(entry, { featured: featuredInput.checked }, status));
+  featuredField.append(featuredInput, document.createTextNode('Featured'));
+
+  const orderField = document.createElement('label');
+  orderField.className = 'field';
+  orderField.textContent = 'Order';
+  const orderInput = document.createElement('input');
+  orderInput.type = 'number';
+  orderInput.value = override.display_order ?? '';
+  orderInput.addEventListener('change', () => save(entry, { display_order: orderInput.value === '' ? null : Number(orderInput.value) }, status));
+  orderField.appendChild(orderInput);
+
+  const collectionField = document.createElement('label');
+  collectionField.className = 'field';
+  collectionField.textContent = 'Collection';
+  const collectionSelect = document.createElement('select');
+  const autoCollectionOpt = document.createElement('option');
+  autoCollectionOpt.value = '';
+  autoCollectionOpt.textContent = `Auto (${collectionName(detectCollection(product))})`;
+  collectionSelect.appendChild(autoCollectionOpt);
+  validCollections.forEach((c) => { const o = document.createElement('option'); o.value = c; o.textContent = collectionName(c); collectionSelect.appendChild(o); });
+  collectionSelect.value = override.collection_override || '';
+  collectionSelect.addEventListener('change', () => save(entry, { collection_override: collectionSelect.value || null }, status));
+  collectionField.appendChild(collectionSelect);
+
+  const typeField = document.createElement('label');
+  typeField.className = 'field';
+  typeField.textContent = 'Type';
+  const typeSelect = document.createElement('select');
+  const autoTypeOpt = document.createElement('option');
+  autoTypeOpt.value = '';
+  autoTypeOpt.textContent = `Auto (${typeName(detectType(product))})`;
+  typeSelect.appendChild(autoTypeOpt);
+  validTypes.forEach((t) => { const o = document.createElement('option'); o.value = t; o.textContent = typeName(t); typeSelect.appendChild(o); });
+  typeSelect.value = override.type_override || '';
+  typeSelect.addEventListener('change', () => save(entry, { type_override: typeSelect.value || null }, status));
+  typeField.appendChild(typeSelect);
+
+  controls.append(visibleField, featuredField, orderField, collectionField, typeField, status);
+  row.appendChild(controls);
+  return row;
+}
+
+function renderAll() {
+  const q = searchEl.value.trim().toLowerCase();
+  const filtered = q ? allEntries.filter((e) => e.product.title.toLowerCase().includes(q)) : allEntries;
+  countEl.textContent = `${filtered.length} of ${allEntries.length} products`;
+  rowsEl.replaceChildren();
+  filtered.forEach((entry) => rowsEl.appendChild(renderRow(entry)));
+}
+
+searchEl.addEventListener('input', renderAll);
+
+async function loadProducts() {
+  const [feedResponse, overridesResult] = await Promise.all([
+    fetch(productFeed, { headers: { Accept: 'application/json' } }),
+    supabase.from('merch_product_overrides').select('*')
+  ]);
+  if (!feedResponse.ok) throw new Error('Product feed unavailable');
+  const data = await feedResponse.json();
+  if (!data || !Array.isArray(data.products)) throw new Error('Product feed returned no products');
+  if (overridesResult.error) throw overridesResult.error;
+  const overridesById = new Map((overridesResult.data || []).map((row) => [row.printify_product_id, row]));
+  allEntries = data.products.map((product) => ({ product, override: overridesById.get(product.id) || overrideDefaults(product.id, product.title) }));
+  renderAll();
+}
+
+async function init() {
+  try {
+    const { data: s, error } = await supabase.auth.getSession();
+    if (error) throw error;
+    const user = s.session?.user;
+    if (!user) { location.href = 'account.html?next=store-manager.html'; return; }
+    const { data: roles, error: re } = await supabase.from('user_roles').select('role').eq('user_id', user.id);
+    if (re) throw re;
+    if (!(roles || []).some((x) => x.role === 'admin')) { loading.textContent = 'Administrator access is required.'; return; }
+    loading.style.display = 'none';
+    content.style.display = '';
+    await loadProducts();
+  } catch (e) {
+    loading.textContent = 'Dashboard could not be loaded.';
+    msg(e.message, 'error');
+  }
+}
+init();
+</script>
+</body>
+</html>
