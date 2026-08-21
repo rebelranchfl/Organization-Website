@@ -1,7 +1,9 @@
 # RRA-2026-0001 — Owner Review History
 
 ## Current review status
-**REVISION 2 — READY FOR OWNER REVIEW**
+**REVISION 2 — APPROVED FOR FINAL PRODUCTION**
+
+Public release is **not** authorized by this approval.
 
 ## Review package
 - `context-review.md`
@@ -34,17 +36,21 @@
 - Master content rewritten: yes
 - QA passed: yes
 - Proposed format: 45–60 page illustrated RRA Field Guide + Family Investigation Lab + free evidence-literacy sample
-- Proposed price: $39 (proposal only)
+- Proposed price: $39
 - Source count: 24 audited source entries
 - Key evidence conflict: lunar-human sleep research contains both positive findings and direct non-replication; new 2026 gravimetric evidence is included as new, not settled.
 - Key claim boundary: frequency/acoustic energy demonstrably affects water systems, but that does not by itself establish permanent beneficial restructuring or a health effect.
-- Owner decision: Pending
-- Price approved: No
-- Sources approved: Pending
-- Release approved: No
+- Owner decision: **APPROVED**
+- Decision recorded: 2026-08-21
+- Owner comments: none added with approval
+- Price approved for product-development direction: **Yes — $39**
+- Sources approved as the reviewed working source set: **Yes**
+- Release approved: **No**
 
 ## What changed from Revision 1
 Revision 2 expands the project from a mainly filtration-centered guide into a broader “lost water knowledge + modern evidence” investigation. It adds named global/traditional practices, Indian copper-vessel research, West African Moringa research, physical frequency/acoustic effects on water, molecular water-frequency evidence, lunar-human sleep research with conflicting results, and multiple new learner investigations.
 
-## Required rule
-Approval of research/content does not automatically authorize public release. Designed/illustrated production and any public release remain separate controlled stages.
+## Next controlled stage
+The approved research/content package may now move into final product production: editorial refinement, illustrations/diagrams, layout, Family Investigation Lab packaging, free evidence-literacy sample, and final production QA.
+
+This approval does **not** authorize public release, deployment, sale, or publication. A separate release decision is required after final production is ready for owner review.
