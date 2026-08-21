@@ -1,6 +1,7 @@
 # RRA-2026-0001 — Targeted UV Evidence Addendum
 
-**Status:** READY FOR OWNER EVIDENCE REVIEW  
+**Status:** OWNER APPROVED — AUTHORIZED FOR PRODUCT DESIGN USE  
+**Owner approval recorded:** 2026-08-21  
 **Scope:** Ultraviolet microbiological water treatment/disinfection only  
 **Relationship to Revision 3:** ADDITIVE ONLY. This does not reopen, replace, weaken, or remove any approved Revision 3 material.
 
