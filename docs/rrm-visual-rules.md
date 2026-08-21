@@ -9,7 +9,7 @@ Every agent must read this document before starting visual, layout, or public-pa
 
 ## Phase 1 boundary
 
-- Phase 1 applies only to `index.html`, `align-interest.html`, `business-request.html`, `support-supplies-interest.html`, `contact.html`, and `support.html` (added 2026-08-05: `support.html` was reconnected to the shared header/footer shell and given a "cost behind the help" section per owner request — see the shared-header rule below).
+- Phase 1 applies only to `index.html`, `align-interest.html`, `business-request.html`, `support-supplies-interest.html`, `contact.html`, `support.html`, and `academy-learning-interest.html` (added 2026-08-05: `support.html` was reconnected to the shared header/footer shell and given a "cost behind the help" section per owner request — see the shared-header rule below; added 2026-08-21: `academy-learning-interest.html` was reconnected to the shared header/footer shell and rewritten to lead with curiosity instead of disclaimers per owner request — reused the existing "Academy interest form pages" `.interest-hero`/`.interest-card`/`.interest-form`/`.interest-note` component already defined for `support-supplies-interest.html` rather than inventing new styling — see `.backups/20260821-academy-learning-interest-phase1-restyle/CHANGE-DESCRIPTION.md`).
 - Do not migrate, restyle, or otherwise change any other repository page as part of Phase 1.
 - Creation Station has an intentionally separate visual system. Do not touch Creation Station files, pages, or components unless the user gives separate, explicit authorization.
 - Future rules will be applied in later phases. A Phase 1 task never grants permission to perform a site-wide conversion.
