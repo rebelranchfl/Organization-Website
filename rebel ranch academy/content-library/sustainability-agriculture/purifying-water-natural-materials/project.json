@@ -45,9 +45,9 @@
   "research": {
     "status": "COMPLETE",
     "started_at": "2026-08-20T21:08:00-04:00",
-    "completed_at": "2026-08-20T21:14:00-04:00",
-    "source_count": 12,
-    "primary_or_direct_source_count": 10,
+    "completed_at": "2026-08-20T21:24:00-04:00",
+    "source_count": 18,
+    "primary_or_direct_source_count": 16,
     "conflicts_found": [
       "Performance claims for slow-sand filtration vary by design, maturity, organism, source water, operation and study setting.",
       "Online language frequently treats ordinary charcoal and activated carbon as interchangeable; the project rejects that simplification."
@@ -136,7 +136,7 @@
   },
   "qa": {
     "status": "PASS_WITH_OWNER_REVIEW_ITEMS",
-    "completed_at": "2026-08-20T21:20:00-04:00",
+    "completed_at": "2026-08-20T21:24:00-04:00",
     "qa_file": "qa-review.md",
     "blockers": []
   },
@@ -159,8 +159,8 @@
   },
   "agent": {
     "active_agent": null,
-    "last_agent": "ChatGPT/Codex",
-    "session_title": "RRA content automation build",
-    "last_updated_at": "2026-08-20T21:20:00-04:00"
+    "last_agent": "ChatGPT/GPT-5.6 Sol",
+    "session_title": "RRA Content Agent automation run 1",
+    "last_updated_at": "2026-08-20T21:24:00-04:00"
   }
 }
