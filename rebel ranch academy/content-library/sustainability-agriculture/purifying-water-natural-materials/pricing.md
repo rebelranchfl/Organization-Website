@@ -1,58 +1,55 @@
-# RRA-2026-0001 — Pricing Proposal
+# RRA-2026-0001 — Pricing Proposal — Revision 2
 
 **Status:** Proposed only. Owner approval required before any public price is used.
 
-## Proposed role in the Academy library
-Paid core learning product with a genuinely useful free sample.
+## Proposed role
+Paid core Academy learning product with a useful free evidence-literacy sample.
 
 ## Proposed paid product
-**Water Through the Layers — RRA Field Guide + Family Lab**
+**Water Through the Layers — Lost Water Knowledge, Modern Evidence & What Actually Makes Water Safer**
 
 Planned finished scope:
-- approximately 30–45 designed/illustrated pages;
-- historical source context;
-- modern treatment-system explanation;
-- material-by-material comparison;
-- myths vs evidence;
-- contaminant/problem decision map;
-- safe family/homeschool experiment;
-- observation pages;
-- scenarios;
-- TRANSFER THE PRINCIPLE section;
-- clickable source audit / further reading.
+- approximately 45–60 designed/illustrated pages;
+- named historical/global water-system examples;
+- treatment-chain and source-protection explanation;
+- Indian copper-vessel evidence case study;
+- Moringa/natural coagulation case study;
+- sand/gravel/cloth/carbon mechanism cards;
+- sound/frequency/water evidence section and safe investigation;
+- Moon/human sleep evidence section showing supporting and conflicting studies;
+- evidence-ladder exercises;
+- safe filtration demonstration;
+- lunar observation journal;
+- scenarios and TRANSFER THE PRINCIPLE;
+- clickable source audit.
 
-## Proposed price
-**$29 USD**
+## Revised proposed price
+**$39 USD**
 
-## Why $29
-This is intended to be substantially more useful than a printable worksheet or short ebook. It combines original research synthesis, historical context, source verification, practical activity design, systems thinking and future custom illustration/layout.
+## Why the proposal moved from $29 to $39
+Revision 2 is materially larger than Revision 1. It is no longer mainly a water-filtration field guide. It combines practical water treatment, history, cross-cultural comparison, scientific claim evaluation, two evidence case studies, multiple learner investigations and a substantial source audit.
 
-The current RRA working pricing ladder places substantial illustrated field guides/workbooks in the $19–$39 range. $29 sits in the middle of that range and leaves room for:
-- a lower-priced mini resource when appropriate;
-- a later deeper water/resilience collection in the $49–$89 range;
-- family use without pricing the guide like a full course.
+The increase is a proposal, not an approved price. It reflects the planned finished value if the illustrations, diagrams, printable investigations and source-linked design are actually produced.
 
 ## Free sample
-**Clear Does Not Mean Safe** — 1–2 page public activity/mini-guide.
+**Observation Is Not the Conclusion** — 2–3 page public activity using a safe vibration/water observation and the RRA evidence ladder.
 
-Recommended price: **Free**
+Recommended price: **Free**.
 
 Purpose:
-- gives the public something genuinely useful;
-- demonstrates RRA's evidence-first teaching method;
-- corrects a dangerous misconception without putting basic safety behind a paywall;
-- creates a natural path into the deeper paid Field Guide.
+- immediately demonstrates that RRA neither blindly dismisses nor blindly accepts unusual observations;
+- teaches a reusable evidence skill;
+- gives the public a safe hands-on activity;
+- leads naturally into the deeper paid guide.
 
-## What could justify changing the price before launch
-Raise toward $35–$39 if final production includes substantial custom illustration, professionally designed interactive worksheets, multiple printable labs, or additional validated technical diagrams.
-
-Lower toward $19–$24 if the final product is materially shorter than planned or remains mostly text with limited visual/interactivity value.
-
-## Pricing principle
-Do not price by page count alone. Price according to research depth, usefulness, originality, visual/interactivity value, practical application, audience value and position in the Academy learning path.
+## Price decision rule
+- Keep **$39** if the final product receives the planned custom diagrams, global-method map, copper/Moringa evidence spreads, acoustic illustration, Moon/evidence spread and printable investigations.
+- Use **$29** if final production is reduced to a primarily text-based ebook with only limited visuals/interactivity.
+- Do not move above $39 for this single guide without a separate owner decision and a materially larger bundle/course scope.
 
 ## Owner decision
-- Proposed paid price: $29
+- Revision 1 proposal: $29
+- Revision 2 proposal: $39
 - Owner-approved price: Pending
+- Public price authorized: No
 - Free sample: Proposed
-- Owner decision: Pending
