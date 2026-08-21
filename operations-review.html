@@ -8,65 +8,7 @@
   <link rel="stylesheet" href="assets/css/brand-tokens.css">
   <link rel="stylesheet" href="assets/css/public-surface.css">
   <style>
-    * { box-sizing: border-box; }
-    body { margin: 0; min-height: 100vh; background: #15331d; color: var(--rrm-ink); font-family: Arial, Helvetica, sans-serif; }
-    a { color: inherit; }
-    button, textarea, input { font: inherit; }
-    main { width: min(1240px, 94vw); margin: 0 auto; padding: 42px 0 80px; }
-    .topbar { display: flex; justify-content: space-between; gap: 20px; align-items: flex-start; margin-bottom: 28px; }
-    .eyebrow { margin: 0 0 8px; color: var(--rrm-gold-bright); font-size: .8rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
-    h1 { margin: 0; font-size: clamp(2.1rem, 5vw, 4rem); line-height: 1; }
-    .intro { max-width: 760px; margin: 14px 0 0; color: var(--rrm-muted); line-height: 1.65; }
-    .back-link { display: inline-block; padding: 11px 15px; border: 1px solid #3b5a40; border-radius: 8px; text-decoration: none; font-weight: 800; background: #1d4024; }
-    .notice { display: none; margin: 20px 0; padding: 15px 17px; border-left: 5px solid var(--rrm-gold); background: #1d4024; line-height: 1.5; }
-    .notice.visible { display: block; }
-    .notice.error { border-left-color: #c96f5b; }
-    .notice.success { border-left-color: #97c459; }
-    .panel { margin-top: 24px; padding: 24px; border: 1px solid #315239; border-radius: 16px; background: linear-gradient(180deg, #1d4024, #122a18); box-shadow: var(--rrm-shadow); }
-    .panel h2 { margin: 0 0 8px; font-size: 1.7rem; }
-    .panel-copy { margin: 0 0 20px; color: var(--rrm-muted); line-height: 1.6; }
-    .idea-form { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: end; }
-    .idea-form .full { grid-column: 1 / -1; }
-    label { display: block; margin-bottom: 7px; font-weight: 850; }
-    input, textarea { width: 100%; padding: 12px 14px; border: 1px solid #45634a; border-radius: 8px; background: #102718; color: var(--rrm-ink); }
-    textarea { min-height: 105px; resize: vertical; line-height: 1.5; }
-    input:focus, textarea:focus { outline: 3px solid rgba(239,159,39,.2); border-color: var(--rrm-gold-bright); }
-    .button { min-height: 46px; padding: 11px 17px; border-radius: 8px; border: 1px solid transparent; cursor: pointer; font-weight: 900; }
-    .button:disabled { opacity: .55; cursor: wait; }
-    .primary { border-color: var(--rrm-gold); background: linear-gradient(135deg, var(--rrm-gold), var(--rrm-gold-dark)); color: #fff7de; }
-    .secondary { border-color: #5c765e; background: #28502f; color: var(--rrm-ink); }
-    .danger { border-color: #a94c3e; background: #5e2b25; color: #fff6ef; }
-    .queue-grid { display: grid; grid-template-columns: minmax(280px, 380px) minmax(0, 1fr); gap: 20px; align-items: start; }
-    .queue-list { display: grid; gap: 10px; }
-    .queue-item { width: 100%; padding: 16px; text-align: left; border: 1px solid #3b5a40; border-radius: 10px; background: #18351f; color: var(--rrm-ink); cursor: pointer; }
-    .queue-item:hover, .queue-item:focus-visible, .queue-item.active { border-color: var(--rrm-gold-bright); background: #21462a; outline: none; }
-    .queue-title { display: block; margin-bottom: 7px; font-weight: 900; font-size: 1.05rem; }
-    .queue-meta { display: block; color: var(--rrm-muted); font-size: .86rem; line-height: 1.45; }
-    .status { display: inline-block; margin-top: 10px; padding: 5px 8px; border: 1px solid #5d755f; border-radius: 5px; color: #dfe9d9; font-size: .76rem; font-weight: 900; letter-spacing: .04em; }
-    .detail-empty { padding: 32px; text-align: center; color: var(--rrm-muted); border: 1px dashed #45634a; border-radius: 12px; }
-    .detail-header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 18px; }
-    .detail-header h3 { margin: 0 0 7px; font-size: clamp(1.6rem, 3vw, 2.4rem); }
-    .detail-sub { margin: 0; color: var(--rrm-muted); line-height: 1.5; }
-    .metrics { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; margin: 18px 0; }
-    .metric { padding: 12px; border: 1px solid #36553c; border-radius: 9px; background: #102718; }
-    .metric strong { display: block; font-size: 1.2rem; }
-    .metric span { color: var(--rrm-muted); font-size: .8rem; }
-    .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 12px; }
-    .tab-button { padding: 9px 12px; border: 1px solid #4a684d; border-radius: 7px; background: #17371f; color: var(--rrm-ink); cursor: pointer; font-weight: 800; }
-    .tab-button.active { border-color: var(--rrm-gold-bright); background: #2b4d2d; }
-    .doc-view { min-height: 260px; max-height: 610px; overflow: auto; padding: 18px; border: 1px solid #36553c; border-radius: 10px; background: #0d2213; color: #edf2e9; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.55; }
-    .doc-view a { color: #f2b54f; text-decoration: underline; }
-    .review-box { margin-top: 22px; padding-top: 20px; border-top: 1px solid #3b5a40; }
-    .review-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
-    .small-note { color: var(--rrm-muted); font-size: .86rem; line-height: 1.5; }
-    .hidden { display: none !important; }
-    @media (max-width: 860px) {
-      .topbar, .detail-header { flex-direction: column; }
-      .queue-grid { grid-template-columns: 1fr; }
-      .metrics { grid-template-columns: repeat(2, minmax(0,1fr)); }
-      .idea-form { grid-template-columns: 1fr; }
-      .idea-form .full { grid-column: auto; }
-    }
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:#15331d;color:var(--rrm-ink);font-family:Arial,Helvetica,sans-serif}a{color:inherit}button,textarea,input{font:inherit}main{width:min(1240px,94vw);margin:0 auto;padding:42px 0 80px}.topbar{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:28px}.eyebrow{margin:0 0 8px;color:var(--rrm-gold-bright);font-size:.8rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}h1{margin:0;font-size:clamp(2.1rem,5vw,4rem);line-height:1}.intro{max-width:760px;margin:14px 0 0;color:var(--rrm-muted);line-height:1.65}.back-link{display:inline-block;padding:11px 15px;border:1px solid #3b5a40;border-radius:8px;text-decoration:none;font-weight:800;background:#1d4024}.notice{display:none;margin:20px 0;padding:15px 17px;border-left:5px solid var(--rrm-gold);background:#1d4024;line-height:1.5}.notice.visible{display:block}.notice.error{border-left-color:#c96f5b}.notice.success{border-left-color:#97c459}.panel{margin-top:24px;padding:24px;border:1px solid #315239;border-radius:16px;background:linear-gradient(180deg,#1d4024,#122a18);box-shadow:var(--rrm-shadow)}.panel h2{margin:0 0 8px;font-size:1.7rem}.panel-copy{margin:0 0 20px;color:var(--rrm-muted);line-height:1.6}.idea-form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:end}.idea-form .full{grid-column:1/-1}label{display:block;margin-bottom:7px;font-weight:850}input,textarea{width:100%;padding:12px 14px;border:1px solid #45634a;border-radius:8px;background:#102718;color:var(--rrm-ink)}textarea{min-height:105px;resize:vertical;line-height:1.5}input:focus,textarea:focus{outline:3px solid rgba(239,159,39,.2);border-color:var(--rrm-gold-bright)}.button{min-height:46px;padding:11px 17px;border-radius:8px;border:1px solid transparent;cursor:pointer;font-weight:900}.button:disabled{opacity:.55;cursor:wait}.primary{border-color:var(--rrm-gold);background:linear-gradient(135deg,var(--rrm-gold),var(--rrm-gold-dark));color:#fff7de}.secondary{border-color:#5c765e;background:#28502f;color:var(--rrm-ink)}.danger{border-color:#a94c3e;background:#5e2b25;color:#fff6ef}.queue-grid{display:grid;grid-template-columns:minmax(280px,380px) minmax(0,1fr);gap:20px;align-items:start}.queue-list{display:grid;gap:10px}.queue-item{width:100%;padding:16px;text-align:left;border:1px solid #3b5a40;border-radius:10px;background:#18351f;color:var(--rrm-ink);cursor:pointer}.queue-item:hover,.queue-item:focus-visible,.queue-item.active{border-color:var(--rrm-gold-bright);background:#21462a;outline:none}.queue-title{display:block;margin-bottom:7px;font-weight:900;font-size:1.05rem}.queue-meta{display:block;color:var(--rrm-muted);font-size:.86rem;line-height:1.45}.queue-progress{display:flex;align-items:center;gap:10px;margin-top:10px}.queue-progress-track{flex:1;height:7px;border-radius:99px;background:#0d2213;overflow:hidden}.queue-progress-fill{height:100%;background:linear-gradient(90deg,var(--rrm-gold-dark),var(--rrm-gold-bright));border-radius:99px}.queue-progress-value{font-size:.82rem;font-weight:900;color:#f2d38b;min-width:38px;text-align:right}.status{display:inline-block;margin-top:10px;padding:5px 8px;border:1px solid #5d755f;border-radius:5px;color:#dfe9d9;font-size:.76rem;font-weight:900;letter-spacing:.04em}.detail-empty{padding:32px;text-align:center;color:var(--rrm-muted);border:1px dashed #45634a;border-radius:12px}.detail-header{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:18px}.detail-header h3{margin:0 0 7px;font-size:clamp(1.6rem,3vw,2.4rem)}.detail-sub{margin:0;color:var(--rrm-muted);line-height:1.5}.progress-card{margin:18px 0;padding:18px;border:1px solid #5a7148;border-radius:12px;background:#102718}.progress-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}.progress-head h4{margin:0 0 4px;font-size:1.15rem}.progress-percent{font-size:2rem;font-weight:900;color:var(--rrm-gold-bright);white-space:nowrap}.progress-track{height:13px;margin:14px 0 16px;border-radius:99px;background:#07180d;overflow:hidden;border:1px solid #2f4a34}.progress-fill{height:100%;background:linear-gradient(90deg,var(--rrm-gold-dark),var(--rrm-gold-bright));border-radius:99px;transition:width .25s ease}.progress-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.progress-item{padding:12px;border:1px solid #315239;border-radius:8px;background:#0d2213}.progress-item strong{display:block;margin-bottom:5px;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:#f2d38b}.progress-item span{color:#edf2e9;line-height:1.45}.progress-updated{margin:12px 0 0;color:var(--rrm-muted);font-size:.8rem}.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0}.metric{padding:12px;border:1px solid #36553c;border-radius:9px;background:#102718}.metric strong{display:block;font-size:1.2rem}.metric span{color:var(--rrm-muted);font-size:.8rem}.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 12px}.tab-button{padding:9px 12px;border:1px solid #4a684d;border-radius:7px;background:#17371f;color:var(--rrm-ink);cursor:pointer;font-weight:800}.tab-button.active{border-color:var(--rrm-gold-bright);background:#2b4d2d}.doc-view{min-height:260px;max-height:610px;overflow:auto;padding:18px;border:1px solid #36553c;border-radius:10px;background:#0d2213;color:#edf2e9;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.55}.doc-view a{color:#f2b54f;text-decoration:underline}.review-box{margin-top:22px;padding-top:20px;border-top:1px solid #3b5a40}.review-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}.small-note{color:var(--rrm-muted);font-size:.86rem;line-height:1.5}.hidden{display:none!important}@media(max-width:860px){.topbar,.detail-header,.progress-head{flex-direction:column}.queue-grid{grid-template-columns:1fr}.metrics,.progress-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.idea-form{grid-template-columns:1fr}.idea-form .full{grid-column:auto}}@media(max-width:560px){.metrics,.progress-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -75,362 +17,50 @@
       <div>
         <p class="eyebrow">Rebel Ranch Ministries • Owner Control</p>
         <h1>Operations Review</h1>
-        <p class="intro">Enter an Academy idea, see what the content agent is working on, review finished research and materials, and decide what happens next. Nothing is published from this screen without your decision.</p>
+        <p class="intro">Enter an Academy idea, watch active work move through the production stages, review finished research and materials, and decide what happens next. Nothing is published from this screen without your decision.</p>
       </div>
       <a class="back-link" href="account.html">Back to My Account</a>
     </div>
-
     <div id="page-notice" class="notice" role="status" aria-live="polite"></div>
     <section id="loading-panel" class="panel"><strong>Checking administrator access…</strong></section>
-
     <div id="admin-content" class="hidden">
       <section class="panel">
         <h2>Start a new Academy idea</h2>
         <p class="panel-copy">Give the agent the idea. Add notes only when you want to steer the angle. You do not need to write the research brief.</p>
         <form id="idea-form" class="idea-form">
-          <div>
-            <label for="idea">Idea</label>
-            <input id="idea" name="idea" required placeholder="Example: Purifying water with natural materials">
-          </div>
+          <div><label for="idea">Idea</label><input id="idea" name="idea" required placeholder="Example: Purifying water with natural materials"></div>
           <button id="idea-submit" class="button primary" type="submit">Submit for Development</button>
-          <div class="full">
-            <label for="idea-notes">Optional notes</label>
-            <textarea id="idea-notes" name="notes" placeholder="Examples: historical angle, audience, claim to investigate, source to include or avoid, tone, practical activity idea…"></textarea>
-          </div>
+          <div class="full"><label for="idea-notes">Optional notes</label><textarea id="idea-notes" name="notes" placeholder="Examples: historical angle, audience, claim to investigate, source to include or avoid, tone, practical activity idea…"></textarea></div>
         </form>
       </section>
-
       <section class="panel">
         <h2>Academy content queue</h2>
-        <p class="panel-copy">Items waiting on you appear first. Select a project to review its working material, source record, pricing and QA.</p>
-        <div class="queue-grid">
-          <div id="queue-list" class="queue-list"></div>
-          <div id="project-detail" class="detail-empty">Select a project from the queue.</div>
-        </div>
+        <p class="panel-copy">Every active item shows its completion percentage. Open a project to see exactly what the agent is doing now, what comes next, and when progress was last updated.</p>
+        <div class="queue-grid"><div id="queue-list" class="queue-list"></div><div id="project-detail" class="detail-empty">Select a project from the queue.</div></div>
       </section>
     </div>
   </main>
-
   <script type="module">
     import { supabase } from "./assets/js/supabase-client.js";
-
-    const OWNER_BRANCH_FALLBACK = "rra-content-dashboard-foundation";
-    const notice = document.getElementById("page-notice");
-    const loadingPanel = document.getElementById("loading-panel");
-    const adminContent = document.getElementById("admin-content");
-    const queueList = document.getElementById("queue-list");
-    const projectDetail = document.getElementById("project-detail");
-    const ideaForm = document.getElementById("idea-form");
-    const ideaSubmit = document.getElementById("idea-submit");
-    let currentUser = null;
-    let projects = [];
-    let selectedProjectId = null;
-
-    function setNotice(message, type = "") {
-      notice.textContent = message;
-      notice.className = `notice visible ${type}`.trim();
-    }
-
-    function clearNotice() {
-      notice.textContent = "";
-      notice.className = "notice";
-    }
-
-    function rawGithubUrl(project, filename) {
-      const branch = encodeURIComponent(project.github_branch || OWNER_BRANCH_FALLBACK);
-      const path = [project.github_path, filename].filter(Boolean).join("/").split("/").map(encodeURIComponent).join("/");
-      return `https://raw.githubusercontent.com/rebelranchfl/Organization-Website/${branch}/${path}`;
-    }
-
-    function appendLinkifiedText(element, text) {
-      element.replaceChildren();
-      const regex = /(https?:\/\/[^\s|)\]>]+)/g;
-      let last = 0;
-      for (const match of text.matchAll(regex)) {
-        const index = match.index ?? 0;
-        if (index > last) element.append(document.createTextNode(text.slice(last, index)));
-        const a = document.createElement("a");
-        a.href = match[0];
-        a.target = "_blank";
-        a.rel = "noopener noreferrer";
-        a.textContent = match[0];
-        element.append(a);
-        last = index + match[0].length;
-      }
-      if (last < text.length) element.append(document.createTextNode(text.slice(last)));
-    }
-
-    function projectSort(a, b) {
-      const priority = { READY_FOR_REVIEW: 0, NEEDS_MORE_WORK: 1, NEW_IDEA: 2, AGENT_WORKING: 3, APPROVED: 4, PUBLISHING: 5, LIVE: 6, REJECTED: 7 };
-      const pa = priority[a.current_status] ?? 99;
-      const pb = priority[b.current_status] ?? 99;
-      if (pa !== pb) return pa - pb;
-      return new Date(b.updated_at || 0) - new Date(a.updated_at || 0);
-    }
-
-    function renderQueue() {
-      queueList.replaceChildren();
-      if (!projects.length) {
-        const empty = document.createElement("div");
-        empty.className = "detail-empty";
-        empty.textContent = "No Academy content projects yet.";
-        queueList.append(empty);
-        projectDetail.className = "detail-empty";
-        projectDetail.textContent = "Submit an idea above to create the first project.";
-        return;
-      }
-
-      for (const project of projects.slice().sort(projectSort)) {
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = `queue-item${project.project_id === selectedProjectId ? " active" : ""}`;
-        button.addEventListener("click", () => selectProject(project.project_id));
-
-        const title = document.createElement("span");
-        title.className = "queue-title";
-        title.textContent = project.title;
-        const meta = document.createElement("span");
-        meta.className = "queue-meta";
-        meta.textContent = `${project.project_id} • ${project.learning_area} • Revision ${project.revision_number}`;
-        const status = document.createElement("span");
-        status.className = "status";
-        status.textContent = project.current_status.replaceAll("_", " ");
-        button.append(title, meta, status);
-        queueList.append(button);
-      }
-    }
-
-    async function loadProjects(selectId = null) {
-      const { data, error } = await supabase
-        .from("academy_content_projects")
-        .select("project_id,github_branch,github_path,title,learning_area,current_status,revision_number,proposed_price,currency,source_count,material_summary,qa_status,owner_review_status,latest_owner_comment,owner_idea,owner_notes,last_agent,last_synced_at,updated_at")
-        .order("updated_at", { ascending: false });
-      if (error) throw error;
-      projects = data || [];
-      if (selectId && projects.some(p => p.project_id === selectId)) selectedProjectId = selectId;
-      renderQueue();
-      if (selectedProjectId) await renderProjectDetail(projects.find(p => p.project_id === selectedProjectId));
-    }
-
-    async function fetchProjectFile(project, filename) {
-      if (!project.github_path) return "This intake item has not been created in GitHub yet. The content agent will create its permanent project folder when work begins.";
-      const response = await fetch(rawGithubUrl(project, filename), { cache: "no-store" });
-      if (!response.ok) return `Working file not available yet: ${filename}`;
-      return await response.text();
-    }
-
-    async function renderProjectDetail(project) {
-      projectDetail.className = "";
-      projectDetail.replaceChildren();
-      if (!project) return;
-
-      const header = document.createElement("div");
-      header.className = "detail-header";
-      const headText = document.createElement("div");
-      const h3 = document.createElement("h3");
-      h3.textContent = project.title;
-      const sub = document.createElement("p");
-      sub.className = "detail-sub";
-      sub.textContent = `${project.project_id} • ${project.learning_area} • ${project.current_status.replaceAll("_", " ")}`;
-      headText.append(h3, sub);
-      header.append(headText);
-      projectDetail.append(header);
-
-      if (project.owner_notes) {
-        const note = document.createElement("p");
-        note.className = "small-note";
-        note.textContent = `Owner intake note: ${project.owner_notes}`;
-        projectDetail.append(note);
-      }
-
-      const metrics = document.createElement("div");
-      metrics.className = "metrics";
-      const metricData = [
-        [project.proposed_price == null ? "—" : `$${Number(project.proposed_price).toFixed(0)}`, "Proposed price"],
-        [String(project.source_count ?? 0), "Sources"],
-        [String(project.revision_number), "Revision"],
-        [project.qa_status || "—", "QA"]
-      ];
-      for (const [value, label] of metricData) {
-        const card = document.createElement("div");
-        card.className = "metric";
-        const strong = document.createElement("strong");
-        strong.textContent = value;
-        const span = document.createElement("span");
-        span.textContent = label;
-        card.append(strong, span);
-        metrics.append(card);
-      }
-      projectDetail.append(metrics);
-
-      if (project.material_summary) {
-        const summary = document.createElement("p");
-        summary.className = "small-note";
-        summary.textContent = `Material: ${project.material_summary}`;
-        projectDetail.append(summary);
-      }
-
-      const tabs = document.createElement("div");
-      tabs.className = "tabs";
-      const docs = [
-        ["master-content.md", "Material"],
-        ["sources.md", "Sources"],
-        ["pricing.md", "Pricing"],
-        ["qa-review.md", "QA"],
-        ["research.md", "Research"],
-        ["concept.md", "Concept"]
-      ];
-      const view = document.createElement("div");
-      view.className = "doc-view";
-      view.textContent = project.github_path ? "Loading material…" : "This new idea is waiting for the content agent to create its GitHub project.";
-
-      async function openDoc(filename, button) {
-        [...tabs.querySelectorAll("button")].forEach(b => b.classList.remove("active"));
-        button.classList.add("active");
-        view.textContent = "Loading…";
-        const text = await fetchProjectFile(project, filename);
-        appendLinkifiedText(view, text);
-      }
-
-      docs.forEach(([filename, label], index) => {
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = `tab-button${index === 0 ? " active" : ""}`;
-        button.textContent = label;
-        button.addEventListener("click", () => openDoc(filename, button));
-        tabs.append(button);
-      });
-      projectDetail.append(tabs, view);
-      if (project.github_path) openDoc(docs[0][0], tabs.querySelector("button"));
-
-      const review = document.createElement("div");
-      review.className = "review-box";
-      const reviewTitle = document.createElement("h3");
-      reviewTitle.textContent = "Your decision";
-      const reviewNote = document.createElement("p");
-      reviewNote.className = "small-note";
-      reviewNote.textContent = project.current_status === "READY_FOR_REVIEW"
-        ? "Approve the direction, send it back with comments, or reject it. Approval here records your content decision; it does not publish the material."
-        : `This project is currently ${project.current_status.replaceAll("_", " ")}. Review controls appear only when the agent returns it to READY FOR REVIEW.`;
-      review.append(reviewTitle, reviewNote);
-
-      if (project.current_status === "READY_FOR_REVIEW") {
-        const label = document.createElement("label");
-        label.htmlFor = `review-comment-${project.project_id}`;
-        label.textContent = "Review comments";
-        const textarea = document.createElement("textarea");
-        textarea.id = `review-comment-${project.project_id}`;
-        textarea.placeholder = "Tell the agent what is right, wrong, missing, too generic, off-tone, overpriced, under-researched, or needs to change.";
-        const actions = document.createElement("div");
-        actions.className = "review-actions";
-        const choices = [
-          ["APPROVE", "Approve", "primary"],
-          ["NEEDS_MORE_WORK", "Needs More Work", "secondary"],
-          ["REJECT", "Reject", "danger"]
-        ];
-        for (const [decision, labelText, style] of choices) {
-          const button = document.createElement("button");
-          button.type = "button";
-          button.className = `button ${style}`;
-          button.textContent = labelText;
-          button.addEventListener("click", () => submitReview(project, decision, textarea.value, actions));
-          actions.append(button);
-        }
-        review.append(label, textarea, actions);
-      }
-      projectDetail.append(review);
-    }
-
-    async function selectProject(projectId) {
-      selectedProjectId = projectId;
-      renderQueue();
-      await renderProjectDetail(projects.find(p => p.project_id === projectId));
-    }
-
-    async function submitReview(project, decision, comment, actions) {
-      if (decision === "NEEDS_MORE_WORK" && !comment.trim()) {
-        setNotice("Add a comment telling the agent what needs more work.", "error");
-        return;
-      }
-      if (decision === "REJECT" && !comment.trim()) {
-        setNotice("Add a short reason so the rejection history is useful later.", "error");
-        return;
-      }
-      clearNotice();
-      const buttons = [...actions.querySelectorAll("button")];
-      buttons.forEach(b => b.disabled = true);
-      try {
-        const { error } = await supabase.rpc("submit_academy_content_review", {
-          p_project_id: project.project_id,
-          p_decision: decision,
-          p_comment: comment.trim() || null,
-          p_source_decisions: {}
-        });
-        if (error) throw error;
-        setNotice(`${project.project_id} review saved: ${decision.replaceAll("_", " ")}. The agent workflow will pick up the decision.`, "success");
-        await loadProjects(project.project_id);
-      } catch (error) {
-        setNotice(`Review was not saved: ${error.message}`, "error");
-        buttons.forEach(b => b.disabled = false);
-      }
-    }
-
-    ideaForm.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      clearNotice();
-      const idea = document.getElementById("idea").value.trim();
-      const notes = document.getElementById("idea-notes").value.trim();
-      if (!idea) return;
-      ideaSubmit.disabled = true;
-      ideaSubmit.textContent = "Submitting…";
-      try {
-        const { data, error } = await supabase.rpc("create_academy_content_idea", {
-          p_idea: idea,
-          p_owner_notes: notes || null
-        });
-        if (error) throw error;
-        const created = Array.isArray(data) ? data[0] : data;
-        const id = created?.project_id || "new project";
-        ideaForm.reset();
-        setNotice(`${id} created. The content agent can now pick it up automatically.`, "success");
-        await loadProjects(created?.project_id || null);
-      } catch (error) {
-        setNotice(`Idea was not submitted: ${error.message}`, "error");
-      } finally {
-        ideaSubmit.disabled = false;
-        ideaSubmit.textContent = "Submit for Development";
-      }
-    });
-
-    async function initialize() {
-      try {
-        const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
-        if (sessionError) throw sessionError;
-        currentUser = sessionData.session?.user || null;
-        if (!currentUser) {
-          window.location.href = "account.html?next=operations-review.html";
-          return;
-        }
-        const { data: roles, error: rolesError } = await supabase
-          .from("user_roles")
-          .select("role")
-          .eq("user_id", currentUser.id);
-        if (rolesError) throw rolesError;
-        const isAdmin = (roles || []).some(item => item.role === "admin");
-        if (!isAdmin) {
-          loadingPanel.textContent = "Administrator access is required for this page.";
-          setNotice("This review area is restricted to Rebel Ranch Ministries administrators.", "error");
-          return;
-        }
-        loadingPanel.classList.add("hidden");
-        adminContent.classList.remove("hidden");
-        await loadProjects("RRA-2026-0001");
-      } catch (error) {
-        loadingPanel.textContent = "The operations dashboard could not be loaded.";
-        setNotice(error.message, "error");
-      }
-    }
-
+    const OWNER_BRANCH_FALLBACK="main";
+    const notice=document.getElementById("page-notice"),loadingPanel=document.getElementById("loading-panel"),adminContent=document.getElementById("admin-content"),queueList=document.getElementById("queue-list"),projectDetail=document.getElementById("project-detail"),ideaForm=document.getElementById("idea-form"),ideaSubmit=document.getElementById("idea-submit");
+    let currentUser=null,projects=[],selectedProjectId=null;
+    const pct=v=>Math.max(0,Math.min(100,Number(v)||0));
+    function setNotice(message,type=""){notice.textContent=message;notice.className=`notice visible ${type}`.trim()}
+    function clearNotice(){notice.textContent="";notice.className="notice"}
+    function rawGithubUrl(project,filename){const branch=encodeURIComponent(project.github_branch||OWNER_BRANCH_FALLBACK);const path=[project.github_path,filename].filter(Boolean).join("/").split("/").map(encodeURIComponent).join("/");return `https://raw.githubusercontent.com/rebelranchfl/Organization-Website/${branch}/${path}`}
+    function formatUpdated(value){if(!value)return"Not recorded yet";const d=new Date(value);return Number.isNaN(d.getTime())?value:d.toLocaleString()}
+    function appendLinkifiedText(element,text){element.replaceChildren();const regex=/(https?:\/\/[^\s|)\]>]+)/g;let last=0;for(const match of text.matchAll(regex)){const index=match.index??0;if(index>last)element.append(document.createTextNode(text.slice(last,index)));const a=document.createElement("a");a.href=match[0];a.target="_blank";a.rel="noopener noreferrer";a.textContent=match[0];element.append(a);last=index+match[0].length}if(last<text.length)element.append(document.createTextNode(text.slice(last)))}
+    function projectSort(a,b){const priority={READY_FOR_REVIEW:0,NEEDS_MORE_WORK:1,NEW_IDEA:2,AGENT_WORKING:3,APPROVED:4,PUBLISHING:5,LIVE:6,REJECTED:7};const pa=priority[a.current_status]??99,pb=priority[b.current_status]??99;if(pa!==pb)return pa-pb;return new Date(b.updated_at||0)-new Date(a.updated_at||0)}
+    function renderQueue(){queueList.replaceChildren();if(!projects.length){const empty=document.createElement("div");empty.className="detail-empty";empty.textContent="No Academy content projects yet.";queueList.append(empty);projectDetail.className="detail-empty";projectDetail.textContent="Submit an idea above to create the first project.";return}for(const project of projects.slice().sort(projectSort)){const button=document.createElement("button");button.type="button";button.className=`queue-item${project.project_id===selectedProjectId?" active":""}`;button.addEventListener("click",()=>selectProject(project.project_id));const title=document.createElement("span");title.className="queue-title";title.textContent=project.title;const meta=document.createElement("span");meta.className="queue-meta";meta.textContent=`${project.project_id} • ${project.learning_area} • Revision ${project.revision_number}`;const qp=document.createElement("div");qp.className="queue-progress";const track=document.createElement("div");track.className="queue-progress-track";const fill=document.createElement("div");fill.className="queue-progress-fill";fill.style.width=`${pct(project.progress_percent)}%`;track.append(fill);const val=document.createElement("span");val.className="queue-progress-value";val.textContent=`${pct(project.progress_percent)}%`;qp.append(track,val);const status=document.createElement("span");status.className="status";status.textContent=project.current_status.replaceAll("_"," ");button.append(title,meta,qp,status);queueList.append(button)}}
+    async function loadProjects(selectId=null){const{data,error}=await supabase.from("academy_content_projects").select("project_id,github_branch,github_path,title,learning_area,current_status,revision_number,proposed_price,currency,source_count,material_summary,qa_status,owner_review_status,latest_owner_comment,owner_idea,owner_notes,last_agent,last_synced_at,updated_at,progress_percent,progress_stage,progress_detail,progress_next,progress_updated_at").order("updated_at",{ascending:false});if(error)throw error;projects=data||[];if(selectId&&projects.some(p=>p.project_id===selectId))selectedProjectId=selectId;renderQueue();if(selectedProjectId)await renderProjectDetail(projects.find(p=>p.project_id===selectedProjectId))}
+    async function fetchProjectFile(project,filename){if(!project.github_path)return"This intake item has not been created in GitHub yet. The content agent will create its permanent project folder when work begins.";const response=await fetch(rawGithubUrl(project,filename),{cache:"no-store"});if(!response.ok)return`Working file not available yet: ${filename}`;return await response.text()}
+    function addProgress(project){const card=document.createElement("section");card.className="progress-card";const head=document.createElement("div");head.className="progress-head";const copy=document.createElement("div");const label=document.createElement("h4");label.textContent=project.progress_stage||project.current_status.replaceAll("_"," ");const agent=document.createElement("p");agent.className="small-note";agent.style.margin="4px 0 0";agent.textContent=project.last_agent?`Agent: ${project.last_agent}`:"Agent assignment not recorded";copy.append(label,agent);const percent=document.createElement("div");percent.className="progress-percent";percent.textContent=`${pct(project.progress_percent)}%`;head.append(copy,percent);const track=document.createElement("div");track.className="progress-track";track.setAttribute("role","progressbar");track.setAttribute("aria-valuemin","0");track.setAttribute("aria-valuemax","100");track.setAttribute("aria-valuenow",String(pct(project.progress_percent)));const fill=document.createElement("div");fill.className="progress-fill";fill.style.width=`${pct(project.progress_percent)}%`;track.append(fill);const grid=document.createElement("div");grid.className="progress-grid";for(const [name,value] of [["Working now",project.progress_detail||"No detailed activity update recorded yet."],["Next",project.progress_next||"No next-step update recorded yet."]]){const item=document.createElement("div");item.className="progress-item";const strong=document.createElement("strong");strong.textContent=name;const span=document.createElement("span");span.textContent=value;item.append(strong,span);grid.append(item)}const updated=document.createElement("p");updated.className="progress-updated";updated.textContent=`Progress last updated: ${formatUpdated(project.progress_updated_at||project.updated_at)}`;card.append(head,track,grid,updated);projectDetail.append(card)}
+    async function renderProjectDetail(project){projectDetail.className="";projectDetail.replaceChildren();if(!project)return;const header=document.createElement("div");header.className="detail-header";const headText=document.createElement("div");const h3=document.createElement("h3");h3.textContent=project.title;const sub=document.createElement("p");sub.className="detail-sub";sub.textContent=`${project.project_id} • ${project.learning_area} • ${project.current_status.replaceAll("_"," ")}`;headText.append(h3,sub);header.append(headText);projectDetail.append(header);if(project.owner_notes){const note=document.createElement("p");note.className="small-note";note.textContent=`Owner intake note: ${project.owner_notes}`;projectDetail.append(note)}addProgress(project);const metrics=document.createElement("div");metrics.className="metrics";const metricData=[[project.proposed_price==null?"—":`$${Number(project.proposed_price).toFixed(0)}`,"Proposed price"],[String(project.source_count??0),"Sources"],[String(project.revision_number),"Revision"],[project.qa_status||"—","QA"]];for(const[value,label]of metricData){const card=document.createElement("div");card.className="metric";const strong=document.createElement("strong");strong.textContent=value;const span=document.createElement("span");span.textContent=label;card.append(strong,span);metrics.append(card)}projectDetail.append(metrics);if(project.material_summary){const summary=document.createElement("p");summary.className="small-note";summary.textContent=`Material: ${project.material_summary}`;projectDetail.append(summary)}const tabs=document.createElement("div");tabs.className="tabs";const docs=[["master-content.md","Material"],["sources.md","Sources"],["pricing.md","Pricing"],["qa-review.md","QA"],["research.md","Research"],["concept.md","Concept"],["revision-impact.md","Revision Impact"]];const view=document.createElement("div");view.className="doc-view";view.textContent=project.github_path?"Loading material…":"This new idea is waiting for the content agent to create its GitHub project.";async function openDoc(filename,button){[...tabs.querySelectorAll("button")].forEach(b=>b.classList.remove("active"));button.classList.add("active");view.textContent="Loading…";appendLinkifiedText(view,await fetchProjectFile(project,filename))}docs.forEach(([filename,label],index)=>{const button=document.createElement("button");button.type="button";button.className=`tab-button${index===0?" active":""}`;button.textContent=label;button.addEventListener("click",()=>openDoc(filename,button));tabs.append(button)});projectDetail.append(tabs,view);if(project.github_path)openDoc(docs[0][0],tabs.querySelector("button"));const review=document.createElement("div");review.className="review-box";const reviewTitle=document.createElement("h3");reviewTitle.textContent="Your decision";const reviewNote=document.createElement("p");reviewNote.className="small-note";reviewNote.textContent=project.current_status==="READY_FOR_REVIEW"?"Approve the direction, send it back with comments, or reject it. Approval here records your content decision; it does not publish the material.":`This project is currently ${project.current_status.replaceAll("_"," ")}. Review controls appear only when the agent returns it to READY FOR REVIEW.`;review.append(reviewTitle,reviewNote);if(project.current_status==="READY_FOR_REVIEW"){const label=document.createElement("label");label.htmlFor=`review-comment-${project.project_id}`;label.textContent="Review comments";const textarea=document.createElement("textarea");textarea.id=`review-comment-${project.project_id}`;textarea.placeholder="Tell the agent what is right, wrong, missing, too generic, off-tone, overpriced, under-researched, or needs to change.";const actions=document.createElement("div");actions.className="review-actions";for(const[decision,labelText,style]of[["APPROVE","Approve","primary"],["NEEDS_MORE_WORK","Needs More Work","secondary"],["REJECT","Reject","danger"]]){const button=document.createElement("button");button.type="button";button.className=`button ${style}`;button.textContent=labelText;button.addEventListener("click",()=>submitReview(project,decision,textarea.value,actions));actions.append(button)}review.append(label,textarea,actions)}projectDetail.append(review)}
+    async function selectProject(projectId){selectedProjectId=projectId;renderQueue();await renderProjectDetail(projects.find(p=>p.project_id===projectId))}
+    async function submitReview(project,decision,comment,actions){if(decision==="NEEDS_MORE_WORK"&&!comment.trim()){setNotice("Add a comment telling the agent what needs more work.","error");return}if(decision==="REJECT"&&!comment.trim()){setNotice("Add a short reason so the rejection history is useful later.","error");return}clearNotice();const buttons=[...actions.querySelectorAll("button")];buttons.forEach(b=>b.disabled=true);try{const{error}=await supabase.rpc("submit_academy_content_review",{p_project_id:project.project_id,p_decision:decision,p_comment:comment.trim()||null,p_source_decisions:{}});if(error)throw error;setNotice(`${project.project_id} review saved: ${decision.replaceAll("_"," ")}. The agent workflow will pick up the decision.`,"success");await loadProjects(project.project_id)}catch(error){setNotice(`Review was not saved: ${error.message}`,"error");buttons.forEach(b=>b.disabled=false)}}
+    ideaForm.addEventListener("submit",async event=>{event.preventDefault();clearNotice();const idea=document.getElementById("idea").value.trim(),notes=document.getElementById("idea-notes").value.trim();if(!idea)return;ideaSubmit.disabled=true;ideaSubmit.textContent="Submitting…";try{const{data,error}=await supabase.rpc("create_academy_content_idea",{p_idea:idea,p_owner_notes:notes||null});if(error)throw error;const created=Array.isArray(data)?data[0]:data;const id=created?.project_id||"new project";ideaForm.reset();setNotice(`${id} created. The content agent can now pick it up automatically.`,"success");await loadProjects(created?.project_id||null)}catch(error){setNotice(`Idea was not submitted: ${error.message}`,"error")}finally{ideaSubmit.disabled=false;ideaSubmit.textContent="Submit for Development"}});
+    async function initialize(){try{const{data:sessionData,error:sessionError}=await supabase.auth.getSession();if(sessionError)throw sessionError;currentUser=sessionData.session?.user||null;if(!currentUser){window.location.href="account.html?next=operations-review.html";return}const{data:roles,error:rolesError}=await supabase.from("user_roles").select("role").eq("user_id",currentUser.id);if(rolesError)throw rolesError;const isAdmin=(roles||[]).some(item=>item.role==="admin");if(!isAdmin){loadingPanel.textContent="Administrator access is required for this page.";setNotice("This review area is restricted to Rebel Ranch Ministries administrators.","error");return}loadingPanel.classList.add("hidden");adminContent.classList.remove("hidden");await loadProjects("RRA-2026-0001")}catch(error){loadingPanel.textContent="The operations dashboard could not be loaded.";setNotice(error.message,"error")}}
     initialize();
   </script>
 </body>
