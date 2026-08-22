@@ -16,12 +16,24 @@ function mountProjectIntake(){
   btn.textContent='Start New Academy Project';
   btn.addEventListener('click',()=>{
     const isOpen=panel.style.display==='block';
-    panel.style.display=isOpen?'none':'block';
-    btn.textContent=isOpen?'Start New Academy Project':'Hide New Project Form';
-    if(!isOpen){
+    if(isOpen){
+      panel.style.display='none';
+      btn.textContent='Start New Academy Project';
+      return;
+    }
+
+    const projectsNav=document.querySelector('[data-orv3-view="projects"]');
+    if(document.body.dataset.view==='overview'){
+      if(projectsNav) projectsNav.click();
+      else document.body.dataset.view='projects';
+    }
+
+    panel.style.display='block';
+    btn.textContent='Hide New Project Form';
+    requestAnimationFrame(()=>{
       panel.scrollIntoView({behavior:'smooth',block:'start'});
       setTimeout(()=>document.getElementById('idea')?.focus(),250);
-    }
+    });
   });
   topActions.prepend(btn);
 
