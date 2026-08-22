@@ -1,28 +1,52 @@
 # Rebel Ranch Academy — Manual Agent Runner
 
-**Status:** Owner-approved V1 implementation  
-**Date:** 2026-08-22  
+**Status:** DORMANT / DISABLED BY OWNER DIRECTION  
+**Original implementation date:** 2026-08-22  
+**Disabled:** 2026-08-22  
 **AI-Agent:** ChatGPT/GPT-5.6 Sol  
-**Session:** RR Website — Run Agent Now v1
+**Original session:** RR Website — Run Agent Now v1
 
-## Purpose
+## Current state — authoritative
 
-`Run Agent Now` exists to reduce testing/build delay. The normal Academy workers remain scheduled, but the owner can request an additional current-stage work cycle instead of waiting for the next hourly pickup.
+`Run Agent Now` is **not an active Academy capability**.
+
+The owner explicitly chose not to use the separate OpenAI API execution path because it would create additional API fees beyond the normal ChatGPT-based Academy workflow.
+
+Current operating rules:
+
+- no Run Agent Now control should be presented as available to the owner;
+- the GitHub Actions runner is hard-disabled and does not poll or execute manual requests;
+- `academy_agent_run_requests` and `academy_agent_runner_state` are dormant preserved infrastructure, not active work queues;
+- normal scheduled Academy agents remain the active background execution system;
+- no OpenAI API key should be added or manual runner re-enabled without a new explicit owner decision made with the separate billing path understood;
+- dormant runner code is preserved only for possible future reuse and historical traceability.
+
+This current-state section overrides the historical V1 implementation description below wherever the two conflict.
 
 The owner manages decisions. The system manages work.
 
-## V1 supported stages
+---
 
-The V1 GitHub/Codex runner is intentionally limited to repository-focused build stages:
+# Historical V1 design — preserved for reference only
+
+The sections below document how the former V1 manual runner was designed. They are **not instructions to enable or operate it today**.
+
+## Former purpose
+
+`Run Agent Now` was designed to reduce testing/build delay by allowing the owner to request an additional current-stage work cycle instead of waiting for the next hourly pickup.
+
+## Former V1 supported stages
+
+The V1 GitHub/Codex runner was intentionally limited to repository-focused build stages:
 
 - `PRODUCT_WORKING` → RRA Product Design Agent
 - `VISUAL_PRODUCTION` → RRA Visual Production Agent
 
-Research-heavy stages, Product Opportunity Research, owner review gates, release preparation, publishing and Live are not manual-run stages in V1.
+Research-heavy stages, Product Opportunity Research, owner review gates, release preparation, publishing and Live were not manual-run stages in V1.
 
-The dashboard must say when a stage is not supported instead of pretending the button can run it.
+Any future reactivation must still say when a stage is unsupported instead of pretending the runner can execute it.
 
-## Execution flow
+## Historical execution flow
 
 ```text
 Owner clicks Run Current Stage Now
@@ -40,21 +64,23 @@ Owner clicks Run Current Stage Now
 → Operations Review displays the result
 ```
 
-The 5-minute check is a pickup interval, not a work-duration limit. Once claimed, the worker continues through as much safe current-stage work as practical during that execution.
+This flow is dormant. The current GitHub workflow does not perform these steps.
 
-## Collision rule
+The former 5-minute check was a pickup interval, not a work-duration limit. Once claimed, the worker would continue through as much safe current-stage work as practical during that execution.
 
-The normal scheduled Product Design and Visual Production workers must query `academy_agent_run_requests` before touching a project.
+## Historical collision rule
 
-If a request for that project is `PENDING` or `RUNNING`, the scheduled worker skips it until the manual request becomes `COMPLETED`, `FAILED`, or `CANCELLED`.
+The V1 design required normal scheduled Product Design and Visual Production workers to query `academy_agent_run_requests` before touching a project.
 
-This prevents the manual and scheduled workers from intentionally working the same project at the same time.
+If a request for that project was `PENDING` or `RUNNING`, the scheduled worker would skip it until the manual request became `COMPLETED`, `FAILED`, or `CANCELLED`.
 
-Git push/rebase protection remains a final defense if another actor changes the same files during an active run.
+Because the manual runner is disabled, no new manual request should enter an active Pending or Running state during normal Academy operation.
+
+Git push/rebase protection was intended as a final defense if another actor changed the same files during an active run.
 
 ## Owner gates do not change
 
-Run Agent Now does not authorize:
+Even if the manual runner is ever reactivated, it does not authorize:
 
 - Research Review approval;
 - Product Review approval;
@@ -68,53 +94,59 @@ Run Agent Now does not authorize:
 - public promotion;
 - deployment of a product merely because production work finished.
 
-The runner may move a genuinely complete Product Working package to `PRODUCT_REVIEW` or a genuinely complete Visual Production package to `FINAL_PRODUCT_REVIEW`. It must then stop for the owner.
+The historical runner could move a genuinely complete Product Working package to `PRODUCT_REVIEW` or a genuinely complete Visual Production package to `FINAL_PRODUCT_REVIEW`. It then had to stop for the owner.
 
-## Visual Production limitation
+## Historical Visual Production limitation
 
-The GitHub/Codex V1 runner is strong at repository-native production: HTML, CSS, JavaScript, SVG/illustration, diagrams, interactions, copy, print layouts, manifests, review navigation and QA records.
+The GitHub/Codex V1 runner was designed for repository-native production: HTML, CSS, JavaScript, SVG/illustration, diagrams, interactions, copy, print layouts, manifests, review navigation and QA records.
 
-It is not a substitute for ChatGPT-native image generation. If the approved learner experience still requires generated raster/photographic artwork that the runner cannot responsibly create, that requirement remains open for the normal Visual Production worker. The manual runner must not mark Final Product Review ready merely to hide a missing required visual.
+It was not a substitute for ChatGPT-native image generation. If an approved learner experience required generated raster/photographic artwork that the runner could not responsibly create, that requirement remained open for the normal Visual Production worker. The manual runner was not allowed to mark Final Product Review ready merely to hide a missing required visual.
 
-## Required GitHub Actions secrets
+## Historical server-secret requirements
 
-The workflow requires two server-side GitHub Actions secrets:
+The former workflow required two server-side GitHub Actions secrets:
 
 - `OPENAI_API_KEY` — project API key used by the official `openai/codex-action`.
 - `SUPABASE_SECRET_KEY` — preferred current Supabase server Secret key (`sb_secret_...`) used only by the trusted GitHub runner to claim/finalize run requests and synchronize owner-facing progress.
 
-Temporary compatibility remains for a legacy `SUPABASE_SERVICE_ROLE_KEY` if the project has not yet created a current Supabase Secret key. New setup should prefer `SUPABASE_SECRET_KEY`.
+Temporary compatibility existed for a legacy `SUPABASE_SERVICE_ROLE_KEY` if the project had not yet created a current Supabase Secret key.
 
 Neither secret may appear in browser JavaScript, repository files, logs, owner comments, or product content.
 
-Until the OpenAI key plus one supported Supabase backend key are configured, `academy_agent_runner_state.ready` remains false and Operations Review keeps the Run Agent Now button disabled. The normal scheduled Academy workers continue unaffected.
+**Current rule:** do not configure or rely on these runner secrets for Academy execution unless the owner explicitly reauthorizes the separate API-billed manual runner.
 
-## Security boundaries
+## Historical security boundaries
 
-- The owner creates requests through `request_academy_agent_run`, which requires `private.is_admin()`.
+- The owner created requests through `request_academy_agent_run`, which requires `private.is_admin()`.
 - RLS protects manual-run request/status rows from non-admin authenticated users.
-- The runner uses an elevated Supabase server credential only inside GitHub Actions.
-- Codex receives the OpenAI key through the official action's secret-handling path.
-- Repository writes are limited by post-run scope validation to the authorized project folder and required backup records.
-- Manual runs cannot target owner holds, review gates, release stages, unrelated projects, or unsupported stages.
-- If a lifecycle transition is outside the narrow allowed V1 transition, finalization fails rather than applying it.
+- The runner used an elevated Supabase server credential only inside GitHub Actions.
+- Codex received the OpenAI key through the official action's secret-handling path.
+- Repository writes were limited by post-run scope validation to the authorized project folder and required backup records.
+- Manual runs could not target owner holds, review gates, release stages, unrelated projects, or unsupported stages.
+- If a lifecycle transition was outside the narrow allowed V1 transition, finalization failed rather than applying it.
 
-## Runner health
+These protections remain useful historical design requirements if the feature is reconsidered later.
 
-`academy_agent_runner_state` is the owner-facing heartbeat.
+## Historical runner health
 
-The button is enabled only when:
+`academy_agent_runner_state` was the owner-facing heartbeat.
 
-- runner reports ready;
-- the heartbeat is recent;
-- the current stage is supported;
-- project status is `AGENT_WORKING`;
-- project is not on hold;
-- no manual request is already Pending or Running.
+The historical button would be enabled only when:
 
-## Future versions
+- runner reported ready;
+- the heartbeat was recent;
+- the current stage was supported;
+- project status was `AGENT_WORKING`;
+- project was not on hold;
+- no manual request was already Pending or Running.
 
-Potential later expansion may add:
+**Current state:** the runner is intentionally not ready. The normal scheduled Academy agents continue independently.
+
+## Future reconsideration
+
+Potential future work may reconsider manual execution only if the owner explicitly chooses to reopen the feature and accepts the separate API billing path.
+
+Possible future capabilities could include:
 
 - research-capable manual runs with approved live-source tooling;
 - Product Opportunity Research manual execution;
@@ -124,4 +156,4 @@ Potential later expansion may add:
 - Audience Intelligence manual runs;
 - a separately governed release worker.
 
-Future capability does not weaken existing owner gates.
+Future capability does not weaken existing owner gates and is not authorized by this historical document.
