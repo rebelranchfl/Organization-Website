@@ -1,75 +1,87 @@
 # RRA-2026-0001 — Visual Production Status
 
-**Stage:** VISUAL_PRODUCTION  
-**Cycle:** 03 — Human-first learner experience revision  
+**Stage:** FINAL_PRODUCT_REVIEW  
+**Cycle:** 04 — Integrated learner experience finalization  
 **AI-Agent:** ChatGPT/GPT-5.6 Sol  
 **Session:** RRA Visual Production Agent
 
-## Owner feedback processed first
+## Coordination checks
 
-The binding owner change request dated 2026-08-22 requires Water to be rebuilt as a human-first integrated learning experience while preserving approved research/evidence/safety boundaries and existing useful technical diagrams.
-
-This cycle applied that direction to the primary learner/review path.
+- No `PENDING` or `RUNNING` manual agent request exists for this project.
+- No routed or in-progress Visual Production late finding exists.
+- No pending Visual Production owner feedback remains.
+- `visual-production-handoff.md` remains `Status: AUTHORIZED`.
 
 ## Completed this cycle
 
-Created `water-learning-experience.html` as a new integrated learner-facing experience with one continuous path:
+Created `water-learning-experience-final.html` as the completed primary learner-facing sequence and updated the owner review package to lead with it.
 
-1. **Tell us about your water** — recognizable source scenes rather than a technical source map as the first obstacle.
-2. **What do you need the water to do?** — intended use and scale in ordinary language.
-3. **What do you actually know?** — testing status and concern, with clear-looking-water limits.
-4. **My Water Test Results** — human-named result interpretation with explicit unknowns.
-5. **Build My Water Treatment Plan** — function-before-form treatment jobs generated from learner choices.
-6. **My Water Plan** — living summary that rebuilds when upstream answers change.
+The final integrated sequence now includes, in context:
+1. **Tell us about your water** — recognizable water-source scenes.
+2. **What do you need the water to do?** — intended use and scale.
+3. **What do you actually know?** — observation, testing status, and unknowns.
+4. **Dirty Is Visible. Danger Isn't.** — safe simulated-water investigation that explicitly separates visible change from potable-safety proof.
+5. **My Water Test Results** — ordinary-language result interpretation and remaining unknowns.
+6. **Build My Water Treatment Plan** — function-before-form job sequence with UV and surface-water boundaries preserved.
+7. **Water Through Time, Place, and Evidence** — historical/global context, Moringa and copper boundaries, modernization tradeoffs, and the claim/evidence ladder in the main sequence rather than only in detached deeper files.
+8. **My Water Plan** — living summary generated from the learner's own structured choices, with print and reset controls.
 
 Also completed:
-- human task/result naming in the integrated experience;
-- optional deeper science/technical layers instead of technical-first presentation;
-- direct deeper links to the approved technical visual sets;
-- failure/backup teaching through `What happens if this stops working?`;
-- privacy-minimized structured learner-signal hooks using `public.record_academy_learner_signal`;
-- random session grouping without names/emails/addresses/IP/browser fingerprint;
-- review-mode metadata so owner testing can be distinguished from later learner behavior;
-- updated `index.html` so the owner begins with the complete learner experience rather than a disconnected gallery;
-- updated `preview-manifest.json` so only the current reviewable integrated/deeper assets are presented as the owner-review contract;
-- preserved the older standalone planner/suite files as implementation baselines without presenting them as the primary learner path.
+- optional deeper source/testing/UV/Class A-Class B/POU-POE links remain available;
+- optional deeper Function Before Form, scale, automated animal water, surface-water caution, historical/global, evidence-ladder and block-diagram material remains available;
+- review-mode learner-signal instrumentation remains privacy-minimized and uses the existing `public.record_academy_learner_signal` function;
+- source, intended-use, testing, concern, scale, tool-completion, result-category, depth-choice, format-preference and abandonment signals are represented without names, emails, addresses, IPs, browser fingerprints, or open-ended personal stories;
+- `index.html` now describes the package as Final Product Review rather than an in-progress rebuild;
+- `preview-manifest.json` now points to the completed integrated experience and identifies the package as ready for owner Final Product Review.
 
-## Preservation / safety check
+## Preservation / safety result
 
-The integrated experience preserves:
+PASS. The completed learner-facing package preserves:
 - clear water versus safe water;
-- testing/diagnosis before treatment shopping;
-- source and intended-use distinctions;
-- treatment by function rather than product name;
-- high-caution surface-water chemical/toxin boundary;
-- drinking-water evidence/certification/material/verification boundary;
-- UV only as microbial disinfection/inactivation;
-- UV non-removal of sediment, chemicals, dissolved metals and salts;
-- pretreatment/clarity, certified model/flow, Class A/Class B, POU/POE, power/maintenance and downstream recontamination boundaries through the optional deeper layer;
-- validated/certified safety-critical potable UV reactor as WORTH BUYING / DO NOT IMPROVISE;
-- Function Before Form and Think Like a Rebel transfer logic;
-- useful existing technical diagrams as optional deeper learning rather than deleting them.
-
-## Late-finding disposition
+- testing/diagnosis before treatment selection;
+- original natural-material filtration teaching and `Dirty Is Visible. Danger Isn't.`;
+- treatment-function distinctions;
+- source protection and intended-use differences;
+- historical/global/resource-spectrum teaching;
+- Moringa mechanism and limitations;
+- copper evidence limits;
+- acoustic/frequency and lunar material as evidence-literacy, not health recommendations;
+- evidence/claim ladder;
+- Think Like a Rebel / Function Before Form / TRANSFER THE PRINCIPLE;
+- educational-demonstration versus verified-potable-treatment boundary;
+- UV as microbial disinfection/inactivation only;
+- UV pretreatment/clarity, Class A/Class B, certified model/flow, POU/POE, non-removal, downstream recontamination, power/maintenance, and potable safety-critical reactor boundaries;
+- surface-water chemical/toxin caution.
 
 No new factual/evidence blocker was discovered.
 
-The owner learner-experience correction is a `CURRENT_VERSION_REQUIRED` delivery revision, not a new subject-matter finding.
+## Verification completed
 
-The existing approved UV addendum remains `CURRENT_VERSION_SAFE_TO_INCORPORATE` and stays inside V1.
+- Relative links used by the integrated experience point to files present in `visual-production/`.
+- Referenced deeper anchors `#source-decision`, `#clear-safe`, `#uv-train`, and `#uv-class-pou` are present in `water-system-visual-preview.html`.
+- Responsive breakpoints collapse primary grids for tablet/mobile widths.
+- Print rules move the integrated experience to light printable surfaces and hide navigation/action controls.
+- Safety meaning is stated in text and structure, not color alone.
+- Non-clickable information containers are not styled as full pills/capsules; rounded button/link treatment is reserved for interactive controls.
+- The database routine `public.record_academy_learner_signal` exists for the instrumented structured signal calls.
+- No live/public browser deployment test was performed because release/deployment is not authorized at this gate.
 
-## Remaining work before Final Product Review
+## Final Product QA
 
-The project is not yet being returned to Final Product Review this cycle.
+Re-run against the authorized handoff, Product Design package, evidence crosswalk, Revision Preservation Standard, Learner Experience standard, and current integrated review package: **PASS**.
 
-Remaining exact work:
-- integrate the approved `Dirty Is Visible. Danger Isn't.` activity into the continuous learner sequence instead of leaving it only in the source package;
-- strengthen the in-context historical/global and evidence-literacy learning so those preserved manuscript modules are not reachable only as detached deeper visuals;
-- verify all optional-deeper relative links from the integrated experience in the owner-review iframe/context;
-- run mobile/readability/print verification on the integrated page and deeper assets;
-- verify learner-signal calls and review-mode filtering behavior;
-- re-run the full Final Product QA against the authorized handoff, revision-preservation baseline, evidence crosswalk, and every Learner Experience QA question.
+## Owner action
+
+Visual Production is complete. The project is ready for owner Final Product Review.
+
+Owner decision:
+- Approve for Release;
+- Needs Visual / Delivery Work;
+- Return to Product Design; or
+- Reject Product.
+
+Approval at Final Product Review does not itself publish or deploy the product; release preparation and release decision remain separate later gates.
 
 ## Release boundary
 
-Nothing in this cycle is public, deployed, sold, indexed, advertised, affiliate-linked, storefront-activated, or price-activated. Final Product Review has not been reached and release remains unauthorized.
+Nothing in this cycle was publicly released, deployed, sold, indexed, advertised, affiliate-linked, storefront-activated, or price-activated.
