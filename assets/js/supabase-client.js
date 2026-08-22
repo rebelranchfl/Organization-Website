@@ -17,4 +17,5 @@ if (window.location.pathname.endsWith('/operations-review.html') || window.locat
   import('./operations-review-visual-map.js');
   import('./operations-review-opportunity-intelligence.js');
   import('./operations-review-audience-conversion-intelligence.js');
+  import('./operations-review-readability.js');
 }
