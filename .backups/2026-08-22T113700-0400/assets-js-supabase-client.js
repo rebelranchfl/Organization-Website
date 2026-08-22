@@ -18,17 +18,16 @@ if (path.endsWith('/operations-review.html') || path === '/operations-review.htm
   import('./operations-review-visual-map.js');
   import('./operations-review-opportunity-intelligence.js');
   import('./operations-review-audience-conversion-intelligence.js');
-  import('./operations-review-learner-intelligence.js');
   import('./operations-review-readability.js');
   import('./operations-review-dashboard-v3.js');
   import('./operations-review-lifecycle-workspace.js');
   import('./operations-review-project-intake.js');
   import('./operations-review-stage-links.js');
   import('./academy-stage-progress-status.js');
-  import('./academy-late-findings.js');
+  import('./academy-late-finding-control.js');
 }
 
 if (path.endsWith('/academy-stage-review.html') || path === '/academy-stage-review.html') {
   import('./academy-stage-progress-status.js');
-  import('./academy-late-findings.js');
+  import('./academy-late-finding-control.js');
 }

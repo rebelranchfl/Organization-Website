@@ -18,7 +18,6 @@ if (path.endsWith('/operations-review.html') || path === '/operations-review.htm
   import('./operations-review-visual-map.js');
   import('./operations-review-opportunity-intelligence.js');
   import('./operations-review-audience-conversion-intelligence.js');
-  import('./operations-review-learner-intelligence.js');
   import('./operations-review-readability.js');
   import('./operations-review-dashboard-v3.js');
   import('./operations-review-lifecycle-workspace.js');
