@@ -1,145 +1,181 @@
 # RRA-2026-0001 — Product Architecture
 
-**Status:** PRODUCT ARCHITECTURE READY FOR MANUSCRIPT  
+**Status:** PRODUCT WORKING — RESPONSIBLE REBELLION REBUILD  
 **Product system:** Free foundation + core interactive paid product + modular follow-ons  
 **Working core title:** Build Your Water System  
-**Learning area:** Sustainability & Agriculture
+**Learning area:** Sustainability & Agriculture  
+**Evidence boundary:** Owner-approved Revision 3 + owner-approved UV addendum. No subject-evidence replacement is authorized.
 
 ## Product identity
 
 ### Free foundation — Know Your Water
-Role: mission-access/search entry and prerequisite decision layer.
-
-Primary outcome: the learner can identify source, intended use, what is known/unknown, what level of testing is appropriate, and which treatment-job category comes next.
+Mission-access/search entry. The learner identifies source, all intended uses, known/unknown conditions, and the next useful testing or observation step.
 
 ### Core paid product — Build Your Water System
-Role: interactive decision-and-implementation product.
+Interactive decision-and-implementation product. The paid value is not more reading. RRA does the cross-referencing, system decomposition, branch design, build/buy comparison, substitutions analysis, verification planning, and personalized system organization the learner would otherwise have to do manually.
 
-Primary outcome: the learner can move from a real situation to a defensible system plan without beginning from a brand/product assumption.
+The product must not be reduced to a text-heavy PDF or a questionnaire that returns generic paragraphs.
 
-Delivery recommendation:
-- interactive Water Profile / scenario engine;
-- structured digital reference guide;
-- printable planning worksheets;
-- scenario-specific implementation sheets;
-- diagrams/schematics;
-- maintenance/retesting plan;
-- Think Like a Rebel transfer exercises.
+## Governing learner model
 
-Do not reduce this product to a PDF-only ebook.
+`SEE IT → UNDERSTAND IT → CHOOSE YOUR USES → BUILD YOUR BRANCHES → COMPARE OPTIONS → TEST / VERIFY → IMPROVE → TRANSFER THE PRINCIPLE`
 
-## Learner outcomes
+Testing verifies and refines. It is not permission to educate.
 
-The learner should understand clear water versus safe water; why treatment must match the problem; why source and intended use change system requirements; why testing may be the correct first action; why function comes before product form; how storage, movement, control and verification belong to the same system; and where reuse/substitution is safe versus inappropriate.
+## Multi-use architecture — hard requirement
 
-The learner should be able to create a Water Profile, identify unknowns, choose a testing path, define required functions, inventory resources, compare safe substitutions, identify components worth buying, sketch a minimum responsible system, compare upgrades/automation, and define verification/maintenance.
+Question 2, **What do you need the water to do?**, is multi-select when uses can coexist.
 
-The product does not promise universal potable-water safety from DIY filtration, contaminant removal without matching evidence, guaranteed savings, laboratory certainty from every home kit, or one best filter for everyone.
+Supported branch families include, when relevant to the selected source and evidence:
+- drinking / cooking;
+- animals;
+- irrigation / garden;
+- emergency backup / storage;
+- household non-potable use;
+- educational / demonstration use.
+
+The product creates one whole-system view with parallel branches. It must show:
+1. the shared source and infrastructure;
+2. what functions all branches share;
+3. where branches split;
+4. why the branches differ;
+5. what each branch requires for treatment, storage, movement, control, testing/verification and maintenance;
+6. what can be shared safely;
+7. what should remain separate.
+
+Changing an earlier answer updates dependent branches where technically practical.
+
+## Tangible system teaching — hard requirement
+
+The learner must see actual systems and build concepts before being asked to study long technical explanations.
+
+Required visual/build families include:
+- 55-gallon layered filtration build concept with labeled layers/components and their functions;
+- 5-gallon gravity filtration build concept;
+- settling / prefiltration / storage sequence;
+- source-to-use treatment train;
+- well / pump / storage / branch system;
+- drinking vs animal vs irrigation branch comparison;
+- historical / regional / modern material and method comparisons supported by approved evidence;
+- treatment-function comparison showing where a method helps and where it does not;
+- before / build / test / after experiment flow.
+
+For every system/build concept the product must teach:
+- what each part does;
+- what problem/job it addresses;
+- what people have used in different times/places where approved research supports it;
+- substitutions and use-what-you-have options;
+- strengths;
+- limits;
+- what the learner should verify.
 
 ## Learning sequence
 
-### Module 1 — Stop Shopping. Define the Problem.
-Break the reflex to begin with a filter/device. Use Diagnose Before Prescribing, clear-versus-safe water, and the evidence ladder. Learner action: state the actual goal and intended use.
+### 1 — Tell Us About Your Water
+Source, setting, observations, current treatment and changes/events.
 
-### Module 2 — Know Your Source
-Compare municipal, private well, rain, stored, and surface-water starting points. Learner action: complete the source profile.
+### 2 — What Do You Need the Water to Do?
+Multi-select intended uses. Immediately render the whole-system branch map.
 
-### Module 3 — What Do You Know? What Don't You Know?
-Separate observation, assumption, and measured evidence. Include `Dirty Is Visible. Danger Isn't.`
+### 3 — What Do You Already Know?
+Separate measured/documented facts, observations, assumptions and meaningful unknowns. Preserve `Dirty Is Visible. Danger Isn't.`
 
-### Module 4 — What Should You Test?
-Teach screening versus targeted versus laboratory/certified testing. This module also supports the free **Know Your Water** entry resource.
+### 4 — See How Water Systems Actually Work
+Visual-first treatment functions: protect, settle, screen/prefilter, filter particles, adsorb selected compounds, address specific dissolved contaminants where supported, disinfect/inactivate microorganisms, store, move, control, verify and maintain.
 
-### Module 5 — Treatment Jobs, Not Product Names
-Teach the system functions: protect, settle, screen/prefilter, filter particles, adsorb selected compounds, remove specific dissolved contaminants where supported, disinfect/inactivate microorganisms, store, move, control, verify, and maintain.
+### 5 — Build the Simple Version First
+Show tangible DIY / low-resource / purchased / hybrid system concepts supported by approved evidence. Teach function before form and use what you have before deciding what to buy.
 
-**UV is now an approved treatment branch.** It belongs specifically under **DISINFECT / INACTIVATE MICROORGANISMS**. The learner-facing logic must preserve:
-- test/diagnose before selection for unknown/private-well water;
-- pretreatment/turbidity and clarity requirements where relevant;
-- NSF/ANSI 55 Class A versus Class B distinction;
-- model/configuration/certified-flow boundaries;
-- point-of-use versus point-of-entry logic;
-- the fact that UV does not remove sediment, chemicals, dissolved metals, or salts;
-- downstream storage/distribution hygiene and recontamination risk;
-- power, fouling, light-output, alarm, and model-specific maintenance failure modes;
-- potable-water safety boundary: teach the surrounding system, but use a validated/certified reactor appropriate to the identified job rather than an improvised safety-critical UV reactor.
+### 6 — Water Through Time & Place
+Show how materials, climate, source, fuel, infrastructure and local knowledge changed water systems across regions and periods. Preserve Moringa, copper and other approved historical/global evidence with their existing boundaries.
 
-Compare UV with boiling, chlorine-based disinfection, and solar disinfection by **function, resources, operating conditions, tradeoffs, and verification**, not as universal substitutes.
+### 7 — What Should You Test?
+Testing is presented as a decision tool. Show what each test changes, home screening vs targeted vs laboratory limits, and verified affordable/free/local routes where supported. A missing test does not erase the general system education already delivered.
 
-### Module 6 — Function Before Form
-Convert named objects into functions: jug/bucket/drum/tank → STORE; hose/tubing/pipe → MOVE; gravity/pump → CREATE FLOW/PRESSURE; valve/float → CONTROL.
+### 8 — Build My Water System
+Create the learner's parallel branch plan from selected uses and known constraints. Show shared components, branch-specific treatment/storage/distribution, substitutions, buy points and next actions.
 
-### Module 7 — Use What You Have / Know When Not To
-Use the categories Use What You Have, Reuse/Repurpose, Source Locally, Worth Buying, Optional Upgrade, and Do Not Substitute. A validated potable-water UV reactor belongs in **WORTH BUYING / DO NOT IMPROVISE THE SAFETY-CRITICAL REACTOR** when microbial disinfection is the identified job.
+### 9 — Does Responsible Rebellion Hold Water?
+Use the recurring experiment pattern:
+`UNDERSTAND → BUILD / IMPLEMENT → OBSERVE → TEST → COMPARE → IMPROVE → DECIDE → TRANSFER THE PRINCIPLE`.
 
-### Module 8 — Build the Minimum Responsible System
-Interactive result: `required functions → resources → viable forms → build/buy path → verification`.
+Permanent rule: **A successful build is not proof. Test the result.**
 
-### Module 9 — Scale It
-Translate functions from countertop to 5-gallon to 55-gallon/farm scale while changing engineering constraints such as weight, support, head, fittings, cleaning, overflow, and material suitability.
+Where supportable, compare alternative/default systems on performance, cost, energy/consumables, maintenance, repairability, local materials, capacity, reliability, waste, convenience and resilience.
 
-### Module 10 — Automate It
-Introduce control and labor reduction. Example: storage → gravity/pump → line → float/nipple/cup → animal watering. Keep animal distribution separate from human potable treatment.
+### 10 — Scale and Function Before Form
+Show how the same function changes from countertop to 5-gallon to 55-gallon/farm scale. Scale changes constraints; it does not erase the underlying function.
 
-### Module 11 — Verify, Maintain, Retest
-Create a verification method, model-specific maintenance plan where applicable, retest trigger, and backup/failure plan.
+### 11 — Automate / Reduce Repeated Labor
+Show controls, gravity/pumps, floats/valves and inspection/backup logic where relevant. Keep human potable treatment and animal distribution requirements distinct.
 
-### Module 12 — Water Through Time & Place
-Preserve named historical/global practices, Moringa, copper claim boundaries, modernization tradeoffs, and resource-spectrum comparison.
+### 12 — Verify, Maintain and Retest
+Create a branch-aware verification, maintenance, failure and backup plan.
 
-### Module 13 — Match the Claim to the Evidence
-Preserve acoustic/frequency and lunar research as evidence-literacy teaching. Use the claim ladder: observation → mechanism → persistence → replication → biological effect → health effect → recommendation.
+### 13 — Match the Claim to the Evidence
+Preserve the approved evidence ladder and acoustic/frequency/lunar evidence-literacy material. Do not turn observed effects into stronger claims than the evidence supports.
 
-### Module 14 — Think Like a Rebel: Transfer the Principle
-Apply function-before-form, resource inventory, safe substitution, tradeoffs, and verification to a non-water problem.
+### 14 — TRANSFER THE PRINCIPLE
+Apply the same functional decomposition, resource inventory, substitution, testing and verification logic to a non-water problem.
 
-## Interactive components
+## UV branch — preserved approved evidence
 
-1. **Water Profile** — source, use, testing status, setting, scale, resources, infrastructure, budget, priorities.
-2. **What Should I Test?** — screening / targeted / laboratory path.
-3. **Results Interpreter** — what a result means, what remains unknown, and which treatment-job category follows.
-4. **Treatment Job Builder** — converts scenario into required functions, including UV only when microbial disinfection is actually indicated.
-5. **Resource Inventory** — captures what the learner already has.
-6. **Substitution Planner** — maps forms to functions and flags non-equivalent/unsafe substitutions.
-7. **Build / Buy Comparator** — DIY, purchased, and hybrid paths where supportable.
-8. **System Diagram** — block schematic of the recommended sequence.
-9. **Maintenance / Verification Planner** — repeat-use plan.
-10. **Next Learning Path** — routes into related Academy opportunities.
+UV remains specifically a microbial-disinfection/inactivation function. Preserve testing/diagnosis, pretreatment/clarity conditions, NSF/ANSI 55 Class A vs Class B, model/configuration/certified-flow boundaries, POU/POE logic, non-removal of sediment/chemicals/metals/salts, downstream recontamination, power/fouling/light-output/maintenance failure modes and the validated/certified potable reactor boundary.
 
-## Scenario modules
+UV does not become the governing model for the whole product and does not block teaching other evidence-backed systems.
 
-- **Household private well / countertop:** testing-first when need is unknown; treatment based on results; POU/POE decision; UV branch only when microbial disinfection is the identified job and operating requirements can be met.
-- **Municipal / renter / no-install:** use public/source data plus specific concern, then compare no-install forms by treatment job and certified performance.
-- **Farm / animal water:** intended-use quality path plus storage/distribution/automation.
-- **Rain-fed chicken watering:** catchment → debris management → storage → gravity/pump → control → maintenance.
-- **Pond emergency backup:** separate high-caution surface-water path; simple filtration or UV alone is not assumed sufficient for unknown chemical/toxin contamination.
-- **Educational family lab:** filtration/diagnosis activities without presenting demonstration water as potable.
+## My Water Plan — living output
 
-## Free / paid / bundle role
+The paid core must produce a living personalized plan, not a generic summary. The plan must contain:
+- source and setting;
+- all selected intended uses;
+- whole-system branch diagram;
+- shared infrastructure;
+- branch-specific jobs;
+- what the learner knows;
+- important unknowns;
+- what testing would change;
+- system/build options by branch;
+- what each component/layer does;
+- use-what-you-have / reuse / local / worth-buying / optional-upgrade / do-not-substitute categories;
+- build/buy/hybrid choices;
+- verification plan;
+- maintenance/retest plan;
+- failure/backup plan;
+- next three actions;
+- Responsible Rebellion comparison/experiment record where applicable.
 
-### Free — Know Your Water
-Give away the decision prerequisite.
+See `implementation/my-water-plan-spec.md`.
 
-### Paid — Build Your Water System
-Charge for guided narrowing, implementation architecture, reusable tools, diagrams, system planning, and application depth.
+## Navigation / state contract
 
-### Follow-ons
-- Water Testing & Results;
-- Rainwater & Storage;
-- Gravity/Pumps/Pressure/Flow;
-- Automated Animal Watering;
-- Emergency Water Systems;
-- UV & Microbiological Disinfection as a deeper standalone/follow-on opportunity where the opportunity score justifies it;
-- Maintenance & Monitoring.
+- learner answers persist through ordinary navigation and optional-depth exploration;
+- `Show me why`, `Show me the science`, `See the system`, `Technical details` and `Sources` open inside the coherent learner experience and return to the exact prior place;
+- no depth control may point to an unfinished route or 404;
+- changing an earlier answer recalculates dependent branch outputs where practical;
+- selected uses remain visible throughout the journey;
+- the learner can always return to `My Water Plan` without re-entering answers.
 
-Final public pricing remains owner-controlled.
+See `integrated-learner-flow.md`.
 
-## Visual-production needs
+## Safety / disclaimer behavior
 
-Future visual brief should include source decision tree; clear-vs-safe water visual; treatment-job map; UV treatment-train/function diagram; Class A/Class B and POU/POE comparison; function-before-form diagram; scale illustration; gravity/head/flow diagram; automated animal-watering schematic; pond emergency decision flow; evidence ladder; historical/global comparison; and personalized system block-diagram template.
+The general product/site footer handles the broad educational boundary. In-content warnings are used only for a specific, material, reasonably immediate hazard in the action being taught. Do not repeat generic legal/compliance disclaimers throughout the lesson.
 
-No visual production is authorized until Owner Product Review approves the product design.
+## Product-value gate
 
-## Product architecture gate
+The proposed **$39** price remains a recommendation only and survives Product QA only if the implemented product actually delivers the tangible diagrams/build concepts, multi-branch personalization, system comparison, verification planning and reusable My Water Plan described here.
 
-**PASS.** The owner-approved UV addendum closes the prior subject-evidence gap. Architecture is ready for full manuscript and implementation development while preserving Revision 3 and the UV addendum as the evidence boundary.
+If the finished product becomes mostly generalized text, the $39 value case fails.
+
+## Visual-production status
+
+The prior Visual Production authorization is stale because owner Final Product Review returned the product to Product Design. **No new Visual Production cycle is authorized until the owner approves this rebuilt Product Design.**
+
+## Architecture gate
+
+**PASS FOR REBUILD DIRECTION.** Architecture now addresses the owner-routed structural failures while preserving the approved evidence foundation. Product Design must complete the additive manuscript correction, integrated flow, personalized-output spec, signal plan, preservation check and QA before returning to Product Review.
+
+---
+AI-Agent: ChatGPT/GPT-5.6 Sol  
+Session: RRA Product Design Agent
