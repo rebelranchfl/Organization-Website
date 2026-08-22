@@ -1,0 +1,32 @@
+{
+  "project_id": "RRA-2026-0001",
+  "title": "Water Through the Layers",
+  "stage": "VISUAL_PRODUCTION",
+  "status": "HUMAN_FIRST_REVISION_IN_PROGRESS",
+  "assets": [
+    {
+      "label": "Owner Review Entry",
+      "file": "index.html",
+      "type": "interactive-html",
+      "description": "Owner entry point that now leads with the complete integrated learner experience rather than a disconnected asset gallery."
+    },
+    {
+      "label": "Water Through the Layers — Complete Learner Experience",
+      "file": "water-learning-experience.html",
+      "type": "interactive-html",
+      "description": "Primary human-first sequence: recognizable source scenes, ordinary-language decisions, My Water Test Results, Build My Water Treatment Plan, living My Water Plan, optional deeper science/technical layers, and privacy-minimized structured learner-signal instrumentation."
+    },
+    {
+      "label": "Deeper Decision Visuals",
+      "file": "water-system-visual-preview.html",
+      "type": "responsive-html",
+      "description": "Optional deeper source/testing/treatment/UV/Class A-Class B/POU-POE visual layer preserved under the integrated experience."
+    },
+    {
+      "label": "Deeper Implementation Visuals",
+      "file": "water-system-implementation-visuals.html",
+      "type": "responsive-html",
+      "description": "Optional deeper Function Before Form, scale, animal watering, surface-water caution, evidence ladder, historical/global, and system-diagram visual layer."
+    }
+  ]
+}

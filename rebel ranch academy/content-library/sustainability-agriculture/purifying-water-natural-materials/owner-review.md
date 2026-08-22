@@ -1,7 +1,7 @@
 # RRA-2026-0001 — Owner Review History
 
 ## Current review status
-**REVISION 3 — CORRECTIVE ADDITIVE INTEGRATION REQUIRED**
+**RESEARCH FOUNDATION + TARGETED UV EVIDENCE APPROVED — PRODUCT DESIGN MAY RESUME**
 
 Public release is **not** authorized.
 
@@ -15,6 +15,9 @@ Public release is **not** authorized.
 - `pricing.md`
 - `qa-review.md`
 - `revision-impact.md`
+- `research-uv-addendum.md`
+- `sources-uv-addendum.md`
+- `uv-gap-qa.md`
 
 ## Review history
 
@@ -39,7 +42,7 @@ Public release is **not** authorized.
 - Proposed format: 45–60 page illustrated RRA Field Guide + Family Investigation Lab + free evidence-literacy sample
 - Proposed price: $39
 - Source count: 24 audited source entries
-- Key evidence conflict: lunar-human sleep research contains both positive findings and direct non-replication; new 2026 gravimetric evidence is included as new, not settled.
+- Key evidence conflict: lunar-human sleep research contains both positive findings and direct non-replication/publication-bias concerns; new 2026 gravimetric evidence is included as new, not settled.
 - Key claim boundary: frequency/acoustic energy demonstrably affects water systems, but that does not by itself establish permanent beneficial restructuring or a health effect.
 - Owner decision: **APPROVED**
 - Decision recorded: 2026-08-21
@@ -60,15 +63,40 @@ Public release is **not** authorized.
 - Sources: both Revision 1 and Revision 2 source value must remain auditable.
 - Release approved: **No**
 
-## What Revision 3 must produce
+### Revision 3 — integrated research foundation approval
+- Owner decision: **APPROVE RESEARCH FOUNDATION**
+- Decision recorded: 2026-08-21
+- Result: Product Design handoff authorized.
+- Source-set status: **Agent-vetted; owner overrides applied where present.**
+- Product Design authorization only: **Yes**
+- Visual production authorized: **No**
+- Release authorized: **No**
 
-Revision 3 must create one comprehensive project:
+### Targeted UV evidence return
+- Opened from Product Design: 2026-08-21
+- Scope: ultraviolet microbiological water treatment/disinfection only.
+- Preservation rule: additive to approved Revision 3; no Revision 3 removal/replacement authorized.
+- Evidence files: `research-uv-addendum.md`, `sources-uv-addendum.md`, `uv-gap-qa.md`.
+- QA result: **PASS**.
+- Source audit: 8 targeted entries; **Agent-vetted; owner overrides applied where present.**
+- Owner decision: **APPROVE RESEARCH FOUNDATION — TARGETED UV EVIDENCE**
+- Decision event: `4d1a6443-2244-49b8-98ed-514578257e0a`
+- Decision recorded: 2026-08-21
+- Owner comments: none added with approval.
+- Result: Product Design may resume and integrate the approved UV branch.
+- Product Design stage to resume: **PRODUCT_WORKING** because Product Opportunity Research and system-decomposition artifacts already exist and the UV return was a narrow evidence detour.
+- Visual production authorized: **No**
+- Release authorized: **No**
 
-**Revision 1 filtration/natural-material foundation + Revision 2 global/copper/frequency/lunar expansion.**
+## Required preservation after UV approval
 
-The original filtration detail, experiments, scenarios, source-protection teaching, treatment distinctions, and `Diagnose before prescribing` transfer lesson must not disappear. The newer global practices, copper, Moringa, water-frequency, lunar research, and evidence-ladder teaching must be added to that foundation.
+The complete approved research foundation is now:
+
+**Revision 1 filtration/natural-material foundation + Revision 2 global/copper/frequency/lunar expansion + Revision 3 corrective additive integration + targeted UV microbiological-disinfection addendum.**
+
+The UV addendum strengthens the treatment-job framework; it does not replace any existing research or teaching. Product Design must retain the testing-first rule, Class A/Class B distinction, pretreatment/turbidity limits, certified flow/model boundaries, POU/POE logic, maintenance/failure risks, post-treatment recontamination risk, and the rule that a potable-water UV reactor is a validated/certified safety-critical component rather than an improvised build.
 
 ## Required rule
 A `NEEDS MORE WORK` request is additive by default under `ACADEMY-REVISION-PRESERVATION-STANDARD.md`. A later approval does not authorize accidental loss of earlier material the owner expected to remain.
 
-This corrective revision must return to owner review before final designed/illustrated production proceeds.
+No publishing, deployment, sale, visual-production handoff, or final public price is authorized by these research approvals.

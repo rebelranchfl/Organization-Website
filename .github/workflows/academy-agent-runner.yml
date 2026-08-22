@@ -1,0 +1,18 @@
+name: Academy Run Agent Now — Disabled
+
+# Disabled by owner direction on 2026-08-22.
+# Reason: do not create any additional OpenAI API fees at this time.
+# The runner code is intentionally preserved for possible future reuse.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  disabled:
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Run Agent Now is disabled by owner direction."

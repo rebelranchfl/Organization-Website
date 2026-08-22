@@ -6,7 +6,7 @@
   "named_program": null,
   "created_at": "2026-08-20T21:01:00-04:00",
   "created_by": "owner",
-  "current_status": "READY_FOR_REVIEW",
+  "current_status": "APPROVED",
   "revision_number": 3,
   "owner_input": {
     "idea": "Purifying water with natural materials",
@@ -27,7 +27,10 @@
       "/rebel ranch academy/Rebel-Ranch-Academy-Program-Hub/README.md",
       "/rebel ranch academy/ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md",
       "/rebel ranch academy/ACADEMY-CONTENT-PROJECT-SCHEMA.md",
-      "/rebel ranch academy/ACADEMY-REVISION-PRESERVATION-STANDARD.md"
+      "/rebel ranch academy/ACADEMY-REVISION-PRESERVATION-STANDARD.md",
+      "/rebel ranch academy/ACADEMY-SOURCE-REVIEW-POLICY.md",
+      "/rebel ranch academy/ACADEMY-PRODUCT-PHASE-WORKFLOW-EXTENSION.md",
+      "/rebel ranch academy/ACADEMY-THINK-LIKE-A-REBEL-FRAMEWORK.md"
     ],
     "websites_reviewed": [
       "https://rebelranchministries.org",
@@ -46,9 +49,9 @@
     ]
   },
   "research": {
-    "status": "COMPLETE_REVISION_3_INTEGRATED",
+    "status": "COMPLETE_REVISION_3_PLUS_TARGETED_UV_APPROVED",
     "started_at": "2026-08-21T07:01:00-04:00",
-    "completed_at": "2026-08-21T08:00:00-04:00",
+    "completed_at": "2026-08-21T15:35:41-04:00",
     "source_count": 24,
     "primary_or_direct_source_count": 17,
     "conflicts_found": [
@@ -57,12 +60,26 @@
       "Traditional water practices document use; efficacy varies by mechanism, preparation and conditions."
     ],
     "unresolved_questions": [
-      "Final visual production may reveal additional source needs for specific diagrams or captions."
+      "Final visual production may reveal additional source needs for specific diagrams or captions.",
+      "Exact UV lamp/LED replacement, sleeve cleaning, alarm, parts and installation requirements remain model-specific and must be taken from the exact selected certified device's current manufacturer instructions during Product Design implementation."
     ],
     "sources_file": "sources.md",
     "research_file": "research.md",
     "baseline_commit": "912bb980164cfc75bd8243ae32af61af7ceb27d8",
-    "integration_result": "Revision 1 filtration, natural-material, source-protection and treatment-job research restored as the foundation; Revision 2 global, copper, Moringa, acoustic/frequency and lunar-human evidence retained as additive expansion."
+    "integration_result": "Revision 1 filtration, natural-material, source-protection and treatment-job research restored as the foundation; Revision 2 global, copper, Moringa, acoustic/frequency and lunar-human evidence retained as additive expansion. Targeted UV microbiological-disinfection evidence was later added and owner-approved without reopening Revision 3.",
+    "targeted_evidence_return": {
+      "topic": "UV microbiological water treatment/disinfection",
+      "status": "OWNER_APPROVED",
+      "approved_at": "2026-08-21T15:35:41-04:00",
+      "review_event_id": "4d1a6443-2244-49b8-98ed-514578257e0a",
+      "research_file": "research-uv-addendum.md",
+      "sources_file": "sources-uv-addendum.md",
+      "qa_file": "uv-gap-qa.md",
+      "source_count": 8,
+      "source_set_status": "Agent-vetted; owner overrides applied where present.",
+      "preservation_rule": "Additive only; no Revision 3 removal or replacement authorized.",
+      "product_handback": "Resume PRODUCT_WORKING and integrate the approved UV branch into the existing Product Design package."
+    }
   },
   "concept": {
     "status": "COMPLETE_REVISION_3_INTEGRATED",
@@ -79,11 +96,13 @@
       "A real mechanism does not make a method universal.",
       "Match the claim to the mechanism and evidence.",
       "Observation, mechanism, persistence, replication, biological effect, health effect and recommendation are different levels of claim.",
-      "Prove only what the evidence proves."
+      "Prove only what the evidence proves.",
+      "UV is a microbiological-disinfection function, not a universal purification step.",
+      "Potable-water UV performance must stay tied to validated class, model, flow and maintenance conditions."
     ],
     "historical_or_lost_knowledge_angle": "Preserve the original whole-household/source-protection water-system teaching, then expand it with named global practices and laboratory testing of traditional methods.",
-    "current_use_angle": "Use filtration, source protection, copper, Moringa, acoustics/frequency and lunar-human research to teach practical water knowledge and evidence literacy.",
-    "transfer_the_principle_summary": "Both transferable principles are preserved separately: Diagnose before prescribing / match the solution to the actual problem; and match the claim to the mechanism and evidence.",
+    "current_use_angle": "Use filtration, source protection, copper, Moringa, acoustics/frequency, lunar-human research and approved UV evidence to teach practical water-system diagnosis, treatment-job matching and evidence literacy.",
+    "transfer_the_principle_summary": "Preserve Diagnose before prescribing / match the solution to the actual problem; match the claim to the mechanism and evidence; and function before form when comparing treatment options and substitutions.",
     "proposed_format": [
       "45–60 page illustrated RRA Field Guide",
       "Family Investigation Lab",
@@ -116,23 +135,27 @@
       "molecular rapid-rearrangement graphic",
       "Moon/tide versus human-evidence panel",
       "evidence claim ladder",
-      "layered-defense / diagnose-before-prescribing visual"
+      "layered-defense / diagnose-before-prescribing visual",
+      "UV treatment-train branch showing test, pretreatment, validated disinfection, safe downstream storage/distribution and verification"
     ]
   },
   "content": {
     "status": "COMPLETE_REVISION_3_INTEGRATED",
     "master_content_file": "master-content.md",
-    "preservation_check": "PASS — baseline-comparison QA confirms distinct Revision 1 teaching value remains and Revision 2 is additive."
+    "preservation_check": "PASS — baseline-comparison QA confirms distinct Revision 1 teaching value remains and Revision 2 is additive; targeted UV research was added separately without modifying the approved Revision 3 master content during the evidence-return cycle."
   },
   "materials": {
-    "status": "READY_FOR_OWNER_CONTENT_REVIEW",
+    "status": "PRODUCT_DESIGN_HANDOFF_AUTHORIZED",
     "material_types": [
       "integrated field guide master content",
       "family investigations",
       "source audit",
       "pricing proposal",
       "revision-impact record",
-      "baseline-comparison QA"
+      "baseline-comparison QA",
+      "targeted UV evidence addendum",
+      "UV source audit",
+      "UV gap QA"
     ],
     "files": [
       "context-review.md",
@@ -144,40 +167,49 @@
       "pricing.md",
       "qa-review.md",
       "owner-review.md",
-      "revision-impact.md"
+      "revision-impact.md",
+      "research-uv-addendum.md",
+      "sources-uv-addendum.md",
+      "uv-gap-qa.md",
+      "product-design-handoff.md"
     ],
     "preview_files": [
       "master-content.md",
       "concept.md",
       "sources.md",
       "revision-impact.md",
-      "qa-review.md"
+      "qa-review.md",
+      "research-uv-addendum.md",
+      "sources-uv-addendum.md",
+      "uv-gap-qa.md"
     ]
   },
   "pricing": {
-    "status": "PROPOSED_OWNER_REVIEW",
+    "status": "WORKING_DIRECTION_ONLY",
     "proposed_price": 39,
     "currency": "USD",
     "role": "paid core illustrated field guide with free public evidence-literacy sample",
     "reasoning_file": "pricing.md",
     "owner_approved_price": 39,
-    "release_note": "Prior owner price direction is preserved; final public price still requires release authorization after production scope is delivered."
+    "release_note": "Prior owner price direction is preserved; Product Design must complete market positioning and packaging analysis. No public price is authorized until later owner gates."
   },
   "qa": {
-    "status": "PASS_REVISION_3_BASELINE_COMPARISON",
-    "completed_at": "2026-08-21T08:00:00-04:00",
+    "status": "PASS_REVISION_3_AND_TARGETED_UV",
+    "completed_at": "2026-08-21T15:35:41-04:00",
     "qa_file": "qa-review.md",
     "baseline_commit": "912bb980164cfc75bd8243ae32af61af7ceb27d8",
+    "additional_qa_file": "uv-gap-qa.md",
     "blockers": []
   },
   "owner_review": {
-    "status": "PENDING",
-    "latest_decision": "CORRECT_ADDITIVELY",
-    "latest_comment": "Revision 2 looked like it took over/replaced the initial concept and research rather than adding to it. Restore the initial foundation and add Revision 2 to it.",
-    "reviewed_at": "2026-08-21T07:01:00-04:00",
+    "status": "APPROVED",
+    "latest_decision": "APPROVE_RESEARCH_FOUNDATION_TARGETED_UV",
+    "latest_comment": null,
+    "reviewed_at": "2026-08-21T15:35:41-04:00",
     "review_history_file": "owner-review.md",
     "source_decisions_complete": false,
-    "next_decision": "Approve, Needs More Work, or Reject Revision 3 in Operations Review"
+    "source_review_policy": "Agent-vetted; owner overrides applied where present.",
+    "next_decision": "No owner research decision is pending. Product Design resumes and will later return for Product Review."
   },
   "release": {
     "status": "NOT_STARTED",
@@ -186,12 +218,12 @@
     "destination": "",
     "live_url": "",
     "release_files": [],
-    "release_notes": "Content integration is ready for owner review. No publishing, deployment, sale, or final public price is authorized."
+    "release_notes": "Research approval authorizes Product Design only. No publishing, deployment, sale, visual production, or final public price is authorized."
   },
   "agent": {
     "active_agent": null,
     "last_agent": "ChatGPT/GPT-5.6 Sol",
-    "session_title": "RRA Content Agent — Revision 3 additive integration",
-    "last_updated_at": "2026-08-21T08:00:00-04:00"
+    "session_title": "RRA Content Agent — targeted UV approval handback",
+    "last_updated_at": "2026-08-21T16:13:57-04:00"
   }
 }

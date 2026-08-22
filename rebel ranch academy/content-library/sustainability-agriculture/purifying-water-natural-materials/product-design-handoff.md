@@ -4,7 +4,7 @@
 
 ## Authorization basis
 
-The owner approved the completed Revision 3 research foundation in Operations Review. This handoff recovers the product-design transition required by `ACADEMY-PRODUCT-PHASE-WORKFLOW-EXTENSION.md` for an already-approved research cycle.
+The owner approved the completed Revision 3 research foundation in Operations Review and later approved the targeted UV evidence return created from a Product Design evidence gap. This handoff is the current Product Design permission boundary.
 
 This authorization permits **Product Design research and development only**. It does not authorize publishing, deployment, selling, visual production, or making a public price live.
 
@@ -13,13 +13,15 @@ This authorization permits **Product Design research and development only**. It 
 - Project: `RRA-2026-0001`
 - Working title: **Water Through the Layers**
 - Approved research revision: **Revision 3 — additive integration**
+- Targeted evidence return approved: **UV microbiological water treatment/disinfection**
 - Learning area: **Sustainability & Agriculture**
-- QA result: Revision 3 baseline-comparison QA passed with no blockers.
-- Source set status: **Agent-vetted; owner overrides applied where present.** Individual owner source approvals are optional and are not a product-design gate.
+- Revision 3 QA result: baseline-comparison QA passed with no blockers.
+- UV-gap QA result: PASS with no blocking subject-evidence gap remaining.
+- Source set status: **Agent-vetted; owner overrides applied where present.** Individual owner source approvals are optional and are not a Product Design gate.
 
 ## Approved research files / evidence boundary
 
-The Product Design Agent must treat the following Revision 3 package as the approved subject-matter foundation:
+The Product Design Agent must treat the following package as the approved subject-matter foundation:
 
 - `research.md`
 - `sources.md`
@@ -28,9 +30,12 @@ The Product Design Agent must treat the following Revision 3 package as the appr
 - `activities/dirty-is-visible-danger-isnt.md`
 - `revision-impact.md`
 - `qa-review.md`
-- `pricing.md` for prior working price direction only; product opportunity research must independently test product architecture/value before recommending the eventual package.
+- `research-uv-addendum.md`
+- `sources-uv-addendum.md`
+- `uv-gap-qa.md`
+- `pricing.md` for prior working price direction only; Product Design must independently test architecture/value and market positioning before recommending the eventual package.
 
-The agent may perform the separate Product Opportunity Research required by the Product Design standard. It may not silently reopen, weaken, replace, or contradict the approved subject foundation. A genuine new evidence problem must be documented and returned to research rather than guessed through.
+The agent may continue the separate Product Opportunity/Product Design work required by Academy standards. It may not silently reopen, weaken, replace, or contradict the approved subject foundation. A genuine new evidence problem must be documented and returned to Research rather than guessed through.
 
 ## Required KEEP material
 
@@ -52,6 +57,17 @@ Revision 3 is additive. Preserve the distinct teaching value of both the origina
 14. Evidence/claim ladder separating observation, mechanism, persistence, replication, biological effect, health effect and recommendation.
 15. `Match the Claim to the Mechanism and Evidence` transferable principle.
 16. The governing rule: **Teach transferable principles, not isolated facts.**
+17. UV as the function **DISINFECT / INACTIVATE MICROORGANISMS**, not general purification.
+18. Testing/diagnosis before UV selection for unknown/private-well water.
+19. Pretreatment/turbidity and water-clarity limits that affect UV exposure.
+20. NSF/ANSI 55 **Class A versus Class B** distinction.
+21. Certified model, configuration and flow-rate boundaries.
+22. Point-of-use versus point-of-entry logic.
+23. UV's non-removal of chemicals, dissolved metals/salts and sediment.
+24. Downstream storage/distribution hygiene and recontamination risk because UV provides no residual disinfectant.
+25. Maintenance/power/fouling/light-output failure modes as part of treatment performance.
+26. Potable-water DIY boundary: teach surrounding system logic, but use a validated/certified safety-critical UV reactor appropriate to the identified job.
+27. Low-resource microbial-disinfection alternatives such as boiling, chlorine-based disinfection and solar disinfection taught by function, conditions and tradeoffs rather than as universal substitutes.
 
 No REMOVE/REPLACE action is authorized by this handoff.
 
@@ -65,6 +81,9 @@ No REMOVE/REPLACE action is authorized by this handoff.
 - Moringa can perform particular treatment functions under particular conditions; it is not a universal purifier.
 - Acoustic/frequency effects must not be converted into unsupported claims about permanent beneficial water restructuring or human health.
 - Lunar-human evidence is mixed and must remain presented as mixed.
+- UV performs microbiological disinfection only within its validated claim and operating conditions; it does not remove chemical contaminants or automatically make unknown water potable.
+- `NSF/ANSI 55 certified` is incomplete without class, model, configuration and certified flow.
+- Exact lamp/LED replacement, sleeve cleaning, alarm response, replacement parts and installation requirements must come from the exact selected certified device's current manufacturer instructions; do not invent a universal interval.
 - DIY implementation concepts involving human drinking water must clearly distinguish educational demonstration, pre-treatment, filtration, disinfection, contaminant removal, testing and verified potable-water treatment.
 - Economic/savings claims require current evidence, explicit assumptions and scenario-specific calculations; do not promise savings or cost recovery.
 
@@ -106,4 +125,15 @@ RRA should do the digging, cross-referencing, verification and systems thinking 
 
 ## Required next stage
 
-The Product Design Agent must begin with `product-opportunity-research.md`, then create the evidence-backed `product-recommendation-scorecard.md` before manuscript development. The scorecard must show the evidence underneath the recommendation and explicitly address differentiation, implementation value, Knowledge Compression Value, free/paid/bundle opportunities, `Why Rebel Ranch Academy?`, and `What changes if the learner implements this?`.
+Resume at **PRODUCT_WORKING**. The prior Product Opportunity work, Functional Decomposition, Interactive Scenario Map and Opportunity Funnel Map remain preserved; the UV detour does not restart those stages.
+
+Product Design must now:
+
+1. remove the `research-dependent` restriction from the UV decision branch;
+2. integrate UV into the treatment-job decision tree and manuscript using the approved evidence above;
+3. distinguish Class A/Class B, POU/POE, prefiltration/turbidity and certified-flow logic;
+4. preserve testing-first routing for unknown/private-well water;
+5. treat the potable-water UV reactor as `WORTH BUYING / DO NOT IMPROVISE THE SAFETY-CRITICAL REACTOR` in Functional Decomposition;
+6. compare UV with boiling, chemical disinfection and solar disinfection by function, resources and tradeoffs;
+7. continue remaining manuscript, implementation, market-positioning/pricing and Product QA work;
+8. return to **PRODUCT_REVIEW** only when the complete Product Design package is ready for the owner's Product Design decision.

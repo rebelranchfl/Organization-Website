@@ -1,55 +1,88 @@
-# RRA-2026-0001 — Pricing Proposal — Revision 2
+# RRA-2026-0001 — Pricing Proposal — Current Product Design
 
-**Status:** Proposed only. Owner approval required before any public price is used.
+**Status:** Proposed only. Owner approval required before any public price is used.  
+**Public price authorized:** No
 
-## Proposed role
-Paid core Academy learning product with a useful free evidence-literacy sample.
+## Product system
 
-## Proposed paid product
-**Water Through the Layers — Lost Water Knowledge, Modern Evidence & What Actually Makes Water Safer**
-
-Planned finished scope:
-- approximately 45–60 designed/illustrated pages;
-- named historical/global water-system examples;
-- treatment-chain and source-protection explanation;
-- Indian copper-vessel evidence case study;
-- Moringa/natural coagulation case study;
-- sand/gravel/cloth/carbon mechanism cards;
-- sound/frequency/water evidence section and safe investigation;
-- Moon/human sleep evidence section showing supporting and conflicting studies;
-- evidence-ladder exercises;
-- safe filtration demonstration;
-- lunar observation journal;
-- scenarios and TRANSFER THE PRINCIPLE;
-- clickable source audit.
-
-## Revised proposed price
-**$39 USD**
-
-## Why the proposal moved from $29 to $39
-Revision 2 is materially larger than Revision 1. It is no longer mainly a water-filtration field guide. It combines practical water treatment, history, cross-cultural comparison, scientific claim evaluation, two evidence case studies, multiple learner investigations and a substantial source audit.
-
-The increase is a proposal, not an approved price. It reflects the planned finished value if the illustrations, diagrams, printable investigations and source-linked design are actually produced.
-
-## Free sample
-**Observation Is Not the Conclusion** — 2–3 page public activity using a safe vibration/water observation and the RRA evidence ladder.
-
-Recommended price: **Free**.
+### Free foundation
+**Know Your Water** — proposed free.
 
 Purpose:
-- immediately demonstrates that RRA neither blindly dismisses nor blindly accepts unusual observations;
-- teaches a reusable evidence skill;
-- gives the public a safe hands-on activity;
-- leads naturally into the deeper paid guide.
+- foundational testing/source education;
+- mission access;
+- search/SEO entry;
+- stop premature treatment purchases;
+- route the learner into the correct treatment/system question.
+
+### Paid core
+**Build Your Water System** — proposed **$39 USD**.
+
+Planned paid value:
+- Water Profile scenario engine;
+- What Should I Test? selector;
+- Results Interpreter structure;
+- Treatment Job Builder;
+- Functional Decomposition;
+- Resource / Substitution Planner;
+- Build / Buy Comparator;
+- system block-diagram framework;
+- scenario implementation sheets;
+- UV/disinfection branch with approved safety boundaries;
+- storage/distribution/flow/automation learning;
+- maintenance/retesting planner;
+- historical/global water knowledge;
+- Moringa/copper evidence case studies;
+- frequency/acoustic and lunar evidence-literacy case studies;
+- Think Like a Rebel transfer learning;
+- clickable source/evidence layer.
+
+## Current market-positioning result
+
+Current direct consumer/homeowner education comparables reviewed on 2026-08-21 range roughly from **$4.99 to $45**, including homeowner PDFs, well-water guides, and private-well books.
+
+The detailed comparison is in `market-positioning.md`.
+
+At $39, RRA sits in the **upper-MID** portion of that consumer education range—not premium.
+
+The price is defensible only if the planned interactive decision-and-implementation components are actually delivered. A static text PDF would not support the same value case.
+
+## Why $39 remains the recommendation
+
+RRA is not pricing the number of pages. The paid value is the decision system:
+
+`SOURCE + USE → KNOWNS / UNKNOWNS → TEST → TREATMENT JOB → FUNCTIONS → RESOURCES → SAFE SUBSTITUTIONS → BUILD / BUY → VERIFY → MAINTAIN → NEXT LEARNING PATH`
+
+The direct market already provides inexpensive guides and substantial free information. RRA therefore must earn the price through personalized narrowing, integration, implementation tools, diagrams, and reusable systems thinking rather than through information volume alone.
 
 ## Price decision rule
-- Keep **$39** if the final product receives the planned custom diagrams, global-method map, copper/Moringa evidence spreads, acoustic illustration, Moon/evidence spread and printable investigations.
-- Use **$29** if final production is reduced to a primarily text-based ebook with only limited visuals/interactivity.
-- Do not move above $39 for this single guide without a separate owner decision and a materially larger bundle/course scope.
 
-## Owner decision
-- Revision 1 proposal: $29
-- Revision 2 proposal: $39
-- Owner-approved price: Pending
-- Public price authorized: No
-- Free sample: Proposed
+- **Retain $39 proposal** if the interactive/tool/diagram implementation described in the Product Design package is produced.
+- **Reconsider lower** if the final delivery is reduced materially toward a static ebook/PDF.
+- **Do not move above $39** in this cycle. A higher tier would require a materially larger bundle, interactive service, live support, or expanded multi-module scope and a separate owner decision.
+
+## Follow-on / bundle opportunities
+
+No public prices are proposed yet for:
+- Water Testing & Results;
+- Rainwater & Storage;
+- Gravity / Pumps / Pressure / Flow;
+- Automated Animal Watering;
+- Emergency Water Systems;
+- UV & Microbiological Disinfection deeper module;
+- Maintenance & Monitoring;
+- broader Household/Homestead Water Systems bundle.
+
+Those remain opportunity candidates and require their own evidence/value/pricing analysis before release.
+
+## Owner decision requested at Product Review
+
+- Approve/revise free **Know Your Water** role.
+- Approve/revise **$39** proposed paid-core price.
+- Confirm whether the paid core should retain the working title **Build Your Water System**.
+
+No price becomes public until the later release gate.
+
+---
+AI-Agent: ChatGPT/GPT-5.6 Sol  
+Session: RRA Product Design Agent
