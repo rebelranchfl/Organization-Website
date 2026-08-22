@@ -1,14 +1,15 @@
 # RRA-2026-0001 — Visual Production Brief
 
-**Status:** PRODUCT DESIGN REBUILD — NOT YET AUTHORIZED FOR VISUAL PRODUCTION  
+**Status:** OWNER-APPROVED PRODUCT DESIGN — AUTHORIZED VIA NEW VISUAL HANDOFF  
 **Product:** Build Your Water System + free Know Your Water layer  
-**Governing architecture:** `product-architecture.md` + `product-manuscript-responsible-rebellion-addendum.md` + `integrated-learner-flow.md`
+**Governing architecture:** `product-architecture.md` + `product-manuscript-responsible-rebellion-addendum.md` + `integrated-learner-flow.md`  
+**Current authorization:** `visual-production-handoff.md` — Responsible Rebellion rebuild, approved 2026-08-22 14:20 ET
 
 ## Why this brief changed
 
-Owner Final Product Review found that the previous learner experience was too text-heavy, forced one intended use, produced weak personalized value, lost state during deeper navigation, and contained dead routes/404s. The owner routed Water back to Product Design. The old Visual Production authorization is therefore stale.
+Owner Final Product Review found that the previous learner experience was too text-heavy, forced one intended use, produced weak personalized value, lost state during deeper navigation, and contained dead routes/404s. The owner routed Water back to Product Design, superseding the old Visual Production authorization.
 
-Visual Production may begin only after the owner approves this rebuilt Product Design.
+Product Design rebuilt the architecture under the Responsible Rebellion / Evidence-First standard, Product QA passed, and the owner approved the rebuilt Product Design on 2026-08-22. Visual Production is now authorized only through the new `visual-production-handoff.md` and must implement this rebuilt brief.
 
 ## Visual objective
 
@@ -170,7 +171,11 @@ If the learner mainly receives words in cards instead of usable system diagrams,
 
 ## Authorization boundary
 
-This brief is a future handoff input only. **No Visual Production, public pricing, publishing, release or deployment is authorized until the owner approves the rebuilt Product Design and a new authorized Visual handoff is recorded.**
+The owner has approved the rebuilt Product Design and a new authorized Visual Production handoff is now recorded. This brief is therefore active for Visual Production.
+
+**Visual Production is authorized. Public pricing, publishing, release, selling, storefront activation, affiliate placement, SEO/public product pages and deployment are still not authorized.**
+
+The finished integrated product must return to Final Product Review before any release action may occur.
 
 ---
 AI-Agent: ChatGPT/GPT-5.6 Sol  
