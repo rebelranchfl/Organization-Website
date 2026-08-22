@@ -1,8 +1,24 @@
 # RRA-2026-0001 — Owner Product Review
 
-**Stage:** PRODUCT REVIEW  
+**Stage:** PRODUCT DESIGN APPROVED — VISUAL PRODUCTION HANDOFF  
 **Product system:** Know Your Water + Build Your Water System + connected follow-on learning paths  
+**Owner decision:** APPROVE PRODUCT DESIGN  
+**Owner approval recorded:** 2026-08-21 20:25 ET  
 **Public release authorized:** No
+
+## Owner approval record
+
+The owner approved the Product Design package at the `PRODUCT_REVIEW` gate.
+
+This approval authorizes creation of the Visual Production handoff and movement of the project into `VISUAL_PRODUCTION` only.
+
+Approved Product Design direction:
+- free foundation: **Know Your Water**;
+- paid core working title: **Build Your Water System**;
+- proposed paid-core price: **$39**;
+- delivery model: interactive decision-and-implementation system supported by reference material, planning tools, diagrams, scenario sheets, maintenance/retesting guidance, and Think Like a Rebel transfer learning.
+
+The $39 amount remains a **proposed price**, not a public/live price. No release, sale, deployment, affiliate placement, SEO product page, or public pricing action is authorized by this approval.
 
 ## One-screen owner snapshot
 
@@ -69,27 +85,9 @@ The Water project already exposes many related topics. Opportunity Intelligence 
 - Product Preservation and Evidence Crosswalk checks passed.
 - Product QA passed.
 
-## Exact owner decisions requested
-
-Choose one Product Design decision:
-
-### APPROVE PRODUCT DESIGN
-Authorizes creation of the Visual Production handoff only.
-
-Within that approval, the current Product Design proposal is:
-- Free foundation: **Know Your Water**
-- Paid core working title: **Build Your Water System**
-- Proposed paid-core price: **$39**
-
-### NEEDS MORE PRODUCT WORK
-State what should be added, strengthened, corrected, or changed. Existing approved/valid Product Design work will be preserved by default.
-
-### REJECT PRODUCT CONCEPT
-Stops this product direction while preserving the research/project history.
-
 ## Gate boundary
 
-Approval here does **not** authorize:
+This approval does **not** authorize:
 - public release;
 - selling;
 - making $39 public/live;
@@ -99,6 +97,10 @@ Approval here does **not** authorize:
 - SEO/public product pages.
 
 Those remain later owner decisions.
+
+## Next stage
+
+Create and use `visual-production-handoff.md` with `Status: AUTHORIZED`, then move the project to `VISUAL_PRODUCTION`.
 
 ---
 AI-Agent: ChatGPT/GPT-5.6 Sol  
