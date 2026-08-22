@@ -1,109 +1,176 @@
 # RRA-2026-0001 — Visual Production Brief
 
-**Status:** OWNER PRODUCT DESIGN APPROVED — AUTHORIZED THROUGH `visual-production-handoff.md`  
-**Product:** Build Your Water System + free Know Your Water layer
+**Status:** PRODUCT DESIGN REBUILD — NOT YET AUTHORIZED FOR VISUAL PRODUCTION  
+**Product:** Build Your Water System + free Know Your Water layer  
+**Governing architecture:** `product-architecture.md` + `product-manuscript-responsible-rebellion-addendum.md` + `integrated-learner-flow.md`
+
+## Why this brief changed
+
+Owner Final Product Review found that the previous learner experience was too text-heavy, forced one intended use, produced weak personalized value, lost state during deeper navigation, and contained dead routes/404s. The owner routed Water back to Product Design. The old Visual Production authorization is therefore stale.
+
+Visual Production may begin only after the owner approves this rebuilt Product Design.
 
 ## Visual objective
 
-Make a complicated decision system understandable at a glance without turning the material into decorative water imagery. Visuals should explain source, function, sequence, constraints, tradeoffs, and verification.
+**Show the system before asking the learner to study the system.**
 
-## Required visual set
+The product must teach with recognizable systems, cutaways, branches, before/after comparisons and build concepts. Text explains the visual; text cards are not the visual strategy.
 
-### 1. Source → decision map
-Show municipal, private well, rainwater, stored water, and surface water branching into different first questions and intended-use paths.
+## Required tangible visual/system set
 
-### 2. Clear water ≠ safe water
-Simple concept visual showing what appearance can reveal versus what requires testing/verification.
+### 1. Source + multi-use branch map
+Show one selected source feeding multiple simultaneous selected uses. Example:
+`WELL → shared source/pump/protection → DRINK & COOK / ANIMALS / IRRIGATION`.
 
-### 3. What Should I Test? decision tree
-`SCREEN IT → TARGET IT → KNOW IT`, with triggers and the rule that the test method must match the decision stakes.
+The learner must be able to switch between Whole System and each branch without losing context.
 
-### 4. Treatment Job Map
-Show treatment as separate functions:
-`PROTECT → SETTLE → PREFILTER → FILTER PARTICLES → ADSORB / REMOVE SPECIFIC CONTAMINANTS → DISINFECT WHEN REQUIRED → STORE → MOVE → CONTROL → VERIFY → MAINTAIN`.
+### 2. 55-gallon layered filtration cutaway
+A real cutaway/build concept. Label each approved layer/component and show:
+- what it does;
+- what problem/job it addresses;
+- historical/regional substitutions supported by approved research;
+- strengths;
+- limits;
+- where water goes next;
+- what still requires verification for the selected use.
 
-### 5. UV function diagram
+Do not present the build as automatically making unknown water potable.
+
+### 3. 5-gallon gravity system cutaway
+Show the same function-first logic at smaller scale and explain what changed because of scale.
+
+### 4. Settling / prefiltration / storage system
+Show how settling, screening/prefiltration and storage can work as stages rather than assuming every problem begins with a purchased filter cartridge.
+
+### 5. Treatment-job map
+Visual functions:
+`PROTECT → SETTLE → SCREEN/PREFILTER → FILTER PARTICLES → ADSORB SELECTED COMPOUNDS → TREAT SPECIFIC DISSOLVED CONTAMINANTS WHEN INDICATED → DISINFECT WHEN REQUIRED → STORE → MOVE → CONTROL → VERIFY → MAINTAIN`.
+
+Every job opens to plain explanation, system example and optional technical/evidence depth.
+
+### 6. Historical / regional / modern comparison
+Use approved examples to compare:
+- problem being solved;
+- available materials;
+- why the method worked;
+- what it did not do;
+- modern method performing the same/related job;
+- resource/dependency tradeoffs.
+
+Do not style this as nostalgic `old is always better` content.
+
+### 7. Use What You Have matrix
+Visually classify options as:
+- Use What You Have;
+- Reuse / Repurpose;
+- Source Locally;
+- Worth Buying;
+- Optional Upgrade;
+- Do Not Substitute.
+
+These labels are not clickable pills. If displayed as static status/category labels, use non-pill geometry.
+
+### 8. Testing decision visual
+Testing must answer `What decision will this change?`
+
 Show:
+- what can be learned/taught before testing;
+- home screening role;
+- targeted testing role;
+- laboratory/certified testing role;
+- verified affordable/free/local routes where approved evidence supports them.
+
+Do not visually imply `No test = no education`.
+
+### 9. My Water Plan — living branch diagram
+This is the paid payoff. It must visibly update from learner input and show:
+- source;
+- selected uses;
+- shared infrastructure;
+- branch-specific jobs;
+- selected system/build options;
+- unknowns/testing decisions;
+- substitutions;
+- buy points;
+- verification;
+- maintenance/backup;
+- next three actions.
+
+### 10. Responsible Rebellion experiment visual
+`UNDERSTAND → BUILD / IMPLEMENT → OBSERVE → TEST → COMPARE → IMPROVE → DECIDE → TRANSFER THE PRINCIPLE`.
+
+Include the recurring challenge where appropriate: **Does Responsible Rebellion Hold Water?**
+
+Permanent rule: **A successful build is not proof. Test the result.**
+
+### 11. Scale translation
+Show countertop → 5-gallon → 55-gallon → larger/farm scale and visually call out changes in weight/support, head/flow, fittings, overflow, cleaning, portability and maintenance.
+
+### 12. Animal / irrigation distribution branches
+Show source/storage/shared components and branch-specific distribution/control. Keep human potable treatment requirements visually distinct from animal/irrigation branches.
+
+### 13. UV function diagram — preserve approved evidence
 `TEST/DIAGNOSE → PRETREAT/CLARIFY AS REQUIRED → VALIDATED UV DISINFECTION → SAFE STORAGE/DISTRIBUTION → VERIFY/MAINTAIN`.
 
-Must visually state that UV is a **microbiological-disinfection function** and does not remove chemicals, dissolved metals/salts, or sediment.
+Must preserve:
+- microbial-disinfection function only;
+- Class A vs Class B;
+- model/configuration/certified flow;
+- POU vs POE;
+- non-removal of sediment/chemicals/metals/salts;
+- downstream recontamination/no residual;
+- maintenance/power/fouling/light-output issues;
+- validated/certified potable reactor boundary.
 
-### 6. NSF/ANSI 55 Class A vs Class B
-Simple comparison explaining that the class changes the certified claim. Do not reduce certification to one generic “NSF certified” badge.
+### 14. Clear water ≠ safe water
+Familiar image first: clear vs cloudy water plus testing/verification cue. Appearance is information, not proof.
 
-### 7. POU vs POE
-Single-tap treatment versus whole-home/entry treatment, with flow/scope implications.
-
-### 8. Function Before Form
-Use paired examples:
-- jug / bucket / drum / tank → STORE;
-- hose / tubing / pipe → MOVE;
-- gravity / pump → CREATE FLOW/PRESSURE;
-- valve / float → CONTROL;
-- UV reactor / boiling / chemical disinfection / solar disinfection → forms that may perform microbial-control functions under different conditions.
-
-### 9. Scale translation
-Illustrate 1 gallon → 5 gallon → 55 gallon → larger tank while showing what changes: weight, support, head, fittings, cleaning, overflow, portability, maintenance.
-
-### 10. Automated animal-water schematic
-`SOURCE → STORAGE → GRAVITY/PUMP → LINE → CONTROL → DRINKING POINT → INSPECT/CLEAN`.
-Keep this visually separate from human potable-water treatment.
-
-### 11. Pond/surface-water emergency caution flow
-Make clear that particle filtration or microbial treatment alone does not automatically address unknown chemical/toxin contamination.
-
-### 12. Evidence/claim ladder
+### 15. Evidence/claim ladder
 `OBSERVATION → MECHANISM → PERSISTENCE → REPLICATION → BIOLOGICAL EFFECT → HEALTH EFFECT → RECOMMENDATION`.
 
-### 13. Historical/global comparison
-Use selected approved examples to show how source, fuel, local materials, climate, infrastructure, and knowledge shaped water methods. Avoid romantic “old is better” styling.
+## Integrated interaction requirements
 
-### 14. Personalized system block diagram template
-A reusable diagram built from the learner's selected required functions.
+Visual Production must implement the approved Product Design behavior:
+- multi-select intended uses;
+- selected branches persist through the journey;
+- Whole System view always available;
+- answers persist during ordinary navigation;
+- depth controls return to the exact prior place;
+- no 404s or placeholder routes;
+- changing upstream answers updates dependent outputs where practical;
+- My Water Plan is accessible during the journey and grows with new input.
 
-## Interactive UI components to visualize later
+## Optional depth behavior
 
-- Water Profile input flow;
-- testing selector;
-- Results Interpreter;
-- Treatment Job Builder;
-- Resource Inventory;
-- Substitution Planner;
-- Build / Buy Comparator;
-- Maintenance / Verification Planner;
-- Next Learning Path.
+Controls such as `Show me why`, `Show me the science`, `See the system`, `Technical details` and `Sources` must open in context or through a verified working route with state restoration.
 
-## Design behavior
+A technical explanation must not become an exit from the learner journey.
 
-- Complexity belongs in the research process, not in the learner's way.
-- Every diagram must have one clear teaching job.
-- Avoid visually implying that a suggested form is the only solution.
-- Use warning/caution treatment only where a real boundary exists.
-- Do not make safety-critical labels look optional.
-- Do not use decorative pills for non-clickable labels/statuses.
-- No product-brand recommendation or affiliate placement is authorized in this brief.
+## Safety / disclaimer behavior
 
-## Accessibility / delivery needs
+Use the general approved footer disclaimer for the broad educational boundary. In-content warning treatment is reserved for a specific, material and reasonably immediate hazard tied to the action being taught. Do not create repetitive generic legal/compliance boxes.
 
-- readable at desktop and mobile widths;
-- printable worksheets must remain usable in grayscale;
-- diagrams need text labels, not color-only meaning;
-- source/evidence links remain available in the digital delivery layer;
-- diagrams should work as individual learning assets and inside the full product.
+## Accessibility / delivery
 
-## Preservation requirements
+- desktop and mobile readable;
+- text wraps; no clipping;
+- diagrams use labels, not color-only meaning;
+- print layers remain useful where print is part of the product;
+- no non-clickable pill/capsule elements;
+- no embedded base64 imagery;
+- previews must match the actual integrated learner experience.
 
-Visual Production may simplify presentation but may not remove:
-- clear-versus-safe distinction;
-- diagnosis/testing before treatment;
-- treatment-function distinctions;
-- UV Class A/Class B, flow, POU/POE, pretreatment, non-removal, downstream recontamination, maintenance, and potable DIY boundaries;
-- Moringa/copper evidence boundaries;
-- frequency/acoustic and lunar evidence-literacy boundaries;
-- historical/global resource context;
-- Think Like a Rebel / TRANSFER THE PRINCIPLE method.
+## Final paid-value visual test
 
-Visual Production is authorized only through the approved `visual-production-handoff.md`. This brief does not authorize public release, deployment, selling, public pricing, or publication.
+Before Final Product Review ask:
+
+**Can a customer see what RRA actually did for them?**
+
+If the learner mainly receives words in cards instead of usable system diagrams, branch logic, build concepts, comparisons and a substantive My Water Plan, Visual Production fails.
+
+## Authorization boundary
+
+This brief is a future handoff input only. **No Visual Production, public pricing, publishing, release or deployment is authorized until the owner approves the rebuilt Product Design and a new authorized Visual handoff is recorded.**
 
 ---
 AI-Agent: ChatGPT/GPT-5.6 Sol  
