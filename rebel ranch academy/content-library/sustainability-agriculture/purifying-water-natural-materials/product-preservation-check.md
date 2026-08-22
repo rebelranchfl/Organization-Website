@@ -1,78 +1,91 @@
 # RRA-2026-0001 — Product Preservation Check
 
-**Status:** PRODUCT WORKING  
-**Purpose:** Confirm that Product Design is additive and preserves the approved Revision 3 + UV evidence foundation.
+**Status:** PASS — RESPONSIBLE REBELLION REBUILD  
+**Purpose:** Confirm the owner-directed structural rebuild is additive and preserves the approved Revision 3 + UV evidence foundation and still-valid Product Design work.
 
-## Baseline
+## Baselines preserved
 
-Research baseline: owner-approved Revision 3 plus owner-approved `research-uv-addendum.md`.
+1. Owner-approved Revision 3 research foundation.
+2. Owner-approved UV addendum.
+3. Prior Product Design architecture/manuscript/tools to the extent they remain valid.
+4. Owner Final Product Review finding returned Product Design architecture for correction; it did not authorize discarding the research foundation.
 
-This cycle is not an owner `NEEDS_MORE_WORK` revision, so no new Product Review baseline replacement is being established here. The Research preservation history remains in `revision-impact.md` and Git history.
+Backup before this rebuild:
+`_backups/2026-08-22-1404-ET-responsible-rebellion-rebuild/`
 
-## KEEP — confirmed in current Product Design package
+## KEEP
 
-1. Original filtration/natural-material foundation — preserved in manuscript treatment-job modules and historical/resource context.
-2. Clear-water-versus-safe-water distinction — preserved in Modules 1 and 3 and visual brief.
-3. Diagnosis before treatment selection — preserved as the governing sequence.
-4. Cloth/gravel/sand/charcoal-carbon distinctions and limitations — retained by reference to approved foundation; final manuscript annotation still required before Product Review.
-5. Source protection — preserved as a treatment-system function.
-6. `Dirty Is Visible. Danger Isn't.` — explicitly retained in Module 3.
-7. Four original diagnosis scenarios — still part of approved master content; scenario implementation expansion remains to be integrated before Product Review.
-8. `Diagnose Before Prescribing` — preserved as the core decision rule.
-9. Historical/global practices and environmental/resource reasons — preserved in Module 12 and visual brief.
-10. Copper-vessel research with claim boundaries — preserved in Module 12; detailed learner-facing case-study text remains to be integrated from approved master content.
-11. Moringa research with mechanism/limits — preserved in Module 12; detailed learner-facing case-study text remains to be integrated from approved master content.
-12. Frequency/acoustic research boundary — preserved in Module 13.
-13. Lunar-human mixed evidence and publication-bias/non-replication concern — preserved in Module 13 conceptually; detailed approved examples remain to be integrated.
-14. Evidence/claim ladder — preserved in Module 13 and visual brief.
-15. `Match the Claim to the Mechanism and Evidence` — preserved through Module 13 evidence-ladder logic.
-16. `Teach transferable principles, not isolated facts.` — preserved throughout and in TRANSFER THE PRINCIPLE.
-17. UV = DISINFECT / INACTIVATE MICROORGANISMS — fully integrated.
-18. Testing/diagnosis before UV — fully integrated.
-19. Pretreatment/turbidity/clarity limits — fully integrated.
-20. NSF/ANSI 55 Class A vs Class B — fully integrated.
-21. Model/configuration/certified-flow boundary — fully integrated.
-22. POU vs POE — fully integrated.
-23. UV non-removal of chemicals/metals/salts/sediment — fully integrated.
-24. Downstream recontamination/no residual — fully integrated.
-25. Maintenance/power/fouling/light-output failure modes — fully integrated.
-26. Potable-water DIY boundary — fully integrated; safety-critical UV reactor classified as WORTH BUYING / DO NOT IMPROVISE.
-27. Low-resource microbial-control alternatives — integrated as functional comparisons, not universal substitutes.
+Preserved:
+- natural-material filtration foundation;
+- cloth/gravel/sand/charcoal-carbon roles and approved limitations;
+- clear-water-versus-safe-water distinction;
+- source protection;
+- `Dirty Is Visible. Danger Isn't.`;
+- `Diagnose Before Prescribing` as a decision principle without turning testing into permission to teach;
+- historical/global practices and resource context;
+- Moringa and copper evidence with existing boundaries;
+- frequency/acoustic and lunar material as evidence-literacy teaching;
+- evidence/claim ladder;
+- `Teach transferable principles, not isolated facts.`;
+- UV microbial-disinfection role, pretreatment/clarity conditions, Class A/B, certified-flow/model/configuration, POU/POE, non-removal, downstream recontamination, maintenance/power/fouling/light-output, and validated/certified potable reactor boundary;
+- low-resource microbial-control comparisons within approved evidence;
+- Function Before Form;
+- Use What You Have resource logic;
+- maintenance, verification, scale and automation concepts;
+- proposed $39 price as a recommendation only, not public authorization.
 
-## ADD — this Product Design cycle
+## ADD
 
-- complete first-pass learner-facing manuscript;
-- UV integration into product architecture;
-- current consumer market-positioning analysis;
-- Water Profile tool;
-- Treatment Job Planner;
-- Resource / Build / Buy Planner;
-- Maintenance / Verification Planner;
-- visual-production brief;
-- explicit pricing-value condition tying $39 to actual interactive implementation rather than page count.
+Added because the owner explicitly required a structural rebuild:
+- multi-select intended uses;
+- simultaneous multi-branch system architecture;
+- persistent whole-system view;
+- tangible 55-gallon, 5-gallon, settling/storage, source-to-use and branch build/system visual requirements;
+- layer/component function, substitutions, strengths/limits and historical/regional comparison requirements;
+- testing-as-verification language instead of blanket test-before-education blocking;
+- Responsible Rebellion build/test/compare experiment pattern;
+- living `My Water Plan` specification;
+- integrated learner-flow/state contract;
+- optional-depth return/state rules;
+- privacy-minimized learner signal plan;
+- paid-value gate tied to actual tangible output.
 
-## STRENGTHEN — still required before Product Review
+## STRENGTHEN
 
-- bring the approved Moringa and copper case-study detail into the learner-facing manuscript rather than only referencing them;
-- bring the approved frequency/acoustic and lunar examples into Module 13 with their exact evidence boundaries;
-- integrate the four diagnosis scenarios into the implementation/tool layer;
-- annotate high-impact learner claims with exact approved research/source references;
-- complete scenario implementation sheets, especially well/UV, rain-fed animal watering, renter/municipal, and pond emergency branches;
-- run full Product QA against the KEEP list after those integrations.
+Strengthened:
+- Product Architecture from single-path decision planning to multi-use system design;
+- base manuscript through `product-manuscript-responsible-rebellion-addendum.md` rather than deleting/replacing the prior manuscript;
+- visual brief from text/diagram list to visual-first tangible system teaching and continuity requirements;
+- QA to treat 404s, lost state, generic personalized output, text-heavy delivery and testing-as-roadblock as material failures.
 
 ## CORRECT
 
-- Removed the stale architecture restriction saying UV remained research-dependent. The targeted UV evidence return is owner-approved and the current handoff authorizes Product Design use.
+Corrected prior Product Design assumptions that Final Product Review proved inadequate:
+- one intended use at a time;
+- generic output being sufficient personalization;
+- depth links/navigation being an implementation detail that could wait until after Product Design;
+- testing-first language that could suppress legitimate evidence-backed system teaching;
+- Visual Production authorization remaining valid after the owner returned the product to Product Design.
 
 ## REMOVE / REPLACE
 
-None authorized; none performed.
+No approved research or distinct teaching value was removed.
 
-## Preservation conclusion
+The prior Visual Production authorization is superseded by the owner's later SEND_BACK_NOW decision. That is a workflow correction, not removal of educational content.
 
-**PASS FOR CONTINUED PRODUCT WORK; NOT YET READY FOR PRODUCT REVIEW.**
+## Preservation QA
 
-The Product Design direction is additive and retains the approved evidence boundaries. The remaining issue is depth/integration, not a lost-foundation problem.
+- Owner-requested additions present: **PASS**
+- Useful prior material preserved: **PASS**
+- No distinct prior teaching value silently removed: **PASS**
+- Rebuild is additive to evidence foundation: **PASS**
+- Base manuscript preserved and corrected by additive addendum: **PASS**
+- UV evidence boundaries preserved: **PASS**
+- Historical/global/evidence-literacy content preserved: **PASS**
+
+## Conclusion
+
+**PASS.** The Responsible Rebellion rebuild is an integrated expansion/correction of the learner architecture, not a replacement of the approved research foundation.
 
 ---
 AI-Agent: ChatGPT/GPT-5.6 Sol  
