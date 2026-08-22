@@ -1,32 +1,28 @@
 {
   "project_id": "RRA-2026-0001",
   "title": "Water Through the Layers",
-  "stage": "FINAL_PRODUCT_REVIEW",
-  "status": "READY_FOR_OWNER_FINAL_PRODUCT_REVIEW",
+  "stage": "VISUAL_PRODUCTION",
+  "status": "RENDERED_QA_IN_PROGRESS",
+  "primary_release_candidate": "water-learning-experience-final.html",
   "assets": [
     {
-      "label": "Owner Final Product Review Entry",
-      "file": "index.html",
-      "type": "interactive-html",
-      "description": "Single owner entry point for the completed Water learner-facing review package."
-    },
-    {
-      "label": "Water Through the Layers — Complete Learner Experience",
+      "label": "Water Through the Layers — Corrected Complete Learner Experience",
       "file": "water-learning-experience-final.html",
       "type": "interactive-html",
-      "description": "Complete human-first sequence with source scenes, goal, evidence limits, Dirty Is Visible. Danger Isn't., test-result interpretation, treatment-job planning, historical/global context, evidence-literacy ladder, living My Water Plan, optional deeper science/technical layers, and privacy-minimized review-mode learner signals."
+      "description": "Corrected multi-use learner journey with persistent browser state, tangible system/cutaway teaching, historical comparison, and living multi-branch My Water Plan. This is the release candidate that must pass rendered regression QA before owner Final Product Review."
     },
     {
       "label": "Deeper Decision Visuals",
       "file": "water-system-visual-preview.html",
       "type": "responsive-html",
-      "description": "Optional technical source/testing/treatment/UV/Class A-Class B/POU-POE visual layer."
+      "description": "Optional source/testing/treatment/UV/Class A-Class B/POU-POE depth layer."
     },
     {
       "label": "Deeper Implementation Visuals",
       "file": "water-system-implementation-visuals.html",
       "type": "responsive-html",
-      "description": "Optional Function Before Form, scale, animal watering, surface-water caution, evidence ladder, historical/global, and system-diagram visual layer."
+      "description": "Optional Function Before Form, substitutions, scale, animal watering, surface-water caution, evidence ladder, historical/global and whole-system depth layer with explicit return path."
     }
-  ]
+  ],
+  "qa_note": "Do not surface as Final Product Review ready until all seven Water rendered regression tests are exercised against this exact release candidate and recorded as PASS."
 }
