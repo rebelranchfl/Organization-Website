@@ -19,4 +19,5 @@ if (window.location.pathname.endsWith('/operations-review.html') || window.locat
   import('./operations-review-audience-conversion-intelligence.js');
   import('./operations-review-readability.js');
   import('./operations-review-dashboard-v3.js');
+  import('./operations-review-lifecycle-workspace.js');
 }
