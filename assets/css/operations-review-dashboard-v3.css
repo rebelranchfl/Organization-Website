@@ -23,3 +23,35 @@ body.orv3[data-view="overview"] #content{display:none!important}body.orv3[data-v
 @media(max-width:980px){.orv3-network-wrap>.orv3-network{margin:20px 58px 72px;min-height:390px}}
 @media(max-width:760px){.orv3-network-wrap>.orv3-network{margin:18px 54px 72px;min-height:400px}}
 @media(max-width:520px){.orv3-network-wrap>.orv3-network{margin:16px 46px 68px;min-height:400px}.orv3-node{width:108px;font-size:.66rem}.orv3-center{width:122px;height:122px;font-size:.82rem}}
+
+/* Review-desk cleanup: project selector above, full-width reading surface below. */
+body.orv3 .queue-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+body.orv3 .queue-list{display:flex;gap:9px;overflow-x:auto;padding:2px 2px 8px;scrollbar-width:thin}
+body.orv3 .queue-item{flex:0 0 min(310px,78vw);min-height:112px}
+body.orv3 #detail{min-width:0;width:100%;max-width:none}
+body.orv3 #detail>*{min-width:0}
+body.orv3 #detail p,body.orv3 #detail li,body.orv3 #detail div,body.orv3 #detail span{overflow-wrap:anywhere;word-break:normal}
+
+/* Audience Intelligence becomes a wide review surface instead of nested narrow columns. */
+body.orv3 #audience-conversion-intelligence{padding:16px}
+body.orv3 #audience-conversion-intelligence .aci-layout{grid-template-columns:minmax(0,1fr);gap:12px}
+body.orv3 #audience-conversion-intelligence .aci-signal-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;max-height:560px;overflow:auto;padding-right:6px;scrollbar-width:thin}
+body.orv3 #audience-conversion-intelligence .aci-signal{margin:0;min-width:0;height:max-content}
+body.orv3 #audience-conversion-intelligence .aci-path-panel{min-width:0}
+body.orv3 #audience-conversion-intelligence .aci-path-head{grid-template-columns:minmax(0,1fr) auto}
+body.orv3 #audience-conversion-intelligence .aci-flow{grid-template-columns:repeat(6,minmax(230px,1fr));max-width:100%;overflow-x:auto}
+body.orv3 #audience-conversion-intelligence .aci-owner{grid-template-columns:minmax(210px,300px) minmax(0,1fr)}
+
+/* Keep other large intelligence blocks from creating a never-ending browser page. */
+body.orv3 #opportunity-intelligence .oi-opportunity-list,body.orv3 #opportunity-intelligence .opportunity-list{max-height:620px;overflow:auto;scrollbar-width:thin}
+body.orv3 .doc{max-height:520px}
+body.orv3 .source-review{max-height:620px;overflow:auto}
+
+@media(max-width:900px){
+ body.orv3 #audience-conversion-intelligence .aci-signal-list{grid-template-columns:1fr;max-height:520px}
+ body.orv3 #audience-conversion-intelligence .aci-owner{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+ body.orv3 .queue-item{flex-basis:min(280px,86vw)}
+ body.orv3 #audience-conversion-intelligence .aci-flow{grid-template-columns:repeat(6,240px)}
+}
