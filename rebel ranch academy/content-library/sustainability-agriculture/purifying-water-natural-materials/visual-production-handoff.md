@@ -1,33 +1,46 @@
 # RRA-2026-0001 — Visual Production Handoff
 
-**Status: AUTHORIZED**  
+**Status: AUTHORIZED — RESPONSIBLE REBELLION REBUILD**  
 **Project:** Water Through the Layers  
 **Approved product system:** Know Your Water + Build Your Water System + connected follow-on learning paths  
 **Owner Product Design decision:** APPROVE PRODUCT DESIGN  
-**Owner approval recorded:** 2026-08-21 20:25 ET  
+**Owner approval recorded:** 2026-08-22 14:20 ET  
 **Public release authorized:** No
 
-## Authorization boundary
+## Current authorization boundary
 
-The owner approved the Product Design package at the `PRODUCT_REVIEW` gate.
+The owner approved the rebuilt Product Design package at the `PRODUCT_REVIEW` gate after the prior Final Product Review returned Water to Product Design for structural correction.
 
-This handoff authorizes the Visual Production Agent to create learner-facing visual/delivery assets and the preview package required for the next owner gate.
+This is the **new Visual Production authorization** for the Responsible Rebellion rebuild. It authorizes the Visual Production Agent to create the finished learner-facing visual/delivery experience and preview package required for the next owner gate.
 
 It does **not** authorize:
+
 - public release or publication;
 - deployment of learner-facing assets;
 - selling/storefront activation;
 - making the proposed $39 price public/live;
 - affiliate links or product-brand placements;
 - SEO/public product pages;
-- changing the approved research or Product Design direction;
+- changing the approved research/evidence foundation;
+- weakening the rebuilt Product Design requirements;
 - skipping Final Product Review or the later explicit release decision.
 
-## Approved Product Design package
+## Superseded earlier authorization
 
-Use the current approved files in this project folder as the product boundary:
+The 2026-08-21 Visual Production handoff authorized the first visual cycle. That cycle later failed Final Product Review because the learner experience was too text-heavy, forced one intended use, produced weak personalized value, lost state during deeper navigation, and contained dead routes/404s.
+
+The owner's later SEND_BACK_NOW decision superseded that authorization and returned the project to Product Design. The prior approval/history remains preserved in Git history and `owner-product-review.md`, but Visual Production must now use **this handoff and the rebuilt Product Design package** as the current authorization.
+
+## Approved rebuilt Product Design package
+
+Use the current files on GitHub `main` in this project folder as the product boundary.
+
+### Evidence / research boundary
+
+Preserve the approved Revision 3 + UV foundation and the existing evidence crosswalk/source records. Product Design did not reopen or replace subject research.
 
 ### Product opportunity / recommendation
+
 - `product-opportunity-research.md`
 - `product-opportunity-research-uv-closeout.md`
 - `product-recommendation-scorecard.md`
@@ -35,18 +48,37 @@ Use the current approved files in this project folder as the product boundary:
 - `pricing.md`
 
 ### Product architecture / learner flow
+
 - `functional-decomposition.md`
 - `interactive-scenario-map.md`
 - `opportunity-funnel-map.md`
 - `product-architecture.md`
 - `product-manuscript.md`
+- `product-manuscript-responsible-rebellion-addendum.md`
+- `integrated-learner-flow.md`
 
-### Activities / implementation components
-Preserve and visually develop the approved current project components, including:
-- Water Profile;
-- What Should I Test? / testing selector;
-- Results Interpreter logic;
-- Treatment Job Planner / Builder;
+### Living learner output / signals
+
+- `implementation/my-water-plan-spec.md`
+- `learner-signal-plan.md`
+
+### QA / preservation / owner decision
+
+- `product-design-handoff.md`
+- `product-preservation-check.md`
+- `product-evidence-crosswalk.md`
+- `product-qa.md`
+- `owner-product-review.md`
+- `visual-production-brief.md`
+
+### Existing activities / implementation components
+
+Preserve and visually develop the valid existing project components where they remain part of the rebuilt architecture, including:
+
+- Tell Us About Your Water / Water Profile logic;
+- What Should I Test? selector;
+- My Water Test Results / results interpretation logic;
+- My Water Treatment Plan / treatment-job logic;
 - Resource Inventory;
 - Substitution Planner;
 - Resource / Build / Buy Planner;
@@ -57,88 +89,162 @@ Preserve and visually develop the approved current project components, including
 - `Dirty Is Visible. Danger Isn't.` investigation/lab;
 - Think Like a Rebel / TRANSFER THE PRINCIPLE exercises.
 
-Use the current `activities/` and `implementation/` project folders as the durable component source. Do not invent a new product component merely because a visual format is convenient.
+Do not invent a separate product simply because a visual format is convenient. Build the approved integrated product.
 
-### QA / preservation / owner decision
-- `product-design-handoff.md`
-- `product-preservation-check.md`
-- `product-evidence-crosswalk.md`
-- `product-qa.md`
-- `owner-product-review.md`
-- `visual-production-brief.md`
+## Rebuilt learner-experience requirements — mandatory
 
-Where an older working-status line conflicts with the later `product-qa.md`, `owner-product-review.md`, or this authorized handoff, the later owner-approved gate controls. Do not remove preserved teaching material because an intermediate file contains an older work-in-progress status line.
+### Multi-use must remain multi-use
 
-## Approved free / paid / bundle strategy
+The learner may select multiple intended uses when they coexist, including supported combinations of:
+
+- drinking/cooking;
+- animals;
+- irrigation/garden;
+- emergency backup;
+- other supported uses.
+
+The product must show:
+
+1. shared source/infrastructure;
+2. where branches split;
+3. why each branch differs;
+4. what components/functions may be shared;
+5. what treatment, storage, distribution, testing or maintenance differs;
+6. a Whole System view that remains understandable while branch details are explored.
+
+Do not collapse this back to single-select because it is easier to build.
+
+### Tangible system teaching
+
+Visual Production must create actual explanatory visuals/build concepts, not mostly text cards. Required by the rebuilt brief and Product QA are, at minimum:
+
+- source + multi-use branch map;
+- 55-gallon layered filtration cutaway/build concept;
+- 5-gallon gravity system cutaway;
+- settling / prefiltration / storage system;
+- treatment-job map;
+- historical / regional / modern comparison;
+- Use What You Have matrix;
+- testing decision visual;
+- living My Water Plan branch diagram;
+- Responsible Rebellion experiment visual;
+- scale translation from countertop to larger/farm-scale systems;
+- animal / irrigation distribution branches;
+- approved UV function diagram;
+- clear water ≠ safe water visual;
+- evidence/claim ladder.
+
+Every meaningful system visual should explain what the learner is looking at, what each part does, alternatives/substitutions where approved, strengths/limits, what the system is intended to accomplish, what it does not accomplish, and the learner's next action.
+
+### Living My Water Plan — paid payoff
+
+`implementation/my-water-plan-spec.md` is mandatory.
+
+The plan must materially reflect learner input and visibly update where technically practical. It must include:
+
+- source;
+- all selected uses;
+- whole-system branch diagram;
+- shared infrastructure;
+- branch-specific jobs;
+- known facts and meaningful unknowns;
+- testing status and what each test changes;
+- selected system/build options;
+- component/layer functions;
+- substitutions;
+- buy points;
+- verification;
+- maintenance/retest;
+- failure/backup logic;
+- next three actions;
+- Responsible Rebellion comparison results where used.
+
+A generalized paragraph or static template is not sufficient.
+
+### Navigation / state — hard QA
+
+The finished experience must preserve:
+
+- learner answers across normal navigation;
+- all selected uses across the journey;
+- Whole System view availability;
+- optional-depth controls that return to the learner's exact previous place;
+- no 404s or placeholder/dead depth routes;
+- dependent outputs updating when earlier answers change where practical;
+- My Water Plan access without re-entering answers.
+
+Broken navigation or lost state is a Final Product QA failure.
+
+### Language / depth
+
+Use the simplest accurate language first. Technical/evidence detail remains available as optional depth.
+
+Prefer human job/result labels in the learner experience, such as:
+
+- Tell Us About Your Water;
+- My Water Test Results;
+- My Water Treatment Plan;
+- What Happens If This Stops Working?;
+- My Water Plan.
+
+Internal technical labels may remain in code/file records but must not control customer-facing wording.
+
+### Responsible Rebellion experiment
+
+Where appropriate implement:
+
+`UNDERSTAND → BUILD / IMPLEMENT → OBSERVE → TEST → COMPARE → IMPROVE → DECIDE → TRANSFER THE PRINCIPLE`
+
+The recurring challenge may be:
+
+**Does Responsible Rebellion Hold Water?**
+
+Permanent rule:
+
+**A successful build is not proof. Test the result.**
+
+## Approved free / paid strategy
 
 ### Free foundation
+
 **Know Your Water** — proposed $0.
 
 Role:
+
 - mission-access foundation;
-- diagnosis/testing prerequisite;
+- diagnosis/testing education;
+- real standalone value;
 - search/discovery entry;
-- real standalone educational value;
-- natural path into deeper implementation only when the learner actually needs it.
+- natural path into deeper implementation when the learner actually needs it.
 
 ### Paid core
+
 **Build Your Water System** — proposed $39.
 
 Role:
+
 - interactive decision-and-implementation system;
-- personalized Water Profile/scenario flow;
+- personalized multi-use branch flow;
+- system/build concepts;
 - treatment-job logic;
 - resource/substitution planning;
 - build/buy comparison;
-- system diagrams;
-- scenario sheets;
-- maintenance/retesting plan;
-- reusable reference material;
-- Think Like a Rebel transfer learning.
+- living My Water Plan;
+- verification/maintenance/backup path;
+- Responsible Rebellion / TRANSFER THE PRINCIPLE learning.
 
-The price case depends on delivering the interactive/tool/diagram value. Do not visually reduce this product into a static ebook with decorative graphics.
-
-### Follow-on opportunities
-Testing/results, rainwater/storage, gravity/pumps/pressure/flow, automated animal watering, emergency water, UV/microbiological disinfection, and maintenance/monitoring remain Opportunity Intelligence candidates or later product paths. Their presence in diagrams or navigation does not make them approved products or public offers.
-
-## Proposed price status
-
-- Know Your Water: **$0 proposed**.
-- Build Your Water System: **$39 proposed**.
-- $39 current market position: **upper-MID** within the direct consumer/homeowner education comparisons documented in `market-positioning.md`.
-- Reliable apples-to-apples local paid benchmark: **not established**.
-- Neither price is authorized for public release by this handoff.
-
-## Required visual brief
-
-`visual-production-brief.md` is owner-approved through this handoff.
-
-The required visual set includes:
-1. source → decision map;
-2. clear water ≠ safe water visual;
-3. What Should I Test? decision tree;
-4. Treatment Job Map;
-5. UV function/treatment-train diagram;
-6. NSF/ANSI 55 Class A vs Class B comparison;
-7. POU vs POE comparison;
-8. Function Before Form examples;
-9. scale translation from small containers to larger storage;
-10. automated animal-water schematic;
-11. pond/surface-water emergency caution flow;
-12. evidence/claim ladder;
-13. historical/global comparison;
-14. personalized system block-diagram template.
-
-Interactive UI concepts to visualize later include Water Profile, testing selector, Results Interpreter, Treatment Job Builder, Resource Inventory, Substitution Planner, Build/Buy Comparator, Maintenance/Verification Planner, and Next Learning Path.
+The $39 price remains proposed only. It is defensible only if the finished product delivers the tangible/personalized value required here. If the final experience becomes mostly words, Final Product QA must fail the price/value case.
 
 ## Preservation boundaries — must survive visual simplification
 
 Do not remove or weaken:
+
 - clear water versus safe water;
-- diagnosis/testing before treatment selection;
+- evidence-backed method knowledge when learner-specific data is still unknown;
+- testing/diagnosis when it materially changes the decision;
 - treatment-function distinctions;
 - source protection;
-- four original diagnosis scenarios;
+- the original diagnosis scenarios;
 - `Dirty Is Visible. Danger Isn't.`;
 - historical/global practices and resource-spectrum context;
 - copper evidence/claim boundaries;
@@ -156,51 +262,56 @@ Do not remove or weaken:
 UV is a **microbiological-disinfection / microorganism-inactivation function**, not general purification.
 
 Visual Production must preserve:
-- testing/diagnosis first for unknown/private-well water;
+
+- testing/diagnosis for unknown/private-well water where it changes the system decision;
 - pretreatment/turbidity/clarity requirements where relevant;
 - NSF/ANSI 55 Class A versus Class B;
 - exact model/configuration/certified-flow limits;
 - POU versus POE logic;
-- non-removal of sediment, chemicals, dissolved metals, and salts;
+- non-removal of sediment, chemicals, dissolved metals and salts;
 - downstream recontamination/no-residual-disinfectant issue;
-- power, fouling, light-output, alarm, and model-specific maintenance failure modes;
+- power, fouling, light-output, alarm and model-specific maintenance failure modes;
 - potable-water boundary: a validated/certified safety-critical UV reactor appropriate to the identified job is `WORTH BUYING / DO NOT IMPROVISE`.
 
-Do not imply that UV, boiling, chemical disinfection, solar disinfection, or ordinary filtration automatically resolves unknown chemical/toxin contamination in surface water.
+Do not imply that UV, boiling, chemical disinfection, solar disinfection or ordinary filtration automatically resolves unknown chemical/toxin contamination in surface water.
 
 ## Visual / interaction rules
 
 - One clear teaching job per diagram.
 - Do not use decorative water imagery as a substitute for explanation.
-- Do not visually imply one product/form is the only valid solution when multiple forms can perform the function.
-- Use warning/caution treatment only where a real evidence/safety boundary exists.
+- Visuals must do explanatory work.
+- Do not imply one product/form is the only valid solution when multiple forms can perform the function.
+- Use warning/caution treatment only for a specific material hazard.
 - Safety-critical information must not look optional.
-- Full pill/capsule shapes are reserved for real clickable controls/links only. Non-interactive labels, statuses, tags, or category markers must not use pill styling.
-- Do not invent or redraw RRA or RRM logos. Use only approved repository assets.
-- Preserve the Academy's approved prestigious/polished visual direction while keeping the product clearly understandable and practical.
+- Full pill/capsule shapes are reserved for real clickable controls/links only; static labels/statuses/categories must not use pill styling.
+- Do not invent or redraw RRA/RRM logos. Use approved repository assets.
+- Do not embed images as base64 in HTML/CSS.
+- Preserve the Academy's prestigious/polished identity while keeping the product practical and understandable.
 
 ## Accessibility / delivery constraints
 
-- readable at desktop and mobile widths;
+- desktop and mobile readable;
 - no clipped/cut-off text;
-- text must wrap naturally and content containers must grow with content;
-- printable worksheets remain usable in grayscale;
-- diagrams use text labels and structure, not color alone;
+- text wraps naturally and containers grow with content;
+- printable worksheets usable in grayscale where applicable;
+- diagrams use labels/structure, not color alone;
 - source/evidence links remain available in digital delivery;
-- individual diagrams should work both as standalone learning assets and inside the complete product;
-- visual production must preserve mobile readability and avoid horizontal layouts that hide required content unless a deliberate scrollable diagram is necessary and clearly usable.
+- individual diagrams may work standalone but must also appear in the correct place in the complete learner experience;
+- avoid horizontal layouts that hide required content unless a deliberate usable scrollable diagram is necessary.
 
-## Required brand assets
+## Learner signals / privacy
 
-Use the approved Rebel Ranch Academy identity and existing RRA/RRM assets already stored in the repository. Do not create a substitute Academy emblem, wordmark, or supporting logo. If an exact asset path is unclear, resolve it from the repository before production rather than recreating it.
+Implement the structured, privacy-minimized signal plan where the approved product captures learner input/behavior. Do not add unnecessary identity collection. Signals support product/audience intelligence; they are not permission to profile people.
 
 ## Visual Production completion gate
 
-When the finished learner-facing assets and delivery package are complete:
-1. run Final Product QA against this handoff, the approved Product Design package, and the evidence/preservation boundaries;
-2. prepare the owner-facing final preview/review package;
-3. set the project to `FINAL_PRODUCT_REVIEW` only when that package is complete;
-4. stop for the owner's Final Product Review decision.
+When the rebuilt learner-facing assets and integrated delivery package are complete:
+
+1. run Final Product QA against this handoff, the current `product-qa.md`, the rebuilt Product Design package, and the approved evidence/preservation boundaries;
+2. verify multi-use branches, living My Water Plan, state persistence, optional-depth return paths, no 404s, tangible visuals and paid-value delivery;
+3. prepare the owner-facing integrated final preview/review package;
+4. set the project to `FINAL_PRODUCT_REVIEW` only when that package is genuinely complete;
+5. stop for the owner's Final Product Review decision.
 
 Visual Production approval does not equal release approval.
 
