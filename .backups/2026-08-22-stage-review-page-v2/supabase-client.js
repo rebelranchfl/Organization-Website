@@ -21,5 +21,4 @@ if (window.location.pathname.endsWith('/operations-review.html') || window.locat
   import('./operations-review-dashboard-v3.js');
   import('./operations-review-lifecycle-workspace.js');
   import('./operations-review-project-intake.js');
-  import('./operations-review-stage-links.js');
 }
