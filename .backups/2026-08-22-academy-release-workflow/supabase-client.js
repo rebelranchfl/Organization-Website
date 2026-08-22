@@ -26,7 +26,6 @@ if (path.endsWith('/operations-review.html') || path === '/operations-review.htm
   import('./operations-review-stage-links.js');
   import('./academy-stage-progress-status.js');
   import('./academy-late-findings.js');
-  import('./operations-review-release-workflow.js');
 }
 
 if (path.endsWith('/academy-stage-review.html') || path === '/academy-stage-review.html') {
