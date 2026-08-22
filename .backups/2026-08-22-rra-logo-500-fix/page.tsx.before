@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
 
 type Audience = "Parents & Homeschoolers" | "Teens & Young Adults" | "Adults" | "Business Owners" | "Homesteaders";
 type LearningArea = { id:string; number:string; title:string; short:string; description:string; outcomes:string; audiences:Audience[] };
@@ -59,7 +60,7 @@ export default function Home(){
 
   return <main>
     <header className="site-header">
-      <a className="brand-lockup" href="#top" aria-label="Rebel Ranch Academy home"><img src="/rra-logo.png" alt="" width={1254} height={1254}/><span><small>Rebel Ranch Ministries</small><strong>Rebel Ranch Academy</strong></span></a>
+      <a className="brand-lockup" href="#top" aria-label="Rebel Ranch Academy home"><Image src="/rra-logo.png" alt="" width={1254} height={1254}/><span><small>Rebel Ranch Ministries</small><strong>Rebel Ranch Academy</strong></span></a>
       <button className="menu-button" type="button" aria-expanded={menuOpen} aria-controls="primary-navigation" onClick={()=>setMenuOpen(open=>!open)}>{menuOpen?"Close":"Menu"}</button>
       <nav id="primary-navigation" className={menuOpen?"nav-open":""} aria-label="Primary navigation">
         <a href="#learning-areas" onClick={()=>setMenuOpen(false)}>Learning areas</a>
@@ -77,7 +78,7 @@ export default function Home(){
         <div className="hero-actions"><a className="button button-gold" href="#choose-your-path">Find your path <span aria-hidden="true">→</span></a><a className="button button-outline" href="#sample-learning">Try a sample activity</a></div>
         <p className="hero-note">Respectable. Responsible. Accountable. Confident. Independent. Strong.</p>
       </div>
-      <div className="hero-seal" aria-label="Official Rebel Ranch Academy seal"><div className="seal-glow" aria-hidden="true"/><img src="/rra-logo.png" alt="Rebel Ranch Academy. Skills for life. Freedom for all." width={1254} height={1254} loading="eager" fetchPriority="high"/></div>
+      <div className="hero-seal" aria-label="Official Rebel Ranch Academy seal"><div className="seal-glow" aria-hidden="true"/><Image src="/rra-logo.png" alt="Rebel Ranch Academy. Skills for life. Freedom for all." width={1254} height={1254} priority/></div>
     </section>
 
     <section className="declaration" aria-label="Academy promise"><p>Beyond traditional education.</p><strong>Real skills for real life.</strong><p>Online learning. Real-world action.</p></section>
@@ -94,7 +95,7 @@ export default function Home(){
     </section>
 
     <section className="roots-feature">
-      <div className="roots-logo"><img src="/roots-boots-animal-poops-logo.png" alt="Roots, Boots and Animal Poops" width={1254} height={1254}/></div>
+      <div className="roots-logo"><Image src="/roots-boots-animal-poops-logo.png" alt="Roots, Boots and Animal Poops" width={1254} height={1254}/></div>
       <div className="roots-copy"><p className="eyebrow">SUSTAINABILITY &amp; AGRICULTURE</p><h2>Real food starts long before the store.</h2><p>Roots, Boots &amp; Animal Poops is where children, adults, homesteaders, and homeschool families learn how soil, water, plants, animals, food, and responsible stewardship work together.</p><p className="program-endorsement">Roots, Boots &amp; Animal Poops is a Rebel Ranch Academy program.</p><button className="button button-gold" type="button" onClick={()=>chooseArea("Sustainability & Agriculture")}>Explore agriculture learning <span aria-hidden="true">→</span></button></div>
     </section>
 
@@ -115,7 +116,7 @@ export default function Home(){
 
     <section className="interest-section"><p className="eyebrow">RESPONSIBLE REBELS WANTED</p><h2>You do not have to know everything.<span>You do need to keep learning.</span></h2><p>Tell Rebel Ranch Ministries what you want to learn. Your interest helps shape which Academy programs move forward first.</p><a className="button button-gold" href="https://rebelranchministries.org/academy-learning-interest.html">Share what you want to learn <span aria-hidden="true">→</span></a></section>
 
-    <footer><div className="footer-brand"><img src="/rra-logo.png" alt="" width={1254} height={1254}/><div><strong>Rebel Ranch Academy</strong><span>Real skills for real life.</span></div></div><div className="footer-links"><a href="https://rebelranchministries.org/">Rebel Ranch Ministries</a><a href="#learning-areas">Academy learning areas</a><a href="https://rebelranchministries.org/contact.html">Contact</a></div><p className="legal">Rebel Ranch Academy is a program of Rebel Ranch Ministries, a ministry program under Faith, Family &amp; Nature Church, Inc.</p></footer>
+    <footer><div className="footer-brand"><Image src="/rra-logo.png" alt="" width={1254} height={1254}/><div><strong>Rebel Ranch Academy</strong><span>Real skills for real life.</span></div></div><div className="footer-links"><a href="https://rebelranchministries.org/">Rebel Ranch Ministries</a><a href="#learning-areas">Academy learning areas</a><a href="https://rebelranchministries.org/contact.html">Contact</a></div><p className="legal">Rebel Ranch Academy is a program of Rebel Ranch Ministries, a ministry program under Faith, Family &amp; Nature Church, Inc.</p></footer>
 
     {selected&&<div className="modal-backdrop" onMouseDown={()=>setSelected(null)}><section className="lesson-modal" role="dialog" aria-modal="true" aria-labelledby="lesson-title" onMouseDown={event=>event.stopPropagation()}><button ref={closeButtonRef} className="modal-close" type="button" onClick={()=>setSelected(null)} aria-label="Close activity">×</button><p className="eyebrow">{selected.area}</p><p className="modal-meta">{selected.level} · {selected.ages} · {selected.time}</p><h2 id="lesson-title">{selected.title}</h2><p className="lesson-description">{selected.description}</p><h3>What you will learn</h3><ol>{selected.learn.map((item,index)=><li key={item}><span>0{index+1}</span>{item}</li>)}</ol><div className="challenge"><strong>Put it to work</strong><p>{selected.challenge}</p></div><div className="modal-actions"><button className="button button-gold" type="button" onClick={()=>togglePlan(selected.id)}>{plan.includes(selected.id)?"Remove from my plan":"Add to my plan →"}</button><button className="button button-dark" type="button" onClick={()=>toggleDone(selected.id)}>{done.includes(selected.id)?"✓ Completed":"Mark complete"}</button></div></section></div>}
   </main>
