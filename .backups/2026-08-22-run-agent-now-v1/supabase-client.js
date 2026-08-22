@@ -10,7 +10,8 @@ export const supabase = createClient(
   SUPABASE_PUBLISHABLE_KEY
 );
 
-if (window.location.pathname.endsWith('/operations-review.html') || window.location.pathname === '/operations-review.html') {
+const path = window.location.pathname;
+if (path.endsWith('/operations-review.html') || path === '/operations-review.html') {
   import('./operations-review-enhancements.js');
   import('./operations-review-owner-controls.js');
   import('./operations-review-diff-edit.js');
@@ -25,6 +26,6 @@ if (window.location.pathname.endsWith('/operations-review.html') || window.locat
   import('./academy-stage-progress-status.js');
 }
 
-if (window.location.pathname.endsWith('/academy-stage-review.html') || window.location.pathname === '/academy-stage-review.html') {
+if (path.endsWith('/academy-stage-review.html') || path === '/academy-stage-review.html') {
   import('./academy-stage-progress-status.js');
 }
