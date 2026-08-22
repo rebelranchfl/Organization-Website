@@ -7,7 +7,7 @@
   "created_at": "2026-08-22T14:58:58-04:00",
   "created_by": "RRA Opportunity Intelligence / Research Agent",
   "current_status": "READY_FOR_REVIEW",
-  "workflow_stage": "RESEARCH_REVIEW",
+  "workflow_stage": "PRODUCT_REVIEW",
   "revision_number": 1,
   "source_opportunity": {
     "opportunity_id": "f622f7de-38a4-4443-84b8-4ff8e37fba26",
@@ -45,12 +45,80 @@
     "sources_file": "sources.md",
     "research_file": "research.md"
   },
-  "concept": {"status": "NOT_STARTED", "learning_outcome": null, "central_question": null, "major_principles": [], "historical_or_lost_knowledge_angle": null, "current_use_angle": null, "transfer_the_principle_summary": null, "proposed_format": null, "activity_types": [], "visual_needs": []},
-  "content": {"status": "COMPLETE", "master_content_file": "master-content.md"},
-  "materials": {"status": "NOT_STARTED", "material_types": [], "files": [], "preview_files": []},
-  "pricing": {"status": "NOT_STARTED", "proposed_price": null, "currency": "USD", "role": null, "reasoning_file": null, "owner_approved_price": null},
-  "qa": {"status": "COMPLETE", "completed_at": "2026-08-22T14:58:58-04:00", "qa_file": "qa-review.md", "blockers": []},
-  "owner_review": {"status": "PENDING", "latest_decision": null, "latest_comment": null, "reviewed_at": null, "review_history_file": "owner-review.md", "source_decisions_complete": false},
-  "release": {"status": "NOT_STARTED", "approved_at": null, "published_at": null, "destination": null, "live_url": null, "release_files": [], "release_notes": null},
-  "agent": {"active_agent": null, "last_agent": "RRA Research/Content Agent", "session_title": "RRA Content Agent", "last_updated_at": "2026-08-22T14:58:58-04:00"}
+  "product_design": {
+    "status": "COMPLETE",
+    "product_opportunity_research_file": "product-opportunity-research.md",
+    "scorecard_file": "product-recommendation-scorecard.md",
+    "functional_decomposition_file": "functional-decomposition.md",
+    "interactive_scenario_file": "interactive-scenario-map.md",
+    "architecture_file": "product-architecture.md",
+    "manuscript_file": "product-manuscript.md",
+    "integrated_learner_flow_file": "integrated-learner-flow.md",
+    "implementation_tools_file": "implementation/storage-system-tools-spec.md",
+    "learner_signal_plan_file": "learner-signal-plan.md",
+    "preservation_check_file": "product-preservation-check.md",
+    "visual_brief_file": "visual-production-brief.md",
+    "pricing_packaging_file": "product-pricing-packaging.md",
+    "qa_file": "product-qa.md"
+  },
+  "concept": {
+    "status": "COMPLETE",
+    "learning_outcome": "Inspect existing containers, match them to one or more real water-storage jobs, calculate capacity/weight/redundancy, correct failure points and build a living multi-use storage plan.",
+    "central_question": "What can this specific container responsibly do in my actual water system?",
+    "major_principles": ["Function before form", "Requirements follow the job", "Use what you have after suitability is checked", "Storage is an operating system", "Testing verifies the decision that actually needs verification"],
+    "historical_or_lost_knowledge_angle": "Compare durable storage functions across historical/global vessel forms without assuming old or modern automatically means safe/better.",
+    "current_use_angle": "Household, emergency, homestead, livestock, irrigation and produce-contact branches.",
+    "transfer_the_principle_summary": "Define the job and failure consequence first, then decide whether the available form is suitable.",
+    "proposed_format": "Free quick-check plus paid interactive multi-use planning system with printable/offline personalized result.",
+    "activity_types": ["real-container audit", "capacity/weight planning", "failure-mode exercise", "maintenance planning"],
+    "visual_needs": ["container lineup", "history decision visual", "container anatomy cutaway", "dispensing contamination comparison", "multi-use branch map", "capacity-weight-redundancy comparison", "maintenance loop", "personalized system map"]
+  },
+  "content": {
+    "status": "COMPLETE",
+    "master_content_file": "master-content.md",
+    "product_manuscript_file": "product-manuscript.md"
+  },
+  "materials": {
+    "status": "DESIGNED_NOT_RENDERED",
+    "material_types": ["interactive selector", "container inventory", "capacity/weight planner", "branch map", "container anatomy visual", "maintenance planner", "failure-mode activity", "personalized storage plan"],
+    "files": ["implementation/storage-system-tools-spec.md"],
+    "preview_files": []
+  },
+  "pricing": {
+    "status": "PROPOSED_NOT_PUBLIC",
+    "proposed_price": 29,
+    "currency": "USD",
+    "role": "Free quick-check + paid interactive core",
+    "reasoning_file": "product-pricing-packaging.md",
+    "owner_approved_price": null
+  },
+  "qa": {
+    "status": "COMPLETE",
+    "completed_at": "2026-08-22T17:20:00-04:00",
+    "qa_file": "product-qa.md",
+    "blockers": []
+  },
+  "owner_review": {
+    "status": "PENDING_PRODUCT_REVIEW",
+    "latest_decision": null,
+    "latest_comment": null,
+    "reviewed_at": null,
+    "review_history_file": "owner-review.md",
+    "source_decisions_complete": false
+  },
+  "release": {
+    "status": "NOT_STARTED",
+    "approved_at": null,
+    "published_at": null,
+    "destination": null,
+    "live_url": null,
+    "release_files": [],
+    "release_notes": null
+  },
+  "agent": {
+    "active_agent": null,
+    "last_agent": "RRA Product Design Agent — ChatGPT/GPT-5.6 Sol",
+    "session_title": "RRA Product Design Agent",
+    "last_updated_at": "2026-08-22T17:20:00-04:00"
+  }
 }
