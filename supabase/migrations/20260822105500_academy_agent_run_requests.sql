@@ -101,6 +101,17 @@ begin
     raise exception 'Run Agent Now v1 does not yet support this stage';
   end if;
 
+  if not exists (
+    select 1
+    from public.academy_agent_runner_state
+    where runner_key = 'github-codex-v1'
+      and ready = true
+      and last_heartbeat > now() - interval '12 minutes'
+      and v_project.workflow_stage = any(supported_stages)
+  ) then
+    raise exception 'Manual runner is not connected yet';
+  end if;
+
   if exists (
     select 1 from public.academy_agent_run_requests
     where project_id = p_project_id and status in ('PENDING','RUNNING')
