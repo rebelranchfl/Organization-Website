@@ -11,7 +11,14 @@ export const supabase = createClient(
 );
 
 const path = window.location.pathname;
-if (path.endsWith('/operations-review.html') || path === '/operations-review.html') {
+const isOperationsReview = path.endsWith('/operations-review.html') || path === '/operations-review.html';
+const isAcademyStageReview = path.endsWith('/academy-stage-review.html') || path === '/academy-stage-review.html';
+
+if (isOperationsReview || isAcademyStageReview) {
+  import('./academy-owner-usability.js');
+}
+
+if (isOperationsReview) {
   import('./operations-review-enhancements.js');
   import('./operations-review-owner-controls.js');
   import('./operations-review-diff-edit.js');
@@ -30,7 +37,7 @@ if (path.endsWith('/operations-review.html') || path === '/operations-review.htm
   import('./operations-review-final-product-acceptance.js');
 }
 
-if (path.endsWith('/academy-stage-review.html') || path === '/academy-stage-review.html') {
+if (isAcademyStageReview) {
   import('./academy-stage-progress-status.js');
   import('./academy-late-findings.js');
 }
