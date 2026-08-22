@@ -2,37 +2,31 @@
   "project_id": "RRA-2026-0001",
   "title": "Water Through the Layers",
   "stage": "VISUAL_PRODUCTION",
-  "status": "OWNER_REVIEW_PACKAGE_READY",
+  "status": "HUMAN_FIRST_REVISION_IN_PROGRESS",
   "assets": [
     {
-      "label": "Complete Owner Review Package",
+      "label": "Owner Review Entry",
       "file": "index.html",
       "type": "interactive-html",
-      "description": "Integrated entry point linking the complete learner-facing visual and interactive Water package."
+      "description": "Owner entry point that now leads with the complete integrated learner experience rather than a disconnected asset gallery."
     },
     {
-      "label": "Core Decision Visuals",
+      "label": "Water Through the Layers — Complete Learner Experience",
+      "file": "water-learning-experience.html",
+      "type": "interactive-html",
+      "description": "Primary human-first sequence: recognizable source scenes, ordinary-language decisions, My Water Test Results, Build My Water Treatment Plan, living My Water Plan, optional deeper science/technical layers, and privacy-minimized structured learner-signal instrumentation."
+    },
+    {
+      "label": "Deeper Decision Visuals",
       "file": "water-system-visual-preview.html",
       "type": "responsive-html",
-      "description": "Source-to-decision, clear water versus safe water, testing, treatment-job, UV, NSF/ANSI 55 Class A versus Class B, and POU versus POE visual set."
+      "description": "Optional deeper source/testing/treatment/UV/Class A-Class B/POU-POE visual layer preserved under the integrated experience."
     },
     {
-      "label": "Implementation Visuals",
+      "label": "Deeper Implementation Visuals",
       "file": "water-system-implementation-visuals.html",
       "type": "responsive-html",
-      "description": "Function Before Form, scale translation, automated animal watering, emergency surface-water caution, evidence ladder, historical/global comparison, and system block-diagram visual set."
-    },
-    {
-      "label": "Water Profile Planner",
-      "file": "water-profile-planner.html",
-      "type": "interactive-html",
-      "description": "Interactive learner tool that builds a decision-first Water Profile from source, intended use, testing status, scale, and known concern."
-    },
-    {
-      "label": "Water System Planning Suite",
-      "file": "water-system-planning-suite.html",
-      "type": "interactive-html",
-      "description": "Results Interpreter, Treatment Job Builder, Resource Inventory/Substitution Planner, Build/Buy Comparator, Maintenance/Verification Planner, and Next Learning Path."
+      "description": "Optional deeper Function Before Form, scale, animal watering, surface-water caution, evidence ladder, historical/global, and system-diagram visual layer."
     }
   ]
 }
