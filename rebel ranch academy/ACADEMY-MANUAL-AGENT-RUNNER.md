@@ -81,17 +81,19 @@ It is not a substitute for ChatGPT-native image generation. If the approved lear
 The workflow requires two server-side GitHub Actions secrets:
 
 - `OPENAI_API_KEY` — project API key used by the official `openai/codex-action`.
-- `SUPABASE_SERVICE_ROLE_KEY` — server-only Supabase credential used by the trusted GitHub runner to claim/finalize run requests and synchronize owner-facing progress.
+- `SUPABASE_SECRET_KEY` — preferred current Supabase server Secret key (`sb_secret_...`) used only by the trusted GitHub runner to claim/finalize run requests and synchronize owner-facing progress.
+
+Temporary compatibility remains for a legacy `SUPABASE_SERVICE_ROLE_KEY` if the project has not yet created a current Supabase Secret key. New setup should prefer `SUPABASE_SECRET_KEY`.
 
 Neither secret may appear in browser JavaScript, repository files, logs, owner comments, or product content.
 
-Until both are configured, `academy_agent_runner_state.ready` remains false and Operations Review keeps the Run Agent Now button disabled. The normal scheduled Academy workers continue unaffected.
+Until the OpenAI key plus one supported Supabase backend key are configured, `academy_agent_runner_state.ready` remains false and Operations Review keeps the Run Agent Now button disabled. The normal scheduled Academy workers continue unaffected.
 
 ## Security boundaries
 
 - The owner creates requests through `request_academy_agent_run`, which requires `private.is_admin()`.
 - RLS protects manual-run request/status rows from non-admin authenticated users.
-- The runner uses a service role only inside GitHub Actions.
+- The runner uses an elevated Supabase server credential only inside GitHub Actions.
 - Codex receives the OpenAI key through the official action's secret-handling path.
 - Repository writes are limited by post-run scope validation to the authorized project folder and required backup records.
 - Manual runs cannot target owner holds, review gates, release stages, unrelated projects, or unsupported stages.
