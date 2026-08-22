@@ -7,8 +7,8 @@
   "created_at": "2026-08-22T09:10:17-04:00",
   "created_by": "Owner intake / RRA Research Agent",
   "current_status": "READY_FOR_REVIEW",
-  "workflow_stage": "RESEARCH_REVIEW",
-  "revision_number": 1,
+  "workflow_stage": "PRODUCT_REVIEW",
+  "revision_number": 2,
   "owner_input": {
     "idea": "the difference between FACT, & Opinion and how to decipher bias",
     "owner_notes": "try to teach people there is a very big distinction between fact and opinion that is very often blurred in society today. peoples opinons too often are taken, viewed or interpreted as opinion. People also do not understand or realize how biased and how easily biased they are and how that bias affects their perception, view and decision making-espesially creating opinions that are treated or valued as fact.",
@@ -20,40 +20,99 @@
   "context_review": {
     "status": "COMPLETE",
     "completed_at": "2026-08-22T09:10:17-04:00",
-    "documents_reviewed": ["AGENTS.md", "docs/rebel-ranch-ecosystem-charter.md", "docs/non-negotiables.md", "REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md", "Program Hub README.md", "ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md", "ACADEMY-CONTENT-PROJECT-SCHEMA.md", "ACADEMY-REVISION-PRESERVATION-STANDARD.md", "ACADEMY-SOURCE-REVIEW-POLICY.md", "ACADEMY-PRODUCT-PHASE-WORKFLOW-EXTENSION.md", "ACADEMY-THINK-LIKE-A-REBEL-FRAMEWORK.md"],
-    "websites_reviewed": ["https://rebelranchministries.org", "https://academy.rebelranchministries.org (crawler attempted; public fetch failed; current GitHub Program Hub source reviewed as fallback)"],
+    "documents_reviewed": ["AGENTS.md", "docs/rebel-ranch-ecosystem-charter.md", "docs/non-negotiables.md", "REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md", "Program Hub README.md", "ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md", "ACADEMY-CONTENT-PROJECT-SCHEMA.md", "ACADEMY-REVISION-PRESERVATION-STANDARD.md", "ACADEMY-SOURCE-REVIEW-POLICY.md", "ACADEMY-PRODUCT-PHASE-WORKFLOW-EXTENSION.md", "ACADEMY-THINK-LIKE-A-REBEL-FRAMEWORK.md", "ACADEMY-LEARNER-EXPERIENCE-LANGUAGE-VISUAL-STANDARD.md", "ACADEMY-RESPONSIBLE-REBELLION-EVIDENCE-FIRST-STANDARD.md", "ACADEMY-LATE-FINDING-CONTROL-STANDARD.md"],
+    "websites_reviewed": ["https://rebelranchministries.org", "https://academy.rebelranchministries.org (crawler attempted during research; current Program Hub source reviewed as fallback)"],
     "audiences_identified": ["teens and young adults", "adults", "parents and homeschool families", "small-business owners and leaders"],
-    "learning_area_reason": "The primary skill is personal judgment: separating claims from interpretations, recognizing cognitive bias, testing assumptions and making better decisions. Communication & Emotional Intelligence and Business & Work Skills are secondary transfer areas.",
+    "learning_area_reason": "The primary skill is personal judgment: separating claims from interpretations, recognizing cognitive bias, testing assumptions and making better decisions. Communication & Emotional Intelligence and Business & Operations are secondary transfer areas.",
     "conflicts_found": []
   },
   "research": {
-    "status": "COMPLETE",
+    "status": "APPROVED_REVISION_2",
     "started_at": "2026-08-22T09:10:17-04:00",
-    "completed_at": "2026-08-22T09:10:17-04:00",
+    "completed_at": "2026-08-22T12:12:58-04:00",
     "source_count": 13,
     "primary_or_direct_source_count": 10,
     "conflicts_found": ["Simple educational definitions sometimes describe opinion as unsupported belief. That is too crude for RRA: opinions can be evidence-based, while factual claims can be false. The useful distinction is what kind of claim is being made and what would count as verification."],
     "unresolved_questions": ["Best age-specific vocabulary for younger learners", "Whether a later product should include a media/news-specific module or keep examples domain-neutral"],
     "sources_file": "sources.md",
-    "research_file": "research.md"
+    "research_file": "research.md",
+    "addendum_file": "research-social-influence-addendum.md",
+    "handoff_file": "product-design-handoff.md"
   },
   "concept": {
     "status": "COMPLETE",
-    "learning_outcome": "Learners can classify a statement, separate evidence from interpretation, identify common bias pressure, test a claim before accepting or sharing it, and explain how their own prior beliefs can affect judgment.",
+    "learning_outcome": "Learners can classify a statement, separate evidence from interpretation, identify common bias pressure, test a claim before accepting or sharing it, and explain how their own prior beliefs and social environment can affect judgment.",
     "central_question": "Am I looking at a fact, an interpretation, an opinion, a prediction, or a mixed claim — and what is influencing how I judge it?",
-    "major_principles": ["Claim type before agreement", "Evidence before confidence", "Bias changes judgment without automatically making a conclusion false", "Repetition is not proof", "Consider the opposite", "Accuracy deserves deliberate attention", "Being intelligent does not make a person bias-proof"],
+    "major_principles": ["Claim type before agreement", "Evidence before confidence", "Bias changes judgment without automatically making a conclusion false", "Repetition is not proof", "Consider the opposite", "Accuracy deserves deliberate attention", "Being intelligent does not make a person bias-proof", "The decision environment is part of the decision"],
     "historical_or_lost_knowledge_angle": "Francis Bacon's 1620 Idols framework shows that systematic distortion of judgment was recognized centuries before modern cognitive-bias terminology.",
     "current_use_angle": "Apply to social media, family disagreements, school/work claims, advertising, business decisions and emotionally loaded issues.",
-    "transfer_the_principle_summary": "Separate observation, evidence, inference and preference anywhere a decision matters; then test what would change your mind.",
-    "proposed_format": "To be determined by Product Opportunity Research after owner research approval.",
-    "activity_types": ["claim sorting", "evidence ladder", "bias self-check", "consider-the-opposite exercise", "before-you-share accuracy check", "decision replay"],
-    "visual_needs": ["claim-type decision tree", "evidence-vs-confidence diagram", "bias pathway map"]
+    "transfer_the_principle_summary": "Separate observation, evidence, inference and preference anywhere a decision matters; then test what would change your mind and notice the social pressure around the decision.",
+    "proposed_format": "Free interactive claim sorter + paid repeat-use decision system",
+    "activity_types": ["claim sorting", "Trace the Echo", "Bias Mirror", "What Would Change My Mind", "The Unanimous Room", "One Dissenter Changes the Room", "decision record"],
+    "visual_needs": ["mixed-claim split", "claim-type vs evidence-strength map", "source-root echo map", "bias mirror", "social-pressure map", "confidence ladder", "living Decision Record"]
   },
-  "content": {"status": "COMPLETE", "master_content_file": "master-content.md"},
-  "materials": {"status": "NOT_STARTED", "material_types": [], "files": [], "preview_files": []},
-  "pricing": {"status": "NOT_STARTED", "proposed_price": null, "currency": "USD", "role": null, "reasoning_file": null, "owner_approved_price": null},
-  "qa": {"status": "COMPLETE", "completed_at": "2026-08-22T09:10:17-04:00", "qa_file": "qa-review.md", "blockers": []},
-  "owner_review": {"status": "PENDING", "latest_decision": null, "latest_comment": null, "reviewed_at": null, "review_history_file": "owner-review.md", "source_decisions_complete": false},
-  "release": {"status": "NOT_STARTED", "approved_at": null, "published_at": null, "destination": null, "live_url": null, "release_files": [], "release_notes": null},
-  "agent": {"active_agent": null, "last_agent": "RRA Research/Content Agent", "session_title": "RRA Content Agent", "last_updated_at": "2026-08-22T09:10:17-04:00"}
+  "content": {
+    "status": "PRODUCT_DESIGN_COMPLETE",
+    "master_content_file": "master-content.md",
+    "product_manuscript_file": "product-manuscript.md"
+  },
+  "materials": {
+    "status": "PRODUCT_DESIGN_SPECIFIED",
+    "material_types": ["interactive decision system", "free claim sorter", "scenario activities", "living Decision Record"],
+    "files": ["activities/product-tools.md", "interactive-scenario-map.md", "integrated-learner-flow.md"],
+    "preview_files": []
+  },
+  "product_design": {
+    "status": "READY_FOR_OWNER_PRODUCT_REVIEW",
+    "opportunity_research_file": "product-opportunity-research.md",
+    "scorecard_file": "product-recommendation-scorecard.md",
+    "functional_decomposition_file": "functional-decomposition.md",
+    "opportunity_map_file": "opportunity-funnel-map.md",
+    "architecture_file": "product-architecture.md",
+    "learner_signal_file": "learner-signal-plan.md",
+    "pricing_file": "pricing-packaging-recommendation.md",
+    "preservation_file": "product-preservation-check.md",
+    "visual_brief_file": "visual-production-brief.md",
+    "qa_file": "product-qa.md",
+    "owner_review_file": "owner-product-review.md",
+    "recommended_free_product": "What Am I Actually Looking At?",
+    "recommended_paid_product": "Think It Through"
+  },
+  "pricing": {
+    "status": "PROPOSED_OWNER_REVIEW",
+    "proposed_price": 24,
+    "currency": "USD",
+    "role": "paid core interactive product",
+    "reasoning_file": "pricing-packaging-recommendation.md",
+    "owner_approved_price": null
+  },
+  "qa": {
+    "status": "PRODUCT_QA_PASS",
+    "completed_at": "2026-08-22T18:18:00-04:00",
+    "qa_file": "product-qa.md",
+    "blockers": []
+  },
+  "owner_review": {
+    "status": "PENDING_PRODUCT_REVIEW",
+    "latest_decision": null,
+    "latest_comment": null,
+    "reviewed_at": null,
+    "review_history_file": "owner-product-review.md",
+    "source_decisions_complete": false
+  },
+  "release": {
+    "status": "NOT_STARTED",
+    "approved_at": null,
+    "published_at": null,
+    "destination": null,
+    "live_url": null,
+    "release_files": [],
+    "release_notes": null
+  },
+  "agent": {
+    "active_agent": null,
+    "last_agent": "RRA Product Design Agent — ChatGPT/GPT-5.6 Sol",
+    "session_title": "RRA Product Design Agent",
+    "last_updated_at": "2026-08-22T18:18:00-04:00"
+  }
 }
