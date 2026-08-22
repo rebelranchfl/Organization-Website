@@ -1,87 +1,18 @@
-name: Academy Run Agent Now
+name: Academy Run Agent Now — Disabled
+
+# Disabled by owner direction on 2026-08-22.
+# Reason: do not create any additional OpenAI API fees at this time.
+# The runner code is intentionally preserved for possible future reuse.
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "*/5 * * * *"
 
 permissions:
-  contents: write
-
-concurrency:
-  group: academy-run-agent-now-v1
-  cancel-in-progress: false
+  contents: read
 
 jobs:
-  run-next-request:
+  disabled:
+    if: ${{ false }}
     runs-on: ubuntu-latest
-    env:
-      SUPABASE_URL: https://dfrwxpuojeiykaignyny.supabase.co
-      SUPABASE_BACKEND_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
-      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
     steps:
-      - name: Check out current main
-        uses: actions/checkout@v6
-        with:
-          ref: main
-          fetch-depth: 0
-
-      - name: Claim next owner-requested run
-        id: claim
-        run: node .github/scripts/academy-agent-runner.mjs claim
-
-      - name: Run current-stage Academy worker
-        id: codex
-        if: steps.claim.outputs.has_request == 'true'
-        uses: openai/codex-action@v1
-        with:
-          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
-          prompt-file: .agent-run/prompt.md
-          working-directory: .
-          sandbox: workspace-write
-          safety-strategy: drop-sudo
-          output-file: .agent-run/codex-last-message.txt
-
-      - name: Validate and commit durable work
-        id: commit
-        if: steps.claim.outputs.has_request == 'true' && steps.codex.outcome == 'success'
-        env:
-          PROJECT_PATH: ${{ steps.claim.outputs.project_path }}
-          PROJECT_ID: ${{ steps.claim.outputs.project_id }}
-          REQUEST_ID: ${{ steps.claim.outputs.request_id }}
-          AGENT_NAME: ${{ steps.claim.outputs.agent }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          mapfile -t changed < <( { git diff --name-only; git ls-files --others --exclude-standard; } | sort -u )
-          for f in "${changed[@]}"; do
-            [[ -z "$f" ]] && continue
-            case "$f" in
-              .agent-run/*) ;;
-              "$PROJECT_PATH"/*) ;;
-              .backups/*) ;;
-              *) echo "Unexpected file outside authorized project scope: $f"; exit 1 ;;
-            esac
-          done
-          git add -A -- . ':(exclude).agent-run/**'
-          if git diff --cached --quiet; then
-            echo "No durable repository changes produced in this run."
-            echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          git config user.name "Rebel Ranch Academy Agent Runner"
-          git config user.email "285707125+rebelranchfl@users.noreply.github.com"
-          git commit -m "Advance ${PROJECT_ID} via Run Agent Now" -m "Request: ${REQUEST_ID}" -m "AI-Agent: OpenAI Codex via RRA Agent Runner" -m "Session: RR Website — Run Agent Now v1"
-          git fetch origin main
-          git rebase origin/main
-          git push origin HEAD:main
-          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-
-      - name: Finalize owner-facing run status
-        if: always() && steps.claim.outputs.has_request == 'true'
-        env:
-          REQUEST_ID: ${{ steps.claim.outputs.request_id }}
-          RESULT_COMMIT_SHA: ${{ steps.commit.outputs.sha }}
-          CODEX_OUTCOME: ${{ (steps.codex.outcome == 'success' && steps.commit.outcome == 'success') && 'success' || 'failure' }}
-        run: node .github/scripts/academy-agent-runner.mjs finalize
+      - run: echo "Run Agent Now is disabled by owner direction."
