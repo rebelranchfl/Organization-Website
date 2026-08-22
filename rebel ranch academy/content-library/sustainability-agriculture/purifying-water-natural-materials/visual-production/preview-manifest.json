@@ -1,0 +1,38 @@
+{
+  "project_id": "RRA-2026-0001",
+  "title": "Water Through the Layers",
+  "stage": "VISUAL_PRODUCTION",
+  "status": "OWNER_REVIEW_PACKAGE_READY",
+  "assets": [
+    {
+      "label": "Complete Owner Review Package",
+      "file": "index.html",
+      "type": "interactive-html",
+      "description": "Integrated entry point linking the complete learner-facing visual and interactive Water package."
+    },
+    {
+      "label": "Core Decision Visuals",
+      "file": "water-system-visual-preview.html",
+      "type": "responsive-html",
+      "description": "Source-to-decision, clear water versus safe water, testing, treatment-job, UV, NSF/ANSI 55 Class A versus Class B, and POU versus POE visual set."
+    },
+    {
+      "label": "Implementation Visuals",
+      "file": "water-system-implementation-visuals.html",
+      "type": "responsive-html",
+      "description": "Function Before Form, scale translation, automated animal watering, emergency surface-water caution, evidence ladder, historical/global comparison, and system block-diagram visual set."
+    },
+    {
+      "label": "Water Profile Planner",
+      "file": "water-profile-planner.html",
+      "type": "interactive-html",
+      "description": "Interactive learner tool that builds a decision-first Water Profile from source, intended use, testing status, scale, and known concern."
+    },
+    {
+      "label": "Water System Planning Suite",
+      "file": "water-system-planning-suite.html",
+      "type": "interactive-html",
+      "description": "Results Interpreter, Treatment Job Builder, Resource Inventory/Substitution Planner, Build/Buy Comparator, Maintenance/Verification Planner, and Next Learning Path."
+    }
+  ]
+}
