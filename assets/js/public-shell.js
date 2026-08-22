@@ -55,6 +55,15 @@
         storeCard.innerHTML = `<h3>Store Manager</h3><p>Owner control for what's visible and featured on the Rebel Ranch store, independent of Printify.</p><span class="path-link-text">Open Store Manager</span>`;
         pathGrid.append(storeCard);
       }
+
+      if (!document.getElementById('admin-social-content-hub-path')) {
+        const contentCard = document.createElement('a');
+        contentCard.id = 'admin-social-content-hub-path';
+        contentCard.className = 'path-card';
+        contentCard.href = 'social-content-hub.html';
+        contentCard.innerHTML = `<h3>Social Content Hub</h3><p>Plan, review, organize, approve, assemble, and track Rebel Ranch Ministries social content and reels.</p><span class="path-link-text">Open Social Content Hub</span>`;
+        pathGrid.append(contentCard);
+      }
     };
 
     addAdminOperationsPath();
