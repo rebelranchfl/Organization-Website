@@ -50,12 +50,12 @@ function ownerAction(p){
   if(p.current_status==='NEEDS_MORE_WORK')return'No — revision is queued/working';
   return 'No owner action recorded';
 }
-function currentStageIndex(p){const i=STAGES.indexOf(p.workflow_stage);return i<0?0:i}
 function stagePercent(p,key){
-  const ci=currentStageIndex(p),i=STAGES.indexOf(key);
-  if(i<0)return 0;
+  const ci=Math.max(0,STAGES.indexOf(p.workflow_stage));
+  const i=Math.max(0,STAGES.indexOf(key));
   if(key===p.workflow_stage)return clamp(p.progress_percent);
-  return i<ci?100:0;
+  if(i<ci)return 100;
+  return 0;
 }
 function stageKeyFromCard(card){
   if(card.dataset.stage)return card.dataset.stage;
@@ -64,34 +64,20 @@ function stageKeyFromCard(card){
   const map={'Idea + Context':'IDEA','Research':'RESEARCH_WORKING','Research Review':'RESEARCH_REVIEW','Product Opportunity':'PRODUCT_OPPORTUNITY_RESEARCH','Product Design':'PRODUCT_WORKING','Product Review':'PRODUCT_REVIEW','Visual Production':'VISUAL_PRODUCTION','Final Product Review':'FINAL_PRODUCT_REVIEW','Release Prep':'AWAITING_RELEASE','Awaiting Release':'AWAITING_RELEASE','Publishing':'PUBLISHING','Live':'LIVE'};
   return map[name]||'';
 }
-function currentStateLabel(p){
-  if(p.owner_hold)return'On hold';
-  if(p.current_status==='READY_FOR_REVIEW')return'Owner action required';
-  if(p.current_status==='AGENT_WORKING')return'Agent working';
-  if(p.current_status==='NEEDS_MORE_WORK')return'Revision working';
-  return String(p.current_status||'Current').replaceAll('_',' ').toLowerCase();
-}
 function decorateCards(p){
-  const ci=currentStageIndex(p);
   document.querySelectorAll('.lsw-stage,.asr-stage,.life-step').forEach(card=>{
     const key=stageKeyFromCard(card);if(!key)return;
-    const i=STAGES.indexOf(key),pct=stagePercent(p,key);
+    const pct=stagePercent(p,key);
     let el=card.querySelector('.aps-percent');if(!el){el=document.createElement('span');el.className='aps-percent';card.append(el)}
     el.textContent=`${pct}% complete`;
     let track=card.querySelector('.aps-track');if(!track){track=document.createElement('span');track.className='aps-track';track.innerHTML='<span class="aps-fill"></span>';card.append(track)}
     track.querySelector('.aps-fill').style.width=`${pct}%`;
-    const state=card.querySelector('.state');if(!state||i<0)return;
-    if(key===p.workflow_stage)state.textContent=`${currentStateLabel(p)} · ${pct}%`;
-    else if(i<ci)state.textContent='Complete';
-    else state.textContent='Not reached';
+    const state=card.querySelector('.state');
+    if(state&&key===p.workflow_stage){
+      const label=p.current_status==='READY_FOR_REVIEW'?'Owner action required':p.current_status==='AGENT_WORKING'?'Agent working':String(p.current_status||'Current').replaceAll('_',' ').toLowerCase();
+      state.textContent=`${label} · ${pct}%`;
+    }
   });
-}
-function invalidateStaleWorkspace(id,key){
-  if(!lastKey||key===lastKey)return;
-  const previousProject=lastKey.split('|',1)[0];
-  if(previousProject!==id)return;
-  const workspace=document.getElementById('lifecycle-stage-workspace');
-  if(workspace)workspace.remove();
 }
 function runPanel(p){
   const target=document.querySelector('.asr-status')||document.querySelector('.lsw-status');if(!target)return;
@@ -119,11 +105,7 @@ async function refresh(){
     const {data:p,error}=await supabase.from('academy_content_projects').select('project_id,current_status,workflow_stage,progress_percent,progress_stage,progress_detail,progress_next,progress_updated_at,last_agent,owner_hold,owner_review_status').eq('project_id',id).single();
     if(error)throw error;
     const key=[id,p.workflow_stage,p.current_status,p.progress_percent,p.progress_updated_at,p.progress_detail,p.progress_next].join('|');
-    const changed=key!==lastKey;
-    if(changed)invalidateStaleWorkspace(id,key);
-    lastKey=key;
-    decorateCards(p);
-    if(changed||!document.getElementById('academy-agent-run-status'))runPanel(p);
+    if(key!==lastKey||!document.getElementById('academy-agent-run-status')){lastKey=key;decorateCards(p);runPanel(p)}else decorateCards(p);
   }catch(e){console.warn('Academy stage progress status',e)}finally{busy=false}
 }
 function schedule(){clearInterval(timer);timer=setInterval(refresh,60000)}

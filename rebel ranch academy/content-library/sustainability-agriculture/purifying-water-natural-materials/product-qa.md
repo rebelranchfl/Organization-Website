@@ -1,160 +1,185 @@
 # RRA-2026-0001 — Product QA
 
 **Status:** PASS — READY FOR OWNER PRODUCT REVIEW  
-**QA scope:** Product Design package only. This is not Final Product QA and does not authorize visual production, release, publishing, selling, or a public price.
+**QA scope:** Rebuilt Product Design package only. This is not Final Product QA and does not authorize Visual Production, publishing, selling, public pricing or release.
 
 ## 1. Activation / evidence gate
 
-- `product-design-handoff.md` exists with `Status: AUTHORIZED`: **PASS**
-- Revision 3 owner approval recorded: **PASS**
-- Targeted UV evidence return owner approved: **PASS**
-- UV gap QA passed: **PASS**
-- Product Design stayed inside the approved subject-evidence boundary: **PASS**
+- Project authoritative stage was `PRODUCT_WORKING`: **PASS**
+- Owner Final Product Review routed structural rebuild to Product Design: **PASS**
+- Product Design late finding marked IN_PROGRESS before work: **PASS**
+- Approved Revision 3 + UV evidence foundation preserved: **PASS**
+- No subject-evidence replacement introduced: **PASS**
 
-## 2. Required Product Design records
+## 2. Responsible Rebellion / Evidence-First gate
 
-- Product Opportunity Research: **PASS** — original record preserved; UV dependency closed additively in `product-opportunity-research-uv-closeout.md`
-- Product Recommendation Scorecard: **PASS** — average 4.74/5; weakest factor Market Saturation 3/5
-- Functional Decomposition: **PASS**
-- Interactive Scenario Map: **PASS**
-- Opportunity / Learning Funnel Map: **PASS**
-- Product Architecture: **PASS** — UV fully integrated
-- Product Manuscript: **PASS** — Draft 1 is complete enough for Product Review and preserves the required learning sequence
-- Activities / implementation tools: **PASS** — Water Profile, Treatment Job Planner, Resource/Build/Buy Planner, Maintenance/Verification Planner, Scenario Implementation Sheets, Evidence Case Studies
-- Pricing: **PASS** — $39 proposed only; no public price authorization
-- Market Positioning: **PASS** — current direct comparable range documented, regional/free context documented, no fabricated local paid benchmark
-- Product Preservation Check: **PASS**
-- Product Evidence Crosswalk: **PASS**
-- Visual Production Brief: **PASS** — explicitly not authorized for production yet
+- Evidence-backed solution space is taught without waiting for every learner-specific test: **PASS**
+- Method knowledge is distinguished from knowledge about the learner's exact water: **PASS**
+- Testing is verification/refinement, not permission to educate: **PASS**
+- Historical/traditional/regional/modern systems remain legitimate teaching material when supported: **PASS**
+- Government/institutional guidance is not treated as unquestionable Academy doctrine: **PASS**
+- No repetitive generic legal/compliance disclaimer architecture: **PASS**
+- Targeted warning rule limited to specific material immediate hazards: **PASS**
 
-## 3. Revision preservation QA
+## 3. Multi-use / branch architecture gate
 
-Required KEEP items from the authorized handoff were checked in `product-preservation-check.md`.
+- `What do you need the water to do?` is explicitly multi-select: **PASS**
+- Drinking/cooking, animals, irrigation/garden, emergency backup and other supported uses may coexist: **PASS**
+- Whole-system/shared infrastructure view required: **PASS**
+- Branch split and `why it differs` teaching required: **PASS**
+- Branch-specific treatment/storage/distribution/testing/maintenance required: **PASS**
+- Upstream answer changes update dependent branches where practical: **PASS**
 
-Result:
-- original filtration/natural-material foundation preserved;
-- clear-vs-safe distinction preserved;
-- diagnosis/testing-first logic preserved;
-- historical/global content preserved;
-- Moringa and copper retained with evidence boundaries;
-- frequency/acoustic and lunar material retained as evidence-literacy teaching;
-- evidence/claim ladder retained;
-- all UV safety/performance boundaries integrated;
-- no authorized teaching value removed or replaced.
+## 4. Tangible output gate
 
-**Result: PASS.**
+Product Design now requires actual system/build teaching rather than mostly text cards:
+- 55-gallon layered filtration cutaway/build concept: **PASS — specified**
+- 5-gallon gravity system: **PASS — specified**
+- settling/prefiltration/storage system: **PASS — specified**
+- source-to-use treatment train: **PASS — specified**
+- well/pump/storage/branch system: **PASS — specified**
+- drinking vs animal vs irrigation comparison: **PASS — specified**
+- historical/regional/modern comparisons: **PASS — specified**
+- layer/component function, substitutions, strengths/limits: **PASS — specified**
+- use-what-you-have / local / worth-buying / optional-upgrade logic: **PASS — specified**
 
-## 4. Think Like a Rebel QA
+These are Product Design requirements for the next Visual Production cycle, not claims that finished visuals already exist.
 
-The product explicitly teaches:
-- define the real goal;
-- separate facts/assumptions/unknowns;
-- test before prescribing when needed;
-- break the system into functions;
-- inventory existing resources;
-- evaluate safe substitutions;
-- identify where buying is justified;
-- design the simplest responsible workable system;
-- expose tradeoffs;
-- verify and maintain;
-- transfer the method to other real-life problems.
+## 5. Living My Water Plan gate
 
-`Teach function before form` and `Use what you have before deciding what you need to buy` are present without weakening safety/performance boundaries.
+`implementation/my-water-plan-spec.md` requires a substantive personalized output containing:
+- source + all selected uses;
+- whole-system branch diagram;
+- shared infrastructure;
+- branch-specific jobs;
+- known facts + meaningful unknowns;
+- testing and what it changes;
+- system/build options;
+- component/layer functions;
+- substitutions;
+- buy points;
+- verification;
+- maintenance/retest;
+- failure/backup;
+- next three actions;
+- Responsible Rebellion comparison results where used.
 
-**Result: PASS.**
+Generic paragraph output is explicitly insufficient: **PASS**
 
-## 5. Safety / evidence QA
+## 6. Navigation / state gate
 
-### Potable-water treatment
-The package does not claim that a demonstration filter makes unknown water potable. **PASS**
+`integrated-learner-flow.md` explicitly requires:
+- state persistence across ordinary navigation: **PASS**
+- selected uses persist throughout the journey: **PASS**
+- Whole System view remains available: **PASS**
+- optional depth returns to exact prior place: **PASS**
+- no 404/placeholder depth routes: **PASS**
+- earlier-answer changes update dependent outputs where practical: **PASS**
+- My Water Plan remains accessible without re-entering answers: **PASS**
+- QA test paths include multi-use, upstream changes and optional-depth return: **PASS**
 
-### UV
-The package preserves:
-- microbial-disinfection function only;
-- testing/diagnosis first;
-- turbidity/pretreatment conditions;
-- Class A/Class B distinction;
-- model/configuration/certified-flow boundary;
-- POU/POE distinction;
-- non-removal of chemicals/metals/salts/sediment;
-- downstream recontamination/no-residual issue;
-- power/maintenance/fouling/light-output failure modes;
-- exact-model maintenance instructions;
-- validated/certified reactor boundary for potable safety-critical use.
+Broken links/state loss are defined as Final Product QA failures: **PASS**
 
-**Result: PASS.**
+## 7. Learner language / visual-first gate
 
-### Surface water / emergency use
-The package does not imply that ordinary filtration, boiling, chemical disinfection, solar disinfection, or UV automatically resolves unknown chemical/toxin contamination. **PASS**
+- Plain language is default: **PASS**
+- technical/evidence depth remains optional: **PASS**
+- human task/result naming is preferred: **PASS**
+- recognizable system/image teaching comes before long technical explanation: **PASS**
+- visual brief prohibits text-card-only production: **PASS**
 
-### Economic claims
-The package does not promise savings or cost recovery. It treats savings/avoided cost as scenario-specific and evidence-dependent. **PASS**
+## 8. Responsible experiment gate
 
-## 6. Market / pricing QA
+The product includes:
+`UNDERSTAND → BUILD / IMPLEMENT → OBSERVE → TEST → COMPARE → IMPROVE → DECIDE → TRANSFER THE PRINCIPLE`.
 
-Current Product Design recommendation:
-- Free foundation: **Know Your Water — $0 proposed**
-- Paid core: **Build Your Water System — $39 proposed**
-- Observed direct consumer/homeowner education comparable range: **about $4.99–$45**
-- Proposed price position: **upper-MID**
-- Reliable apples-to-apples local paid education benchmark: **not established**
+Recurring challenge may be: **Does Responsible Rebellion Hold Water?**
 
-The package explicitly states that $39 is defensible only if the planned interactive decision-and-implementation value is delivered; a static text PDF would weaken the price case.
+Permanent rule present: **A successful build is not proof. Test the result.**
 
-No price is public or authorized for release. **PASS**
+Comparison dimensions include supported performance/cost/dependency/maintenance/repairability/capacity/reliability/waste/convenience/resilience factors: **PASS**
 
-## 7. Opportunity / learning-web QA
+## 9. Revision preservation gate
 
-The existing Opportunity Funnel Map identifies **15 future Academy idea candidates** generated by the Water project.
+`product-preservation-check.md` confirms:
+- approved research foundation preserved;
+- base manuscript preserved;
+- additive Responsible Rebellion addendum created;
+- UV boundaries preserved;
+- historical/global/evidence-literacy material preserved;
+- prior useful tools/logic retained;
+- only stale Visual authorization/workflow assumptions superseded by the later owner SEND_BACK_NOW decision.
 
-Current product ladder:
-- 1 free foundation;
-- 1 paid core product;
-- 7 named natural follow-on categories in the current architecture;
-- multiple interactive tools and implementation pathways.
+**PASS**
 
-The system does not require every connection to become a product. Future candidates remain subject to Opportunity Intelligence screening and owner disposition.
+## 10. Learner signal gate
 
-**Result: PASS.**
+`learner-signal-plan.md` identifies privacy-minimized structured signals for:
+- source/use/scale/testing/resource/build decisions;
+- multi-use branch behavior;
+- visual/depth use;
+- Responsible Rebellion experiments;
+- My Water Plan use;
+- continuity/state restoration.
 
-## 8. Owner-review compression QA
+No unnecessary identity collection is required: **PASS**
 
-The owner can make the Product Design decision without rereading the full research package because the Product Review snapshot now has:
-- recommendation;
-- average/weakest score;
-- product ladder counts;
-- price position and comparable range;
-- top opportunities;
-- top risks;
-- changes since Research Review;
-- exact decisions requested.
+## 11. Paid-value test
 
-**Result: PASS.**
+Required question:
 
-## 9. Remaining work that belongs AFTER this gate
+> What work did RRA actually do for the learner that they would otherwise have to research, compare, design, calculate, test, organize or decide themselves?
 
-These are not Product Design blockers:
-- final visual production and polished delivery assets;
-- finished interactive web implementation;
-- final accessibility/print testing;
-- final Product QA after visual production;
-- public product page/store setup;
-- public price activation;
-- SEO/indexing implementation;
-- release/publish decision.
+Rebuilt answer:
+- cross-reference the solution space;
+- convert multiple intended uses into a coherent branch system;
+- map shared vs branch-specific functions;
+- show real build/system concepts;
+- explain component/layer jobs and substitutions;
+- organize testing around decisions;
+- create build/buy/hybrid alternatives;
+- create a verification/maintenance/backup path;
+- preserve a living personalized My Water Plan;
+- organize Responsible Rebellion experiments/comparisons;
+- reduce research and decision burden without erasing evidence limits.
 
-Those require later owner gates.
+**PASS at Product Design.**
+
+### Price recommendation
+The proposed **$39** remains recommendation-only. It is defensible only if Visual Production implements the tangible/personalized experience specified here. If the final product becomes mostly generalized text, Final Product QA must fail the price/value case.
+
+## 12. TRANSFER THE PRINCIPLE gate
+
+Present in base manuscript, rebuild addendum and architecture. Learner is required to transfer function-before-form, resource inventory, substitution and verification thinking to another real-life problem: **PASS**
+
+## 13. Required rebuild package
+
+- updated `product-architecture.md`: **PASS**
+- base `product-manuscript.md` preserved + additive `product-manuscript-responsible-rebellion-addendum.md`: **PASS**
+- implementation/output spec `implementation/my-water-plan-spec.md`: **PASS**
+- `integrated-learner-flow.md`: **PASS**
+- `product-preservation-check.md`: **PASS**
+- rebuilt `visual-production-brief.md`: **PASS**
+- `learner-signal-plan.md`: **PASS**
+- pricing recommendation retained conditionally: **PASS**
+- Product QA: **PASS**
+
+## 14. Product Review gate
+
+All Product Design structural failures routed by the owner are now addressed in durable Product Design records.
+
+No unresolved Product Design late finding should remain when this QA is synchronized to the control plane.
 
 ## QA conclusion
 
 **PASS — READY FOR OWNER PRODUCT REVIEW.**
 
-The Product Design package is complete enough for the owner to choose:
-1. **Approve Product Design**;
+Owner options:
+1. **Approve Product Design** — authorizes creation of a new Visual Production handoff only;
 2. **Needs More Product Work**;
 3. **Reject Product Concept**.
 
-Owner approval at this gate authorizes only the Visual Production handoff. It does not authorize publication, sale, public pricing, or release.
+The prior Visual Production handoff remains superseded by the later SEND_BACK_NOW decision. A new Visual Production cycle may not begin until this rebuilt Product Design is owner-approved.
 
 ---
 AI-Agent: ChatGPT/GPT-5.6 Sol  
