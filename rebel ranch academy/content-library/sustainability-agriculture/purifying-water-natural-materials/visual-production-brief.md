@@ -1,6 +1,6 @@
 # RRA-2026-0001 — Visual Production Brief
 
-**Status:** PRODUCT DESIGN DRAFT — NOT AUTHORIZED FOR VISUAL PRODUCTION  
+**Status:** OWNER PRODUCT DESIGN APPROVED — AUTHORIZED THROUGH `visual-production-handoff.md`  
 **Product:** Build Your Water System + free Know Your Water layer
 
 ## Visual objective
@@ -103,7 +103,7 @@ Visual Production may simplify presentation but may not remove:
 - historical/global resource context;
 - Think Like a Rebel / TRANSFER THE PRINCIPLE method.
 
-No visual production begins until owner Product Review approves the Product Design package and an authorized visual-production handoff exists.
+Visual Production is authorized only through the approved `visual-production-handoff.md`. This brief does not authorize public release, deployment, selling, public pricing, or publication.
 
 ---
 AI-Agent: ChatGPT/GPT-5.6 Sol  
