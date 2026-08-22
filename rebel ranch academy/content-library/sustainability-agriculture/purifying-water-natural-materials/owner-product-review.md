@@ -1,106 +1,139 @@
 # RRA-2026-0001 — Owner Product Review
 
-**Stage:** PRODUCT DESIGN APPROVED — VISUAL PRODUCTION HANDOFF  
+**Stage:** REBUILT PRODUCT DESIGN APPROVED — NEW VISUAL PRODUCTION HANDOFF  
 **Product system:** Know Your Water + Build Your Water System + connected follow-on learning paths  
-**Owner decision:** APPROVE PRODUCT DESIGN  
-**Owner approval recorded:** 2026-08-21 20:25 ET  
+**Current owner decision:** APPROVE PRODUCT DESIGN  
+**Current owner approval recorded:** 2026-08-22 14:20 ET  
 **Public release authorized:** No
 
-## Owner approval record
+## Current approval — Responsible Rebellion rebuild
 
-The owner approved the Product Design package at the `PRODUCT_REVIEW` gate.
+The owner approved the rebuilt Product Design package at the `PRODUCT_REVIEW` gate after the prior Final Product Review returned Water to Product Design for structural correction.
 
-This approval authorizes creation of the Visual Production handoff and movement of the project into `VISUAL_PRODUCTION` only.
+This approval confirms the rebuilt architecture and authorizes **only a new Visual Production cycle**. It does not authorize release, publishing, selling, storefront activation, public pricing, affiliate links, SEO/public product pages, or deployment.
 
-Approved Product Design direction:
-- free foundation: **Know Your Water**;
-- paid core working title: **Build Your Water System**;
-- proposed paid-core price: **$39**;
-- delivery model: interactive decision-and-implementation system supported by reference material, planning tools, diagrams, scenario sheets, maintenance/retesting guidance, and Think Like a Rebel transfer learning.
+The approved rebuild now requires Visual Production to deliver the learner-facing experience described in the current Product Design records, including:
 
-The $39 amount remains a **proposed price**, not a public/live price. No release, sale, deployment, affiliate placement, SEO product page, or public pricing action is authorized by this approval.
+- multi-select intended uses that can coexist;
+- a Whole System view plus understandable parallel branches for drinking/cooking, animals, irrigation/garden, emergency backup, and other supported uses;
+- tangible system/build teaching rather than a text-card product;
+- 55-gallon and 5-gallon filtration/build concepts;
+- settling, prefiltration, storage, source-to-use and well/pump/storage/branch visuals;
+- what-each-part-does explanations, substitutions, regional/historical/modern comparisons, strengths and limits;
+- testing as verification/refinement rather than permission to educate;
+- a substantive living **My Water Plan** that materially reflects learner input;
+- Responsible Rebellion build/test/compare activities;
+- persistent learner state and selected uses across the complete experience;
+- working optional-depth routes with return to the learner's exact place;
+- no dead routes or 404s;
+- plain language first with technical/evidence depth optional;
+- targeted safety warnings only for specific material immediate hazards;
+- preservation of the approved Revision 3 + UV evidence foundation.
 
-## One-screen owner snapshot
+## Paid-value condition remains binding
 
-### Recommendation
-**Proceed with the product system, not a static water ebook.**
+### Free foundation
+**Know Your Water** — proposed $0.
 
-The strongest RRA value is the guided decision method:
+### Paid core
+**Build Your Water System** — proposed $39.
 
-`SOURCE + USE → KNOWNS / UNKNOWNS → TEST → TREATMENT JOB → FUNCTIONS → RESOURCES → SAFE SUBSTITUTIONS → BUILD / BUY → VERIFY → MAINTAIN → NEXT LEARNING PATH`
+The proposed $39 remains recommendation-only and is not public/live pricing.
 
-### Product score
-- Average Product Recommendation Score: **4.74 / 5**
-- Weakest factor: **Market saturation — 3 / 5**
-- Core differentiation, interactive value, implementation value, resource/substitution value, and Knowledge Compression Value all score strongly.
+The price case survives Product Review only because the rebuilt design requires RRA to do substantial work for the learner: cross-reference the solution space, organize multiple simultaneous uses into a coherent system, map shared and branch-specific functions, provide build/system concepts, explain components and substitutions, organize testing around decisions, compare build/buy/hybrid paths, and generate a living personalized plan with verification, maintenance and backup logic.
 
-### Product ladder / learning web
-- **1 free foundation:** Know Your Water
-- **1 paid core:** Build Your Water System
-- **7 named follow-on categories** in the current architecture
-- **15 future Academy idea candidates** already identified from the Water learning web
+If Visual Production reduces the product to generalized text, decorative graphics, or a weak personalized summary, Final Product QA must fail the paid-value case.
 
-Future candidates are not automatically approved products. They remain subject to Opportunity Intelligence screening and owner disposition.
+## Product QA result approved at this gate
 
-### Pricing position
-- **Know Your Water:** $0 proposed
-- **Build Your Water System:** **$39 proposed**
-- Current direct consumer/homeowner education comparable range: approximately **$4.99–$45**
-- $39 position: **upper-MID**, not premium
-- Reliable apples-to-apples local paid education benchmark: **not established**; regional public/Extension homeowner education is often free
+`product-qa.md` records a Product Design PASS for:
 
-The $39 value case depends on delivering the interactive/tool/diagram system described in Product Design. A static text PDF would not support the same value position.
+- Responsible Rebellion / evidence-first education;
+- multi-use branch architecture;
+- tangible output requirements;
+- living My Water Plan;
+- navigation/state continuity;
+- plain-language / visual-first teaching;
+- Responsible Rebellion experiment pattern;
+- Revision Preservation;
+- privacy-minimized learner-signal planning;
+- paid-value test;
+- TRANSFER THE PRINCIPLE.
 
-## Top 3 opportunities
+The Product QA PASS means the **design requirements are approved**. It is not a claim that Visual Production has already implemented them.
 
-### 1. Decision engine instead of information dump
-The Water Profile, testing selector, treatment-job builder, resource/substitution logic, and build/buy planning solve the recurring problem of people shopping before they understand the job.
+## Approved current Product Design package
 
-### 2. High-quality free entry → useful paid implementation
-Know Your Water can provide real mission value and search visibility without paywalling basic safety/diagnosis knowledge. The paid product begins where the free layer stops: personalization, architecture, implementation, system planning, maintenance, and transferable systems thinking.
+The current approved Product Design boundary includes the durable project records already on `main`, especially:
 
-### 3. Water becomes a learning web
-Testing, rainwater/storage, pumps/flow, automated animal watering, emergency water, UV/disinfection, and maintenance are natural follow-on learning opportunities. Strong candidates can be screened and spun into separate Academy work without forcing every connection into a product.
+- `product-opportunity-research.md`;
+- `product-recommendation-scorecard.md`;
+- `functional-decomposition.md`;
+- `interactive-scenario-map.md`;
+- `opportunity-funnel-map.md`;
+- `product-architecture.md`;
+- `product-manuscript.md`;
+- `product-manuscript-responsible-rebellion-addendum.md`;
+- `integrated-learner-flow.md`;
+- `implementation/my-water-plan-spec.md`;
+- `learner-signal-plan.md`;
+- `product-preservation-check.md`;
+- `product-evidence-crosswalk.md`;
+- `visual-production-brief.md`;
+- `product-qa.md`.
 
-## Top 3 risks / gaps
+The approved Revision 3 + UV research/evidence foundation remains the subject-matter evidence boundary.
 
-### 1. Losing the differentiation in production
-If the finished product becomes a static ebook with decorative graphics, it loses the interactive/system value that supports the recommendation and price.
+## Preservation / evidence boundaries that remain approved
 
-### 2. Safety boundaries must survive visual simplification
-Visual Production must preserve testing-first logic, treatment-function distinctions, UV boundaries, surface-water caution, and the difference between demonstrations and verified potable treatment.
+Visual Production must preserve the existing valid teaching value, including:
 
-### 3. Do not overproduce every connected opportunity
-The Water project already exposes many related topics. Opportunity Intelligence should decide which ones justify separate work. A connection alone is not enough reason to spend production effort.
+- clear water versus safe water;
+- diagnosis/testing before treatment selection while still teaching evidence-backed method knowledge before learner-specific results exist;
+- treatment-function distinctions;
+- source protection;
+- the original diagnosis scenarios;
+- `Dirty Is Visible. Danger Isn't.`;
+- historical/global practices and resource-spectrum context;
+- copper evidence/claim boundaries;
+- Moringa mechanism and limitations;
+- acoustic/frequency evidence boundary;
+- lunar-human mixed-evidence/non-replication boundary;
+- evidence/claim ladder;
+- `Teach transferable principles, not isolated facts.`;
+- `Diagnose Before Prescribing`;
+- Think Like a Rebel / Function Before Form / TRANSFER THE PRINCIPLE;
+- the distinction between educational demonstrations and verified potable-water treatment;
+- all approved UV limits and verification requirements.
 
-## What changed since the Research gate
+## Prior Product Design approval history — preserved
 
-- The targeted UV evidence gap was researched, QA'd, owner approved, and integrated.
-- UV now appears as a defined microbial-disinfection function with Class A/Class B, POU/POE, flow, pretreatment, maintenance, recontamination, and potable-DIY boundaries.
-- The product architecture is complete.
-- A full learner-facing manuscript draft now exists.
-- Water Profile, Treatment Job, Resource/Build/Buy, Maintenance/Verification, scenario, and evidence-case-study tools now exist.
-- Market positioning was updated with current comparable products.
-- The old guide-focused pricing record was updated to the current product-system model.
-- Product Preservation and Evidence Crosswalk checks passed.
-- Product QA passed.
+The owner previously approved the pre-rebuild Product Design on **2026-08-21 at 20:25 ET**. That approval authorized the first Visual Production cycle and carried the same free foundation / paid core strategy and proposed $39 price.
+
+The later Final Product Review found structural learner-experience failures: the product was too text-heavy, forced one intended use, produced weak personalized value, lost state during deeper navigation, and contained dead routes/404s. The owner then sent Water back to Product Design.
+
+That SEND_BACK_NOW decision superseded the earlier Visual Production authorization without erasing the earlier approval record. The current 2026-08-22 approval applies to the corrected Responsible Rebellion rebuild and authorizes a **new** Visual Production handoff.
 
 ## Gate boundary
 
 This approval does **not** authorize:
+
 - public release;
+- publishing;
 - selling;
 - making $39 public/live;
 - affiliate links;
 - deployment;
-- final visuals being released;
-- SEO/public product pages.
-
-Those remain later owner decisions.
+- storefront activation;
+- SEO/public product pages;
+- skipping Final Product Review;
+- skipping the later explicit release decision.
 
 ## Next stage
 
-Create and use `visual-production-handoff.md` with `Status: AUTHORIZED`, then move the project to `VISUAL_PRODUCTION`.
+Use the newly updated `visual-production-handoff.md` with `Status: AUTHORIZED — RESPONSIBLE REBELLION REBUILD`, then move the project to `VISUAL_PRODUCTION`.
+
+Visual Production must build the approved learner-facing experience and return the finished integrated product to `FINAL_PRODUCT_REVIEW` for the owner's next decision.
 
 ---
 AI-Agent: ChatGPT/GPT-5.6 Sol  
