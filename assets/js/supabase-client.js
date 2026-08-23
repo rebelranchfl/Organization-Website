@@ -50,23 +50,12 @@ export const supabase = createClient(
 );
 
 const path = window.location.pathname;
-const isOperationsReview = path.endsWith('/operations-review.html') || path === '/operations-review.html';
 const isAcademyStageReview = path.endsWith('/academy-stage-review.html') || path === '/academy-stage-review.html';
 
-// Operations Review is the lightweight command center. The page already owns
-// authentication, project list loading, project selection, artifact review and
-// owner gate actions in operations-review.html. Do not automatically start the
-// older enhancement stack here: several of those modules install whole-page
-// MutationObservers, fetch large project records, or render large intelligence
-// maps whenever the DOM changes. That work belongs on the focused Stage Review.
-// Keep only the event-driven navigation helper that sends the owner to the
-// current stage when deeper review is needed.
-if (isOperationsReview) {
-  import('./operations-review-stage-links.js');
-}
+// Operations Review now owns its lightweight owner-action inbox directly from
+// operations-review.html. Do not auto-load any legacy Operations Review helper
+// modules here. Full project/stage work belongs on the focused Stage Review page.
 
-// Stage Review is the focused surface for stage-level lifecycle, progress,
-// late-finding, usability, and final-acceptance behavior.
 if (isAcademyStageReview) {
   import('./academy-owner-usability.js');
   import('./academy-stage-progress-status.js');
