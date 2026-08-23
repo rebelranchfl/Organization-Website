@@ -23,25 +23,5 @@ function addNavigation(){
   top.append(nav);
 }
 
-function applyRequestedView(){
-  const host=document.getElementById('ops-action-inbox');
-  if(!host||!host.children.length)return false;
-  if(location.hash==='#projects'){
-    const section=[...host.querySelectorAll('details.ops-secondary')].find(d=>/All Projects/i.test(d.querySelector('summary')?.textContent||''));
-    if(section){section.open=true;section.scrollIntoView({block:'start'});}
-  }else if(location.hash==='#new'){
-    const section=[...host.querySelectorAll('details.ops-secondary')].find(d=>/Start a new Academy idea/i.test(d.querySelector('summary')?.textContent||''));
-    if(section){section.open=true;section.scrollIntoView({block:'start'});}
-  }else{
-    document.querySelector('.ops-inbox-head,.ops-overview')?.scrollIntoView({block:'start'});
-  }
-  return true;
-}
-
 addNavigation();
-let attempts=0;
-const timer=setInterval(()=>{
-  addNavigation();
-  if(applyRequestedView()||++attempts>=20)clearInterval(timer);
-},100);
-window.addEventListener('hashchange',()=>location.reload());
+document.addEventListener('operations-review-ready',addNavigation);
