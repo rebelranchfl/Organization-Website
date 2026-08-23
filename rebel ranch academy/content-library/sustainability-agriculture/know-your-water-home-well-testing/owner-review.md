@@ -1,8 +1,11 @@
 # Owner Research Review — RRA-2026-0002
 
-Status: PENDING
+Status: APPROVED
 Review gate: RESEARCH_REVIEW
 Revision: 1
+Owner decision: APPROVE RESEARCH FOUNDATION
+Reviewed at: 2026-08-23T14:39:26.225095+00:00
+Owner comment: None supplied
 
 ## What changed
 This is a new Opportunity Intelligence spin-off from Water Through the Layers. The Research Agent created a dedicated evidence foundation for deciding what to test in home/private-well water before selecting treatment.
@@ -20,12 +23,15 @@ High for the core diagnostic sequence, annual bacteria/nitrate baseline in Flori
 - Specialized contaminant panels remain location/risk specific.
 - Detailed result thresholds beyond the established examples require analyte-specific current evidence.
 
-## Owner decision requested
-- Approve Research Foundation
-- Needs More Research
-- Reject Research Direction
+## Source decision status
+Agent-vetted; owner overrides applied where present. No owner source override was supplied with this approval. Source-by-source owner approval is not required.
 
-Approval authorizes Product Opportunity Research only.
+## Approval effect
+The owner approved the Revision 1 Research Foundation. This authorization moves the project to Product Opportunity Research under the Product Design workflow.
+
+A durable `product-design-handoff.md` now records the approved evidence base, KEEP items, unresolved evidence questions, safety boundaries and Product Opportunity questions.
+
+This approval does **not** approve a product architecture, product format, price, visual production, publishing, sale, release or LIVE status.
 
 AI-Agent: ChatGPT/GPT-5.6 Sol
 Session: RRA Content Agent
