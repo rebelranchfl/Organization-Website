@@ -53,10 +53,11 @@ const path = window.location.pathname;
 const isOperationsReview = path.endsWith('/operations-review.html') || path === '/operations-review.html';
 const isAcademyStageReview = path.endsWith('/academy-stage-review.html') || path === '/academy-stage-review.html';
 
-if (isOperationsReview || isAcademyStageReview) {
-  import('./academy-owner-usability.js');
-}
-
+// Operations Review already owns its project/session loading in operations-review.html.
+// Keep only bounded, direct enhancements here. Observer-heavy modules previously
+// watched the entire page, reacted to one another's DOM changes, and could trigger
+// repeated Supabase reads/renders. Those modules now remain on the dedicated Stage
+// Review surface, where their stage-specific behavior belongs.
 if (isOperationsReview) {
   import('./operations-review-enhancements.js');
   import('./operations-review-owner-controls.js');
@@ -66,19 +67,15 @@ if (isOperationsReview) {
   import('./operations-review-audience-conversion-intelligence.js');
   import('./operations-review-learner-intelligence.js');
   import('./operations-review-readability.js');
-  // Temporarily disabled: v3 Overview overlay was hiding the functional owner workspace
-  // while its live Overview bootstrap remained unresolved. Restore only after rendered
-  // runtime verification confirms the Overview cannot blank the workspace.
-  import('./operations-review-lifecycle-workspace.js');
   import('./operations-review-project-intake.js');
   import('./operations-review-stage-links.js');
-  import('./academy-stage-progress-status.js');
-  import('./academy-late-findings.js');
   import('./operations-review-release-workflow.js');
-  import('./operations-review-final-product-acceptance.js');
 }
 
+// Stage Review is the focused surface for stage-level lifecycle, progress,
+// late-finding, usability, and final-acceptance behavior.
 if (isAcademyStageReview) {
+  import('./academy-owner-usability.js');
   import('./academy-stage-progress-status.js');
   import('./academy-late-findings.js');
   import('./operations-review-final-product-acceptance.js');
