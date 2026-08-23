@@ -1,7 +1,8 @@
 const navItems=[
-  ['Overview','operations-review.html#overview'],
   ['My Action Queue','operations-review.html'],
-  ['All Projects','operations-review.html#projects']
+  ['All Projects','operations-review.html#projects'],
+  ['New Idea','operations-review.html#new'],
+  ['Academy','https://academy.rebelranchministries.org']
 ];
 
 function addNavigation(){
@@ -28,10 +29,11 @@ function applyRequestedView(){
   if(location.hash==='#projects'){
     const section=[...host.querySelectorAll('details.ops-secondary')].find(d=>/All Projects/i.test(d.querySelector('summary')?.textContent||''));
     if(section){section.open=true;section.scrollIntoView({block:'start'});}
-  }else if(location.hash==='#overview'){
-    document.querySelector('.ops-overview')?.scrollIntoView({block:'start'});
+  }else if(location.hash==='#new'){
+    const section=[...host.querySelectorAll('details.ops-secondary')].find(d=>/Start a new Academy idea/i.test(d.querySelector('summary')?.textContent||''));
+    if(section){section.open=true;section.scrollIntoView({block:'start'});}
   }else{
-    document.querySelector('.ops-inbox-head')?.scrollIntoView({block:'start'});
+    document.querySelector('.ops-inbox-head,.ops-overview')?.scrollIntoView({block:'start'});
   }
   return true;
 }
