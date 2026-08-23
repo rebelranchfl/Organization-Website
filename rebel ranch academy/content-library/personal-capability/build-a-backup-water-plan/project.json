@@ -1,0 +1,99 @@
+{
+  "project_id": "RRA-2026-0006",
+  "working_title": "Build a Backup Water Plan — Keep Water Flowing When the Main Source Fails",
+  "slug": "build-a-backup-water-plan",
+  "learning_area": "personal-capability",
+  "named_program": null,
+  "created_at": "2026-08-23T09:06:52-04:00",
+  "created_by": "RRA Opportunity Intelligence / Research Agent",
+  "current_status": "READY_FOR_REVIEW",
+  "workflow_stage": "RESEARCH_REVIEW",
+  "revision_number": 1,
+  "source_opportunity": {
+    "opportunity_id": "445ff189-3a97-4f54-bf22-17317545846c",
+    "opportunity_key": "backup-water-plan",
+    "parent_project_id": "RRA-2026-0001",
+    "opportunity_score": 88,
+    "score_confidence": "MEDIUM",
+    "recommendation": "PURSUE_NOW"
+  },
+  "owner_input": {
+    "idea": "Opportunity Intelligence spin-off: build a practical household backup-water plan before a well, pump, utility, storm, contamination event, or other primary-source failure occurs.",
+    "owner_notes": "Process strong spin-off opportunities through the normal Research gate. Preserve Water Through the Layers at Product/Visual work; do not reopen its approved research foundation.",
+    "requested_audience": [],
+    "requested_angle": "Responsible Rebellion: resilience through source diversity, stored known-safe water, function-before-form, practical fallback routes, testing/verification where it changes the decision, and no unsupported emergency-treatment claims.",
+    "requested_sources": [],
+    "excluded_sources": []
+  },
+  "context_review": {
+    "status": "COMPLETE",
+    "completed_at": "2026-08-23T09:06:52-04:00",
+    "documents_reviewed": [
+      "AGENTS.md",
+      "docs/rebel-ranch-ecosystem-charter.md",
+      "docs/non-negotiables.md",
+      "rebel ranch academy/REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md",
+      "rebel ranch academy/Rebel-Ranch-Academy-Program-Hub/README.md",
+      "rebel ranch academy/ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md",
+      "rebel ranch academy/ACADEMY-CONTENT-PROJECT-SCHEMA.md",
+      "rebel ranch academy/ACADEMY-REVISION-PRESERVATION-STANDARD.md",
+      "rebel ranch academy/ACADEMY-SOURCE-REVIEW-POLICY.md",
+      "rebel ranch academy/ACADEMY-PRODUCT-PHASE-WORKFLOW-EXTENSION.md",
+      "rebel ranch academy/ACADEMY-THINK-LIKE-A-REBEL-FRAMEWORK.md",
+      "rebel ranch academy/ACADEMY-RESPONSIBLE-REBELLION-EVIDENCE-FIRST-STANDARD.md",
+      "rebel ranch academy/ACADEMY-LATE-FINDING-CONTROL-STANDARD.md"
+    ],
+    "websites_reviewed": [
+      "https://rebelranchministries.org",
+      "https://academy.rebelranchministries.org (direct crawler returned an internal fetch error; current GitHub Program Hub source reviewed as the Academy source of truth)"
+    ],
+    "audiences_identified": [
+      "families and households",
+      "private-well households",
+      "rural and storm-prone households",
+      "homesteaders",
+      "households with pets or animals",
+      "homeschool families studying preparedness, systems and resource planning"
+    ],
+    "learning_area_reason": "The core skill is household capability: identify dependency, size critical needs, build redundancy, choose safe fallback routes and verify recovery. It naturally connects to Sustainability & Agriculture but is broader than a water-treatment lesson.",
+    "conflicts_found": []
+  },
+  "research": {
+    "status": "COMPLETE",
+    "started_at": "2026-08-23T09:06:52-04:00",
+    "completed_at": "2026-08-23T09:06:52-04:00",
+    "source_count": 12,
+    "primary_or_direct_source_count": 9,
+    "conflicts_found": [
+      "Emergency quantity guidance uses different planning scopes: CDC uses at least 1 gallon per person per day for a 3-day household supply and suggests 2 weeks if possible; Florida emergency planning materials commonly use 3-7 days; WHO/Sphere humanitarian standards discuss larger total domestic-use quantities around 15 L/person/day. These are context/scope differences, not one universal number.",
+      "Boiling/disinfection can address microbial risk but cannot make water contaminated with fuels, toxic chemicals, salts or many other chemicals safe; source type and advisory/test information can change the correct fallback route."
+    ],
+    "unresolved_questions": [
+      "Product-stage market research on existing household water-plan tools and comparable products",
+      "Product-stage calculators for household, pet, livestock and sanitation quantities by scenario",
+      "Product-stage local-source mapping workflow and printable/interactive format",
+      "Product-stage cost comparisons for stored water, cisterns, generator-backed wells and other resilience upgrades"
+    ],
+    "sources_file": "sources.md",
+    "research_file": "research.md"
+  },
+  "concept": {
+    "status": "NOT_STARTED",
+    "learning_outcome": null,
+    "central_question": null,
+    "major_principles": [],
+    "historical_or_lost_knowledge_angle": null,
+    "current_use_angle": null,
+    "transfer_the_principle_summary": null,
+    "proposed_format": null,
+    "activity_types": [],
+    "visual_needs": []
+  },
+  "content": {"status": "NOT_STARTED", "master_content_file": "master-content.md"},
+  "materials": {"status": "NOT_STARTED", "material_types": [], "files": [], "preview_files": []},
+  "pricing": {"status": "NOT_STARTED", "proposed_price": null, "currency": "USD", "role": null, "reasoning_file": "pricing.md", "owner_approved_price": null},
+  "qa": {"status": "COMPLETE", "completed_at": "2026-08-23T09:06:52-04:00", "qa_file": "qa-review.md", "blockers": []},
+  "owner_review": {"status": "PENDING", "latest_decision": null, "latest_comment": null, "reviewed_at": null, "review_history_file": "owner-review.md", "source_decisions_complete": false},
+  "release": {"status": "NOT_STARTED", "approved_at": null, "published_at": null, "destination": null, "live_url": null, "release_files": [], "release_notes": null},
+  "agent": {"active_agent": null, "last_agent": "RRA Research/Content Agent", "session_title": "RRA Content Agent", "last_updated_at": "2026-08-23T09:06:52-04:00"}
+}
