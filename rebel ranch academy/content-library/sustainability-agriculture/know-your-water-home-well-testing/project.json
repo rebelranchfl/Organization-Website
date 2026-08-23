@@ -6,8 +6,8 @@
   "named_program": null,
   "created_at": "2026-08-21T18:12:07-04:00",
   "created_by": "RRA Opportunity Intelligence / Research Agent",
-  "current_status": "READY_FOR_REVIEW",
-  "workflow_stage": "RESEARCH_REVIEW",
+  "current_status": "AGENT_WORKING",
+  "workflow_stage": "PRODUCT_OPPORTUNITY_RESEARCH",
   "revision_number": 1,
   "source_opportunity": {
     "opportunity_id": "5dd2b223-3f39-45d9-ba43-fa749a31be7c",
@@ -61,7 +61,8 @@
   "materials": {"status": "NOT_STARTED", "material_types": [], "files": [], "preview_files": []},
   "pricing": {"status": "NOT_STARTED", "proposed_price": null, "currency": "USD", "role": null, "reasoning_file": null, "owner_approved_price": null},
   "qa": {"status": "COMPLETE", "completed_at": "2026-08-21T18:12:07-04:00", "qa_file": "qa-review.md", "blockers": []},
-  "owner_review": {"status": "PENDING", "latest_decision": null, "latest_comment": null, "reviewed_at": null, "review_history_file": "owner-review.md", "source_decisions_complete": false},
+  "owner_review": {"status": "APPROVED", "latest_decision": "APPROVE", "latest_comment": null, "reviewed_at": "2026-08-23T14:39:26.225095+00:00", "review_history_file": "owner-review.md", "source_decisions_complete": false},
+  "product_design_handoff": {"status": "AUTHORIZED", "file": "product-design-handoff.md", "authorized_at": "2026-08-23T14:39:26.225095+00:00"},
   "release": {"status": "NOT_STARTED", "approved_at": null, "published_at": null, "destination": null, "live_url": null, "release_files": [], "release_notes": null},
-  "agent": {"active_agent": null, "last_agent": "RRA Research/Content Agent", "session_title": "RRA Content Agent", "last_updated_at": "2026-08-21T18:12:07-04:00"}
+  "agent": {"active_agent": null, "last_agent": "RRA Research/Content Agent", "session_title": "RRA Content Agent", "last_updated_at": "2026-08-23T14:39:26.225095+00:00"}
 }
