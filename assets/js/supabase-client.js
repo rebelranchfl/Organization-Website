@@ -41,13 +41,4 @@ export const supabase = createClient(
   { auth: { lock: boundedBrowserAuthLock } }
 );
 
-const path = window.location.pathname;
-const isOperationsReview = path.endsWith('/operations-review.html') || path === '/operations-review.html';
-
-// Operations Review remains a lightweight owner action inbox.
-if (isOperationsReview) {
-  import('./operations-review-stage-links.js');
-}
-
-// Stage Review intentionally starts no background modules from this shared client.
-// academy-stage-review.html loads only the focused review scripts it actually needs.
+// Shared client only. Owner surfaces load their own focused scripts explicitly.
