@@ -60,7 +60,7 @@ export default function Home(){
 
   return <main>
     <header className="site-header">
-      <a className="brand-lockup" href="#top" aria-label="Rebel Ranch Academy home"><Image src="/rra-logo.png" alt="" width={1254} height={1254}/><span><small>Rebel Ranch Ministries</small><strong>Rebel Ranch Academy</strong></span></a>
+      <a className="brand-lockup" href="#top" aria-label="Rebel Ranch Academy home"><Image src="/rra-logo.png" alt="" width={1254} height={1254} unoptimized/><span><small>Rebel Ranch Ministries</small><strong>Rebel Ranch Academy</strong></span></a>
       <button className="menu-button" type="button" aria-expanded={menuOpen} aria-controls="primary-navigation" onClick={()=>setMenuOpen(open=>!open)}>{menuOpen?"Close":"Menu"}</button>
       <nav id="primary-navigation" className={menuOpen?"nav-open":""} aria-label="Primary navigation">
         <a href="#learning-areas" onClick={()=>setMenuOpen(false)}>Learning areas</a>
@@ -78,7 +78,7 @@ export default function Home(){
         <div className="hero-actions"><a className="button button-gold" href="#choose-your-path">Find your path <span aria-hidden="true">→</span></a><a className="button button-outline" href="#sample-learning">Try a sample activity</a></div>
         <p className="hero-note">Respectable. Responsible. Accountable. Confident. Independent. Strong.</p>
       </div>
-      <div className="hero-seal" aria-label="Official Rebel Ranch Academy seal"><div className="seal-glow" aria-hidden="true"/><Image src="/rra-logo.png" alt="Rebel Ranch Academy. Skills for life. Freedom for all." width={1254} height={1254} priority/></div>
+      <div className="hero-seal" aria-label="Official Rebel Ranch Academy seal"><div className="seal-glow" aria-hidden="true"/><Image src="/rra-logo.png" alt="Rebel Ranch Academy. Skills for life. Freedom for all." width={1254} height={1254} priority unoptimized/></div>
     </section>
 
     <section className="declaration" aria-label="Academy promise"><p>Beyond traditional education.</p><strong>Real skills for real life.</strong><p>Online learning. Real-world action.</p></section>
