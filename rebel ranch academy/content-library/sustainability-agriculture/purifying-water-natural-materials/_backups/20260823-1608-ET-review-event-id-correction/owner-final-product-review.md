@@ -4,7 +4,7 @@
 **Stage reviewed:** FINAL_PRODUCT_REVIEW  
 **Owner decision:** NEEDS_MORE_WORK  
 **Decision recorded:** 2026-08-22  
-**Review event:** `efd64b23-9fb5-462d-9441-8ea42e57d6ed`  
+**Review event:** `efd64ca6-7b82-4805-8f43-76000ce5f881`  
 **Routed stage:** PRODUCT_WORKING  
 **Public release authorized:** No
 

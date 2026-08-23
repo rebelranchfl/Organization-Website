@@ -3,7 +3,7 @@
 **Status: SUPERSEDED — OWNER FINAL PRODUCT REVIEW RETURNED TO PRODUCT DESIGN**  
 **Project:** Water Through the Layers  
 **Former authorization:** Responsible Rebellion Visual Production cycle approved 2026-08-22 14:20 ET  
-**Superseded by:** Owner Final Product Review `NEEDS_MORE_WORK`, event `efd64b23-9fb5-462d-9441-8ea42e57d6ed`  
+**Superseded by:** Owner Final Product Review `NEEDS_MORE_WORK`, event `efd64ca6-7b82-4805-8f43-76000ce5f881`  
 **Public release authorized:** No  
 **Current Visual Production authorized:** No
 
