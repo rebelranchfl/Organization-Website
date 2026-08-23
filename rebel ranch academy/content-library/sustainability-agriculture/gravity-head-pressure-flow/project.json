@@ -1,0 +1,89 @@
+{
+  "project_id": "RRA-2026-0009",
+  "working_title": "Gravity Does the Work — Head, Pressure & Flow",
+  "slug": "gravity-head-pressure-flow",
+  "learning_area": "sustainability-agriculture",
+  "named_program": null,
+  "created_at": "2026-08-23T13:06:05-04:00",
+  "created_by": "RRA Opportunity Intelligence / Research Agent",
+  "current_status": "READY_FOR_REVIEW",
+  "workflow_stage": "RESEARCH_REVIEW",
+  "revision_number": 1,
+  "source_opportunity": {
+    "opportunity_id": "4e803f11-03d5-4bb3-991a-fa753404fa56",
+    "opportunity_key": "gravity-pressure-flow",
+    "parent_project_id": "RRA-2026-0001",
+    "opportunity_score": 86,
+    "score_confidence": "MEDIUM",
+    "recommendation": "PURSUE_NOW"
+  },
+  "owner_input": {
+    "idea": "Opportunity Intelligence spin-off: teach the transferable physics/function behind moving water without product-first thinking, so learners can determine whether gravity can do the job before buying pumps.",
+    "owner_notes": "Preserve Water Through the Layers at Product Design. Do not reopen the approved Water research foundation unless Product Design routes a specific evidence gap back.",
+    "requested_audience": [],
+    "requested_angle": "Function-first, evidence-first water movement: elevation/head, pressure, flow, friction, gravity, siphon, pump, testing and transferable system thinking.",
+    "requested_sources": [],
+    "excluded_sources": []
+  },
+  "context_review": {
+    "status": "COMPLETE",
+    "completed_at": "2026-08-23T13:08:00-04:00",
+    "documents_reviewed": [
+      "AGENTS.md",
+      "docs/rebel-ranch-ecosystem-charter.md",
+      "docs/non-negotiables.md",
+      "rebel ranch academy/REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md",
+      "rebel ranch academy/Rebel-Ranch-Academy-Program-Hub/README.md",
+      "rebel ranch academy/ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md",
+      "rebel ranch academy/ACADEMY-CONTENT-PROJECT-SCHEMA.md",
+      "rebel ranch academy/ACADEMY-REVISION-PRESERVATION-STANDARD.md",
+      "rebel ranch academy/ACADEMY-SOURCE-REVIEW-POLICY.md",
+      "rebel ranch academy/ACADEMY-PRODUCT-PHASE-WORKFLOW-EXTENSION.md",
+      "rebel ranch academy/ACADEMY-THINK-LIKE-A-REBEL-FRAMEWORK.md",
+      "rebel ranch academy/ACADEMY-RESPONSIBLE-REBELLION-EVIDENCE-FIRST-STANDARD.md",
+      "rebel ranch academy/ACADEMY-LATE-FINDING-CONTROL-STANDARD.md"
+    ],
+    "websites_reviewed": [
+      "https://rebelranchministries.org",
+      "https://academy.rebelranchministries.org (crawler retrieval failed; current Program Hub GitHub source reviewed as durable source of truth)"
+    ],
+    "audiences_identified": [
+      "households and homesteaders",
+      "garden/irrigation learners",
+      "livestock-water-system learners",
+      "parents and homeschool families",
+      "adults troubleshooting low-flow systems"
+    ],
+    "learning_area_reason": "Head, pressure and flow are practical water/resource-system skills supporting irrigation, livestock, rainwater, household/homestead movement and resilient low-energy design.",
+    "conflicts_found": []
+  },
+  "research": {
+    "status": "COMPLETE",
+    "started_at": "2026-08-23T13:08:00-04:00",
+    "completed_at": "2026-08-23T13:22:00-04:00",
+    "source_count": 13,
+    "primary_or_direct_source_count": 10,
+    "conflicts_found": [
+      "Ideal Bernoulli relationships do not account for real-system friction and fitting losses; field/design losses must remain visible.",
+      "Hazen-Williams is a useful water-system design relationship but is not a universal fluid-mechanics law.",
+      "Practical siphon lift is condition-dependent; an approximately 30-foot field limit must not be taught as an exact universal ceiling.",
+      "Historical gravity systems demonstrate transport/design capability but do not by themselves establish modern water quality or learner-specific suitability."
+    ],
+    "unresolved_questions": [
+      "Product-stage audience/market/comparable research",
+      "Product-stage exact learner calculator scope and assumptions",
+      "Product-stage hardware/device performance comparisons if recommended",
+      "Product-stage pricing/free/bundle strategy"
+    ],
+    "sources_file": "sources.md",
+    "research_file": "research.md"
+  },
+  "concept": {"status":"NOT_STARTED","learning_outcome":null,"central_question":null,"major_principles":[],"historical_or_lost_knowledge_angle":null,"current_use_angle":null,"transfer_the_principle_summary":null,"proposed_format":null,"activity_types":[],"visual_needs":[]},
+  "content": {"status":"NOT_STARTED","master_content_file":"master-content.md"},
+  "materials": {"status":"NOT_STARTED","material_types":[],"files":[],"preview_files":[]},
+  "pricing": {"status":"NOT_STARTED","proposed_price":null,"currency":"USD","role":null,"reasoning_file":"pricing.md","owner_approved_price":null},
+  "qa": {"status":"COMPLETE","completed_at":"2026-08-23T13:25:00-04:00","qa_file":"qa-review.md","blockers":[]},
+  "owner_review": {"status":"PENDING","latest_decision":null,"latest_comment":null,"reviewed_at":null,"review_history_file":"owner-review.md","source_decisions_complete":false},
+  "release": {"status":"NOT_STARTED","approved_at":null,"published_at":null,"destination":null,"live_url":null,"release_files":[],"release_notes":null},
+  "agent": {"active_agent":null,"last_agent":"RRA Research/Content Agent","session_title":"RRA Content Agent","last_updated_at":"2026-08-23T13:25:00-04:00"}
+}
