@@ -61,4 +61,5 @@ if (isAcademyStageReview) {
   import('./academy-stage-progress-status.js');
   import('./academy-late-findings.js');
   import('./operations-review-final-product-acceptance.js');
+  import('./academy-stage-review-action-flow.js');
 }
