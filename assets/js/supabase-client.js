@@ -5,10 +5,6 @@ const { createClient } = globalThis.supabase;
 export const SUPABASE_URL = "https://dfrwxpuojeiykaignyny.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_Ts45JL34s7yFGW5hlI0pUA_-HRUt18a";
 
-// Keep Supabase's normal cross-tab serialization, but do not allow a stale
-// browser Web Lock to freeze every authenticated page indefinitely. If a lock
-// cannot be acquired promptly, continue the requested auth operation rather
-// than leaving Account / Operations Review permanently stuck on loading.
 const boundedBrowserAuthLock = async (name, acquireTimeout, fn) => {
   const locks = globalThis.navigator?.locks;
   if (!locks?.request) return await fn();
@@ -42,24 +38,16 @@ const boundedBrowserAuthLock = async (name, acquireTimeout, fn) => {
 export const supabase = createClient(
   SUPABASE_URL,
   SUPABASE_PUBLISHABLE_KEY,
-  {
-    auth: {
-      lock: boundedBrowserAuthLock
-    }
-  }
+  { auth: { lock: boundedBrowserAuthLock } }
 );
 
 const path = window.location.pathname;
-const isAcademyStageReview = path.endsWith('/academy-stage-review.html') || path === '/academy-stage-review.html';
+const isOperationsReview = path.endsWith('/operations-review.html') || path === '/operations-review.html';
 
-// Operations Review now owns its lightweight owner-action inbox directly from
-// operations-review.html. Do not auto-load any legacy Operations Review helper
-// modules here. Full project/stage work belongs on the focused Stage Review page.
-
-if (isAcademyStageReview) {
-  import('./academy-owner-usability.js');
-  import('./academy-stage-progress-status.js');
-  import('./academy-late-findings.js');
-  import('./operations-review-final-product-acceptance.js');
-  import('./academy-stage-review-action-flow.js');
+// Operations Review remains a lightweight owner action inbox.
+if (isOperationsReview) {
+  import('./operations-review-stage-links.js');
 }
+
+// Stage Review intentionally starts no background modules from this shared client.
+// academy-stage-review.html loads only the focused review scripts it actually needs.
