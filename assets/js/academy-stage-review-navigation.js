@@ -1,7 +1,8 @@
 const links=[
-  ['Overview','operations-review.html#overview'],
   ['My Action Queue','operations-review.html'],
-  ['All Projects','operations-review.html#projects']
+  ['All Projects','operations-review.html#projects'],
+  ['New Idea','operations-review.html#new'],
+  ['Academy','https://academy.rebelranchministries.org']
 ];
 
 function mount(){
