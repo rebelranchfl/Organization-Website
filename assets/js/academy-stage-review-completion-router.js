@@ -43,6 +43,7 @@ async function completeReview(button){
     if(notice){notice.textContent=error.message;notice.className='asr-notice show error';}
     return;
   }
+  try{sessionStorage.setItem('rrmJustCompletedReview',`${projectId}|${stage}|${Date.now()}`)}catch{}
   const count=await remainingOwnerActions();
   location.assign(count>0?'operations-review.html':'operations-review.html#overview');
 }
