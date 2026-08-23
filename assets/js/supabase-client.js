@@ -66,7 +66,7 @@ if (isOperationsReview) {
   import('./operations-review-audience-conversion-intelligence.js');
   import('./operations-review-learner-intelligence.js');
   import('./operations-review-readability.js');
-  import('./operations-review-dashboard-v3.js');
+  import('./operations-review-dashboard-v3.js?v=20260823-1205');
   import('./operations-review-lifecycle-workspace.js');
   import('./operations-review-project-intake.js');
   import('./operations-review-stage-links.js');
