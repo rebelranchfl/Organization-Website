@@ -1,6 +1,7 @@
 # RRA-2026-0003 — Visual Production Brief
 
-**Status:** Draft for Owner Product Review; not yet authorized for Visual Production  
+**Status:** AUTHORIZED FOR VISUAL PRODUCTION  
+**Authorization date:** 2026-08-23  
 **AI-Agent:** ChatGPT/GPT-5.6 Sol  
 **Session:** RRA Product Design Agent
 
@@ -59,3 +60,5 @@ Prestigious, polished, credible and grounded; not childish detective branding, n
 ## Final Product QA expectations
 
 Visual Production must test the actual learner-facing product, not only confirm that these requirements appear in a brief. The owner should be able to start at the beginning, complete a real scenario, open deeper evidence, return without lost state, and inspect the finished My Decision Record.
+
+Authorization at this stage does not authorize public release, sale, deployment, promotion, or public pricing. The proposed $24 remains non-public until a later owner release decision.
