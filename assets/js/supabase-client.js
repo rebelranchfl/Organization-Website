@@ -66,7 +66,9 @@ if (isOperationsReview) {
   import('./operations-review-audience-conversion-intelligence.js');
   import('./operations-review-learner-intelligence.js');
   import('./operations-review-readability.js');
-  import('./operations-review-dashboard-v3.js?v=20260823-1205');
+  // Temporarily disabled: v3 Overview overlay was hiding the functional owner workspace
+  // while its live Overview bootstrap remained unresolved. Restore only after rendered
+  // runtime verification confirms the Overview cannot blank the workspace.
   import('./operations-review-lifecycle-workspace.js');
   import('./operations-review-project-intake.js');
   import('./operations-review-stage-links.js');
