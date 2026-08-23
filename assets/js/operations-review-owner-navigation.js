@@ -23,5 +23,12 @@ function addNavigation(){
   top.append(nav);
 }
 
+function releaseInactiveView(){
+  if(location.hash==='#projects')return;
+  const projects=document.getElementById('ops-projects');
+  if(projects?.open)projects.open=false;
+}
+
 addNavigation();
-document.addEventListener('operations-review-ready',addNavigation);
+document.addEventListener('operations-review-ready',()=>{addNavigation();releaseInactiveView()});
+window.addEventListener('hashchange',releaseInactiveView);
