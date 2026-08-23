@@ -53,23 +53,16 @@ const path = window.location.pathname;
 const isOperationsReview = path.endsWith('/operations-review.html') || path === '/operations-review.html';
 const isAcademyStageReview = path.endsWith('/academy-stage-review.html') || path === '/academy-stage-review.html';
 
-// Operations Review already owns its project/session loading in operations-review.html.
-// Keep only bounded, direct enhancements here. Observer-heavy modules previously
-// watched the entire page, reacted to one another's DOM changes, and could trigger
-// repeated Supabase reads/renders. Those modules now remain on the dedicated Stage
-// Review surface, where their stage-specific behavior belongs.
+// Operations Review is the lightweight command center. The page already owns
+// authentication, project list loading, project selection, artifact review and
+// owner gate actions in operations-review.html. Do not automatically start the
+// older enhancement stack here: several of those modules install whole-page
+// MutationObservers, fetch large project records, or render large intelligence
+// maps whenever the DOM changes. That work belongs on the focused Stage Review.
+// Keep only the event-driven navigation helper that sends the owner to the
+// current stage when deeper review is needed.
 if (isOperationsReview) {
-  import('./operations-review-enhancements.js');
-  import('./operations-review-owner-controls.js');
-  import('./operations-review-diff-edit.js');
-  import('./operations-review-visual-map.js');
-  import('./operations-review-opportunity-intelligence.js');
-  import('./operations-review-audience-conversion-intelligence.js');
-  import('./operations-review-learner-intelligence.js');
-  import('./operations-review-readability.js');
-  import('./operations-review-project-intake.js');
   import('./operations-review-stage-links.js');
-  import('./operations-review-release-workflow.js');
 }
 
 // Stage Review is the focused surface for stage-level lifecycle, progress,
