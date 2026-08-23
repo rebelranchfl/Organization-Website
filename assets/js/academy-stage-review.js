@@ -30,7 +30,7 @@ const stageUrl = k => `academy-stage-review.html?project=${encodeURIComponent(pr
 function msg(t,error=false){notice.textContent=t;notice.className=`asr-notice show${error?' error':''}`;}
 function current(p){return STAGES.some(s=>s.key===p.workflow_stage)?p.workflow_stage:'IDEA';}
 function raw(p,file){const branch=encodeURIComponent(p.github_branch||'main');const path=[p.github_path,file].filter(Boolean).join('/').split('/').map(encodeURIComponent).join('/');return `https://raw.githubusercontent.com/rebelranchfl/Organization-Website/${branch}/${path}`;}
-async function file(p,f){try{const r=await fetch(raw(p,f),{cache:'no-store'});return r.ok?await r.text():'';}catch{return'';}}
+async function file(p,f){try{const r=await fetch(raw(p,f),{cache:'no-cache'});return r.ok?await r.text():'';}catch{return'';}}
 
 async function load(){
   const fields='project_id,title,learning_area,revision_number,progress_updated_at,progress_percent,workflow_stage,current_status,last_agent,owner_hold,progress_detail,progress_next,progress_stage,owner_review_status,github_branch,github_path';
