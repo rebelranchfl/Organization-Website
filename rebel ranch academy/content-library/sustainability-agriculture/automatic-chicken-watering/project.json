@@ -1,0 +1,98 @@
+{
+  "project_id": "RRA-2026-0005",
+  "working_title": "Automatic Chicken Watering — Reliable Water Without Daily Refilling",
+  "slug": "automatic-chicken-watering",
+  "learning_area": "sustainability-agriculture",
+  "named_program": null,
+  "created_at": "2026-08-23T08:03:00-04:00",
+  "created_by": "RRA Opportunity Intelligence / Research Agent",
+  "current_status": "READY_FOR_REVIEW",
+  "workflow_stage": "RESEARCH_REVIEW",
+  "revision_number": 1,
+  "source_opportunity": {
+    "opportunity_id": "bf32dd32-02e1-41b6-a451-ec0deb471a19",
+    "opportunity_key": "automatic-chicken-watering",
+    "parent_project_id": "RRA-2026-0001",
+    "opportunity_score": 88,
+    "score_confidence": "MEDIUM",
+    "recommendation": "PURSUE_NOW"
+  },
+  "owner_input": {
+    "idea": "Opportunity Intelligence spin-off: teach automatic chicken watering as a real farm system, not a product-first shopping recommendation.",
+    "owner_notes": "Process strong spin-off opportunities through the normal Research gate. Preserve Water Through the Layers at its authoritative downstream stage.",
+    "requested_audience": [],
+    "requested_angle": "Function before form; use what you have where responsible; automation must include verification, maintenance and failure planning.",
+    "requested_sources": [],
+    "excluded_sources": []
+  },
+  "context_review": {
+    "status": "COMPLETE",
+    "completed_at": "2026-08-23T08:03:00-04:00",
+    "documents_reviewed": [
+      "AGENTS.md",
+      "docs/rebel-ranch-ecosystem-charter.md",
+      "docs/non-negotiables.md",
+      "rebel ranch academy/REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md",
+      "rebel ranch academy/Rebel-Ranch-Academy-Program-Hub/README.md",
+      "rebel ranch academy/ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md",
+      "rebel ranch academy/ACADEMY-CONTENT-PROJECT-SCHEMA.md",
+      "rebel ranch academy/ACADEMY-REVISION-PRESERVATION-STANDARD.md",
+      "rebel ranch academy/ACADEMY-SOURCE-REVIEW-POLICY.md",
+      "rebel ranch academy/ACADEMY-PRODUCT-PHASE-WORKFLOW-EXTENSION.md",
+      "rebel ranch academy/ACADEMY-THINK-LIKE-A-REBEL-FRAMEWORK.md",
+      "rebel ranch academy/ACADEMY-RESPONSIBLE-REBELLION-EVIDENCE-FIRST-STANDARD.md",
+      "rebel ranch academy/ACADEMY-LATE-FINDING-CONTROL-STANDARD.md",
+      "rebel ranch academy/ACADEMY-OPPORTUNITY-INTELLIGENCE-STANDARD.md"
+    ],
+    "websites_reviewed": [
+      "https://rebelranchministries.org",
+      "https://academy.rebelranchministries.org (direct crawler returned an internal fetch error; current GitHub Program Hub source reviewed as the Academy source of truth)"
+    ],
+    "audiences_identified": [
+      "backyard chicken keepers",
+      "homesteaders",
+      "small-flock families",
+      "homeschool families",
+      "learners studying practical automation and farm systems"
+    ],
+    "learning_area_reason": "Reliable animal watering combines animal stewardship, water systems, maintenance, resourcefulness and practical automation inside Sustainability & Agriculture.",
+    "conflicts_found": []
+  },
+  "research": {
+    "status": "COMPLETE",
+    "started_at": "2026-08-23T08:03:00-04:00",
+    "completed_at": "2026-08-23T08:03:00-04:00",
+    "source_count": 10,
+    "primary_or_direct_source_count": 10,
+    "conflicts_found": [
+      "Commercial broiler guidance provides strong system-function evidence but does not create one universal backyard flock design; precise pressure, flow, birds-per-drinker and hardware choices depend on bird age, climate, drinker design and scale."
+    ],
+    "unresolved_questions": [
+      "backyard-scale component and kit performance comparisons",
+      "cold-weather/freeze-resistant architectures across climates",
+      "specific nipple/cup hardware pressure and flow requirements",
+      "market pricing, build-versus-buy cost and maintenance economics"
+    ],
+    "sources_file": "sources.md",
+    "research_file": "research.md"
+  },
+  "concept": {
+    "status": "NOT_STARTED",
+    "learning_outcome": null,
+    "central_question": null,
+    "major_principles": [],
+    "historical_or_lost_knowledge_angle": null,
+    "current_use_angle": null,
+    "transfer_the_principle_summary": null,
+    "proposed_format": null,
+    "activity_types": [],
+    "visual_needs": []
+  },
+  "content": {"status": "NOT_STARTED", "master_content_file": "master-content.md"},
+  "materials": {"status": "NOT_STARTED", "material_types": [], "files": [], "preview_files": []},
+  "pricing": {"status": "NOT_STARTED", "proposed_price": null, "currency": "USD", "role": null, "reasoning_file": "pricing.md", "owner_approved_price": null},
+  "qa": {"status": "COMPLETE", "completed_at": "2026-08-23T08:03:00-04:00", "qa_file": "qa-review.md", "blockers": []},
+  "owner_review": {"status": "PENDING", "latest_decision": null, "latest_comment": null, "reviewed_at": null, "review_history_file": "owner-review.md", "source_decisions_complete": false},
+  "release": {"status": "NOT_STARTED", "approved_at": null, "published_at": null, "destination": null, "live_url": null, "release_files": [], "release_notes": null},
+  "agent": {"active_agent": null, "last_agent": "RRA Research/Content Agent", "session_title": "RRA Content Agent", "last_updated_at": "2026-08-23T08:03:00-04:00"}
+}
