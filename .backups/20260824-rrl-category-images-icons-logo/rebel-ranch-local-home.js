@@ -5,12 +5,6 @@ const $=id=>document.getElementById(id);
 const esc=(v='')=>{const d=document.createElement('div');d.textContent=String(v??'');return d.innerHTML};
 const initials=name=>(name||'').split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0]?.toUpperCase()).join('')||'?';
 const publicUrl=path=>supabase.storage.from('marketplace-seller-public').getPublicUrl(path).data.publicUrl;
-const categoryImages={
-  'handmade-goods':'handmade-goods.webp','produce':'produce.webp','herbal-natural-remedies':'herbal-natural-remedies.webp',
-  'meat-poultry':'meat-poultry.webp','classes-workshops':'classes-workshops.webp','trades-services':'trades-services.webp',
-  'baked-goods':'baked-goods.webp','art-photography':'art-photography.webp','eggs-dairy':'eggs-dairy.webp'
-};
-const categoryImage=slug=>`assets/brand/Rebel%20Ranch%20Local/interface/categories/${categoryImages[slug]||'handmade-goods.webp'}`;
 
 function categoryNames(sp){return (sp.seller_category_assignments||[]).map(a=>a.marketplace_categories?.name).filter(Boolean)}
 function regionLabel(sp){const r=state.regions.find(x=>x.id===sp.region_id);return r?(r.state_code?`${r.region_name}, ${r.state_code}`:r.region_name):''}
@@ -24,7 +18,8 @@ function sellerCard(sp){const cats=categoryNames(sp);const meta=[cats[0],regionL
 
 function renderSellers(){const grid=$('rrl-featured-grid');if(!grid)return;const rows=state.sellers.filter(sp=>matchDoor(sp,state.filter)&&matchesSearch(sp)&&matchesCategory(sp));if(!rows.length){grid.innerHTML=`<div class="rrl-empty"><strong>No matching local listings yet.</strong><p>Try another search or category. If you provide this locally, you can be one of the first listed.</p></div>`;return}grid.innerHTML=rows.slice(0,10).map(sellerCard).join('')}
 
-function renderCategories(){const row=$('rrl-category-row');if(!row)return;const top=state.categories.slice(0,9);row.innerHTML=top.map(c=>`<button class="rrl-category" type="button" data-category-id="${esc(c.id)}"><span class="rrl-category-photo" style="background-image:url('${categoryImage(c.slug)}')" aria-hidden="true"></span>${esc(c.name)}</button>`).join('')+`<a class="rrl-category rrl-category-all" href="marketplace-directory.html"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg></span>All Categories</a>`;row.querySelectorAll('[data-category-id]').forEach(btn=>btn.addEventListener('click',()=>{state.categoryId=btn.dataset.categoryId;state.term='';$('rrl-search').value='';row.querySelectorAll('.rrl-category').forEach(x=>x.classList.remove('active'));btn.classList.add('active');renderSellers();$('rrl-featured').scrollIntoView({behavior:'smooth'})}))}
+function iconFor(name=''){if(/meat|egg/i.test(name))return '🥩';if(/dairy|milk/i.test(name))return '🥛';if(/produce|farm|fruit|veget/i.test(name))return '🥕';if(/pantry|honey|canned/i.test(name))return '🍯';if(/baked|bread/i.test(name))return '🍞';if(/home|living|craft|hand/i.test(name))return '🕯️';if(/health|beauty|soap|tinct/i.test(name))return '🌿';if(/tool|equipment|repair|trade/i.test(name))return '🛠️';if(/land|outdoor|lawn|fenc/i.test(name))return '🌳';return '📍'}
+function renderCategories(){const row=$('rrl-category-row');if(!row)return;const top=state.categories.slice(0,9);row.innerHTML=top.map(c=>`<button class="rrl-category" type="button" data-category-id="${esc(c.id)}"><span>${iconFor(c.name)}</span>${esc(c.name)}</button>`).join('')+`<a class="rrl-category" href="marketplace-directory.html"><span>▦</span>All Categories</a>`;row.querySelectorAll('[data-category-id]').forEach(btn=>btn.addEventListener('click',()=>{state.categoryId=btn.dataset.categoryId;state.term='';$('rrl-search').value='';row.querySelectorAll('.rrl-category').forEach(x=>x.classList.remove('active'));btn.classList.add('active');renderSellers();$('rrl-featured').scrollIntoView({behavior:'smooth'})}))}
 
 function wire(){document.querySelectorAll('[data-rrl-door]').forEach(btn=>btn.addEventListener('click',()=>{state.filter=btn.dataset.rrlDoor;state.categoryId='';document.querySelectorAll('.rrl-category').forEach(x=>x.classList.remove('active'));renderSellers();$('rrl-featured').scrollIntoView({behavior:'smooth'})}));const form=$('rrl-search-form');form?.addEventListener('submit',e=>{e.preventDefault();state.term=$('rrl-search').value.trim().toLowerCase();state.categoryId='';renderSellers();$('rrl-featured').scrollIntoView({behavior:'smooth'})});$('rrl-search')?.addEventListener('input',e=>{if(!e.target.value){state.term='';renderSellers()}})}
 
