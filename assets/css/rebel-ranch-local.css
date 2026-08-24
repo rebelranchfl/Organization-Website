@@ -1,23 +1,150 @@
-:root{--rrl-olive:#2F3D1F;--rrl-sage:#6B7F4A;--rrl-cream:#F2E9DA;--rrl-tan:#B47A4A;--rrl-brown:#5A3A24;--rrl-char:#1A1A1A;--rrl-paper:#f8f1e4;--rrl-line:#d8c9ad;--rrl-shadow:0 14px 34px rgba(47,61,31,.14)}
-body.rrl-page{background:var(--rrl-paper);color:var(--rrl-char)}
-.rrl-shell{width:min(1180px,94vw);margin:0 auto}
-.rrl-subnav{background:rgba(248,241,228,.96);border-bottom:1px solid var(--rrl-line);position:sticky;top:0;z-index:20;backdrop-filter:blur(10px)}
-.rrl-subnav-inner{display:flex;align-items:center;gap:24px;min-height:82px}
-.rrl-brand{display:flex;align-items:center;gap:14px;margin-right:auto;color:var(--rrl-olive);font-weight:900;letter-spacing:.02em}
-.rrl-brand img{width:64px;height:64px;object-fit:cover;border-radius:50%}
-.rrl-brand-copy{display:grid;line-height:1}.rrl-brand-copy strong{font-family:Georgia,serif;font-size:clamp(20px,2.5vw,30px)}.rrl-brand-copy span{font-size:11px;letter-spacing:.17em;margin-top:7px;text-transform:uppercase}
-.rrl-nav{display:flex;align-items:center;gap:18px;font-weight:800;font-size:14px}.rrl-nav a{color:var(--rrl-char)}.rrl-nav a:hover{color:var(--rrl-olive)}
-.rrl-join{padding:11px 16px;border-radius:10px;background:var(--rrl-olive);color:#fff!important}
-.rrl-hero{position:relative;overflow:hidden;background:linear-gradient(120deg,rgba(15,27,16,.80),rgba(47,61,31,.46)),url('../brand/Rebel%20Ranch%20Local/rebel-ranch-local-north-florida-springs-hero.jpg') center 54%/cover no-repeat;color:#fff;padding:clamp(56px,8vw,96px) 0 230px}
-.rrl-hero:after{content:"";position:absolute;inset:auto 0 0;height:210px;background:linear-gradient(180deg,transparent,rgba(10,25,16,.48))}
-.rrl-hero-content{position:relative;z-index:2;max-width:690px}.rrl-kicker{font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:#efe4c8;font-size:12px}.rrl-hero h1{font-family:Georgia,serif;font-size:clamp(46px,7vw,78px);line-height:.98;margin:12px 0 18px;letter-spacing:-.04em;text-shadow:0 2px 16px rgba(0,0,0,.38)}.rrl-hero p{font-size:clamp(18px,2vw,22px);max-width:620px;margin:0 0 22px;color:#f7f1e5;text-shadow:0 2px 14px rgba(0,0,0,.4)}
-.rrl-searchbar{display:flex;gap:8px;max-width:650px;background:#fff;border-radius:12px;padding:7px;box-shadow:var(--rrl-shadow)}.rrl-searchbar input{flex:1;border:0;outline:0;font:inherit;padding:12px 14px;background:transparent;color:#222}.rrl-searchbar button{border:0;border-radius:9px;background:var(--rrl-olive);color:#fff;font-weight:900;padding:0 20px;cursor:pointer}.rrl-hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}.rrl-action{display:inline-block;padding:12px 17px;border:1px solid rgba(255,255,255,.8);border-radius:9px;color:#fff;font-weight:900;background:rgba(19,52,34,.42)}
-.rrl-door-grid{position:relative;z-index:4;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:-185px}.rrl-door{border:1px solid var(--rrl-line);border-radius:16px;overflow:hidden;background:var(--rrl-cream);box-shadow:var(--rrl-shadow);cursor:pointer;text-align:left;padding:0}.rrl-door-media{height:175px;background:linear-gradient(145deg,#5d7049,#26391f);display:grid;place-items:center;color:#fff;font-size:60px}.rrl-door-copy{padding:20px;text-align:center}.rrl-door h2{font-family:Georgia,serif;color:var(--rrl-olive);font-size:34px;margin:0 0 4px}.rrl-door strong{display:block;font-size:16px}.rrl-door p{margin:8px auto 12px;max-width:300px;color:#514a3e}.rrl-door .door-link{font-weight:900;color:var(--rrl-olive)}
-.rrl-section{padding:46px 0}.rrl-section-head{display:flex;align-items:end;justify-content:space-between;gap:18px;border-bottom:1px solid var(--rrl-line);margin-bottom:18px}.rrl-section h2{font-family:Georgia,serif;color:var(--rrl-olive);font-size:30px;margin:0 0 9px}.rrl-section-head a{font-weight:900;color:var(--rrl-olive);margin-bottom:9px}
-.rrl-featured-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.rrl-seller-card{display:block;background:#fff;border:1px solid var(--rrl-line);border-radius:12px;overflow:hidden;color:var(--rrl-char);transition:.2s transform,.2s box-shadow}.rrl-seller-card:hover{transform:translateY(-3px);box-shadow:var(--rrl-shadow)}.rrl-seller-mark{height:120px;background:#e7ddca;display:grid;place-items:center;overflow:hidden;font-family:Georgia,serif;font-size:34px;color:var(--rrl-olive);font-weight:900}.rrl-seller-mark img{width:100%;height:100%;object-fit:cover}.rrl-card-body{padding:12px}.rrl-card-label{display:inline-block;border-radius:6px;background:var(--rrl-olive);color:#fff;padding:4px 7px;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.06em}.rrl-card-body h3{font-size:16px;margin:8px 0 4px}.rrl-card-body p{margin:0;color:#625b4f;font-size:13px}.rrl-meta{margin-top:8px!important;color:#7a7164!important}.rrl-empty{grid-column:1/-1;padding:28px;text-align:center;border:1px dashed var(--rrl-line);border-radius:12px;background:#fff}
-.rrl-category-row{display:grid;grid-template-columns:repeat(9,1fr);gap:10px}.rrl-category{border:1px solid var(--rrl-line);background:#fff;border-radius:10px;padding:10px 8px;text-align:center;cursor:pointer;font-weight:800;color:#4d463b}.rrl-category span{display:grid;place-items:center;height:56px;border-radius:8px;background:#e9dfcc;margin-bottom:8px;font-size:28px}.rrl-category:hover,.rrl-category.active{border-color:var(--rrl-olive);box-shadow:0 0 0 2px rgba(47,61,31,.12)}
-.rrl-why{border:1px solid var(--rrl-line);border-radius:14px;background:rgba(255,255,255,.65);padding:28px}.rrl-why h2{text-align:center}.rrl-why-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}.rrl-why-item{text-align:center;padding:8px 12px;border-right:1px solid var(--rrl-line)}.rrl-why-item:last-child{border-right:0}.rrl-why-icon{font-size:28px}.rrl-why-item strong{display:block;color:var(--rrl-olive);margin:7px 0 5px}.rrl-why-item p{font-size:13px;color:#625b4f;margin:0}
-.rrl-seller-cta{display:grid;grid-template-columns:1.4fr auto;align-items:center;gap:22px;background:var(--rrl-olive);color:#fff;border-radius:16px;padding:30px 34px}.rrl-seller-cta h2{color:#fff;margin:0 0 7px}.rrl-seller-cta p{margin:0;color:#eee4d1}.rrl-seller-cta a{background:var(--rrl-tan);color:#fff;padding:14px 22px;border-radius:9px;font-weight:900;border:1px solid #d8b48e}
-.rrl-mission{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;background:#eadcc4;border-radius:14px;padding:22px}.rrl-mission img{width:86px;height:86px;border-radius:50%;object-fit:cover}.rrl-mission h3{margin:0 0 5px;color:var(--rrl-olive);font-family:Georgia,serif}.rrl-mission p{margin:0;color:#5d564b}.rrl-status{font-size:13px;color:#766c5e;margin-top:10px}
-@media(max-width:980px){.rrl-nav{display:none}.rrl-door-grid{grid-template-columns:1fr;margin-top:-150px}.rrl-hero{padding-bottom:190px;background-position:center 50%}.rrl-featured-grid{grid-template-columns:repeat(2,1fr)}.rrl-category-row{grid-template-columns:repeat(3,1fr)}.rrl-why-grid{grid-template-columns:1fr 1fr}.rrl-why-item{border-right:0;border-bottom:1px solid var(--rrl-line);padding-bottom:18px}.rrl-seller-cta{grid-template-columns:1fr}.rrl-brand-copy strong{font-size:20px}}
-@media(max-width:620px){.rrl-subnav-inner{min-height:68px}.rrl-brand img{width:50px;height:50px}.rrl-brand-copy span{font-size:9px}.rrl-hero{padding-top:44px;background-position:center 48%}.rrl-hero h1{font-size:48px}.rrl-searchbar{display:grid}.rrl-searchbar button{padding:12px}.rrl-featured-grid{grid-template-columns:1fr}.rrl-category-row{grid-template-columns:repeat(2,1fr)}.rrl-why-grid{grid-template-columns:1fr}.rrl-door h2{font-size:30px}}
+:root{
+  --rrl-olive:#2F3D1F;
+  --rrl-sage:#6B7F4A;
+  --rrl-cream:#F2E9DA;
+  --rrl-tan:#B47A4A;
+  --rrl-brown:#5A3A24;
+  --rrl-char:#1A1A1A;
+  --rrl-paper:#F7F0E3;
+  --rrl-paper-2:#FBF7EE;
+  --rrl-line:#D6C9AF;
+  --rrl-shadow:0 12px 30px rgba(47,61,31,.13);
+}
+
+html{background:#fff}
+body.rrl-page{margin:0;background:#fff!important;color:var(--rrl-char)!important}
+body.rrl-page .rr-page{width:100%!important;max-width:none!important;margin:0!important;background:var(--rrl-paper)!important;color:var(--rrl-char)!important}
+body.rrl-page .rr-page>main{width:100%!important;max-width:none!important;margin:0!important;padding:0!important;background:var(--rrl-paper)!important}
+body.rrl-page .rr-page a{text-decoration:none}
+.rrl-shell{width:min(1240px,94vw)!important;max-width:1240px!important;margin:0 auto!important}
+
+/* Rebel Ranch Local sub-brand header */
+.rrl-subnav{position:relative;z-index:20;background:rgba(250,246,237,.98);border-bottom:1px solid #e0d4bf;box-shadow:0 2px 10px rgba(31,42,27,.05)}
+.rrl-subnav-inner{display:flex;align-items:center;gap:28px;min-height:88px}
+.rrl-brand{display:flex;align-items:center;gap:14px;margin-right:auto;color:var(--rrl-olive)!important;font-weight:900}
+.rrl-brand img{width:68px;height:68px;object-fit:cover;border-radius:50%;border:1px solid rgba(47,61,31,.22)}
+.rrl-brand-copy{display:grid;line-height:1}
+.rrl-brand-copy strong{font-family:Georgia,'Times New Roman',serif;font-size:clamp(22px,2.3vw,34px);letter-spacing:.015em}
+.rrl-brand-copy span{font-size:11px;letter-spacing:.14em;margin-top:8px;text-transform:uppercase;color:#282b20}
+.rrl-nav{display:flex;align-items:center;gap:24px;font-size:14px;font-weight:700}
+.rrl-nav a{color:#262820!important}
+.rrl-nav a:hover{color:var(--rrl-olive)!important}
+.rrl-nav .rrl-join{padding:12px 17px;border-radius:8px;background:var(--rrl-olive);color:#fff!important;box-shadow:0 3px 10px rgba(47,61,31,.14)}
+
+/* Approved concept hero */
+.rrl-hero{position:relative;min-height:520px;overflow:hidden;color:#fff;background-image:linear-gradient(90deg,rgba(10,22,12,.82) 0%,rgba(14,31,18,.60) 36%,rgba(19,38,22,.18) 66%,rgba(19,38,22,.06) 100%),url('../brand/Rebel%20Ranch%20Local/rebel-ranch-local-north-florida-springs-hero.jpg')!important;background-size:cover!important;background-position:center 53%!important;background-repeat:no-repeat!important}
+.rrl-hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.02) 0%,rgba(0,0,0,.03) 62%,rgba(15,29,17,.25) 100%);pointer-events:none}
+.rrl-hero-content{position:relative;z-index:2;max-width:680px!important;padding:58px 0 210px!important;margin:0!important}
+.rrl-hero h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(48px,6.4vw,82px)!important;line-height:.96!important;letter-spacing:-.035em!important;margin:0 0 17px!important;color:#fff!important;text-shadow:0 3px 16px rgba(0,0,0,.42)}
+.rrl-hero p{max-width:620px;margin:0 0 20px!important;font-size:clamp(17px,1.8vw,21px)!important;line-height:1.35!important;color:#fff!important;font-weight:600;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.rrl-searchbar{display:flex;align-items:center;gap:0;width:min(650px,100%);padding:0;background:#fff;border:1px solid rgba(255,255,255,.8);border-radius:8px;overflow:hidden;box-shadow:0 8px 22px rgba(0,0,0,.2)}
+.rrl-searchbar input{flex:1;min-width:0;border:0!important;outline:0;padding:15px 17px!important;background:#fff!important;color:#333!important;font:inherit;font-size:15px!important}
+.rrl-searchbar button{width:56px;align-self:stretch;border:0!important;border-left:1px solid #e2d9ca!important;background:#fff!important;color:var(--rrl-olive)!important;font-size:26px;font-weight:900;cursor:pointer}
+.rrl-hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:13px}
+.rrl-action{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border:1px solid rgba(255,255,255,.85);border-radius:7px;background:rgba(37,57,28,.78);color:#fff!important;font-size:14px;font-weight:800;box-shadow:0 5px 16px rgba(0,0,0,.12)}
+
+/* Three large photographic entry doors */
+.rrl-door-grid{position:relative;z-index:5;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:-178px!important;padding-bottom:18px}
+.rrl-door{display:block;overflow:hidden;padding:0!important;border:1px solid #cfc0a3!important;border-radius:9px!important;background:var(--rrl-paper-2)!important;color:var(--rrl-char)!important;box-shadow:0 10px 30px rgba(47,61,31,.12);cursor:pointer;text-align:left}
+.rrl-door:hover{transform:translateY(-2px);box-shadow:0 15px 34px rgba(47,61,31,.17)}
+.rrl-door-media{height:235px!important;background-size:cover!important;background-repeat:no-repeat!important;background-position:center!important;border-bottom:1px solid #d8cbb4;font-size:0!important}
+.rrl-door-marketplace{background-image:url('../brand/Rebel%20Ranch%20Local/rrl-marketplace-door.jpg')!important}
+.rrl-door-goods{background-image:url('../brand/Rebel%20Ranch%20Local/rrl-goods-door.jpg')!important}
+.rrl-door-services{background-image:url('../brand/Rebel%20Ranch%20Local/rrl-services-door.jpg')!important}
+.rrl-door-copy{padding:16px 20px 18px!important;text-align:center;background:rgba(251,247,238,.98)}
+.rrl-door h2{margin:0 0 2px!important;color:var(--rrl-olive)!important;font-family:Georgia,'Times New Roman',serif;font-size:clamp(29px,3vw,39px)!important;line-height:1!important;letter-spacing:-.015em}
+.rrl-door strong{display:block;font-size:17px;color:#222}
+.rrl-door p{max-width:320px;margin:8px auto 12px!important;color:#504a40!important;font-size:14px;line-height:1.35}
+.rrl-door .door-link{font-weight:900;color:var(--rrl-olive)}
+
+/* Tight marketplace content rhythm from the approved concept */
+.rrl-section{padding:18px 0 10px!important;background:var(--rrl-paper)!important}
+.rrl-featured-section{padding-top:10px!important}
+.rrl-category-section{padding-top:14px!important}
+.rrl-section-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--rrl-line)}
+.rrl-section h2,.rrl-section-head h2{margin:0!important;color:var(--rrl-olive)!important;font-family:Georgia,'Times New Roman',serif;font-size:25px!important;line-height:1.1!important;text-transform:uppercase;letter-spacing:.01em}
+.rrl-section-head a{margin:0!important;color:var(--rrl-olive)!important;font-size:13px;font-weight:800}
+
+/* Real Supabase listings */
+.rrl-featured-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.rrl-seller-card{display:block;min-width:0;overflow:hidden;border:1px solid #d6c9af!important;border-radius:7px!important;background:#fff!important;color:var(--rrl-char)!important;box-shadow:0 3px 12px rgba(47,61,31,.05);transition:transform .18s ease,box-shadow .18s ease}
+.rrl-seller-card:hover{transform:translateY(-3px);box-shadow:var(--rrl-shadow)}
+.rrl-seller-mark{display:grid;place-items:center;height:145px!important;overflow:hidden;background:#e8ddc9;color:var(--rrl-olive);font-family:Georgia,serif;font-size:34px;font-weight:900}
+.rrl-seller-mark img{width:100%;height:100%;object-fit:cover}
+.rrl-card-body{padding:10px 11px 12px!important}
+.rrl-card-label{display:inline-block;padding:3px 6px;border-radius:3px!important;background:var(--rrl-olive);color:#fff;font-size:9px;font-weight:900;letter-spacing:.04em;text-transform:uppercase}
+.rrl-card-body h3{margin:7px 0 3px!important;font-size:15px!important;line-height:1.15;color:#29291f!important}
+.rrl-card-body p{margin:0!important;color:#625b4f!important;font-size:12px!important;line-height:1.3}
+.rrl-meta{margin-top:6px!important;color:#766e62!important;font-size:11px!important}
+.rrl-empty{grid-column:1/-1;padding:24px;border:1px dashed #cdbd9f;border-radius:7px;background:#fff;color:#564f43;text-align:center}
+.rrl-status{margin:7px 0 0!important;color:#7c7469!important;font-size:11px!important}
+
+/* Image-led category strip */
+.rrl-category-row{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:10px}
+.rrl-category{display:block;min-width:0;padding:0 0 8px!important;overflow:hidden;border:1px solid #d6c9af!important;border-radius:7px!important;background:#fff!important;color:#403b33!important;text-align:center;font-size:11px!important;font-weight:800;cursor:pointer}
+.rrl-category span{display:block!important;height:72px!important;margin:0 0 7px!important;border-radius:0!important;background-color:#e8ddc9!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;font-size:0!important}
+.rrl-category:nth-child(-n+5) span{background-image:url('../brand/Rebel%20Ranch%20Local/rrl-marketplace-door.jpg')!important}
+.rrl-category:nth-child(6) span,.rrl-category:nth-child(7) span{background-image:url('../brand/Rebel%20Ranch%20Local/rrl-goods-door.jpg')!important}
+.rrl-category:nth-child(8) span{background-image:url('../brand/Rebel%20Ranch%20Local/rrl-services-door.jpg')!important}
+.rrl-category:nth-child(9) span{background-image:url('../brand/Rebel%20Ranch%20Local/rrl-services-door.jpg')!important}
+.rrl-category:hover,.rrl-category.active{border-color:var(--rrl-olive)!important;box-shadow:0 0 0 2px rgba(47,61,31,.12)}
+
+/* Why / CTA / mission */
+.rrl-why{margin-top:14px!important;padding:18px 22px!important;border:1px solid #d6c9af!important;border-radius:8px!important;background:rgba(255,255,255,.62)!important}
+.rrl-why h2{text-align:center!important;text-transform:none!important;font-size:29px!important;margin:0 0 14px!important}
+.rrl-why-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0}
+.rrl-why-item{padding:6px 15px;text-align:center;border-right:1px solid #d6c9af}
+.rrl-why-item:last-child{border-right:0}
+.rrl-why-icon{min-height:30px;color:var(--rrl-olive);font-size:22px;font-weight:900}
+.rrl-why-item strong{display:block;margin:4px 0;color:var(--rrl-olive);font-size:13px}
+.rrl-why-item p{margin:0;color:#625b4f;font-size:11px;line-height:1.25}
+.rrl-cta-section{padding-top:22px!important}
+.rrl-seller-cta{display:grid;grid-template-columns:1.5fr auto;align-items:center;gap:24px;padding:22px 28px!important;border-radius:8px!important;background:linear-gradient(90deg,#233518,#31441d)!important;color:#fff!important;box-shadow:0 7px 20px rgba(47,61,31,.1)}
+.rrl-seller-cta h2{margin:0 0 4px!important;color:#fff!important;text-transform:none!important;font-size:27px!important}
+.rrl-seller-cta p{margin:0!important;color:#f0e8d9!important;font-size:14px!important}
+.rrl-seller-cta a{padding:13px 23px;border:1px solid #d8b48e;border-radius:6px!important;background:var(--rrl-tan);color:#fff!important;font-weight:900;white-space:nowrap}
+.rrl-mission-section{padding:8px 0 20px!important}
+.rrl-mission{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:18px;padding:18px 22px!important;border:1px solid #d6c9af;border-radius:8px!important;background:#eadcc4!important}
+.rrl-mission img{width:72px!important;height:72px!important;border-radius:50%;object-fit:cover;border:1px solid rgba(47,61,31,.2)}
+.rrl-mission h3{margin:0 0 4px!important;color:var(--rrl-olive)!important;font-family:Georgia,serif;font-size:18px!important;text-transform:uppercase;letter-spacing:.02em}
+.rrl-mission p{margin:0!important;color:#5a5348!important;font-size:12px!important;line-height:1.4}
+.rrl-mission a{color:var(--rrl-olive)!important;font-weight:800}
+
+@media(max-width:980px){
+  .rrl-shell{width:min(94vw,820px)!important}
+  .rrl-nav{display:none}
+  .rrl-hero{min-height:480px;background-position:center 52%!important}
+  .rrl-hero-content{padding:48px 0 185px!important;max-width:610px!important}
+  .rrl-door-grid{grid-template-columns:1fr;margin-top:-145px!important;gap:14px}
+  .rrl-door-media{height:220px!important}
+  .rrl-featured-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rrl-category-row{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .rrl-why-grid{grid-template-columns:1fr 1fr}
+  .rrl-why-item{border-right:0;border-bottom:1px solid #d6c9af;padding:13px}
+  .rrl-seller-cta{grid-template-columns:1fr}
+}
+
+@media(max-width:620px){
+  .rrl-subnav-inner{min-height:70px}
+  .rrl-brand img{width:50px;height:50px}
+  .rrl-brand-copy strong{font-size:20px}
+  .rrl-brand-copy span{font-size:8px}
+  .rrl-hero{min-height:455px;background-position:58% 50%!important}
+  .rrl-hero-content{padding:42px 0 160px!important}
+  .rrl-hero h1{font-size:46px!important}
+  .rrl-hero p{font-size:16px!important}
+  .rrl-searchbar input{padding:13px!important}
+  .rrl-hero-actions{gap:9px}
+  .rrl-action{font-size:12px;padding:0 14px}
+  .rrl-door-grid{margin-top:-125px!important}
+  .rrl-door-media{height:190px!important}
+  .rrl-featured-grid{grid-template-columns:1fr}
+  .rrl-category-row{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rrl-why-grid{grid-template-columns:1fr}
+  .rrl-section-head{align-items:flex-start}
+  .rrl-section-head h2{font-size:21px!important}
+  .rrl-section-head a{font-size:11px}
+  .rrl-seller-cta{padding:20px!important}
+  .rrl-mission{grid-template-columns:1fr;text-align:center}
+  .rrl-mission img{margin:0 auto}
+}
