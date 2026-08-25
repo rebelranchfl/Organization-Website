@@ -7,7 +7,7 @@ Before planning, editing, designing, reviewing, or publishing anything:
 1. Read this repository `AGENTS.md` in full.
 2. Read `docs/rebel-ranch-ecosystem-charter.md` in full.
 3. Identify which program, sub-brand, rollout phase, and files the requested task belongs to.
-4. For main Rebel Ranch Ministries visual work, read `docs/rrm-visual-rules.md` in full. For an approved sub-brand such as Creation Station, read that sub-brand's approved standards instead of applying the main RRM visual system to it.
+4. For main Rebel Ranch Ministries visual work, read `docs/rrm-visual-rules.md` in full. For Creation Station work, read `docs/creation-station-positioning.md` in full first, then read the applicable Creation Station visual rules and current handoff/status documents instead of applying the main RRM visual system to it.
 5. Read the other standards and implementation notes relevant to the approved program and task.
 6. Read the complete target files and their connected styles or scripts before editing.
 
@@ -30,6 +30,7 @@ Check for more specific `AGENTS.md` files in the target folder. More specific in
 - Keep Faith, Family, and Nature Church, Rebel Ranch Ministries, Creation Station, Rebel Ranch Marketplace, Rebel Ranch Academy, Business Freedom, Roots, Boots & Animal Poops, Rebel Ranch Rescue, and 3P Help Me distinct.
 - Connected programs may link to one another, but do not merge their names, offers, audiences, access rules, finances, or visual identities.
 - Preserve the Charter's definitions for Creation Station, the Creation Station dashboard, the Creation Station portfolio, Creation Station Studio, the Rebel Ranch Marketplace, Roots, Boots & Animal Poops, and Rebel Ranch Rescue.
+- For Creation Station, also preserve `docs/creation-station-positioning.md`; it governs the creative-development scope, parent value, beta posture, Studio/Marketplace distinction, and the boundary between current creative programming and future trades/vocational education.
 - Do not implement anything listed as an open decision in the Charter without explicit owner approval.
 - If project code, older documentation, and the Charter disagree, stop and explain the conflict in plain language. Do not guess.
 
