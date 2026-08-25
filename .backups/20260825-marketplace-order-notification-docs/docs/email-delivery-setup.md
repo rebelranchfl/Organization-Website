@@ -58,23 +58,3 @@ Content-Type: application/json
 
 Note `smtp_port` must be sent as a string, not a number, or the API
 rejects the request.
-
-## Marketplace seller order email — added 2026-08-25
-
-Resend is also used by the production `submit-marketplace-order` Edge
-Function to alert a seller after a structured Marketplace order has
-been stored. This use is separate from Supabase Auth SMTP:
-
-- Auth confirmation/reset mail is sent through Supabase's configured
-  Resend SMTP connection.
-- Marketplace order alerts are sent directly to Resend's HTTP API by
-  the Edge Function.
-- The Edge Function reads `RESEND_API_KEY` from protected Supabase
-  Edge Function secrets.
-- The alert includes only the order number and the authenticated seller
-  dashboard link. Private buyer and order details stay in the dashboard.
-- A Resend failure is logged but does not undo or reject a saved order.
-
-See `docs/marketplace-order-notifications-handoff-2026-08-25.md` for
-the production architecture, exact files, verification, limitations,
-and remaining end-to-end testing.
