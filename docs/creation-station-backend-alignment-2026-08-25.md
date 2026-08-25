@@ -1,208 +1,206 @@
-# Creation Station Backend Alignment — 2026-08-25
+# Creation Station Backend Alignment — Production State
 
-**Status:** Owner-directed implementation handoff  
+**Status:** Implemented in production  
+**Updated:** 2026-08-25  
 **AI-Agent:** ChatGPT/GPT-5.6 Sol  
-**Session:** Creation Station Documentation and Cleanup
+**Session:** Creation Station Studio Publishing and Orders
 
-This document records two backend gaps discovered while streamlining the Creation Station public experience. It prevents future work from changing public copy without understanding the real application/database behavior underneath it.
+This document is the current backend handoff for Creation Station Studio publication and direct order requests. It supersedes the earlier “future migration” state recorded in this file.
 
-## 1. Public Studio publication — intended product behavior
+## 1. Public Studio publication is self-service for the paid public-page tiers
 
-The owner-confirmed Creation Station Studio workflow is:
+Owner-confirmed product flow:
 
-**qualifying paid public-page tier → creator/family enters Studio information → required adult/parent acknowledgement → Studio may go live**
+**qualifying public-page membership → Studio information → adult/parent acknowledgement → Studio goes live**
 
-RRM is not intended to provide an editorial review service for ordinary paid Studio publication.
+There is no ordinary RRM editorial approval step for a paid Creation Station Studio.
 
-For minors, parent/guardian control remains mandatory.
+The dashboard continues to use `approved` as the compatibility status for a self-published Studio. Public visibility is controlled by the database helper `private.studio_is_publicly_listed(request_id)` rather than by the status label alone.
 
-### What the current dashboard code already tries to do
+A Studio is publicly listable only when all of the following are true:
 
-`assets/js/creation-station-app.js` currently collects:
-- `parent_approver_name`
-- `parent_approver_relationship`
-- `parent_approved_at`
-- `consent_statement`
+- status is `approved` or `published`;
+- `public_slug` exists;
+- adult/parent acknowledgement name is present;
+- acknowledgement relationship is present;
+- acknowledgement timestamp is present;
+- acknowledgement statement is present; and
+- the owner has a current qualifying Creation Station public-page membership (`creator_website` or `club_all_access_bundle`), unless an administrator is performing an authorized administrative action.
 
-For an account with the qualifying public-page tier, the dashboard currently attempts to save the request as `approved` and tells the user that the Studio is approved/live.
+The publication guard also verifies that the authenticated owner owns both the Studio request and the selected creator profile.
 
-### What the current Supabase database still enforces
+### Adult vs. minor acknowledgement
 
-The production function `private.guard_website_publication()` contains older review-era logic.
+Adults may acknowledge their own public Studio and use a relationship such as `Self`.
 
-For a non-admin account, it currently allows status changes such as:
-- `draft → submitted`
-- `changes_requested → submitted`
-- `draft/rejected → archived`
+For creators in the minor age bands (`young_6_12` and `teen_13_17`), the publication guard rejects self-style relationships such as `Self`, `Me`, `Creator`, or `Adult account holder`. A parent/guardian relationship remains required.
 
-It does **not** currently allow the normal Studio owner to move their own qualifying paid request to `approved` or `published`.
+### Protected fields
 
-That conflicts with the current dashboard code and the owner-approved product flow.
+Normal Studio owners cannot forge or replace administrative/moderation fields such as:
 
-### Related public-listing rule
+- `admin_notes`;
+- `moderation_note`; or
+- `published_url`.
 
-`private.studio_is_publicly_listed(request_id)` currently treats a Studio as publicly listable when:
-- request status is `approved` or `published`;
-- `public_slug` exists; and
-- the owner has an active qualifying Creation Station public-page membership (or is an admin).
+Existing administrative controls remain available for genuine moderation or support needs, but ordinary paid Studio publication no longer waits for an editorial review.
 
-The existing slug trigger assigns `public_slug` when a request becomes `approved` or `published`.
+## 2. Production migrations
 
-Therefore a secure self-service `approved` transition can support the intended public behavior without requiring a separate manual editorial-publication step.
+The repository contains and production Supabase has applied:
 
-### Required future migration
+- `supabase/migrations/20260825235500_creation_station_studio_publish_orders.sql`
+- `supabase/migrations/20260825235900_creation_station_studio_order_grants.sql`
+- `supabase/migrations/20260826000500_creation_station_studio_minor_acknowledgement.sql`
 
-Before calling self-service publication fully production-verified, create and explicitly approve a Supabase migration that updates the publication guard so a normal owner can approve their own Studio **only when all required safeguards are true**, including:
+These migrations align Studio self-publication, structured orders, table privileges, and the adult/minor acknowledgement boundary.
 
-1. the request belongs to the authenticated owner;
-2. the creator profile belongs to that owner;
-3. the account has an active qualifying Creation Station public-page tier;
-4. required adult/parent acknowledgement fields are present;
-5. parent/guardian protection for minors is preserved;
-6. protected admin/moderation fields cannot be forged by the owner;
-7. another user's Studio cannot be modified;
-8. existing public-read/RLS protections remain intact.
+## 3. Creation Station Studio orders now use a structured order-request model
 
-Do not simply remove the publication guard.
+Creation Station Studio remains separate from Rebel Ranch Local. Studio orders are stored in `public.studio_order_requests`; they are **not** inserted into Marketplace `seller_orders` and Creation Station membership does not create Marketplace seller approval.
 
-**Live database status:** not changed by the 2026-08-25 documentation/cleanup commit. A live database migration requires separate explicit owner authorization.
+The existing Studio order table was extended rather than replaced so there is one Creation Station order system.
 
----
+Current structured fields include:
 
-## 2. Creation Station Studio ordering — current state
-
-The public Studio currently supports:
-- public products from `creator_studio_products`;
-- quantity selection;
-- a JavaScript cart;
-- buyer name;
-- buyer phone/email;
-- optional message; and
-- insertion into `studio_order_requests`.
-
-Current `studio_order_requests` is a simple request/inbox table containing fields such as:
-- `website_request_id`
-- `sender_user_id`
-- `sender_name`
-- `sender_contact`
-- `cart_summary` (plain text)
-- `message`
-- `is_read`
-- `read_at`
-- `created_at`
-
-The public insert is protected by RLS so an order request may only be inserted for a Studio that is publicly listed.
-
-The Studio owner/admin can read and mark their own requests read.
-
-## 3. Rebel Ranch Local ordering — proven reference architecture
-
-Rebel Ranch Local already has the more mature direct-to-seller ordering model Creation Station should learn from.
-
-The Marketplace buyer flow supports:
-- real listing selection;
-- multiple items;
-- quantities;
-- item notes;
-- product orders vs. service requests;
-- fulfillment choice;
+- `order_number`;
+- `website_request_id`;
 - buyer name/contact;
-- preferred date;
-- delivery address;
-- service location;
-- buyer note;
-- optional private photo; and
-- submission through the `submit-marketplace-order` Supabase Edge Function.
-
-Marketplace `seller_orders` stores structured data including:
-- order number;
-- structured `items` JSON;
-- order kind;
-- fulfillment method;
-- estimated and confirmed totals;
-- status;
-- seller note;
-- payment instructions;
-- fulfillment details;
-- read state;
+- `items` JSONB with product snapshots, quantities, optional item notes, and price labels;
+- `order_kind`;
+- `fulfillment_method`;
+- `preferred_date`;
+- `delivery_address`;
+- `buyer_note`;
+- `estimated_total`;
+- `confirmed_total`;
+- `status`;
+- `studio_owner_note`;
+- `payment_instructions`;
+- `fulfillment_details`;
+- read state/timestamp;
 - accepted/completed timestamps; and
 - created/updated timestamps.
 
-The seller dashboard provides an Orders inbox where a seller can:
-- read the order;
-- accept it;
+Supported order states are:
+
+**new → accepted / change proposed / declined → ready → completed**
+
+The Studio owner may update seller-side lifecycle fields but may not rewrite the buyer-submitted item snapshot, buyer identity/contact, requested fulfillment, estimated total, or creation timestamp.
+
+## 4. Buyer submission is server-validated
+
+Production Edge Function:
+
+`submit-creation-studio-order`
+
+Repository source:
+
+`supabase/functions/submit-creation-studio-order/index.ts`
+
+The function intentionally accepts guest buyers, but the browser no longer writes directly to `studio_order_requests`.
+
+Before an order is accepted, the function validates:
+
+- the Studio exists and has an approved/published state;
+- the Studio has a public slug;
+- required adult/parent acknowledgement is present;
+- a current qualifying public-page membership exists;
+- every submitted product ID belongs to that Studio and is active;
+- requested quantities are within the allowed range;
+- requested fulfillment is one of the Studio's configured options; and
+- buyer name and contact information are present.
+
+Product title/price information is read from Supabase and snapshotted server-side. A buyer cannot invent a product name or price by editing browser JavaScript.
+
+If every selected product has a simple numeric price, the server calculates the estimated order total. The creator/family still confirms the final total before payment.
+
+## 5. Direct table privileges
+
+Public buyers have no direct privileges on `studio_order_requests`.
+
+Authenticated users receive only `SELECT` and `UPDATE`, with RLS limiting access to orders belonging to Studios owned by that account. The order update trigger prevents normal owners from changing buyer/source fields.
+
+Service-role insertion is performed only by the validating order Edge Function.
+
+## 6. Public buyer experience
+
+Files:
+
+- `creation-station-studio.html`
+- `assets/js/creation-station-studio-public.js`
+
+Public flow:
+
+**choose products → quantities/item notes → fulfillment → buyer details → optional timing/address/note → send order request**
+
+The buyer is explicitly told that sending the request does not finalize payment. The creator/family confirms:
+
+- availability;
+- final total;
+- fulfillment; and
+- payment instructions.
+
+RRM does not process the creator's payment.
+
+## 7. Private creator/parent order inbox
+
+Page:
+
+`creation-station-orders.html`
+
+The Creation Station Dashboard includes a **Studio Orders** destination for the adult account.
+
+The order inbox shows:
+
+- order number;
+- buyer name/contact;
+- item snapshots and quantities;
+- item notes;
+- requested fulfillment;
+- estimated total;
+- preferred timing/address when provided; and
+- buyer notes.
+
+The account owner can:
+
+- accept;
 - propose a change;
-- confirm a total;
-- provide payment instructions/direct link;
-- coordinate fulfillment; and
-- mark the order complete.
+- decline;
+- mark ready;
+- complete;
+- confirm the total;
+- save an order note;
+- provide payment instructions; and
+- provide fulfillment details.
 
-A database trigger creates a Marketplace notification when a new order is inserted. Marketplace may also attempt external email/push alerts, but the authenticated dashboard remains the source of truth.
+## 8. Kid Mode privacy boundary
 
-RRM does not process seller payment.
+Studio orders contain buyer personally identifiable information and are adult/parent data.
 
-## 4. Target Creation Station Studio order experience
+`creation-station-orders.html` checks the current account's Kid Mode state and refuses to show orders while Kid Mode is active.
 
-Creation Station Studio should mature toward the same interaction pattern while remaining a distinct Creation Station product.
+`assets/js/creation-station-order-privacy.js` is loaded before the dashboard app. When Kid Mode is active it:
 
-Target flow:
+- hides the Studio Orders navigation destination;
+- prevents the existing dashboard workspace loader from receiving `studio_order_requests` rows; and
+- reloads the workspace when entering/exiting Kid Mode so the data boundary is reapplied.
 
-**Choose products → Build order → Choose quantities → Choose fulfillment → Add buyer details → Send order → Creator/parent receives structured order → Accept/change → Confirm total/payment/fulfillment → Complete**
+Do not remove this boundary without replacing it with an equally strong adult/parent authorization mechanism.
 
-Recommended Studio order fields:
-- `order_number`
-- `website_request_id`
-- `sender_user_id`
-- `sender_name`
-- `sender_contact`
-- structured `items` JSONB
-- `fulfillment_method`
-- `preferred_date`
-- `delivery_address`
-- `buyer_note`
-- `estimated_total`
-- `confirmed_total`
-- `status`
-- `studio_owner_note`
-- `payment_instructions`
-- `fulfillment_details`
-- `is_read`
-- `read_at`
-- `accepted_at`
-- `completed_at`
-- `created_at`
-- `updated_at`
+## 9. Notifications
 
-A future phase may add private order-photo support if it is useful for custom creative work.
+A successful new Studio order attempts external notifications to the Studio account owner using the same privacy principle as Marketplace:
 
-## 5. Keep Studio orders separate from Marketplace seller orders
+- notification contains the order number and secure inbox destination;
+- buyer/order details remain inside the authenticated order inbox.
 
-Do not automatically place Creation Station Studio orders into `seller_orders`.
+The authenticated inbox remains the source of truth even if external email or push delivery fails.
 
-A Creation Station Studio owner is not automatically an approved Rebel Ranch Local seller.
+The existing `notify-website-request` function is already aligned with self-publication: it describes a paid Studio as live and explicitly states that no review is needed. It functions as a notice, not an approval request.
 
-The two products may share interaction patterns and implementation ideas while preserving separate:
-- program identity;
-- seller/creator eligibility;
-- database ownership relationship;
-- dashboards;
-- notifications; and
-- Marketplace approval rules.
+## 10. Verification boundary
 
-If code is shared later, share reusable mechanics rather than collapsing the programs into one data model without explicit owner approval.
+Production database/schema and Edge Function deployment were completed in this implementation session. The existing test Studio remained **not publicly listed** because it does not have a qualifying active public-page membership; the migration did not accidentally publish it.
 
-## 6. Safe implementation sequence
-
-1. Approve the exact Studio-order schema/migration.
-2. Back up existing Studio order/publication schema and relevant app files.
-3. Apply the Supabase migration only after explicit owner authorization.
-4. Upgrade `creation-station-studio-public.js` to send structured Studio orders.
-5. Upgrade Creation Station dashboard data/views/actions to manage the structured order lifecycle.
-6. Add a creator/parent order notification path.
-7. Test as a public buyer, Studio owner/parent, and admin.
-8. Verify RLS with unauthenticated, unrelated authenticated, owner, and admin users.
-9. Only then describe the structured order workflow as fully live.
-
-## 7. Current action boundary
-
-The 2026-08-25 documentation and public-page cleanup does **not** apply a production database migration. It documents the discrepancy and prepares the next implementation phase so the live system is not changed accidentally.
+A true buyer-to-owner transaction cannot be exercised against that test Studio without artificially granting it a paid public membership. Do not alter a real user's membership merely to manufacture an end-to-end test. Complete the first real buyer-order walkthrough when a legitimate qualifying Studio is live, or use a separately authorized disposable test account/membership.
