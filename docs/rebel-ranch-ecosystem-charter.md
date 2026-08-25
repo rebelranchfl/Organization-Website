@@ -2,7 +2,7 @@
 
 **Status:** Owner-directed source of truth
 
-**Last updated:** 2026-08-09
+**Last updated:** 2026-08-25
 
 **Purpose:** Give every person and AI agent the same understanding of the organizations, programs, audiences, user paths, financial boundaries, and current decisions before work begins.
 
@@ -17,9 +17,9 @@ Read this document before planning or changing any Rebel Ranch page, program, wo
 - If older project notes conflict with this charter, stop and ask the owner which direction is current.
 - A newer, explicit owner decision may update this charter, but an agent's preference may not.
 
-**Build status (updated 2026-08-04):** Earlier project rules were written when Business Freedom was the only built program and assumed the homepage should not link out to other programs yet. That assumption no longer holds — Creation Station and Rebel Ranch Marketplace now have their own live, built, approved pages. See `docs/rrm-visual-rules.md` for the current homepage linking rule; do not assume single-program-era restrictions still apply without checking there first.
+**Build status (updated 2026-08-25):** Creation Station, Rebel Ranch Marketplace, and Rebel Ranch Academy have live approved destinations. `programs.html` is now the approved public Programs Hub for explaining the complete RRM ecosystem and routing people to the program that fits them. Roots, Boots & Animal Poops and Rebel Ranch Rescue are approved programs and may live as anchored Programs Hub sections until separate program pages are approved and built. See `docs/rrm-visual-rules.md` for the current public-page routing rules.
 
-**Gamification status (updated 2026-08-09):** This charter previously listed gamification as undecided while the real dashboard already had it live — a genuine conflict, now resolved. Gamification is confirmed and owner-approved as of 2026-08-09; see Section 4's "Gamification" subsection for the exact rules in production. It is no longer an open decision.
+**Gamification status (updated 2026-08-09):** Gamification is confirmed and owner-approved; see Section 4's "Gamification" subsection for the exact rules in production. It is not an open decision.
 
 ## 2. Organizational structure
 
@@ -29,7 +29,9 @@ Faith, Family, and Nature Church
     ├── Creation Station
     ├── Rebel Ranch Marketplace
     ├── Rebel Ranch Academy
-    └── Business Freedom programs
+    ├── Business Freedom programs
+    ├── Roots, Boots & Animal Poops
+    └── Rebel Ranch Rescue
 
 3P Help Me
 └── Separate, owner-operated for-profit business that partners with and donates services to Rebel Ranch Ministries
@@ -49,9 +51,13 @@ The programs serve different stages of a connected journey:
 
 1. Help people create, learn, and develop useful work.
 2. Help creators and small local sellers become visible and reachable.
-3. Help them gain the business, financial, life, and relationship skills needed to make their work more sustainable.
+3. Help people gain business, financial, life, relationship, sustainability, food-system, and practical skills.
 4. Provide immediate practical relief when a small business is already struggling.
-5. Reinvest ministry revenue into programs that support children, adults, families, and the local community.
+5. Operate and document real agricultural systems involving livestock, produce, soil, water, food, and natural cycles.
+6. Rescue, recover, and responsibly steward farm animals through Rebel Ranch Rescue.
+7. Use real program work to create meaningful digital education for people who cannot participate on-site.
+8. Grow toward agricultural production that can support ministry work, help feed the community, and create future food-share and appropriate animal/agricultural market opportunities.
+9. Reinvest ministry revenue into programs that support children, adults, families, businesses, and the local community.
 
 The programs may link to and recommend one another. A link is a pathway, not permission to merge the programs or make their branding identical.
 
@@ -135,14 +141,14 @@ The exact future method for moving selected portfolio material into the paid per
 
 ### Gamification (confirmed 2026-08-09)
 
-Gamification exists in the real dashboard and is confirmed, owner-approved, and documented here — not an open decision. These are the exact rules running in production as of 2026-08-09:
+Gamification exists in the real dashboard and is confirmed, owner-approved, and documented here. These are the exact rules running in production as of 2026-08-09:
 
 - **Points:** every logged creator action (starting a project, saving progress, completing a project, creating a portfolio, submitting a Studio request) is worth 1 point. No cap, no weighting by how substantial the action was.
 - **Streak:** counted in distinct calendar days with at least one logged action. Resets to zero once more than 5 days pass with no activity.
 - **Badge:** one badge exists today, the "First Project Badge," unlocked the first time any project reaches completed status. There is no badge library or further tiers yet.
 - Points and streak currently display only on the Studio hero banner. The badge unlocks an achievement panel on the Studio home screen. Neither appears on the Growth view or anywhere else yet.
 
-This section records what is confirmed and live. Adding new badges, changing the point/streak rules, or expanding where gamification is shown still requires owner approval like any other feature change — it is not a blank check for agents to expand gamification further without asking.
+Adding new badges, changing the point/streak rules, or expanding where gamification is shown requires owner approval.
 
 ### Development phases
 
@@ -172,7 +178,7 @@ The Marketplace addresses a rural local-business gap. Gilchrist County and surro
 
 The Marketplace is intended to make legitimate small local sellers easier to discover, contact, and buy from without forcing them to compete for attention against major retailers or mass-market resellers.
 
-It is a curated local directory, discovery hub, communication platform, and visibility tool. It is not a large-retailer marketplace and not merely an event directory.
+It is a curated local directory, discovery hub, communication platform, visibility tool, and buyer-to-seller ordering path. It is not a large-retailer marketplace and not merely an event directory.
 
 ### Access and financial model
 
@@ -180,7 +186,9 @@ It is a curated local directory, discovery hub, communication platform, and visi
 - Marketplace participation is free for approved sellers.
 - The Marketplace does not process payments on behalf of sellers.
 - Sellers may provide approved external payment and fulfillment information.
-- The Marketplace primarily creates visibility, participation, trust, referrals, and awareness of the larger Rebel Ranch ecosystem.
+- Buyers may build an order request and send it to a seller; the seller remains responsible for accepted payment and fulfillment arrangements.
+- Marketplace messaging for questions remains distinct from order requests.
+- The Marketplace primarily creates visibility, participation, trust, referrals, orders/inquiries, and awareness of the larger Rebel Ranch ecosystem.
 
 ### Seller approval and authenticity
 
@@ -206,7 +214,8 @@ Approved listings may include:
 - images;
 - purchase instructions or approved external payment links;
 - pickup, delivery, shipping, or fulfillment information;
-- contact paths; and
+- direct order requests;
+- separate buyer question/contact paths; and
 - direct Marketplace messaging intended to distinguish buyer inquiries from ordinary email noise.
 
 The Marketplace will use a controlled set of approved listing templates. Do not create unlimited seller-controlled layouts or a new template without approval.
@@ -233,7 +242,8 @@ Rebel Ranch Academy is the education branch for children and adults. Its areas i
 - sustainability;
 - emotional intelligence;
 - business skills;
-- financial skills; and
+- financial skills;
+- food and natural systems; and
 - related practical education.
 
 The Academy may offer paid education, subscriptions, live classes, services, and other approved support. Exact offers and pricing are separate work and must not be invented.
@@ -244,9 +254,11 @@ Creation Station participants may be directed to the Academy when they need deep
 
 Marketplace vendors may be directed to the Academy when visibility alone does not solve problems involving pricing, planning, finances, communication, management, customer relationships, resilience, or business operations.
 
+Roots, Boots & Animal Poops and Rebel Ranch Rescue may generate real-world educational material for the Academy and digital media. **Physical program work may generate educational content for Rebel Ranch Academy without becoming an Academy-owned program.**
+
 Emotional intelligence is relevant to both personal life and business. It supports communication, judgment, self-management, leadership, customer relationships, and handling setbacks.
 
-The Academy is connected to Creation Station and Marketplace but remains its own program with its own approved offers and eventual design standards.
+The Academy is connected to the other programs but remains its own program with its own approved offers and design standards.
 
 ## 7. Business Freedom programs
 
@@ -261,7 +273,101 @@ Business Freedom is an additional Rebel Ranch Ministries revenue stream and part
 
 The Business Freedom programs are partnered with 3P Help Me. Preserve the organizational and financial boundary described in Section 2.
 
-## 8. How people move through the ecosystem
+## 8. Roots, Boots & Animal Poops
+
+### Purpose
+
+**Roots, Boots & Animal Poops is Rebel Ranch Ministries' working agricultural program.** It is not merely an Academy course, a demonstration garden, or a children's agriculture theme. It is the real-world agricultural branch where RRM raises animals, grows food, works with land and natural systems, and documents what happens so others can learn from it.
+
+The program is designed around practical agriculture and sustainable living, including:
+
+- livestock and animal husbandry;
+- raising animals as part of a food system;
+- breeding, reproduction, behavior, nutrition, care, and lifecycles;
+- produce and food growing;
+- soil fertility, manure, composting, and regeneration;
+- water conservation, storage, filtration, and use;
+- plants, insects, weather, and ecological relationships;
+- harvesting, food utilization, preservation, and nutrition;
+- reducing waste by understanding how outputs from one part of the system can support another; and
+- teaching people to understand where food comes from and how the complete system works.
+
+### Food-production role
+
+Animals in the agricultural program may be intentionally raised for food. The program must not hide, sanitize, or misrepresent that fact.
+
+RRM's agricultural direction includes using livestock and produce as real food resources. As program capacity grows, intended uses may include:
+
+- food used in ministry operations;
+- food used to help feed people in the community;
+- future food-share opportunities;
+- future sale of produce or other appropriate agricultural outputs;
+- future sale or market placement of appropriate animals; and
+- other owner-approved agricultural distribution models consistent with applicable requirements.
+
+These future activities are direction and architecture, not a claim that every sales or food-share mechanism is live today. Exact pricing, legal structure, processing requirements, availability, distribution rules, and launch dates remain separate implementation work.
+
+### Digital and educational role
+
+The physical work happens on-site, but access to the learning does not depend on physically visiting the property.
+
+Real program work may be documented through:
+
+- YouTube and other approved digital media;
+- Academy lessons and learning paths;
+- demonstrations;
+- downloadable resources;
+- family activities;
+- experiments and observation projects;
+- seasonal updates; and
+- real stories showing successes, mistakes, cycles, and changes over time.
+
+The real work becomes source material for education. The Academy organizes and teaches from that material; it does not absorb ownership of Roots, Boots & Animal Poops.
+
+## 9. Rebel Ranch Rescue (RRR)
+
+### Purpose
+
+Rebel Ranch Rescue is the RRM farm-animal rescue program. Its role is rescue, recovery, responsible stewardship, and appropriate long-term care or placement.
+
+The program is intentionally focused on farm animals rather than functioning as a general dog-and-cat pet rescue.
+
+RRR may involve:
+
+- immediate rescue needs;
+- recovery and rehabilitation support;
+- nutrition, housing, and responsible care;
+- behavioral observation;
+- owner/steward education;
+- appropriate long-term care or placement; and
+- digital storytelling or education when that use is appropriate and does not interfere with the animal's welfare.
+
+### Boundary from Roots, Boots & Animal Poops
+
+Rebel Ranch Rescue and the agricultural program operate alongside one another, but they are not the same program.
+
+- Not every animal at Rebel Ranch is a rescue.
+- Agricultural livestock must not be represented as rescue livestock merely because both programs operate under RRM.
+- Animals raised as part of the food/agricultural system and animals entering through RRR have different program roles and must be described truthfully.
+- A rescue experience may generate Roots, Boots or Academy education when appropriate, but education is secondary to responsible animal care.
+
+### Educational connection
+
+Appropriate rescue experiences may teach people about responsible ownership, animal behavior, nutrition, housing, recovery, lifecycles, common mistakes, stewardship, and decision-making.
+
+A common path may be:
+
+```text
+Rebel Ranch Rescue
+→ real-world observation and stewardship
+→ Roots, Boots & Animal Poops learning where relevant
+→ Rebel Ranch Academy structured education
+→ digital delivery through YouTube and other approved media
+```
+
+This is a connection, not a required sequence and not permission to merge the program identities.
+
+## 10. How people move through the ecosystem
 
 These are pathways, not mandatory sequences:
 
@@ -281,7 +387,7 @@ Creation Station
 ```text
 Free Marketplace application
 → approval
-→ listing, discovery, and direct buyer inquiries
+→ listing, discovery, order requests, and direct buyer inquiries
 → Academy education when business or financial skills are needed
 → Business Freedom when immediate practical help is needed
 ```
@@ -294,17 +400,37 @@ Business Freedom for immediate relief
 → Marketplace if the business fits the small-local-seller mission
 ```
 
-## 9. Program roles in the sustainability model
+### Agriculture / sustainability learner
+
+```text
+Roots, Boots & Animal Poops real-world work
+→ digital documentation / YouTube
+→ Academy structured learning
+→ family or individual application where appropriate
+```
+
+### Farm-animal rescue follower or learner
+
+```text
+Rebel Ranch Rescue
+→ recovery / stewardship story
+→ appropriate agricultural or lifecycle learning
+→ Academy / digital education where relevant
+```
+
+## 11. Program roles in the sustainability model
 
 - **Creation Station:** paid memberships, classes, services, and personal creator-page opportunities; creative development and a potential revenue stream for Rebel Ranch Ministries.
-- **Marketplace:** free access and free approved listings; local visibility, participation, trust, referrals, and awareness.
+- **Marketplace:** free access and free approved listings; local visibility, participation, trust, referrals, direct buyer-to-seller order/inquiry paths, and awareness.
 - **Academy:** paid education and support; another potential revenue stream for Rebel Ranch Ministries.
 - **Business Freedom:** paid practical business support and an additional Rebel Ranch Ministries revenue stream.
+- **Roots, Boots & Animal Poops:** working agriculture, food production, sustainability education, ministry/community food support, and future approved food-share, animal, produce, and agricultural market opportunities.
+- **Rebel Ranch Rescue:** farm-animal rescue, recovery, stewardship, appropriate placement/care, and related education where appropriate.
 - **3P Help Me:** separate for-profit business and donated-service partner; not a Rebel Ranch Ministries program or ministry revenue account.
 
 Do not promise that a participant will eliminate expenses, recover all costs, become profitable, or support a family. The programs provide tools and opportunities, not guaranteed financial outcomes.
 
-## 10. Naming and boundary rules
+## 12. Naming and boundary rules
 
 - **Creation Station:** the full creative-development program.
 - **Creation Station dashboard:** the interactive working environment for projects, progress, portfolios, resources, and related tools.
@@ -313,24 +439,28 @@ Do not promise that a participant will eliminate expenses, recover all costs, be
 - **Rebel Ranch Marketplace:** the free, curated local-seller platform.
 - **Rebel Ranch Academy:** the education program.
 - **Business Freedom:** immediate practical support for struggling small businesses.
+- **Roots, Boots & Animal Poops:** the working RRM agricultural program involving livestock, produce, food, land, soil, water, lifecycles, sustainability, and real-world agricultural education.
+- **Rebel Ranch Rescue / RRR:** the farm-animal rescue, recovery, stewardship, and appropriate care/placement program.
 - **3P Help Me:** the owner's separate for-profit business and donated-service partner.
 
-Do not casually replace these names with “store,” “website,” “creator pages,” or another label when that change could blur which product or program is being discussed.
+Do not casually replace these names with “store,” “website,” “creator pages,” “farm,” “class,” or another label when that change could blur which product or program is being discussed.
 
-## 11. Design boundaries
+## 13. Design boundaries
 
-Detailed styling rules belong in separate, approved visual-standard documents. The Creation Station public-marketing baseline identified below is approved; other program surfaces remain governed by their own approved rules or remain open decisions.
+Detailed styling rules belong in separate, approved visual-standard documents.
 
-- Rebel Ranch Ministries, Creation Station, Marketplace, Academy, and personal creator pages must not be assumed to share one visual system.
+- Rebel Ranch Ministries, Creation Station, Marketplace, Academy, personal creator pages, Roots, Boots & Animal Poops, and Rebel Ranch Rescue must not be assumed to share one visual system merely because they connect.
 - Creation Station is an intentional sub-brand separate from the main Rebel Ranch Ministries appearance.
 - The current `creation.html` public-marketing page is the approved Creation Station reference. Its shared public header, borderless gradient-button family, rainbow hamburger, footer, Rebel Ranch Ministries return path, and clickable earnings disclaimer are owner-locked in `docs/creation-station-visual-rules.md`.
 - Creation Station must serve young creators, teens, and adults without making the whole brand childish or overly corporate.
 - A paid Creation Station Studio personal page may be more individually expressive than a Marketplace listing.
 - Marketplace listings must remain within approved Marketplace templates.
+- `programs.html` is an RRM-level hub and follows the locked main RRM visual system in `docs/rrm-visual-rules.md`.
 - Cross-program links must make the destination clear so users understand when they are moving into another program.
 - Do not import a color, component, layout, or tone from one program merely because the programs connect.
+- Do not use non-clickable pill-shaped labels, badges, or decorative chips anywhere in new web work. Pill shapes are reserved for clickable controls.
 
-## 12. Confirmed rules agents must preserve
+## 14. Confirmed rules agents must preserve
 
 1. Keep every task within the owner's stated scope.
 2. Read this charter and the relevant program standards before acting.
@@ -344,8 +474,13 @@ Detailed styling rules belong in separate, approved visual-standard documents. T
 10. Do not promise profit, sales, cost recovery, or income.
 11. Do not combine 3P Help Me finances with Rebel Ranch Ministries finances.
 12. Do not implement an open decision without explicit owner approval.
+13. Preserve Roots, Boots & Animal Poops as a working agricultural program, not merely an Academy course.
+14. Preserve Rebel Ranch Rescue as a farm-animal rescue program separate from agricultural livestock raised as part of the food system.
+15. Do not hide or misrepresent the fact that the agricultural program may intentionally raise animals for food.
+16. Physical program work may generate educational content for Rebel Ranch Academy without becoming an Academy-owned program.
+17. Do not represent future food shares, animal sales, produce sales, community distribution mechanisms, or other agricultural offerings as currently available until separately launched and approved.
 
-## 13. Open decisions requiring owner approval
+## 15. Open decisions requiring owner approval
 
 - Final Creation Station tier names, prices, and benefit boundaries.
 - Exact method for moving selected portfolio content into a paid personal page.
@@ -356,16 +491,20 @@ Detailed styling rules belong in separate, approved visual-standard documents. T
 - Final Academy products, subscriptions, classes, prices, and curriculum structure.
 - Final Business Freedom offers, pricing, and service boundaries.
 - Phase Two AI assistant behavior, data storage, safeguards, and customization.
-- Final visual standards outside the locked Creation Station public-marketing baseline, including unsettled dashboard and program-specific experiences, plus Marketplace, Academy, and other program surfaces.
+- Final dedicated-page structure, offers, participation rules, and visual treatment for Roots, Boots & Animal Poops beyond the approved `programs.html` presentation.
+- Final dedicated-page structure, intake/placement processes, participation rules, funding model, and visual treatment for Rebel Ranch Rescue beyond the approved `programs.html` presentation.
+- Exact launch structure, legal/compliance requirements, pricing, quantities, eligibility, fulfillment, and scheduling for future food shares, produce sales, animal sales/placement, or other agricultural distribution.
+- Final visual standards outside the locked main RRM and Creation Station public baselines.
 
-## 14. Related project documents
+## 16. Related project documents
 
 Agents must read only the documents relevant to their assigned work, but this charter comes first.
 
 - `docs/brand-guide.md` — existing Rebel Ranch Ministries brand guidance and program-brand boundaries.
-- `docs/rrm-visual-rules.md` — current approved RRM public-site visual rules.
+- `docs/rrm-visual-rules.md` — current approved RRM public-site visual rules, including the approved Programs Hub extension.
+- `programs.html` — public RRM program ecosystem explanation and routing hub.
 - `docs/creation-station-visual-rules.md` — approved Creation Station public-marketing baseline and locked shared component rules.
 - `docs/phase-3-architecture.md` — Creation Station record and dashboard architecture.
 - `docs/phase-4-creation-station.md` — Creation Station dashboard presentation and access boundaries.
-- `docs/creation-station-handoff-2026-08-14.md` — current Creation Station status: what's built, what's left, and the working protocol. Read this for active work on the program.
+- `docs/creation-station-handoff-2026-08-14.md` — current Creation Station status: what's built, what's left, and the working protocol.
 - `docs/creation-station-studio-dashboard-handoff.md` — superseded historical planning notes (2026-07-27); useful background context only, but items may be outdated or undecided. This charter controls when any of these conflict unless the owner gives a newer explicit decision.
