@@ -4,19 +4,25 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Creation Station Studio</title>
-  <meta name="description" content="A young creator's own Creation Station Studio page — their story, their work, their way to sell what they make.">
+  <meta name="description" content="A Creation Station Studio page — the creator's story, work, products, and direct order-request path in one shareable place.">
   <link rel="stylesheet" href="assets/css/site-core.css">
   <link rel="stylesheet" href="assets/css/creation-station.css">
   <style>
     .studio-status-card { max-width: 40rem; margin: 6vh auto; padding: clamp(2rem, 5vw, 3.5rem); background: #fff; border: 1px solid var(--line); border-top: .3rem solid var(--pink); border-radius: 1.15rem; box-shadow: var(--shadow-soft); text-align: center; color: var(--purple-900); }
     .studio-fine-print { margin-top: 1rem; color: var(--text); font-size: .92rem; }
+    .studio-order-form fieldset { margin: 0; padding: .75rem; border: 1px solid var(--line); border-radius: .75rem; }
+    .studio-order-form legend { padding: 0 .3rem; color: var(--purple-900); font-weight: 900; }
+    .studio-order-form .order-choice-grid { display: grid; gap: .45rem; }
+    .studio-order-form .order-choice { display: flex; gap: .5rem; align-items: center; margin: 0; font-weight: 750; }
+    .studio-order-form .order-choice input { width: auto; margin: 0; accent-color: var(--teal); }
+    .studio-order-note { width: 100%; margin-top: .35rem; padding: .45rem .55rem; border: 1px solid var(--line); border-radius: .45rem; font: inherit; }
+    .studio-order-expectation { margin: .75rem 0 0; padding: .7rem .8rem; background: var(--sky); border-radius: .65rem; color: var(--ink); font-size: .86rem; font-weight: 750; line-height: 1.45; }
     .hidden { display: none !important; }
   </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
 
-  <!-- OWNER-LOCKED: Approved Creation Station public header. Preserve this structure and treatment unless the owner explicitly authorizes a change. See docs/creation-station-visual-rules.md. -->
   <header class="site-header topbar" data-site-nav>
     <div class="wrap site-nav">
       <a class="brand" href="creation.html" aria-label="Creation Station home">
@@ -64,7 +70,7 @@
             <nav class="studio-nav" aria-label="Studio page sections">
               <a href="#studio-story">Story</a>
               <a href="#studio-products">Products</a>
-              <a href="#studio-contact">Contact &amp; ordering</a>
+              <a href="#studio-contact">Order</a>
             </nav>
           </div>
           <div class="featured-products" id="studio-featured" aria-label="Featured products"></div>
@@ -81,21 +87,30 @@
           <div class="product-grid" id="studio-products"></div>
 
           <aside class="studio-cart" id="studio-contact">
-            <h3>Your cart</h3>
+            <h3>Build your order</h3>
+            <p class="studio-fine-print">Choose what you want, then send one clear order request to the creator or family.</p>
             <div id="studio-cart-items"></div>
             <div id="studio-cart-checkout" class="hidden">
-              <div id="studio-payment-link"></div>
-              <button class="btn preview" type="button" id="studio-order-toggle">Send Order Request</button>
+              <button class="btn preview" type="button" id="studio-order-toggle">Review &amp; Send Order</button>
               <form id="studio-order-form" class="hidden studio-order-form">
-                <label>Your name<input id="studio-order-name" required></label>
-                <label>Phone or email <span style="font-weight:400">so they can reply to you</span><input id="studio-order-contact"></label>
-                <label>Message <span style="font-weight:400">optional</span><textarea id="studio-order-message"></textarea></label>
-                <button class="btn primary" type="submit">Send Order Request</button>
+                <fieldset>
+                  <legend>How should you receive it?</legend>
+                  <div id="studio-fulfillment-options" class="order-choice-grid"></div>
+                </fieldset>
+                <label>Your name<input id="studio-order-name" autocomplete="name" required></label>
+                <label>Phone or email <span style="font-weight:400">so they can confirm your order</span><input id="studio-order-contact" required></label>
+                <label>Preferred date <span style="font-weight:400">optional</span><input id="studio-order-date" placeholder="Example: Saturday morning"></label>
+                <label id="studio-order-address-wrap" class="hidden">Delivery address<input id="studio-order-address" autocomplete="street-address"></label>
+                <label>Order note <span style="font-weight:400">optional</span><textarea id="studio-order-message" placeholder="Questions, colors, sizes, customization, or anything the creator should know."></textarea></label>
+                <p class="studio-order-expectation">This sends an order request. The creator or parent will confirm the total, fulfillment, and payment before the order is final.</p>
+                <button class="btn primary" type="submit">Send Order</button>
               </form>
+              <p id="studio-order-error" class="hidden studio-order-confirm" role="alert"></p>
               <p id="studio-order-confirm" class="hidden studio-order-confirm" role="status"></p>
             </div>
             <div class="studio-info-card" style="margin-top:1.2rem">
               <h3>Payment</h3>
+              <p class="studio-fine-print" style="margin-top:0">Payment goes directly to the creator or family after they confirm your order.</p>
               <div id="studio-payment"></div>
             </div>
             <div class="studio-info-card" style="margin-top:.7rem">
@@ -106,14 +121,13 @@
               <h3>Find Them Online</h3>
               <div id="studio-links"></div>
             </div>
-            <p class="studio-fine-print">Payment and delivery happen directly with the creator and their family — Rebel Ranch Ministries hosts this page but is not part of the transaction. No sales or income are guaranteed.</p>
+            <p class="studio-fine-print">Rebel Ranch Ministries provides the Studio page and order-request tools. Payment and fulfillment happen directly with the creator or family.</p>
           </aside>
         </div>
       </article>
     </div>
   </main>
 
-  <!-- OWNER-LOCKED: Shared Creation Station footer. Maintain the component in assets/components/creation-station-footer/. -->
   <div data-creation-station-footer></div>
 
   <script src="assets/components/creation-station-footer/footer.js?v=20260803-1" defer></script>
