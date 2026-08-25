@@ -9,52 +9,6 @@ const cors={
 };
 const json=(body:unknown,status=200)=>new Response(JSON.stringify(body),{status,headers:{...cors,'Content-Type':'application/json'}});
 const clean=(value:unknown,max=2000)=>String(value??'').trim().slice(0,max);
-const dashboardUrl='https://rebelranchministries.org/marketplace-seller-dashboard.html#orders';
-
-async function notifySeller(admin:any,ownerUserId:string,orderNumber:string){
-  const tasks:Promise<unknown>[]=[];
-  const resendKey=Deno.env.get('RESEND_API_KEY');
-  if(resendKey){
-    tasks.push((async()=>{
-      const {data,error}=await admin.auth.admin.getUserById(ownerUserId);
-      if(error)throw error;
-      const email=data.user?.email;
-      if(!email)return;
-      const response=await fetch('https://api.resend.com/emails',{
-        method:'POST',
-        headers:{Authorization:`Bearer ${resendKey}`,'Content-Type':'application/json'},
-        body:JSON.stringify({
-          from:'Rebel Ranch Local <noreply@rebelranchministries.org>',
-          to:[email],
-          subject:`New Rebel Ranch Local order ${orderNumber}`,
-          html:`<p>You received a new Rebel Ranch Local order.</p><p><strong>Order ${orderNumber}</strong></p><p><a href="${dashboardUrl}">Sign in to review and respond</a></p><p>Customer and order details remain private inside your seller dashboard.</p>`
-        })
-      });
-      if(!response.ok)throw new Error(`Resend notification failed: ${response.status} ${await response.text()}`);
-    })());
-  }
-  const oneSignalAppId='3d048078-bf37-42ff-a1b7-3c1994cc62af';
-  const oneSignalKey=Deno.env.get('ONESIGNAL_REST_API_KEY');
-  if(oneSignalKey){
-    tasks.push((async()=>{
-      const response=await fetch('https://api.onesignal.com/notifications',{
-        method:'POST',
-        headers:{Authorization:`Key ${oneSignalKey}`,'Content-Type':'application/json'},
-        body:JSON.stringify({
-          app_id:oneSignalAppId,
-          include_aliases:{external_id:[ownerUserId]},
-          target_channel:'push',
-          headings:{en:'New Rebel Ranch Local order'},
-          contents:{en:`Order ${orderNumber} is ready for review.`},
-          url:dashboardUrl
-        })
-      });
-      if(!response.ok)throw new Error(`OneSignal notification failed: ${response.status} ${await response.text()}`);
-    })());
-  }
-  const results=await Promise.allSettled(tasks);
-  results.forEach(result=>{if(result.status==='rejected')console.error(result.reason)});
-}
 
 Deno.serve(async(req)=>{
   if(req.method==='OPTIONS')return new Response('ok',{headers:cors});
@@ -71,7 +25,7 @@ Deno.serve(async(req)=>{
     if(!Array.isArray(payload.items)||payload.items.length<1||payload.items.length>50)return json({error:'Add at least one item.'},400);
 
     const admin=createClient(Deno.env.get('SUPABASE_URL')!,Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,{auth:{persistSession:false}});
-    const {data:seller}=await admin.from('seller_profiles').select('id,owner_user_id,profile_status,public_slug').eq('id',sellerId).eq('profile_status','active').not('public_slug','is',null).maybeSingle();
+    const {data:seller}=await admin.from('seller_profiles').select('id,profile_status,public_slug').eq('id',sellerId).eq('profile_status','active').not('public_slug','is',null).maybeSingle();
     if(!seller)return json({error:'This seller is not currently accepting marketplace orders.'},404);
     const listingIds=payload.items.map((x:any)=>clean(x.listing_id,36));
     const {data:listings,error:listError}=await admin.from('seller_listings').select('id,listing_type,title,price_label,unit_price,price_type').eq('seller_profile_id',sellerId).eq('is_active',true).in('id',listingIds);
@@ -104,7 +58,7 @@ Deno.serve(async(req)=>{
       photo_object_paths:photoPath?[photoPath]:[],estimated_total:estimatedTotal
     }).select('order_number').single();
     if(error){if(photoPath)await admin.storage.from('marketplace-order-private').remove([photoPath]);throw error;}
-    await notifySeller(admin,seller.owner_user_id,order.order_number);
     return json({order_number:order.order_number});
   }catch(error){console.error(error);return json({error:'The order could not be sent. Please try again.'},500);}
 });
+

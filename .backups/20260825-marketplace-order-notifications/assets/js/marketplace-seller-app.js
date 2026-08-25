@@ -5,28 +5,6 @@ import {supabase} from './supabase-client.js';
 const $=id=>document.getElementById(id);
 const state={identity:null,data:null,adminData:null,view:'status',busy:false};
 const routes=['status','listings','orders','questions','requirements','programs','notifications','history','admin'];
-const oneSignalAppId='3d048078-bf37-42ff-a1b7-3c1994cc62af';
-let oneSignalClient=null;
-
-function connectOrderAlerts(userId){
-  window.OneSignalDeferred=window.OneSignalDeferred||[];
-  window.OneSignalDeferred.push(async OneSignal=>{
-    try{
-      await OneSignal.init({appId:oneSignalAppId,allowLocalhostAsSecureOrigin:false});
-      await OneSignal.login(userId);
-      oneSignalClient=OneSignal;
-      const button=$('enable-order-alerts');
-      const update=()=>{
-        const enabled=OneSignal.Notifications.permission;
-        button.textContent=enabled?'Order alerts enabled':'Enable order alerts';
-        button.disabled=enabled;
-        button.classList.remove('hidden');
-      };
-      update();
-      OneSignal.Notifications.addEventListener('permissionChange',update);
-    }catch(error){console.error('OneSignal setup failed',error)}
-  });
-}
 
 function message(text,error=false){
   const el=$('app-status');
@@ -555,12 +533,7 @@ function bindOnboardingForm(){
   };
 }
 
-$('enable-order-alerts').onclick=async()=>{
-  if(!oneSignalClient){message('Order alerts are still loading. Try again in a moment.',true);return}
-  try{await oneSignalClient.Notifications.requestPermission()}
-  catch(error){message('Your browser could not enable order alerts. Check its notification settings.',true)}
-};
-$('signout').onclick=async()=>{if(oneSignalClient)await oneSignalClient.logout();await actions.signOut();location.href='account.html'};
+$('signout').onclick=async()=>{await actions.signOut();location.href='account.html'};
 $('header-feedback-btn').onclick=()=>$('feedback-dialog').showModal();
 $('feedback-close').onclick=()=>$('feedback-dialog').close();
 $('feedback-cancel').onclick=()=>$('feedback-dialog').close();
@@ -600,7 +573,6 @@ async function init(){
       return;
     }
     state.data=await loadSellerWorkspace(state.identity);
-    connectOrderAlerts(state.identity.user.id);
     if(state.identity.isAdmin)state.adminData=await loadSellerAdminSummary();
     const sp=state.identity.sellerProfile;
     if(sp.profile_status==='active'&&sp.public_slug){
