@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Creation Station | Parent Experience &amp; Interactive Preview</title>
+<meta name="description" content="See how Creation Station turns creativity into independent, hands-on progress through guided projects, real-life skills, parent visibility, and an interactive dashboard preview.">
+<style>
+:root{
+  --purple:#6b3bb0;--purple-dark:#3d2471;--purple-soft:#e7d9ff;--teal:#00a7b7;--teal-soft:#d8faf8;
+  --pink:#ef6aa7;--pink-soft:#ffe2f0;--orange:#f9a03f;--gold:#ffc857;--cream:#fff6e5;--paper:#fffdf7;
+  --ink:#241c2f;--muted:#61566d;--line:#e8ddf2;--green:#74c956;--shadow:0 18px 40px rgba(61,36,113,.14);--shadow2:0 9px 22px rgba(36,28,47,.10)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif;background:
+radial-gradient(circle at 8% 8%,rgba(239,106,167,.17),transparent 24%),
+radial-gradient(circle at 88% 8%,rgba(0,167,183,.18),transparent 24%),
+linear-gradient(135deg,#fffaf0 0%,#f8f0ff 45%,#ecfbfb 100%);min-height:100vh}a{color:inherit}.skip{position:absolute;left:-9999px}.skip:focus{left:18px;top:18px;z-index:999;background:#fff;border:3px solid var(--purple);padding:12px 16px;border-radius:12px}.page{max-width:1240px;margin:0 auto;padding:20px}
+.demo-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-left:8px solid var(--gold);border-radius:18px;padding:14px 16px;box-shadow:var(--shadow2);margin-bottom:18px}.demo-bar strong{color:var(--purple-dark);font-size:1.05rem}.demo-bar p{margin:3px 0 0;color:var(--muted);font-size:.91rem;font-weight:720}.demo-actions{display:flex;gap:9px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:12px 17px;border:0;border-radius:16px;background:#fff;color:var(--purple-dark);font-weight:1000;text-decoration:none;box-shadow:var(--shadow2);cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}.btn:hover,.btn:focus-visible{transform:translateY(-2px);outline:3px solid rgba(255,200,87,.55);outline-offset:2px}.btn.primary{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}.btn.alt{background:var(--gold);color:#3a255b}.btn.teal{background:linear-gradient(135deg,var(--teal),#16c2cd);color:#fff}.btn.dark{background:var(--purple-dark);color:#fff}.btn.locked{background:linear-gradient(135deg,#34233f,#68467d);color:#fff}
+.hero{position:relative;overflow:hidden;border-radius:36px;background:linear-gradient(130deg,rgba(107,59,176,.97),rgba(61,36,113,.96) 44%,rgba(0,167,183,.91));color:#fff;padding:30px;box-shadow:var(--shadow);min-height:420px}.hero:before{content:"";position:absolute;inset:-30px;background:radial-gradient(circle at 80% 18%,rgba(255,200,87,.38),transparent 18%),radial-gradient(circle at 24% 78%,rgba(239,106,167,.34),transparent 17%),repeating-linear-gradient(-18deg,transparent 0 28px,rgba(255,255,255,.04) 28px 30px);pointer-events:none}.brand-row{position:relative;z-index:1;display:flex;align-items:center;gap:18px}.logo-wrap{width:116px;height:116px;display:grid;place-items:center;background:#fff;border-radius:28px;padding:10px;box-shadow:0 14px 30px rgba(0,0,0,.17);flex:0 0 auto}.logo-wrap img{max-width:100%;max-height:100%;object-fit:contain}.kicker{font-weight:1000;letter-spacing:.11em;text-transform:uppercase;color:#ffe7a8;font-size:.84rem}.hero h1{font-size:clamp(2.7rem,6vw,5.7rem);line-height:.88;margin:12px 0 10px;letter-spacing:-.075em;text-shadow:0 5px 0 rgba(0,0,0,.10)}.hero p{font-size:1.12rem;max-width:780px;line-height:1.55;margin:0;color:#fff8e8}.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:center;margin-top:20px}.quick-actions{display:flex;gap:11px;flex-wrap:wrap}.robot-stage{min-height:270px;background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.27);border-radius:34px;padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:center;backdrop-filter:blur(8px)}.robot-bubble{background:#fff;color:var(--ink);padding:18px;border-radius:22px;box-shadow:var(--shadow2);font-weight:850;line-height:1.4;position:relative}.robot-bubble:after{content:"";position:absolute;right:-14px;top:54px;border-width:12px 0 12px 16px;border-style:solid;border-color:transparent transparent transparent #fff}.robot-svg{width:100%;max-width:250px;margin:auto;display:block;filter:drop-shadow(0 14px 16px rgba(0,0,0,.18))}
+.sticky-tracker{position:sticky;top:10px;z-index:20;margin:18px 0;background:rgba(255,253,247,.95);border:1px solid rgba(107,59,176,.14);border-radius:27px;box-shadow:0 13px 30px rgba(61,36,113,.14);padding:12px;backdrop-filter:blur(14px)}.tracker{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.step-btn{border:2px solid var(--line);background:#fff;color:var(--purple-dark);border-radius:18px;min-height:72px;padding:10px;cursor:pointer;font-weight:1000;text-align:left;box-shadow:var(--shadow2);transition:.2s ease}.step-btn small{display:block;color:var(--muted);font-weight:800;margin-top:2px}.step-btn:hover,.step-btn:focus-visible{outline:3px solid rgba(255,200,87,.55);transform:translateY(-2px)}.step-btn.active{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;border-color:#fff;box-shadow:0 0 0 4px rgba(255,200,87,.6),var(--shadow2)}.step-btn.active small{color:#fff7e8}.step-btn.done{background:linear-gradient(135deg,#fff,#e9fff8);border-color:var(--teal)}.step-btn.done:after{content:"✓";float:right;background:var(--green);color:#fff;width:24px;height:24px;border-radius:50%;text-align:center;line-height:24px}.progress-strip{margin-top:12px;background:#eee8f6;height:15px;border-radius:7px;overflow:hidden}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--pink),var(--gold));transition:width .3s ease}
+.section{margin:26px 0;background:rgba(255,255,255,.79);border:1px solid rgba(232,221,242,.9);border-radius:34px;box-shadow:var(--shadow);overflow:hidden}.section-head{padding:23px 25px;background:linear-gradient(90deg,rgba(255,226,240,.87),rgba(216,250,248,.84));border-bottom:1px solid var(--line)}.section-title{display:flex;align-items:center;gap:13px;margin:0;color:var(--purple-dark);font-size:clamp(1.6rem,3vw,2.5rem);letter-spacing:-.045em}.mark{width:48px;height:48px;border-radius:16px;background:var(--purple);display:grid;place-items:center;color:#fff;box-shadow:0 8px 0 rgba(107,59,176,.18);flex:0 0 auto}.section-body{padding:24px}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}.card{background:var(--paper);border:2px solid rgba(107,59,176,.10);border-radius:25px;padding:18px;box-shadow:var(--shadow2);position:relative;overflow:hidden}.card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 94% 8%,rgba(255,200,87,.18),transparent 20%);pointer-events:none}.card>*{position:relative}.col-3{grid-column:span 3}.col-4{grid-column:span 4}.col-5{grid-column:span 5}.col-6{grid-column:span 6}.col-7{grid-column:span 7}.col-8{grid-column:span 8}.col-12{grid-column:span 12}h2,h3,h4{margin-top:0}h3{font-size:1.35rem;color:var(--purple-dark)}p{line-height:1.56}.note{font-size:.92rem;color:var(--muted);line-height:1.5}label{font-weight:950;display:block;margin:12px 0 7px;color:var(--purple-dark)}input[type="text"],textarea,select{width:100%;border:2px solid var(--line);border-radius:15px;background:#fff;padding:13px 14px;font:inherit;color:var(--ink);outline:none}textarea{min-height:92px;resize:vertical}input:focus,textarea:focus,select:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(0,167,183,.15)}.choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0}.choice{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--line);border-radius:15px;padding:10px 12px;font-weight:850;cursor:pointer}.choice input{accent-color:var(--purple)}.color-row{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}.color-btn{width:46px;height:46px;border-radius:14px;border:3px solid #fff;box-shadow:0 0 0 2px var(--line),var(--shadow2);cursor:pointer}.color-btn.selected{box-shadow:0 0 0 4px var(--gold),var(--shadow2);transform:scale(1.06)}.color-picker-wrap{margin:12px 0 2px;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;background:#fff;border:2px solid var(--line);border-radius:18px;padding:12px}.color-picker-wrap label{margin:0}input[type="color"]{width:68px;height:58px;border:0;background:transparent;cursor:pointer;padding:0}.selected-color-line{display:flex;gap:10px;align-items:center;font-weight:900;color:var(--muted);font-size:.95rem}.selected-color-swatch{width:30px;height:30px;border-radius:9px;border:3px solid #fff;box-shadow:0 0 0 2px var(--line)}.doodle-box{min-height:180px;border:3px dashed rgba(107,59,176,.35);border-radius:22px;background:linear-gradient(135deg,#fff,#fff7fb);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:900;text-align:center;padding:20px}.bot-preview{min-height:210px;border:4px solid var(--purple);border-radius:28px;background:linear-gradient(135deg,#fff,#edfffd);display:grid;place-items:center;padding:20px;text-align:center;transition:border-color .2s ease}.bot-preview strong{font-size:1.55rem}.you-are-here{background:linear-gradient(135deg,#fff,#fff4df);border:2px solid rgba(255,200,87,.55);border-radius:23px;padding:17px;margin-bottom:18px;display:flex;gap:14px;align-items:flex-start}.boost{background:linear-gradient(135deg,var(--purple-dark),var(--purple));color:#fff;border-radius:23px;padding:18px;box-shadow:var(--shadow2);position:relative;overflow:hidden}.boost:after{content:"★";position:absolute;right:18px;bottom:-8px;font-size:5rem;color:rgba(255,200,87,.22)}.boost strong{color:#ffe7a8}.boost p{position:relative;z-index:1}.project-shell{display:grid;grid-template-columns:260px 1fr;gap:18px}.project-nav{position:sticky;top:126px;align-self:start;background:#fff;border:1px solid var(--line);border-radius:22px;padding:12px;box-shadow:var(--shadow2)}.project-nav button{width:100%;text-align:left;border:0;border-radius:13px;background:transparent;padding:12px;font:inherit;font-weight:950;color:var(--purple-dark);cursor:pointer}.project-nav button:hover,.project-nav button:focus-visible{background:#f7f0ff;outline:none}.project-nav button.active{background:linear-gradient(135deg,var(--teal),var(--purple));color:#fff}.project-panel{display:none}.project-panel.active{display:block}.checkline{display:flex;gap:10px;align-items:flex-start;padding:11px;border-bottom:1px dashed var(--line);font-weight:850}.checkline input{margin-top:4px;accent-color:var(--teal)}.photo-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.photo-box{min-height:150px;border:3px dashed rgba(0,167,183,.35);border-radius:22px;background:linear-gradient(135deg,#fff,#edfffd);display:flex;align-items:center;justify-content:center;text-align:center;font-weight:900;color:var(--teal);padding:18px}.example{border-left:8px solid var(--pink);background:#fff;border-radius:22px;padding:18px;box-shadow:var(--shadow2)}.locked-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.locked-card{position:relative;overflow:hidden;background:linear-gradient(145deg,#fff,#f8f1ff);border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:var(--shadow2)}.locked-card:after{content:"Members";position:absolute;right:-35px;top:18px;transform:rotate(38deg);background:var(--purple-dark);color:#fff;padding:6px 46px;font-weight:1000;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase}.locked-card h3{padding-right:50px}.locked-card p{color:var(--muted)}.age-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.age-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:var(--shadow2)}.age-card strong{display:block;color:var(--purple-dark);font-size:1.2rem;margin-bottom:6px}.age-card p{font-size:.92rem;color:var(--muted);margin:0}.footer-note{text-align:center;padding:26px;color:var(--muted);font-weight:850}.confetti{position:fixed;inset:0;pointer-events:none;z-index:100;display:none}.confetti.show{display:block}.dot{position:absolute;width:12px;height:12px;border-radius:4px;animation:fall 900ms ease-in forwards}@keyframes fall{0%{transform:translateY(-30px) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(300deg);opacity:0}}
+@media(max-width:980px){.hero-grid,.robot-stage,.project-shell{grid-template-columns:1fr}.tracker{grid-template-columns:repeat(3,1fr)}.col-3,.col-4,.col-5,.col-6,.col-7,.col-8{grid-column:span 12}.locked-grid{grid-template-columns:1fr 1fr}.age-grid{grid-template-columns:1fr 1fr}.project-nav{position:relative;top:auto}.robot-bubble:after{display:none}}@media(max-width:650px){.page{padding:12px}.hero{padding:22px;border-radius:28px}.brand-row{align-items:flex-start}.logo-wrap{width:86px;height:86px}.tracker{grid-template-columns:1fr 1fr}.choice-grid,.photo-row,.locked-grid,.age-grid{grid-template-columns:1fr}.quick-actions .btn,.demo-actions .btn{width:100%}.demo-bar{display:block}.demo-actions{margin-top:12px}.section-body{padding:17px}.section-head{padding:19px}.section-title{align-items:flex-start}.sticky-tracker{top:4px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* OWNER-LOCKED: Creation Station experience-page design and colors approved 2026-08-02. Structure and behavior are unchanged. */
+:root{
+  --purple:#65299a;--purple-dark:#34105b;--purple-soft:#efe5ff;--teal:#0397a4;--teal-soft:#daf6f4;
+  --pink:#f04b98;--pink-soft:#ffe2ef;--orange:#f59b45;--gold:#f7c94c;--cream:#fff9f0;--paper:#fff;
+  --ink:#271b31;--muted:#594b61;--line:rgba(74,24,120,.18);--green:#74c956;
+  --shadow:0 1.5rem 4.5rem rgba(36,4,63,.18);--shadow2:0 .8rem 2rem rgba(36,4,63,.11);
+  --rainbow:linear-gradient(135deg,#f04b98 0%,#ff756d 20%,#f7c94c 43%,#b7d957 65%,#55d7d1 100%);
+  --primary:linear-gradient(135deg,#f04b98 0%,#ff756d 52%,#f7c94c 100%);
+  --purple-gradient:linear-gradient(135deg,#7b36ad 0%,#542083 48%,#2b0848 100%);
+  --deep-gradient:linear-gradient(145deg,#23043d 0%,#46106e 48%,#7f2586 100%)
+}
+html{background:#23043d}
+body{
+  color:var(--ink);font-family:"Segoe UI",ui-sans-serif,system-ui,-apple-system,Roboto,Arial,sans-serif;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.82),rgba(255,255,255,.94)),
+    linear-gradient(135deg,#ffe2ef 0%,#efe5ff 48%,#daf6f4 100%);
+  min-height:100vh
+}
+body:before{
+  content:"";position:fixed;z-index:-1;inset:0 0 auto;height:.42rem;background:var(--rainbow)
+}
+.page{width:min(1160px,calc(100% - 2rem));max-width:none;padding:1rem 0 0}
+.skip:focus{left:1rem;top:1rem;color:#fff;background:var(--purple-dark);border:0;border-radius:.85rem;box-shadow:0 0 0 4px #f7c94c}
+
+.demo-bar{
+  position:relative;overflow:hidden;margin:0 0 1rem;padding:1rem 1.1rem;color:#fff;
+  background:rgba(45,8,73,.97);border:1px solid rgba(255,255,255,.14);border-left:0;border-radius:1rem;
+  box-shadow:0 .7rem 2rem rgba(24,2,39,.24);backdrop-filter:blur(16px)
+}
+.demo-bar:before{content:"";position:absolute;inset:0 0 auto;height:.32rem;background:var(--rainbow)}
+.demo-bar strong{color:#fff;font-size:1.04rem;letter-spacing:-.01em}
+.demo-bar p{color:#e7d6ef;font-weight:700;line-height:1.5}
+.demo-actions{gap:.65rem}
+
+.btn{
+  min-height:3rem;padding:.78rem 1rem;border:0;border-radius:.85rem;background:#fff;color:var(--purple-dark);
+  font-weight:900;box-shadow:var(--shadow2);transition:transform .18s ease,background .18s ease,color .18s ease,box-shadow .18s ease
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 1rem 2.3rem rgba(36,4,63,.17)}
+.btn:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.btn.primary{color:#2f1634;background:var(--primary);border:0}
+.btn.primary:hover,.btn.primary:focus-visible{color:#fff;background:var(--purple-gradient);outline:0}
+.btn.alt{color:#3b2731;background:linear-gradient(135deg,#f7c94c,#ffdc72)}
+.btn.teal{color:#fff;background:linear-gradient(135deg,#057f8b,#20aea9);border:0}
+.btn.teal:hover,.btn.teal:focus-visible{color:#241c2d;background:#9af6ee;outline:0}
+.btn.dark{color:#fff;background:var(--purple-gradient)}
+.btn.locked{color:#fff;background:linear-gradient(135deg,#45205e,#692d88);border:0}
+.btn.locked:hover,.btn.locked:focus-visible{color:#241c2d;background:linear-gradient(135deg,#80eee5,#b8f5ed);outline:0}
+
+.hero{
+  min-height:0;padding:clamp(1.5rem,4vw,3rem);border-radius:1.75rem;
+  background:linear-gradient(135deg,#511c85 0%,#7131a4 40%,#a73793 72%,#ed4d92 100%);
+  box-shadow:0 2rem 5rem rgba(35,3,58,.28)
+}
+.hero:before{
+  inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:36px 36px;opacity:.7
+}
+.brand-row{gap:1.25rem}
+.logo-wrap{width:7rem;height:7rem;padding:.6rem;background:#fff;border-radius:1.35rem;box-shadow:0 1.25rem 3rem rgba(35,3,58,.28)}
+.kicker{color:#81eee4;font-size:.76rem;letter-spacing:.12em}
+.hero h1{max-width:52rem;margin:.55rem 0 .8rem;font-size:clamp(3rem,7.2vw,6.3rem);line-height:.88;letter-spacing:-.075em;text-shadow:none}
+.hero p{max-width:46rem;color:#fbf4fc;font-size:1.05rem;font-weight:700;line-height:1.65}
+.hero-grid{grid-template-columns:1fr;gap:1.5rem;margin-top:1.6rem}
+.quick-actions{gap:.65rem}
+.robot-stage{
+  min-height:0;grid-template-columns:1.05fr .95fr;padding:1.1rem;
+  background:linear-gradient(135deg,rgba(255,255,255,.93),rgba(218,246,244,.92));
+  border:1px solid rgba(255,255,255,.65);border-radius:1.35rem;box-shadow:0 1.5rem 4rem rgba(35,3,58,.24);backdrop-filter:blur(12px)
+}
+.robot-bubble{color:var(--purple-dark);border:1px solid var(--line);border-radius:1rem;box-shadow:var(--shadow2)}
+.robot-bubble:after{border-color:transparent transparent transparent #fff}
+.robot-svg{max-width:13rem;filter:drop-shadow(0 1rem 1rem rgba(36,4,63,.2))}
+
+.sticky-tracker{
+  top:.5rem;margin:1rem 0;padding:.75rem;background:rgba(255,255,255,.96);border:1px solid var(--line);
+  border-radius:1.25rem;box-shadow:var(--shadow2);backdrop-filter:blur(14px)
+}
+.tracker{gap:.55rem}
+.step-btn{
+  min-height:4.5rem;padding:.72rem;border:1px solid var(--line);border-radius:.85rem;background:#fff;color:var(--purple-dark);box-shadow:none
+}
+.step-btn small{color:var(--muted);font-weight:700}
+.step-btn:hover,.step-btn:focus-visible{outline:0;border-color:var(--pink);background:var(--pink-soft);transform:translateY(-2px)}
+.step-btn.active{color:#fff;background:linear-gradient(135deg,#7b36ad,#f04b98);border-color:transparent;box-shadow:0 .65rem 1.5rem rgba(101,41,154,.22)}
+.step-btn.active small{color:#fff}
+.step-btn.done{background:linear-gradient(135deg,#fff,#e6fbf8);border-color:var(--teal)}
+.progress-strip{height:.65rem;margin-top:.7rem;background:#e8dff0;border-radius:999px}
+.progress-fill{background:var(--rainbow)}
+
+.section{
+  margin:1.15rem 0;background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:1.5rem;
+  box-shadow:var(--shadow);overflow:hidden
+}
+.section:nth-of-type(2){background:linear-gradient(145deg,#fff 0%,#fbf8ff 62%,#edf9f8 100%)}
+.section:nth-of-type(3){background:linear-gradient(145deg,#fff 0%,#fff5fa 100%)}
+.section:nth-of-type(4){background:linear-gradient(145deg,#fff 0%,#f2ebff 100%)}
+.section-head{padding:1.25rem 1.4rem;background:var(--purple-gradient);border:0;border-top:.35rem solid transparent;border-image:var(--rainbow) 1}
+.section-title{gap:.8rem;color:#fff;font-size:clamp(1.55rem,3vw,2.35rem);letter-spacing:-.045em}
+.mark{width:2.75rem;height:2.75rem;color:#2f1634;background:var(--primary);border-radius:.75rem;box-shadow:none}
+.section-body{padding:clamp(1rem,3vw,1.55rem)}
+.grid{gap:1rem}
+.card{
+  padding:1.2rem;background:#fff;border:1px solid var(--line);border-radius:1.1rem;box-shadow:var(--shadow2)
+}
+.card:before{inset:0 0 auto;height:.3rem;background:var(--rainbow)}
+h3{color:var(--purple-dark);letter-spacing:-.025em}
+p{line-height:1.62}
+.note{color:var(--muted)}
+label{color:var(--purple-dark);font-weight:900}
+input[type="text"],textarea,select{border:2px solid rgba(74,24,120,.17);border-radius:.8rem;background:#fff;color:var(--ink)}
+input:focus,textarea:focus,select:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(3,151,164,.14)}
+.choice{border:1px solid var(--line);border-radius:.8rem;background:#fbf8ff}
+.choice:hover{border-color:var(--pink);background:var(--pink-soft)}
+.choice input{accent-color:var(--pink)}
+.color-btn{border-radius:.75rem;border:3px solid #fff;box-shadow:0 0 0 2px var(--line),var(--shadow2)}
+.color-btn.selected{box-shadow:0 0 0 4px var(--gold),var(--shadow2)}
+.color-picker-wrap{border:1px solid var(--line);border-radius:1rem;background:#fbf8ff}
+.selected-color-swatch{border-radius:.5rem}
+.doodle-box{border:2px dashed rgba(101,41,154,.35);border-radius:1rem;background:linear-gradient(135deg,#fff,#fff4f9)}
+.bot-preview{min-height:21rem;border-color:var(--purple);border-radius:1.15rem;background:linear-gradient(135deg,#fff,#e8fbf8)}
+.companion-preview-art{display:grid;gap:.75rem;justify-items:center;width:100%}
+.companion-preview-svg{display:block;width:min(15rem,80%);filter:drop-shadow(0 1rem 1.25rem rgba(36,4,63,.2))}
+.companion-preview-art strong{font-size:1.45rem;color:var(--purple-dark)}
+.companion-preview-art p{max-width:22rem;margin:0;color:var(--muted);font-weight:750}
+.companion-preview-words{position:relative;padding:.75rem 1rem;border:2px solid rgba(101,41,154,.22);border-radius:1rem;background:#fff;color:var(--purple-dark)!important}
+.companion-preview-words:before{content:"";position:absolute;left:50%;top:-.55rem;width:1rem;height:1rem;border-left:2px solid rgba(101,41,154,.22);border-top:2px solid rgba(101,41,154,.22);background:#fff;transform:translateX(-50%) rotate(45deg)}
+.boost{background:var(--purple-gradient);border-radius:1rem}
+.boost:after{color:rgba(247,201,76,.2)}
+.you-are-here{background:linear-gradient(135deg,#fff5fa,#fff9e4);border:1px solid rgba(247,201,76,.75);border-radius:1rem}
+.project-shell{gap:1rem}
+.project-nav{top:7.6rem;border:1px solid var(--line);border-radius:1rem;box-shadow:var(--shadow2)}
+.project-nav button{border-radius:.7rem;color:var(--purple-dark)}
+.project-nav button:hover,.project-nav button:focus-visible{background:var(--pink-soft)}
+.project-nav button.active{color:#fff;background:linear-gradient(135deg,#057f8b,#65299a)}
+.checkline{border-color:var(--line)}
+.checkline input{accent-color:var(--teal)}
+.photo-box{border:2px dashed rgba(3,151,164,.4);border-radius:1rem;background:linear-gradient(135deg,#fff,#e7faf8);color:#047f8b}
+.example{border-left:.42rem solid var(--pink);border-radius:.85rem;background:#fff9fc}
+.locked-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.locked-card{padding:1.25rem;background:#fff;border:1px solid var(--line);border-radius:1.1rem;box-shadow:var(--shadow2)}
+.locked-card:nth-child(1){border-top:.35rem solid var(--pink)}
+.locked-card:nth-child(2){border-top:.35rem solid var(--gold)}
+.locked-card:nth-child(3){border-top:.35rem solid var(--teal)}
+.locked-card:nth-child(4){border-top:.35rem solid var(--purple)}
+.locked-card:after{background:var(--purple-dark)}
+.age-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem}
+.age-card{padding:1.4rem}
+.age-card{padding:1.15rem;border:1px solid var(--line);border-radius:1rem;box-shadow:var(--shadow2)}
+.age-card:nth-child(1){border-top:.35rem solid var(--pink)}
+.age-card:nth-child(2){border-top:.35rem solid var(--gold)}
+.age-card:nth-child(3){border-top:.35rem solid var(--teal)}
+.age-card:nth-child(4){border-top:.35rem solid var(--purple)}
+.age-card strong{color:var(--purple-dark)}
+.footer-note{
+  margin-top:1.25rem;padding:1.4rem 1rem;color:#eadcf0;background:#23043d;border-top:.35rem solid transparent;
+  border-image:var(--rainbow) 1;font-weight:750
+}
+
+.parent-value{
+  margin:1.15rem 0;padding:clamp(1.25rem,3vw,2rem);color:#fff;background:var(--deep-gradient);
+  border-radius:1.5rem;box-shadow:var(--shadow);overflow:hidden;position:relative
+}
+.parent-value:before{content:"";position:absolute;inset:0 0 auto;height:.35rem;background:var(--rainbow)}
+.parent-value>*{position:relative}
+.parent-value-heading{display:grid;grid-template-columns:1fr;gap:1rem;max-width:56rem;margin:0 auto 1.25rem;text-align:center}
+.parent-value-kicker{margin:0 0 .45rem;color:#81eee4;font-size:.78rem;font-weight:1000;letter-spacing:.12em;text-transform:uppercase}
+.parent-value h2{margin:0 auto;color:#fff;font-size:clamp(2rem,4.5vw,4rem);line-height:.94;letter-spacing:-.055em;text-align:center}
+.parent-value-heading>p{max-width:50rem;margin:0 auto;color:#efe3f3;font-weight:720;line-height:1.65;text-align:center}
+.parent-value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem}
+.parent-value-card{padding:1.1rem;background:rgba(255,255,255,.95);color:var(--ink);border:1px solid rgba(255,255,255,.7);border-radius:1rem;box-shadow:var(--shadow2)}
+.parent-value-card:nth-child(1){border-top:.35rem solid var(--pink)}
+.parent-value-card:nth-child(2){border-top:.35rem solid var(--gold)}
+.parent-value-card:nth-child(3){border-top:.35rem solid var(--teal)}
+.parent-value-card strong{display:block;margin-bottom:.45rem;color:var(--purple-dark);font-size:1.08rem}
+.parent-value-card p{margin:0;color:var(--muted);font-weight:700}
+.benefit-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.benefit-card{padding:1.15rem;background:#fff;border:1px solid var(--line);border-radius:1rem;box-shadow:var(--shadow2)}
+.benefit-card:nth-child(4n+1){border-left:.35rem solid var(--pink)}
+.benefit-card:nth-child(4n+2){border-left:.35rem solid var(--gold)}
+.benefit-card:nth-child(4n+3){border-left:.35rem solid var(--teal)}
+.benefit-card:nth-child(4n+4){border-left:.35rem solid var(--purple)}
+.benefit-card h3{margin-bottom:.45rem;font-size:1.15rem}
+.benefit-card p{margin:0;color:var(--muted);font-weight:700}
+.community-path{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
+.community-card,.growth-card{padding:1.25rem;border-radius:1rem}
+.community-card{background:linear-gradient(135deg,#e8fbf8,#fff);border:1px solid rgba(3,151,164,.22)}
+.growth-card{background:linear-gradient(135deg,#fff4fa,#fff9e5);border:1px solid rgba(240,75,152,.2)}
+.community-card h3,.growth-card h3{margin-bottom:.45rem}
+.community-card p,.growth-card p{margin:0;color:var(--muted);font-weight:700}
+.community-card .btn,.growth-card .btn{margin-top:1rem}
+.decision-cta{
+  display:grid;grid-template-columns:1fr auto;gap:1.25rem;align-items:center;margin:1.15rem 0 0;padding:clamp(1.25rem,3vw,2rem);
+  color:#fff;background:linear-gradient(135deg,#34105b 0%,#65299a 50%,#a73793 100%);border-radius:1.5rem;box-shadow:var(--shadow)
+}
+.decision-cta h2{margin:0 0 .5rem;color:#fff;font-size:clamp(1.8rem,3.5vw,3rem);letter-spacing:-.045em}
+.decision-cta p{max-width:48rem;margin:0;color:#f4eaf7;font-weight:720}
+.decision-actions{display:flex;gap:.65rem;flex-wrap:wrap;justify-content:flex-end}
+
+/* OWNER-LOCKED: Required entry transition for the interactive Creation Station preview. */
+.entry-overlay{
+  position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;flex-direction:column;
+  padding:1.5rem;color:#fff;text-align:center;
+  background:
+    radial-gradient(circle at 50% 38%,rgba(255,255,255,.12),transparent 20%),
+    linear-gradient(180deg,#22053e,#381060 60%,#160329)
+}
+.entry-overlay.active{display:flex}
+.entry-overlay img{width:min(15rem,48vw);filter:drop-shadow(0 1rem 2.1rem rgba(0,0,0,.32));animation:entryPulse 1.5s ease-in-out infinite alternate}
+.entry-overlay h2{margin:1.5rem 0 .5rem;color:#fff;font-size:clamp(2rem,4vw,3.6rem);letter-spacing:-.05em}
+.entry-overlay p{max-width:35rem;margin:0;color:#ede2f1;font-weight:720}
+.entry-progress{width:min(22.5rem,80vw);height:.875rem;margin-top:1.75rem;overflow:hidden;background:rgba(255,255,255,.16);border-radius:999px}
+.entry-progress span{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--pink),var(--gold),#55d7d1);animation:entryLoad 1.6s ease forwards}
+@keyframes entryPulse{from{transform:scale(.96)}to{transform:scale(1.04)}}
+@keyframes entryLoad{from{width:0}to{width:100%}}
+
+@media(min-width:64rem){
+  .hero-grid{grid-template-columns:.9fr 1.1fr;align-items:center}
+  .quick-actions{align-content:flex-start}
+}
+@media(max-width:980px){
+  .hero-grid,.robot-stage,.project-shell{grid-template-columns:1fr}
+  .tracker{grid-template-columns:repeat(3,1fr)}
+  .col-3,.col-4,.col-5,.col-6,.col-7,.col-8{grid-column:span 12}
+  .locked-grid{grid-template-columns:1fr 1fr}.age-grid{grid-template-columns:1fr 1fr}
+  .parent-value-heading,.decision-cta{grid-template-columns:1fr}.decision-actions{justify-content:flex-start}
+  .project-nav{position:relative;top:auto}.robot-bubble:after{display:none}
+}
+@media(max-width:650px){
+  .page{width:min(100% - 1rem,1160px);padding-top:.5rem}
+  .demo-bar{border-radius:.85rem}.demo-actions{margin-top:.85rem}.demo-actions .btn{width:100%}
+  .hero{padding:1.15rem;border-radius:1.25rem}.brand-row{display:grid;grid-template-columns:4.4rem 1fr;gap:.85rem}
+  .logo-wrap{width:4.4rem;height:4.4rem;border-radius:1rem}.hero h1{font-size:clamp(2.65rem,14vw,4.4rem)}
+  .hero-grid{margin-top:1.2rem}.quick-actions .btn{width:100%}.robot-stage{padding:.8rem}
+  .tracker{grid-template-columns:1fr 1fr}.sticky-tracker{top:.25rem;padding:.5rem;border-radius:1rem}
+  .section{border-radius:1.15rem}.section-head{padding:1rem}.section-body{padding:.9rem}.section-title{align-items:flex-start}
+  .choice-grid,.photo-row,.locked-grid,.age-grid,.parent-value-grid,.benefit-grid,.community-path{grid-template-columns:1fr}
+  .decision-actions .btn{width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+  .entry-overlay img{animation:none}.entry-progress span{width:100%;animation:none}
+}
+</style>
+</head>
+<body>
+<div class="entry-overlay" id="entryOverlay" aria-hidden="true" aria-live="polite">
+  <img src="assets/Creation Station Logo.png" alt="Creation Station logo">
+  <h2>Entering Creation Station</h2>
+  <p>You’re about to step into the limited dashboard demo and experience Creation Station from your child’s point of view.</p>
+  <div class="entry-progress" aria-label="Loading Creation Station"><span></span></div>
+</div>
+<a href="#main" class="skip">Skip to main content</a>
+<div class="page">
+  <div class="demo-bar">
+    <div><strong>Parent Demo · Limited Sample Experience</strong><p>This preview shows the dashboard style, customizable Creation Companion, tracker, and one sample project. The complete project library and member tools are not public.</p></div>
+    <div class="demo-actions"><a class="btn" href="creation.html">← Back to Creation Station</a><a class="btn primary" href="creation-station-membership.html">Join / Request Full Access</a></div>
+  </div>
+
+  <header class="hero" id="top">
+    <div class="brand-row">
+      <div class="logo-wrap"><img src="assets/Creation Station Logo.png" alt="Creation Station logo"></div>
+      <div><div class="kicker">Young Creators · Parent Demo</div><h1>Step into their creative journey.</h1><p>Customize a Creation Companion, move through the project tracker, and try one complete sample project. This is enough to understand the experience without opening the full member dashboard.</p></div>
+    </div>
+    <div class="hero-grid">
+      <div><div class="quick-actions"><a class="btn alt" href="#companion">Customize a Companion</a><a class="btn" href="#journey">Open the Tracker</a><a class="btn" href="#project">Try the Sample Project</a><a class="btn dark" href="#member-preview">See What Full Access Adds</a></div></div>
+      <div class="robot-stage" aria-label="Creation Companion concept art">
+        <div class="robot-bubble"><span id="heroCompanion">Your Creation Companion</span> says:<br><br>“I’m here to journey with you. Name me, design me, and let’s build something real.”</div>
+        <svg class="robot-svg" viewBox="0 0 320 320" role="img" aria-label="Friendly creative robot with art tools">
+          <defs><linearGradient id="botBody" x1="0" x2="1"><stop offset="0" stop-color="#6B3BB0"/><stop offset="1" stop-color="#00A7B7"/></linearGradient><linearGradient id="screen" x1="0" x2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#D8FAF8"/></linearGradient></defs>
+          <path d="M58 252c36 18 166 18 204 0" fill="none" stroke="#FFC857" stroke-width="18" stroke-linecap="round" opacity=".85"/>
+          <rect x="83" y="90" width="154" height="142" rx="40" fill="url(#botBody)"/>
+          <rect x="100" y="115" width="120" height="74" rx="22" fill="url(#screen)"/>
+          <circle cx="132" cy="150" r="11" fill="#3D2471"/><circle cx="188" cy="150" r="11" fill="#3D2471"/>
+          <path d="M137 171c15 12 31 12 46 0" fill="none" stroke="#EF6AA7" stroke-width="8" stroke-linecap="round"/>
+          <rect x="133" y="52" width="54" height="46" rx="17" fill="#FFC857"/><path d="M160 52V32" stroke="#fff" stroke-width="8" stroke-linecap="round"/><circle cx="160" cy="25" r="11" fill="#EF6AA7"/>
+          <path d="M82 143H52c-12 0-18 10-18 20v48" fill="none" stroke="#00A7B7" stroke-width="18" stroke-linecap="round"/>
+          <path d="M238 143h30c12 0 18 10 18 20v48" fill="none" stroke="#6B3BB0" stroke-width="18" stroke-linecap="round"/>
+          <path d="M64 208l-18 38M256 208l18 38" stroke="#FFC857" stroke-width="12" stroke-linecap="round"/>
+          <circle cx="46" cy="248" r="13" fill="#EF6AA7"/><circle cx="274" cy="248" r="13" fill="#F9A03F"/>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <section class="parent-value" id="why-it-matters" aria-labelledby="parent-value-title">
+    <div class="parent-value-heading">
+      <div>
+        <p class="parent-value-kicker">More Than a Craft</p>
+        <h2 id="parent-value-title">Creativity becomes meaningful progress.</h2>
+      </div>
+      <p>Children are not simply making something and moving on. Creation Station gives them a clear path from imagination to completion—while parents keep visibility and control without having to plan and supervise every step.</p>
+    </div>
+    <div class="parent-value-grid">
+      <article class="parent-value-card"><strong>Meaningful independent activity</strong><p>Visible next steps help children keep creating with more confidence and less parent project management.</p></article>
+      <article class="parent-value-card"><strong>Real-life skills inside the fun</strong><p>Planning, problem-solving, patience, organization, responsibility, and follow-through grow through hands-on work.</p></article>
+      <article class="parent-value-card"><strong>Screen time that leads to action</strong><p>Technology becomes a guide for making, documenting, reflecting, and doing something in the real world.</p></article>
+    </div>
+  </section>
+
+  <nav class="sticky-tracker" id="journey" aria-label="Sample project progress">
+    <div class="tracker">
+      <button class="step-btn active" data-stage="dream"><span>Dream It</span><small>Choose an idea</small></button>
+      <button class="step-btn" data-stage="plan"><span>Plan It</span><small>Think it through</small></button>
+      <button class="step-btn" data-stage="make"><span>Make It</span><small>Create the project</small></button>
+      <button class="step-btn" data-stage="capture"><span>Capture It</span><small>Photos + proof</small></button>
+      <button class="step-btn" data-stage="share"><span>Share It</span><small>Tell the story</small></button>
+      <button class="step-btn" data-stage="grow"><span>Grow It</span><small>Reflect + improve</small></button>
+    </div>
+    <div class="progress-strip" aria-hidden="true"><div class="progress-fill" id="journeyFill"></div></div>
+  </nav>
+
+  <main id="main">
+    <section class="section" id="companion">
+      <div class="section-head"><h2 class="section-title"><span class="mark">🤖</span> Customize a Creation Companion</h2></div>
+      <div class="section-body grid">
+        <div class="card col-7"><h3>Make a Companion that feels like yours.</h3><p>Name it, choose its colors, and give it encouraging words. This version is ready to personalize now; more interactive Companion guidance can be added in a later phase.</p><label for="botName">My companion’s name is</label><input id="botName" type="text" placeholder="Example: Pixel, Moxie, Captain Create, LunaBot"><label>My companion can cheer me on with</label><div class="choice-grid"><label class="choice"><input type="checkbox" value="ideas"> Ideas</label><label class="choice"><input type="checkbox" value="planning"> Planning</label><label class="choice"><input type="checkbox" value="making"> Making</label><label class="choice"><input type="checkbox" value="photos"> Photos</label><label class="choice"><input type="checkbox" value="writing"> Writing</label><label class="choice"><input type="checkbox" value="bravery"> Staying brave</label></div><label>Pick companion colors</label><p class="note">Choose a Creation Station color or open the color wheel.</p><div class="color-row"><button type="button" class="color-btn selected" data-color="#6B3BB0" style="background:#6B3BB0" aria-label="Purple"></button><button type="button" class="color-btn" data-color="#00A7B7" style="background:#00A7B7" aria-label="Teal"></button><button type="button" class="color-btn" data-color="#EF6AA7" style="background:#EF6AA7" aria-label="Pink"></button><button type="button" class="color-btn" data-color="#FFC857" style="background:#FFC857" aria-label="Gold"></button><button type="button" class="color-btn" data-color="#F9A03F" style="background:#F9A03F" aria-label="Orange"></button></div><div class="color-picker-wrap"><input id="customBotColor" type="color" value="#6B3BB0" aria-label="Choose a custom companion color"><div><label for="customBotColor">Custom color wheel</label><div class="selected-color-line"><span id="selectedColorSwatch" class="selected-color-swatch" aria-hidden="true"></span><span id="selectedColorText">Selected color: #6B3BB0</span></div></div></div><label for="catchphrase">What should your companion say?</label><input id="catchphrase" type="text" placeholder="Example: We can do it!" aria-describedby="companionWordsHelp"><p class="note" id="companionWordsHelp">These words will appear beside your Companion.</p><button class="btn primary" id="saveCompanion" type="button" style="margin-top:14px">Save My Companion</button><p class="note">Saved in this browser on this device for now. Clearing browser data will remove it.</p></div>
+        <div class="card col-5"><h3>Your Companion</h3><div class="bot-preview" id="botPreview"><div class="companion-preview-art"><svg class="companion-preview-svg" viewBox="0 0 320 320" role="img" aria-label="Customizable Creation Companion preview"><path d="M58 252c36 18 166 18 204 0" fill="none" stroke="#F7C94C" stroke-width="18" stroke-linecap="round" opacity=".85"/><rect id="previewBotBody" x="83" y="90" width="154" height="142" rx="40" fill="#65299A"/><rect x="100" y="115" width="120" height="74" rx="22" fill="#E8FBF8"/><circle cx="132" cy="150" r="11" fill="#34105B"/><circle cx="188" cy="150" r="11" fill="#34105B"/><path d="M137 171c15 12 31 12 46 0" fill="none" stroke="#F04B98" stroke-width="8" stroke-linecap="round"/><rect x="133" y="52" width="54" height="46" rx="17" fill="#F7C94C"/><path d="M160 52V32" stroke="#fff" stroke-width="8" stroke-linecap="round"/><circle cx="160" cy="25" r="11" fill="#F04B98"/><path id="previewBotArmLeft" d="M82 143H52c-12 0-18 10-18 20v48" fill="none" stroke="#0397A4" stroke-width="18" stroke-linecap="round"/><path id="previewBotArmRight" d="M238 143h30c12 0 18 10 18 20v48" fill="none" stroke="#65299A" stroke-width="18" stroke-linecap="round"/><path d="M64 208l-18 38M256 208l18 38" stroke="#F7C94C" stroke-width="12" stroke-linecap="round"/><circle cx="46" cy="248" r="13" fill="#F04B98"/><circle cx="274" cy="248" r="13" fill="#F59B45"/></svg><strong id="botPreviewName">My Companion</strong><p class="companion-preview-words" id="companionPreviewWords">“Start with the next small step.”</p></div></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="project">
+      <div class="section-head"><h2 class="section-title"><span class="mark">✦</span> Try One Complete Sample Project</h2></div>
+      <div class="section-body">
+        <div class="you-are-here"><span class="mark" style="width:42px;height:42px">→</span><div><strong id="stageTitle">You are at: Dream It</strong><div class="note" id="stageHelp">Choose what you want to make and why it matters to you.</div></div></div>
+        <div class="project-shell">
+          <nav class="project-nav" aria-label="Sample project sections"><button type="button" class="active" data-panel="dreamPanel">Dream It</button><button type="button" data-panel="planPanel">Plan It</button><button type="button" data-panel="makePanel">Make It</button><button type="button" data-panel="capturePanel">Capture It</button><button type="button" data-panel="sharePanel">Share It</button><button type="button" data-panel="growPanel">Grow It</button></nav>
+          <div>
+            <section class="project-panel active" id="dreamPanel"><div class="card"><h3>Sample project: Design a useful painted tote</h3><p>Turn a plain reusable tote into something useful, personal, and ready to photograph or gift.</p><label for="idea">What do you want the tote to say or show?</label><textarea id="idea" placeholder="A phrase, pattern, picture, theme, or purpose..."></textarea><label for="purpose">Who is it for, and how will they use it?</label><textarea id="purpose" placeholder="For me, a family member, groceries, books, art supplies..."></textarea><div class="example"><strong>Example:</strong> “I want to paint a garden tote for my grandmother. She can use it to carry seed packets and gloves.”</div><button class="btn teal complete-stage" type="button" data-complete="dream" style="margin-top:16px">Mark Dream It Complete</button></div></section>
+            <section class="project-panel" id="planPanel"><div class="card"><h3>Plan the project before opening the paint.</h3><div class="checkline"><input type="checkbox"><span>Choose the tote, fabric paint or markers, brushes, pencil, paper, and a protective work surface.</span></div><div class="checkline"><input type="checkbox"><span>Sketch the design on paper first.</span></div><div class="checkline"><input type="checkbox"><span>Decide which colors and words are most important.</span></div><div class="checkline"><input type="checkbox"><span>Ask an adult what needs supervision or protection.</span></div><label for="timePlan">How much time do you think it will take?</label><input id="timePlan" type="text" placeholder="Example: 45 minutes plus drying time"><label for="costPlan">What will you use, and what might it cost?</label><textarea id="costPlan" placeholder="List what you already have and what you would need to buy."></textarea><button class="btn teal complete-stage" type="button" data-complete="plan" style="margin-top:16px">Mark Plan It Complete</button></div></section>
+            <section class="project-panel" id="makePanel"><div class="card"><h3>Make it, solve problems, and keep moving.</h3><div class="checkline"><input type="checkbox"><span>Protect the table and place cardboard inside the tote.</span></div><div class="checkline"><input type="checkbox"><span>Lightly sketch or position the design.</span></div><div class="checkline"><input type="checkbox"><span>Paint or draw from the largest shapes to the smallest details.</span></div><div class="checkline"><input type="checkbox"><span>Pause, look from a distance, and decide what needs adjustment.</span></div><div class="checkline"><input type="checkbox"><span>Let the work dry and follow the material directions.</span></div><label for="problem">What problem came up, and what did you do?</label><textarea id="problem" placeholder="The paint bled, the letters were uneven, I changed the layout..."></textarea><button class="btn teal complete-stage" type="button" data-complete="make" style="margin-top:16px">Mark Make It Complete</button></div></section>
+            <section class="project-panel" id="capturePanel"><div class="card"><h3>Capture the work and the process.</h3><p>Members can upload and organize project evidence. In this public demo, use these boxes to see the intended flow.</p><div class="photo-row"><div class="photo-box">Photo 1<br>Beginning or materials</div><div class="photo-box">Photo 2<br>Work in progress</div><div class="photo-box">Photo 3<br>Finished project</div></div><label for="evidence">What should the photos prove or show?</label><textarea id="evidence" placeholder="How the design changed, how I solved a problem, the finished details..."></textarea><button class="btn teal complete-stage" type="button" data-complete="capture" style="margin-top:16px">Mark Capture It Complete</button></div></section>
+            <section class="project-panel" id="sharePanel"><div class="card"><h3>Tell the story behind what you made.</h3><label for="projectStory">Write a short creator story.</label><textarea id="projectStory" placeholder="I made this because... The hardest part was... I am proud that..."></textarea><label for="priceThought">Could this be sold, gifted, displayed, or used? Explain.</label><textarea id="priceThought" placeholder="I could gift it, use it, list it, or make another version..."></textarea><div class="example"><strong>Entrepreneurship thinking:</strong> Older students may also compare material cost, time, price, product description, and presentation.</div><button class="btn teal complete-stage" type="button" data-complete="share" style="margin-top:16px">Mark Share It Complete</button></div></section>
+            <section class="project-panel" id="growPanel"><div class="card"><h3>Reflect, improve, and carry the skill forward.</h3><label for="worked">What worked well?</label><textarea id="worked"></textarea><label for="improve">What would you change next time?</label><textarea id="improve"></textarea><label for="skill">What skill did you practice that you can use again?</label><textarea id="skill"></textarea><button class="btn alt complete-stage" type="button" data-complete="grow" style="margin-top:16px">Finish the Sample Journey</button></div></section>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="parent-proof">
+      <div class="section-head"><h2 class="section-title"><span class="mark">✦</span> What Parents Can See Taking Shape</h2></div>
+      <div class="section-body">
+        <p>What feels colorful and creative to a child has real structure underneath. Each stage helps turn an idea into finished work, visible progress, and skills that can be used again.</p>
+        <div class="benefit-grid">
+          <article class="benefit-card"><h3>Structure underneath the creativity</h3><p>The dashboard guides creators through choosing an idea, planning it, making it, documenting it, sharing its story, and reflecting on what they learned.</p></article>
+          <article class="benefit-card"><h3>Confidence built through completion</h3><p>Children learn that their ideas matter and that they can finish, explain, improve, and take pride in what they create.</p></article>
+          <article class="benefit-card"><h3>Visible progress with parent control</h3><p>Parents can follow relevant progress and finished work. For anyone under 18, a parent or guardian controls anything that could eventually become public.</p></article>
+          <article class="benefit-card"><h3>A private record of achievement</h3><p>Projects do not have to disappear into a drawer. Creators can document the process, preserve finished work, reflect on growth, and build a private portfolio.</p></article>
+          <article class="benefit-card"><h3>Business and financial foundations</h3><p>Age-appropriate guidance can introduce supplies, costs, inventory, pricing, presentation, branding, marketing, and the difference between spending money and building something with value.</p></article>
+          <article class="benefit-card"><h3>Problem-solving that transfers to life</h3><p>Projects strengthen critical thinking, decision-making, patience, organization, responsibility, communication, and follow-through.</p></article>
+        </div>
+        <div class="community-path">
+          <article class="community-card"><h3>A parent-aware creative place to connect</h3><p>Live online gatherings can give children a convenient place to make, talk, laugh, share ideas, ask questions, and spend time with other young creators who understand their interests.</p><a class="btn teal" href="creation-station-live-classes.html">Explore Live Sessions</a></article>
+          <article class="growth-card"><h3>A pathway that can grow with them</h3><p>A hobby can remain a meaningful creative outlet. When a creator and parent are ready, they can explore age-appropriate entrepreneurship learning and an optional paid Creation Station Studio page.</p><a class="btn primary" href="creation-station-membership.html">Start the Family Path</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="member-preview">
+      <div class="section-head"><h2 class="section-title"><span class="mark">🔒</span> What Full Member Access Adds</h2></div>
+      <div class="section-body"><p>This public page intentionally stops after one complete sample. These deeper tools remain behind the membership or access process.</p><div class="locked-grid"><article class="locked-card"><h3>Complete Project Library</h3><p>Age-matched projects across art, handmade products, digital creation, building, photography, sewing, cooking, and creative business.</p><a class="btn locked" href="creation-station-membership.html">Request Library Access</a></article><article class="locked-card"><h3>Long-Term Progress Records</h3><p>Saved student profiles, project history, milestones, evidence, completed work, and continued progress over time.</p><a class="btn locked" href="creation-station-membership.html">Request Member Access</a></article><article class="locked-card"><h3>Parent Documentation Tools</h3><p>Parent-selected documentation, printable pages, project records, completion evidence, and age-specific material delivery.</p><a class="btn locked" href="creation-station-membership.html">See Access Options</a></article><article class="locked-card"><h3>Creation Station Studio &amp; Business Tools</h3><p>An optional paid personal creator page can present approved work, a creator story, products or services, ordering information, and contact paths. Creation Station provides education and opportunity, not guaranteed sales or income.</p><a class="btn locked" href="creation-station-membership.html">See Creation Station Studio Access</a></article></div></div>
+    </section>
+
+    <section class="section" id="ages">
+      <div class="section-head"><h2 class="section-title"><span class="mark">↗</span> Creation Station Grows With the Creator</h2></div>
+      <div class="section-body"><div class="age-grid"><div class="age-card"><strong>Young Creators · Ages 6–12</strong><p>Visual steps, encouragement, age-appropriate independence, and a clear path from idea to finished work.</p></div><div class="age-card"><strong>Teen Creators · Ages 13–17</strong><p>Stronger planning, documentation, presentation, portfolio thinking, and practical business preparation.</p></div><div class="age-card"><strong>Adult Makers · Ages 18+</strong><p>A separate, mature path for creators who may already have work to present and do not need the child-guided journey.</p></div></div><div style="text-align:center;margin-top:22px"><a class="btn primary" href="creation-station-membership.html">Join / Request Full Access</a> <a class="btn" href="creation.html#adult-path">See the Adult Maker Path</a></div></div>
+    </section>
+
+    <section class="decision-cta" aria-labelledby="decision-title">
+      <div><h2 id="decision-title">Give their creativity somewhere meaningful to go.</h2><p>You have seen the structure, tried the journey, and explored what grows around it. Take the next step when your family is ready.</p></div>
+      <div class="decision-actions"><a class="btn primary" href="creation-station-membership.html">Start Creating</a><a class="btn teal" href="creation-station-live-classes.html">Explore Live Sessions</a></div>
+    </section>
+
+  </main>
+</div>
+<div data-creation-station-footer></div>
+<div class="confetti" id="confetti"></div>
+<script src="assets/components/creation-station-footer/footer.js?v=20260803-1" defer></script>
+<script>
+const entryOverlay=document.getElementById('entryOverlay');
+const entryTransitionJustShown=sessionStorage.getItem('csEntryTransitionJustShown')==='1';
+if(entryTransitionJustShown){sessionStorage.removeItem('csEntryTransitionJustShown')}else{
+  entryOverlay.classList.add('active');entryOverlay.setAttribute('aria-hidden','false');
+  setTimeout(()=>{entryOverlay.classList.remove('active');entryOverlay.setAttribute('aria-hidden','true')},1650)
+}
+const companionName=document.getElementById('botName');const catchphrase=document.getElementById('catchphrase');const saveCompanion=document.getElementById('saveCompanion');const heroCompanion=document.getElementById('heroCompanion');const companionPreviewWords=document.getElementById('companionPreviewWords');const botPreview=document.getElementById('botPreview');const botPreviewName=document.getElementById('botPreviewName');const previewBotBody=document.getElementById('previewBotBody');const previewBotArmRight=document.getElementById('previewBotArmRight');const colorButtons=document.querySelectorAll('.color-btn');const customBotColor=document.getElementById('customBotColor');const selectedColorSwatch=document.getElementById('selectedColorSwatch');const selectedColorText=document.getElementById('selectedColorText');let activeColor='#6B3BB0';
+function displayCompanion(){const name=companionName.value.trim()||'Your Creation Companion';const phrase=catchphrase.value.trim()||'Start with the next small step.';const spokenWords='“'+phrase+'”';heroCompanion.textContent=name;botPreviewName.textContent=companionName.value.trim()||'My Companion';companionPreviewWords.textContent=spokenWords;botPreview.style.borderColor=activeColor;previewBotBody.setAttribute('fill',activeColor);previewBotArmRight.setAttribute('stroke',activeColor);selectedColorSwatch.style.background=activeColor;selectedColorText.textContent='Selected color: '+activeColor.toUpperCase()}
+function saveDemo(){localStorage.setItem('csCompanionName',companionName.value);localStorage.setItem('csCompanionWords',catchphrase.value);localStorage.setItem('csCompanionColor',activeColor);displayCompanion()}
+window.addEventListener('load',()=>{companionName.value=localStorage.getItem('csCompanionName')||sessionStorage.getItem('csDemoName')||'';catchphrase.value=localStorage.getItem('csCompanionWords')||sessionStorage.getItem('csDemoPhrase')||'';activeColor=localStorage.getItem('csCompanionColor')||sessionStorage.getItem('csDemoColor')||activeColor;customBotColor.value=activeColor;colorButtons.forEach(button=>button.classList.toggle('selected',button.dataset.color.toLowerCase()===activeColor.toLowerCase()));displayCompanion();updateProgress()});
+companionName.addEventListener('input',displayCompanion);catchphrase.addEventListener('input',displayCompanion);colorButtons.forEach(button=>button.addEventListener('click',()=>{activeColor=button.dataset.color;colorButtons.forEach(b=>b.classList.remove('selected'));button.classList.add('selected');customBotColor.value=activeColor;displayCompanion()}));customBotColor.addEventListener('input',()=>{activeColor=customBotColor.value;colorButtons.forEach(b=>b.classList.remove('selected'));displayCompanion()});saveCompanion.addEventListener('click',()=>{saveDemo();popConfetti()});
+const stageInfo={dream:['You are at: Dream It','Choose what you want to make and why it matters to you.','dreamPanel'],plan:['You are at: Plan It','Think through materials, time, cost, safety, and steps.','planPanel'],make:['You are at: Make It','Create, test, solve problems, and keep moving.','makePanel'],capture:['You are at: Capture It','Collect photos and evidence of the process and result.','capturePanel'],share:['You are at: Share It','Explain the work, the purpose, and the creator story.','sharePanel'],grow:['You are at: Grow It','Reflect on what worked and what you will improve.','growPanel']};const stepButtons=[...document.querySelectorAll('.step-btn')];const navButtons=[...document.querySelectorAll('.project-nav button')];const completed=new Set();
+function openStage(stage){const info=stageInfo[stage];stepButtons.forEach(button=>button.classList.toggle('active',button.dataset.stage===stage));navButtons.forEach(button=>button.classList.toggle('active',button.dataset.panel===info[2]));document.querySelectorAll('.project-panel').forEach(panel=>panel.classList.toggle('active',panel.id===info[2]));document.getElementById('stageTitle').textContent=info[0];document.getElementById('stageHelp').textContent=info[1];document.getElementById('project').scrollIntoView({behavior:'smooth',block:'start'})}
+stepButtons.forEach(button=>button.addEventListener('click',()=>openStage(button.dataset.stage)));navButtons.forEach(button=>button.addEventListener('click',()=>{const stage=Object.keys(stageInfo).find(key=>stageInfo[key][2]===button.dataset.panel);openStage(stage)}));
+function updateProgress(){stepButtons.forEach(button=>button.classList.toggle('done',completed.has(button.dataset.stage)));document.getElementById('journeyFill').style.width=(completed.size/6*100)+'%'}
+document.querySelectorAll('.complete-stage').forEach(button=>button.addEventListener('click',()=>{const stage=button.dataset.complete;completed.add(stage);updateProgress();popConfetti();const index=Object.keys(stageInfo).indexOf(stage);if(index<5)setTimeout(()=>openStage(Object.keys(stageInfo)[index+1]),450)}));
+function popConfetti(){const layer=document.getElementById('confetti');layer.innerHTML='';const colors=['#6B3BB0','#00A7B7','#EF6AA7','#FFC857','#F9A03F'];for(let i=0;i<42;i++){const dot=document.createElement('span');dot.className='dot';dot.style.left=Math.random()*100+'%';dot.style.top=(-20-Math.random()*150)+'px';dot.style.background=colors[Math.floor(Math.random()*colors.length)];dot.style.animationDelay=Math.random()*.25+'s';layer.appendChild(dot)}layer.classList.add('show');setTimeout(()=>layer.classList.remove('show'),1200)}
+</script>
+</body>
+</html>
