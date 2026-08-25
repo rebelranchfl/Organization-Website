@@ -54,13 +54,13 @@
     </div>
 
     <header class="orders-heading">
-      <p class="eyebrow">Private · Creator/Parent Order Inbox</p>
+      <p class="eyebrow">Private · Parent/Adult Order Inbox</p>
       <h1>Creation Station Studio Orders</h1>
       <p>Review real order requests, confirm what works, share the final total and payment instructions, coordinate fulfillment, and mark completed orders done.</p>
     </header>
 
     <section id="loading" class="state-card"><h2>Opening your orders…</h2><p>Checking your Creation Station Studio access.</p></section>
-    <section id="access" class="state-card hidden"><h2 id="access-title">Sign in to continue</h2><p id="access-copy">Studio orders are private.</p><a class="button primary" href="account.html">Go to My Account</a></section>
+    <section id="access" class="state-card hidden"><h2 id="access-title">Sign in to continue</h2><p id="access-copy">Studio orders are private.</p><a id="access-link" class="button primary" href="account.html">Go to My Account</a></section>
 
     <div id="orders-workspace" class="hidden">
       <section class="orders-summary" aria-label="Order summary">
@@ -83,7 +83,7 @@
     let orders=[];
 
     function message(text,error=false){const el=$('page-status');el.textContent=text;el.className=`notice${error?' error':''}`;clearTimeout(message.timer);message.timer=setTimeout(()=>el.classList.add('hidden'),6000)}
-    function access(title,copy){$('loading').classList.add('hidden');$('access-title').textContent=title;$('access-copy').textContent=copy;$('access').classList.remove('hidden')}
+    function access(title,copy,label='Go to My Account',href='account.html'){$('loading').classList.add('hidden');$('access-title').textContent=title;$('access-copy').textContent=copy;$('access-link').textContent=label;$('access-link').href=href;$('access').classList.remove('hidden')}
     function orderItems(order){
       const items=Array.isArray(order.items)?order.items:[];
       if(items.length)return `<ul class="order-items">${items.map(x=>`<li><strong>${Number(x.quantity)||1}&times; ${esc(x.title||'Item')} ${x.price_label?`· ${esc(x.price_label)}`:''}</strong>${x.note?`<small>Item note: ${esc(x.note)}</small>`:''}</li>`).join('')}</ul>`;
@@ -125,9 +125,11 @@
     async function load(){
       const {data:{session},error}=await supabase.auth.getSession();
       if(error||!session)return access('Sign in to continue','Studio order details are visible only to the adult account that owns the Studio.');
+      const kidModeKey=`rrm-kid-mode-${session.user.id}`;
+      if(localStorage.getItem(kidModeKey))return access('Parent or adult access required','Studio orders contain private buyer contact and fulfillment information. Exit Kid Mode from the Creation Station Dashboard before opening orders.','Return to Dashboard','creation-station-dashboard.html#parent');
       const {data:studios,error:studioError}=await supabase.from('creator_website_requests').select('id,brand_name').eq('owner_user_id',session.user.id);
       if(studioError)return access('Could not open Studio orders',studioError.message);
-      if(!studios?.length)return access('No Creation Station Studio found','Create your Studio first. Once it has an order, the private order inbox will be available here.');
+      if(!studios?.length)return access('No Creation Station Studio found','Create your Studio first. Once it has an order, the private order inbox will be available here.','Back to My Studio','creation-station-dashboard.html#website');
       const {data,error:orderError}=await supabase.from('studio_order_requests').select('*').in('website_request_id',studios.map(x=>x.id)).order('created_at',{ascending:false});
       if(orderError)return access('Could not open Studio orders',orderError.message);
       orders=data||[];
