@@ -1,160 +1,17 @@
 import {supabase} from './supabase-client.js';
-
-const $=id=>document.getElementById(id);
+const $=id=>document.getElementById(id),main=$('main-content'),cart=new Map();let seller;
 const esc=(v='')=>{const d=document.createElement('div');d.textContent=String(v??'');return d.innerHTML};
-const main=$('main-content');
-
-const PATH_LABELS={food_farm:'Food & Farm',goods_services_handmade:'Goods, Services & Handmade',both:'Marketplace'};
-const PAYMENT_LABELS={paypal:'PayPal',venmo:'Venmo',cashapp:'Cash App',zelle:'Zelle',stripe:'Stripe',apple_pay:'Apple Pay',cash:'Cash',check:'Check',other:'Other'};
-
-function showMessage(title,copy){
-  main.innerHTML=`<section class="state-message"><h1>${esc(title)}</h1><p>${esc(copy)}</p><p><a href="marketplace.html" class="button primary">Back to Rebel Ranch Local</a></p></section>`;
-}
-
-function initials(name){
-  return (name||'').split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join('')||'?';
-}
-
-function publicUrl(path){
-  return supabase.storage.from('marketplace-seller-public').getPublicUrl(path).data.publicUrl;
-}
-
-function formatPriceLabel(v){
-  const trimmed=String(v).trim();
-  if(!trimmed)return trimmed;
-  return /^\d/.test(trimmed)&&!trimmed.startsWith('$')?`$${trimmed}`:trimmed;
-}
-
-function renderListings(listings){
-  if(!listings.length)return `<section class="storefront-section"><div class="section-head"><h2>Products & Services</h2></div><div class="panel"><p>This seller has not added individual offerings yet. Message them directly to ask what is currently available.</p></div></section>`;
-  return `<section class="storefront-section">
-    <div class="section-head"><h2>Products & Services</h2><p>${listings.length} local offering${listings.length===1?'':'s'}</p></div>
-    <div class="listing-grid">${listings.map(item=>{const images=item.seller_listing_images||[];return `
-      <article class="listing-card">
-        ${images[0]?`<div class="listing-photo"><img src="${esc(publicUrl(images[0].object_path))}" alt="${esc(item.title)}"></div>`:'<div class="listing-photo listing-photo-empty">Photo coming soon</div>'}
-        <div class="listing-body"><span class="listing-type">${esc((item.listing_type||'offering').replaceAll('_',' '))}</span><h3>${esc(item.title)}</h3>${item.description?`<p>${esc(item.description)}</p>`:''}<p class="listing-price">${esc(item.price_label?formatPriceLabel(item.price_label):'Contact for pricing')}</p><button class="listing-inquire" type="button" data-inquiry-interest="${encodeURIComponent(item.title)}">Ask About This</button></div>
-        ${images.length>1?`<div class="listing-thumbs">${images.slice(1,4).map(img=>`<img src="${esc(publicUrl(img.object_path))}" alt="Additional view of ${esc(item.title)}">`).join('')}</div>`:''}
-      </article>`}).join('')}</div>
-  </section>`;
-}
-
-function renderPaymentMethods(methods){
-  if(!methods.length)return '<p class="eyebrow">Contact this seller to ask about payment options.</p>';
-  return `<div class="pay-methods">${methods.map(m=>{
-    const label=PAYMENT_LABELS[m.method_type]||m.method_type;
-    if(m.link_url)return `<a class="pay-method" href="${esc(m.link_url)}" target="_blank" rel="noopener"><span class="dot"></span> ${esc(label)}${m.label?` — ${esc(m.label)}`:''}</a>`;
-    return `<div class="pay-method"><span class="dot"></span> ${esc(label)}${m.label?` — ${esc(m.label)}`:''}</div>`;
-  }).join('')}</div>`;
-}
-
-function bindInquiryForm(sellerProfileId){
-  const form=$('inquiry-form');
-  if(!form)return;
-  const confirmEl=$('inquiry-confirm');
-  form.addEventListener('submit',async e=>{
-    e.preventDefault();
-    const button=form.querySelector('button');
-    const senderName=$('inquiry-name').value.trim();
-    const message=$('inquiry-message').value.trim();
-    const senderContact=$('inquiry-contact').value.trim();
-    if(!senderName||!message)return;
-    button.disabled=true;button.textContent='Sending…';
-    const {error}=await supabase.from('seller_inquiries').insert({
-      seller_profile_id:sellerProfileId,
-      sender_name:senderName,
-      sender_contact:senderContact||null,
-      message
-    });
-    button.disabled=false;button.textContent='Send message';
-    if(error){
-      confirmEl.textContent=error.message||'That message could not be sent — try again.';
-      confirmEl.classList.remove('hidden');
-      return;
-    }
-    form.reset();
-    form.classList.add('hidden');
-    confirmEl.textContent='Message sent — the seller will follow up using the contact info you provided.';
-    confirmEl.classList.remove('hidden');
-  });
-}
-
-function render(sp,categories,paymentMethods,region,listings,isOwner){
-  const primary=categories.find(c=>c.is_primary)||categories[0];
-  const pathLabel=PATH_LABELS[sp.marketplace_path]||'Marketplace';
-  const firstListingImage=listings.flatMap(item=>item.seller_listing_images||[])[0];
-  const heroImage=firstListingImage?publicUrl(firstListingImage.object_path):'';
-  document.title=`${sp.business_name} | Rebel Ranch Local`;
-
-  main.innerHTML=`
-    ${isOwner?'<p class="owner-bar"><a href="marketplace-seller-dashboard.html">← Back to my seller dashboard</a></p>':''}
-    <p class="crumb"><a href="marketplace.html">Rebel Ranch Local</a><span>/</span>${primary?`${esc(primary.marketplace_categories?.name||pathLabel)}<span>/</span>`:''}${esc(sp.business_name)}</p>
-    <section class="seller-hero${heroImage?' has-image':''}"${heroImage?` style="--seller-hero-image:url('${esc(heroImage)}')"`:''}>
-      <div class="seller-identity">
-        <div class="seller-mark">${sp.logo_object_path?`<img src="${esc(publicUrl(sp.logo_object_path))}" alt="${esc(sp.business_name)} logo">`:esc(initials(sp.business_name))}</div>
-        <div><p class="eyebrow">${esc(pathLabel)}${primary?` · ${esc(primary.marketplace_categories?.name||'')}`:''}</p><h1>${esc(sp.business_name)}</h1>${sp.short_description?`<p class="tagline">${esc(sp.short_description)}</p>`:''}<div class="meta-row">
-            <span class="verified"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 8h-3v9h-5v-6h-2v6H6v-9H3z"/></svg> Local & Independent</span>
-            ${categories.map(c=>`<span class="tag">${esc(c.marketplace_categories?.name||'')}</span>`).join('')}
-            ${region?`<span class="tag">${esc(region.region_name)}${region.state_code?`, ${esc(region.state_code)}`:''}</span>`:''}
-          </div><button class="hero-message" type="button" data-show-inquiry>Message This Seller</button>
-        </div>
-      </div>
-    </section>
-    <p class="trust-banner">Shop directly with real local sellers. Rebel Ranch Local charges buyers and approved sellers no marketplace fees, and payment goes directly to the seller.</p>
-    ${renderListings(listings)}
-    <section class="panel about-panel"><h2>About ${esc(sp.business_name)}</h2>${sp.long_description?`<p>${esc(sp.long_description)}</p>`:'<p>This seller has not added their full story yet. Message them directly to learn more.</p>'}</section>
-
-    <div class="contact-layout">
-      <div class="stack">
-        <section class="panel order-panel">
-          <h2>How to order</h2>
-          <p>Message ${esc(sp.business_name)} directly to ask about availability, pricing, ordering, or scheduling.</p>
-          <button class="button primary" id="show-inquiry-form" type="button" data-show-inquiry>Message This Seller</button>
-          <form id="inquiry-form" class="inquiry-form hidden">
-            <label>Your name<input id="inquiry-name" required></label>
-            <label>Phone or email<input id="inquiry-contact" placeholder="So the seller can reply"></label>
-            <label>Message<textarea id="inquiry-message" required placeholder="What are you interested in?"></textarea></label>
-            <button class="button primary" type="submit">Send message</button>
-          </form>
-          <p id="inquiry-confirm" class="inquiry-confirm hidden" role="status"></p>
-          ${renderPaymentMethods(paymentMethods)}
-          <p class="fine-print">Payment and fulfillment happen directly with ${esc(sp.business_name)}. Rebel Ranch Local connects buyers and sellers but does not process the transaction.</p>
-        </section>
-      </div><div class="stack">
-        <section class="panel trust-panel">
-          <h2>Why support this seller?</h2>
-          <ul class="list-plain">${(sp.why_shop_points?.length?sp.why_shop_points:['A real local independent business.','Your support stays in the local community.','Connect directly with the person providing the goods or service.']).map(point=>`<li>${esc(point)}</li>`).join('')}</ul>
-        </section>
-      </div>
-    </div>`;
-
-  function openInquiry(subject=''){$('show-inquiry-form')?.classList.add('hidden');$('inquiry-form').classList.remove('hidden');if(subject)$('inquiry-message').value=`I'm interested in ${subject}.`;$('inquiry-form').scrollIntoView({behavior:'smooth',block:'center'})}
-  document.querySelectorAll('[data-show-inquiry]').forEach(button=>button.addEventListener('click',()=>openInquiry()));
-  document.querySelectorAll('[data-inquiry-interest]').forEach(button=>button.addEventListener('click',()=>openInquiry(decodeURIComponent(button.dataset.inquiryInterest))));
-  bindInquiryForm(sp.id);
-}
-
-async function init(){
-  const slug=new URLSearchParams(location.search).get('seller');
-  if(!slug)return showMessage('No seller specified','Use a seller link from Rebel Ranch Local to view a storefront.');
-
-  const {data:sp,error}=await supabase.from('seller_profiles')
-    .select('id,business_name,public_slug,marketplace_path,short_description,long_description,page_theme,logo_object_path,why_shop_points,region_id')
-    .eq('public_slug',slug)
-    .maybeSingle();
-
-  if(error)return showMessage('Something went wrong',error.message||'Try again in a moment.');
-  if(!sp)return showMessage('Seller not found','This seller is not currently available through Rebel Ranch Local.');
-
-  const {data:{session}}=await supabase.auth.getSession();
-  const [categoriesR,paymentR,regionR,listingsR,ownerR]=await Promise.all([
-    supabase.from('seller_category_assignments').select('is_primary,marketplace_categories(name,slug)').eq('seller_profile_id',sp.id),
-    supabase.from('seller_payment_methods').select('method_type,label,link_url').eq('seller_profile_id',sp.id).order('sort_order'),
-    sp.region_id?supabase.from('marketplace_regions').select('region_name,state_code').eq('id',sp.region_id).maybeSingle():Promise.resolve({data:null}),
-    supabase.from('seller_listings').select('id,listing_type,title,description,price_label,sort_order,seller_listing_images(id,object_path,sort_order)').eq('seller_profile_id',sp.id).order('sort_order'),
-    session?supabase.from('seller_profiles').select('id').eq('id',sp.id).eq('owner_user_id',session.user.id).maybeSingle():Promise.resolve({data:null})
-  ]);
-
-  render(sp,categoriesR.data||[],paymentR.data||[],regionR.data,listingsR.data||[],!!ownerR.data);
-}
-
+const publicUrl=p=>supabase.storage.from('marketplace-seller-public').getPublicUrl(p).data.publicUrl;
+const initials=n=>(n||'').split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0].toUpperCase()).join('')||'?';
+const fmt=v=>{const x=String(v||'').trim();return /^\d/.test(x)?`$${x}`:x};
+function message(t,c){main.innerHTML=`<section class="state-message"><h1>${esc(t)}</h1><p>${esc(c)}</p><a class="button primary" href="marketplace.html">Back to Rebel Ranch Local</a></section>`}
+function listingsHtml(items){return `<section class="storefront-section"><div class="section-head"><h2>Products & Services</h2><p>${items.length} local offering${items.length===1?'':'s'}</p></div>${items.length?`<div class="listing-grid">${items.map(x=>{const pics=x.seller_listing_images||[],service=x.listing_type==='service';return `<article class="listing-card">${pics[0]?`<div class="listing-photo"><img src="${esc(publicUrl(pics[0].object_path))}" alt="${esc(x.title)}"></div>`:'<div class="listing-photo listing-photo-empty">Photo coming soon</div>'}<div class="listing-body"><span class="listing-type">${esc(x.listing_type)}</span><h3>${esc(x.title)}</h3>${x.description?`<p>${esc(x.description)}</p>`:''}<p class="listing-price">${esc(fmt(x.price_label)||'Seller confirms pricing')}</p><button class="listing-inquire" data-add="${x.id}" type="button">${service?'Request This Service':'Add to Order'}</button></div></article>`}).join('')}</div>`:'<div class="panel"><p>This seller has not added individual offerings yet. Ask a question to learn what is available.</p></div>'}</section>`}
+function fulfillmentHtml(f){const all=[['pickup','Pickup',f?.offers_pickup??true],['delivery','Local delivery',f?.offers_delivery??false],['meetup','Meet-up',f?.offers_meetup??true],['shipping','Shipping',f?.offers_shipping??false]].filter(x=>x[2]);return (all.length?all:[['seller_coordination','Coordinate with seller',true]]).map((x,i)=>`<label><input type="radio" name="fulfillment" value="${x[0]}" ${i?'':'checked'}> ${x[1]}</label>`).join('')}
+function updateBar(){const n=[...cart.values()].reduce((s,x)=>s+x.quantity,0);$('order-bar')?.classList.toggle('hidden',!n);if($('order-count'))$('order-count').textContent=`${n} item${n===1?'':'s'}`}
+function renderCart(){const items=[...cart.values()],service=items.length===1&&items[0].listing_type==='service';$('order-title').textContent=service?'Request this service':'Build your order';$('order-kind-copy').textContent=service?'Tell the seller what you need. They will confirm the details and price.':'Choose quantities, then send one clear order to the seller.';$('order-items').innerHTML=items.map(x=>`<div class="order-line"><div><strong>${esc(x.title)}</strong><small>${esc(x.price_label||'Seller confirms pricing')}</small></div>${service?'':`<label>Qty<input type="number" min="1" max="99" value="${x.quantity}" data-qty="${x.id}"></label>`}<label>Item note<input maxlength="500" value="${esc(x.note||'')}" data-note="${x.id}" placeholder="Optional"></label><button type="button" data-remove="${x.id}">Remove</button></div>`).join('');$('service-fields').classList.toggle('hidden',!service);document.querySelectorAll('[data-qty]').forEach(i=>i.onchange=()=>{cart.get(i.dataset.qty).quantity=Math.max(1,Math.min(99,parseInt(i.value)||1));updateBar()});document.querySelectorAll('[data-note]').forEach(i=>i.oninput=()=>cart.get(i.dataset.note).note=i.value);document.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{cart.delete(b.dataset.remove);if(!cart.size)$('order-builder').classList.add('hidden');else renderCart();updateBar()})}
+function openOrder(item){if(item){if(item.listing_type==='service')cart.clear();const old=cart.get(item.id);cart.set(item.id,{...item,quantity:old?old.quantity+1:1,note:''})}$('order-builder').classList.remove('hidden');renderCart();updateBar();$('order-builder').scrollIntoView({behavior:'smooth',block:'start'})}
+async function submitOrder(e){e.preventDefault();const b=e.submitter,items=[...cart.values()];if(!items.length)return;b.disabled=true;b.textContent='Sending order…';$('order-error').classList.add('hidden');const payload={seller_profile_id:seller.id,buyer_name:$('order-name').value.trim(),buyer_contact:$('order-contact').value.trim(),order_kind:items.length===1&&items[0].listing_type==='service'?'service_request':'product_order',items:items.map(x=>({listing_id:x.id,quantity:x.quantity,note:x.note})),fulfillment_method:document.querySelector('input[name="fulfillment"]:checked')?.value||'seller_coordination',preferred_date:$('order-date').value.trim(),delivery_address:$('order-address').value.trim(),buyer_note:$('order-note').value.trim(),service_location:$('service-location').value.trim()};const body=new FormData();body.append('payload',JSON.stringify(payload));const photo=$('order-photo').files[0];if(photo)body.append('photo',photo);try{const {data:result,error}=await supabase.functions.invoke('submit-marketplace-order',{body});if(error)throw error;cart.clear();e.target.reset();$('order-builder').classList.add('hidden');updateBar();$('order-confirm').textContent=`Order #${result.order_number} was sent to ${seller.business_name}. The seller will contact you to confirm the total, fulfillment, and payment.`;$('order-confirm').classList.remove('hidden');$('order-confirm').scrollIntoView({behavior:'smooth',block:'center'})}catch(error){$('order-error').textContent=error.message||'The order could not be sent.';$('order-error').classList.remove('hidden')}finally{b.disabled=false;b.textContent='Send Order to Seller'}}
+async function submitQuestion(e){e.preventDefault();const b=e.submitter;b.disabled=true;const {error}=await supabase.from('seller_inquiries').insert({seller_profile_id:seller.id,sender_name:$('question-name').value.trim(),sender_contact:$('question-contact').value.trim()||null,message:$('question-message').value.trim()});b.disabled=false;$('question-confirm').textContent=error?error.message:'Question sent. It will appear in the seller’s Questions inbox.';if(!error)e.target.reset()}
+function render(sp,cats,pay,region,items,fulfillment,owner){seller=sp;const heroItem=items.flatMap(x=>x.seller_listing_images||[])[0],hero=heroItem?publicUrl(heroItem.object_path):'',primary=cats.find(x=>x.is_primary)||cats[0];document.title=`${sp.business_name} | Rebel Ranch Local`;main.innerHTML=`${owner?'<p class="owner-bar"><a href="marketplace-seller-dashboard.html">← Back to my seller dashboard</a></p>':''}<p class="crumb"><a href="marketplace.html">Rebel Ranch Local</a><span>/</span>${esc(sp.business_name)}</p><section class="seller-hero${hero?' has-image':''}"${hero?` style="--seller-hero-image:url('${esc(hero)}')"`:''}><div class="seller-identity"><div class="seller-mark">${sp.logo_object_path?`<img src="${esc(publicUrl(sp.logo_object_path))}" alt="${esc(sp.business_name)} logo">`:esc(initials(sp.business_name))}</div><div><p class="eyebrow">${esc(primary?.marketplace_categories?.name||'Local seller')}</p><h1>${esc(sp.business_name)}</h1><p class="tagline">${esc(sp.short_description||'')}</p><div class="meta-row"><span class="verified">Local & Independent</span>${cats.map(x=>`<span class="tag">${esc(x.marketplace_categories?.name||'')}</span>`).join('')}${region?`<span class="tag">${esc(region.region_name)}</span>`:''}</div><button class="hero-message" type="button" data-question>Ask a Question</button></div></div></section><p class="trust-banner">Build one clear order here. Payment goes directly to the seller after they confirm the total and fulfillment.</p>${listingsHtml(items)}<div id="order-bar" class="order-bar hidden"><strong id="order-count"></strong><button type="button" data-review>Review Order</button></div><section id="order-builder" class="panel order-builder hidden"><h2 id="order-title"></h2><p id="order-kind-copy"></p><form id="order-form" class="inquiry-form"><div id="order-items"></div><fieldset><legend>How should you receive it?</legend><div class="choice-grid">${fulfillmentHtml(fulfillment)}</div>${fulfillment?.public_notes?`<p>${esc(fulfillment.public_notes)}</p>`:''}</fieldset><label>Your name<input id="order-name" required autocomplete="name"></label><label>Phone or email<input id="order-contact" required></label><label>Preferred date or availability<input id="order-date" placeholder="Optional — e.g. Saturday morning"></label><label>Delivery address<input id="order-address" placeholder="Only needed for local delivery"></label><div id="service-fields" class="hidden"><label>Service location<input id="service-location" placeholder="Where is the service needed?"></label></div><label>Order note<textarea id="order-note"></textarea></label><label>Optional photo <span>Add a helpful photo now; you can also send one to the seller later.</span><input id="order-photo" type="file" accept="image/jpeg,image/png,image/webp"></label><p class="fine-print">5 MB maximum. Photos are private and visible only to this seller and Marketplace administrators.</p><p id="order-error" class="inquiry-confirm hidden" role="alert"></p><button class="button primary" type="submit">Send Order to Seller</button></form></section><p id="order-confirm" class="inquiry-confirm hidden" role="status"></p><section class="panel about-panel"><h2>About ${esc(sp.business_name)}</h2><p>${esc(sp.long_description||'This seller has not added their full story yet.')}</p></section><div class="contact-layout"><div class="stack"><section class="panel"><h2>Ask a Question</h2><p>Questions stay separate from orders so the seller’s order inbox remains clear.</p><button class="button primary" id="show-question" type="button">Ask a Question</button><form id="question-form" class="inquiry-form hidden"><label>Your name<input id="question-name" required></label><label>Phone or email<input id="question-contact"></label><label>Your question<textarea id="question-message" required></textarea></label><button class="button primary" type="submit">Send Question</button><p id="question-confirm" role="status"></p></form><p class="fine-print">Rebel Ranch Local connects buyers and sellers but does not process payment.</p></section></div><div class="stack"><section class="panel"><h2>Why support this seller?</h2><ul class="list-plain">${(sp.why_shop_points?.length?sp.why_shop_points:['A real local independent business.','Your support stays in the local community.','Connect directly with the person providing the goods or service.']).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></section></div></div>`;document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>openOrder(items.find(x=>x.id===b.dataset.add)));document.querySelectorAll('[data-review]').forEach(b=>b.onclick=()=>openOrder());const q=()=>{$('show-question').classList.add('hidden');$('question-form').classList.remove('hidden');$('question-form').scrollIntoView({behavior:'smooth',block:'center'})};document.querySelectorAll('[data-question]').forEach(b=>b.onclick=q);$('show-question').onclick=q;$('order-form').onsubmit=submitOrder;$('question-form').onsubmit=submitQuestion}
+async function init(){const slug=new URLSearchParams(location.search).get('seller');if(!slug)return message('No seller specified','Use a seller link from Rebel Ranch Local.');const {data:sp,error}=await supabase.from('seller_profiles').select('id,business_name,public_slug,short_description,long_description,logo_object_path,why_shop_points,region_id').eq('public_slug',slug).maybeSingle();if(error||!sp)return message('Seller not found','This seller is not currently available.');const {data:{session}}=await supabase.auth.getSession(),[c,p,r,l,f,o]=await Promise.all([supabase.from('seller_category_assignments').select('is_primary,marketplace_categories(name,slug)').eq('seller_profile_id',sp.id),supabase.from('seller_payment_methods').select('method_type,label,link_url').eq('seller_profile_id',sp.id).order('sort_order'),sp.region_id?supabase.from('marketplace_regions').select('region_name,state_code').eq('id',sp.region_id).maybeSingle():Promise.resolve({data:null}),supabase.from('seller_listings').select('id,listing_type,title,description,price_label,unit_price,price_type,sort_order,seller_listing_images(id,object_path,sort_order)').eq('seller_profile_id',sp.id).eq('is_active',true).order('sort_order'),supabase.from('seller_fulfillment_options').select('*').eq('seller_profile_id',sp.id).maybeSingle(),session?supabase.from('seller_profiles').select('id').eq('id',sp.id).eq('owner_user_id',session.user.id).maybeSingle():Promise.resolve({data:null})]);render(sp,c.data||[],p.data||[],r.data,l.data||[],f.data,!!o.data)}
 init();

@@ -4,7 +4,7 @@ import {supabase} from './supabase-client.js';
 
 const $=id=>document.getElementById(id);
 const state={identity:null,data:null,adminData:null,view:'status',busy:false};
-const routes=['status','listings','orders','questions','requirements','programs','notifications','history','admin'];
+const routes=['status','listings','requirements','programs','messages','notifications','history','admin'];
 
 function message(text,error=false){
   const el=$('app-status');
@@ -28,7 +28,7 @@ function showAccess(title,copy,label='Go to My Account',href='account.html'){
 
 function isEligible(view){if(view==='admin')return state.identity.isAdmin;return routes.includes(view)}
 function eligibleViews(){
-  const views=[['status','Status'],['listings','Listings'],['orders','Orders'],['questions','Questions'],['requirements','Requirements'],['programs','Programs'],['notifications','Notifications'],['history','History']];
+  const views=[['status','Status'],['listings','Listings'],['requirements','Requirements'],['programs','Programs'],['messages','Messages'],['notifications','Notifications'],['history','History']];
   if(state.identity.isAdmin)views.push(['admin','Admin']);
   return views;
 }
@@ -129,7 +129,7 @@ function bindScreen(){
         listing_type:$('new-listing-type').value,
         title:$('new-listing-title').value.trim(),
         description:$('new-listing-description').value.trim(),
-        price_label:$('new-listing-price').value.trim(),unit_price:$('new-listing-unit-price').value||null,price_type:$('new-listing-price-type').value
+        price_label:$('new-listing-price').value.trim()
       };
       if(!fields.title)throw new Error('Enter a title for this listing.');
       const {error}=await actions.createListing(state.identity,fields);
@@ -241,11 +241,6 @@ function bindScreen(){
     if(error)throw error;
     await refresh();
   }));
-
-  const fulfillmentForm=root.querySelector('#fulfillment-form');
-  if(fulfillmentForm)fulfillmentForm.onsubmit=e=>{e.preventDefault();withBusy(e.submitter,async()=>{const {error}=await actions.saveFulfillment(state.identity,{offers_pickup:$('fulfill-pickup').checked,offers_delivery:$('fulfill-delivery').checked,offers_meetup:$('fulfill-meetup').checked,offers_shipping:$('fulfill-shipping').checked,public_notes:$('fulfill-notes').value.trim()||null});if(error)throw error;await refresh();message('Fulfillment options updated.');})};
-  root.querySelectorAll('[data-order-action]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{const status=b.dataset.orderAction,updates={status,is_read:true};if(['accepted','change_proposed'].includes(status)){const total=prompt('Confirmed total (optional):'),details=prompt('Fulfillment details or proposed change:'),payment=prompt('Payment instructions or direct payment link (optional):'),note=prompt('Note to buyer (optional):');if(total?.trim())updates.confirmed_total=Number(total);if(details!==null)updates.fulfillment_details=details.trim()||null;if(payment!==null)updates.payment_instructions=payment.trim()||null;if(note!==null)updates.seller_note=note.trim()||null;}const {error}=await actions.updateOrder(state.identity,b.dataset.orderId,updates);if(error)throw error;await refresh();message(`Order marked ${status.replaceAll('_',' ')}.`);}));
-  root.querySelectorAll('[data-order-photo]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{const result=await actions.getOrderPhotoUrl(b.dataset.orderPhoto);if(result.error)throw result.error;window.open(result.data.signedUrl,'_blank','noopener');}));
 
   root.querySelectorAll('[data-attestation-form]').forEach(form=>form.onsubmit=e=>{
     e.preventDefault();
