@@ -1,24 +1,21 @@
 # RRA-2026-0001 — Owner Product Review
 
-**Stage:** PRODUCT DESIGN APPROVED — NEW VISUAL PRODUCTION CYCLE AUTHORIZED  
+**Stage:** REBUILT PRODUCT DESIGN APPROVED — NEW VISUAL PRODUCTION HANDOFF  
 **Product system:** Know Your Water + Build Your Water System + connected follow-on learning paths  
 **Current owner decision:** APPROVE PRODUCT DESIGN  
-**Current owner approval recorded:** 2026-08-24 20:39 ET  
-**Owner review event:** `04c6b9a6-f658-4fb8-a0c6-8eecbec422ca`  
+**Current owner approval recorded:** 2026-08-22 14:20 ET  
 **Public release authorized:** No
 
-## Current approval — Product Review re-entry
+## Current approval — Responsible Rebellion rebuild
 
-After the owner previously returned the finished Water product from Final Product Review to Product Design, the Product Design package was revalidated under the current Responsible Rebellion / Evidence-First, Revision Preservation, learner-experience, navigation/state, tangible-output and paid-value standards in `product-review-reentry-2026-08-23.md`.
+The owner approved the rebuilt Product Design package at the `PRODUCT_REVIEW` gate after the prior Final Product Review returned Water to Product Design for structural correction.
 
-The owner has now approved that revalidated Product Design package at the `PRODUCT_REVIEW` gate.
+This approval confirms the rebuilt architecture and authorizes **only a new Visual Production cycle**. It does not authorize release, publishing, selling, storefront activation, public pricing, affiliate links, SEO/public product pages, or deployment.
 
-This approval authorizes **only a new Visual Production cycle**. The active authorization is recorded in `visual-production-handoff-2026-08-24.md`. The earlier `visual-production-handoff.md` remains preserved as a superseded historical handoff and must not be reactivated.
-
-The approved design requires Visual Production to deliver, at minimum:
+The approved rebuild now requires Visual Production to deliver the learner-facing experience described in the current Product Design records, including:
 
 - multi-select intended uses that can coexist;
-- a Whole System view plus understandable parallel branches for drinking/cooking, animals, irrigation/garden, emergency backup and other supported uses;
+- a Whole System view plus understandable parallel branches for drinking/cooking, animals, irrigation/garden, emergency backup, and other supported uses;
 - tangible system/build teaching rather than a text-card product;
 - 55-gallon and 5-gallon filtration/build concepts;
 - settling, prefiltration, storage, source-to-use and well/pump/storage/branch visuals;
@@ -27,7 +24,7 @@ The approved design requires Visual Production to deliver, at minimum:
 - a substantive living **My Water Plan** that materially reflects learner input;
 - Responsible Rebellion build/test/compare activities;
 - persistent learner state and selected uses across the complete experience;
-- working optional-depth routes that return to the learner's exact place;
+- working optional-depth routes with return to the learner's exact place;
 - no dead routes or 404s;
 - plain language first with technical/evidence depth optional;
 - targeted safety warnings only for specific material immediate hazards;
@@ -43,19 +40,19 @@ The approved design requires Visual Production to deliver, at minimum:
 
 The proposed $39 remains recommendation-only and is not public/live pricing.
 
-The price case survives Product Review only because the approved design requires RRA to do substantial work for the learner: cross-reference the solution space, organize multiple simultaneous uses into a coherent system, map shared and branch-specific functions, provide build/system concepts, explain components and substitutions, organize testing around decisions, compare build/buy/hybrid paths, and generate a living personalized plan with verification, maintenance and backup logic.
+The price case survives Product Review only because the rebuilt design requires RRA to do substantial work for the learner: cross-reference the solution space, organize multiple simultaneous uses into a coherent system, map shared and branch-specific functions, provide build/system concepts, explain components and substitutions, organize testing around decisions, compare build/buy/hybrid paths, and generate a living personalized plan with verification, maintenance and backup logic.
 
-If Visual Production reduces the product to generalized text, decorative graphics or a weak personalized summary, Final Product QA must fail the paid-value case.
+If Visual Production reduces the product to generalized text, decorative graphics, or a weak personalized summary, Final Product QA must fail the paid-value case.
 
 ## Product QA result approved at this gate
 
-The current Product Design QA/re-entry record passes:
+`product-qa.md` records a Product Design PASS for:
 
 - Responsible Rebellion / evidence-first education;
-- realistic multi-use and branch architecture;
+- multi-use branch architecture;
 - tangible output requirements;
 - living My Water Plan;
-- navigation/state continuity requirements;
+- navigation/state continuity;
 - plain-language / visual-first teaching;
 - Responsible Rebellion experiment pattern;
 - Revision Preservation;
@@ -67,7 +64,7 @@ The Product QA PASS means the **design requirements are approved**. It is not a 
 
 ## Approved current Product Design package
 
-The approved Product Design boundary remains the durable project records on GitHub `main`, especially:
+The current approved Product Design boundary includes the durable project records already on `main`, especially:
 
 - `product-opportunity-research.md`;
 - `product-recommendation-scorecard.md`;
@@ -83,8 +80,7 @@ The approved Product Design boundary remains the durable project records on GitH
 - `product-preservation-check.md`;
 - `product-evidence-crosswalk.md`;
 - `visual-production-brief.md`;
-- `product-qa.md`;
-- `product-review-reentry-2026-08-23.md`.
+- `product-qa.md`.
 
 The approved Revision 3 + UV research/evidence foundation remains the subject-matter evidence boundary.
 
@@ -110,11 +106,13 @@ Visual Production must preserve the existing valid teaching value, including:
 - the distinction between educational demonstrations and verified potable-water treatment;
 - all approved UV limits and verification requirements.
 
-## Approval history — preserved
+## Prior Product Design approval history — preserved
 
-The owner previously approved the pre-rebuild Product Design on **2026-08-21 at 20:25 ET**, then approved the first Responsible Rebellion rebuild on **2026-08-22 at 14:20 ET**. A later Final Product Review returned the rendered product to Product Design because the learner-facing implementation still did not satisfy the structural requirements. That later return superseded the prior Visual Production authorization without erasing the valid evidence or Product Design history.
+The owner previously approved the pre-rebuild Product Design on **2026-08-21 at 20:25 ET**. That approval authorized the first Visual Production cycle and carried the same free foundation / paid core strategy and proposed $39 price.
 
-The 2026-08-23 Product Design re-entry record revalidated the preserved architecture and returned it to Product Review. The current **2026-08-24 approval** is the authoritative Product Review decision for the next Visual Production cycle.
+The later Final Product Review found structural learner-experience failures: the product was too text-heavy, forced one intended use, produced weak personalized value, lost state during deeper navigation, and contained dead routes/404s. The owner then sent Water back to Product Design.
+
+That SEND_BACK_NOW decision superseded the earlier Visual Production authorization without erasing the earlier approval record. The current 2026-08-22 approval applies to the corrected Responsible Rebellion rebuild and authorizes a **new** Visual Production handoff.
 
 ## Gate boundary
 
@@ -133,10 +131,10 @@ This approval does **not** authorize:
 
 ## Next stage
 
-Use `visual-production-handoff-2026-08-24.md` with `Status: AUTHORIZED — VISUAL PRODUCTION` and move the project to `VISUAL_PRODUCTION` with current-stage progress reset to 0%.
+Use the newly updated `visual-production-handoff.md` with `Status: AUTHORIZED — RESPONSIBLE REBELLION REBUILD`, then move the project to `VISUAL_PRODUCTION`.
 
 Visual Production must build the approved learner-facing experience and return the finished integrated product to `FINAL_PRODUCT_REVIEW` for the owner's next decision.
 
 ---
 AI-Agent: ChatGPT/GPT-5.6 Sol  
-Session: RRA Product Design Agent — Water Product Review Approval
+Session: RRA Product Design Agent
