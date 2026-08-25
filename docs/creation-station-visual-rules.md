@@ -2,24 +2,26 @@
 
 **Status:** Owner-approved and locked
 
-**Version:** 1.1
+**Version:** 1.2
 
-**Approved:** 2026-08-03
+**Approved:** 2026-08-03  
+**Updated:** 2026-08-25
 
 **Approved reference:** `creation.html`
 
 **Matching CSS:** `assets/css/creation-station.css` and `assets/components/creation-station-footer/footer.css`
 
-These rules preserve the Creation Station public-marketing page approved by the owner. They apply to the shared public Creation Station marketing shell and must not be replaced with the separate Rebel Ranch Ministries public-site visual system.
+These rules preserve the Creation Station public-marketing visual identity while incorporating the owner's newer August 25 decisions about Studio routing, visual explanation, and the current Rebel Ranch Local identity.
 
-No agent may redesign, restyle, replace, or reinterpret a locked component below without a newer, explicit owner decision. Accessibility, responsive, or content corrections may be made only when they preserve the approved appearance or when the owner approves the visible change.
+No agent may redesign, restyle, replace, or reinterpret a locked component below without a newer, explicit owner decision. Accessibility, responsive, content, and routing corrections may be made when they preserve the approved Creation Station identity or when the owner explicitly authorizes the visible change.
 
 ## 1. Approved page reference
 
 - `creation.html` is the approved visual reference for the Creation Station public-marketing experience.
-- Preserve its current colorful, energetic, parent-aware tone and its balance of purple, pink, coral, gold, teal, blue, and white.
-- Preserve the current section flow, visual rhythm, card family, Creation Station Studio preview, approved Rebel Ranch Marketplace card, final call to action, header, and footer unless the owner explicitly authorizes a change.
-- Do not import the dark green and gold Rebel Ranch Ministries page system into Creation Station. Creation Station is an intentional sub-brand.
+- Preserve its colorful, energetic, parent-aware tone and its balance of purple, pink, coral, gold, teal, blue, and white.
+- Do not import the main Rebel Ranch Ministries dark-green public-site system into Creation Station. Creation Station is an intentional sub-brand.
+- Creation Station is visual by nature. Prefer screenshots, product examples, graphic progressions, icons, interactive previews, and actual Studio examples when those can replace paragraphs.
+- Streamlining means reducing visible reading burden and duplication without shrinking the real program.
 
 ## 2. Locked primary button
 
@@ -27,75 +29,125 @@ The approved Creation Station primary action is the current borderless gradient 
 
 - Background: `linear-gradient(135deg, #f04b98 0%, #ff756d 52%, #f7c94c 100%)`.
 - Default text: dark plum `#2f1634` with heavy weight.
-- Border: none. Do not add a white, cream, colored, or transparent-looking outline.
+- Border: none.
 - Corner radius: `.85rem`.
 - Preserve the current soft shadow and slight upward hover motion.
-- Hover and keyboard-focus treatment: dark purple gradient with white text and no border.
-- Use this same treatment for shared Creation Station primary calls to action, including Start Creating and This Is Our Path.
+- Hover and keyboard-focus treatment: dark purple gradient with white text and no permanent border.
 
 ## 3. Locked supporting buttons
 
-- The final Open the Parent Preview button uses the approved teal gradient from `#047f8b` to `#21aaa6`, white text, and no border.
-- The experience-section Start Creating treatment uses the approved teal gradient from `#057f8b` to `#20aea9`, white text, and no border.
-- Supporting white buttons may remain white when they are intentionally paired with a primary gradient action.
-- Do not add permanent outlines to gradient or teal Creation Station buttons. Keyboard focus must remain visible through the approved color-state change or another owner-approved accessible treatment.
-- The separately branded Rebel Ranch Marketplace action remains governed by its approved Marketplace card treatment and is not converted into a Creation Station gradient button.
+- Supporting teal gradient actions remain appropriate for secondary actions.
+- Supporting white buttons may remain white when intentionally paired with a primary gradient action.
+- Do not add permanent outlines to gradient or teal Creation Station buttons.
+- Full pill radius is reserved for real clickable buttons only under the repository-wide rule.
 
 ## 4. Locked header
 
 - Preserve the deep-purple translucent header, subtle lower border, shadow, and blur treatment.
 - Preserve the Creation Station logo, the Creation Station name, and the line `by Rebel Ranch Ministries`.
-- Preserve the rainbow hamburger lines. Do not replace them with plain white or one-color lines.
-- Preserve the current mobile menu structure and the borderless gradient Start Creating button inside it.
+- Preserve the rainbow hamburger lines.
 - The cross-program return link must be labeled **Rebel Ranch Ministries**, never **Rebel Ranch Home**.
-- The Rebel Ranch Ministries return link remains teal so the destination is visually distinct from internal Creation Station navigation.
+- The Rebel Ranch Ministries return link remains visually distinct from internal Creation Station navigation.
 
-## 5. Locked hero boundary
+## 5. Hero boundary and Studio-routing rule
 
-- Preserve the approved purple-to-pink gradient hero and the current linked Creation Station Studio card.
-- Do not add white circles, moons, orbit lines, semicircles, or other circular overlays to the hero.
-- The hero copy and linked Studio visual may not be repositioned or redesigned without owner approval.
+- Preserve the approved purple-to-pink Creation Station hero identity.
+- Do not add white circles, moons, orbit lines, semicircles, or unrelated decorative overlays.
+- Keep hero copy concise. The hero is a hook and routing surface, not a place to repeat the full product explanation.
+- The hero may retain the Studio visual, but **the visual destination must match what it promises**.
+- A Studio-specific hero visual or CTA must link to an actual Studio example/public Studio view, not the project/dashboard Experience page.
+- Until a dedicated live Studio demo is intentionally created, the approved Studio example inside `creation.html` (`#portfolio` / `#studio-title`) is the correct in-page Studio preview destination.
 
 ## 6. Locked footer
 
 - The uniform Creation Station footer is a shared component maintained in `assets/components/creation-station-footer/` rather than copied into individual pages.
 - Creation Station pages using the shared public footer must load `footer.js` into an element marked `data-creation-station-footer`.
 - Preserve the deep-purple footer and thin rainbow top edge.
-- Preserve the Creation Station logo and Creation Station identity.
-- Preserve the clearly linked line `by Rebel Ranch Ministries · Return to the main website`, linking to the Rebel Ranch Ministries main page.
-- Preserve the `Create. Learn. Build. Grow.` rainbow tagline and the supporting real-life-purpose sentence.
-- Preserve the concise **Earnings & Opportunity Disclaimer** footer link to `creation-station-disclaimer.html`.
-- Keep the complete disclosure language on the dedicated disclaimer page rather than repeating the full wording inside each Creation Station page or footer.
-- Update the shared component files when changing the Creation Station footer. Do not create page-specific copies or embedded variations.
+- Preserve the Creation Station logo and identity.
+- Preserve the clearly linked line `by Rebel Ranch Ministries · Return to the main website`.
+- Keep complete disclosure language on the dedicated disclaimer page rather than repeating long disclaimer copy throughout sales pages.
+- Shared footer navigation should make the two high-value actions easy to find: joining Creation Station and returning to My Studio.
 
-## 7. Previously locked components on this page
+## 7. Creation Station Studio visual
 
-- Preserve the full Creation Station Studio visual and structure shown on `creation.html`. It is the approved preview of what a subscriber's page can look like.
-- Preserve the approved Rebel Ranch Marketplace card treatment.
-- Neither component may be simplified, replaced, recolored, or redesigned without explicit owner approval.
+- Preserve the full Creation Station Studio example on `creation.html` as the approved public visual proof of what a Studio can look like.
+- It should show the creator's story, work/products, ordering interaction, and contact/social context rather than being reduced to a generic screenshot.
+- Studio-specific CTAs elsewhere should route to this example or to a real public Studio experience.
+- The Studio preview can evolve functionally as the real public Studio ordering experience improves, but it must remain recognizably Creation Station.
 
-### Locked experience-page design extension
+## 8. Rebel Ranch Local / Marketplace references — current rule
 
-- The current visual design and colors in `creation-station-experience.html` are owner-approved and locked as of 2026-08-02.
-- Preserve its approved purple-to-pink Creation Station energy, rainbow color rhythm, borderless gradient primary actions, teal supporting actions, white and pale supporting surfaces, section treatments, cards, tracker styling, and responsive presentation.
-- Preserve the current Creation Companion customizer. Naming the Companion, choosing its color, adding encouraging words, and saving those choices in the visitor's browser are available parts of the public experience and must not be labeled **coming soon**.
-- Keep the current Companion customizer distinct from a future AI or interactive member assistant. Personalized guidance, account-based storage, cross-device access, and deeper dashboard integration remain later-phase features and must not be presented as available now.
-- Preserve the mandatory full-screen entry transition whenever a visitor enters the interactive dashboard preview. It must retain the Creation Station logo, the heading **Entering Creation Station**, the child-perspective supporting message, the deep-purple background, and the animated pink-to-gold-to-aqua rainbow loading bar.
-- Direct links to `creation-station-experience.html` must not bypass the entry transition. When the transition has already played on `creation-station-preview.html`, the handoff may suppress a duplicate animation so visitors see one intentional transition rather than two.
-- This approval locks the page's design and colors only. It does not settle or lock unresolved wording, age-band, shared-shell, dashboard, membership, Marketplace, or future-feature decisions.
-- Do not change this locked visual extension without a newer, explicit owner decision.
+The older dark green/gold Marketplace card treatment is **retired** for new Creation Station references.
 
-## 8. Implementation check
+When Creation Station references the current Marketplace, use the current **Rebel Ranch Local** visual identity established by:
+- `marketplace.html`
+- `assets/css/rebel-ranch-local.css`
+
+The current visual family is lighter and uses:
+- cream/paper surfaces;
+- olive green;
+- tan;
+- soft borders;
+- white/light backgrounds; and
+- current Rebel Ranch Local branding/assets where appropriate.
+
+This current Local treatment fits more naturally inside Creation Station and accurately represents the destination a user will reach.
+
+Do not make Creation Station itself look like Rebel Ranch Local. This exception applies only to the cross-program card/reference.
+
+## 9. Locked Experience-page design extension
+
+- The visual design and colors in `creation-station-experience.html` remain owner-approved.
+- Preserve its purple-to-pink Creation Station energy, rainbow rhythm, borderless gradient primary actions, teal supporting actions, white/pale supporting surfaces, section treatments, cards, tracker styling, and responsive presentation.
+- Preserve the current Creation Companion customizer and entry transition.
+- The Experience page proves the **member/dashboard/project experience**. It is not the default destination for a CTA that specifically promises to show a public Studio.
+- Wording on the Experience page must follow `docs/creation-station-positioning.md`, including the rule that current projects are structured/Companion-supported rather than guided instruction.
+
+## 10. Visual explanation over repeated text
+
+Before adding another paragraph, ask whether the same idea is already demonstrated by:
+- the real dashboard preview;
+- the six project stages;
+- the Creation Companion;
+- the Studio example;
+- a product/card example;
+- a live-session visual;
+- a simple graphic progression; or
+- another existing interactive component.
+
+If yes, shorten the text and let the visual carry more of the explanation.
+
+Public pages should use a layered approach:
+1. short headline;
+2. one short support thought;
+3. visual proof;
+4. clear next action;
+5. deeper detail only when the visitor chooses it.
+
+## 11. Responsive requirement
+
+A Creation Station visual is not complete until it works at desktop and mobile widths.
+
+- Decorative floating words/labels must not clip against the viewport.
+- A desktop composition may use a different mobile arrangement when necessary.
+- Do not preserve a desktop scatter/ring layout on mobile if it causes clipping, overlap, tiny text, or awkward empty space.
+- Mobile adaptation must preserve the idea, not necessarily the exact coordinates.
+
+## 12. Implementation check
 
 Before presenting a Creation Station public-marketing page for review:
 
-1. Compare the shared header, primary buttons, supporting teal buttons, hero boundary, and footer against `creation.html`.
+1. Confirm the shared header and footer remain Creation Station-specific.
 2. Confirm primary and teal gradient buttons do not have permanent outlines.
 3. Confirm the hamburger lines retain the rainbow treatment.
-4. Confirm the shared footer loads, includes the linked Rebel Ranch Ministries return path, and links to the dedicated Earnings & Opportunity Disclaimer page.
-5. Confirm no hero circle or orbit decoration has been introduced.
-6. Stop and request owner approval before changing any locked component.
+4. Confirm non-clickable labels do not look like clickable pill buttons.
+5. Confirm no hero orbit/circle decoration has been introduced.
+6. Confirm a Studio-labeled CTA actually shows a Studio.
+7. Confirm Marketplace/Local references use the current light Rebel Ranch Local identity.
+8. Confirm repeated explanatory paragraphs have been reduced where existing visuals already prove the point.
+9. Confirm desktop and mobile layouts independently, especially decorative labels and image crops.
+10. Stop and request owner approval before changing any other locked visual rule.
 
-## 9. Still open
+## 13. Still open
 
-This document does not settle every future Creation Station surface. Dashboard details, future interactive tools, membership-specific screens, and other program experiences remain open unless separately approved. Do not use this limited approval to invent or lock those designs.
+This document does not settle every future Creation Station surface. Dashboard feature scope, future project instruction, future AI teaching capability, Studio order-system expansion, and other program experiences remain governed by `docs/creation-station-positioning.md`, the current implementation, and future owner decisions.
