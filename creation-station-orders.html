@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Private Creation Station Studio order inbox for creators and parents.">
+  <title>Studio Orders | Creation Station</title>
+  <link rel="stylesheet" href="assets/css/creation-station-dashboard.css">
+  <style>
+    body { min-height:100vh; }
+    .orders-shell { width:min(1080px,calc(100% - 2rem)); margin:0 auto; padding:1.25rem 0 4rem; }
+    .orders-top { display:flex; justify-content:space-between; gap:1rem; align-items:center; flex-wrap:wrap; margin-bottom:1rem; }
+    .orders-top a { text-decoration:none; }
+    .orders-heading { position:relative; overflow:hidden; padding:clamp(1.25rem,4vw,2.2rem); color:#fff; background:var(--deep-gradient); border-radius:1.4rem; box-shadow:var(--shadow); }
+    .orders-heading::before { content:""; position:absolute; inset:0 0 auto; height:.35rem; background:var(--rainbow); }
+    .orders-heading h1 { margin:.2rem 0 .55rem; font-size:clamp(2rem,6vw,4rem); line-height:.95; }
+    .orders-heading p { max-width:48rem; margin:0; color:#efe5f4; font-weight:700; line-height:1.55; }
+    .orders-summary { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.75rem; margin:1rem 0; }
+    .orders-metric { padding:1rem; background:#fff; border:1px solid var(--line); border-radius:1rem; box-shadow:var(--shadow-soft); }
+    .orders-metric span,.orders-metric strong { display:block; }
+    .orders-metric span { color:var(--muted); font-size:.78rem; font-weight:850; }
+    .orders-metric strong { margin-top:.25rem; color:var(--purple-900); font-size:1.8rem; }
+    .order-card { margin-top:1rem; padding:1.2rem; background:#fff; border:1px solid var(--line); border-left:.35rem solid var(--teal); border-radius:1.1rem; box-shadow:var(--shadow-soft); }
+    .order-card.unread { border-left-color:var(--pink); }
+    .order-card-head { display:flex; justify-content:space-between; gap:1rem; align-items:flex-start; flex-wrap:wrap; }
+    .order-card h2 { margin:.15rem 0 .2rem; color:var(--purple-900); font-size:1.35rem; }
+    .order-card p { color:var(--muted); line-height:1.5; }
+    .order-status { padding:.32rem .55rem; color:var(--purple-900); background:var(--lavender); border:1px solid var(--line); border-radius:.45rem; font-size:.76rem; font-weight:900; text-transform:capitalize; }
+    .order-items { display:grid; gap:.5rem; margin:.9rem 0; padding:0; list-style:none; }
+    .order-items li { padding:.7rem .8rem; background:#fbf8ff; border:1px solid var(--line); border-radius:.7rem; }
+    .order-items strong,.order-items small { display:block; }
+    .order-items small { margin-top:.2rem; color:var(--muted); }
+    .order-details { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.65rem; margin:.85rem 0; }
+    .order-detail { padding:.65rem .75rem; background:#f8f3ff; border-radius:.65rem; }
+    .order-detail span { display:block; color:var(--muted); font-size:.72rem; font-weight:850; text-transform:uppercase; letter-spacing:.05em; }
+    .order-detail strong { display:block; margin-top:.2rem; color:var(--ink); }
+    .order-response { display:grid; gap:.75rem; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line); }
+    .order-response-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.75rem; }
+    .order-response label { display:grid; gap:.35rem; color:var(--purple-900); font-weight:850; }
+    .order-response input,.order-response select,.order-response textarea { width:100%; padding:.7rem .75rem; color:var(--ink); background:#fff; border:1px solid var(--line); border-radius:.65rem; font:inherit; }
+    .order-response textarea { min-height:5rem; resize:vertical; }
+    .order-response .full { grid-column:1 / -1; }
+    .order-actions { display:flex; gap:.65rem; justify-content:flex-end; flex-wrap:wrap; }
+    .state-card { margin-top:1rem; }
+    .hidden { display:none !important; }
+    @media(max-width:44rem){ .orders-summary,.order-details,.order-response-grid { grid-template-columns:1fr; } .order-response .full { grid-column:auto; } .order-actions .button { width:100%; } }
+  </style>
+</head>
+<body>
+  <main class="orders-shell">
+    <div class="orders-top">
+      <a class="button" href="creation-station-dashboard.html#website">← Back to My Studio</a>
+      <a class="button" href="account.html">RRM Account</a>
+    </div>
+
+    <header class="orders-heading">
+      <p class="eyebrow">Private · Creator/Parent Order Inbox</p>
+      <h1>Creation Station Studio Orders</h1>
+      <p>Review real order requests, confirm what works, share the final total and payment instructions, coordinate fulfillment, and mark completed orders done.</p>
+    </header>
+
+    <section id="loading" class="state-card"><h2>Opening your orders…</h2><p>Checking your Creation Station Studio access.</p></section>
+    <section id="access" class="state-card hidden"><h2 id="access-title">Sign in to continue</h2><p id="access-copy">Studio orders are private.</p><a class="button primary" href="account.html">Go to My Account</a></section>
+
+    <div id="orders-workspace" class="hidden">
+      <section class="orders-summary" aria-label="Order summary">
+        <div class="orders-metric"><span>New</span><strong id="metric-new">0</strong></div>
+        <div class="orders-metric"><span>Open</span><strong id="metric-open">0</strong></div>
+        <div class="orders-metric"><span>Completed</span><strong id="metric-completed">0</strong></div>
+      </section>
+      <p id="page-status" class="notice hidden" role="status" aria-live="polite"></p>
+      <section id="orders-list"></section>
+    </div>
+  </main>
+
+  <script type="module">
+    import {supabase} from './assets/js/supabase-client.js';
+
+    const $=id=>document.getElementById(id);
+    const esc=(v='')=>{const d=document.createElement('div');d.textContent=String(v??'');return d.innerHTML};
+    const money=v=>v===null||v===undefined||v===''?'Not confirmed':`$${Number(v).toFixed(2)}`;
+    const labels={pickup:'Pickup',delivery:'Local delivery',meetup:'Local meet',shipping:'Shipping',seller_coordination:'Coordinate directly'};
+    let orders=[];
+
+    function message(text,error=false){const el=$('page-status');el.textContent=text;el.className=`notice${error?' error':''}`;clearTimeout(message.timer);message.timer=setTimeout(()=>el.classList.add('hidden'),6000)}
+    function access(title,copy){$('loading').classList.add('hidden');$('access-title').textContent=title;$('access-copy').textContent=copy;$('access').classList.remove('hidden')}
+    function orderItems(order){
+      const items=Array.isArray(order.items)?order.items:[];
+      if(items.length)return `<ul class="order-items">${items.map(x=>`<li><strong>${Number(x.quantity)||1}&times; ${esc(x.title||'Item')} ${x.price_label?`· ${esc(x.price_label)}`:''}</strong>${x.note?`<small>Item note: ${esc(x.note)}</small>`:''}</li>`).join('')}</ul>`;
+      return `<p>${esc(order.cart_summary||'Order details unavailable')}</p>`;
+    }
+    function card(order){
+      const orderNo=order.order_number||String(order.id).slice(0,8);
+      return `<article class="order-card ${order.is_read?'':'unread'}" data-order-card="${order.id}">
+        <div class="order-card-head"><div><p class="eyebrow">Order #${esc(orderNo)}</p><h2>${esc(order.sender_name)}</h2><p>${new Date(order.created_at).toLocaleString()} · ${esc(order.sender_contact||'No contact provided')}</p></div><span class="order-status">${esc((order.status||'new').replaceAll('_',' '))}</span></div>
+        ${orderItems(order)}
+        <div class="order-details">
+          <div class="order-detail"><span>Requested fulfillment</span><strong>${esc(labels[order.fulfillment_method]||order.fulfillment_method||'Coordinate directly')}</strong></div>
+          <div class="order-detail"><span>Estimated total</span><strong>${money(order.estimated_total)}</strong></div>
+          ${order.preferred_date?`<div class="order-detail"><span>Preferred date</span><strong>${esc(order.preferred_date)}</strong></div>`:''}
+          ${order.delivery_address?`<div class="order-detail"><span>Delivery address</span><strong>${esc(order.delivery_address)}</strong></div>`:''}
+        </div>
+        ${order.buyer_note||order.message?`<p><strong>Buyer note:</strong> ${esc(order.buyer_note||order.message)}</p>`:''}
+        <form class="order-response" data-order-form="${order.id}">
+          <div class="order-response-grid">
+            <label>Status<select name="status">
+              ${['new','accepted','change_proposed','declined','ready','completed'].map(s=>`<option value="${s}" ${s===order.status?'selected':''}>${s.replaceAll('_',' ')}</option>`).join('')}
+            </select></label>
+            <label>Confirmed total<input name="confirmed_total" type="number" min="0" step="0.01" value="${order.confirmed_total??''}" placeholder="Example: 28.00"></label>
+            <label class="full">Message to buyer / order note<textarea name="studio_owner_note" placeholder="Confirm availability, explain a change, or leave an internal reminder.">${esc(order.studio_owner_note||'')}</textarea></label>
+            <label class="full">Payment instructions<textarea name="payment_instructions" placeholder="Example: PayPal link, Cash App handle, cash at pickup, etc.">${esc(order.payment_instructions||'')}</textarea></label>
+            <label class="full">Fulfillment details<textarea name="fulfillment_details" placeholder="Pickup time/place, shipping plan, delivery timing, etc.">${esc(order.fulfillment_details||'')}</textarea></label>
+          </div>
+          <div class="order-actions"><button class="button primary" type="submit">Save Order Update</button></div>
+        </form>
+      </article>`;
+    }
+    function render(){
+      $('metric-new').textContent=orders.filter(o=>o.status==='new').length;
+      $('metric-open').textContent=orders.filter(o=>!['declined','completed'].includes(o.status)).length;
+      $('metric-completed').textContent=orders.filter(o=>o.status==='completed').length;
+      $('orders-list').innerHTML=orders.length?orders.map(card).join(''):'<section class="state-card"><h2>No Studio orders yet</h2><p>New order requests will appear here after a buyer sends one from a live Creation Station Studio page.</p></section>';
+      document.querySelectorAll('[data-order-form]').forEach(form=>form.addEventListener('submit',saveOrder));
+    }
+    async function load(){
+      const {data:{session},error}=await supabase.auth.getSession();
+      if(error||!session)return access('Sign in to continue','Studio order details are visible only to the adult account that owns the Studio.');
+      const {data:studios,error:studioError}=await supabase.from('creator_website_requests').select('id,brand_name').eq('owner_user_id',session.user.id);
+      if(studioError)return access('Could not open Studio orders',studioError.message);
+      if(!studios?.length)return access('No Creation Station Studio found','Create your Studio first. Once it has an order, the private order inbox will be available here.');
+      const {data,error:orderError}=await supabase.from('studio_order_requests').select('*').in('website_request_id',studios.map(x=>x.id)).order('created_at',{ascending:false});
+      if(orderError)return access('Could not open Studio orders',orderError.message);
+      orders=data||[];
+      $('loading').classList.add('hidden');$('orders-workspace').classList.remove('hidden');render();
+      const unread=orders.filter(o=>!o.is_read).map(o=>o.id);
+      if(unread.length){await supabase.from('studio_order_requests').update({is_read:true,read_at:new Date().toISOString()}).in('id',unread);orders.forEach(o=>{if(unread.includes(o.id))o.is_read=true});}
+    }
+    async function saveOrder(event){
+      event.preventDefault();
+      const form=event.currentTarget,button=event.submitter,id=form.dataset.orderForm,fd=new FormData(form);
+      const total=String(fd.get('confirmed_total')||'').trim();
+      const updates={
+        status:String(fd.get('status')||'new'),
+        confirmed_total:total===''?null:Number(total),
+        studio_owner_note:String(fd.get('studio_owner_note')||'').trim()||null,
+        payment_instructions:String(fd.get('payment_instructions')||'').trim()||null,
+        fulfillment_details:String(fd.get('fulfillment_details')||'').trim()||null,
+        is_read:true,
+        read_at:new Date().toISOString()
+      };
+      button.disabled=true;button.textContent='Saving…';
+      const {error}=await supabase.from('studio_order_requests').update(updates).eq('id',id);
+      button.disabled=false;button.textContent='Save Order Update';
+      if(error)return message(error.message,true);
+      const found=orders.find(o=>o.id===id);if(found)Object.assign(found,updates);render();message('Order updated.');
+    }
+    load();
+  </script>
+</body>
+</html>
