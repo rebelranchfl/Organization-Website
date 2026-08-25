@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Programs | Rebel Ranch Ministries</title>
-<meta name="description" content="Explore Rebel Ranch Ministries programs for real-life learning, creativity, local commerce, small-business support, agriculture, sustainable living, and farm-animal rescue.">
+<meta name="description" content="Tell Rebel Ranch Ministries what you want to do and find the right path for real-life learning, creativity, local commerce, business support, agriculture, sustainable living, and farm-animal rescue.">
 <link rel="canonical" href="https://rebelranchministries.org/programs.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Programs | Rebel Ranch Ministries">
-<meta property="og:description" content="Different programs. One mission. Learn, create, build, trade, grow, and help through Rebel Ranch Ministries.">
+<meta property="og:description" content="What do you want to do? Find the Rebel Ranch Ministries program, current activity, and next step that fits you.">
 <meta property="og:url" content="https://rebelranchministries.org/programs.html">
 <meta property="og:image" content="https://rebelranchministries.org/assets/brand/Rebel%20Ranch%20Ministries/rrm-logo-black.png">
 <link rel="stylesheet" href="assets/css/public-surface.css">
@@ -17,39 +17,52 @@
 html{scroll-behavior:smooth}
 body{margin:0;background:#204227;color:#F0EDD8;font-family:Arial,Helvetica,sans-serif;line-height:1.6}
 a{color:inherit}
+button{font:inherit}
 main{overflow:hidden}
 .programs-hero{width:100%;margin:0;background:linear-gradient(180deg,#1D4024 0%,#122A18 100%)}
-.programs-hero-inner{width:min(1160px,92vw);margin:0 auto;padding:clamp(5.5rem,10vw,8.5rem) 0;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:clamp(2rem,6vw,5rem);align-items:center}
+.programs-hero-inner{width:min(1160px,92vw);margin:0 auto;padding:clamp(5rem,9vw,8rem) 0;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);gap:clamp(2rem,6vw,5rem);align-items:center}
 .eyebrow{margin:0 0 1rem;color:#EF9F27;font-size:.78rem;font-weight:900;letter-spacing:.2em;text-transform:uppercase}
-h1,h2,h3{margin-top:0;line-height:1.02;letter-spacing:-.035em}
-h1{max-width:780px;margin-bottom:1.35rem;font-size:clamp(3rem,7vw,5.8rem)}
-h2{font-size:clamp(2.25rem,5vw,4.2rem)}
-h3{font-size:clamp(1.4rem,2.5vw,2rem)}
-.lead{max-width:760px;margin:0;color:#D7D1B3;font-size:clamp(1.08rem,2vw,1.35rem)}
-.hero-actions,.program-actions{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:1.8rem}
-.action-link{display:inline-flex;align-items:center;justify-content:center;min-height:3rem;padding:.75rem 1.15rem;border:1px solid #4A7C59;border-radius:999px;background:#28502F;color:#F0EDD8;font-weight:900;text-decoration:none;transition:transform .2s ease,background .2s ease}
-.action-link:hover{transform:translateY(-2px);background:#1b341f}
+h1,h2,h3{margin-top:0;line-height:1.04;letter-spacing:-.035em}
+h1{max-width:800px;margin-bottom:1.35rem;font-size:clamp(3rem,7vw,5.8rem)}
+h2{font-size:clamp(2.2rem,5vw,4rem)}
+h3{font-size:clamp(1.35rem,2.5vw,1.9rem)}
+.lead{max-width:780px;margin:0;color:#D7D1B3;font-size:clamp(1.08rem,2vw,1.35rem)}
+.hero-actions,.program-actions,.result-actions{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:1.8rem}
+.action-link{display:inline-flex;align-items:center;justify-content:center;min-height:3rem;padding:.75rem 1.15rem;border:1px solid #4A7C59;border-radius:999px;background:#28502F;color:#F0EDD8;font-weight:900;text-decoration:none;cursor:pointer;transition:transform .2s ease,background .2s ease,border-color .2s ease}
+.action-link:hover,.action-link:focus-visible{transform:translateY(-2px);background:#1b341f;border-color:#97C459}
 .action-link.primary{border-color:#C17F24;background:linear-gradient(135deg,#C17F24,#7B4B13);color:#fff7de}
 .hero-statement{padding:2rem;border-left:3px solid #C17F24;color:#D7D1B3;font-size:1.05rem}
 .hero-statement strong{display:block;margin-bottom:.6rem;color:#F0EDD8;font-size:1.4rem}
 .programs-section{position:relative;width:min(1160px,92vw);margin:0 auto;padding:clamp(4.5rem,8vw,7rem) 0}
 .programs-section::before{content:"";position:absolute;top:0;left:50%;width:100vw;height:1px;transform:translateX(-50%);background:rgba(151,196,89,.62)}
 .programs-section::after{content:"";position:absolute;top:-1px;left:50%;width:min(10rem,28vw);height:3px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,#EF9F27,transparent)}
-.section-head{max-width:850px;margin:0 auto clamp(2rem,4vw,3.25rem);text-align:center}
+.section-head{max-width:880px;margin:0 auto clamp(2rem,4vw,3.25rem);text-align:center}
 .section-head p{margin:.8rem auto 0;color:#D7D1B3;font-size:1.08rem}
-.path-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.path-card,.program-card{position:relative;overflow:hidden;border:1px solid #284A29;border-radius:20px;background:linear-gradient(180deg,#1D4024 0%,#122A18 100%)}
-.path-card::before,.program-card::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:linear-gradient(90deg,#C17F24,#97C459)}
-.path-card{display:block;padding:24px;color:#F0EDD8;text-decoration:none;transition:transform .2s ease,border-color .2s ease}
-.path-card:hover{transform:translateY(-3px);border-color:#4A7C59}
-.path-card span{display:block;margin-bottom:.6rem;color:#EF9F27;font-size:.76rem;font-weight:900;letter-spacing:.11em;text-transform:uppercase}
-.path-card h3{margin-bottom:.7rem;font-size:1.4rem}
-.path-card p{margin:0;color:#D7D1B3}
-.ecosystem-line{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;align-items:stretch}
-.ecosystem-line a{display:flex;align-items:center;justify-content:center;min-height:5rem;padding:1rem;border:1px solid #284A29;border-radius:14px;background:linear-gradient(180deg,#1D4024 0%,#122A18 100%);color:#F0EDD8;font-weight:900;text-align:center;text-decoration:none}
-.ecosystem-line a:hover{border-color:#C17F24;color:#EF9F27}
-.ecosystem-note{max-width:860px;margin:2rem auto 0;color:#D7D1B3;text-align:center}
-.program-stack{display:grid;gap:20px}
+.intent-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.intent-choice,.program-card,.activity-card{position:relative;overflow:hidden;border:1px solid #284A29;border-radius:20px;background:linear-gradient(180deg,#1D4024 0%,#122A18 100%)}
+.intent-choice::before,.program-card::before,.activity-card::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:linear-gradient(90deg,#C17F24,#97C459)}
+.intent-choice{width:100%;min-height:12rem;padding:24px;color:#F0EDD8;text-align:left;cursor:pointer;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.intent-choice:hover,.intent-choice:focus-visible{transform:translateY(-3px);border-color:#97C459;box-shadow:0 16px 38px rgba(0,0,0,.2)}
+.intent-choice[aria-pressed="true"]{border-color:#EF9F27;box-shadow:0 0 0 2px rgba(239,159,39,.18),0 18px 45px rgba(0,0,0,.28)}
+.intent-choice .intent-label{display:block;margin-bottom:.65rem;color:#EF9F27;font-size:.76rem;font-weight:900;letter-spacing:.11em;text-transform:uppercase}
+.intent-choice h3{margin-bottom:.7rem;font-size:1.45rem}
+.intent-choice p{margin:0;color:#D7D1B3}
+.intent-result{margin-top:clamp(2rem,4vw,3rem);padding:clamp(1.5rem,4vw,2.75rem);border:1px solid #C17F24;border-radius:24px;background:linear-gradient(180deg,#1D4024 0%,#122A18 100%);box-shadow:0 22px 60px rgba(0,0,0,.28)}
+.intent-result[hidden]{display:none}
+.result-layout{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(1.5rem,4vw,3rem);align-items:start}
+.result-kicker{margin:0 0 .6rem;color:#EF9F27;font-weight:900;letter-spacing:.12em;text-transform:uppercase;font-size:.76rem}
+.intent-result h2{margin-bottom:.8rem;font-size:clamp(2rem,4vw,3.35rem)}
+.intent-result p{color:#D7D1B3}
+.result-next{padding:1.2rem 1.35rem;border-left:3px solid #97C459;background:rgba(5,8,6,.18)}
+.result-next strong{display:block;margin-bottom:.35rem;color:#F0EDD8}
+.result-connections{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:1.15rem}
+.connection-link{display:block;padding:1rem;border:1px solid #284A29;border-radius:14px;background:rgba(5,8,6,.18);color:#D7D1B3;text-decoration:none}
+.connection-link:hover,.connection-link:focus-visible{border-color:#97C459;color:#F0EDD8}
+.connection-link strong{display:block;margin-bottom:.25rem;color:#F0EDD8}
+.explore-controls{display:flex;justify-content:center;gap:.8rem;margin-top:1.5rem;flex-wrap:wrap}
+.text-control{padding:.7rem 1rem;border:1px solid #4A7C59;border-radius:12px;background:#142617;color:#F0EDD8;font-weight:800;cursor:pointer}
+.text-control:hover,.text-control:focus-visible{border-color:#97C459;background:#18301c}
+.program-detail-section[hidden]{display:none}
 .program-card{padding:clamp(1.5rem,3vw,2.2rem)}
 .program-card-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:start}
 .program-kicker{margin:0 0 .8rem;color:#EF9F27;font-size:.78rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
@@ -63,18 +76,24 @@ h3{font-size:clamp(1.4rem,2.5vw,2rem)}
 .connection strong{color:#EF9F27}
 .agriculture-card{border-color:#C17F24}
 .rescue-card{border-color:#4A7C59}
+.ecosystem-line{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;align-items:stretch}
+.ecosystem-line button{display:flex;align-items:center;justify-content:center;min-height:5rem;padding:1rem;border:1px solid #284A29;border-radius:14px;background:linear-gradient(180deg,#1D4024 0%,#122A18 100%);color:#F0EDD8;font-weight:900;text-align:center;cursor:pointer}
+.ecosystem-line button:hover,.ecosystem-line button:focus-visible{border-color:#C17F24;color:#EF9F27}
+.ecosystem-note{max-width:860px;margin:2rem auto 0;color:#D7D1B3;text-align:center}
 .digital-band{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(260px,.9fr);gap:clamp(2rem,5vw,4rem);align-items:center}
 .digital-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem 1.4rem;margin-top:1.4rem;color:#D7D1B3}
 .digital-list div::before{content:"→";margin-right:.55rem;color:#EF9F27;font-weight:900}
-.live-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.live-card{padding:1.25rem;border:1px solid #284A29;border-radius:18px;background:linear-gradient(180deg,#1D4024 0%,#122A18 100%)}
-.live-card small{display:block;margin-bottom:.4rem;color:#EF9F27;font-weight:900;text-transform:uppercase;letter-spacing:.1em}
-.live-card h3{margin-bottom:.5rem;font-size:1.3rem}
-.live-card p{margin:0;color:#D7D1B3}
-.start-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.start-grid .path-card{min-height:100%}
-@media(max-width:900px){.programs-hero-inner,.program-card-grid,.digital-band{grid-template-columns:1fr}.hero-statement{border-left:0;border-top:3px solid #C17F24;padding:1.5rem 0 0}.path-grid,.live-grid,.start-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ecosystem-line{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:640px){.path-grid,.live-grid,.start-grid,.detail-grid,.digital-list,.ecosystem-line{grid-template-columns:1fr}.programs-hero-inner{padding:4.5rem 0}.action-link{width:100%}}
+.activity-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.activity-card{display:block;padding:1.35rem;color:#F0EDD8;text-decoration:none;transition:transform .2s ease,border-color .2s ease}
+.activity-card:hover,.activity-card:focus-visible{transform:translateY(-3px);border-color:#97C459}
+.activity-card small{display:block;margin-bottom:.45rem;color:#EF9F27;font-weight:900;text-transform:uppercase;letter-spacing:.1em}
+.activity-card h3{margin-bottom:.55rem;font-size:1.35rem}
+.activity-card p{margin:0;color:#D7D1B3}
+.activity-card .activity-action{display:block;margin-top:1rem;color:#97C459;font-weight:900}
+.support-band{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2rem;align-items:center}
+.support-band p{max-width:760px;color:#D7D1B3}
+@media(max-width:900px){.programs-hero-inner,.result-layout,.program-card-grid,.digital-band,.support-band{grid-template-columns:1fr}.hero-statement{border-left:0;border-top:3px solid #C17F24;padding:1.5rem 0 0}.intent-grid,.activity-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ecosystem-line{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:640px){.intent-grid,.activity-grid,.detail-grid,.digital-list,.result-connections,.ecosystem-line{grid-template-columns:1fr}.programs-hero-inner{padding:4.5rem 0}.action-link{width:100%}.intent-choice{min-height:0}.support-band .action-link{width:100%}}
 </style>
 </head>
 <body class="rrm-phase-one programs-page">
@@ -83,54 +102,74 @@ h3{font-size:clamp(1.4rem,2.5vw,2rem)}
   <div class="programs-hero-inner">
     <div>
       <p class="eyebrow">Rebel Ranch Ministries Programs</p>
-      <h1>Responsible Rebellion in Action.</h1>
-      <p class="lead">Rebel Ranch Ministries helps real people build practical skills, create opportunity, support local communities, understand the systems that sustain everyday life, and take greater responsibility for their own future.</p>
+      <h1>What do you want to do?</h1>
+      <p class="lead">You do not need to learn our organization before you can use it. Tell us what you are trying to do, and we will point you toward the right Rebel Ranch program, the connections that may help, and a real next step.</p>
       <div class="hero-actions">
-        <a class="action-link primary" href="#find-your-program">Find Your Program</a>
-        <a class="action-link" href="#how-it-connects">See How It All Connects</a>
+        <a class="action-link primary" href="#find-your-program">Choose What You Need</a>
+        <a class="action-link" href="#happening-now">See What's Active</a>
       </div>
     </div>
     <div class="hero-statement">
-      <strong>Real People. Real Skills. Real Community.</strong>
-      Learn. Create. Build. Trade. Grow. Help. Different programs serve different needs, but they are built to strengthen the same people, families, businesses, and communities.
+      <strong>Responsible Rebellion in Action.</strong>
+      Real People. Real Skills. Real Community. Learn, create, build, trade, grow, help—and move between programs when life does not fit neatly into one box.
     </div>
   </div>
 </section>
 
 <section class="programs-section" id="find-your-program">
   <div class="section-head">
-    <p class="eyebrow">Start With What You Need</p>
-    <h2>Find Your Program.</h2>
-    <p>You do not need to understand our organizational chart first. Pick the path that sounds like what you need today.</p>
+    <p class="eyebrow">Start With You</p>
+    <h2>I want to...</h2>
+    <p>Pick the statement closest to what you need right now. The experience will narrow the ecosystem around you.</p>
   </div>
-  <div class="path-grid">
-    <a class="path-card" href="#academy"><span>Learn</span><h3>I want real-life skills.</h3><p>Life skills, emotional intelligence, finances, business, sustainability, and practical education.</p></a>
-    <a class="path-card" href="#creation-station"><span>Create</span><h3>I want to create and build.</h3><p>Projects, creative development, confidence, portfolios, and pathways for creators.</p></a>
-    <a class="path-card" href="#marketplace"><span>Connect Local</span><h3>I want to buy or sell local.</h3><p>Discover genuine local makers, growers, producers, services, and small businesses.</p></a>
-    <a class="path-card" href="#business-freedom"><span>Solve</span><h3>I need help with my business.</h3><p>Practical help with operations, visibility, money leaks, systems, payments, and owner overload.</p></a>
-    <a class="path-card" href="#roots-boots"><span>Grow</span><h3>I want to understand food, animals, and land.</h3><p>Working agriculture, livestock, produce, soil, water, food systems, lifecycles, and sustainable living.</p></a>
-    <a class="path-card" href="#rescue"><span>Help</span><h3>I care about farm-animal rescue.</h3><p>Rescue, recovery, responsible stewardship, and appropriate care or placement for farm animals.</p></a>
+  <div class="intent-grid" role="group" aria-label="Choose what you want to do">
+    <button class="intent-choice" type="button" data-intent="learn" aria-pressed="false"><span class="intent-label">Learn</span><h3>Learn something useful.</h3><p>Real-life skills, people skills, money, business, sustainability, food systems, and practical knowledge.</p></button>
+    <button class="intent-choice" type="button" data-intent="create" aria-pressed="false"><span class="intent-label">Create</span><h3>Make or build something.</h3><p>Turn ideas into projects, skills, confidence, portfolios, and something real.</p></button>
+    <button class="intent-choice" type="button" data-intent="local" aria-pressed="false"><span class="intent-label">Connect Local</span><h3>Find, buy, or sell local.</h3><p>Discover local food, handmade goods, skilled services, growers, makers, and small businesses.</p></button>
+    <button class="intent-choice" type="button" data-intent="business" aria-pressed="false"><span class="intent-label">Solve</span><h3>Get help with my business.</h3><p>Deal with owner overload, systems, visibility, money leaks, payments, processes, and operational problems.</p></button>
+    <button class="intent-choice" type="button" data-intent="grow" aria-pressed="false"><span class="intent-label">Grow</span><h3>Understand food, animals, and land.</h3><p>Follow real agriculture, livestock, produce, soil, water, lifecycles, food production, and sustainable living.</p></button>
+    <button class="intent-choice" type="button" data-intent="rescue" aria-pressed="false"><span class="intent-label">Help</span><h3>Follow or support farm-animal rescue.</h3><p>Rescue, recovery, responsible stewardship, animal care, appropriate placement, and the lessons that can come from real rescue work.</p></button>
+  </div>
+
+  <div class="intent-result" id="intent-result" hidden aria-live="polite">
+    <div class="result-layout">
+      <div>
+        <p class="result-kicker" id="result-kicker">Your best starting point</p>
+        <h2 id="result-title"></h2>
+        <p id="result-summary"></p>
+        <div class="result-actions" id="result-actions"></div>
+      </div>
+      <div>
+        <div class="result-next"><strong>What happens next</strong><span id="result-next"></span></div>
+        <div class="result-connections" id="result-connections"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="explore-controls">
+    <button class="text-control" type="button" id="view-all-programs">View all programs</button>
+    <button class="text-control" type="button" id="reset-intent" hidden>Choose something else</button>
   </div>
 </section>
 
 <section class="programs-section" id="how-it-connects">
   <div class="section-head">
     <p class="eyebrow">One Ecosystem</p>
-    <h2>Different Programs. One Mission.</h2>
-    <p>Some people come here to learn. Some create. Some need business help. Some want better access to local food and local sellers. Some want to understand how food, land, animals, and natural systems actually work. The programs connect when those needs overlap.</p>
+    <h2>Different programs. One mission.</h2>
+    <p>Needs overlap. A creator may need business skills. A Marketplace seller may need practical help. Agricultural work can become Academy learning. Rescue can teach stewardship. Use the ecosystem instead of forcing yourself into one lane.</p>
   </div>
-  <div class="ecosystem-line" aria-label="Program paths">
-    <a href="#academy">Learn</a>
-    <a href="#creation-station">Create</a>
-    <a href="#business-freedom">Build</a>
-    <a href="#marketplace">Trade</a>
-    <a href="#roots-boots">Grow</a>
-    <a href="#rescue">Help</a>
+  <div class="ecosystem-line" aria-label="Explore program paths">
+    <button type="button" data-intent-shortcut="learn">Learn</button>
+    <button type="button" data-intent-shortcut="create">Create</button>
+    <button type="button" data-intent-shortcut="business">Build</button>
+    <button type="button" data-intent-shortcut="local">Trade</button>
+    <button type="button" data-intent-shortcut="grow">Grow</button>
+    <button type="button" data-intent-shortcut="rescue">Help</button>
   </div>
-  <p class="ecosystem-note">These are pathways, not a required sequence. A creator can need Academy skills. A Marketplace seller can need Business Freedom. Real agricultural and rescue work can become education. One program can lead naturally to another without merging their identities.</p>
+  <p class="ecosystem-note">These are pathways, not a required sequence. Choosing one path simply focuses the page around what matters to you right now.</p>
 </section>
 
-<section class="programs-section" id="academy">
+<section class="programs-section program-detail-section" id="academy" data-program="academy">
   <article class="program-card">
     <div class="program-card-grid">
       <div><p class="program-kicker">Rebel Ranch Academy</p><h2>Learn the things life actually requires.</h2></div>
@@ -143,13 +182,13 @@ h3{font-size:clamp(1.4rem,2.5vw,2rem)}
           <div class="detail"><strong>Real-World Learning</strong><span>Lessons can grow from work actually happening inside other Rebel Ranch programs.</span></div>
         </div>
         <p class="connection"><strong>Connection:</strong> Physical program work may generate Academy learning without becoming an Academy-owned program.</p>
-        <div class="program-actions"><a class="action-link primary" href="https://academy.rebelranchministries.org">Explore Rebel Ranch Academy</a></div>
+        <div class="program-actions"><a class="action-link primary" href="https://academy.rebelranchministries.org">Open Rebel Ranch Academy</a></div>
       </div>
     </div>
   </article>
 </section>
 
-<section class="programs-section" id="creation-station">
+<section class="programs-section program-detail-section" id="creation-station" data-program="creation">
   <article class="program-card">
     <div class="program-card-grid">
       <div><p class="program-kicker">Creation Station</p><h2>Ideas become skills. Skills become something real.</h2></div>
@@ -161,13 +200,13 @@ h3{font-size:clamp(1.4rem,2.5vw,2rem)}
           <div class="detail"><strong>Document & Develop</strong><span>Build a working portfolio and learn the practical side of presenting work.</span></div>
           <div class="detail"><strong>Grow When Ready</strong><span>Connect to deeper Academy learning or separately apply to Marketplace when appropriate.</span></div>
         </div>
-        <div class="program-actions"><a class="action-link primary" href="creation.html">Explore Creation Station</a></div>
+        <div class="program-actions"><a class="action-link primary" href="creation.html">Open Creation Station</a></div>
       </div>
     </div>
   </article>
 </section>
 
-<section class="programs-section" id="marketplace">
+<section class="programs-section program-detail-section" id="marketplace" data-program="marketplace">
   <article class="program-card">
     <div class="program-card-grid">
       <div><p class="program-kicker">Rebel Ranch Marketplace</p><h2>Buy Local. Shop Local. Build Local.</h2></div>
@@ -179,13 +218,13 @@ h3{font-size:clamp(1.4rem,2.5vw,2rem)}
           <div class="detail"><strong>Direct Ordering</strong><span>Build an order or contact the seller, then arrange the seller's available pickup, delivery, shipping, or fulfillment option.</span></div>
           <div class="detail"><strong>Connected Support</strong><span>Sellers can move toward Academy education or Business Freedom when visibility alone is not enough.</span></div>
         </div>
-        <div class="program-actions"><a class="action-link primary" href="marketplace.html">Explore the Marketplace</a><a class="action-link" href="producer-interest.html">Become a Seller</a></div>
+        <div class="program-actions"><a class="action-link primary" href="marketplace.html">Open the Marketplace</a><a class="action-link" href="producer-interest.html">Become a Seller</a></div>
       </div>
     </div>
   </article>
 </section>
 
-<section class="programs-section" id="business-freedom">
+<section class="programs-section program-detail-section" id="business-freedom" data-program="business">
   <article class="program-card">
     <div class="program-card-grid">
       <div><p class="program-kicker">Business Freedom</p><h2>When you need help fixing the problem, not another lecture about it.</h2></div>
@@ -198,13 +237,13 @@ h3{font-size:clamp(1.4rem,2.5vw,2rem)}
           <div class="detail"><strong>Systems & Operations</strong><span>Disconnected tools, inefficient processes, repetitive work, and missing automation.</span></div>
         </div>
         <p class="connection"><strong>Simple distinction:</strong> Academy teaches. Business Freedom helps solve.</p>
-        <div class="program-actions"><a class="action-link primary" href="index.html#business-freedom">Explore Business Freedom</a></div>
+        <div class="program-actions"><a class="action-link primary" href="index.html#business-freedom">Open Business Freedom</a></div>
       </div>
     </div>
   </article>
 </section>
 
-<section class="programs-section" id="roots-boots">
+<section class="programs-section program-detail-section" id="roots-boots" data-program="roots">
   <article class="program-card agriculture-card">
     <div class="program-card-grid">
       <div><p class="program-kicker">Roots, Boots &amp; Animal Poops</p><h2>Growing food. Raising animals. Understanding the system.</h2></div>
@@ -218,13 +257,13 @@ h3{font-size:clamp(1.4rem,2.5vw,2rem)}
         </div>
         <p>The long-term program is designed to expand beyond demonstration. As capacity grows, RRM plans to use what is raised and grown to support ministry work and help feed the community, while developing future food-share opportunities and appropriate animal or agricultural sales and market placement.</p>
         <p class="connection"><strong>The real work becomes the lesson:</strong> what happens at Rebel Ranch can become videos, demonstrations, Academy learning, family activities, and digital experiences for people who cannot participate on-site.</p>
-        <div class="program-actions"><a class="action-link primary" href="#digital-learning">How the Learning Travels</a><a class="action-link" href="https://www.youtube.com/@RebelRanchMinistries">Watch on YouTube</a></div>
+        <div class="program-actions"><a class="action-link primary" href="#digital-learning">See How the Learning Travels</a><a class="action-link" href="https://www.youtube.com/@RebelRanchMinistries">Watch on YouTube</a></div>
       </div>
     </div>
   </article>
 </section>
 
-<section class="programs-section" id="rescue">
+<section class="programs-section program-detail-section" id="rescue" data-program="rescue">
   <article class="program-card rescue-card">
     <div class="program-card-grid">
       <div><p class="program-kicker">Rebel Ranch Rescue — RRR</p><h2>Rescue. Recover. Respect the animal.</h2></div>
@@ -243,7 +282,7 @@ h3{font-size:clamp(1.4rem,2.5vw,2rem)}
   </article>
 </section>
 
-<section class="programs-section" id="digital-learning">
+<section class="programs-section program-detail-section" id="digital-learning" data-program="digital">
   <div class="digital-band">
     <div>
       <p class="eyebrow">Real Work → Digital Learning</p>
@@ -258,37 +297,163 @@ h3{font-size:clamp(1.4rem,2.5vw,2rem)}
 
 <section class="programs-section" id="happening-now">
   <div class="section-head">
-    <p class="eyebrow">A Living Ministry</p>
-    <h2>See What's Happening Now.</h2>
-    <p>This area is built to grow into a rotating window into active Rebel Ranch work instead of leaving the Programs page frozen in time.</p>
+    <p class="eyebrow">Use RRM Right Now</p>
+    <h2>The ecosystem is already active.</h2>
+    <p>These are real places you can enter now. As more live program data becomes available, this area can surface it directly instead of becoming another wall of text.</p>
   </div>
-  <div class="live-grid">
-    <div class="live-card"><small>Academy</small><h3>Latest Learning</h3><p>New practical learning and program development can surface here.</p></div>
-    <div class="live-card"><small>Roots &amp; Boots</small><h3>From the Agricultural Program</h3><p>Seasonal work, animal updates, produce, soil, food systems, and demonstrations can rotate here.</p></div>
-    <div class="live-card"><small>RRR</small><h3>Rescue Stories</h3><p>Appropriate rescue, recovery, stewardship, and education updates can surface here.</p></div>
-    <div class="live-card"><small>Creation Station</small><h3>Creator Work</h3><p>Projects and creative activity can connect visitors to the Creation Station experience.</p></div>
-    <div class="live-card"><small>Marketplace</small><h3>Seller Spotlight</h3><p>Feature genuine local sellers and strengthen discovery across the community.</p></div>
-    <div class="live-card"><small>YouTube</small><h3>Latest Video</h3><p>Use digital media to bring real Rebel Ranch work to people wherever they are.</p></div>
+  <div class="activity-grid" id="activity-grid">
+    <a class="activity-card" href="https://academy.rebelranchministries.org" data-activity="academy"><small>Academy</small><h3>Learn real-life skills</h3><p>Open the live Rebel Ranch Academy program hub and choose a learning path.</p><span class="activity-action">Open Academy →</span></a>
+    <a class="activity-card" href="marketplace.html" data-activity="marketplace"><small>Marketplace</small><h3>Find local food, goods &amp; services</h3><p>Search local sellers, browse listings, and connect directly with real small businesses.</p><span class="activity-action">Browse local →</span></a>
+    <a class="activity-card" href="creation.html" data-activity="creation"><small>Creation Station</small><h3>Create something</h3><p>Explore the creative-development program for kids, teens, and adults.</p><span class="activity-action">Open Creation Station →</span></a>
+    <a class="activity-card" href="index.html#business-freedom" data-activity="business"><small>Business Freedom</small><h3>Get practical business help</h3><p>See support for owners dealing with real operational problems right now.</p><span class="activity-action">See Business Freedom →</span></a>
+    <a class="activity-card" href="https://www.youtube.com/@RebelRanchMinistries" data-activity="youtube"><small>YouTube</small><h3>Follow the real work</h3><p>Digital media carries Rebel Ranch learning, demonstrations, stories, and program activity beyond the property.</p><span class="activity-action">Watch on YouTube →</span></a>
+    <a class="activity-card" href="support.html" data-activity="support"><small>Mission</small><h3>Help keep the work moving</h3><p>See what it takes to support the programs, people, animals, education, and community work.</p><span class="activity-action">Support the Mission →</span></a>
   </div>
 </section>
 
-<section class="programs-section" id="start">
-  <div class="section-head">
-    <p class="eyebrow">Start Here</p>
-    <h2>Start With What You Need Today.</h2>
-    <p>There is no required path through Rebel Ranch Ministries. Start where the need is real.</p>
+<section class="programs-section" id="support">
+  <div class="support-band">
+    <div><p class="eyebrow">Part of Something Bigger</p><h2>Start where the need is real.</h2><p>There is no required path through Rebel Ranch Ministries. Choose what matters today, use the program that fits, and move through the ecosystem when another need becomes relevant.</p></div>
+    <a class="action-link primary" href="support.html">Support the Mission</a>
   </div>
-  <div class="start-grid">
-    <a class="path-card" href="https://academy.rebelranchministries.org"><span>Learn</span><h3>Rebel Ranch Academy</h3><p>Build practical knowledge and real-life skills.</p></a>
-    <a class="path-card" href="creation.html"><span>Create</span><h3>Creation Station</h3><p>Turn ideas into projects, skills, and something real.</p></a>
-    <a class="path-card" href="marketplace.html"><span>Local</span><h3>Marketplace</h3><p>Discover, buy from, and support local sellers.</p></a>
-    <a class="path-card" href="index.html#business-freedom"><span>Solve</span><h3>Business Freedom</h3><p>Get practical help with immediate business problems.</p></a>
-    <a class="path-card" href="#roots-boots"><span>Grow</span><h3>Roots, Boots &amp; Animal Poops</h3><p>Follow real agriculture, food systems, and sustainable living.</p></a>
-    <a class="path-card" href="#rescue"><span>Help</span><h3>Rebel Ranch Rescue</h3><p>Follow farm-animal rescue, recovery, and stewardship.</p></a>
-  </div>
-  <div class="hero-actions" style="justify-content:center"><a class="action-link primary" href="support.html">Support the Mission</a></div>
 </section>
 </main>
 <script src="assets/js/public-shell.js"></script>
+<script>
+(() => {
+  const choices = [...document.querySelectorAll('[data-intent]')];
+  const shortcuts = [...document.querySelectorAll('[data-intent-shortcut]')];
+  const panels = [...document.querySelectorAll('[data-program]')];
+  const result = document.getElementById('intent-result');
+  const resultTitle = document.getElementById('result-title');
+  const resultSummary = document.getElementById('result-summary');
+  const resultNext = document.getElementById('result-next');
+  const resultActions = document.getElementById('result-actions');
+  const resultConnections = document.getElementById('result-connections');
+  const resetButton = document.getElementById('reset-intent');
+  const viewAllButton = document.getElementById('view-all-programs');
+
+  const intents = {
+    learn: {
+      title: 'Rebel Ranch Academy',
+      summary: 'Start with the Academy when your goal is to build useful knowledge and real-life capability. Academy is the structured learning engine for life skills, people skills, finances, business, sustainability, and practical education.',
+      next: 'Choose a learning path in the Academy. If your interest is food, animals, land, or natural systems, Roots, Boots & Animal Poops can give that learning a real-world connection.',
+      panels: ['academy'],
+      actions: [['Open Rebel Ranch Academy','https://academy.rebelranchministries.org','primary'],['Explore agriculture & food systems','#roots-boots','']],
+      connections: [['Roots, Boots & Animal Poops','Real agricultural work can become Academy learning.','#roots-boots'],['Business Freedom','If the issue is an immediate business problem instead of learning, practical help may fit better.','#business-freedom']]
+    },
+    create: {
+      title: 'Creation Station',
+      summary: 'Start with Creation Station when you want to turn an idea into a project, build confidence, develop a portfolio, or simply create alongside a structured program.',
+      next: 'Open Creation Station and choose the experience that fits. When deeper money, business, communication, or practical skills become useful, Academy can support the next step.',
+      panels: ['creation'],
+      actions: [['Open Creation Station','creation.html','primary'],['Build deeper skills in Academy','https://academy.rebelranchministries.org','']],
+      connections: [['Rebel Ranch Academy','Develop the practical skills behind the creative work.','https://academy.rebelranchministries.org'],['Marketplace','When appropriate, creators can separately apply to become Marketplace sellers.','marketplace.html']]
+    },
+    local: {
+      title: 'Rebel Ranch Marketplace',
+      summary: 'Start with Marketplace when you want to find local food, handmade goods, skilled services, or small businesses—or when you want to apply as a genuine local seller.',
+      next: 'Browse what is available, search local sellers, build an order request, contact a seller, or start the seller application if you want to participate.',
+      panels: ['marketplace'],
+      actions: [['Browse the Marketplace','marketplace.html','primary'],['Become a Seller','producer-interest.html','']],
+      connections: [['Business Freedom','Sellers who need practical operational help can move here.','#business-freedom'],['Rebel Ranch Academy','Build stronger business, financial, communication, and planning skills.','https://academy.rebelranchministries.org']]
+    },
+    business: {
+      title: 'Business Freedom',
+      summary: 'Start with Business Freedom when the problem is already happening and you need practical help—not another lesson telling you what you should eventually do.',
+      next: 'Review the current Business Freedom support paths and choose the problem closest to what is getting in your way right now.',
+      panels: ['business'],
+      actions: [['Explore Business Freedom','index.html#business-freedom','primary'],['Build long-term skills in Academy','https://academy.rebelranchministries.org','']],
+      connections: [['Rebel Ranch Academy','Academy is the longer-term learning path when knowledge and skills are the need.','https://academy.rebelranchministries.org'],['Marketplace','Local sellers who fit the mission can use Marketplace for discovery and direct buyer connection.','marketplace.html']]
+    },
+    grow: {
+      title: 'Roots, Boots & Animal Poops',
+      summary: 'Start here when you want to understand how food, animals, produce, soil, water, lifecycles, and natural systems actually work together. This is RRM’s working agricultural program—not just a class about agriculture.',
+      next: 'Follow the real agricultural work and the digital learning that grows from it. The program is designed to expand with real food production, community support, and future approved food-share and agricultural market opportunities.',
+      panels: ['roots','digital'],
+      actions: [['See the agricultural program','#roots-boots','primary'],['Watch Rebel Ranch on YouTube','https://www.youtube.com/@RebelRanchMinistries','']],
+      connections: [['Rebel Ranch Academy','Structured lessons can be built from the real agricultural work.','https://academy.rebelranchministries.org'],['Rebel Ranch Rescue','Farm-animal rescue and stewardship can connect to lifecycle and animal-care learning without merging the programs.','#rescue']]
+    },
+    rescue: {
+      title: 'Rebel Ranch Rescue',
+      summary: 'Start with RRR when you want to follow or support farm-animal rescue, recovery, stewardship, care, and appropriate placement. Rescue is separate from livestock intentionally raised in the agricultural food system.',
+      next: 'Follow the rescue work as it develops through RRM’s digital channels. When appropriate, real rescue experiences can also become lessons about stewardship, animal care, behavior, recovery, and lifecycles.',
+      panels: ['rescue','digital'],
+      actions: [['See Rebel Ranch Rescue','#rescue','primary'],['Follow Rebel Ranch on YouTube','https://www.youtube.com/@RebelRanchMinistries','']],
+      connections: [['Roots, Boots & Animal Poops','Animal stewardship can connect to broader food, land, and lifecycle learning while remaining a separate program.','#roots-boots'],['Rebel Ranch Academy','Appropriate rescue experiences can become structured learning.','https://academy.rebelranchministries.org']]
+    }
+  };
+
+  function setPanelVisibility(keys) {
+    const wanted = new Set(keys);
+    panels.forEach((panel) => { panel.hidden = !wanted.has(panel.dataset.program); });
+  }
+
+  function makeAction([label, href, kind]) {
+    const link = document.createElement('a');
+    link.className = `action-link${kind === 'primary' ? ' primary' : ''}`;
+    link.href = href;
+    link.textContent = label;
+    return link;
+  }
+
+  function makeConnection([title, text, href]) {
+    const link = document.createElement('a');
+    link.className = 'connection-link';
+    link.href = href;
+    link.innerHTML = `<strong>${title}</strong><span>${text}</span>`;
+    return link;
+  }
+
+  function selectIntent(key, options = {}) {
+    const config = intents[key];
+    if (!config) return;
+    choices.forEach((choice) => choice.setAttribute('aria-pressed', String(choice.dataset.intent === key)));
+    resultTitle.textContent = config.title;
+    resultSummary.textContent = config.summary;
+    resultNext.textContent = config.next;
+    resultActions.replaceChildren(...config.actions.map(makeAction));
+    resultConnections.replaceChildren(...config.connections.map(makeConnection));
+    result.hidden = false;
+    resetButton.hidden = false;
+    viewAllButton.textContent = 'View all programs';
+    setPanelVisibility(config.panels);
+    if (options.updateHash !== false) history.replaceState(null, '', `#${key}`);
+    if (options.scroll !== false) result.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+
+  function showAll() {
+    panels.forEach((panel) => { panel.hidden = false; });
+    choices.forEach((choice) => choice.setAttribute('aria-pressed','false'));
+    result.hidden = true;
+    resetButton.hidden = false;
+    viewAllButton.textContent = 'All programs are showing';
+    history.replaceState(null,'','#all-programs');
+    document.getElementById('academy').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  function resetExperience() {
+    choices.forEach((choice) => choice.setAttribute('aria-pressed','false'));
+    panels.forEach((panel) => { panel.hidden = true; });
+    result.hidden = true;
+    resetButton.hidden = true;
+    viewAllButton.textContent = 'View all programs';
+    history.replaceState(null,'',window.location.pathname);
+    document.getElementById('find-your-program').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  choices.forEach((choice) => choice.addEventListener('click', () => selectIntent(choice.dataset.intent)));
+  shortcuts.forEach((shortcut) => shortcut.addEventListener('click', () => selectIntent(shortcut.dataset.intentShortcut)));
+  viewAllButton.addEventListener('click', showAll);
+  resetButton.addEventListener('click', resetExperience);
+
+  panels.forEach((panel) => { panel.hidden = true; });
+  const hashKey = window.location.hash.slice(1);
+  const hashMap = {academy:'learn','creation-station':'create',marketplace:'local','business-freedom':'business','roots-boots':'grow',rescue:'rescue',digital-learning:'grow'};
+  if (intents[hashKey]) selectIntent(hashKey,{scroll:false,updateHash:false});
+  else if (hashKey === 'all-programs') showAll();
+  else if (hashMap[hashKey]) selectIntent(hashMap[hashKey],{scroll:false,updateHash:false});
+})();
+</script>
 </body>
 </html>
