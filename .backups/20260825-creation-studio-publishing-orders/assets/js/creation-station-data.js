@@ -1,0 +1,86 @@
+import {supabase} from './supabase-client.js';
+
+export const tierNames={1:'Young Creator Family',2:'Creator Development',3:'Creation Station Studio'};
+export const tierRanks={young_creator_family:1,creator_development:2,creator_website:3};
+export function membershipIsCurrent(m){const now=Date.now(),start=m.starts_at?Date.parse(m.starts_at):null,end=m.ends_at?Date.parse(m.ends_at):null;return ['active','past_due'].includes(m.membership_status)&&(!start||start<=now)&&(!end||end>now)}
+const fail=(results)=>{const error=results.find(r=>r.error)?.error;if(error)throw error};
+
+export async function loadIdentity(){
+  const {data:{session},error}=await supabase.auth.getSession();if(error)throw error;if(!session)return null;
+  const user=session.user;
+  const results=await Promise.all([
+    supabase.from('profiles').select('display_name').eq('id',user.id).single(),
+    supabase.from('user_roles').select('role').eq('user_id',user.id),
+    supabase.from('memberships').select('offer_code,membership_status,starts_at,ends_at,created_at').eq('user_id',user.id).eq('program_code','creation_station').order('created_at',{ascending:false}),
+    supabase.from('households').select('id,household_name,parent_pin').eq('owner_user_id',user.id).limit(1).maybeSingle(),
+    supabase.from('creator_profiles').select('id,display_name,public_name,creator_type,age_band,profile_status,kid_pin').eq('owner_user_id',user.id).eq('profile_status','active').order('created_at')
+  ]);fail(results);const [profileR,rolesR,membersR,houseR,creatorsR]=results;
+  const isAdmin=rolesR.data.some(r=>r.role==='admin'),membership=membersR.data.find(membershipIsCurrent)||null;
+  return {user,displayName:profileR.data.display_name,isAdmin,membership,tier:isAdmin?3:(tierRanks[membership?.offer_code]||0),household:houseR.data,creators:creatorsR.data};
+}
+
+export async function loadWorkspace(identity){
+  const uid=identity.user.id;
+  const results=await Promise.all([
+    supabase.from('project_templates').select('id,title,summary,instructions,category,difficulty,minimum_tier,estimated_minutes,supply_list').eq('is_active',true).order('minimum_tier'),
+    supabase.from('creator_projects').select('id,creator_id,template_id,title,status,completion,notes,stage_data,is_favorite,started_at,completed_at,updated_at').eq('owner_user_id',uid).order('updated_at',{ascending:false}),
+    supabase.from('creator_portfolios').select('id,creator_id,title,bio,is_public,review_status,updated_at').eq('owner_user_id',uid),
+    supabase.from('creation_resources').select('id,title,description,resource_type,external_url,storage_path,minimum_tier').eq('is_published',true).order('created_at',{ascending:false}).limit(12),
+    supabase.from('live_classes').select('id,title,description,starts_at,ends_at,supply_list,meeting_url,replay_url,minimum_tier,registration_link').eq('is_published',true).order('starts_at').limit(12),
+    supabase.from('class_registrations').select('id,creator_id,class_id,attended_at').eq('owner_user_id',uid),
+    supabase.from('creator_website_requests').select('id,creator_id,status,brand_name,story,products,social_links,payment_methods,payment_other_note,payment_link,payment_handles,delivery_methods,owner_notes,admin_notes,submitted_at,approved_at,published_at,published_url,public_slug,updated_at,revision_number').eq('owner_user_id',uid).order('updated_at',{ascending:false}),
+    supabase.from('creation_activity').select('id,creator_id,activity_type,summary,created_at').eq('owner_user_id',uid).order('created_at',{ascending:false}),
+    supabase.from('creator_studio_products').select('id,website_request_id,source_project_id,title,description,price_label,storage_path,is_active,sort_order').eq('owner_user_id',uid).order('sort_order'),
+    supabase.from('portfolio_items').select('id,portfolio_id,project_id,asset_id,title,description').eq('owner_user_id',uid),
+    supabase.from('project_assets').select('id,project_id,storage_path,file_name,mime_type').eq('owner_user_id',uid),
+    supabase.from('studio_order_requests').select('id,website_request_id,sender_name,sender_contact,cart_summary,message,is_read,created_at').order('created_at',{ascending:false}),
+    supabase.from('creator_companions').select('id,creator_id,companion_name,catchphrase,color').eq('owner_user_id',uid)
+  ]);fail(results);const [templates,projects,portfolios,resources,classes,registrations,websites,activity,studioProducts,portfolioItems,projectAssets,orderRequests,companions]=results;
+  return {templates:templates.data,projects:projects.data,portfolios:portfolios.data,resources:resources.data,classes:classes.data,registrations:registrations.data,websites:websites.data,activity:activity.data,studioProducts:studioProducts.data,portfolioItems:portfolioItems.data,projectAssets:projectAssets.data,orderRequests:orderRequests.data,companions:companions.data};
+}
+
+export async function loadProjectAssetUrls(paths){
+  if(!paths.length)return {};
+  const {data,error}=await supabase.storage.from('creation-station-private').createSignedUrls(paths,3600);
+  if(error||!data)return {};
+  const map={};data.forEach(d=>{if(d.signedUrl)map[d.path]=d.signedUrl});
+  return map;
+}
+
+export async function loadAdminSummary(){
+  const results=await Promise.all([
+    supabase.from('creator_portfolios').select('id,title,bio,review_status,moderation_note,owner_user_id,creator_id').in('review_status',['submitted','changes_requested']),
+    supabase.from('creator_website_requests').select('id,status,brand_name,story,products,social_links,payment_methods,payment_other_note,payment_link,payment_handles,delivery_methods,parent_approver_name,parent_approver_relationship,admin_notes,owner_user_id,creator_id,updated_at').in('status',['submitted','changes_requested','approved']),
+    supabase.from('creator_projects').select('id,status,completion,owner_user_id'),
+    supabase.from('creator_profiles').select('id,age_band,profile_status'),
+    supabase.from('live_classes').select('id,title,description,starts_at,ends_at,minimum_tier,capacity,meeting_url,replay_url,supply_list,is_published,registration_link').order('starts_at',{ascending:false}),
+    supabase.from('studio_order_requests').select('id,website_request_id,sender_name,sender_contact,cart_summary,message,is_read,created_at').order('created_at',{ascending:false})
+  ]);fail(results);return {portfolioQueue:results[0].data,websiteQueue:results[1].data,allProjects:results[2].data,allCreators:results[3].data,allClasses:results[4].data,orderRequests:results[5].data};
+}
+
+export const actions={
+  async startProject(identity,template,creatorId,title,notes){return supabase.from('creator_projects').insert({owner_user_id:identity.user.id,creator_id:creatorId,template_id:template.id,membership_offer_code:identity.membership?.offer_code||'creator_website',title:title||template.title,notes:notes||null}).select('id').single()},
+  async updateProject(identity,id,updates){return supabase.from('creator_projects').update({...updates,updated_at:new Date().toISOString()}).eq('id',id).eq('owner_user_id',identity.user.id)},
+  async uploadProjectAsset(identity,project,file){const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,'-'),path=`${identity.user.id}/${project.creator_id}/${project.id}/${crypto.randomUUID()}-${safe}`;const upload=await supabase.storage.from('creation-station-private').upload(path,file);if(upload.error)return upload;const insert=await supabase.from('project_assets').insert({owner_user_id:identity.user.id,creator_id:project.creator_id,project_id:project.id,storage_path:path,file_name:file.name,mime_type:file.type,file_size:file.size});if(insert.error)return insert;const {data:previous}=await supabase.from('project_assets').select('id,storage_path').eq('project_id',project.id).eq('owner_user_id',identity.user.id).neq('storage_path',path);if(previous?.length){await supabase.storage.from('creation-station-private').remove(previous.map(a=>a.storage_path));await supabase.from('project_assets').delete().in('id',previous.map(a=>a.id))}return insert},
+  async createPortfolio(identity,creator){return supabase.from('creator_portfolios').insert({owner_user_id:identity.user.id,creator_id:creator.id,title:`${creator.display_name}'s Portfolio`})},
+  async submitWebsite(identity,payload){return supabase.from('creator_website_requests').insert({...payload,owner_user_id:identity.user.id,submitted_at:new Date().toISOString()}).select('id').single()},
+  async updateWebsiteRequest(identity,id,payload){return supabase.from('creator_website_requests').update({...payload,submitted_at:new Date().toISOString()}).eq('id',id).eq('owner_user_id',identity.user.id).select('id').single()},
+  async createStudioProduct(identity,payload){return supabase.from('creator_studio_products').insert({...payload,owner_user_id:identity.user.id}).select('id').single()},
+  async updateStudioProduct(id,payload){return supabase.from('creator_studio_products').update(payload).eq('id',id)},
+  async deleteStudioProduct(id){return supabase.from('creator_studio_products').delete().eq('id',id)},
+  async uploadStudioProductFile(identity,websiteRequestId,file){const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,'-'),path=`${identity.user.id}/${websiteRequestId}/${crypto.randomUUID()}-${safe}`;const upload=await supabase.storage.from('creation-station-studio-public').upload(path,file,{contentType:file.type});if(upload.error)return upload;return {data:{path},error:null}},
+  async uploadStudioProductBlob(path,blob,contentType){return supabase.storage.from('creation-station-studio-public').upload(path,blob,{contentType})},
+  async downloadPrivateAsset(path){return supabase.storage.from('creation-station-private').download(path)},
+  async notifyWebsiteRequest(requestId){return supabase.functions.invoke('notify-website-request',{body:{requestId}})},
+  async log(identity,type,subjectType,subjectId,summary){return supabase.from('creation_activity').insert({owner_user_id:identity.user.id,activity_type:type,subject_type:subjectType,subject_id:subjectId,summary})},
+  async reviewPortfolio(id,update){return supabase.from('creator_portfolios').update(update).eq('id',id)},
+  async reviewWebsiteRequest(id,update){return supabase.from('creator_website_requests').update(update).eq('id',id)},
+  async setKidPin(creatorId,pin){return supabase.from('creator_profiles').update({kid_pin:pin}).eq('id',creatorId)},
+  async setParentPin(householdId,pin){return supabase.from('households').update({parent_pin:pin}).eq('id',householdId)},
+  async createSession(payload){return supabase.from('live_classes').insert(payload)},
+  async updateSession(id,updates){return supabase.from('live_classes').update(updates).eq('id',id)},
+  async registerForClass(identity,creatorId,classId){return supabase.from('class_registrations').insert({owner_user_id:identity.user.id,creator_id:creatorId,class_id:classId})},
+  async markOrderRequestRead(id){return supabase.from('studio_order_requests').update({is_read:true,read_at:new Date().toISOString()}).eq('id',id)},
+  async saveCompanion(identity,creatorId,payload){return supabase.from('creator_companions').upsert({owner_user_id:identity.user.id,creator_id:creatorId,...payload,updated_at:new Date().toISOString()},{onConflict:'creator_id'})},
+  async signOut(){return supabase.auth.signOut()}
+};
