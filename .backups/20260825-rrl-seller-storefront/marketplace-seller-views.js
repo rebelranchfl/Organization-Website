@@ -20,6 +20,7 @@ function badge(status){return `<span class="status-badge ${badgeClass(status)}">
 function categoryName(state,id){return state.identity.categories.find(c=>c.id===id)?.name||'Category'}
 function requirementFor(state,assignmentId){return state.data.requirementAssignments.find(r=>r.id===assignmentId)}
 
+const THEME_LABELS={dark:'Current (dark green)',cream:'Cream Canvas',linen:'Linen & Timber',white:'Morning Market White'};
 const PAYMENT_LABELS={paypal:'PayPal',venmo:'Venmo',cashapp:'Cash App',zelle:'Zelle',stripe:'Stripe',apple_pay:'Apple Pay',cash:'Cash',check:'Check',other:'Other'};
 
 export function status(state){
@@ -46,7 +47,9 @@ export function status(state){
           <label>Business name<input id="pf-business-name" value="${esc(sp.business_name)}" ${canEdit?'':'disabled'} required></label>
           <label>Short description<textarea id="pf-short-description">${esc(sp.short_description||'')}</textarea></label>
           <label>Long description <span>Shown in the About section of your public page</span><textarea id="pf-long-description">${esc(sp.long_description||'')}</textarea></label>
-          <p>Your public storefront uses the approved Rebel Ranch Local appearance. Your logo, business story, listings, and photographs make the page your own.</p>
+          <label>Page tone <span>How your public page looks — the directory itself always stays the current dark green</span>
+            <div class="check-grid">${Object.entries(THEME_LABELS).map(([key,text])=>`<label><input type="radio" name="pf-theme" value="${key}" ${sp.page_theme===key?'checked':''}> ${text}</label>`).join('')}</div>
+          </label>
           <label>Why shop with you? <span>Up to 3 reasons buyers should choose you — shown on your public page. Leave blank to use our default copy.</span></label>
           <input id="pf-why-1" placeholder="Reason 1" value="${esc((sp.why_shop_points||[])[0]||'')}">
           <input id="pf-why-2" placeholder="Reason 2" value="${esc((sp.why_shop_points||[])[1]||'')}">
