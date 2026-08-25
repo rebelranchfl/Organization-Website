@@ -1,5 +1,5 @@
 -- AI-Agent: ChatGPT/Codex
--- Session: Audit Repository Handoff
+-- Session: Rebel Ranch Local order system
 -- Structured direct-to-seller orders, private buyer photos, seller fulfillment,
 -- and seller-confirmed totals. Rebel Ranch Local does not process payment.
 
@@ -129,3 +129,4 @@ begin
 end $$;
 revoke all on function private.notify_seller_of_order() from public, anon, authenticated;
 create trigger notify_seller_of_order after insert on public.seller_orders for each row execute function private.notify_seller_of_order();
+

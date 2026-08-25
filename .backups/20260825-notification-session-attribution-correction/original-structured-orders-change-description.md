@@ -1,6 +1,6 @@
 # Rebel Ranch Local structured orders
 
-Authorized by the owner on 2026-08-25 in the `Audit Repository Handoff` session.
+Authorized by the owner on 2026-08-25 in the “Rebel Ranch Local order system” session.
 
 This pass will:
 
@@ -16,6 +16,4 @@ This pass will:
 Backed-up files are exact copies from `main` commit `668bc4da84b9d390bcbae04773545bd5230d46f4` before editing.
 
 AI-Agent: ChatGPT/Codex
-Session: Audit Repository Handoff
-
-Attribution correction: the prior descriptive session label was not the actual ChatGPT conversation title. Corrected by ChatGPT/Codex after the owner identified the real title.
+Session: Rebel Ranch Local order system

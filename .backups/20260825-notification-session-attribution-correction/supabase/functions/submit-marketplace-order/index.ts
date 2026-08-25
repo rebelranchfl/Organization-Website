@@ -1,5 +1,5 @@
 // AI-Agent: ChatGPT/Codex
-// Session: Audit Repository Handoff
+// Session: Rebel Ranch Local order system
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
 const cors={

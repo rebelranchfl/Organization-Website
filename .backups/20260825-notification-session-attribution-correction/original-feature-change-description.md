@@ -1,7 +1,5 @@
 AI-Agent: ChatGPT/Codex
-Session: Audit Repository Handoff
-
-Attribution correction: the prior descriptive session label was not the actual ChatGPT conversation title. Corrected by ChatGPT/Codex after the owner identified the real title.
+Session: Rebel Ranch Local seller order notifications
 
 Purpose: preserve the exact current production files before adding seller order email and optional OneSignal web-push notifications.
 

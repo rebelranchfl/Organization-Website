@@ -15,7 +15,7 @@
 ## Attribution
 
 - **AI agent:** ChatGPT/Codex
-- **Chat/session:** `Audit Repository Handoff`
+- **Chat/session:** `Rebel Ranch Local seller order notifications`
 - **Production implementation commit:** `8647acb2a75e228f6f4994080782cf722f61d6dc`
 - **Commit title:** `Add seller order email and push alerts`
 - **Supabase Edge Function:** `submit-marketplace-order`
@@ -27,18 +27,6 @@ The production commit includes the required attribution trailers:
 AI-Agent: ChatGPT/Codex
 Session: Rebel Ranch Local seller order notifications
 ```
-
-### Attribution correction — 2026-08-25
-
-The session trailer shown immediately above is copied from the already-published production commit. ChatGPT/Codex created that descriptive label without verifying the actual ChatGPT conversation title. It is not the real title.
-
-The correct chat/session title for this implementation and its documentation is:
-
-```text
-Audit Repository Handoff
-```
-
-The same incorrect descriptive label was used in documentation commit `af62861132c8f17ffcf2f3a751e8b92509f96233` and in the earlier structured-order/hotfix commit chain: `2e5ae0378d129c87cd04f7517350c1ef03fd94b5`, `8d313629af90b0025a448c098991f255f07c39cb`, `d97efd55db1e4f1921c52071b9279e403b419d70`, `460fb2ffd424332aa605744fede962f654b1fa99`, `2b3662f804af2246f054b54796e45e9633d13fa8`, and `5d9a1e91c5a535dce23b09435a4427045b517292`. Published Git history was not rewritten. This correction and the corrective commit provide the permanent traceable record. All future attribution for this assignment must use `Session: Audit Repository Handoff`.
 
 ## Owner-approved purpose
 
