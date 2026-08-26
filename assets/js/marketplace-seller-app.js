@@ -281,6 +281,22 @@ function bindScreen(){
     await refresh();
   }));
 
+  root.querySelectorAll('[data-mark-inquiry-responded]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
+    const {error}=await actions.markInquiryResponded(state.identity,b.dataset.markInquiryResponded);
+    if(error)throw error;
+    await refresh();
+    message('Marked as responded.');
+  }));
+
+  const listingFilterSelect=root.querySelector('#listing-filter');
+  if(listingFilterSelect)listingFilterSelect.onchange=()=>{state.listingFilter=listingFilterSelect.value;render()};
+
+  const notifFilterSelect=root.querySelector('#notif-filter');
+  if(notifFilterSelect)notifFilterSelect.onchange=()=>{state.notifFilter=notifFilterSelect.value;render()};
+
+  const historyWindowSelect=root.querySelector('#history-window');
+  if(historyWindowSelect)historyWindowSelect.onchange=()=>{state.historyFilter={window:historyWindowSelect.value};render()};
+
   const orderWindowSelect=root.querySelector('#order-window');
   if(orderWindowSelect)orderWindowSelect.onchange=()=>{state.orderFilter={window:orderWindowSelect.value};render()};
 

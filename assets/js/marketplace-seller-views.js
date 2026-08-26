@@ -184,11 +184,13 @@ function listingCard(item){
 }
 
 export function listings(state){
-  const items=state.data.listings;
+  const allItems=state.data.listings;
   const limit=state.identity.sellerProfile.listing_limit??5;
-  const atLimit=items.length>=limit;
-  const addForm=atLimit?`<section class="panel"><div class="panel-header"><h2>Add a listing</h2></div><p>You've used all ${limit} of your free listings (${items.length}/${limit}). Contact Rebel Ranch Ministries if you'd like to add more.</p></section>`:`<section class="panel">
-    <div class="panel-header"><h2>Add a listing</h2><span class="tag">${items.length}/${limit} used</span></div>
+  const atLimit=allItems.length>=limit;
+  const listingFilter=state.listingFilter||'all';
+  const items=allItems.filter(i=>listingFilter==='all'||(listingFilter==='active'?i.is_active:!i.is_active));
+  const addForm=atLimit?`<section class="panel"><div class="panel-header"><h2>Add a listing</h2></div><p>You've used all ${limit} of your free listings (${allItems.length}/${limit}). Contact Rebel Ranch Ministries if you'd like to add more.</p></section>`:`<section class="panel">
+    <div class="panel-header"><h2>Add a listing</h2><span class="tag">${allItems.length}/${limit} used</span></div>
     <form id="add-listing-form" class="onboarding-form">
       <label>Type<select id="new-listing-type"><option value="product">Product</option><option value="service">Service</option></select></label>
       <label>Title<input id="new-listing-title" required></label>
@@ -199,16 +201,26 @@ export function listings(state){
       <div class="dialog-actions"><button class="primary" type="submit">Add listing</button></div>
     </form>
   </section>`;
+  const filterRow=`<div class="view-tools" style="margin:14px 0"><label style="display:flex;align-items:center;gap:8px;font-weight:800;color:var(--ink)">Showing<select id="listing-filter"><option value="all" ${listingFilter==='all'?'selected':''}>All (${allItems.length})</option><option value="active" ${listingFilter==='active'?'selected':''}>Active (${allItems.filter(i=>i.is_active).length})</option><option value="inactive" ${listingFilter==='inactive'?'selected':''}>Hidden (${allItems.filter(i=>!i.is_active).length})</option></select></label></div>`;
   return `${heading('Listings','What you sell','Add products or services with a price and photos — buyers see these on your public page.')}
   ${addForm}
-  ${items.length?`<div class="card-grid" style="margin-top:18px">${items.map(listingCard).join('')}</div>`:empty('No listings yet','Add your first product or service using the form above.')}`;
+  ${allItems.length?filterRow:''}
+  ${items.length?`<div class="card-grid" style="margin-top:18px">${items.map(listingCard).join('')}</div>`:empty(allItems.length?'No listings match this filter':'No listings yet',allItems.length?'Try a different filter above.':'Add your first product or service using the form above.')}`;
 }
 
 export function requirements(state){
   const items=state.data.requirementAssignments;
   if(!items.length)return `${heading('Compliance','Requirements','Requirements are assigned automatically based on your categories.')}${empty('No requirements yet','Add a category on the Status tab to see what applies to your business.')}`;
-  return `${heading('Compliance','Requirements','Submit an attestation or upload a document for each requirement below.')}
-  <div class="card-grid">${items.map(r=>{
+  const pending=items.filter(r=>r.assignment_status==='pending').length;
+  const satisfied=items.filter(r=>r.assignment_status==='satisfied').length;
+  const waived=items.filter(r=>['waived','not_applicable'].includes(r.assignment_status)).length;
+  const statsRow=`<div class="metric-grid" style="grid-template-columns:repeat(3,1fr)">
+    <div class="metric"><span>Pending</span><strong>${pending}</strong><small>Needs your action</small></div>
+    <div class="metric"><span>Satisfied</span><strong>${satisfied}</strong><small>Complete</small></div>
+    <div class="metric"><span>Waived / N/A</span><strong>${waived}</strong><small>Resolved by admin</small></div>
+  </div>`;
+  return `${heading('Compliance','Requirements','Submit an attestation or upload a document for each requirement below.')}${statsRow}
+  <div class="card-grid" style="margin-top:18px">${items.map(r=>{
     const req=r.compliance_requirements||{};
     const attestation=state.data.attestations.find(a=>a.requirement_assignment_id===r.id);
     const creds=state.data.credentials.filter(c=>c.requirement_assignment_id===r.id);
@@ -239,24 +251,30 @@ export function requirements(state){
 export function programs(state){
   const creators=state.identity.creators;
   return `${heading('Programs','Link your Creation Station account','Show off work from your Creation Station family, child, teen, or adult profiles on your seller page.')}
-  <div class="list">${creators.map(c=>{
-    const aff=state.data.creatorAffiliations.find(a=>a.creator_id===c.id);
-    const isMinor=['young_6_12','teen_13_17'].includes(c.age_band);
-    return `<article class="list-item"><span class="list-icon" aria-hidden="true">${isMinor?'✦':'◇'}</span><div><h3>${esc(c.display_name)}</h3><p>${aff?(aff.is_public?'Public':'Private'):'Not linked'}${aff&&isMinor?(aff.parent_approved_at?' · Parent approved':' · Needs parent approval to go public'):''}</p></div>${aff?`<button data-toggle-affiliation="${aff.id}" data-public="${!aff.is_public}">${aff.is_public?'Make private':'Make public'}</button>`:`<button data-link-creator="${c.id}">Link to profile</button>`}</article>`;
-  }).join('')||'<p class="eyebrow">No Creation Station profiles linked to this account yet</p>'}</div>
+  <section class="panel">
+    <div class="panel-header"><div style="display:flex;align-items:center;gap:12px"><img src="assets/creation-station-logo.png" alt="Creation Station" style="width:36px;height:36px;object-fit:contain;border-radius:8px"><h2>Creation Station</h2></div></div>
+    <div class="list">${creators.map(c=>{
+      const aff=state.data.creatorAffiliations.find(a=>a.creator_id===c.id);
+      const isMinor=['young_6_12','teen_13_17'].includes(c.age_band);
+      return `<article class="list-item"><span class="list-icon" aria-hidden="true">${isMinor?'✦':'◇'}</span><div><h3>${esc(c.display_name)}</h3><p>${aff?(aff.is_public?'Public':'Private'):'Not linked'}${aff&&isMinor?(aff.parent_approved_at?' · Parent approved':' · Needs parent approval to go public'):''}</p></div>${aff?`<button data-toggle-affiliation="${aff.id}" data-public="${!aff.is_public}">${aff.is_public?'Make private':'Make public'}</button>`:`<button data-link-creator="${c.id}">Link to profile</button>`}</article>`;
+    }).join('')||'<p class="eyebrow">No Creation Station profiles linked to this account yet</p>'}</div>
+  </section>
   ${state.identity.household?`<section class="panel" style="margin-top:18px"><div class="panel-header"><h2>Household</h2></div>${(()=>{const h=state.data.householdAffiliations[0];return h?`<p>${esc(state.identity.household.household_name||'Your household')} — ${h.is_public?'Public':'Private'}</p><button data-toggle-household="${h.id}" data-public="${!h.is_public}">${h.is_public?'Make private':'Make public'}</button>`:`<button data-link-household="${state.identity.household.id}">Link household to profile</button>`})()}</section>`:''}
   <section class="panel" style="margin-top:18px">
-    <div class="panel-header"><h2>Rebel Ranch Academy</h2></div>
+    <div class="panel-header"><div style="display:flex;align-items:center;gap:12px"><img src="assets/rebel_ranch_academy_logo_transparent.png" alt="Rebel Ranch Academy" style="width:36px;height:36px;object-fit:contain"><h2>Rebel Ranch Academy</h2></div></div>
     <p>Rebel Ranch Academy is live at <a href="https://academy.rebelranchministries.org" target="_blank" rel="noopener">academy.rebelranchministries.org</a>. Linking your Academy coursework to this seller profile isn't available yet.</p>
   </section>`;
 }
 
 export function notifications(state){
-  const items=[...state.data.notifications].sort((a,b)=>(a.is_read===b.is_read?0:a.is_read?1:-1));
-  if(!items.length)return `${heading('Notifications','Updates','You will see application and requirement updates here.')}${empty('Nothing yet','Notifications about your application and requirements will appear here.')}`;
-  const unreadIds=items.filter(n=>!n.is_read).map(n=>n.id);
-  return `${heading('Notifications','Updates',`${unreadIds.length} unread`,unreadIds.length?'<button class="primary" data-action="mark-all-read">Mark all read</button>':'')}
-  <div class="list">${items.map(n=>`<article class="list-item ${n.is_read?'is-read':'is-unread'}"><span class="list-icon" aria-hidden="true">${n.is_read?'✓':'●'}</span><div><h3>${esc(n.title)}</h3><p>${esc(n.body||'')}</p><small>${new Date(n.created_at).toLocaleString()}</small></div>${n.is_read?'':`<button data-mark-read="${n.id}">Mark read</button>`}</article>`).join('')}</div>`;
+  const allItems=[...state.data.notifications].sort((a,b)=>(a.is_read===b.is_read?0:a.is_read?1:-1));
+  if(!allItems.length)return `${heading('Notifications','Updates','You will see application and requirement updates here.')}${empty('Nothing yet','Notifications about your application and requirements will appear here.')}`;
+  const notifFilter=state.notifFilter||'all';
+  const items=notifFilter==='unread'?allItems.filter(n=>!n.is_read):allItems;
+  const unreadIds=allItems.filter(n=>!n.is_read).map(n=>n.id);
+  const filterRow=`<div class="view-tools" style="margin:14px 0"><label style="display:flex;align-items:center;gap:8px;font-weight:800;color:var(--ink)">Showing<select id="notif-filter"><option value="all" ${notifFilter==='all'?'selected':''}>All (${allItems.length})</option><option value="unread" ${notifFilter==='unread'?'selected':''}>Unread only (${unreadIds.length})</option></select></label></div>`;
+  return `${heading('Notifications','Updates',`${unreadIds.length} unread`,unreadIds.length?'<button class="primary" data-action="mark-all-read">Mark all read</button>':'')}${filterRow}
+  ${items.length?`<div class="list">${items.map(n=>`<article class="list-item ${n.is_read?'is-read':'is-unread'}"><span class="list-icon" aria-hidden="true">${n.is_read?'✓':'●'}</span><div><h3>${esc(n.title)}</h3><p>${esc(n.body||'')}</p><small>${new Date(n.created_at).toLocaleString()}</small></div>${n.is_read?'':`<button data-mark-read="${n.id}">Mark read</button>`}</article>`).join('')}</div>`:empty('Nothing unread','Every notification has been marked read.')}`;
 }
 
 export function questions(state){
@@ -264,7 +282,7 @@ export function questions(state){
   if(!items.length)return `${heading('Questions','Buyer questions','Questions are kept separate from orders so your order inbox stays clear.')}${empty('No questions yet','Buyer questions will appear here.')}`;
   const unreadIds=items.filter(m=>!m.is_read).map(m=>m.id);
   return `${heading('Questions','Buyer questions',`${unreadIds.length} unread`)}
-  <div class="list">${items.map(m=>`<article class="list-item ${m.is_read?'is-read':'is-unread'}"><span class="list-icon" aria-hidden="true">${m.is_read?'✓':'●'}</span><div><h3>${esc(m.sender_name)} <span class="tag" style="margin-left:6px">${m.sender_is_member?'Member':'Non-member'}</span></h3><p>${esc(m.message)}</p>${m.sender_contact?`<p><strong>Contact:</strong> ${esc(m.sender_contact)}${contactActions(m.sender_contact)}</p>`:''}<small>${new Date(m.created_at).toLocaleString()}</small></div>${m.is_read?'':`<button data-mark-inquiry-read="${m.id}">Mark read</button>`}</article>`).join('')}</div>`;
+  <div class="list">${items.map(m=>`<article class="list-item ${m.is_read?'is-read':'is-unread'}"><span class="list-icon" aria-hidden="true">${m.is_read?'✓':'●'}</span><div><h3>${esc(m.sender_name)} <span class="tag" style="margin-left:6px">${m.sender_is_member?'Member':'Non-member'}</span></h3><p>${esc(m.message)}</p>${m.sender_contact?`<p><strong>Contact:</strong> ${esc(m.sender_contact)}${contactActions(m.sender_contact)}</p>`:''}${m.responded_at?`<p><span class="status-badge">✓ Responded ${new Date(m.responded_at).toLocaleDateString()}</span></p>`:''}<small>${new Date(m.created_at).toLocaleString()}</small></div><div class="actions" style="flex-direction:column;align-items:stretch">${m.is_read?'':`<button data-mark-inquiry-read="${m.id}">Mark read</button>`}${m.responded_at?'':`<button class="primary" data-mark-inquiry-responded="${m.id}">Mark Responded</button>`}</div></article>`).join('')}</div>`;
 }
 
 const ORDER_ACTIONS={
@@ -305,11 +323,16 @@ export function orders(state){
   return `${heading('Orders','Order inbox','Every item, quantity, fulfillment choice, buyer contact, and optional photo in one place.')}${statsRow}${filterRow}<div>${cards}</div><div style="margin-top:18px">${settings}</div>`;
 }
 
+const HISTORY_WINDOWS={'7d':7,'30d':30,'90d':90,all:null};
 export function history(state){
-  const items=state.data.reviewEvents;
-  if(!items.length)return `${heading('History','Review history','Every status change on your application and profile will be recorded here.')}${empty('No history yet','Once your application moves through review, each step will show up here.')}`;
-  return `${heading('History','Review history','A record of every status change on your application and profile.')}
-  <div class="list">${items.map(e=>`<article class="list-item"><span class="list-icon" aria-hidden="true">↺</span><div><h3>${e.from_status?`${label(e.from_status)} → ${label(e.to_status)}`:label(e.to_status)}</h3><p>${e.note?esc(e.note):''}</p><small>${new Date(e.recorded_at).toLocaleString()}</small></div></article>`).join('')}</div>`;
+  const allItems=state.data.reviewEvents;
+  if(!allItems.length)return `${heading('History','Review history','Every status change on your application and profile will be recorded here.')}${empty('No history yet','Once your application moves through review, each step will show up here.')}`;
+  const win=state.historyFilter?.window||'30d';
+  const days=HISTORY_WINDOWS[win];
+  const items=allItems.filter(e=>withinWindow(e.recorded_at,days));
+  const filterRow=`<div class="view-tools" style="margin:14px 0"><label style="display:flex;align-items:center;gap:8px;font-weight:800;color:var(--ink)">Showing<select id="history-window"><option value="7d" ${win==='7d'?'selected':''}>Last 7 days</option><option value="30d" ${win==='30d'?'selected':''}>Last 30 days</option><option value="90d" ${win==='90d'?'selected':''}>Last 90 days</option><option value="all" ${win==='all'?'selected':''}>All time</option></select></label></div>`;
+  return `${heading('History','Review history','A record of every status change on your application and profile.')}${filterRow}
+  ${items.length?`<div class="list">${items.map(e=>`<article class="list-item"><span class="list-icon" aria-hidden="true">↺</span><div><h3>${e.from_status?`${label(e.from_status)} → ${label(e.to_status)}`:label(e.to_status)}</h3><p>${e.note?esc(e.note):''}</p><small>${new Date(e.recorded_at).toLocaleString()}</small></div></article>`).join('')}</div>`:empty('No history in this window','Try a wider time range to see older events.')}`;
 }
 
 export function admin(state){
