@@ -50,7 +50,7 @@ function showAccess(title,copy,label='Go to My Account',href='account.html'){
 
 function isEligible(view){if(view==='admin')return state.identity.isAdmin;return routes.includes(view)}
 function navGroups(){
-  const unreadQuestions=(state.data?.inquiries||[]).filter(i=>!i.is_read).length;
+  const unreadQuestions=(state.data?.inquiries||[]).filter(i=>!i.responded_at).length;
   const unreadNotifications=(state.data?.notifications||[]).filter(n=>!n.is_read).length;
   const groups=[
     {key:'today',label:'Today'},

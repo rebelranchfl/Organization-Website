@@ -209,7 +209,7 @@ export const actions={
     return supabase.from('seller_inquiries').update({is_read:true}).eq('id',inquiryId);
   },
   async markInquiryResponded(identity,inquiryId){
-    return supabase.from('seller_inquiries').update({responded_at:new Date().toISOString()}).eq('id',inquiryId);
+    return supabase.from('seller_inquiries').update({responded_at:new Date().toISOString(),is_read:true}).eq('id',inquiryId);
   },
   async saveFulfillment(identity,fields){return supabase.from('seller_fulfillment_options').upsert({seller_profile_id:identity.sellerProfile.id,...fields},{onConflict:'seller_profile_id'});},
   async updateOrder(identity,orderId,updates){return supabase.from('seller_orders').update(updates).eq('id',orderId).eq('seller_profile_id',identity.sellerProfile.id);},
