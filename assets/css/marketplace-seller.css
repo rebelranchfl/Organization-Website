@@ -82,6 +82,15 @@ button,input,select,textarea{font:inherit}button,a{-webkit-tap-highlight-color:t
 .tag{padding:4px 8px;border-radius:6px;background:rgba(47,61,31,.1);color:var(--olive);font-size:.76rem;font-weight:850;text-transform:capitalize}
 .actions{margin-top:14px}
 .list-item.is-read{opacity:.55}
+.status-strip{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:16px}
+.status-strip .status-badge{font-size:1rem;padding:8px 14px}
+.status-strip .button.primary{font-size:1rem;padding:12px 22px}
+details.disclosure{margin-top:14px}
+details.disclosure summary{cursor:pointer;padding:10px 0;font-weight:850;color:var(--olive);list-style:none}
+details.disclosure summary::-webkit-details-marker{display:none}
+details.disclosure summary:before{content:'+ ';color:var(--tan)}
+details.disclosure[open] summary:before{content:'– '}
+details.disclosure>*:not(summary){margin-top:10px}
 .attestation-done{padding:10px;margin-top:10px;background:rgba(47,61,31,.08);border-radius:8px}
 .attestation-done p{margin:6px 0 0;color:var(--muted)}
 .dash-banners{display:grid;gap:12px;margin:18px 0 0}

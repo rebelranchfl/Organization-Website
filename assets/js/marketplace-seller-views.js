@@ -72,37 +72,63 @@ export function banners(state){
   </div>`).join('')}</div>`;
 }
 
+function resolveSellerState(sp,app){
+  if(sp.profile_status==='active')return{label:'Active & Live',tone:''};
+  if(sp.profile_status==='paused')return{label:'Paused',tone:'private'};
+  if(sp.profile_status==='archived')return{label:'Archived',tone:'private'};
+  if(app?.status==='changes_requested')return{label:'Needs Your Attention',tone:'negative'};
+  if(app&&['submitted','pending','pending_review'].includes(app.status))return{label:'Pending Approval',tone:'review'};
+  if(app?.status==='rejected')return{label:'Application Rejected',tone:'negative'};
+  if(app?.status==='withdrawn')return{label:'Application Withdrawn',tone:'private'};
+  return{label:'Draft — Not Submitted Yet',tone:'private'};
+}
+
+export function statusStrip(state){
+  const sp=state.identity?.sellerProfile;
+  if(!sp)return '';
+  const app=state.data?.applications?.[0];
+  const {label:stateLabel,tone}=resolveSellerState(sp,app);
+  const live=sp.profile_status==='active'&&sp.public_slug;
+  return `<div class="status-strip">
+    <span class="status-badge ${tone}">${esc(stateLabel)}</span>
+    ${live?`<a class="button primary" href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}" target="_blank" rel="noopener">View My Public Listing ↗</a>`:''}
+  </div>`;
+}
+
 export function status(state){
   const sp=state.identity.sellerProfile;
   const app=state.data.applications[0];
   const canEdit=!app||['draft','changes_requested'].includes(app.status);
   const assignedIds=new Set(state.data.categoryAssignments.map(a=>a.category_id));
   const available=state.identity.categories.filter(c=>!assignedIds.has(c.id));
+  const {label:stateLabel,tone:stateTone}=resolveSellerState(sp,app);
 
   return `${heading('Seller status','Your Marketplace profile','Manage your business details and application status.')}
   <div class="layout">
     <div class="stack">
       <section class="panel">
-        <div class="panel-header"><div><p class="eyebrow">Business</p><h2>${esc(sp.business_name)}</h2></div>${badge(sp.profile_status)}</div>
-        ${sp.profile_status==='active'&&sp.public_slug?`<p><a href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}" target="_blank" rel="noopener">View my public listing ↗</a></p>`:''}
-        <div class="logo-row">
-          ${sp.logo_object_path?`<img class="logo-preview" src="${esc(publicUrl(sp.logo_object_path))}" alt="Your business logo">`:'<div class="logo-preview logo-preview-empty">No logo yet</div>'}
-          <form id="logo-upload-form" class="dialog-actions">
-            <label>Business logo <span>JPEG, PNG, WebP, or an iPhone photo (HEIC); 5 MB max</span><input data-field="logo-file" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" required></label>
-            <button class="primary" type="submit">${sp.logo_object_path?'Replace logo':'Upload logo'}</button>
+        <div class="panel-header"><div><p class="eyebrow">Business</p><h2>${esc(sp.business_name)}</h2></div><span class="status-badge ${stateTone}">${esc(stateLabel)}</span></div>
+        <details class="disclosure">
+          <summary>Update store details</summary>
+          <div class="logo-row">
+            ${sp.logo_object_path?`<img class="logo-preview" src="${esc(publicUrl(sp.logo_object_path))}" alt="Your business logo">`:'<div class="logo-preview logo-preview-empty">No logo yet</div>'}
+            <form id="logo-upload-form" class="dialog-actions">
+              <label>Business logo <span>JPEG, PNG, WebP, or an iPhone photo (HEIC); 5 MB max</span><input data-field="logo-file" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" required></label>
+              <button class="primary" type="submit">${sp.logo_object_path?'Replace logo':'Upload logo'}</button>
+            </form>
+          </div>
+          <form id="profile-form" class="onboarding-form">
+            <label>Business name<input id="pf-business-name" value="${esc(sp.business_name)}" ${canEdit?'':'disabled'} required></label>
+            <label>Short description<textarea id="pf-short-description">${esc(sp.short_description||'')}</textarea></label>
+            <label>Long description <span>Shown in the About section of your public page</span><textarea id="pf-long-description">${esc(sp.long_description||'')}</textarea></label>
+            <p>Your public storefront uses the approved Rebel Ranch Local appearance. Your logo, business story, listings, and photographs make the page your own.</p>
+            <label>Why shop with you? <span>Up to 3 reasons buyers should choose you — shown on your public page. Leave blank to use our default copy.</span></label>
+            <input id="pf-why-1" placeholder="Reason 1" value="${esc((sp.why_shop_points||[])[0]||'')}">
+            <input id="pf-why-2" placeholder="Reason 2" value="${esc((sp.why_shop_points||[])[1]||'')}">
+            <input id="pf-why-3" placeholder="Reason 3" value="${esc((sp.why_shop_points||[])[2]||'')}">
+            <div class="dialog-actions"><button class="primary" type="submit">Save changes</button></div>
           </form>
-        </div>
-        <form id="profile-form" class="onboarding-form">
-          <label>Business name<input id="pf-business-name" value="${esc(sp.business_name)}" ${canEdit?'':'disabled'} required></label>
-          <label>Short description<textarea id="pf-short-description">${esc(sp.short_description||'')}</textarea></label>
-          <label>Long description <span>Shown in the About section of your public page</span><textarea id="pf-long-description">${esc(sp.long_description||'')}</textarea></label>
-          <p>Your public storefront uses the approved Rebel Ranch Local appearance. Your logo, business story, listings, and photographs make the page your own.</p>
-          <label>Why shop with you? <span>Up to 3 reasons buyers should choose you — shown on your public page. Leave blank to use our default copy.</span></label>
-          <input id="pf-why-1" placeholder="Reason 1" value="${esc((sp.why_shop_points||[])[0]||'')}">
-          <input id="pf-why-2" placeholder="Reason 2" value="${esc((sp.why_shop_points||[])[1]||'')}">
-          <input id="pf-why-3" placeholder="Reason 3" value="${esc((sp.why_shop_points||[])[2]||'')}">
-          <div class="dialog-actions"><button class="primary" type="submit">Save changes</button></div>
-        </form>
+        </details>
       </section>
       <section class="panel">
         <div class="panel-header"><div><p class="eyebrow">Application</p><h2>${app?label(app.status):'Not started'}</h2></div>${app?badge(app.status):''}</div>
@@ -113,18 +139,26 @@ export function status(state){
     <aside class="stack">
       <section class="panel">
         <div class="panel-header"><h2>Categories</h2></div>
-        <div class="list">${state.data.categoryAssignments.map(a=>`<article class="list-item"><span class="list-icon" aria-hidden="true">✦</span><div><h3>${esc(categoryName(state,a.category_id))}</h3><p>${a.is_primary?'Primary':'Secondary'}</p></div><button class="danger" data-remove-category="${a.id}">Remove</button></article>`).join('')||'<p class="eyebrow">No categories yet</p>'}</div>
-        ${available.length?`<form id="add-category-form" class="dialog-actions" style="margin-top:14px"><select id="new-category">${available.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')}</select><button class="primary" type="submit">Add</button></form>`:''}
+        <div class="tag-row">${state.data.categoryAssignments.map(a=>`<span class="tag">${esc(categoryName(state,a.category_id))}${a.is_primary?' · Primary':''}</span>`).join('')||'<p class="eyebrow">No categories yet</p>'}</div>
+        <details class="disclosure">
+          <summary>Manage categories</summary>
+          <div class="list">${state.data.categoryAssignments.map(a=>`<article class="list-item"><span class="list-icon" aria-hidden="true">✦</span><div><h3>${esc(categoryName(state,a.category_id))}</h3><p>${a.is_primary?'Primary':'Secondary'}</p></div><button class="danger" data-remove-category="${a.id}">Remove</button></article>`).join('')||'<p class="eyebrow">No categories yet</p>'}</div>
+          ${available.length?`<form id="add-category-form" class="dialog-actions" style="margin-top:14px"><select id="new-category">${available.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')}</select><button class="primary" type="submit">Add</button></form>`:''}
+        </details>
       </section>
       <section class="panel">
         <div class="panel-header"><div><h2>Payment methods</h2><p>Shown on your public page so buyers know how to pay you directly.</p></div></div>
-        <div class="list">${state.data.paymentMethods.map(m=>`<article class="list-item"><span class="list-icon" aria-hidden="true">$</span><div><h3>${esc(PAYMENT_LABELS[m.method_type]||label(m.method_type))}</h3><p>${esc(m.label)}</p></div><button class="danger" data-remove-payment="${m.id}">Remove</button></article>`).join('')||'<p class="eyebrow">No payment methods added yet</p>'}</div>
-        <form id="add-payment-form" class="onboarding-form" style="margin-top:14px">
-          <label>Type<select id="new-payment-type">${Object.entries(PAYMENT_LABELS).map(([k,t])=>`<option value="${k}">${t}</option>`).join('')}</select></label>
-          <label>Label or handle<input id="new-payment-label" placeholder="e.g. @cypresscreek or (352) 555-0142" required></label>
-          <label>Link <span>Optional — e.g. a PayPal.me or Cash App link</span><input id="new-payment-link" type="url" placeholder="https://paypal.me/…"></label>
-          <div class="dialog-actions"><button class="primary" type="submit">Add payment method</button></div>
-        </form>
+        <div class="tag-row">${state.data.paymentMethods.map(m=>`<span class="tag">${esc(PAYMENT_LABELS[m.method_type]||label(m.method_type))}</span>`).join('')||'<p class="eyebrow">No payment methods added yet</p>'}</div>
+        <details class="disclosure">
+          <summary>Manage payment methods</summary>
+          <div class="list">${state.data.paymentMethods.map(m=>`<article class="list-item"><span class="list-icon" aria-hidden="true">$</span><div><h3>${esc(PAYMENT_LABELS[m.method_type]||label(m.method_type))}</h3><p>${esc(m.label)}</p></div><button class="danger" data-remove-payment="${m.id}">Remove</button></article>`).join('')||'<p class="eyebrow">No payment methods added yet</p>'}</div>
+          <form id="add-payment-form" class="onboarding-form" style="margin-top:14px">
+            <label>Type<select id="new-payment-type">${Object.entries(PAYMENT_LABELS).map(([k,t])=>`<option value="${k}">${t}</option>`).join('')}</select></label>
+            <label>Label or handle<input id="new-payment-label" placeholder="e.g. @cypresscreek or (352) 555-0142" required></label>
+            <label>Link <span>Optional — e.g. a PayPal.me or Cash App link</span><input id="new-payment-link" type="url" placeholder="https://paypal.me/…"></label>
+            <div class="dialog-actions"><button class="primary" type="submit">Add payment method</button></div>
+          </form>
+        </details>
       </section>
     </aside>
   </div>`;
@@ -247,11 +281,28 @@ function orderActionButtons(o){
   return `<div class="actions">${acts.map(([status,text,cls])=>`<button class="${cls}" data-order-action="${status}" data-order-id="${o.id}">${text}</button>`).join('')}</div>`;
 }
 
+const ORDER_WINDOWS={'24h':1,'7d':7,'all':null};
+const WINDOW_LABELS={'24h':'last 24 hours','7d':'last 7 days','all':'all time'};
+function withinWindow(dateStr,days){
+  if(days==null)return true;
+  return Date.now()-new Date(dateStr).getTime()<=days*86400000;
+}
+
 export function orders(state){
-  const f=state.data.fulfillment||{},items=state.data.orders||[];
+  const f=state.data.fulfillment||{},allItems=state.data.orders||[];
+  const win=state.orderFilter?.window||'24h';
+  const days=ORDER_WINDOWS[win];
+  const items=allItems.filter(o=>withinWindow(o.created_at,days));
+  const placed=items.length,fulfilled=items.filter(o=>o.status==='completed').length,declined=items.filter(o=>o.status==='declined').length;
+  const statsRow=`<div class="metric-grid" style="grid-template-columns:repeat(3,1fr)">
+    <div class="metric"><span>Orders Placed</span><strong>${placed}</strong><small>${WINDOW_LABELS[win]}</small></div>
+    <div class="metric"><span>Fulfilled</span><strong>${fulfilled}</strong><small>${WINDOW_LABELS[win]}</small></div>
+    <div class="metric"><span>Declined</span><strong>${declined}</strong><small>${WINDOW_LABELS[win]}</small></div>
+  </div>`;
+  const filterRow=`<div class="view-tools" style="margin:14px 0"><label style="display:flex;align-items:center;gap:8px;font-weight:800;color:var(--ink)">Showing<select id="order-window"><option value="24h" ${win==='24h'?'selected':''}>Last 24 hours</option><option value="7d" ${win==='7d'?'selected':''}>Last 7 days</option><option value="all" ${win==='all'?'selected':''}>All time</option></select></label></div>`;
   const settings=`<section class="panel"><div class="panel-header"><h2>Fulfillment options</h2></div><form id="fulfillment-form" class="onboarding-form"><div class="check-grid"><label><input id="fulfill-pickup" type="checkbox" ${f.offers_pickup!==false?'checked':''}> Pickup</label><label><input id="fulfill-delivery" type="checkbox" ${f.offers_delivery?'checked':''}> Local delivery</label><label><input id="fulfill-meetup" type="checkbox" ${f.offers_meetup!==false?'checked':''}> Meet-up</label><label><input id="fulfill-shipping" type="checkbox" ${f.offers_shipping?'checked':''}> Shipping</label></div><label>Public fulfillment note<textarea id="fulfill-notes">${esc(f.public_notes||'')}</textarea></label><button class="primary" type="submit">Save fulfillment options</button></form></section>`;
-  const cards=items.length?`<div class="order-list">${items.map(o=>`<article class="panel order-card"><div class="panel-header"><div><p class="eyebrow">Order #${o.order_number}</p><h2>${esc(o.buyer_name)}</h2></div>${badge(o.status)}</div><p><strong>${esc(label(o.order_kind))}</strong> · ${esc(label(o.fulfillment_method))}${o.preferred_date?` · ${esc(o.preferred_date)}`:''}</p><div class="order-items">${(o.items||[]).map(x=>`<div><strong>${x.quantity} × ${esc(x.title)}</strong>${x.note?`<p>${esc(x.note)}</p>`:''}</div>`).join('')}</div><p><strong>Buyer contact:</strong> ${esc(o.buyer_contact)}${contactActions(o.buyer_contact)}</p>${o.delivery_address?`<p><strong>Delivery:</strong> ${esc(o.delivery_address)}</p>`:''}${o.service_location?`<p><strong>Service location:</strong> ${esc(o.service_location)}</p>`:''}${o.buyer_note?`<p><strong>Order note:</strong> ${esc(o.buyer_note)}</p>`:''}<p><strong>Total:</strong> ${o.confirmed_total!==null?`$${Number(o.confirmed_total).toFixed(2)}`:o.estimated_total!==null?`Estimated $${Number(o.estimated_total).toFixed(2)}`:'Needs confirmation'}</p>${(o.photo_object_paths||[]).map(p=>`<button type="button" data-order-photo="${esc(p)}">View private buyer photo</button>`).join('')}${orderActionButtons(o)}<small>${new Date(o.created_at).toLocaleString()}</small></article>`).join('')}</div>`:empty('No orders yet','New structured orders and service requests will appear here — separate from buyer questions.');
-  return `${heading('Orders','Order inbox','Every item, quantity, fulfillment choice, buyer contact, and optional photo in one place.')}<div>${cards}</div><div style="margin-top:18px">${settings}</div>`;
+  const cards=items.length?`<div class="order-list">${items.map(o=>`<article class="panel order-card"><div class="panel-header"><div><p class="eyebrow">Order #${o.order_number}</p><h2>${esc(o.buyer_name)}</h2></div>${badge(o.status)}</div><p><strong>${esc(label(o.order_kind))}</strong> · ${esc(label(o.fulfillment_method))}${o.preferred_date?` · ${esc(o.preferred_date)}`:''}</p><div class="order-items">${(o.items||[]).map(x=>`<div><strong>${x.quantity} × ${esc(x.title)}</strong>${x.note?`<p>${esc(x.note)}</p>`:''}</div>`).join('')}</div><p><strong>Buyer contact:</strong> ${esc(o.buyer_contact)}${contactActions(o.buyer_contact)}</p>${o.delivery_address?`<p><strong>Delivery:</strong> ${esc(o.delivery_address)}</p>`:''}${o.service_location?`<p><strong>Service location:</strong> ${esc(o.service_location)}</p>`:''}${o.buyer_note?`<p><strong>Order note:</strong> ${esc(o.buyer_note)}</p>`:''}<p><strong>Total:</strong> ${o.confirmed_total!==null?`$${Number(o.confirmed_total).toFixed(2)}`:o.estimated_total!==null?`Estimated $${Number(o.estimated_total).toFixed(2)}`:'Needs confirmation'}</p>${(o.photo_object_paths||[]).map(p=>`<button type="button" data-order-photo="${esc(p)}">View private buyer photo</button>`).join('')}${orderActionButtons(o)}<small>${new Date(o.created_at).toLocaleString()}</small></article>`).join('')}</div>`:empty(allItems.length?'No orders in this window':'No orders yet',allItems.length?'Try "All time" to see older orders.':'New structured orders and service requests will appear here — separate from buyer questions.');
+  return `${heading('Orders','Order inbox','Every item, quantity, fulfillment choice, buyer contact, and optional photo in one place.')}${statsRow}${filterRow}<div>${cards}</div><div style="margin-top:18px">${settings}</div>`;
 }
 
 export function history(state){

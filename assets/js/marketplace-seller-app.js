@@ -1,9 +1,9 @@
 import {loadSellerIdentity,loadSellerWorkspace,loadSellerAdminSummary,loadApplicationDetail,actions,adminActions} from './marketplace-seller-data.js';
-import {renderers,banners} from './marketplace-seller-views.js';
+import {renderers,banners,statusStrip} from './marketplace-seller-views.js';
 import {supabase} from './supabase-client.js';
 
 const $=id=>document.getElementById(id);
-const state={identity:null,data:null,adminData:null,view:'status',busy:false};
+const state={identity:null,data:null,adminData:null,view:'status',busy:false,orderFilter:{window:'24h'}};
 const routes=['status','listings','orders','questions','requirements','programs','notifications','history','admin'];
 const oneSignalAppId='3d048078-bf37-42ff-a1b7-3c1994cc62af';
 let oneSignalClient=null;
@@ -89,6 +89,8 @@ function render(){
   bindScreen();
   updateSwitcher();
   renderBanners();
+  const statusEl=$('status-strip');
+  if(statusEl)statusEl.innerHTML=statusStrip(state);
 }
 
 async function withBusy(button,work){
@@ -278,6 +280,9 @@ function bindScreen(){
     if(error)throw error;
     await refresh();
   }));
+
+  const orderWindowSelect=root.querySelector('#order-window');
+  if(orderWindowSelect)orderWindowSelect.onchange=()=>{state.orderFilter={window:orderWindowSelect.value};render()};
 
   const fulfillmentForm=root.querySelector('#fulfillment-form');
   if(fulfillmentForm)fulfillmentForm.onsubmit=e=>{e.preventDefault();withBusy(e.submitter,async()=>{const {error}=await actions.saveFulfillment(state.identity,{offers_pickup:$('fulfill-pickup').checked,offers_delivery:$('fulfill-delivery').checked,offers_meetup:$('fulfill-meetup').checked,offers_shipping:$('fulfill-shipping').checked,public_notes:$('fulfill-notes').value.trim()||null});if(error)throw error;await refresh();message('Fulfillment options updated.');})};
