@@ -50,7 +50,9 @@ function showAccess(title,copy,label='Go to My Account',href='account.html'){
 
 function isEligible(view){if(view==='admin')return state.identity.isAdmin;return routes.includes(view)}
 function eligibleViews(){
-  const views=[['status','Status'],['listings','Listings'],['orders','Orders'],['questions','Questions'],['requirements','Requirements'],['programs','Programs'],['notifications','Notifications'],['history','History']];
+  const unreadQuestions=(state.data?.inquiries||[]).filter(i=>!i.is_read).length;
+  const unreadNotifications=(state.data?.notifications||[]).filter(n=>!n.is_read).length;
+  const views=[['status','Status'],['listings','Listings'],['orders','Orders'],['questions',`Questions${unreadQuestions?` (${unreadQuestions})`:''}`],['requirements','Requirements'],['programs','Programs'],['notifications',`Notifications${unreadNotifications?` (${unreadNotifications})`:''}`],['history','History']];
   if(state.identity.isAdmin)views.push(['admin','Admin']);
   return views;
 }

@@ -33,7 +33,7 @@ export async function loadSellerWorkspace(identity){
   const spid=identity.sellerProfile.id, uid=identity.user.id;
   const results=await Promise.all([
     supabase.from('seller_applications').select('id,application_type,status,requested_categories,legal_business_name,entity_type,contact_phone,mailing_region_id,producer_status,applicant_notes,submitted_at,reviewed_at,reviewer_user_id,review_notes,created_at').eq('seller_profile_id',spid).order('created_at',{ascending:false}),
-    supabase.from('seller_category_assignments').select('id,category_id,is_primary').eq('seller_profile_id',spid),
+    supabase.from('seller_category_assignments').select('id,category_id,is_primary').eq('seller_profile_id',spid).order('is_primary',{ascending:false}).order('created_at'),
     supabase.from('seller_listings').select('id,listing_type,title,description,price_label,unit_price,price_type,is_active,sort_order,created_at,seller_listing_images(id,object_path,sort_order)').eq('seller_profile_id',spid).order('sort_order'),
     supabase.from('seller_requirement_assignments').select('id,requirement_id,assignment_status,assigned_at,satisfied_at,waived_reason,compliance_requirements(id,code,title,description,requirement_type,requires_credential,requires_minor_consent)').eq('seller_profile_id',spid),
     supabase.from('seller_attestations').select('id,requirement_assignment_id,attestation_text,attested_at,is_current').eq('seller_profile_id',spid).eq('is_current',true),
