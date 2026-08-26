@@ -394,7 +394,7 @@ export function admin(state){
     <div class="stack">
       <section class="panel"><div class="panel-header"><h2>Applications</h2></div><div class="list">${a.applicationQueue.map(x=>`<article class="list-item"><span class="list-icon" aria-hidden="true">✎</span><div><h3>${esc(x.seller_profiles?.business_name||x.legal_business_name||'Application')}</h3><p>${esc(label(x.application_type))} · submitted ${x.submitted_at?new Date(x.submitted_at).toLocaleDateString():'—'}</p></div><button data-review-application="${x.id}" data-seller="${x.seller_profile_id}">Review</button></article>`).join('')||'<p class="eyebrow">Nothing waiting</p>'}</div></section>
       <section class="panel"><div class="panel-header"><h2>Documents</h2></div><div class="list">${a.credentialQueue.map(x=>`<article class="list-item"><span class="list-icon" aria-hidden="true">📄</span><div><h3>${esc(x.seller_profiles?.business_name||'Seller')}</h3><p>${esc(x.credential_type)}</p></div><div class="actions"><button data-verify-credential="${x.id}">Verify</button><button class="danger" data-reject-credential="${x.id}">Reject</button></div></article>`).join('')||'<p class="eyebrow">Nothing waiting</p>'}</div></section>
-      <section class="panel"><div class="panel-header"><h2>Active Sellers</h2></div><div class="list">${sellerQueue.map(x=>`<article class="list-item"><span class="list-icon" aria-hidden="true">${x.profile_status==='active'?'✓':'⏸'}</span><div><h3>${esc(x.business_name)}</h3><p>${esc(label(x.profile_status))}</p></div><div class="actions">${x.profile_status==='active'?`<button data-pause-seller="${x.id}">Pause</button><button class="danger" data-archive-seller="${x.id}">Archive</button>`:`<button data-reactivate-seller="${x.id}">Reactivate</button>`}</div></article>`).join('')||'<p class="eyebrow">No sellers yet</p>'}</div></section>
+      <section class="panel"><div class="panel-header"><div><h2>Active Sellers</h2><p>"Log Traffic" records a page-view count from Google Analytics for a Seller Pro seller's KPI dashboard.</p></div></div><div class="list">${sellerQueue.map(x=>`<article class="list-item"><span class="list-icon" aria-hidden="true">${x.profile_status==='active'?'✓':'⏸'}</span><div><h3>${esc(x.business_name)}</h3><p>${esc(label(x.profile_status))}</p></div><div class="actions">${x.is_pro?`<button data-log-traffic="${x.id}" data-business-name="${esc(x.business_name)}">Log Traffic</button>`:''}${x.profile_status==='active'?`<button data-pause-seller="${x.id}">Pause</button><button class="danger" data-archive-seller="${x.id}">Archive</button>`:`<button data-reactivate-seller="${x.id}">Reactivate</button>`}</div></article>`).join('')||'<p class="eyebrow">No sellers yet</p>'}</div></section>
     </div>
     <aside class="panel"><div class="panel-header"><h2>Requirements</h2></div><div class="list">${a.requirementQueue.map(x=>`<article class="list-item"><span class="list-icon" aria-hidden="true">☑</span><div><h3>${esc(x.seller_profiles?.business_name||'Seller')}</h3><p>${esc(x.compliance_requirements?.title||'Requirement')}</p></div><div class="actions"><button data-waive-requirement="${x.id}">Waive</button><button data-na-requirement="${x.id}">N/A</button></div></article>`).join('')||'<p class="eyebrow">Nothing waiting</p>'}</aside>
   </div>
@@ -433,6 +433,9 @@ export function kpis(state){
   const totalRevenue=completed.reduce((sum,o)=>sum+Number(o.confirmed_total??o.estimated_total??0),0);
   const avgOrder=completed.length?totalRevenue/completed.length:0;
   const fulfillRate=orders.length?Math.round((completed.length/orders.length)*100):0;
+  const stats=state.data.storefrontStats||[];
+  const totalViews=stats.reduce((sum,s)=>sum+s.page_views,0);
+  const latestStat=stats[0];
   return `${heading('KPIs','Your performance','Based on your own order records — see the accuracy note below.')}
   <div class="metric-grid">
     <div class="metric"><span>Total Orders</span><strong>${orders.length}</strong><small>All time</small></div>
@@ -445,8 +448,8 @@ export function kpis(state){
     <p>Order and fulfillment counts come directly from your own dashboard activity and are accurate. Revenue is based on the totals you enter when accepting orders — Rebel Ranch Local doesn't process payment, so this is your own estimate, not a verified figure. Declined orders this period: ${declined.length}.</p>
   </section>
   <section class="panel" style="margin-top:18px">
-    <h2>Storefront traffic</h2>
-    <p>Page-view data isn't pulled into this dashboard yet — check your Rebel Ranch Local traffic directly in Google Analytics for now.</p>
+    <div class="panel-header"><h2>Storefront traffic</h2></div>
+    ${stats.length?`<div class="metric-grid" style="grid-template-columns:repeat(2,1fr)"><div class="metric"><span>Total Page Views</span><strong>${totalViews}</strong><small>${stats.length} recorded day${stats.length===1?'':'s'}</small></div><div class="metric"><span>Most Recent</span><strong>${latestStat.page_views}</strong><small>${new Date(latestStat.stat_date).toLocaleDateString()} · ${latestStat.source==='ga4'?'Google Analytics':'Entered by admin'}</small></div></div>`:empty('No traffic data yet','Google Analytics is installed on this page, but numbers aren’t recorded here yet — Rebel Ranch Ministries can log them from the Analytics dashboard, or an automated sync can be connected later.')}
   </section>`;
 }
 
