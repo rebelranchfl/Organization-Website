@@ -43,7 +43,7 @@ export async function loadSellerWorkspace(identity){
     supabase.from('seller_creator_affiliations').select('id,creator_id,relationship_label,is_public,parent_approved_at').eq('seller_profile_id',spid),
     supabase.from('seller_household_affiliations').select('id,household_id,is_public').eq('seller_profile_id',spid),
     supabase.from('seller_payment_methods').select('id,method_type,label,link_url,sort_order').eq('seller_profile_id',spid).order('sort_order'),
-    supabase.from('seller_inquiries').select('id,sender_name,sender_contact,sender_is_member,message,is_read,created_at').eq('seller_profile_id',spid).order('created_at',{ascending:false}),
+    supabase.from('seller_inquiries').select('id,sender_name,sender_contact,sender_is_member,message,is_read,responded_at,created_at').eq('seller_profile_id',spid).order('created_at',{ascending:false}),
     supabase.from('seller_orders').select('*').eq('seller_profile_id',spid).order('created_at',{ascending:false}),
     supabase.from('seller_fulfillment_options').select('*').eq('seller_profile_id',spid).maybeSingle()
   ]);
@@ -188,6 +188,9 @@ export const actions={
   },
   async markInquiryRead(identity,inquiryId){
     return supabase.from('seller_inquiries').update({is_read:true}).eq('id',inquiryId);
+  },
+  async markInquiryResponded(identity,inquiryId){
+    return supabase.from('seller_inquiries').update({responded_at:new Date().toISOString()}).eq('id',inquiryId);
   },
   async saveFulfillment(identity,fields){return supabase.from('seller_fulfillment_options').upsert({seller_profile_id:identity.sellerProfile.id,...fields},{onConflict:'seller_profile_id'});},
   async updateOrder(identity,orderId,updates){return supabase.from('seller_orders').update(updates).eq('id',orderId).eq('seller_profile_id',identity.sellerProfile.id);},
