@@ -91,7 +91,7 @@ export function statusStrip(state){
   const live=sp.profile_status==='active'&&sp.public_slug;
   return `<div class="status-strip">
     <span class="status-badge ${tone}">${esc(stateLabel)}</span>
-    ${live?`<a class="button primary" href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}" target="_blank" rel="noopener">View My Public Listing ↗</a>`:''}
+    ${live?`<a class="button primary" href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}" target="_blank" rel="noopener">View My Public Listing ↗</a><a class="button" href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}&preview=1" target="_blank" rel="noopener">Preview My Store ↗</a>`:''}
   </div>`;
 }
 
