@@ -168,6 +168,21 @@
     </form>
   </dialog>
 
+  <dialog id="order-response-dialog" aria-labelledby="order-response-title">
+    <form method="dialog">
+      <div class="dialog-heading">
+        <div><p class="eyebrow">Order response</p><h2 id="order-response-title">Order</h2></div>
+        <button class="icon-button" value="cancel" aria-label="Close">×</button>
+      </div>
+      <div id="order-response-body"></div>
+      <div class="dialog-actions">
+        <button type="button" class="danger" id="order-response-decline">Decline Order</button>
+        <button type="button" id="order-response-propose">Propose Change</button>
+        <button type="button" class="primary" id="order-response-accept">Accept Order</button>
+      </div>
+    </form>
+  </dialog>
+
   <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
   <script type="module" src="assets/js/marketplace-seller-app.js"></script>
 </body>

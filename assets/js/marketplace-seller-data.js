@@ -8,7 +8,7 @@ export async function loadSellerIdentity(){
   const results=await Promise.all([
     supabase.from('profiles').select('display_name').eq('id',user.id).single(),
     supabase.from('user_roles').select('role').eq('user_id',user.id),
-    supabase.from('seller_profiles').select('id,business_name,public_slug,marketplace_path,short_description,long_description,page_theme,logo_object_path,why_shop_points,profile_status,region_id,owner_user_id,listing_limit,is_pro').eq('owner_user_id',user.id).maybeSingle(),
+    supabase.from('seller_profiles').select('id,business_name,public_slug,marketplace_path,short_description,long_description,page_theme,logo_object_path,why_shop_points,profile_status,region_id,owner_user_id,listing_limit,is_pro,draft_data,has_unpublished_changes').eq('owner_user_id',user.id).maybeSingle(),
     supabase.from('marketplace_categories').select('id,slug,name,description,path_group,parent_id,sort_order').eq('is_active',true).order('sort_order'),
     supabase.from('marketplace_regions').select('id,slug,region_name,state_code,region_type').eq('is_active',true).order('region_name'),
     supabase.from('creator_profiles').select('id,display_name,public_name,creator_type,age_band,profile_status,household_id').eq('owner_user_id',user.id).eq('profile_status','active').order('created_at'),
@@ -33,8 +33,8 @@ export async function loadSellerWorkspace(identity){
   const spid=identity.sellerProfile.id, uid=identity.user.id;
   const results=await Promise.all([
     supabase.from('seller_applications').select('id,application_type,status,requested_categories,legal_business_name,entity_type,contact_phone,mailing_region_id,producer_status,applicant_notes,submitted_at,reviewed_at,reviewer_user_id,review_notes,created_at').eq('seller_profile_id',spid).order('created_at',{ascending:false}),
-    supabase.from('seller_category_assignments').select('id,category_id,is_primary').eq('seller_profile_id',spid).order('is_primary',{ascending:false}).order('created_at'),
-    supabase.from('seller_listings').select('id,listing_type,title,description,price_label,unit_price,price_type,is_active,sort_order,created_at,seller_listing_images(id,object_path,sort_order)').eq('seller_profile_id',spid).order('sort_order'),
+    supabase.from('seller_category_assignments').select('id,category_id,is_primary,sort_order').eq('seller_profile_id',spid).order('sort_order').order('created_at'),
+    supabase.from('seller_listings').select('id,listing_type,title,description,price_label,unit_price,price_type,quantity_available,is_active,sort_order,created_at,seller_listing_images(id,object_path,sort_order)').eq('seller_profile_id',spid).order('sort_order'),
     supabase.from('seller_requirement_assignments').select('id,requirement_id,assignment_status,assigned_at,satisfied_at,waived_reason,compliance_requirements(id,code,title,description,requirement_type,requires_credential,requires_minor_consent)').eq('seller_profile_id',spid),
     supabase.from('seller_attestations').select('id,requirement_assignment_id,attestation_text,attested_at,is_current').eq('seller_profile_id',spid).eq('is_current',true),
     supabase.from('seller_credentials').select('id,requirement_assignment_id,credential_type,issuing_authority,credential_identifier,issued_at,expires_at,document_object_path,verification_status,verified_at').eq('seller_profile_id',spid).order('created_at',{ascending:false}),
@@ -70,7 +70,7 @@ export async function loadSellerAdminSummary(){
     supabase.from('seller_applications').select('id,seller_profile_id,application_type,status,legal_business_name,submitted_at,seller_profiles(business_name,marketplace_path)').eq('status','submitted').order('submitted_at'),
     supabase.from('seller_credentials').select('id,seller_profile_id,credential_type,verification_status,created_at,seller_profiles(business_name)').eq('verification_status','pending').order('created_at'),
     supabase.from('seller_requirement_assignments').select('id,seller_profile_id,requirement_id,assignment_status,assigned_at,compliance_requirements(title),seller_profiles(business_name)').eq('assignment_status','pending').order('assigned_at'),
-    supabase.from('seller_profiles').select('id,business_name,marketplace_path,profile_status').in('profile_status',['active','paused','archived']).order('business_name')
+    supabase.from('seller_profiles').select('id,business_name,marketplace_path,profile_status,is_pro,last_spotlighted_at').in('profile_status',['active','paused','archived']).order('business_name')
   ]);
   fail(results);
   const [applications,credentials,requirements,sellers]=results;
@@ -132,11 +132,29 @@ export const actions={
   async updateSellerProfile(identity,updates){
     return supabase.from('seller_profiles').update(updates).eq('id',identity.sellerProfile.id).eq('owner_user_id',identity.user.id);
   },
-  async assignCategory(identity,categoryId,isPrimary=false){
-    return supabase.from('seller_category_assignments').insert({seller_profile_id:identity.sellerProfile.id,category_id:categoryId,is_primary:isPrimary});
+  async saveDraftProfile(identity,updates){
+    const merged={...(identity.sellerProfile.draft_data||{}),...updates};
+    return supabase.from('seller_profiles').update({draft_data:merged,has_unpublished_changes:true}).eq('id',identity.sellerProfile.id).eq('owner_user_id',identity.user.id).select().single();
+  },
+  async publishSellerProfile(identity){
+    const draft=identity.sellerProfile.draft_data;
+    if(!draft)return {error:null};
+    return supabase.from('seller_profiles').update({...draft,draft_data:null,has_unpublished_changes:false}).eq('id',identity.sellerProfile.id).eq('owner_user_id',identity.user.id).select().single();
+  },
+  async discardDraftProfile(identity){
+    return supabase.from('seller_profiles').update({draft_data:null,has_unpublished_changes:false}).eq('id',identity.sellerProfile.id).eq('owner_user_id',identity.user.id).select().single();
+  },
+  async assignCategory(identity,categoryId,isPrimary=false,sortOrder=0){
+    return supabase.from('seller_category_assignments').insert({seller_profile_id:identity.sellerProfile.id,category_id:categoryId,is_primary:isPrimary,sort_order:sortOrder});
   },
   async removeCategory(identity,assignmentId){
     return supabase.from('seller_category_assignments').delete().eq('id',assignmentId);
+  },
+  async reorderCategories(identity,orderedAssignmentIds){
+    const updates=orderedAssignmentIds.map((id,i)=>supabase.from('seller_category_assignments').update({sort_order:i}).eq('id',id));
+    const results=await Promise.all(updates);
+    const error=results.find(r=>r.error)?.error;
+    return {error:error||null};
   },
   async updateApplication(identity,applicationId,updates){
     return supabase.from('seller_applications').update(updates).eq('id',applicationId);
@@ -204,6 +222,13 @@ export const actions={
   },
   async signOut(){return supabase.auth.signOut()},
 
+  async uploadLogoDraft(identity,file){
+    const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,'-'),path=`${identity.user.id}/${identity.sellerProfile.id}/logo-${crypto.randomUUID()}-${safe}`;
+    const upload=await supabase.storage.from('marketplace-seller-public').upload(path,file);
+    if(upload.error)return upload;
+    const draft={...(identity.sellerProfile.draft_data||{}),logo_object_path:path};
+    return supabase.from('seller_profiles').update({draft_data:draft,has_unpublished_changes:true}).eq('id',identity.sellerProfile.id).select().single();
+  },
   async uploadLogo(identity,file){
     const oldPath=identity.sellerProfile.logo_object_path;
     const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,'-'),path=`${identity.user.id}/${identity.sellerProfile.id}/logo-${crypto.randomUUID()}-${safe}`;
@@ -225,6 +250,9 @@ export const actions={
   },
   async setListingActive(identity,listingId,isActive){
     return supabase.from('seller_listings').update({is_active:isActive}).eq('id',listingId);
+  },
+  async updateListingQuantity(identity,listingId,quantityAvailable){
+    return supabase.from('seller_listings').update({quantity_available:quantityAvailable}).eq('id',listingId);
   },
   async deleteListing(identity,listingId){
     const images=await supabase.from('seller_listing_images').select('object_path').eq('seller_listing_id',listingId);
@@ -281,5 +309,21 @@ export const adminActions={
   },
   async reactivateSeller(sellerProfileId){
     return supabase.from('seller_profiles').update({profile_status:'active'}).eq('id',sellerProfileId);
+  },
+  async spotlightSeller(sellerProfileId,businessName){
+    const now=new Date();
+    const id=`SPOTLIGHT-${now.toISOString().slice(0,10)}-${sellerProfileId.slice(0,8)}`;
+    const contentInsert=await supabase.from('social_content_items').insert({
+      id,
+      program:'Rebel Ranch Local',
+      campaign:'Shop Spotlight',
+      title:`Shop Spotlight — ${businessName}`,
+      audience:'Everyone',
+      goal:'Free weekly promotion for a free-tier seller — visibility stays a level playing field.',
+      purpose:`Feature ${businessName} across Rebel Ranch Ministries' own channels this week, at no cost to the seller.`,
+      status:'Planned'
+    });
+    if(contentInsert.error)return contentInsert;
+    return supabase.from('seller_profiles').update({last_spotlighted_at:now.toISOString()}).eq('id',sellerProfileId);
   }
 };
