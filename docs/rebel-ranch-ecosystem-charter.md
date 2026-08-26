@@ -172,6 +172,10 @@ Do not present the robot or AI assistant as a current Phase One feature.
 
 ## 5. Rebel Ranch Marketplace
 
+### Visual governance
+
+Rebel Ranch Local (the umbrella for Marketplace/Goods/Services) has its own locked visual identity — see `docs/rrl-visual-rules.md` and `marketing/social-media/rebel-ranch-marketplace/brand/BRAND.md`. It does not use RRM's general forest-green/gold public-surface styling (`docs/rrm-visual-rules.md`), the same way Creation Station's styling is separate from RRM's. Any RRL/Marketplace page — including the seller dashboard — must use RRL's own olive/cream/tan tokens (`assets/css/rebel-ranch-local.css`), not RRM's. A page found using RRM's system instead is a defect, not an acceptable variant.
+
 ### Purpose
 
 The Marketplace addresses a rural local-business gap. Gilchrist County and surrounding areas contain makers, farmers, craftspeople, service providers, sole proprietors, side businesses, and small teams that may be visible at festivals or roadside stands but difficult to find afterward.

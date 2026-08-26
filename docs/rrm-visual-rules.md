@@ -15,6 +15,7 @@ Every agent must read this document before starting visual, layout, or public-pa
 - Roots, Boots & Animal Poops and Rebel Ranch Rescue may be represented as anchored sections on `programs.html` until separate program pages are explicitly approved and built. Do not invent dead routes or placeholder destination pages.
 - Do not migrate, restyle, or otherwise change any other repository page as part of this extension.
 - Creation Station has an intentionally separate visual system. Do not touch Creation Station files, pages, or components unless the user gives separate, explicit authorization.
+- Rebel Ranch Local (Marketplace) has its own intentionally separate, locked visual system — see `docs/rrl-visual-rules.md`. This document does not govern `marketplace.html`, `marketplace-seller-page.html`, `marketplace-seller-dashboard.html`, or any other RRL/Marketplace page; those follow RRL's own tokens (`assets/css/rebel-ranch-local.css`) and brand guide (`marketing/social-media/rebel-ranch-marketplace/brand/BRAND.md`), not RRM's forest-green/gold system.
 - Future rules will be applied in later phases. Approval of `programs.html` never grants permission to perform a site-wide conversion.
 
 ## Page frame and colors
