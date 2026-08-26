@@ -248,6 +248,43 @@ function bindScreen(){
 
   root.querySelectorAll('[data-goto-view]').forEach(b=>b.onclick=()=>{state.view=b.dataset.gotoView;location.hash=state.view;render();window.scrollTo({top:0,behavior:'smooth'})});
 
+  root.querySelectorAll('[data-edit-listing-form]').forEach(form=>form.onsubmit=e=>{
+    e.preventDefault();
+    const listingId=form.dataset.editListingForm;
+    const listing=state.data.listings.find(l=>l.id===listingId);
+    withBusy(e.submitter,async()=>{
+      const unitPriceRaw=form.querySelector('[data-field="unit_price"]').value;
+      const updates={
+        title:form.querySelector('[data-field="title"]').value.trim(),
+        description:form.querySelector('[data-field="description"]').value.trim()||null,
+        price_label:form.querySelector('[data-field="price_label"]').value.trim()||null,
+        price_type:form.querySelector('[data-field="price_type"]').value,
+        unit_price:unitPriceRaw===''?null:Number(unitPriceRaw)
+      };
+      if(!updates.title)throw new Error('Enter a title for this listing.');
+      const {error}=await actions.saveDraftListing(state.identity,listingId,listing?.draft_data,updates);
+      if(error)throw error;
+      await refresh();
+      message('Saved as a draft — publish when ready to make it live.');
+    });
+  });
+
+  root.querySelectorAll('[data-publish-listing]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
+    const listing=state.data.listings.find(l=>l.id===b.dataset.publishListing);
+    const {error}=await actions.publishListing(state.identity,b.dataset.publishListing,listing?.draft_data);
+    if(error)throw error;
+    await refresh();
+    message('Listing changes are now live on your public page.');
+  }));
+
+  root.querySelectorAll('[data-discard-listing-draft]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
+    if(!confirm('Discard your unpublished changes to this listing? This cannot be undone.'))return;
+    const {error}=await actions.discardDraftListing(state.identity,b.dataset.discardListingDraft);
+    if(error)throw error;
+    await refresh();
+    message('Draft discarded.');
+  }));
+
   root.querySelectorAll('[data-action="submit-application"]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
     const app=state.data.applications[0];
     const {error}=await actions.submitApplication(state.identity,app.id);
