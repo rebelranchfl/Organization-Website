@@ -45,10 +45,11 @@ export async function loadSellerWorkspace(identity){
     supabase.from('seller_payment_methods').select('id,method_type,label,link_url,sort_order').eq('seller_profile_id',spid).order('sort_order'),
     supabase.from('seller_inquiries').select('id,sender_name,sender_contact,sender_is_member,message,is_read,responded_at,created_at').eq('seller_profile_id',spid).order('created_at',{ascending:false}),
     supabase.from('seller_orders').select('*').eq('seller_profile_id',spid).order('created_at',{ascending:false}),
-    supabase.from('seller_fulfillment_options').select('*').eq('seller_profile_id',spid).maybeSingle()
+    supabase.from('seller_fulfillment_options').select('*').eq('seller_profile_id',spid).maybeSingle(),
+    supabase.from('seller_storefront_stats').select('page_views,stat_date,source').eq('seller_profile_id',spid).order('stat_date',{ascending:false})
   ]);
   fail(results);
-  const [applications,categoryAssignments,listings,requirementAssignments,attestations,credentials,reviewEvents,notifications,creatorAffiliations,householdAffiliations,paymentMethods,inquiries,orders,fulfillment]=results;
+  const [applications,categoryAssignments,listings,requirementAssignments,attestations,credentials,reviewEvents,notifications,creatorAffiliations,householdAffiliations,paymentMethods,inquiries,orders,fulfillment,storefrontStats]=results;
   return {
     applications:applications.data,
     categoryAssignments:categoryAssignments.data,
@@ -61,7 +62,7 @@ export async function loadSellerWorkspace(identity){
     creatorAffiliations:creatorAffiliations.data,
     householdAffiliations:householdAffiliations.data,
     paymentMethods:paymentMethods.data,
-    inquiries:inquiries.data,orders:orders.data,fulfillment:fulfillment.data
+    inquiries:inquiries.data,orders:orders.data,fulfillment:fulfillment.data,storefrontStats:storefrontStats.data
   };
 }
 
@@ -320,6 +321,10 @@ export const adminActions={
   },
   async reactivateSeller(sellerProfileId){
     return supabase.from('seller_profiles').update({profile_status:'active'}).eq('id',sellerProfileId);
+  },
+  async logStorefrontViews(sellerProfileId,pageViews,statDate){
+    const {data:{user}}=await supabase.auth.getUser();
+    return supabase.from('seller_storefront_stats').insert({seller_profile_id:sellerProfileId,page_views:pageViews,stat_date:statDate,source:'manual',recorded_by:user?.id||null});
   },
   async spotlightSeller(sellerProfileId,businessName){
     const now=new Date();

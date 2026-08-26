@@ -545,6 +545,15 @@ function bindScreen(){
     await refresh();
     message('Seller reactivated.');
   }));
+  root.querySelectorAll('[data-log-traffic]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
+    const views=prompt(`Page views from Google Analytics for ${b.dataset.businessName} (today):`);
+    if(views===null||views.trim()==='')return;
+    const pageViews=Math.max(0,parseInt(views,10)||0);
+    const {error}=await adminActions.logStorefrontViews(b.dataset.logTraffic,pageViews,new Date().toISOString().slice(0,10));
+    if(error)throw error;
+    await refresh();
+    message(`Logged ${pageViews} views for ${b.dataset.businessName}.`);
+  }));
   root.querySelectorAll('[data-spotlight-seller]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
     const {error}=await adminActions.spotlightSeller(b.dataset.spotlightSeller,b.dataset.businessName);
     if(error)throw error;
