@@ -1,5 +1,5 @@
 import {loadSellerIdentity,loadSellerWorkspace,loadSellerAdminSummary,loadApplicationDetail,actions,adminActions} from './marketplace-seller-data.js';
-import {renderers} from './marketplace-seller-views.js';
+import {renderers,banners} from './marketplace-seller-views.js';
 import {supabase} from './supabase-client.js';
 
 const $=id=>document.getElementById(id);
@@ -71,11 +71,22 @@ function navigate(view){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
+function renderBanners(){
+  const el=$('dashboard-banners');
+  if(!el)return;
+  el.innerHTML=banners(state);
+  el.querySelectorAll('[data-dismiss-banner]').forEach(b=>b.onclick=()=>{
+    try{localStorage.setItem(`rrl_seller_banner_${state.identity.sellerProfile.id}_${b.dataset.dismissBanner}`,b.dataset.dismissValue||'1')}catch{}
+    renderBanners();
+  });
+}
+
 function render(){
   const renderer=renderers[state.view]||renderers.status;
   $('screen').innerHTML=renderer(state);
   bindScreen();
   updateSwitcher();
+  renderBanners();
 }
 
 async function withBusy(button,work){
@@ -84,7 +95,7 @@ async function withBusy(button,work){
   const old=button?.textContent;
   if(button){button.disabled=true;button.textContent='Working…'}
   try{await work()}
-  catch(e){message(e.message||'That action could not be completed.',true)}
+  catch(e){message(friendlyError(e),true)}
   finally{state.busy=false;if(button){button.disabled=false;button.textContent=old}}
 }
 
@@ -101,6 +112,8 @@ function friendlyError(e){
     return 'This seller still has pending compliance requirements. Wait for the seller to submit their attestation, verify any uploaded documents, or waive/mark N/A on the Admin tab before approving.';
   if(e?.message==='application_not_awaiting_review')
     return 'This application is no longer awaiting review — refresh and try again.';
+  if(e?.message?.includes('listing_limit_reached'))
+    return `You've used all ${state.identity.sellerProfile.listing_limit} of your free listings. Contact Rebel Ranch Ministries to add more.`;
   return e?.message||'That action could not be completed.';
 }
 

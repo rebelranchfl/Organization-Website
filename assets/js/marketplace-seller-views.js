@@ -22,6 +22,56 @@ function requirementFor(state,assignmentId){return state.data.requirementAssignm
 
 const PAYMENT_LABELS={paypal:'PayPal',venmo:'Venmo',cashapp:'Cash App',zelle:'Zelle',stripe:'Stripe',apple_pay:'Apple Pay',cash:'Cash',check:'Check',other:'Other'};
 
+function contactActions(contact){
+  const raw=String(contact||'').trim();
+  if(!raw)return '';
+  const isEmail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(raw);
+  if(isEmail)return ` <a href="mailto:${esc(raw)}">Email</a>`;
+  const digits=raw.replace(/\D/g,'');
+  const isPhone=digits.length>=7&&digits.length<=15;
+  if(isPhone)return ` <a href="tel:${esc(digits)}">Call</a> · <a href="sms:${esc(digits)}">Text</a>`;
+  return '';
+}
+
+const BANNER_PREFIX='rrl_seller_banner_';
+function bannerDismissedValue(sellerId,id){try{return localStorage.getItem(`${BANNER_PREFIX}${sellerId}_${id}`)}catch{return null}}
+
+export function banners(state){
+  const sp=state.identity?.sellerProfile;
+  const data=state.data;
+  if(!sp||!data)return '';
+  const ref='ref=marketplace-seller-dashboard';
+  const items=[];
+
+  const missingLogo=!sp.logo_object_path,missingListings=!(data.listings||[]).length;
+  if(missingLogo||missingListings){
+    const what=missingLogo&&missingListings?'a logo and any listings':missingLogo?'a logo':'any listings';
+    items.push({id:'storefront',dismissValue:'1',text:`Your public shop is missing ${what} — a complete storefront earns buyer trust faster.`,ctaText:'Get Seen, Get Found — from $199',href:`business-request.html?service=online-presence&${ref}`});
+  }
+
+  const openOrders=(data.orders||[]).filter(o=>['new','change_proposed'].includes(o.status)).length;
+  const unreadInquiries=(data.inquiries||[]).filter(i=>!i.is_read).length;
+  const backlog=openOrders+unreadInquiries;
+  const dismissedAt=Number(bannerDismissedValue(sp.id,'overwhelmed')||0);
+  if(backlog>=3&&backlog>dismissedAt){
+    items.push({id:'overwhelmed',dismissValue:String(backlog),text:`You have ${backlog} order${backlog===1?'':'s'} and question${backlog===1?'':'s'} waiting on a response.`,ctaText:"Stop Losing Customers While You're Busy — from $199",href:`business-request.html?service=lead-capture-follow-up&${ref}`});
+  }
+
+  if(!(data.paymentMethods||[]).length&&!bannerDismissedValue(sp.id,'payment')){
+    items.push({id:'payment',choice:true,text:'Buyers currently have no way to pay you except cash or check on pickup.',ctaText:'I want to get paid faster',href:`business-request.html?service=get-paid-faster&${ref}`});
+  }
+
+  if(!items.length)return '';
+  return `<div class="dash-banners">${items.map(b=>`<div class="dash-banner">
+    <p>${esc(b.text)}</p>
+    <div class="dash-banner-actions">
+      ${b.choice?`<button type="button" class="button" data-dismiss-banner="${b.id}" data-dismiss-value="1">I prefer cash / COD</button>`:''}
+      <a class="button primary" href="${b.href}">${esc(b.ctaText)}</a>
+      ${b.choice?'':`<button type="button" class="button" data-dismiss-banner="${b.id}" data-dismiss-value="${esc(b.dismissValue)}">Not now</button>`}
+    </div>
+  </div>`).join('')}</div>`;
+}
+
 export function status(state){
   const sp=state.identity.sellerProfile;
   const app=state.data.applications[0];
@@ -101,9 +151,10 @@ function listingCard(item){
 
 export function listings(state){
   const items=state.data.listings;
-  return `${heading('Listings','What you sell','Add products or services with a price and photos — buyers see these on your public page.')}
-  <section class="panel">
-    <div class="panel-header"><h2>Add a listing</h2></div>
+  const limit=state.identity.sellerProfile.listing_limit??5;
+  const atLimit=items.length>=limit;
+  const addForm=atLimit?`<section class="panel"><div class="panel-header"><h2>Add a listing</h2></div><p>You've used all ${limit} of your free listings (${items.length}/${limit}). Contact Rebel Ranch Ministries if you'd like to add more.</p></section>`:`<section class="panel">
+    <div class="panel-header"><h2>Add a listing</h2><span class="tag">${items.length}/${limit} used</span></div>
     <form id="add-listing-form" class="onboarding-form">
       <label>Type<select id="new-listing-type"><option value="product">Product</option><option value="service">Service</option></select></label>
       <label>Title<input id="new-listing-title" required></label>
@@ -113,7 +164,9 @@ export function listings(state){
       <label>Numeric unit price <span>Optional; used to estimate fixed-price orders</span><input id="new-listing-unit-price" type="number" min="0" step="0.01" placeholder="8.00"></label>
       <div class="dialog-actions"><button class="primary" type="submit">Add listing</button></div>
     </form>
-  </section>
+  </section>`;
+  return `${heading('Listings','What you sell','Add products or services with a price and photos — buyers see these on your public page.')}
+  ${addForm}
   ${items.length?`<div class="card-grid" style="margin-top:18px">${items.map(listingCard).join('')}</div>`:empty('No listings yet','Add your first product or service using the form above.')}`;
 }
 
@@ -177,13 +230,13 @@ export function questions(state){
   if(!items.length)return `${heading('Questions','Buyer questions','Questions are kept separate from orders so your order inbox stays clear.')}${empty('No questions yet','Buyer questions will appear here.')}`;
   const unreadIds=items.filter(m=>!m.is_read).map(m=>m.id);
   return `${heading('Questions','Buyer questions',`${unreadIds.length} unread`)}
-  <div class="list">${items.map(m=>`<article class="list-item"><span class="list-icon" aria-hidden="true">${m.is_read?'✓':'●'}</span><div><h3>${esc(m.sender_name)} <span class="tag" style="margin-left:6px">${m.sender_is_member?'Member':'Non-member'}</span></h3><p>${esc(m.message)}</p>${m.sender_contact?`<p><strong>Contact:</strong> ${esc(m.sender_contact)}</p>`:''}<small>${new Date(m.created_at).toLocaleString()}</small></div>${m.is_read?'':`<button data-mark-inquiry-read="${m.id}">Mark read</button>`}</article>`).join('')}</div>`;
+  <div class="list">${items.map(m=>`<article class="list-item"><span class="list-icon" aria-hidden="true">${m.is_read?'✓':'●'}</span><div><h3>${esc(m.sender_name)} <span class="tag" style="margin-left:6px">${m.sender_is_member?'Member':'Non-member'}</span></h3><p>${esc(m.message)}</p>${m.sender_contact?`<p><strong>Contact:</strong> ${esc(m.sender_contact)}${contactActions(m.sender_contact)}</p>`:''}<small>${new Date(m.created_at).toLocaleString()}</small></div>${m.is_read?'':`<button data-mark-inquiry-read="${m.id}">Mark read</button>`}</article>`).join('')}</div>`;
 }
 
 export function orders(state){
   const f=state.data.fulfillment||{},items=state.data.orders||[];
   const settings=`<section class="panel"><div class="panel-header"><h2>Fulfillment options</h2></div><form id="fulfillment-form" class="onboarding-form"><div class="check-grid"><label><input id="fulfill-pickup" type="checkbox" ${f.offers_pickup!==false?'checked':''}> Pickup</label><label><input id="fulfill-delivery" type="checkbox" ${f.offers_delivery?'checked':''}> Local delivery</label><label><input id="fulfill-meetup" type="checkbox" ${f.offers_meetup!==false?'checked':''}> Meet-up</label><label><input id="fulfill-shipping" type="checkbox" ${f.offers_shipping?'checked':''}> Shipping</label></div><label>Public fulfillment note<textarea id="fulfill-notes">${esc(f.public_notes||'')}</textarea></label><button class="primary" type="submit">Save fulfillment options</button></form></section>`;
-  const cards=items.length?`<div class="order-list">${items.map(o=>`<article class="panel order-card"><div class="panel-header"><div><p class="eyebrow">Order #${o.order_number}</p><h2>${esc(o.buyer_name)}</h2></div>${badge(o.status)}</div><p><strong>${esc(label(o.order_kind))}</strong> · ${esc(label(o.fulfillment_method))}${o.preferred_date?` · ${esc(o.preferred_date)}`:''}</p><div class="order-items">${(o.items||[]).map(x=>`<div><strong>${x.quantity} × ${esc(x.title)}</strong>${x.note?`<p>${esc(x.note)}</p>`:''}</div>`).join('')}</div><p><strong>Buyer contact:</strong> ${esc(o.buyer_contact)}</p>${o.delivery_address?`<p><strong>Delivery:</strong> ${esc(o.delivery_address)}</p>`:''}${o.service_location?`<p><strong>Service location:</strong> ${esc(o.service_location)}</p>`:''}${o.buyer_note?`<p><strong>Order note:</strong> ${esc(o.buyer_note)}</p>`:''}<p><strong>Total:</strong> ${o.confirmed_total!==null?`$${Number(o.confirmed_total).toFixed(2)}`:o.estimated_total!==null?`Estimated $${Number(o.estimated_total).toFixed(2)}`:'Needs confirmation'}</p>${(o.photo_object_paths||[]).map(p=>`<button type="button" data-order-photo="${esc(p)}">View private buyer photo</button>`).join('')}<div class="actions"><button class="primary" data-order-action="accepted" data-order-id="${o.id}">Accept Order</button><button data-order-action="change_proposed" data-order-id="${o.id}">Propose Change</button><button class="danger" data-order-action="declined" data-order-id="${o.id}">Decline Order</button><button data-order-action="ready" data-order-id="${o.id}">Mark Ready</button><button data-order-action="completed" data-order-id="${o.id}">Mark Completed</button></div><small>${new Date(o.created_at).toLocaleString()}</small></article>`).join('')}</div>`:empty('No orders yet','New structured orders and service requests will appear here — separate from buyer questions.');
+  const cards=items.length?`<div class="order-list">${items.map(o=>`<article class="panel order-card"><div class="panel-header"><div><p class="eyebrow">Order #${o.order_number}</p><h2>${esc(o.buyer_name)}</h2></div>${badge(o.status)}</div><p><strong>${esc(label(o.order_kind))}</strong> · ${esc(label(o.fulfillment_method))}${o.preferred_date?` · ${esc(o.preferred_date)}`:''}</p><div class="order-items">${(o.items||[]).map(x=>`<div><strong>${x.quantity} × ${esc(x.title)}</strong>${x.note?`<p>${esc(x.note)}</p>`:''}</div>`).join('')}</div><p><strong>Buyer contact:</strong> ${esc(o.buyer_contact)}${contactActions(o.buyer_contact)}</p>${o.delivery_address?`<p><strong>Delivery:</strong> ${esc(o.delivery_address)}</p>`:''}${o.service_location?`<p><strong>Service location:</strong> ${esc(o.service_location)}</p>`:''}${o.buyer_note?`<p><strong>Order note:</strong> ${esc(o.buyer_note)}</p>`:''}<p><strong>Total:</strong> ${o.confirmed_total!==null?`$${Number(o.confirmed_total).toFixed(2)}`:o.estimated_total!==null?`Estimated $${Number(o.estimated_total).toFixed(2)}`:'Needs confirmation'}</p>${(o.photo_object_paths||[]).map(p=>`<button type="button" data-order-photo="${esc(p)}">View private buyer photo</button>`).join('')}<div class="actions"><button class="primary" data-order-action="accepted" data-order-id="${o.id}">Accept Order</button><button data-order-action="change_proposed" data-order-id="${o.id}">Propose Change</button><button class="danger" data-order-action="declined" data-order-id="${o.id}">Decline Order</button><button data-order-action="ready" data-order-id="${o.id}">Mark Ready</button><button data-order-action="completed" data-order-id="${o.id}">Mark Completed</button></div><small>${new Date(o.created_at).toLocaleString()}</small></article>`).join('')}</div>`:empty('No orders yet','New structured orders and service requests will appear here — separate from buyer questions.');
   return `${heading('Orders','Order inbox','Every item, quantity, fulfillment choice, buyer contact, and optional photo in one place.')}${settings}<div style="margin-top:18px">${cards}</div>`;
 }
 
