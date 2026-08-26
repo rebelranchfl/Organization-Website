@@ -304,10 +304,10 @@ export function notifications(state){
 }
 
 export function questions(state){
-  const items=[...state.data.inquiries].sort((a,b)=>(a.is_read===b.is_read?0:a.is_read?1:-1));
+  const items=[...state.data.inquiries].sort((a,b)=>(!!a.responded_at===!!b.responded_at?0:a.responded_at?1:-1));
   if(!items.length)return `${heading('Questions','Buyer questions','Questions are kept separate from orders so your order inbox stays clear.')}${empty('No questions yet','Buyer questions will appear here.')}`;
-  const unreadIds=items.filter(m=>!m.is_read).map(m=>m.id);
-  return `${heading('Questions','Buyer questions',`${unreadIds.length} unread`)}
+  const needsResponse=items.filter(m=>!m.responded_at).length;
+  return `${heading('Questions','Buyer questions',`${needsResponse} need${needsResponse===1?'s':''} a response`)}
   <div class="list">${items.map(m=>`<article class="list-item ${m.is_read?'is-read':'is-unread'}"><span class="list-icon" aria-hidden="true">${m.is_read?'✓':'●'}</span><div><h3>${esc(m.sender_name)} <span class="tag" style="margin-left:6px">${m.sender_is_member?'Member':'Non-member'}</span></h3><p>${esc(m.message)}</p>${m.sender_contact?`<p><strong>Contact:</strong> ${esc(m.sender_contact)}${contactActions(m.sender_contact)}</p>`:''}${m.responded_at?`<p><span class="status-badge">✓ Responded ${new Date(m.responded_at).toLocaleDateString()}</span></p>`:''}<small>${new Date(m.created_at).toLocaleString()}</small></div><div class="actions" style="flex-direction:column;align-items:stretch">${m.is_read?'':`<button data-mark-inquiry-read="${m.id}">Mark read</button>`}${m.responded_at?'':`<button class="primary" data-mark-inquiry-responded="${m.id}">Mark Responded</button>`}</div></article>`).join('')}</div>`;
 }
 
