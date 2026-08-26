@@ -141,6 +141,7 @@ export function status(state){
         ${app?`<p>${app.review_notes?esc(app.review_notes):'No reviewer notes yet.'}</p>
         <div class="actions">${['draft','changes_requested'].includes(app.status)?'<button class="primary" data-action="submit-application">Submit for review</button>':''}${app.status==='draft'?'<button class="danger" data-action="withdraw-application">Withdraw</button>':''}</div>`:empty('No application yet','Something went wrong creating your application — contact support.')}
       </section>
+      ${complianceSection(state)}
     </div>
     <aside class="stack">
       <section class="panel">
@@ -215,6 +216,8 @@ export function listings(state){
   const atLimit=allItems.length>=limit;
   const listingFilter=state.listingFilter||'all';
   const items=allItems.filter(i=>listingFilter==='all'||(listingFilter==='active'?i.is_active:!i.is_active));
+  const products=items.filter(i=>i.listing_type==='product');
+  const services=items.filter(i=>i.listing_type==='service');
   const addForm=atLimit?`<section class="panel"><div class="panel-header"><h2>Add a listing</h2></div><p>You've used all ${limit} of your free listings (${allItems.length}/${limit}). Contact Rebel Ranch Ministries if you'd like to add more.</p></section>`:`<section class="panel">
     <div class="panel-header"><h2>Add a listing</h2><span class="tag">${allItems.length}/${limit} used</span></div>
     <form id="add-listing-form" class="onboarding-form">
@@ -228,25 +231,24 @@ export function listings(state){
     </form>
   </section>`;
   const filterRow=`<div class="view-tools" style="margin:14px 0"><label style="display:flex;align-items:center;gap:8px;font-weight:800;color:var(--ink)">Showing<select id="listing-filter"><option value="all" ${listingFilter==='all'?'selected':''}>All (${allItems.length})</option><option value="active" ${listingFilter==='active'?'selected':''}>Active (${allItems.filter(i=>i.is_active).length})</option><option value="inactive" ${listingFilter==='inactive'?'selected':''}>Hidden (${allItems.filter(i=>!i.is_active).length})</option></select></label></div>`;
-  return `${heading('Listings','What you sell','Add products or services with a price and photos — buyers see these on your public page.')}
+  const typeSection=(title,typeItems)=>`<section class="panel" style="margin-top:18px">
+    <div class="panel-header"><h2>${title}</h2><span class="tag">${typeItems.length}</span></div>
+    ${typeItems.length?`<div class="card-grid">${typeItems.map(i=>listingCard(i,state.identity.sellerProfile.public_slug)).join('')}</div>`:'<p class="eyebrow">None yet</p>'}
+  </section>`;
+  return `${heading('Inventory / Listings / Services','What you sell','Add products or services with a price and photos — buyers see these on your public page.')}
   ${addForm}
   ${allItems.length?filterRow:''}
-  ${items.length?`<div class="card-grid" style="margin-top:18px">${items.map(i=>listingCard(i,state.identity.sellerProfile.public_slug)).join('')}</div>`:empty(allItems.length?'No listings match this filter':'No listings yet',allItems.length?'Try a different filter above.':'Add your first product or service using the form above.')}`;
+  ${items.length?`${typeSection('Products',products)}${typeSection('Services',services)}`:empty(allItems.length?'No listings match this filter':'No listings yet',allItems.length?'Try a different filter above.':'Add your first product or service using the form above.')}`;
 }
 
-export function requirements(state){
+function complianceSection(state){
   const items=state.data.requirementAssignments;
-  if(!items.length)return `${heading('Compliance','Requirements','Requirements are assigned automatically based on your categories.')}${empty('No requirements yet','Add a category on the Status tab to see what applies to your business.')}`;
+  if(!items.length)return '';
   const pending=items.filter(r=>r.assignment_status==='pending').length;
   const satisfied=items.filter(r=>r.assignment_status==='satisfied').length;
   const waived=items.filter(r=>['waived','not_applicable'].includes(r.assignment_status)).length;
-  const statsRow=`<div class="metric-grid" style="grid-template-columns:repeat(3,1fr)">
-    <div class="metric"><span>Pending</span><strong>${pending}</strong><small>Needs your action</small></div>
-    <div class="metric"><span>Satisfied</span><strong>${satisfied}</strong><small>Complete</small></div>
-    <div class="metric"><span>Waived / N/A</span><strong>${waived}</strong><small>Resolved by admin</small></div>
-  </div>`;
-  return `${heading('Compliance','Requirements','Submit an attestation or upload a document for each requirement below.')}${statsRow}
-  <div class="card-grid" style="margin-top:18px">${items.map(r=>{
+  const resolved=satisfied+waived;
+  const cards=items.map(r=>{
     const req=r.compliance_requirements||{};
     const attestation=state.data.attestations.find(a=>a.requirement_assignment_id===r.id);
     const creds=state.data.credentials.filter(c=>c.requirement_assignment_id===r.id);
@@ -271,24 +273,13 @@ export function requirements(state){
       ${creds.length?`<div class="list" style="margin-top:10px">${creds.map(c=>`<article class="list-item"><span class="list-icon" aria-hidden="true">📄</span><div><h3>${esc(c.credential_type)}</h3><p>${c.expires_at?`Expires ${c.expires_at}`:'No expiration set'}</p></div>${badge(c.verification_status)}</article>`).join('')}</div>`:''}
       `:''}
     </article>`;
-  }).join('')}</div>`;
-}
-
-export function programs(state){
-  const creators=state.identity.creators;
-  return `${heading('Programs','Link your Creation Station account','Show off work from your Creation Station family, child, teen, or adult profiles on your seller page.')}
-  <section class="panel">
-    <div class="panel-header"><div style="display:flex;align-items:center;gap:12px"><img src="assets/creation-station-logo.png" alt="Creation Station" style="width:36px;height:36px;object-fit:contain;border-radius:8px"><h2>Creation Station</h2></div></div>
-    <div class="list">${creators.map(c=>{
-      const aff=state.data.creatorAffiliations.find(a=>a.creator_id===c.id);
-      const isMinor=['young_6_12','teen_13_17'].includes(c.age_band);
-      return `<article class="list-item"><span class="list-icon" aria-hidden="true">${isMinor?'✦':'◇'}</span><div><h3>${esc(c.display_name)}</h3><p>${aff?(aff.is_public?'Public':'Private'):'Not linked'}${aff&&isMinor?(aff.parent_approved_at?' · Parent approved':' · Needs parent approval to go public'):''}</p></div>${aff?`<button data-toggle-affiliation="${aff.id}" data-public="${!aff.is_public}">${aff.is_public?'Make private':'Make public'}</button>`:`<button data-link-creator="${c.id}">Link to profile</button>`}</article>`;
-    }).join('')||'<p class="eyebrow">No Creation Station profiles linked to this account yet</p>'}</div>
-  </section>
-  ${state.identity.household?`<section class="panel" style="margin-top:18px"><div class="panel-header"><h2>Household</h2></div>${(()=>{const h=state.data.householdAffiliations[0];return h?`<p>${esc(state.identity.household.household_name||'Your household')} — ${h.is_public?'Public':'Private'}</p><button data-toggle-household="${h.id}" data-public="${!h.is_public}">${h.is_public?'Make private':'Make public'}</button>`:`<button data-link-household="${state.identity.household.id}">Link household to profile</button>`})()}</section>`:''}
-  <section class="panel" style="margin-top:18px">
-    <div class="panel-header"><div style="display:flex;align-items:center;gap:12px"><img src="assets/rebel_ranch_academy_logo_transparent.png" alt="Rebel Ranch Academy" style="width:36px;height:36px;object-fit:contain"><h2>Rebel Ranch Academy</h2></div></div>
-    <p>Rebel Ranch Academy is live at <a href="https://academy.rebelranchministries.org" target="_blank" rel="noopener">academy.rebelranchministries.org</a>. Linking your Academy coursework to this seller profile isn't available yet.</p>
+  }).join('');
+  return `<section class="panel">
+    <div class="panel-header"><div><p class="eyebrow">Compliance</p><h2>Requirements</h2></div>${pending?`<span class="status-badge review">${pending} pending</span>`:'<span class="status-badge">All set</span>'}</div>
+    <details class="disclosure" ${pending?'open':''}>
+      <summary>${pending?`${pending} requirement${pending===1?'':'s'} need${pending===1?'s':''} your attention`:`${resolved} requirement${resolved===1?'':'s'} on file — nothing pending`}</summary>
+      <div class="card-grid" style="margin-top:14px">${cards}</div>
+    </details>
   </section>`;
 }
 
@@ -453,4 +444,4 @@ export function kpis(state){
   </section>`;
 }
 
-export const renderers={status,listings,orders,questions,requirements,programs,notifications,history,admin,today,kpis};
+export const renderers={status,listings,orders,questions,notifications,history,admin,today,kpis};
