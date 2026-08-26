@@ -36,9 +36,7 @@ Camo/field-inspired direction, not tactical/military. Do not introduce RRM's for
 Live and on-brand today:
 - `marketplace.html` (loads `assets/css/rebel-ranch-local.css`)
 - `marketplace-seller-page.html` (loads `assets/css/rebel-ranch-local.css` + `assets/css/marketplace-seller-page.css`)
-
-Live and **not yet compliant** — styled on RRM's `assets/css/brand-tokens.css` + a bespoke dark green/gold `assets/css/marketplace-seller.css` instead of RRL's own tokens:
-- `marketplace-seller-dashboard.html` — correction in progress.
+- `marketplace-seller-dashboard.html` (corrected 2026-08-26 — now loads `assets/css/rebel-ranch-local.css`; `assets/css/marketplace-seller.css` rewritten to use RRL's `--olive`/`--cream`/`--paper`/`--tan`/`--line`/`--ink`/`--muted`/`--shadow` tokens throughout instead of RRM's `--rrm-*` tokens)
 
 Not a live page (redirect stub to `marketplace.html`; do not resurrect its old dark-green styling if this page is ever rebuilt):
 - `marketplace-directory.html` — its old `assets/css/marketplace-directory.css` is dead code (referenced only from a `.backups/` snapshot). If a real standalone directory page is built in the future, it must use RRL's tokens, not that file.
