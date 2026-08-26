@@ -183,7 +183,7 @@ It is a curated local directory, discovery hub, communication platform, visibili
 ### Access and financial model
 
 - Access is free for buyers.
-- Marketplace participation is free for approved sellers.
+- Marketplace participation is free for approved sellers, including up to 5 active listings per seller (`seller_profiles.listing_limit`, enforced 2026-08-26). Additional listings beyond the free 5 may be unlocked for a seller manually once arranged outside the platform — there is no in-platform purchase flow for this yet.
 - The Marketplace does not process payments on behalf of sellers.
 - Sellers may provide approved external payment and fulfillment information.
 - Buyers may build an order request and send it to a seller; the seller remains responsible for accepted payment and fulfillment arrangements.
@@ -245,6 +245,25 @@ not implemented. See
 complete production and maintenance handoff.
 
 The Marketplace will use a controlled set of approved listing templates. Do not create unlimited seller-controlled layouts or a new template without approval.
+
+### Seller dashboard fulfillment and revenue funnel (added 2026-08-26)
+
+The free Marketplace model does not change. What was added is seller-side tooling and a funnel into Rebel Ranch Ministries' existing paid Business Freedom program — never a Marketplace payment feature, and never anything that changes buyer-facing discovery or ranking. The level-playing-field principle governs this: nothing paid ever makes a seller more visible or better placed than a free seller.
+
+Implemented:
+
+- **Click-to-contact.** Buyer contact info on order cards and buyer questions now renders as real `tel:` / `sms:` / `mailto:` links when it looks like a phone number or email, opening the seller's own phone/email app. No new infrastructure — Rebel Ranch Ministries still never relays, logs, or processes the message.
+- **Dashboard upsell banners**, computed from data already in the dashboard, each linking into the existing Business Freedom request flow (`business-request.html`) with a `ref=marketplace-seller-dashboard` attribution tag:
+  - No logo and/or no listings → routes to the existing "Get Seen, Get Found" service (from $199).
+  - 3+ open orders/unread questions → routes to the existing "Stop Losing Customers While You Are Busy" service (from $199). Dismissing only quiets it until the backlog grows past where it was dismissed.
+  - No payment method on file → a two-choice, dismissible nudge: "I prefer cash / COD" (permanently dismissed, respects sellers who want cash deliberately) vs. "I want to get paid faster," which routes to a new narrow-scope service.
+- **New Business Freedom service: "Get Paid Faster — Set Up Your Payment Links" ($49.99 flat).** Helps a seller open a PayPal/Stripe/Zelle (etc.) account and add it to their listing via the seller's own existing `seller_payment_methods` self-service field (unchanged, free, already live). This is narrower in scope than the full $199 Payment Processing & Revenue Cycle service, which remains the option for sellers who want the deeper fix.
+- **Free-tier listing cap: 5 active listings per seller** (`seller_profiles.listing_limit`, default 5, enforced by a database trigger). Not a discovery/visibility limit — a seller with more than 5 products/services to list can request more without paying to be seen more.
+
+Explicitly decided but **not yet built** — do not describe these as live in seller-facing marketing:
+
+- **Free weekly "Shop Spotlight."** One free-tier seller rotated weekly across Rebel Ranch Ministries' own social channels, at no cost to the seller. Chosen specifically instead of a paid "featured placement" upsell, to keep directory visibility unconnected to payment. Intended to be run through the existing Social Content Hub (`social_content_items`) as a recurring content type, not a new system.
+- **Seller Pro, a $9.99/month optional tier.** Tooling-only: a unified "today" queue merging orders/questions, real pickup/meetup scheduling, a packing checklist, and a running "amount owed to me" total. Explicitly never touches discovery, ranking, or buyer-facing visibility — Pro changes how a seller manages their own shop, never how easy they are to find.
 
 ### Boundary from Creation Station Studio
 

@@ -151,9 +151,10 @@ function listingCard(item){
 
 export function listings(state){
   const items=state.data.listings;
-  return `${heading('Listings','What you sell','Add products or services with a price and photos — buyers see these on your public page.')}
-  <section class="panel">
-    <div class="panel-header"><h2>Add a listing</h2></div>
+  const limit=state.identity.sellerProfile.listing_limit??5;
+  const atLimit=items.length>=limit;
+  const addForm=atLimit?`<section class="panel"><div class="panel-header"><h2>Add a listing</h2></div><p>You've used all ${limit} of your free listings (${items.length}/${limit}). Contact Rebel Ranch Ministries if you'd like to add more.</p></section>`:`<section class="panel">
+    <div class="panel-header"><h2>Add a listing</h2><span class="tag">${items.length}/${limit} used</span></div>
     <form id="add-listing-form" class="onboarding-form">
       <label>Type<select id="new-listing-type"><option value="product">Product</option><option value="service">Service</option></select></label>
       <label>Title<input id="new-listing-title" required></label>
@@ -163,7 +164,9 @@ export function listings(state){
       <label>Numeric unit price <span>Optional; used to estimate fixed-price orders</span><input id="new-listing-unit-price" type="number" min="0" step="0.01" placeholder="8.00"></label>
       <div class="dialog-actions"><button class="primary" type="submit">Add listing</button></div>
     </form>
-  </section>
+  </section>`;
+  return `${heading('Listings','What you sell','Add products or services with a price and photos — buyers see these on your public page.')}
+  ${addForm}
   ${items.length?`<div class="card-grid" style="margin-top:18px">${items.map(listingCard).join('')}</div>`:empty('No listings yet','Add your first product or service using the form above.')}`;
 }
 
