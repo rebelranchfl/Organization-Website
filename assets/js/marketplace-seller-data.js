@@ -10,12 +10,10 @@ export async function loadSellerIdentity(){
     supabase.from('user_roles').select('role').eq('user_id',user.id),
     supabase.from('seller_profiles').select('id,business_name,public_slug,marketplace_path,short_description,long_description,page_theme,logo_object_path,why_shop_points,profile_status,region_id,owner_user_id,listing_limit,is_pro,draft_data,has_unpublished_changes').eq('owner_user_id',user.id).maybeSingle(),
     supabase.from('marketplace_categories').select('id,slug,name,description,path_group,parent_id,sort_order').eq('is_active',true).order('sort_order'),
-    supabase.from('marketplace_regions').select('id,slug,region_name,state_code,region_type').eq('is_active',true).order('region_name'),
-    supabase.from('creator_profiles').select('id,display_name,public_name,creator_type,age_band,profile_status,household_id').eq('owner_user_id',user.id).eq('profile_status','active').order('created_at'),
-    supabase.from('households').select('id,household_name').eq('owner_user_id',user.id).limit(1).maybeSingle()
+    supabase.from('marketplace_regions').select('id,slug,region_name,state_code,region_type').eq('is_active',true).order('region_name')
   ]);
   fail(results);
-  const [profileR,rolesR,sellerR,categoriesR,regionsR,creatorsR,householdR]=results;
+  const [profileR,rolesR,sellerR,categoriesR,regionsR]=results;
   const isAdmin=rolesR.data.some(r=>r.role==='admin');
   return {
     user,
@@ -23,9 +21,7 @@ export async function loadSellerIdentity(){
     isAdmin,
     sellerProfile:sellerR.data,
     categories:categoriesR.data,
-    regions:regionsR.data,
-    creators:creatorsR.data,
-    household:householdR.data
+    regions:regionsR.data
   };
 }
 
@@ -40,8 +36,6 @@ export async function loadSellerWorkspace(identity){
     supabase.from('seller_credentials').select('id,requirement_assignment_id,credential_type,issuing_authority,credential_identifier,issued_at,expires_at,document_object_path,verification_status,verified_at').eq('seller_profile_id',spid).order('created_at',{ascending:false}),
     supabase.from('seller_review_events').select('id,subject_type,subject_id,from_status,to_status,note,recorded_at').eq('seller_profile_id',spid).order('recorded_at',{ascending:false}).limit(30),
     supabase.from('marketplace_notifications').select('id,notification_type,subject_type,subject_id,title,body,is_read,created_at').eq('owner_user_id',uid).order('created_at',{ascending:false}).limit(30),
-    supabase.from('seller_creator_affiliations').select('id,creator_id,relationship_label,is_public,parent_approved_at').eq('seller_profile_id',spid),
-    supabase.from('seller_household_affiliations').select('id,household_id,is_public').eq('seller_profile_id',spid),
     supabase.from('seller_payment_methods').select('id,method_type,label,link_url,sort_order').eq('seller_profile_id',spid).order('sort_order'),
     supabase.from('seller_inquiries').select('id,sender_name,sender_contact,sender_is_member,message,is_read,responded_at,created_at').eq('seller_profile_id',spid).order('created_at',{ascending:false}),
     supabase.from('seller_orders').select('*').eq('seller_profile_id',spid).order('created_at',{ascending:false}),
@@ -49,7 +43,7 @@ export async function loadSellerWorkspace(identity){
     supabase.from('seller_storefront_stats').select('page_views,stat_date,source').eq('seller_profile_id',spid).order('stat_date',{ascending:false})
   ]);
   fail(results);
-  const [applications,categoryAssignments,listings,requirementAssignments,attestations,credentials,reviewEvents,notifications,creatorAffiliations,householdAffiliations,paymentMethods,inquiries,orders,fulfillment,storefrontStats]=results;
+  const [applications,categoryAssignments,listings,requirementAssignments,attestations,credentials,reviewEvents,notifications,paymentMethods,inquiries,orders,fulfillment,storefrontStats]=results;
   return {
     applications:applications.data,
     categoryAssignments:categoryAssignments.data,
@@ -59,8 +53,6 @@ export async function loadSellerWorkspace(identity){
     credentials:credentials.data,
     reviewEvents:reviewEvents.data,
     notifications:notifications.data,
-    creatorAffiliations:creatorAffiliations.data,
-    householdAffiliations:householdAffiliations.data,
     paymentMethods:paymentMethods.data,
     inquiries:inquiries.data,orders:orders.data,fulfillment:fulfillment.data,storefrontStats:storefrontStats.data
   };
@@ -186,18 +178,6 @@ export const actions={
   },
   async updateCredential(identity,credentialId,updates){
     return supabase.from('seller_credentials').update(updates).eq('id',credentialId);
-  },
-  async linkCreatorAffiliation(identity,creatorId,relationshipLabel){
-    return supabase.from('seller_creator_affiliations').insert({seller_profile_id:identity.sellerProfile.id,creator_id:creatorId,relationship_label:relationshipLabel||null,is_public:false});
-  },
-  async setCreatorAffiliationPublic(identity,affiliationId,isPublic){
-    return supabase.from('seller_creator_affiliations').update({is_public:isPublic}).eq('id',affiliationId);
-  },
-  async linkHouseholdAffiliation(identity,householdId){
-    return supabase.from('seller_household_affiliations').insert({seller_profile_id:identity.sellerProfile.id,household_id:householdId,is_public:false});
-  },
-  async setHouseholdAffiliationPublic(identity,affiliationId,isPublic){
-    return supabase.from('seller_household_affiliations').update({is_public:isPublic}).eq('id',affiliationId);
   },
   async addPaymentMethod(identity,fields){
     return supabase.from('seller_payment_methods').insert({seller_profile_id:identity.sellerProfile.id,method_type:fields.method_type,label:fields.label,link_url:fields.link_url||null});

@@ -4,7 +4,7 @@ import {supabase} from './supabase-client.js';
 
 const $=id=>document.getElementById(id);
 const state={identity:null,data:null,adminData:null,view:'status',busy:false,orderFilter:{window:'24h'}};
-const routes=['today','status','listings','orders','questions','requirements','programs','notifications','history','kpis','admin'];
+const routes=['today','status','listings','orders','questions','notifications','history','kpis','admin'];
 const oneSignalAppId='3d048078-bf37-42ff-a1b7-3c1994cc62af';
 let oneSignalClient=null;
 
@@ -56,7 +56,8 @@ function navGroups(){
     {key:'today',label:'Today'},
     {key:'orders',label:'Orders'},
     {key:'questions',label:`Questions${unreadQuestions?` (${unreadQuestions})`:''}`},
-    {group:'store',label:'Store Details',children:[['status','Status'],['listings','Listings'],['programs','Programs'],['requirements','Requirements']]},
+    {key:'status',label:'Store Details'},
+    {key:'listings',label:'Listings & Services'},
     {group:'insights',label:'Insights',children:[['notifications',`Notifications${unreadNotifications?` (${unreadNotifications})`:''}`],['history','History'],['kpis','KPIs']]}
   ];
   if(state.identity.isAdmin)groups.push({key:'admin',label:'Admin'});
@@ -475,36 +476,6 @@ function bindScreen(){
       message('Document uploaded — pending verification.');
     });
   });
-
-  root.querySelectorAll('[data-link-creator]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
-    const {error}=await actions.linkCreatorAffiliation(state.identity,b.dataset.linkCreator);
-    if(error)throw error;
-    await refresh();
-    message('Creator linked to your seller profile.');
-  }));
-
-  root.querySelectorAll('[data-toggle-affiliation]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
-    const isPublic=b.dataset.public==='true';
-    const {error}=await actions.setCreatorAffiliationPublic(state.identity,b.dataset.toggleAffiliation,isPublic);
-    if(error){message(friendlyError(error),true);return}
-    await refresh();
-    message(isPublic?'Affiliation is now public.':'Affiliation is now private.');
-  }));
-
-  root.querySelectorAll('[data-link-household]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
-    const {error}=await actions.linkHouseholdAffiliation(state.identity,b.dataset.linkHousehold);
-    if(error)throw error;
-    await refresh();
-    message('Household linked to your seller profile.');
-  }));
-
-  root.querySelectorAll('[data-toggle-household]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
-    const isPublic=b.dataset.public==='true';
-    const {error}=await actions.setHouseholdAffiliationPublic(state.identity,b.dataset.toggleHousehold,isPublic);
-    if(error){message(friendlyError(error),true);return}
-    await refresh();
-    message(isPublic?'Household is now public.':'Household is now private.');
-  }));
 
   root.querySelectorAll('[data-mark-read]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
     const {error}=await actions.markNotificationRead(state.identity,b.dataset.markRead);
