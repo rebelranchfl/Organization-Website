@@ -183,11 +183,11 @@ export function requirements(state){
       <h3>${esc(req.title)}</h3>
       <p>${esc(req.description)}</p>
       ${r.waived_reason?`<p><strong>Note:</strong> ${esc(r.waived_reason)}</p>`:''}
-      ${attestation?`<p><strong>Your attestation:</strong> ${esc(attestation.attestation_text)}</p>`:''}
+      ${attestation?`<div class="attestation-done"><span class="status-badge">✓ Attestation submitted</span><p>${esc(attestation.attestation_text)}</p></div>`:`
       <form data-attestation-form="${r.id}" class="dialog-actions" style="margin-top:10px">
         <textarea placeholder="Attest that you meet this requirement…" required></textarea>
         <button class="primary" type="submit">Submit attestation</button>
-      </form>
+      </form>`}
       ${req.requires_credential?`
       <form data-credential-form="${r.id}" class="onboarding-form" style="margin-top:10px">
         <label>Credential type<input data-field="credential_type" placeholder="e.g. Cottage Food Permit" required></label>
@@ -204,7 +204,7 @@ export function requirements(state){
 
 export function programs(state){
   const creators=state.identity.creators;
-  return `${heading('Programs','Link your creators','Show off work from your own Creation Station Portfolio on your seller profile.')}
+  return `${heading('Programs','Link your Creation Station account','Show off work from your Creation Station family, child, teen, or adult profiles on your seller page.')}
   <div class="list">${creators.map(c=>{
     const aff=state.data.creatorAffiliations.find(a=>a.creator_id===c.id);
     const isMinor=['young_6_12','teen_13_17'].includes(c.age_band);
@@ -212,32 +212,46 @@ export function programs(state){
   }).join('')||'<p class="eyebrow">No Creation Station profiles linked to this account yet</p>'}</div>
   ${state.identity.household?`<section class="panel" style="margin-top:18px"><div class="panel-header"><h2>Household</h2></div>${(()=>{const h=state.data.householdAffiliations[0];return h?`<p>${esc(state.identity.household.household_name||'Your household')} — ${h.is_public?'Public':'Private'}</p><button data-toggle-household="${h.id}" data-public="${!h.is_public}">${h.is_public?'Make private':'Make public'}</button>`:`<button data-link-household="${state.identity.household.id}">Link household to profile</button>`})()}</section>`:''}
   <section class="panel" style="margin-top:18px">
-    <div class="panel-header"><h2>Rebel Ranch Academy</h2><span class="status-badge private">Coming soon</span></div>
-    <p>Once Rebel Ranch Academy programs are live, you'll be able to link your coursework here too.</p>
+    <div class="panel-header"><h2>Rebel Ranch Academy</h2></div>
+    <p>Rebel Ranch Academy is live at <a href="https://academy.rebelranchministries.org" target="_blank" rel="noopener">academy.rebelranchministries.org</a>. Linking your Academy coursework to this seller profile isn't available yet.</p>
   </section>`;
 }
 
 export function notifications(state){
-  const items=state.data.notifications;
+  const items=[...state.data.notifications].sort((a,b)=>(a.is_read===b.is_read?0:a.is_read?1:-1));
   if(!items.length)return `${heading('Notifications','Updates','You will see application and requirement updates here.')}${empty('Nothing yet','Notifications about your application and requirements will appear here.')}`;
   const unreadIds=items.filter(n=>!n.is_read).map(n=>n.id);
   return `${heading('Notifications','Updates',`${unreadIds.length} unread`,unreadIds.length?'<button class="primary" data-action="mark-all-read">Mark all read</button>':'')}
-  <div class="list">${items.map(n=>`<article class="list-item"><span class="list-icon" aria-hidden="true">${n.is_read?'✓':'●'}</span><div><h3>${esc(n.title)}</h3><p>${esc(n.body||'')}</p><small>${new Date(n.created_at).toLocaleString()}</small></div>${n.is_read?'':`<button data-mark-read="${n.id}">Mark read</button>`}</article>`).join('')}</div>`;
+  <div class="list">${items.map(n=>`<article class="list-item ${n.is_read?'is-read':'is-unread'}"><span class="list-icon" aria-hidden="true">${n.is_read?'✓':'●'}</span><div><h3>${esc(n.title)}</h3><p>${esc(n.body||'')}</p><small>${new Date(n.created_at).toLocaleString()}</small></div>${n.is_read?'':`<button data-mark-read="${n.id}">Mark read</button>`}</article>`).join('')}</div>`;
 }
 
 export function questions(state){
-  const items=state.data.inquiries;
+  const items=[...state.data.inquiries].sort((a,b)=>(a.is_read===b.is_read?0:a.is_read?1:-1));
   if(!items.length)return `${heading('Questions','Buyer questions','Questions are kept separate from orders so your order inbox stays clear.')}${empty('No questions yet','Buyer questions will appear here.')}`;
   const unreadIds=items.filter(m=>!m.is_read).map(m=>m.id);
   return `${heading('Questions','Buyer questions',`${unreadIds.length} unread`)}
-  <div class="list">${items.map(m=>`<article class="list-item"><span class="list-icon" aria-hidden="true">${m.is_read?'✓':'●'}</span><div><h3>${esc(m.sender_name)} <span class="tag" style="margin-left:6px">${m.sender_is_member?'Member':'Non-member'}</span></h3><p>${esc(m.message)}</p>${m.sender_contact?`<p><strong>Contact:</strong> ${esc(m.sender_contact)}${contactActions(m.sender_contact)}</p>`:''}<small>${new Date(m.created_at).toLocaleString()}</small></div>${m.is_read?'':`<button data-mark-inquiry-read="${m.id}">Mark read</button>`}</article>`).join('')}</div>`;
+  <div class="list">${items.map(m=>`<article class="list-item ${m.is_read?'is-read':'is-unread'}"><span class="list-icon" aria-hidden="true">${m.is_read?'✓':'●'}</span><div><h3>${esc(m.sender_name)} <span class="tag" style="margin-left:6px">${m.sender_is_member?'Member':'Non-member'}</span></h3><p>${esc(m.message)}</p>${m.sender_contact?`<p><strong>Contact:</strong> ${esc(m.sender_contact)}${contactActions(m.sender_contact)}</p>`:''}<small>${new Date(m.created_at).toLocaleString()}</small></div>${m.is_read?'':`<button data-mark-inquiry-read="${m.id}">Mark read</button>`}</article>`).join('')}</div>`;
+}
+
+const ORDER_ACTIONS={
+  new:[['accepted','Accept Order','primary'],['change_proposed','Propose Change',''],['declined','Decline Order','danger']],
+  change_proposed:[['accepted','Mark Accepted','primary'],['declined','Decline Order','danger']],
+  accepted:[['ready','Mark Ready','primary'],['declined','Decline Order','danger']],
+  ready:[['completed','Mark Completed','primary']],
+  declined:[],
+  completed:[]
+};
+function orderActionButtons(o){
+  const acts=ORDER_ACTIONS[o.status]||[];
+  if(!acts.length)return '<p class="eyebrow">No further action needed.</p>';
+  return `<div class="actions">${acts.map(([status,text,cls])=>`<button class="${cls}" data-order-action="${status}" data-order-id="${o.id}">${text}</button>`).join('')}</div>`;
 }
 
 export function orders(state){
   const f=state.data.fulfillment||{},items=state.data.orders||[];
   const settings=`<section class="panel"><div class="panel-header"><h2>Fulfillment options</h2></div><form id="fulfillment-form" class="onboarding-form"><div class="check-grid"><label><input id="fulfill-pickup" type="checkbox" ${f.offers_pickup!==false?'checked':''}> Pickup</label><label><input id="fulfill-delivery" type="checkbox" ${f.offers_delivery?'checked':''}> Local delivery</label><label><input id="fulfill-meetup" type="checkbox" ${f.offers_meetup!==false?'checked':''}> Meet-up</label><label><input id="fulfill-shipping" type="checkbox" ${f.offers_shipping?'checked':''}> Shipping</label></div><label>Public fulfillment note<textarea id="fulfill-notes">${esc(f.public_notes||'')}</textarea></label><button class="primary" type="submit">Save fulfillment options</button></form></section>`;
-  const cards=items.length?`<div class="order-list">${items.map(o=>`<article class="panel order-card"><div class="panel-header"><div><p class="eyebrow">Order #${o.order_number}</p><h2>${esc(o.buyer_name)}</h2></div>${badge(o.status)}</div><p><strong>${esc(label(o.order_kind))}</strong> · ${esc(label(o.fulfillment_method))}${o.preferred_date?` · ${esc(o.preferred_date)}`:''}</p><div class="order-items">${(o.items||[]).map(x=>`<div><strong>${x.quantity} × ${esc(x.title)}</strong>${x.note?`<p>${esc(x.note)}</p>`:''}</div>`).join('')}</div><p><strong>Buyer contact:</strong> ${esc(o.buyer_contact)}${contactActions(o.buyer_contact)}</p>${o.delivery_address?`<p><strong>Delivery:</strong> ${esc(o.delivery_address)}</p>`:''}${o.service_location?`<p><strong>Service location:</strong> ${esc(o.service_location)}</p>`:''}${o.buyer_note?`<p><strong>Order note:</strong> ${esc(o.buyer_note)}</p>`:''}<p><strong>Total:</strong> ${o.confirmed_total!==null?`$${Number(o.confirmed_total).toFixed(2)}`:o.estimated_total!==null?`Estimated $${Number(o.estimated_total).toFixed(2)}`:'Needs confirmation'}</p>${(o.photo_object_paths||[]).map(p=>`<button type="button" data-order-photo="${esc(p)}">View private buyer photo</button>`).join('')}<div class="actions"><button class="primary" data-order-action="accepted" data-order-id="${o.id}">Accept Order</button><button data-order-action="change_proposed" data-order-id="${o.id}">Propose Change</button><button class="danger" data-order-action="declined" data-order-id="${o.id}">Decline Order</button><button data-order-action="ready" data-order-id="${o.id}">Mark Ready</button><button data-order-action="completed" data-order-id="${o.id}">Mark Completed</button></div><small>${new Date(o.created_at).toLocaleString()}</small></article>`).join('')}</div>`:empty('No orders yet','New structured orders and service requests will appear here — separate from buyer questions.');
-  return `${heading('Orders','Order inbox','Every item, quantity, fulfillment choice, buyer contact, and optional photo in one place.')}${settings}<div style="margin-top:18px">${cards}</div>`;
+  const cards=items.length?`<div class="order-list">${items.map(o=>`<article class="panel order-card"><div class="panel-header"><div><p class="eyebrow">Order #${o.order_number}</p><h2>${esc(o.buyer_name)}</h2></div>${badge(o.status)}</div><p><strong>${esc(label(o.order_kind))}</strong> · ${esc(label(o.fulfillment_method))}${o.preferred_date?` · ${esc(o.preferred_date)}`:''}</p><div class="order-items">${(o.items||[]).map(x=>`<div><strong>${x.quantity} × ${esc(x.title)}</strong>${x.note?`<p>${esc(x.note)}</p>`:''}</div>`).join('')}</div><p><strong>Buyer contact:</strong> ${esc(o.buyer_contact)}${contactActions(o.buyer_contact)}</p>${o.delivery_address?`<p><strong>Delivery:</strong> ${esc(o.delivery_address)}</p>`:''}${o.service_location?`<p><strong>Service location:</strong> ${esc(o.service_location)}</p>`:''}${o.buyer_note?`<p><strong>Order note:</strong> ${esc(o.buyer_note)}</p>`:''}<p><strong>Total:</strong> ${o.confirmed_total!==null?`$${Number(o.confirmed_total).toFixed(2)}`:o.estimated_total!==null?`Estimated $${Number(o.estimated_total).toFixed(2)}`:'Needs confirmation'}</p>${(o.photo_object_paths||[]).map(p=>`<button type="button" data-order-photo="${esc(p)}">View private buyer photo</button>`).join('')}${orderActionButtons(o)}<small>${new Date(o.created_at).toLocaleString()}</small></article>`).join('')}</div>`:empty('No orders yet','New structured orders and service requests will appear here — separate from buyer questions.');
+  return `${heading('Orders','Order inbox','Every item, quantity, fulfillment choice, buyer contact, and optional photo in one place.')}<div>${cards}</div><div style="margin-top:18px">${settings}</div>`;
 }
 
 export function history(state){
