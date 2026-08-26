@@ -1,5 +1,5 @@
 import {loadSellerIdentity,loadSellerWorkspace,loadSellerAdminSummary,loadApplicationDetail,actions,adminActions} from './marketplace-seller-data.js';
-import {renderers} from './marketplace-seller-views.js';
+import {renderers,banners} from './marketplace-seller-views.js';
 import {supabase} from './supabase-client.js';
 
 const $=id=>document.getElementById(id);
@@ -71,11 +71,22 @@ function navigate(view){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
+function renderBanners(){
+  const el=$('dashboard-banners');
+  if(!el)return;
+  el.innerHTML=banners(state);
+  el.querySelectorAll('[data-dismiss-banner]').forEach(b=>b.onclick=()=>{
+    try{localStorage.setItem(`rrl_seller_banner_${state.identity.sellerProfile.id}_${b.dataset.dismissBanner}`,b.dataset.dismissValue||'1')}catch{}
+    renderBanners();
+  });
+}
+
 function render(){
   const renderer=renderers[state.view]||renderers.status;
   $('screen').innerHTML=renderer(state);
   bindScreen();
   updateSwitcher();
+  renderBanners();
 }
 
 async function withBusy(button,work){

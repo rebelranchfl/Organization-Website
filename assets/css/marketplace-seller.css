@@ -80,6 +80,10 @@ button,input,select,textarea{font:inherit}button,a{-webkit-tap-highlight-color:t
 .tag-row,.actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
 .tag{padding:4px 8px;border-radius:6px;background:var(--rrm-green-fill);color:var(--rrm-green);font-size:.76rem;font-weight:850;text-transform:capitalize}
 .actions{margin-top:14px}
+.dash-banners{display:grid;gap:12px;margin:18px 0 0}
+.dash-banner{padding:16px 18px;background:linear-gradient(180deg,#1D4024,#122A18);border:1px solid var(--rrm-card-line);border-left:4px solid var(--rrm-gold);border-radius:12px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.dash-banner p{margin:0;color:var(--rrm-ink);flex:1 1 260px}
+.dash-banner-actions{display:flex;flex-wrap:wrap;gap:8px}
 .button,button{min-height:42px;padding:9px 14px;border:1px solid var(--rrm-green-dark);border-radius:8px;background:#28502F;color:var(--rrm-ink);font-weight:850;text-decoration:none;cursor:pointer}
 .button:hover,button:hover,.button:focus-visible,button:focus-visible{background:#325c39}
 .button.primary,button.primary{border:1px solid var(--rrm-gold);background:linear-gradient(135deg,var(--rrm-gold),var(--rrm-gold-dark));color:#fff7de}

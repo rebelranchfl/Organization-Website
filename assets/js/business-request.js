@@ -34,6 +34,11 @@
       name: 'Ongoing Business Strategy & Operational Guidance',
       price: '$299 per month',
       description: 'Continued business-specific planning, problem-solving, and decision support throughout the month.'
+    },
+    'get-paid-faster': {
+      name: 'Get Paid Faster — Set Up Your Payment Links',
+      price: '$49.99 flat',
+      description: 'We help you set up PayPal, Stripe, Zelle, or another payment method and add it to your Rebel Ranch Local seller listing, so buyers can pay you right away instead of waiting on cash or a check.'
     }
   };
 
@@ -47,6 +52,8 @@
   const slugField = document.getElementById('service-slug');
   const serviceField = document.getElementById('service-requested');
   const priceField = document.getElementById('service-price-field');
+  const referralField = document.getElementById('referral-source');
+  if (referralField) referralField.value = params.get('ref') || 'direct';
   const contactMethod = document.getElementById('contact-method');
   const phone = document.getElementById('phone');
   const phoneRequiredNote = document.getElementById('phone-required-note');
