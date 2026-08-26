@@ -33,7 +33,7 @@ button,input,select,textarea{font:inherit}button,a{-webkit-tap-highlight-color:t
 .state-card p{color:var(--muted)}
 .loader{width:44px;height:44px;margin:auto;border:5px solid var(--line);border-top-color:var(--tan);border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(1turn)}}
-.market-hero{position:relative;overflow:hidden;min-height:240px;display:flex;align-items:flex-end;padding:clamp(26px,5vw,44px);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);background:linear-gradient(100deg,rgba(18,14,7,.82) 0%,rgba(18,14,7,.6) 45%,rgba(18,14,7,.25) 100%),url('../brand/Rebel%20Ranch%20Local/interface/rrl-home-hero.webp') center/cover no-repeat}
+.market-hero{position:relative;overflow:hidden;min-height:240px;display:flex;align-items:flex-end;padding:clamp(26px,5vw,44px);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);background:linear-gradient(180deg,rgba(18,14,7,.1) 0%,rgba(18,14,7,.5) 55%,rgba(18,14,7,.86) 100%),url('../brand/Rebel%20Ranch%20Local/interface/rrl-seller-cta.webp') center 30%/cover no-repeat}
 .market-hero:before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--tan),var(--olive));z-index:1}
 .market-hero>div{position:relative;z-index:1}
 .market-hero .eyebrow{color:#f2d9a8}
