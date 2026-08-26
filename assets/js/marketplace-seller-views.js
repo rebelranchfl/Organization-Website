@@ -171,19 +171,33 @@ export function status(state){
   </div>`;
 }
 
-function listingCard(item){
+function listingCard(item,sellerSlug){
   const images=item.seller_listing_images||[];
   const qty=item.quantity_available;
+  const draftTitle=draftOr(item,'title'),draftDesc=draftOr(item,'description'),draftPrice=draftOr(item,'price_label'),draftPriceType=draftOr(item,'price_type')||'quote',draftUnitPrice=draftOr(item,'unit_price');
   return `<article class="req-card">
     <div class="meta-row"><span class="status-badge ${item.is_active?'':'private'}">${item.is_active?'Visible':'Hidden'}</span><span class="tag">${esc(label(item.listing_type))}</span><span class="tag">${qty!=null?`${qty} in stock`:'Unlimited'}</span></div>
     <h3>${esc(item.title)}</h3>
     ${item.price_label?`<p><strong>${esc(item.price_label)}</strong></p>`:''}
     ${item.description?`<p>${esc(item.description)}</p>`:''}
+    ${item.has_unpublished_changes?`<div class="draft-banner"><span class="status-badge review">Draft changes pending</span><div class="actions">${sellerSlug?`<a class="button" href="marketplace-seller-page.html?seller=${esc(sellerSlug)}&preview=1" target="_blank" rel="noopener">Preview as buyer ↗</a>`:''}<button class="primary" data-publish-listing="${item.id}">Publish</button><button class="danger" data-discard-listing-draft="${item.id}">Discard Draft</button></div></div>`:''}
     <div class="listing-photos">${images.map(img=>`<span class="listing-photo"><img src="${esc(publicUrl(img.object_path))}" alt=""><button type="button" data-delete-listing-image="${img.id}" aria-label="Remove photo">×</button></span>`).join('')}</div>
     <form data-listing-image-form="${item.id}" class="dialog-actions" style="margin-top:10px">
       <input data-field="file" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif">
       <button class="primary" type="submit">Add photo</button>
     </form>
+    <details class="disclosure">
+      <summary>Edit listing</summary>
+      <form data-edit-listing-form="${item.id}" class="onboarding-form">
+        <label>Title<input data-field="title" value="${esc(draftTitle)}" required></label>
+        <label>Description<textarea data-field="description">${esc(draftDesc||'')}</textarea></label>
+        <label>Price <span>Free text — e.g. "$8 each" or "Call for a quote"</span><input data-field="price_label" value="${esc(draftPrice||'')}"></label>
+        <label>Pricing type<select data-field="price_type"><option value="fixed" ${draftPriceType==='fixed'?'selected':''}>Fixed price</option><option value="starting_at" ${draftPriceType==='starting_at'?'selected':''}>Starting at</option><option value="quote" ${draftPriceType==='quote'?'selected':''}>Seller confirms price</option></select></label>
+        <label>Numeric unit price <span>Optional; used to estimate fixed-price orders</span><input type="number" min="0" step="0.01" data-field="unit_price" value="${draftUnitPrice??''}"></label>
+        <p class="eyebrow">Changes save as a draft — buyers won't see them until you publish.</p>
+        <div class="dialog-actions"><button class="primary" type="submit">Save as Draft</button></div>
+      </form>
+    </details>
     <form data-quantity-form="${item.id}" class="dialog-actions" style="margin-top:10px">
       <label>Stock on hand <span>Blank = unlimited (services, made-to-order)</span><input type="number" min="0" data-field="quantity" value="${qty??''}" placeholder="Unlimited"></label>
       <button type="submit">Update Stock</button>
@@ -217,7 +231,7 @@ export function listings(state){
   return `${heading('Listings','What you sell','Add products or services with a price and photos — buyers see these on your public page.')}
   ${addForm}
   ${allItems.length?filterRow:''}
-  ${items.length?`<div class="card-grid" style="margin-top:18px">${items.map(listingCard).join('')}</div>`:empty(allItems.length?'No listings match this filter':'No listings yet',allItems.length?'Try a different filter above.':'Add your first product or service using the form above.')}`;
+  ${items.length?`<div class="card-grid" style="margin-top:18px">${items.map(i=>listingCard(i,state.identity.sellerProfile.public_slug)).join('')}</div>`:empty(allItems.length?'No listings match this filter':'No listings yet',allItems.length?'Try a different filter above.':'Add your first product or service using the form above.')}`;
 }
 
 export function requirements(state){

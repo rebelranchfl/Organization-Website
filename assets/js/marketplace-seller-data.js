@@ -34,7 +34,7 @@ export async function loadSellerWorkspace(identity){
   const results=await Promise.all([
     supabase.from('seller_applications').select('id,application_type,status,requested_categories,legal_business_name,entity_type,contact_phone,mailing_region_id,producer_status,applicant_notes,submitted_at,reviewed_at,reviewer_user_id,review_notes,created_at').eq('seller_profile_id',spid).order('created_at',{ascending:false}),
     supabase.from('seller_category_assignments').select('id,category_id,is_primary,sort_order').eq('seller_profile_id',spid).order('sort_order').order('created_at'),
-    supabase.from('seller_listings').select('id,listing_type,title,description,price_label,unit_price,price_type,quantity_available,is_active,sort_order,created_at,seller_listing_images(id,object_path,sort_order)').eq('seller_profile_id',spid).order('sort_order'),
+    supabase.from('seller_listings').select('id,listing_type,title,description,price_label,unit_price,price_type,quantity_available,is_active,sort_order,created_at,draft_data,has_unpublished_changes,seller_listing_images(id,object_path,sort_order)').eq('seller_profile_id',spid).order('sort_order'),
     supabase.from('seller_requirement_assignments').select('id,requirement_id,assignment_status,assigned_at,satisfied_at,waived_reason,compliance_requirements(id,code,title,description,requirement_type,requires_credential,requires_minor_consent)').eq('seller_profile_id',spid),
     supabase.from('seller_attestations').select('id,requirement_assignment_id,attestation_text,attested_at,is_current').eq('seller_profile_id',spid).eq('is_current',true),
     supabase.from('seller_credentials').select('id,requirement_assignment_id,credential_type,issuing_authority,credential_identifier,issued_at,expires_at,document_object_path,verification_status,verified_at').eq('seller_profile_id',spid).order('created_at',{ascending:false}),
@@ -253,6 +253,17 @@ export const actions={
   },
   async updateListingQuantity(identity,listingId,quantityAvailable){
     return supabase.from('seller_listings').update({quantity_available:quantityAvailable}).eq('id',listingId);
+  },
+  async saveDraftListing(identity,listingId,currentDraft,updates){
+    const merged={...(currentDraft||{}),...updates};
+    return supabase.from('seller_listings').update({draft_data:merged,has_unpublished_changes:true}).eq('id',listingId).select().single();
+  },
+  async publishListing(identity,listingId,draftData){
+    if(!draftData)return {error:null};
+    return supabase.from('seller_listings').update({...draftData,draft_data:null,has_unpublished_changes:false}).eq('id',listingId).select().single();
+  },
+  async discardDraftListing(identity,listingId){
+    return supabase.from('seller_listings').update({draft_data:null,has_unpublished_changes:false}).eq('id',listingId).select().single();
   },
   async deleteListing(identity,listingId){
     const images=await supabase.from('seller_listing_images').select('object_path').eq('seller_listing_id',listingId);
