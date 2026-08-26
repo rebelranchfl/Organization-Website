@@ -82,6 +82,18 @@ button,input,select,textarea{font:inherit}button,a{-webkit-tap-highlight-color:t
 .tag{padding:4px 8px;border-radius:6px;background:rgba(47,61,31,.1);color:var(--olive);font-size:.76rem;font-weight:850;text-transform:capitalize}
 .actions{margin-top:14px}
 .list-item.is-read{opacity:.55}
+.frame-actions{display:flex;gap:4px}
+.frame-actions button{min-height:34px;padding:5px 9px}
+.draft-banner{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:12px 0;padding:12px 14px;background:rgba(180,122,74,.1);border:1px solid var(--tan);border-radius:8px}
+.draft-banner .actions{margin-top:0}
+.order-confirm-items{display:grid;gap:10px;margin:12px 0}
+.order-line-confirm{display:grid;grid-template-columns:minmax(140px,1fr) auto auto;gap:10px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:8px;background:#fff}
+.order-line-confirm label{display:flex;align-items:center;gap:6px;margin:0;font-weight:700;font-size:.85rem}
+.order-line-confirm input[type=number]{width:80px;min-height:36px}
+.pack-line{padding:6px 0}
+.pack-line label{display:flex;align-items:center;gap:8px;font-weight:700}
+.pack-line p{margin:2px 0 0 26px}
+@media(max-width:620px){.order-line-confirm{grid-template-columns:1fr}}
 .status-strip{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:16px}
 .status-strip .status-badge{font-size:1rem;padding:8px 14px}
 .status-strip .button.primary{font-size:1rem;padding:12px 22px}

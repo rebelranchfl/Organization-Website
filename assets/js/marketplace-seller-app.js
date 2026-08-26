@@ -1,10 +1,10 @@
 import {loadSellerIdentity,loadSellerWorkspace,loadSellerAdminSummary,loadApplicationDetail,actions,adminActions} from './marketplace-seller-data.js';
-import {renderers,banners,statusStrip} from './marketplace-seller-views.js';
+import {renderers,banners,statusStrip,orderResponseBody} from './marketplace-seller-views.js';
 import {supabase} from './supabase-client.js';
 
 const $=id=>document.getElementById(id);
 const state={identity:null,data:null,adminData:null,view:'status',busy:false,orderFilter:{window:'24h'}};
-const routes=['status','listings','orders','questions','requirements','programs','notifications','history','admin'];
+const routes=['today','status','listings','orders','questions','requirements','programs','notifications','history','kpis','admin'];
 const oneSignalAppId='3d048078-bf37-42ff-a1b7-3c1994cc62af';
 let oneSignalClient=null;
 
@@ -52,11 +52,11 @@ function isEligible(view){if(view==='admin')return state.identity.isAdmin;return
 function eligibleViews(){
   const unreadQuestions=(state.data?.inquiries||[]).filter(i=>!i.is_read).length;
   const unreadNotifications=(state.data?.notifications||[]).filter(n=>!n.is_read).length;
-  const views=[['status','Status'],['listings','Listings'],['orders','Orders'],['questions',`Questions${unreadQuestions?` (${unreadQuestions})`:''}`],['requirements','Requirements'],['programs','Programs'],['notifications',`Notifications${unreadNotifications?` (${unreadNotifications})`:''}`],['history','History']];
+  const views=[['today','Today'],['status','Status'],['listings','Listings'],['orders','Orders'],['questions',`Questions${unreadQuestions?` (${unreadQuestions})`:''}`],['requirements','Requirements'],['programs','Programs'],['notifications',`Notifications${unreadNotifications?` (${unreadNotifications})`:''}`],['history','History'],['kpis','KPIs']];
   if(state.identity.isAdmin)views.push(['admin','Admin']);
   return views;
 }
-function chooseInitial(){const hash=location.hash.slice(1);if(routes.includes(hash)&&isEligible(hash))return hash;return'status'}
+function chooseInitial(){const hash=location.hash.slice(1);if(routes.includes(hash)&&isEligible(hash))return hash;return'today'}
 
 function updateSwitcher(){
   const el=$('view-switcher');
@@ -133,14 +133,13 @@ function bindScreen(){
         business_name:$('pf-business-name').value.trim(),
         short_description:$('pf-short-description').value.trim(),
         long_description:$('pf-long-description').value.trim(),
-        page_theme:profileForm.querySelector('input[name="pf-theme"]:checked')?.value||state.identity.sellerProfile.page_theme,
         why_shop_points:whyShopPoints.length?whyShopPoints:null
       };
-      const {error}=await actions.updateSellerProfile(state.identity,updates);
+      const {data,error}=await actions.saveDraftProfile(state.identity,updates);
       if(error)throw error;
-      state.identity.sellerProfile={...state.identity.sellerProfile,...updates};
+      state.identity.sellerProfile=data;
       await refresh();
-      message('Profile updated.');
+      message('Saved as a draft — publish when ready to make it live.');
     });
   };
 
@@ -151,14 +150,31 @@ function bindScreen(){
       const file=logoForm.querySelector('[data-field="logo-file"]').files[0];
       if(!file)throw new Error('Choose an image to upload.');
       if(file.size>5242880)throw new Error('Image is larger than 5 MB.');
-      const result=await actions.uploadLogo(state.identity,file);
+      const result=await actions.uploadLogoDraft(state.identity,file);
       if(result.error)throw result.error;
-      state.identity.sellerProfile={...state.identity.sellerProfile,logo_object_path:result.data.logo_object_path};
+      state.identity.sellerProfile=result.data;
       logoForm.reset();
       await refresh();
-      message('Logo updated.');
+      message('Logo saved as a draft — publish when ready to make it live.');
     });
   };
+
+  root.querySelectorAll('[data-action="publish-profile"]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
+    const {data,error}=await actions.publishSellerProfile(state.identity);
+    if(error)throw error;
+    if(data)state.identity.sellerProfile=data;
+    await refresh();
+    message('Changes are now live on your public page.');
+  }));
+
+  root.querySelectorAll('[data-action="discard-profile-draft"]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
+    if(!confirm('Discard your unpublished changes? This cannot be undone.'))return;
+    const {data,error}=await actions.discardDraftProfile(state.identity);
+    if(error)throw error;
+    if(data)state.identity.sellerProfile=data;
+    await refresh();
+    message('Draft discarded.');
+  }));
 
   const addListingForm=root.querySelector('#add-listing-form');
   if(addListingForm)addListingForm.onsubmit=e=>{
@@ -217,6 +233,21 @@ function bindScreen(){
     message('Photo removed.');
   }));
 
+  root.querySelectorAll('[data-quantity-form]').forEach(form=>form.onsubmit=e=>{
+    e.preventDefault();
+    const listingId=form.dataset.quantityForm;
+    withBusy(e.submitter,async()=>{
+      const raw=form.querySelector('[data-field="quantity"]').value;
+      const quantity=raw.trim()===''?null:Math.max(0,parseInt(raw,10)||0);
+      const {error}=await actions.updateListingQuantity(state.identity,listingId,quantity);
+      if(error)throw error;
+      await refresh();
+      message(quantity===null?'Stock set to unlimited.':`Stock updated to ${quantity}.`);
+    });
+  });
+
+  root.querySelectorAll('[data-goto-view]').forEach(b=>b.onclick=()=>{state.view=b.dataset.gotoView;location.hash=state.view;render();window.scrollTo({top:0,behavior:'smooth'})});
+
   root.querySelectorAll('[data-action="submit-application"]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
     const app=state.data.applications[0];
     const {error}=await actions.submitApplication(state.identity,app.id);
@@ -240,11 +271,24 @@ function bindScreen(){
     message('Category removed.');
   }));
 
+  root.querySelectorAll('[data-move-category]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
+    const list=[...state.data.categoryAssignments];
+    const idx=list.findIndex(a=>a.id===b.dataset.moveCategory);
+    const to=idx+(b.dataset.direction==='up'?-1:1);
+    if(idx<0||to<0||to>=list.length)return;
+    [list[idx],list[to]]=[list[to],list[idx]];
+    const {error}=await actions.reorderCategories(state.identity,list.map(a=>a.id));
+    if(error)throw error;
+    await refresh();
+    message('Category order saved.');
+  }));
+
   const addCategoryForm=root.querySelector('#add-category-form');
   if(addCategoryForm)addCategoryForm.onsubmit=e=>{
     e.preventDefault();
     withBusy(e.submitter,async()=>{
-      const {error}=await actions.assignCategory(state.identity,$('new-category').value);
+      const nextOrder=state.data.categoryAssignments.length;
+      const {error}=await actions.assignCategory(state.identity,$('new-category').value,false,nextOrder);
       if(error)throw error;
       await refresh();
       message('Category added.');
@@ -302,8 +346,41 @@ function bindScreen(){
 
   const fulfillmentForm=root.querySelector('#fulfillment-form');
   if(fulfillmentForm)fulfillmentForm.onsubmit=e=>{e.preventDefault();withBusy(e.submitter,async()=>{const {error}=await actions.saveFulfillment(state.identity,{offers_pickup:$('fulfill-pickup').checked,offers_delivery:$('fulfill-delivery').checked,offers_meetup:$('fulfill-meetup').checked,offers_shipping:$('fulfill-shipping').checked,public_notes:$('fulfill-notes').value.trim()||null});if(error)throw error;await refresh();message('Fulfillment options updated.');})};
-  root.querySelectorAll('[data-order-action]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{const status=b.dataset.orderAction,updates={status,is_read:true};if(['accepted','change_proposed'].includes(status)){const total=prompt('Confirmed total (optional):'),details=prompt('Fulfillment details or proposed change:'),payment=prompt('Payment instructions or direct payment link (optional):'),note=prompt('Note to buyer (optional):');if(total?.trim())updates.confirmed_total=Number(total);if(details!==null)updates.fulfillment_details=details.trim()||null;if(payment!==null)updates.payment_instructions=payment.trim()||null;if(note!==null)updates.seller_note=note.trim()||null;}const {error}=await actions.updateOrder(state.identity,b.dataset.orderId,updates);if(error)throw error;await refresh();message(`Order marked ${status.replaceAll('_',' ')}.`);}));
+  root.querySelectorAll('[data-order-action]').forEach(b=>b.onclick=()=>{
+    const status=b.dataset.orderAction,orderId=b.dataset.orderId;
+    if(['accepted','change_proposed'].includes(status)){openOrderResponseDialog(orderId,status);return}
+    withBusy(b,async()=>{
+      const updates={status,is_read:true};
+      if(status==='declined'&&!confirm('Decline this order?'))return;
+      const {error}=await actions.updateOrder(state.identity,orderId,updates);
+      if(error)throw error;
+      await refresh();
+      message(`Order marked ${status.replaceAll('_',' ')}.`);
+    });
+  });
   root.querySelectorAll('[data-order-photo]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{const result=await actions.getOrderPhotoUrl(b.dataset.orderPhoto);if(result.error)throw result.error;window.open(result.data.signedUrl,'_blank','noopener');}));
+
+  root.querySelectorAll('[data-propose-date-form]').forEach(form=>form.onsubmit=e=>{
+    e.preventDefault();
+    const orderId=form.dataset.proposeDateForm;
+    withBusy(e.submitter,async()=>{
+      const value=form.querySelector('[data-field="proposed-date"]').value||null;
+      const {error}=await actions.updateOrder(state.identity,orderId,{seller_proposed_date:value});
+      if(error)throw error;
+      await refresh();
+      message(value?'Proposed date saved.':'Proposed date cleared.');
+    });
+  });
+
+  root.querySelectorAll('[data-pack-item]').forEach(cb=>cb.onchange=()=>withBusy(null,async()=>{
+    const [orderId,idx]=cb.dataset.packItem.split(':');
+    const order=state.data.orders.find(o=>o.id===orderId);
+    if(!order)return;
+    const items=(order.items||[]).map((x,i)=>i===Number(idx)?{...x,packed:cb.checked}:x);
+    const {error}=await actions.updateOrder(state.identity,orderId,{items});
+    if(error)throw error;
+    await refresh();
+  }));
 
   root.querySelectorAll('[data-attestation-form]').forEach(form=>form.onsubmit=e=>{
     e.preventDefault();
@@ -431,6 +508,46 @@ function bindScreen(){
     await refresh();
     message('Seller reactivated.');
   }));
+  root.querySelectorAll('[data-spotlight-seller]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
+    const {error}=await adminActions.spotlightSeller(b.dataset.spotlightSeller,b.dataset.businessName);
+    if(error)throw error;
+    await refresh();
+    message(`${b.dataset.businessName} added to this week's Shop Spotlight — finish it in the Social Content Hub.`);
+  }));
+}
+
+function openOrderResponseDialog(orderId,defaultStatus){
+  const order=state.data.orders.find(o=>o.id===orderId);
+  if(!order)return;
+  $('order-response-title').textContent=`Order #${order.order_number} — ${order.buyer_name}`;
+  $('order-response-body').innerHTML=orderResponseBody(order);
+  $('order-response-body').querySelectorAll('[data-full-qty]').forEach(cb=>cb.onchange=()=>{
+    const input=$('order-response-body').querySelector(`[data-confirm-qty="${cb.dataset.fullQty}"]`);
+    input.disabled=cb.checked;
+    if(cb.checked)input.value=order.items[cb.dataset.fullQty].quantity;
+  });
+  const submit=(status)=>withBusy(null,async()=>{
+    const body=$('order-response-body');
+    const items=(order.items||[]).map((x,i)=>({...x,confirmed_quantity:Number(body.querySelector(`[data-confirm-qty="${i}"]`).value)||0}));
+    const updates={status,is_read:true,items};
+    const total=body.querySelector('#or-total').value;
+    if(total)updates.confirmed_total=Number(total);
+    const details=body.querySelector('#or-details').value.trim();
+    if(details)updates.fulfillment_details=details;
+    const payment=body.querySelector('#or-payment').value.trim();
+    if(payment)updates.payment_instructions=payment;
+    const note=body.querySelector('#or-note').value.trim();
+    if(note)updates.seller_note=note;
+    const {error}=await actions.updateOrder(state.identity,orderId,updates);
+    if(error){message(friendlyError(error),true);return}
+    $('order-response-dialog').close();
+    await refresh();
+    message(`Order marked ${status.replaceAll('_',' ')}.`);
+  });
+  $('order-response-accept').onclick=()=>submit('accepted');
+  $('order-response-propose').onclick=()=>submit('change_proposed');
+  $('order-response-decline').onclick=()=>{if(confirm('Decline this order?'))submit('declined')};
+  $('order-response-dialog').showModal();
 }
 
 async function openReviewDialog(applicationId,sellerProfileId){
