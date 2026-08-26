@@ -49,20 +49,43 @@ function showAccess(title,copy,label='Go to My Account',href='account.html'){
 }
 
 function isEligible(view){if(view==='admin')return state.identity.isAdmin;return routes.includes(view)}
-function eligibleViews(){
+function navGroups(){
   const unreadQuestions=(state.data?.inquiries||[]).filter(i=>!i.is_read).length;
   const unreadNotifications=(state.data?.notifications||[]).filter(n=>!n.is_read).length;
-  const views=[['today','Today'],['status','Status'],['listings','Listings'],['orders','Orders'],['questions',`Questions${unreadQuestions?` (${unreadQuestions})`:''}`],['requirements','Requirements'],['programs','Programs'],['notifications',`Notifications${unreadNotifications?` (${unreadNotifications})`:''}`],['history','History'],['kpis','KPIs']];
-  if(state.identity.isAdmin)views.push(['admin','Admin']);
-  return views;
+  const groups=[
+    {key:'today',label:'Today'},
+    {key:'orders',label:'Orders'},
+    {key:'questions',label:`Questions${unreadQuestions?` (${unreadQuestions})`:''}`},
+    {group:'store',label:'Store Details',children:[['status','Status'],['listings','Listings'],['programs','Programs'],['requirements','Requirements']]},
+    {group:'insights',label:'Insights',children:[['notifications',`Notifications${unreadNotifications?` (${unreadNotifications})`:''}`],['history','History'],['kpis','KPIs']]}
+  ];
+  if(state.identity.isAdmin)groups.push({key:'admin',label:'Admin'});
+  return groups;
 }
 function chooseInitial(){const hash=location.hash.slice(1);if(routes.includes(hash)&&isEligible(hash))return hash;return'today'}
 
+function closeNavGroups(){document.querySelectorAll('.nav-group-menu.open').forEach(m=>m.classList.remove('open'))}
+
 function updateSwitcher(){
   const el=$('view-switcher');
-  el.innerHTML=eligibleViews().map(([key,label])=>`<button type="button" data-view="${key}" aria-pressed="${state.view===key}">${label}</button>`).join('');
-  el.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>navigate(b.dataset.view));
+  el.innerHTML=navGroups().map(g=>{
+    if(g.group){
+      const active=g.children.some(([k])=>k===state.view);
+      return `<div class="nav-group"><button type="button" class="nav-group-toggle" aria-pressed="${active}" aria-expanded="false" data-nav-group="${g.group}">${g.label} ▾</button><div class="nav-group-menu" id="nav-group-${g.group}">${g.children.map(([k,label])=>`<button type="button" data-view="${k}" aria-pressed="${state.view===k}">${label}</button>`).join('')}</div></div>`;
+    }
+    return `<button type="button" data-view="${g.key}" aria-pressed="${state.view===g.key}">${g.label}</button>`;
+  }).join('');
+  el.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{navigate(b.dataset.view);closeNavGroups()});
+  el.querySelectorAll('[data-nav-group]').forEach(b=>b.onclick=(event)=>{
+    event.stopPropagation();
+    const menu=$(`nav-group-${b.dataset.navGroup}`);
+    const willOpen=!menu.classList.contains('open');
+    closeNavGroups();
+    if(willOpen){menu.classList.add('open');b.setAttribute('aria-expanded','true')}
+  });
 }
+document.addEventListener('click',(event)=>{if(!event.target.closest('.nav-group'))closeNavGroups()});
+document.addEventListener('keydown',(event)=>{if(event.key==='Escape')closeNavGroups()});
 
 function navigate(view){
   if(!isEligible(view)){message('That view is not available for this account.',true);return}
