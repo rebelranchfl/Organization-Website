@@ -2,7 +2,6 @@ name: Academy Agent Immediate Dispatch
 
 # Keeps the owner-facing Run Agent Now queue responsive instead of waiting for the next scheduled worker pickup.
 # Current stop-work directive restricts dispatch to RRA-2026-0001.
-# Owner-requested activation: 2026-08-27 11:53 ET.
 
 on:
   workflow_dispatch:
@@ -27,31 +26,25 @@ jobs:
     timeout-minutes: 6
     env:
       SUPABASE_URL: https://dfrwxpuojeiykaignyny.supabase.co
-      SUPABASE_BACKEND_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
-      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      SUPABASE_PUBLISHABLE_KEY: sb_publishable_Ts45JL34s7yFGW5hlI0pUA_-HRUt18a
       GH_TOKEN: ${{ github.token }}
     steps:
       - name: Watch Water queue and dispatch immediately
         shell: bash
         run: |
           set -euo pipefail
-          KEY="${SUPABASE_BACKEND_KEY:-${SUPABASE_SERVICE_ROLE_KEY:-}}"
-          if [[ -z "$KEY" ]]; then
-            echo "Supabase backend key is not configured."
-            exit 1
-          fi
+          endpoint="$SUPABASE_URL/rest/v1/rpc/academy_water_run_pending"
 
-          auth=(-H "apikey: $KEY")
-          if [[ "$KEY" != sb_secret_* ]]; then
-            auth+=(-H "Authorization: Bearer $KEY")
-          fi
-
-          endpoint="$SUPABASE_URL/rest/v1/academy_agent_run_requests?project_id=eq.RRA-2026-0001&requested_stage=eq.VISUAL_PRODUCTION&status=eq.PENDING&select=id&order=requested_at.asc&limit=1"
-
+          # Stay alive almost the full five-minute scheduling interval. Dashboard clicks are
+          # therefore normally seen within roughly 12 seconds while a watch cycle is active.
           for attempt in $(seq 1 23); do
-            request_id=$(curl -fsS "${auth[@]}" "$endpoint" | jq -r '.[0].id // empty')
-            if [[ -n "$request_id" ]]; then
-              echo "Owner run request $request_id detected; dispatching Academy runner."
+            pending=$(curl -fsS \
+              -H "apikey: $SUPABASE_PUBLISHABLE_KEY" \
+              -H "Content-Type: application/json" \
+              -d '{}' \
+              "$endpoint")
+            if [[ "$pending" == "true" ]]; then
+              echo "Pending owner Water run detected; dispatching Academy runner."
               gh api \
                 --method POST \
                 "repos/${GITHUB_REPOSITORY}/actions/workflows/academy-agent-runner.yml/dispatches" \
