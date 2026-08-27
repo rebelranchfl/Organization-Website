@@ -1,0 +1,13 @@
+name: Academy Edge Health Check
+on:
+  push:
+    paths:
+      - '.github/workflows/academy-edge-health-check.yml'
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check direct dispatch configuration
+        run: curl -fsS https://dfrwxpuojeiykaignyny.supabase.co/functions/v1/academy-agent-dispatch
