@@ -2,27 +2,15 @@
   "project_id": "RRA-2026-0001",
   "title": "Water Through the Layers",
   "stage": "VISUAL_PRODUCTION",
-  "status": "RENDERED_QA_IN_PROGRESS",
-  "primary_release_candidate": "water-learning-experience-final.html",
+  "status": "IN_PROGRESS_NOT_OWNER_READY",
+  "primary_release_candidate": "water-learning-experience-current.html",
   "assets": [
     {
-      "label": "Water Through the Layers — Corrected Complete Learner Experience",
-      "file": "water-learning-experience-final.html",
-      "type": "interactive-html",
-      "description": "Corrected multi-use learner journey with persistent browser state, tangible system/cutaway teaching, historical comparison, and living multi-branch My Water Plan. This is the release candidate that must pass rendered regression QA before owner Final Product Review."
-    },
-    {
-      "label": "Deeper Decision Visuals",
-      "file": "water-system-visual-preview.html",
-      "type": "responsive-html",
-      "description": "Optional source/testing/treatment/UV/Class A-Class B/POU-POE depth layer."
-    },
-    {
-      "label": "Deeper Implementation Visuals",
-      "file": "water-system-implementation-visuals.html",
-      "type": "responsive-html",
-      "description": "Optional Function Before Form, substitutions, scale, animal watering, surface-water caution, evidence ladder, historical/global and whole-system depth layer with explicit return path."
+      "label": "Current Water Learner Preview",
+      "file": "water-learning-experience-current.html",
+      "type": "deployed-route-forwarder",
+      "description": "Loads the current deployed root Water learner page. Old nested wireframe previews are no longer the owner-review default."
     }
   ],
-  "qa_note": "Do not surface as Final Product Review ready until all seven Water rendered regression tests are exercised against this exact release candidate and recorded as PASS."
+  "qa_note": "Visual Production remains in progress. Do not advance to Final Product Review until the corrected visual set is integrated and the deployed learner route passes desktop, mobile, links, rendering, and content QA."
 }
