@@ -16,6 +16,7 @@ jobs:
             https://rebelranchministries.org/water-learning-experience-final.html \
             https://rebelranchministries.org/water-system-visual-preview.html \
             https://rebelranchministries.org/water-system-implementation-visuals.html \
+            https://rebelranchministries.org/rebel%20ranch%20academy/content-library/sustainability-agriculture/purifying-water-natural-materials/visual-production/assets/generated/water-55gal-layered-filter-v1.html \
             https://rebelranchministries.org/assets/js/academy-stage-controller.js \
             https://rebelranchministries.org/academy-stage-review.html; do
             code=$(curl -L -sS -o /tmp/body -w '%{http_code}' "$u")
@@ -33,7 +34,8 @@ jobs:
           const urls=[
             'https://rebelranchministries.org/water-learning-experience-final.html',
             'https://rebelranchministries.org/water-system-visual-preview.html',
-            'https://rebelranchministries.org/water-system-implementation-visuals.html'
+            'https://rebelranchministries.org/water-system-implementation-visuals.html',
+            'https://rebelranchministries.org/rebel%20ranch%20academy/content-library/sustainability-agriculture/purifying-water-natural-materials/visual-production/assets/generated/water-55gal-layered-filter-v1.html'
           ];
           const browser=await chromium.launch({headless:true});
           const failures=[];
