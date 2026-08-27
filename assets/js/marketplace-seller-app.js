@@ -49,44 +49,35 @@ function showAccess(title,copy,label='Go to My Account',href='account.html'){
 }
 
 function isEligible(view){if(view==='admin')return state.identity.isAdmin;return routes.includes(view)}
-function navGroups(){
+function dashboardNavItems(){
   const unreadQuestions=(state.data?.inquiries||[]).filter(i=>!i.responded_at).length;
   const unreadNotifications=(state.data?.notifications||[]).filter(n=>!n.is_read).length;
-  const groups=[
-    {key:'today',label:'Today'},
-    {key:'orders',label:'Orders'},
-    {key:'questions',label:`Questions${unreadQuestions?` (${unreadQuestions})`:''}`},
-    {key:'status',label:'Store Details'},
-    {key:'listings',label:'Listings & Services'},
-    {group:'insights',label:'Insights',children:[['notifications',`Notifications${unreadNotifications?` (${unreadNotifications})`:''}`],['history','History'],['kpis','KPIs']]}
+  const items=[
+    ['today','Today'],
+    ['orders','Orders'],
+    ['questions',`Questions${unreadQuestions?` (${unreadQuestions})`:''}`],
+    ['status','Store Details'],
+    ['listings','Listings & Services'],
+    ['notifications',`Notifications${unreadNotifications?` (${unreadNotifications})`:''}`],
+    ['history','History'],
+    ['kpis','KPIs']
   ];
-  if(state.identity.isAdmin)groups.push({key:'admin',label:'Admin'});
-  return groups;
+  if(state.identity.isAdmin)items.push(['admin','Admin']);
+  return items;
 }
 function chooseInitial(){const hash=location.hash.slice(1);if(routes.includes(hash)&&isEligible(hash))return hash;return'today'}
 
-function closeNavGroups(){document.querySelectorAll('.nav-group-menu.open').forEach(m=>m.classList.remove('open'))}
+function closeAccountMenu(){
+  const menu=$('account-actions'),toggle=$('menu-toggle');
+  menu.classList.remove('open');
+  toggle.setAttribute('aria-expanded','false');
+}
 
 function updateSwitcher(){
-  const el=$('view-switcher');
-  el.innerHTML=navGroups().map(g=>{
-    if(g.group){
-      const active=g.children.some(([k])=>k===state.view);
-      return `<div class="nav-group"><button type="button" class="nav-group-toggle" aria-pressed="${active}" aria-expanded="false" data-nav-group="${g.group}">${g.label} ▾</button><div class="nav-group-menu" id="nav-group-${g.group}">${g.children.map(([k,label])=>`<button type="button" data-view="${k}" aria-pressed="${state.view===k}">${label}</button>`).join('')}</div></div>`;
-    }
-    return `<button type="button" data-view="${g.key}" aria-pressed="${state.view===g.key}">${g.label}</button>`;
-  }).join('');
-  el.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{navigate(b.dataset.view);closeNavGroups()});
-  el.querySelectorAll('[data-nav-group]').forEach(b=>b.onclick=(event)=>{
-    event.stopPropagation();
-    const menu=$(`nav-group-${b.dataset.navGroup}`);
-    const willOpen=!menu.classList.contains('open');
-    closeNavGroups();
-    if(willOpen){menu.classList.add('open');b.setAttribute('aria-expanded','true')}
-  });
+  const el=$('dashboard-nav');
+  el.innerHTML=`<p class="menu-section-label">Dashboard</p>${dashboardNavItems().map(([k,label])=>`<button type="button" data-view="${k}" aria-pressed="${state.view===k}">${label}</button>`).join('')}`;
+  el.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{navigate(b.dataset.view);closeAccountMenu()});
 }
-document.addEventListener('click',(event)=>{if(!event.target.closest('.nav-group'))closeNavGroups()});
-document.addEventListener('keydown',(event)=>{if(event.key==='Escape')closeNavGroups()});
 
 function navigate(view){
   if(!isEligible(view)){message('That view is not available for this account.',true);return}
@@ -760,16 +751,15 @@ $('feedback-cancel').onclick=()=>$('feedback-dialog').close();
 {
   const menuToggle=$('menu-toggle');
   const accountActions=$('account-actions');
-  const closeMenu=()=>{accountActions.classList.remove('open');menuToggle.setAttribute('aria-expanded','false')};
   menuToggle.onclick=(event)=>{
     event.stopPropagation();
     const open=accountActions.classList.toggle('open');
     menuToggle.setAttribute('aria-expanded',String(open));
   };
   document.addEventListener('click',(event)=>{
-    if(accountActions.classList.contains('open')&&!accountActions.contains(event.target)&&event.target!==menuToggle){closeMenu()}
+    if(accountActions.classList.contains('open')&&!accountActions.contains(event.target)&&event.target!==menuToggle){closeAccountMenu()}
   });
-  document.addEventListener('keydown',(event)=>{if(event.key==='Escape')closeMenu()});
+  document.addEventListener('keydown',(event)=>{if(event.key==='Escape')closeAccountMenu()});
 }
 window.addEventListener('hashchange',()=>{
   const v=location.hash.slice(1);
