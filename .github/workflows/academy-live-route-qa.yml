@@ -1,0 +1,60 @@
+name: Academy Live Route QA
+on:
+  push:
+    paths:
+      - '.github/workflows/academy-live-route-qa.yml'
+permissions:
+  contents: read
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify public Water routes and dashboard assets
+        run: |
+          set -euo pipefail
+          for u in \
+            https://rebelranchministries.org/water-learning-experience-final.html \
+            https://rebelranchministries.org/water-system-visual-preview.html \
+            https://rebelranchministries.org/water-system-implementation-visuals.html \
+            https://rebelranchministries.org/assets/js/academy-stage-controller.js \
+            https://rebelranchministries.org/academy-stage-review.html; do
+            code=$(curl -L -sS -o /tmp/body -w '%{http_code}' "$u")
+            echo "$code $u bytes=$(wc -c </tmp/body)"
+            test "$code" = "200"
+            test -s /tmp/body
+          done
+      - name: Browser QA public Water routes
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm install --save-dev playwright >/dev/null
+          npx playwright install --with-deps chromium >/dev/null
+          cat > /tmp/qa.mjs <<'JS'
+          import { chromium } from 'playwright';
+          const urls=[
+            'https://rebelranchministries.org/water-learning-experience-final.html',
+            'https://rebelranchministries.org/water-system-visual-preview.html',
+            'https://rebelranchministries.org/water-system-implementation-visuals.html'
+          ];
+          const browser=await chromium.launch({headless:true});
+          const failures=[];
+          for(const vp of [{name:'desktop',width:1440,height:1000},{name:'mobile',width:390,height:844}]){
+            const page=await browser.newPage({viewport:{width:vp.width,height:vp.height}});
+            const errors=[];page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
+            for(const url of urls){
+              const res=await page.goto(url,{waitUntil:'networkidle',timeout:45000});
+              const final=page.url();
+              const title=await page.title();
+              const text=(await page.locator('body').innerText()).trim();
+              const broken=await page.locator('img').evaluateAll(xs=>xs.filter(x=>!x.complete||x.naturalWidth===0).length);
+              const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth+2);
+              console.log(`${vp.name} ${res?.status()} ${url} -> ${final} title=${title} text=${text.length} broken=${broken} overflow=${overflow}`);
+              if(!res||res.status()>=400||!text||broken||overflow)failures.push(`${vp.name} ${url}`);
+            }
+            if(errors.length)failures.push(`${vp.name} console: ${errors.join(' | ')}`);
+            await page.close();
+          }
+          await browser.close();
+          if(failures.length){console.error(failures.join('\n'));process.exit(1)}
+          console.log('LIVE_WATER_ROUTE_QA_PASS');
+          JS
+          node /tmp/qa.mjs
