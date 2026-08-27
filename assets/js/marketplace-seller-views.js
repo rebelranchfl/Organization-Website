@@ -5,6 +5,7 @@ const publicUrl=path=>supabase.storage.from('marketplace-seller-public').getPubl
 const label=(v='')=>String(v||'').replaceAll('_',' ');
 const heading=(eyebrow,title,copy,action='')=>`<header class="screen-heading"><div><p class="eyebrow">${eyebrow}</p><h2>${title}</h2><p>${copy}</p></div>${action}</header>`;
 const empty=(title,copy)=>`<section class="empty-state"><span class="empty-icon" aria-hidden="true">✦</span><h2>${title}</h2><p>${copy}</p></section>`;
+const metric=(label,value,note)=>`<div class="metric${/^[$]?0(\.00)?%?$/.test(String(value))?' is-zero':''}"><span>${label}</span><strong>${value}</strong>${note?`<small>${note}</small>`:''}</div>`;
 
 const NEGATIVE=new Set(['rejected','withdrawn','suspended']);
 const REVIEW=new Set(['pending','pending_review','submitted','changes_requested']);
@@ -91,7 +92,7 @@ export function statusStrip(state){
   const live=sp.profile_status==='active'&&sp.public_slug;
   return `<div class="status-strip">
     <span class="status-badge ${tone}">${esc(stateLabel)}</span>
-    ${live?`<a class="button primary" href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}" target="_blank" rel="noopener">View My Public Listing ↗</a><a class="button" href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}&preview=1" target="_blank" rel="noopener">Preview My Store ↗</a>`:''}
+    ${live?`<a class="button primary" href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}" target="_blank" rel="noopener">View My Public Listing ↗</a>${sp.has_unpublished_changes?`<a class="button" href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}&preview=1" target="_blank" rel="noopener">Preview Unpublished Changes ↗</a>`:''}`:''}
   </div>`;
 }
 
@@ -355,10 +356,10 @@ export function orders(state){
   const openOrders=allItems.filter(o=>!['declined','completed'].includes(o.status));
   const owedTotal=openOrders.reduce((sum,o)=>sum+Number(o.confirmed_total??o.estimated_total??0),0);
   const statsRow=`<div class="metric-grid" style="grid-template-columns:repeat(4,1fr)">
-    <div class="metric"><span>Orders Placed</span><strong>${placed}</strong><small>${WINDOW_LABELS[win]}</small></div>
-    <div class="metric"><span>Fulfilled</span><strong>${fulfilled}</strong><small>${WINDOW_LABELS[win]}</small></div>
-    <div class="metric"><span>Declined</span><strong>${declined}</strong><small>${WINDOW_LABELS[win]}</small></div>
-    <div class="metric"><span>Owed to You</span><strong>$${owedTotal.toFixed(2)}</strong><small>Open orders, estimated</small></div>
+    ${metric('Orders Placed',placed,WINDOW_LABELS[win])}
+    ${metric('Fulfilled',fulfilled,WINDOW_LABELS[win])}
+    ${metric('Declined',declined,WINDOW_LABELS[win])}
+    ${metric('Owed to You',`$${owedTotal.toFixed(2)}`,'Open orders, estimated')}
   </div>`;
   const filterRow=`<div class="view-tools" style="margin:14px 0"><label style="display:flex;align-items:center;gap:8px;font-weight:800;color:var(--ink)">Showing<select id="order-window"><option value="24h" ${win==='24h'?'selected':''}>Last 24 hours</option><option value="7d" ${win==='7d'?'selected':''}>Last 7 days</option><option value="all" ${win==='all'?'selected':''}>All time</option></select></label></div>`;
   const currentMethods=[f.offers_pickup!==false&&'Pickup',f.offers_delivery&&'Local delivery',f.offers_meetup!==false&&'Meet-up',f.offers_shipping&&'Shipping'].filter(Boolean).join(', ')||'None set';
@@ -405,9 +406,9 @@ export function admin(state){
   const sellerQueue=a.sellerQueue||[];
   return `${heading('Admin','Marketplace review queue','Approve applications, verify documents, and manage compliance requirements.')}
   <div class="metric-grid">
-    <div class="metric"><span>Applications</span><strong>${a.applicationQueue.length}</strong><small>Awaiting review</small></div>
-    <div class="metric"><span>Documents</span><strong>${a.credentialQueue.length}</strong><small>Awaiting verification</small></div>
-    <div class="metric"><span>Requirements</span><strong>${a.requirementQueue.length}</strong><small>Awaiting a decision</small></div>
+    ${metric('Applications',a.applicationQueue.length,'Awaiting review')}
+    ${metric('Documents',a.credentialQueue.length,'Awaiting verification')}
+    ${metric('Requirements',a.requirementQueue.length,'Awaiting a decision')}
   </div>
   <div class="layout" style="margin-top:18px">
     <div class="stack">
@@ -457,10 +458,10 @@ export function kpis(state){
   const latestStat=stats[0];
   return `${heading('KPIs','Your performance','Based on your own order records — see the accuracy note below.')}
   <div class="metric-grid">
-    <div class="metric"><span>Total Orders</span><strong>${orders.length}</strong><small>All time</small></div>
-    <div class="metric"><span>Fulfillment Rate</span><strong>${fulfillRate}%</strong><small>Completed vs. total</small></div>
-    <div class="metric"><span>Avg Order Value</span><strong>$${avgOrder.toFixed(2)}</strong><small>Completed orders</small></div>
-    <div class="metric"><span>Est. Revenue</span><strong>$${totalRevenue.toFixed(2)}</strong><small>Self-reported</small></div>
+    ${metric('Total Orders',orders.length,'All time')}
+    ${metric('Fulfillment Rate',`${fulfillRate}%`,'Completed vs. total')}
+    ${metric('Avg Order Value',`$${avgOrder.toFixed(2)}`,'Completed orders')}
+    ${metric('Est. Revenue',`$${totalRevenue.toFixed(2)}`,'Self-reported')}
   </div>
   <section class="panel" style="margin-top:18px">
     <h2>A note on accuracy</h2>

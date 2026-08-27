@@ -41,6 +41,7 @@ function showAccess(title,copy,label='Go to My Account',href='account.html'){
   $('loading').classList.add('hidden');
   $('create-profile').classList.add('hidden');
   $('workspace').classList.add('hidden');
+  $('dashboard-tabs').classList.add('hidden');
   $('access-title').textContent=title;
   $('access-copy').textContent=copy;
   $('access-link').textContent=label;
@@ -62,7 +63,7 @@ function dashboardNavItems(){
     ['history','History'],
     ['kpis','KPIs']
   ];
-  if(state.identity.isAdmin)items.push(['admin','Admin']);
+  if(state.identity.isAdmin)items.push(['admin','Admin',true]);
   return items;
 }
 function chooseInitial(){const hash=location.hash.slice(1);if(routes.includes(hash)&&isEligible(hash))return hash;return'today'}
@@ -75,8 +76,8 @@ function closeAccountMenu(){
 
 function updateSwitcher(){
   const el=$('dashboard-nav');
-  el.innerHTML=`<p class="menu-section-label">Dashboard</p>${dashboardNavItems().map(([k,label])=>`<button type="button" data-view="${k}" aria-pressed="${state.view===k}">${label}</button>`).join('')}`;
-  el.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{navigate(b.dataset.view);closeAccountMenu()});
+  el.innerHTML=dashboardNavItems().map(([k,label,isAdmin])=>`<button type="button" class="${isAdmin?'tab-admin':''}" data-view="${k}" aria-pressed="${state.view===k}">${label}</button>`).join('');
+  el.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>navigate(b.dataset.view));
 }
 
 function navigate(view){
@@ -632,6 +633,7 @@ async function afterSignedIn(){
   if(state.identity.isAdmin)state.adminData=await loadSellerAdminSummary();
   $('create-profile').classList.add('hidden');
   $('workspace').classList.remove('hidden');
+  $('dashboard-tabs').classList.remove('hidden');
   state.view=chooseInitial();
   render();
 }
@@ -732,6 +734,7 @@ function bindOnboardingForm(){
       if(state.identity.isAdmin)state.adminData=await loadSellerAdminSummary();
       $('create-profile').classList.add('hidden');
       $('workspace').classList.remove('hidden');
+      $('dashboard-tabs').classList.remove('hidden');
       state.view='status';
       render();
       message('Seller profile created. Review your application before submitting.');
@@ -793,6 +796,7 @@ async function init(){
     }
     state.view=chooseInitial();
     $('workspace').classList.remove('hidden');
+    $('dashboard-tabs').classList.remove('hidden');
     render();
   }catch(e){
     showAccess('Your dashboard could not load',e.message||'Check your network connection and try again.','Try again',location.href);
