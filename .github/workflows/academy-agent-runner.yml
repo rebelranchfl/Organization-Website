@@ -1,29 +1,37 @@
 name: Academy Run Agent Now
 
-# Re-enabled by explicit owner direction on 2026-08-27.
-# Current Academy stop-work directive makes RRA-2026-0001 the exclusive production priority.
+# Owner-triggered Academy execution. During the 2026-08-27 stop-work directive,
+# RRA-2026-0001 is the only project this worker may modify.
 
 on:
   workflow_dispatch:
+    inputs:
+      request_id:
+        description: "Claimed Academy run request UUID"
+        required: false
+        type: string
   schedule:
     - cron: "*/5 * * * *"
 
 permissions:
   contents: write
+  pages: write
+  copilot-requests: write
 
 concurrency:
-  group: academy-run-agent-now-v2
+  group: academy-run-agent-now-v3
   cancel-in-progress: false
 
 jobs:
-  run-next-request:
+  run-water-visual-production:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:
       SUPABASE_URL: https://dfrwxpuojeiykaignyny.supabase.co
-      SUPABASE_BACKEND_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
-      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      SUPABASE_PUBLISHABLE_KEY: sb_publishable_Ts45JL34s7yFGW5hlI0pUA_-HRUt18a
+      PROJECT_ID: RRA-2026-0001
+      PROJECT_PATH: rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials
+      GITHUB_TOKEN: ${{ github.token }}
     steps:
       - name: Check out current main
         uses: actions/checkout@v6
@@ -31,37 +39,105 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: Claim next owner-requested run
+      - name: Resolve or claim Water run request
         id: claim
-        run: node .github/scripts/academy-agent-runner.mjs claim
-
-      - name: Enforce current owner stop-work priority
-        if: steps.claim.outputs.has_request == 'true' && steps.claim.outputs.project_id != 'RRA-2026-0001'
-        run: |
-          echo "Owner stop-work directive permits only RRA-2026-0001."
-          exit 1
-
-      - name: Run current-stage Academy worker
-        id: codex
-        if: steps.claim.outputs.has_request == 'true' && steps.claim.outputs.project_id == 'RRA-2026-0001'
-        uses: openai/codex-action@v1
-        with:
-          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
-          prompt-file: .agent-run/prompt.md
-          working-directory: .
-          sandbox: workspace-write
-          safety-strategy: drop-sudo
-          output-file: .agent-run/codex-last-message.txt
-
-      - name: Validate and commit durable work
-        id: commit
-        if: steps.claim.outputs.has_request == 'true' && steps.claim.outputs.project_id == 'RRA-2026-0001' && steps.codex.outcome == 'success'
-        env:
-          PROJECT_PATH: ${{ steps.claim.outputs.project_path }}
-          PROJECT_ID: ${{ steps.claim.outputs.project_id }}
-          REQUEST_ID: ${{ steps.claim.outputs.request_id }}
-          AGENT_NAME: ${{ steps.claim.outputs.agent }}
         shell: bash
+        env:
+          DISPATCH_REQUEST_ID: ${{ inputs.request_id }}
+        run: |
+          set -euo pipefail
+          request_id="${DISPATCH_REQUEST_ID:-}"
+          if [[ -z "$request_id" ]]; then
+            response=$(curl -fsS \
+              -H "apikey: $SUPABASE_PUBLISHABLE_KEY" \
+              -H "Content-Type: application/json" \
+              -d '{}' \
+              "$SUPABASE_URL/rest/v1/rpc/academy_claim_water_run")
+            request_id=$(printf '%s' "$response" | jq -r '. // empty')
+          fi
+          if [[ -z "$request_id" || "$request_id" == "null" ]]; then
+            echo "No owner-requested Water Visual Production run is pending."
+            echo "has_request=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "has_request=true" >> "$GITHUB_OUTPUT"
+          echo "request_id=$request_id" >> "$GITHUB_OUTPUT"
+          echo "Using owner request $request_id"
+
+      - name: Build owner-directed Visual Production prompt
+        if: steps.claim.outputs.has_request == 'true'
+        shell: bash
+        env:
+          REQUEST_ID: ${{ steps.claim.outputs.request_id }}
+        run: |
+          mkdir -p .agent-run
+          cat > .agent-run/prompt.md <<'PROMPT'
+          You are the RRA Visual Production Agent executing an OWNER-REQUESTED immediate corrective production cycle for RRA-2026-0001 — Water Through the Layers.
+
+          EXCLUSIVE PRIORITY
+          All other Rebel Ranch Academy projects are stopped. Work only RRA-2026-0001.
+
+          READ BEFORE EDITING
+          - AGENTS.md
+          - docs/rebel-ranch-ecosystem-charter.md
+          - docs/non-negotiables.md
+          - rebel ranch academy/ACADEMY-PRODUCT-PHASE-WORKFLOW-EXTENSION.md
+          - rebel ranch academy/ACADEMY-LEARNER-EXPERIENCE-LANGUAGE-VISUAL-STANDARD.md
+          - rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/visual-production/owner-corrective-directive-2026-08-27.md
+          - rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/visual-production-brief.md
+          - rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/product-architecture.md
+          - rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/product-manuscript.md
+          - rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/product-manuscript-responsible-rebellion-addendum.md
+          - current visual-production files and current root water learner-facing pages if present.
+
+          OWNER-REPORTED FAILURES THAT MUST DRIVE THIS CYCLE
+          - live links returned 404s;
+          - text/leader lines/borders collided or clipped approved wording;
+          - flat box diagrams looked like internal wireframes instead of paid educational visuals;
+          - physical systems were not recognizable or useful enough to build/understand;
+          - previous QA did not catch obvious owner-facing failures.
+
+          REQUIRED WORK
+          1. Make substantial corrective Visual Production progress, not a cosmetic micro-edit.
+          2. Audit and repair the exact root learner routes used by the owner: water-learning-experience-final.html, water-system-visual-preview.html, and water-system-implementation-visuals.html. No route may intentionally point to a nonexistent file.
+          3. Rebuild weak key diagrams into polished, original, recognizable educational system visuals. SVG/CSS illustration is acceptable when it communicates the physical object/materials/flow clearly. Do not merely recolor existing rectangles.
+          4. Zero tolerance for clipping, overlap, hidden words, unintended line/text collisions, or unreadable labels. Recompose the visual instead of squeezing text.
+          5. Preserve all approved evidence and safety boundaries. Clearer/filtered-looking water is not automatically potable.
+          6. Preserve no-non-clickable-pill web rule.
+          7. Run local route/link/layout checks possible in this checkout. Do not claim deployed end-to-end QA until the new commit has actually been deployed and checked from the public entry point.
+          8. Keep the project in VISUAL_PRODUCTION unless every required visual, route, responsive check, and deployed end-to-end QA is genuinely complete. Owner is not the QA tester.
+          9. Create/update a concise visual-production cycle record documenting exactly what changed and what remains.
+          10. Before ending, write .agent-run/result.json as valid JSON with keys: progress_percent (integer), progress_detail, progress_next, result_summary. Do not invent progress.
+
+          AUTHORIZED FILE SCOPE
+          You may edit only:
+          - rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/**
+          - water-learning-experience-final.html
+          - water-system-visual-preview.html
+          - water-system-implementation-visuals.html
+          - .agent-run/** temporary output
+
+          Do not publish/sell/release, change unrelated site pages, change authentication/RLS, or advance another project.
+          PROMPT
+
+      - name: Install GitHub Copilot CLI
+        if: steps.claim.outputs.has_request == 'true'
+        run: npm install -g @github/copilot
+
+      - name: Run immediate RRA Visual Production agent
+        id: agent
+        if: steps.claim.outputs.has_request == 'true'
+        shell: bash
+        run: |
+          set -o pipefail
+          copilot --yolo -p "$(cat .agent-run/prompt.md)" 2>&1 | tee .agent-run/copilot-last-message.txt
+
+      - name: Validate authorized file scope and commit durable work
+        id: commit
+        if: steps.claim.outputs.has_request == 'true' && steps.agent.outcome == 'success'
+        shell: bash
+        env:
+          REQUEST_ID: ${{ steps.claim.outputs.request_id }}
         run: |
           set -euo pipefail
           mapfile -t changed < <( { git diff --name-only; git ls-files --others --exclude-standard; } | sort -u )
@@ -70,28 +146,61 @@ jobs:
             case "$f" in
               .agent-run/*) ;;
               "$PROJECT_PATH"/*) ;;
-              .backups/*) ;;
-              *) echo "Unexpected file outside authorized project scope: $f"; exit 1 ;;
+              water-learning-experience-final.html) ;;
+              water-system-visual-preview.html) ;;
+              water-system-implementation-visuals.html) ;;
+              *) echo "Unexpected file outside authorized Water Visual Production scope: $f"; exit 1 ;;
             esac
           done
-          git add -A -- . ':(exclude).agent-run/**'
+
+          git add -A -- "$PROJECT_PATH" water-learning-experience-final.html water-system-visual-preview.html water-system-implementation-visuals.html 2>/dev/null || true
           if git diff --cached --quiet; then
-            echo "No durable repository changes produced in this run."
+            echo "No durable repository changes produced."
             echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          git config user.name "Rebel Ranch Academy Agent Runner"
+
+          git config user.name "Rebel Ranch Academy Visual Production Runner"
           git config user.email "285707125+rebelranchfl@users.noreply.github.com"
-          git commit -m "Advance ${PROJECT_ID} via Run Agent Now" -m "Request: ${REQUEST_ID}" -m "AI-Agent: OpenAI Codex via RRA Agent Runner" -m "Session: RR Website — Run Agent Now v2"
+          git commit -m "Advance Water corrective Visual Production" -m "Request: ${REQUEST_ID}" -m "AI-Agent: GitHub Copilot CLI via RRA immediate runner"
           git fetch origin main
           git rebase origin/main
           git push origin HEAD:main
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
-      - name: Finalize owner-facing run status
+      - name: Request GitHub Pages rebuild from latest main
+        if: steps.claim.outputs.has_request == 'true' && steps.agent.outcome == 'success' && steps.commit.outcome == 'success'
+        continue-on-error: true
+        shell: bash
+        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"
+
+      - name: Finalize immediate Water run status
         if: always() && steps.claim.outputs.has_request == 'true'
+        shell: bash
         env:
           REQUEST_ID: ${{ steps.claim.outputs.request_id }}
           RESULT_COMMIT_SHA: ${{ steps.commit.outputs.sha }}
-          CODEX_OUTCOME: ${{ (steps.claim.outputs.project_id == 'RRA-2026-0001' && steps.codex.outcome == 'success' && steps.commit.outcome == 'success') && 'success' || 'failure' }}
-        run: node .github/scripts/academy-agent-runner.mjs finalize
+          AGENT_OUTCOME: ${{ steps.agent.outcome }}
+          COMMIT_OUTCOME: ${{ steps.commit.outcome }}
+        run: |
+          set -euo pipefail
+          success=false
+          if [[ "$AGENT_OUTCOME" == "success" && "$COMMIT_OUTCOME" == "success" ]]; then success=true; fi
+          summary="Immediate Water Visual Production cycle finished."
+          if [[ -f .agent-run/result.json ]]; then
+            summary=$(jq -r '.result_summary // .progress_detail // "Immediate Water Visual Production cycle finished."' .agent-run/result.json)
+          fi
+          error=""
+          if [[ "$success" != "true" ]]; then error="Visual Production workflow outcome: agent=${AGENT_OUTCOME}, commit=${COMMIT_OUTCOME}."; fi
+          payload=$(jq -n \
+            --arg request_id "$REQUEST_ID" \
+            --argjson success "$success" \
+            --arg commit "${RESULT_COMMIT_SHA:-}" \
+            --arg summary "$summary" \
+            --arg error "$error" \
+            '{p_request_id:$request_id,p_success:$success,p_commit_sha:$commit,p_summary:$summary,p_error:$error}')
+          curl -fsS \
+            -H "apikey: $SUPABASE_PUBLISHABLE_KEY" \
+            -H "Content-Type: application/json" \
+            -d "$payload" \
+            "$SUPABASE_URL/rest/v1/rpc/academy_complete_water_run"
