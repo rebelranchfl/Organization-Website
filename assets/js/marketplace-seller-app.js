@@ -25,6 +25,24 @@ function connectOrderAlerts(userId){
   });
 }
 
+function updateHeaderAuthLinks(){
+  const accountLink=$('header-account-link'),joinLink=$('header-join-link');
+  if(!state.identity){
+    accountLink.textContent='Sign In';
+    joinLink.textContent='Join Rebel Ranch Local';
+    joinLink.classList.remove('hidden');
+    return;
+  }
+  accountLink.textContent=state.identity.displayName?`Hi, ${state.identity.displayName}`:'My Account';
+  const sp=state.identity.sellerProfile;
+  if(sp&&sp.profile_status==='active'){
+    joinLink.classList.add('hidden');
+  }else{
+    joinLink.textContent=sp?'Application Status':'Join Rebel Ranch Local';
+    joinLink.classList.remove('hidden');
+  }
+}
+
 function message(text,error=false){
   const el=$('app-status');
   el.textContent=text;
@@ -652,6 +670,7 @@ function bindAccountStep(){
       const {error}=await supabase.auth.signInWithPassword({email:$('si-email').value.trim(),password:$('si-password').value});
       if(error)throw error;
       state.identity=await loadSellerIdentity();
+      updateHeaderAuthLinks();
       await afterSignedIn();
     });
   };
@@ -727,6 +746,7 @@ function bindOnboardingForm(){
       const {error}=await actions.createSellerProfile(state.identity,payload);
       if(error)throw error;
       state.identity=await loadSellerIdentity();
+      updateHeaderAuthLinks();
       state.data=await loadSellerWorkspace(state.identity);
       if(state.identity.isAdmin)state.adminData=await loadSellerAdminSummary();
       $('create-profile').classList.add('hidden');
@@ -769,6 +789,7 @@ window.addEventListener('hashchange',()=>{
 async function init(){
   try{
     state.identity=await loadSellerIdentity();
+    updateHeaderAuthLinks();
     $('loading').classList.add('hidden');
     if(!state.identity){
       $('create-profile').classList.remove('hidden');
