@@ -110,7 +110,8 @@ export function statusStrip(state){
   const live=sp.profile_status==='active'&&sp.public_slug;
   return `<div class="status-strip">
     <span class="status-badge ${tone}">${esc(stateLabel)}</span>
-    ${live?`<a class="button primary" href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}" target="_blank" rel="noopener">View My Public Listing ↗</a>${sp.has_unpublished_changes?`<a class="button" href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}&preview=1" target="_blank" rel="noopener">Preview Unpublished Changes ↗</a>`:''}`:''}
+    <button class="primary" type="button" data-goto-view="listings">Put Me on the Map</button>
+    ${live?`<a class="button" href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}" target="_blank" rel="noopener">View My Storefront ↗</a>`:''}
   </div>`;
 }
 

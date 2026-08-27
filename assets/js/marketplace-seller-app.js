@@ -26,19 +26,17 @@ function connectOrderAlerts(userId){
 }
 
 function updateHeaderAuthLinks(){
-  const accountLink=$('header-account-link'),joinLink=$('header-join-link');
+  const joinLink=$('header-join-link');
   if(!state.identity){
-    accountLink.textContent='Sign In';
-    joinLink.textContent='Join Rebel Ranch Local';
+    joinLink.textContent='Join the Rebellion';
     joinLink.classList.remove('hidden');
     return;
   }
-  accountLink.textContent=state.identity.displayName?`Hi, ${state.identity.displayName}`:'My Account';
   const sp=state.identity.sellerProfile;
   if(sp&&sp.profile_status==='active'){
     joinLink.classList.add('hidden');
   }else{
-    joinLink.textContent=sp?'Application Status':'Join Rebel Ranch Local';
+    joinLink.textContent=sp?'Application Status':'Join the Rebellion';
     joinLink.classList.remove('hidden');
   }
 }
@@ -121,7 +119,10 @@ function render(){
   updateSwitcher();
   renderBanners();
   const statusEl=$('status-strip');
-  if(statusEl)statusEl.innerHTML=statusStrip(state);
+  if(statusEl){
+    statusEl.innerHTML=statusStrip(state);
+    statusEl.querySelectorAll('[data-goto-view]').forEach(b=>b.onclick=()=>navigate(b.dataset.gotoView));
+  }
 }
 
 async function withBusy(button,work){
@@ -766,6 +767,7 @@ $('enable-order-alerts').onclick=async()=>{
 };
 $('signout').onclick=async()=>{if(oneSignalClient)await oneSignalClient.logout();await actions.signOut();location.href='account.html'};
 $('header-feedback-btn').onclick=()=>$('feedback-dialog').showModal();
+document.querySelectorAll('.next-moves [data-goto-view]').forEach(b=>b.onclick=()=>navigate(b.dataset.gotoView));
 $('feedback-close').onclick=()=>$('feedback-dialog').close();
 $('feedback-cancel').onclick=()=>$('feedback-dialog').close();
 {
