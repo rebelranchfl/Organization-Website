@@ -2,6 +2,7 @@ name: Academy Agent Immediate Dispatch
 
 # Keeps the owner-facing Run Agent Now queue responsive instead of waiting for the next scheduled worker pickup.
 # Current stop-work directive restricts dispatch to RRA-2026-0001.
+# Corrected immediate runner activated 2026-08-27.
 
 on:
   workflow_dispatch:
@@ -36,7 +37,7 @@ jobs:
           endpoint="$SUPABASE_URL/rest/v1/rpc/academy_water_run_pending"
 
           # Stay alive almost the full five-minute scheduling interval. Dashboard clicks are
-          # therefore normally seen within roughly 12 seconds while a watch cycle is active.
+          # normally seen within roughly 12 seconds while a watch cycle is active.
           for attempt in $(seq 1 23); do
             pending=$(curl -fsS \
               -H "apikey: $SUPABASE_PUBLISHABLE_KEY" \
