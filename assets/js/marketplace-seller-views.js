@@ -183,10 +183,17 @@ function listingCard(item,sellerSlug){
     ${item.description?`<p>${esc(item.description)}</p>`:''}
     ${item.has_unpublished_changes?`<div class="draft-banner"><span class="status-badge review">Draft changes pending</span><div class="actions">${sellerSlug?`<a class="button" href="marketplace-seller-page.html?seller=${esc(sellerSlug)}&preview=1" target="_blank" rel="noopener">Preview as buyer ↗</a>`:''}<button class="primary" data-publish-listing="${item.id}">Publish</button><button class="danger" data-discard-listing-draft="${item.id}">Discard Draft</button></div></div>`:''}
     <div class="listing-photos">${images.map(img=>`<span class="listing-photo"><img src="${esc(publicUrl(img.object_path))}" alt=""><button type="button" data-delete-listing-image="${img.id}" aria-label="Remove photo">×</button></span>`).join('')}</div>
-    <form data-listing-image-form="${item.id}" class="dialog-actions" style="margin-top:10px">
-      <input data-field="file" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif">
-      <button class="primary" type="submit">Add photo</button>
-    </form>
+    <details class="disclosure">
+      <summary>Manage photos & stock</summary>
+      <form data-listing-image-form="${item.id}" class="dialog-actions" style="margin-top:10px">
+        <input data-field="file" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif">
+        <button class="primary" type="submit">Add photo</button>
+      </form>
+      <form data-quantity-form="${item.id}" class="dialog-actions" style="margin-top:10px">
+        <label>Stock on hand <span>Blank = unlimited (services, made-to-order)</span><input type="number" min="0" data-field="quantity" value="${qty??''}" placeholder="Unlimited"></label>
+        <button type="submit">Update Stock</button>
+      </form>
+    </details>
     <details class="disclosure">
       <summary>Edit listing</summary>
       <form data-edit-listing-form="${item.id}" class="onboarding-form">
@@ -199,10 +206,6 @@ function listingCard(item,sellerSlug){
         <div class="dialog-actions"><button class="primary" type="submit">Save as Draft</button></div>
       </form>
     </details>
-    <form data-quantity-form="${item.id}" class="dialog-actions" style="margin-top:10px">
-      <label>Stock on hand <span>Blank = unlimited (services, made-to-order)</span><input type="number" min="0" data-field="quantity" value="${qty??''}" placeholder="Unlimited"></label>
-      <button type="submit">Update Stock</button>
-    </form>
     <div class="actions" style="margin-top:10px">
       <button data-toggle-listing-active="${item.id}" data-active="${!item.is_active}">${item.is_active?'Hide from public page':'Make visible'}</button>
       <button class="danger" data-delete-listing="${item.id}">Delete</button>
@@ -220,15 +223,18 @@ export function listings(state){
   const services=items.filter(i=>i.listing_type==='service');
   const addForm=atLimit?`<section class="panel"><div class="panel-header"><h2>Add a listing</h2></div><p>You've used all ${limit} of your free listings (${allItems.length}/${limit}). Contact Rebel Ranch Ministries if you'd like to add more.</p></section>`:`<section class="panel">
     <div class="panel-header"><h2>Add a listing</h2><span class="tag">${allItems.length}/${limit} used</span></div>
-    <form id="add-listing-form" class="onboarding-form">
-      <label>Type<select id="new-listing-type"><option value="product">Product</option><option value="service">Service</option></select></label>
-      <label>Title<input id="new-listing-title" required></label>
-      <label>Description<textarea id="new-listing-description"></textarea></label>
-      <label>Price <span>Free text — e.g. "$8 each" or "Call for a quote"</span><input id="new-listing-price" placeholder="$8 each"></label>
-      <label>Pricing type<select id="new-listing-price-type"><option value="fixed">Fixed price</option><option value="starting_at">Starting at</option><option value="quote">Seller confirms price</option></select></label>
-      <label>Numeric unit price <span>Optional; used to estimate fixed-price orders</span><input id="new-listing-unit-price" type="number" min="0" step="0.01" placeholder="8.00"></label>
-      <div class="dialog-actions"><button class="primary" type="submit">Add listing</button></div>
-    </form>
+    <details class="disclosure">
+      <summary>Add a new listing</summary>
+      <form id="add-listing-form" class="onboarding-form">
+        <label>Type<select id="new-listing-type"><option value="product">Product</option><option value="service">Service</option></select></label>
+        <label>Title<input id="new-listing-title" required></label>
+        <label>Description<textarea id="new-listing-description"></textarea></label>
+        <label>Price <span>Free text — e.g. "$8 each" or "Call for a quote"</span><input id="new-listing-price" placeholder="$8 each"></label>
+        <label>Pricing type<select id="new-listing-price-type"><option value="fixed">Fixed price</option><option value="starting_at">Starting at</option><option value="quote">Seller confirms price</option></select></label>
+        <label>Numeric unit price <span>Optional; used to estimate fixed-price orders</span><input id="new-listing-unit-price" type="number" min="0" step="0.01" placeholder="8.00"></label>
+        <div class="dialog-actions"><button class="primary" type="submit">Add listing</button></div>
+      </form>
+    </details>
   </section>`;
   const filterRow=`<div class="view-tools" style="margin:14px 0"><label style="display:flex;align-items:center;gap:8px;font-weight:800;color:var(--ink)">Showing<select id="listing-filter"><option value="all" ${listingFilter==='all'?'selected':''}>All (${allItems.length})</option><option value="active" ${listingFilter==='active'?'selected':''}>Active (${allItems.filter(i=>i.is_active).length})</option><option value="inactive" ${listingFilter==='inactive'?'selected':''}>Hidden (${allItems.filter(i=>!i.is_active).length})</option></select></label></div>`;
   const typeSection=(title,typeItems)=>`<section class="panel" style="margin-top:18px">
@@ -355,8 +361,9 @@ export function orders(state){
     <div class="metric"><span>Owed to You</span><strong>$${owedTotal.toFixed(2)}</strong><small>Open orders, estimated</small></div>
   </div>`;
   const filterRow=`<div class="view-tools" style="margin:14px 0"><label style="display:flex;align-items:center;gap:8px;font-weight:800;color:var(--ink)">Showing<select id="order-window"><option value="24h" ${win==='24h'?'selected':''}>Last 24 hours</option><option value="7d" ${win==='7d'?'selected':''}>Last 7 days</option><option value="all" ${win==='all'?'selected':''}>All time</option></select></label></div>`;
-  const settings=`<section class="panel"><div class="panel-header"><h2>Fulfillment options</h2></div><form id="fulfillment-form" class="onboarding-form"><div class="check-grid"><label><input id="fulfill-pickup" type="checkbox" ${f.offers_pickup!==false?'checked':''}> Pickup</label><label><input id="fulfill-delivery" type="checkbox" ${f.offers_delivery?'checked':''}> Local delivery</label><label><input id="fulfill-meetup" type="checkbox" ${f.offers_meetup!==false?'checked':''}> Meet-up</label><label><input id="fulfill-shipping" type="checkbox" ${f.offers_shipping?'checked':''}> Shipping</label></div><label>Public fulfillment note<textarea id="fulfill-notes">${esc(f.public_notes||'')}</textarea></label><button class="primary" type="submit">Save fulfillment options</button></form></section>`;
-  const cards=items.length?`<div class="order-list">${items.map(o=>`<article class="panel order-card"><div class="panel-header"><div><p class="eyebrow">Order #${o.order_number}</p><h2>${esc(o.buyer_name)}</h2></div>${badge(o.status)}</div><p><strong>${esc(label(o.order_kind))}</strong> · ${esc(label(o.fulfillment_method))}</p><p><strong>Buyer requested:</strong> ${o.preferred_date?esc(o.preferred_date):'No date given'}${o.seller_proposed_date?` · <strong>You proposed:</strong> ${new Date(o.seller_proposed_date+'T00:00:00').toLocaleDateString()}`:''}</p><form data-propose-date-form="${o.id}" class="dialog-actions" style="margin-top:6px"><label>Propose a date<input type="date" data-field="proposed-date" value="${o.seller_proposed_date||''}"></label><button type="submit">Propose This Date</button></form><div class="order-items">${(o.items||[]).map((x,i)=>`<div class="pack-line"><label><input type="checkbox" data-pack-item="${o.id}:${i}" ${x.packed?'checked':''}> ${x.quantity} × ${esc(x.title)}</label>${x.note?`<p>${esc(x.note)}</p>`:''}</div>`).join('')}</div><p><strong>Buyer contact:</strong> ${esc(o.buyer_contact)}${contactActions(o.buyer_contact)}</p>${o.delivery_address?`<p><strong>Delivery:</strong> ${esc(o.delivery_address)}</p>`:''}${o.service_location?`<p><strong>Service location:</strong> ${esc(o.service_location)}</p>`:''}${o.buyer_note?`<p><strong>Order note:</strong> ${esc(o.buyer_note)}</p>`:''}<p><strong>Total:</strong> ${o.confirmed_total!==null?`$${Number(o.confirmed_total).toFixed(2)}`:o.estimated_total!==null?`Estimated $${Number(o.estimated_total).toFixed(2)}`:'Needs confirmation'}</p>${(o.photo_object_paths||[]).map(p=>`<button type="button" data-order-photo="${esc(p)}">View private buyer photo</button>`).join('')}${orderActionButtons(o)}<small>${new Date(o.created_at).toLocaleString()}</small></article>`).join('')}</div>`:empty(allItems.length?'No orders in this window':'No orders yet',allItems.length?'Try "All time" to see older orders.':'New structured orders and service requests will appear here — separate from buyer questions.');
+  const currentMethods=[f.offers_pickup!==false&&'Pickup',f.offers_delivery&&'Local delivery',f.offers_meetup!==false&&'Meet-up',f.offers_shipping&&'Shipping'].filter(Boolean).join(', ')||'None set';
+  const settings=`<section class="panel"><div class="panel-header"><h2>Fulfillment options</h2><span class="tag">${esc(currentMethods)}</span></div><details class="disclosure"><summary>Manage fulfillment options</summary><form id="fulfillment-form" class="onboarding-form"><div class="check-grid"><label><input id="fulfill-pickup" type="checkbox" ${f.offers_pickup!==false?'checked':''}> Pickup</label><label><input id="fulfill-delivery" type="checkbox" ${f.offers_delivery?'checked':''}> Local delivery</label><label><input id="fulfill-meetup" type="checkbox" ${f.offers_meetup!==false?'checked':''}> Meet-up</label><label><input id="fulfill-shipping" type="checkbox" ${f.offers_shipping?'checked':''}> Shipping</label></div><label>Public fulfillment note<textarea id="fulfill-notes">${esc(f.public_notes||'')}</textarea></label><button class="primary" type="submit">Save fulfillment options</button></form></details></section>`;
+  const cards=items.length?`<div class="order-list">${items.map(o=>`<article class="panel order-card"><div class="panel-header"><div><p class="eyebrow">Order #${o.order_number}</p><h2>${esc(o.buyer_name)}</h2></div>${badge(o.status)}</div><p><strong>${esc(label(o.order_kind))}</strong> · ${esc(label(o.fulfillment_method))}</p><p><strong>Buyer requested:</strong> ${o.preferred_date?esc(o.preferred_date):'No date given'}${o.seller_proposed_date?` · <strong>You proposed:</strong> ${new Date(o.seller_proposed_date+'T00:00:00').toLocaleDateString()}`:''}</p><details class="disclosure"><summary>${o.seller_proposed_date?'Change proposed date':'Propose a date'}</summary><form data-propose-date-form="${o.id}" class="dialog-actions" style="margin-top:6px"><label>Propose a date<input type="date" data-field="proposed-date" value="${o.seller_proposed_date||''}"></label><button type="submit">Propose This Date</button></form></details><div class="order-items">${(o.items||[]).map((x,i)=>`<div class="pack-line"><label><input type="checkbox" data-pack-item="${o.id}:${i}" ${x.packed?'checked':''}> ${x.quantity} × ${esc(x.title)}</label>${x.note?`<p>${esc(x.note)}</p>`:''}</div>`).join('')}</div><p><strong>Buyer contact:</strong> ${esc(o.buyer_contact)}${contactActions(o.buyer_contact)}</p>${o.delivery_address?`<p><strong>Delivery:</strong> ${esc(o.delivery_address)}</p>`:''}${o.service_location?`<p><strong>Service location:</strong> ${esc(o.service_location)}</p>`:''}${o.buyer_note?`<p><strong>Order note:</strong> ${esc(o.buyer_note)}</p>`:''}<p><strong>Total:</strong> ${o.confirmed_total!==null?`$${Number(o.confirmed_total).toFixed(2)}`:o.estimated_total!==null?`Estimated $${Number(o.estimated_total).toFixed(2)}`:'Needs confirmation'}</p>${(o.photo_object_paths||[]).map(p=>`<button type="button" data-order-photo="${esc(p)}">View private buyer photo</button>`).join('')}${orderActionButtons(o)}<small>${new Date(o.created_at).toLocaleString()}</small></article>`).join('')}</div>`:empty(allItems.length?'No orders in this window':'No orders yet',allItems.length?'Try "All time" to see older orders.':'New structured orders and service requests will appear here — separate from buyer questions.');
   return `${heading('Orders','Order inbox','Every item, quantity, fulfillment choice, buyer contact, and optional photo in one place.')}${statsRow}${filterRow}<div>${cards}</div><div style="margin-top:18px">${settings}</div>`;
 }
 
