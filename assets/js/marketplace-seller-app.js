@@ -15,12 +15,9 @@ function connectOrderAlerts(userId){
       await OneSignal.init({appId:oneSignalAppId,allowLocalhostAsSecureOrigin:false});
       await OneSignal.login(userId);
       oneSignalClient=OneSignal;
-      const button=$('enable-order-alerts');
       const update=()=>{
         const enabled=OneSignal.Notifications.permission;
-        button.textContent=enabled?'Order alerts enabled':'Enable order alerts';
-        button.disabled=enabled;
-        button.classList.remove('hidden');
+        $('order-alerts-banner').classList.toggle('hidden',enabled);
       };
       update();
       OneSignal.Notifications.addEventListener('permissionChange',update);
@@ -788,12 +785,6 @@ async function init(){
     state.data=await loadSellerWorkspace(state.identity);
     connectOrderAlerts(state.identity.user.id);
     if(state.identity.isAdmin)state.adminData=await loadSellerAdminSummary();
-    const sp=state.identity.sellerProfile;
-    if(sp.profile_status==='active'&&sp.public_slug){
-      const link=$('header-live-link');
-      link.href=`marketplace-seller-page.html?seller=${encodeURIComponent(sp.public_slug)}`;
-      link.classList.remove('hidden');
-    }
     state.view=chooseInitial();
     $('workspace').classList.remove('hidden');
     $('dashboard-tabs').classList.remove('hidden');

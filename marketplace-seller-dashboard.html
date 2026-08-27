@@ -17,16 +17,18 @@
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="marketplace.html" aria-label="Rebel Ranch Local home"><img src="assets/brand/Rebel%20Ranch%20Local/interface/rebel-ranch-local-emblem-v2.webp" alt="" width="32" height="32"> Rebel Ranch Local</a>
-      <button id="menu-toggle" class="menu-toggle" type="button" aria-label="Account menu" aria-expanded="false" aria-controls="account-actions"><span></span><span></span><span></span></button>
-      <div id="account-actions" class="account-actions">
-        <p class="menu-section-label">Account</p>
-        <a id="header-live-link" class="hidden" href="#" target="_blank" rel="noopener">View My Live Page ↗</a><button id="enable-order-alerts" class="hidden" type="button">Enable order alerts</button><button id="header-feedback-btn" type="button">Send Feedback</button><a href="index.html">Rebel Ranch Ministries Home</a><a href="account.html">RRM Account</a><button id="signout" type="button">Sign out</button>
-      </div>
     </div>
   </header>
 
   <nav id="dashboard-tabs" class="dashboard-tabs hidden" aria-label="Dashboard sections">
-    <div id="dashboard-nav"></div>
+    <div id="dashboard-nav" class="dashboard-tab-list"></div>
+    <div class="account-menu">
+      <button id="menu-toggle" class="account-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="account-actions">Account <span aria-hidden="true">▾</span></button>
+      <div id="account-actions" class="account-actions">
+        <p class="menu-section-label">Account</p>
+        <button id="header-feedback-btn" type="button">Send Feedback</button><a href="index.html">Rebel Ranch Ministries Home</a><a href="account.html">RRM Account</a><button id="signout" type="button">Sign out</button>
+      </div>
+    </div>
   </nav>
 
   <main id="main-content" class="shell" tabindex="-1">
@@ -131,6 +133,11 @@
           <div id="status-strip"></div>
         </div>
       </section>
+
+      <div id="order-alerts-banner" class="dash-banner hidden">
+        <p>Get notified the moment a buyer orders or messages you.</p>
+        <div class="dash-banner-actions"><button id="enable-order-alerts" class="button primary" type="button">Enable order alerts</button></div>
+      </div>
 
       <div id="dashboard-banners"></div>
 
