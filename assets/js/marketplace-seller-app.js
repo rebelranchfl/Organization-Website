@@ -589,7 +589,7 @@ async function openReviewDialog(applicationId,sellerProfileId){
     <p><strong>Categories:</strong> ${detail.categories.map(c=>c.marketplace_categories?.name).filter(Boolean).join(', ')||'None'}</p>
     <p><strong>Requirements:</strong></p>
     <ul>${detail.requirements.map(r=>`<li>${r.compliance_requirements?.title||'Requirement'} — ${r.assignment_status}</li>`).join('')||'<li>None</li>'}</ul>
-    ${pendingCount?`<p class="status-badge negative">${pendingCount} requirement(s) still pending — resolve them before approving.</p>`:''}
+    ${pendingCount?`<p class="warning-text">${pendingCount} requirement(s) still pending — resolve them before approving.</p>`:''}
   `;
   $('review-approve').disabled=pendingCount>0;
   $('review-approve').title=pendingCount>0?'Resolve every pending requirement before approving.':'';

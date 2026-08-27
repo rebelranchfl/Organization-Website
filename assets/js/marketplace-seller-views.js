@@ -4,8 +4,26 @@ const esc=(v='')=>{const d=document.createElement('div');d.textContent=String(v?
 const publicUrl=path=>supabase.storage.from('marketplace-seller-public').getPublicUrl(path).data.publicUrl;
 const label=(v='')=>String(v||'').replaceAll('_',' ');
 const heading=(eyebrow,title,copy,action='')=>`<header class="screen-heading"><div><p class="eyebrow">${eyebrow}</p><h2>${title}</h2><p>${copy}</p></div>${action}</header>`;
-const empty=(title,copy)=>`<section class="empty-state"><span class="empty-icon" aria-hidden="true">✦</span><h2>${title}</h2><p>${copy}</p></section>`;
+const empty=(title,copy)=>`<section class="empty-state"><span class="empty-icon" aria-hidden="true">${icon('sparkle')}</span><h2>${title}</h2><p>${copy}</p></section>`;
 const metric=(label,value,note)=>`<div class="metric${/^[$]?0(\.00)?%?$/.test(String(value))?' is-zero':''}"><span>${label}</span><strong>${value}</strong>${note?`<small>${note}</small>`:''}</div>`;
+
+const ICON_STROKE='fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
+const ICONS={
+  check:`<polyline points="5 13 10 18 19 7"/>`,
+  dot:`<circle cx="12" cy="12" r="6" fill="currentColor"/>`,
+  pause:`<rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor"/><rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor"/>`,
+  tag:`<path d="M12 3h6a2 2 0 0 1 2 2v6a1 1 0 0 1-.3.7l-8 8a1 1 0 0 1-1.4 0l-6-6a1 1 0 0 1 0-1.4l8-8A1 1 0 0 1 12 3z"/><circle cx="16.3" cy="7.7" r="1.1" fill="currentColor" stroke="none"/>`,
+  dollar:`<line x1="12" y1="2" x2="12" y2="22"/><path d="M17 6.5c0-1.9-2.2-3-5-3s-5 1.2-5 3 2.2 2.7 5 3 5 1.1 5 3-2.2 3-5 3-5-1.1-5-3"/>`,
+  document:`<path d="M7 3h7l4 4v14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v4h4"/><line x1="8.5" y1="13" x2="15.5" y2="13"/><line x1="8.5" y1="17" x2="15.5" y2="17"/>`,
+  receipt:`<path d="M6 2h12v19l-2.5-1.5L13 21l-2.5-1.5L8 21l-2-1.5z"/><line x1="8.5" y1="7.5" x2="15.5" y2="7.5"/><line x1="8.5" y1="11.5" x2="15.5" y2="11.5"/>`,
+  message:`<path d="M4 5h16v11H9l-4 4V5z"/>`,
+  history:`<circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 16 14"/>`,
+  pencil:`<path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>`,
+  star:`<path d="M12 2l2.9 6.3 6.8.7-5.1 4.6 1.5 6.7L12 16.9 5.9 20.3l1.5-6.7L2.3 9l6.8-.7z" fill="currentColor" stroke="none"/>`,
+  clipboard:`<rect x="6" y="4" width="12" height="17" rx="1.5"/><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1"/><polyline points="9 13 11 15 15 10.5"/>`,
+  sparkle:`<path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z" fill="currentColor" stroke="none"/>`
+};
+function icon(name){return `<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" ${ICON_STROKE}>${ICONS[name]||''}</svg>`}
 
 const NEGATIVE=new Set(['rejected','withdrawn','suspended']);
 const REVIEW=new Set(['pending','pending_review','submitted','changes_requested']);
@@ -113,7 +131,7 @@ export function status(state){
     <div class="stack">
       <section class="panel">
         <div class="panel-header"><div><p class="eyebrow">Business</p><h2>${esc(sp.business_name)}</h2></div><span class="status-badge ${stateTone}">${esc(stateLabel)}</span></div>
-        ${sp.has_unpublished_changes?`<div class="draft-banner"><span class="status-badge review">Draft changes pending — not visible to buyers yet</span><div class="actions">${sp.public_slug?`<a class="button" href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}&preview=1" target="_blank" rel="noopener">Preview as buyer ↗</a>`:''}<button class="primary" data-action="publish-profile">Publish Changes</button><button class="danger" data-action="discard-profile-draft">Discard Draft</button></div></div>`:''}
+        ${sp.has_unpublished_changes?`<div class="draft-banner"><div><span class="status-badge review">Draft changes pending</span><p>Not visible to buyers yet</p></div><div class="actions">${sp.public_slug?`<a class="button" href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}&preview=1" target="_blank" rel="noopener">Preview as buyer ↗</a>`:''}<button class="primary" data-action="publish-profile">Publish Changes</button><button class="danger" data-action="discard-profile-draft">Discard Draft</button></div></div>`:''}
         <details class="disclosure">
           <summary>Update store details</summary>
           <div class="logo-row">
@@ -151,7 +169,7 @@ export function status(state){
         <details class="disclosure">
           <summary>Manage categories</summary>
           <p class="eyebrow">Order controls which categories show first on your public page.</p>
-          <div class="list">${state.data.categoryAssignments.map((a,i,arr)=>`<article class="list-item"><span class="list-icon" aria-hidden="true">✦</span><div><h3>${esc(categoryName(state,a.category_id))}</h3><p>${a.is_primary?'Primary':`Position ${i+1}`}</p></div><div class="frame-actions"><button type="button" data-move-category="${a.id}" data-direction="up" ${i===0?'disabled':''} aria-label="Move up">↑</button><button type="button" data-move-category="${a.id}" data-direction="down" ${i===arr.length-1?'disabled':''} aria-label="Move down">↓</button><button class="danger" data-remove-category="${a.id}">Remove</button></div></article>`).join('')||'<p class="eyebrow">No categories yet</p>'}</div>
+          <div class="list">${state.data.categoryAssignments.map((a,i,arr)=>`<article class="list-item"><span class="list-icon" aria-hidden="true">${icon('tag')}</span><div><h3>${esc(categoryName(state,a.category_id))}</h3><p>${a.is_primary?'Primary':`Position ${i+1}`}</p></div><div class="frame-actions"><button type="button" data-move-category="${a.id}" data-direction="up" ${i===0?'disabled':''} aria-label="Move up">↑</button><button type="button" data-move-category="${a.id}" data-direction="down" ${i===arr.length-1?'disabled':''} aria-label="Move down">↓</button><button class="danger" data-remove-category="${a.id}">Remove</button></div></article>`).join('')||'<p class="eyebrow">No categories yet</p>'}</div>
           ${available.length?`<form id="add-category-form" class="dialog-actions" style="margin-top:14px"><select id="new-category">${available.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')}</select><button class="primary" type="submit">Add</button></form>`:''}
         </details>
       </section>
@@ -160,7 +178,7 @@ export function status(state){
         <div class="tag-row">${state.data.paymentMethods.map(m=>`<span class="tag">${esc(PAYMENT_LABELS[m.method_type]||label(m.method_type))}</span>`).join('')||'<p class="eyebrow">No payment methods added yet</p>'}</div>
         <details class="disclosure">
           <summary>Manage payment methods</summary>
-          <div class="list">${state.data.paymentMethods.map(m=>`<article class="list-item"><span class="list-icon" aria-hidden="true">$</span><div><h3>${esc(PAYMENT_LABELS[m.method_type]||label(m.method_type))}</h3><p>${esc(m.label)}</p></div><button class="danger" data-remove-payment="${m.id}">Remove</button></article>`).join('')||'<p class="eyebrow">No payment methods added yet</p>'}</div>
+          <div class="list">${state.data.paymentMethods.map(m=>`<article class="list-item"><span class="list-icon" aria-hidden="true">${icon('dollar')}</span><div><h3>${esc(PAYMENT_LABELS[m.method_type]||label(m.method_type))}</h3><p>${esc(m.label)}</p></div><button class="danger" data-remove-payment="${m.id}">Remove</button></article>`).join('')||'<p class="eyebrow">No payment methods added yet</p>'}</div>
           <form id="add-payment-form" class="onboarding-form" style="margin-top:14px">
             <label>Type<select id="new-payment-type">${Object.entries(PAYMENT_LABELS).map(([k,t])=>`<option value="${k}">${t}</option>`).join('')}</select></label>
             <label>Label or handle<input id="new-payment-label" placeholder="e.g. @cypresscreek or (352) 555-0142" required></label>
@@ -239,7 +257,7 @@ export function listings(state){
   </section>`;
   const filterRow=`<div class="view-tools" style="margin:14px 0"><label style="display:flex;align-items:center;gap:8px;font-weight:800;color:var(--ink)">Showing<select id="listing-filter"><option value="all" ${listingFilter==='all'?'selected':''}>All (${allItems.length})</option><option value="active" ${listingFilter==='active'?'selected':''}>Active (${allItems.filter(i=>i.is_active).length})</option><option value="inactive" ${listingFilter==='inactive'?'selected':''}>Hidden (${allItems.filter(i=>!i.is_active).length})</option></select></label></div>`;
   const typeSection=(title,typeItems)=>`<section class="panel" style="margin-top:18px">
-    <div class="panel-header"><h2>${title}</h2><span class="tag">${typeItems.length}</span></div>
+    <div class="panel-header"><h2>${title}</h2><span class="count-pill">${typeItems.length}</span></div>
     ${typeItems.length?`<div class="card-grid">${typeItems.map(i=>listingCard(i,state.identity.sellerProfile.public_slug)).join('')}</div>`:'<p class="eyebrow">None yet</p>'}
   </section>`;
   return `${heading('Inventory / Listings / Services','What you sell','Add products or services with a price and photos — buyers see these on your public page.')}
@@ -264,7 +282,7 @@ function complianceSection(state){
       <h3>${esc(req.title)}</h3>
       <p>${esc(req.description)}</p>
       ${r.waived_reason?`<p><strong>Note:</strong> ${esc(r.waived_reason)}</p>`:''}
-      ${attestation?`<div class="attestation-done"><span class="status-badge">✓ Attestation submitted</span><p>${esc(attestation.attestation_text)}</p></div>`:`
+      ${attestation?`<div class="attestation-done"><span class="status-badge">Attestation submitted</span><p>${esc(attestation.attestation_text)}</p></div>`:`
       <form data-attestation-form="${r.id}" class="dialog-actions" style="margin-top:10px">
         <textarea placeholder="Attest that you meet this requirement…" required></textarea>
         <button class="primary" type="submit">Submit attestation</button>
@@ -277,7 +295,7 @@ function complianceSection(state){
         <label>Document <span>JPEG, PNG, or PDF; 10 MB max</span><input data-field="file" type="file" accept="image/jpeg,image/png,application/pdf" required></label>
         <button class="primary" type="submit">Upload document</button>
       </form>
-      ${creds.length?`<div class="list" style="margin-top:10px">${creds.map(c=>`<article class="list-item"><span class="list-icon" aria-hidden="true">📄</span><div><h3>${esc(c.credential_type)}</h3><p>${c.expires_at?`Expires ${c.expires_at}`:'No expiration set'}</p></div>${badge(c.verification_status)}</article>`).join('')}</div>`:''}
+      ${creds.length?`<div class="list" style="margin-top:10px">${creds.map(c=>`<article class="list-item"><span class="list-icon" aria-hidden="true">${icon('document')}</span><div><h3>${esc(c.credential_type)}</h3><p>${c.expires_at?`Expires ${c.expires_at}`:'No expiration set'}</p></div>${badge(c.verification_status)}</article>`).join('')}</div>`:''}
       `:''}
     </article>`;
   }).join('');
@@ -298,7 +316,7 @@ export function notifications(state){
   const unreadIds=allItems.filter(n=>!n.is_read).map(n=>n.id);
   const filterRow=`<div class="view-tools" style="margin:14px 0"><label style="display:flex;align-items:center;gap:8px;font-weight:800;color:var(--ink)">Showing<select id="notif-filter"><option value="all" ${notifFilter==='all'?'selected':''}>All (${allItems.length})</option><option value="unread" ${notifFilter==='unread'?'selected':''}>Unread only (${unreadIds.length})</option></select></label></div>`;
   return `${heading('Notifications','Updates',`${unreadIds.length} unread`,unreadIds.length?'<button class="primary" data-action="mark-all-read">Mark all read</button>':'')}${filterRow}
-  ${items.length?`<div class="list">${items.map(n=>`<article class="list-item ${n.is_read?'is-read':'is-unread'}"><span class="list-icon" aria-hidden="true">${n.is_read?'✓':'●'}</span><details class="disclosure" ${n.is_read?'':'open'}><summary>${esc(n.title)}</summary><p>${esc(n.body||'')}</p><small>${new Date(n.created_at).toLocaleString()}</small>${n.is_read?'':`<div class="actions"><button data-mark-read="${n.id}">Mark read</button></div>`}</details></article>`).join('')}</div>`:empty('Nothing unread','Every notification has been marked read.')}`;
+  ${items.length?`<div class="list">${items.map(n=>`<article class="list-item ${n.is_read?'is-read':'is-unread'}"><span class="list-icon" aria-hidden="true">${icon(n.is_read?'check':'dot')}</span><details class="disclosure" ${n.is_read?'':'open'}><summary>${esc(n.title)}</summary><p>${esc(n.body||'')}</p><small>${new Date(n.created_at).toLocaleString()}</small>${n.is_read?'':`<div class="actions"><button data-mark-read="${n.id}">Mark read</button></div>`}</details></article>`).join('')}</div>`:empty('Nothing unread','Every notification has been marked read.')}`;
 }
 
 export function questions(state){
@@ -306,7 +324,7 @@ export function questions(state){
   if(!items.length)return `${heading('Questions','Buyer questions','Questions are kept separate from orders so your order inbox stays clear.')}${empty('No questions yet','Buyer questions will appear here.')}`;
   const needsResponse=items.filter(m=>!m.responded_at).length;
   return `${heading('Questions','Buyer questions',`${needsResponse} need${needsResponse===1?'s':''} a response`)}
-  <div class="list">${items.map(m=>`<article class="list-item ${m.is_read?'is-read':'is-unread'}"><span class="list-icon" aria-hidden="true">${m.is_read?'✓':'●'}</span><details class="disclosure" ${m.responded_at?'':'open'}><summary><strong>${esc(m.sender_name)}</strong> <span class="tag" style="margin-left:6px">${m.sender_is_member?'Member':'Non-member'}</span> ${m.responded_at?`<span class="status-badge" style="margin-left:6px">✓ Responded ${new Date(m.responded_at).toLocaleDateString()}</span>`:'<span class="status-badge review" style="margin-left:6px">Needs response</span>'}</summary><p>${esc(m.message)}</p>${m.sender_contact?`<p><strong>Contact:</strong> ${esc(m.sender_contact)}${contactActions(m.sender_contact)}</p>`:''}<small>${new Date(m.created_at).toLocaleString()}</small><div class="actions" style="flex-direction:column;align-items:stretch">${m.is_read?'':`<button data-mark-inquiry-read="${m.id}">Mark read</button>`}${m.responded_at?'':`<button class="primary" data-mark-inquiry-responded="${m.id}">Mark Responded</button>`}</div></details></article>`).join('')}</div>`;
+  <div class="list">${items.map(m=>`<article class="list-item ${m.is_read?'is-read':'is-unread'}"><span class="list-icon" aria-hidden="true">${icon(m.is_read?'check':'dot')}</span><details class="disclosure" ${m.responded_at?'':'open'}><summary><strong>${esc(m.sender_name)}</strong> <span class="tag" style="margin-left:6px">${m.sender_is_member?'Member':'Non-member'}</span> ${m.responded_at?`<span class="status-badge" style="margin-left:6px">Responded ${new Date(m.responded_at).toLocaleDateString()}</span>`:'<span class="status-badge review" style="margin-left:6px">Needs response</span>'}</summary><p>${esc(m.message)}</p>${m.sender_contact?`<p><strong>Contact:</strong> ${esc(m.sender_contact)}${contactActions(m.sender_contact)}</p>`:''}<small>${new Date(m.created_at).toLocaleString()}</small><div class="actions" style="flex-direction:column;align-items:stretch">${m.is_read?'':`<button data-mark-inquiry-read="${m.id}">Mark read</button>`}${m.responded_at?'':`<button class="primary" data-mark-inquiry-responded="${m.id}">Mark Responded</button>`}</div></details></article>`).join('')}</div>`;
 }
 
 const ORDER_ACTIONS={
@@ -398,7 +416,7 @@ export function history(state){
   const items=allItems.filter(e=>withinWindow(e.recorded_at,days));
   const filterRow=`<div class="view-tools" style="margin:14px 0"><label style="display:flex;align-items:center;gap:8px;font-weight:800;color:var(--ink)">Showing<select id="history-window"><option value="7d" ${win==='7d'?'selected':''}>Last 7 days</option><option value="30d" ${win==='30d'?'selected':''}>Last 30 days</option><option value="90d" ${win==='90d'?'selected':''}>Last 90 days</option><option value="all" ${win==='all'?'selected':''}>All time</option></select></label></div>`;
   return `${heading('History','Review history','A record of every status change on your application and profile.')}${filterRow}
-  ${items.length?`<div class="list">${items.map(e=>`<article class="list-item"><span class="list-icon" aria-hidden="true">↺</span><div><h3>${e.from_status?`${label(e.from_status)} → ${label(e.to_status)}`:label(e.to_status)}</h3><p>${e.note?esc(e.note):''}</p><small>${new Date(e.recorded_at).toLocaleString()}</small></div></article>`).join('')}</div>`:empty('No history in this window','Try a wider time range to see older events.')}`;
+  ${items.length?`<div class="list">${items.map(e=>`<article class="list-item"><span class="list-icon" aria-hidden="true">${icon('history')}</span><div><h3>${e.from_status?`${label(e.from_status)} → ${label(e.to_status)}`:label(e.to_status)}</h3><p>${e.note?esc(e.note):''}</p><small>${new Date(e.recorded_at).toLocaleString()}</small></div></article>`).join('')}</div>`:empty('No history in this window','Try a wider time range to see older events.')}`;
 }
 
 export function admin(state){
@@ -412,15 +430,15 @@ export function admin(state){
   </div>
   <div class="layout" style="margin-top:18px">
     <div class="stack">
-      <section class="panel"><div class="panel-header"><h2>Applications</h2></div><div class="list">${a.applicationQueue.map(x=>`<article class="list-item"><span class="list-icon" aria-hidden="true">✎</span><div><h3>${esc(x.seller_profiles?.business_name||x.legal_business_name||'Application')}</h3><p>${esc(label(x.application_type))} · submitted ${x.submitted_at?new Date(x.submitted_at).toLocaleDateString():'—'}</p></div><button data-review-application="${x.id}" data-seller="${x.seller_profile_id}">Review</button></article>`).join('')||'<p class="eyebrow">Nothing waiting</p>'}</div></section>
-      <section class="panel"><div class="panel-header"><h2>Documents</h2></div><div class="list">${a.credentialQueue.map(x=>`<article class="list-item"><span class="list-icon" aria-hidden="true">📄</span><div><h3>${esc(x.seller_profiles?.business_name||'Seller')}</h3><p>${esc(x.credential_type)}</p></div><div class="actions"><button data-verify-credential="${x.id}">Verify</button><button class="danger" data-reject-credential="${x.id}">Reject</button></div></article>`).join('')||'<p class="eyebrow">Nothing waiting</p>'}</div></section>
-      <section class="panel"><div class="panel-header"><div><h2>Active Sellers</h2><p>"Log Traffic" records a page-view count from Google Analytics for a Seller Pro seller's KPI dashboard.</p></div></div><div class="list">${sellerQueue.map(x=>`<article class="list-item"><span class="list-icon" aria-hidden="true">${x.profile_status==='active'?'✓':'⏸'}</span><div><h3>${esc(x.business_name)}</h3><p>${esc(label(x.profile_status))}</p></div><div class="actions">${x.is_pro?`<button data-log-traffic="${x.id}" data-business-name="${esc(x.business_name)}">Log Traffic</button>`:''}${x.profile_status==='active'?`<button data-pause-seller="${x.id}">Pause</button><button class="danger" data-archive-seller="${x.id}">Archive</button>`:`<button data-reactivate-seller="${x.id}">Reactivate</button>`}</div></article>`).join('')||'<p class="eyebrow">No sellers yet</p>'}</div></section>
+      <section class="panel"><div class="panel-header"><h2>Applications</h2></div><div class="list">${a.applicationQueue.map(x=>`<article class="list-item"><span class="list-icon" aria-hidden="true">${icon('pencil')}</span><div><h3>${esc(x.seller_profiles?.business_name||x.legal_business_name||'Application')}</h3><p>${esc(label(x.application_type))} · submitted ${x.submitted_at?new Date(x.submitted_at).toLocaleDateString():'—'}</p></div><button data-review-application="${x.id}" data-seller="${x.seller_profile_id}">Review</button></article>`).join('')||'<p class="eyebrow">Nothing waiting</p>'}</div></section>
+      <section class="panel"><div class="panel-header"><h2>Documents</h2></div><div class="list">${a.credentialQueue.map(x=>`<article class="list-item"><span class="list-icon" aria-hidden="true">${icon('document')}</span><div><h3>${esc(x.seller_profiles?.business_name||'Seller')}</h3><p>${esc(x.credential_type)}</p></div><div class="actions"><button data-verify-credential="${x.id}">Verify</button><button class="danger" data-reject-credential="${x.id}">Reject</button></div></article>`).join('')||'<p class="eyebrow">Nothing waiting</p>'}</div></section>
+      <section class="panel"><div class="panel-header"><div><h2>Active Sellers</h2><p>"Log Traffic" records a page-view count from Google Analytics for a Seller Pro seller's KPI dashboard.</p></div></div><div class="list">${sellerQueue.map(x=>`<article class="list-item"><span class="list-icon" aria-hidden="true">${icon(x.profile_status==='active'?'check':'pause')}</span><div><h3>${esc(x.business_name)}</h3><p>${esc(label(x.profile_status))}</p></div><div class="actions">${x.is_pro?`<button data-log-traffic="${x.id}" data-business-name="${esc(x.business_name)}">Log Traffic</button>`:''}${x.profile_status==='active'?`<button data-pause-seller="${x.id}">Pause</button><button class="danger" data-archive-seller="${x.id}">Archive</button>`:`<button data-reactivate-seller="${x.id}">Reactivate</button>`}</div></article>`).join('')||'<p class="eyebrow">No sellers yet</p>'}</div></section>
     </div>
-    <aside class="panel"><div class="panel-header"><h2>Requirements</h2></div><div class="list">${a.requirementQueue.map(x=>`<article class="list-item"><span class="list-icon" aria-hidden="true">☑</span><div><h3>${esc(x.seller_profiles?.business_name||'Seller')}</h3><p>${esc(x.compliance_requirements?.title||'Requirement')}</p></div><div class="actions"><button data-waive-requirement="${x.id}">Waive</button><button data-na-requirement="${x.id}">N/A</button></div></article>`).join('')||'<p class="eyebrow">Nothing waiting</p>'}</aside>
+    <aside class="panel"><div class="panel-header"><h2>Requirements</h2></div><div class="list">${a.requirementQueue.map(x=>`<article class="list-item"><span class="list-icon" aria-hidden="true">${icon('clipboard')}</span><div><h3>${esc(x.seller_profiles?.business_name||'Seller')}</h3><p>${esc(x.compliance_requirements?.title||'Requirement')}</p></div><div class="actions"><button data-waive-requirement="${x.id}">Waive</button><button data-na-requirement="${x.id}">N/A</button></div></article>`).join('')||'<p class="eyebrow">Nothing waiting</p>'}</aside>
   </div>
   <section class="panel" style="margin-top:18px">
     <div class="panel-header"><div><h2>Shop Spotlight</h2><p>Free weekly promotion — visibility stays a level playing field, so this is never paid placement.</p></div></div>
-    <div class="list">${sellerQueue.filter(x=>x.profile_status==='active'&&!x.is_pro).sort((a,b)=>new Date(a.last_spotlighted_at||0)-new Date(b.last_spotlighted_at||0)).slice(0,5).map(x=>`<article class="list-item"><span class="list-icon" aria-hidden="true">★</span><div><h3>${esc(x.business_name)}</h3><p>${x.last_spotlighted_at?`Last featured ${new Date(x.last_spotlighted_at).toLocaleDateString()}`:'Never featured'}</p></div><button data-spotlight-seller="${x.id}" data-business-name="${esc(x.business_name)}">Feature this week</button></article>`).join('')||'<p class="eyebrow">No eligible sellers yet</p>'}</div>
+    <div class="list">${sellerQueue.filter(x=>x.profile_status==='active'&&!x.is_pro).sort((a,b)=>new Date(a.last_spotlighted_at||0)-new Date(b.last_spotlighted_at||0)).slice(0,5).map(x=>`<article class="list-item"><span class="list-icon" aria-hidden="true">${icon('star')}</span><div><h3>${esc(x.business_name)}</h3><p>${x.last_spotlighted_at?`Last featured ${new Date(x.last_spotlighted_at).toLocaleDateString()}`:'Never featured'}</p></div><button data-spotlight-seller="${x.id}" data-business-name="${esc(x.business_name)}">Feature this week</button></article>`).join('')||'<p class="eyebrow">No eligible sellers yet</p>'}</div>
   </section>`;
 }
 
@@ -431,8 +449,8 @@ export function today(state){
   if(!merged.length)return `${heading('Today',"You're all caught up",'Nothing needs your attention right now.')}${empty('Nothing waiting','New orders and questions will show up here first, oldest first.')}`;
   return `${heading('Today','What needs you right now',`${merged.length} item${merged.length===1?'':'s'} waiting, oldest first.`)}
   <div class="list">${merged.map(item=>item.kind==='order'?
-    `<article class="list-item"><span class="list-icon" aria-hidden="true">🧾</span><div><h3>Order #${item.order_number} — ${esc(item.buyer_name)}</h3><p>${esc(label(item.status))} · ${new Date(item.created_at).toLocaleString()}</p></div><button data-goto-view="orders">Open in Orders</button></article>`
-    :`<article class="list-item"><span class="list-icon" aria-hidden="true">💬</span><div><h3>Question from ${esc(item.sender_name)}</h3><p>${item.is_read?'Read':'Unread'}${item.responded_at?' · Responded':' · Needs response'} · ${new Date(item.created_at).toLocaleString()}</p></div><button data-goto-view="questions">Open in Questions</button></article>`
+    `<article class="list-item"><span class="list-icon" aria-hidden="true">${icon('receipt')}</span><div><h3>Order #${item.order_number} — ${esc(item.buyer_name)}</h3><p>${esc(label(item.status))} · ${new Date(item.created_at).toLocaleString()}</p></div><button data-goto-view="orders">Open in Orders</button></article>`
+    :`<article class="list-item"><span class="list-icon" aria-hidden="true">${icon('message')}</span><div><h3>Question from ${esc(item.sender_name)}</h3><p>${item.is_read?'Read':'Unread'}${item.responded_at?' · Responded':' · Needs response'} · ${new Date(item.created_at).toLocaleString()}</p></div><button data-goto-view="questions">Open in Questions</button></article>`
   ).join('')}</div>`;
 }
 
