@@ -2,6 +2,7 @@ name: Academy Agent Immediate Dispatch
 
 # Keeps the owner-facing Run Agent Now queue responsive instead of waiting for the next scheduled worker pickup.
 # Current stop-work directive restricts dispatch to RRA-2026-0001.
+# Owner-requested activation: 2026-08-27 11:53 ET.
 
 on:
   workflow_dispatch:
@@ -47,8 +48,6 @@ jobs:
 
           endpoint="$SUPABASE_URL/rest/v1/academy_agent_run_requests?project_id=eq.RRA-2026-0001&requested_stage=eq.VISUAL_PRODUCTION&status=eq.PENDING&select=id&order=requested_at.asc&limit=1"
 
-          # Stay alive almost the full five-minute scheduling interval so a dashboard click
-          # is normally detected within seconds instead of waiting for the next cron tick.
           for attempt in $(seq 1 23); do
             request_id=$(curl -fsS "${auth[@]}" "$endpoint" | jq -r '.[0].id // empty')
             if [[ -n "$request_id" ]]; then
