@@ -28,7 +28,7 @@ jobs:
           npm init -y >/dev/null 2>&1
           npm install --save-dev playwright >/dev/null
           npx playwright install --with-deps chromium >/dev/null
-          cat > /tmp/qa.mjs <<'JS'
+          cat > qa.mjs <<'JS'
           import { chromium } from 'playwright';
           const urls=[
             'https://rebelranchministries.org/water-learning-experience-final.html',
@@ -57,4 +57,4 @@ jobs:
           if(failures.length){console.error(failures.join('\n'));process.exit(1)}
           console.log('LIVE_WATER_ROUTE_QA_PASS');
           JS
-          node /tmp/qa.mjs
+          node qa.mjs
