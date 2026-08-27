@@ -1,58 +1,18 @@
-name: Academy Agent Immediate Dispatch
+name: Academy Agent Immediate Dispatch (Retired)
 
-# Keeps the owner-facing Run Agent Now queue responsive instead of waiting for the next scheduled worker pickup.
-# Current stop-work directive restricts dispatch to RRA-2026-0001.
-# Corrected immediate runner activated 2026-08-27.
+# Retired 2026-08-27. The old polling dispatcher was not actually tied to the owner button
+# and could leave PENDING requests sitting indefinitely. Direct dispatch now occurs through
+# the authenticated Supabase Edge Function academy-agent-dispatch, which calls the Water
+# runner workflow immediately when (and only when) the GitHub dispatch credential exists.
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "*/5 * * * *"
-  push:
-    paths:
-      - ".github/workflows/academy-agent-immediate-dispatch.yml"
-      - ".github/workflows/academy-agent-runner.yml"
 
 permissions:
-  actions: write
   contents: read
 
-concurrency:
-  group: academy-agent-immediate-dispatch-v1
-  cancel-in-progress: true
-
 jobs:
-  watch-owner-queue:
+  retired:
     runs-on: ubuntu-latest
-    timeout-minutes: 6
-    env:
-      SUPABASE_URL: https://dfrwxpuojeiykaignyny.supabase.co
-      SUPABASE_PUBLISHABLE_KEY: sb_publishable_Ts45JL34s7yFGW5hlI0pUA_-HRUt18a
-      GH_TOKEN: ${{ github.token }}
     steps:
-      - name: Watch Water queue and dispatch immediately
-        shell: bash
-        run: |
-          set -euo pipefail
-          endpoint="$SUPABASE_URL/rest/v1/rpc/academy_water_run_pending"
-
-          # Stay alive almost the full five-minute scheduling interval. Dashboard clicks are
-          # normally seen within roughly 12 seconds while a watch cycle is active.
-          for attempt in $(seq 1 23); do
-            pending=$(curl -fsS \
-              -H "apikey: $SUPABASE_PUBLISHABLE_KEY" \
-              -H "Content-Type: application/json" \
-              -d '{}' \
-              "$endpoint")
-            if [[ "$pending" == "true" ]]; then
-              echo "Pending owner Water run detected; dispatching Academy runner."
-              gh api \
-                --method POST \
-                "repos/${GITHUB_REPOSITORY}/actions/workflows/academy-agent-runner.yml/dispatches" \
-                -f ref=main
-              exit 0
-            fi
-            sleep 12
-          done
-
-          echo "No pending Water Run Agent Now request detected during this watch cycle."
+      - run: echo "Retired. Use academy-agent-dispatch -> academy-agent-runner.yml."
