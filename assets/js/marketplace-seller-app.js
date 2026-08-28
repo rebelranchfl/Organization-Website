@@ -4,7 +4,7 @@ import {supabase} from './supabase-client.js';
 
 const $=id=>document.getElementById(id);
 const state={identity:null,data:null,adminData:null,view:'status',busy:false,orderFilter:{window:'24h'}};
-const routes=['today','status','listings','orders','questions','notifications','history','kpis','admin'];
+const routes=['today','status','listings','connections','notifications','history','kpis','admin'];
 const oneSignalAppId='3d048078-bf37-42ff-a1b7-3c1994cc62af';
 let oneSignalClient=null;
 
@@ -65,14 +65,15 @@ function showAccess(title,copy,label='Go to My Account',href='account.html'){
 function isEligible(view){if(view==='admin')return state.identity.isAdmin;return routes.includes(view)}
 function dashboardNavItems(){
   const unreadQuestions=(state.data?.inquiries||[]).filter(i=>!i.responded_at).length;
+  const openOrders=(state.data?.orders||[]).filter(o=>['new','change_proposed'].includes(o.status)).length;
+  const connectionsCount=unreadQuestions+openOrders;
   const unreadNotifications=(state.data?.notifications||[]).filter(n=>!n.is_read).length;
   const items=[
-    ['today','Today'],
-    ['orders','Orders'],
-    ['questions',`Questions${unreadQuestions?` (${unreadQuestions})`:''}`],
-    ['status','Store Details'],
-    ['listings','Listings & Services'],
+    ['today','Command Center'],
+    ['listings','My Listings'],
+    ['connections',`Local Connections${connectionsCount?` (${connectionsCount})`:''}`],
     ['notifications',`Notifications${unreadNotifications?` (${unreadNotifications})`:''}`],
+    ['status','Settings'],
     ['history','History'],
     ['kpis','KPIs']
   ];
@@ -89,7 +90,8 @@ function closeAccountMenu(){
 
 function updateSwitcher(){
   const el=$('dashboard-nav');
-  el.innerHTML=dashboardNavItems().map(([k,label,isAdmin])=>`<button type="button" class="${isAdmin?'tab-admin':''}" data-view="${k}" aria-pressed="${state.view===k}">${label}</button>`).join('');
+  el.innerHTML=dashboardNavItems().map(([k,label,isAdmin])=>`<button type="button" class="${isAdmin?'tab-admin':''}" data-view="${k}" aria-pressed="${state.view===k}">${label}</button>`).join('')
+    +'<a class="tab-link" href="business-request.html?service=general-business-service&ref=marketplace-seller-dashboard-nav">Business Freedom</a>';
   el.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>navigate(b.dataset.view));
 }
 
