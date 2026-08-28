@@ -48,8 +48,8 @@ button,input,select,textarea{font:inherit}button,a{-webkit-tap-highlight-color:t
 .dashboard-tabs button[aria-pressed="true"]:before{opacity:1}
 .dashboard-tabs button.tab-admin{color:var(--rrl-acid)}
 .dashboard-tabs button.tab-admin[aria-pressed="true"]{box-shadow:inset 0 -3px 0 var(--rrl-acid)}
-#dashboard-nav a.tab-link{flex:0 0 auto;align-self:center;margin-left:6px;padding:8px 14px;border:1px solid var(--rrl-maroon-hot);border-radius:4px;background:var(--rrl-maroon);color:#fff;font-weight:800;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;text-decoration:none;white-space:nowrap}
-#dashboard-nav a.tab-link:hover,#dashboard-nav a.tab-link:focus-visible{background:var(--rrl-maroon-hot)}
+.dashboard-tabs a.tab-link{position:relative;flex:0 0 auto;padding:16px 0;color:var(--rrl-muted);font-weight:800;font-size:.8rem;white-space:nowrap;text-transform:uppercase;letter-spacing:.05em;text-decoration:none}
+.dashboard-tabs a.tab-link:hover,.dashboard-tabs a.tab-link:focus-visible{color:var(--rrl-cream)}
 .connections-section .panel-header h3{font-size:1.1rem}
 .account-menu{position:relative;flex:0 0 auto}
 .account-trigger{padding:8px 12px;border:1px solid var(--rrl-line);border-radius:4px;background:transparent;color:var(--rrl-cream);font-weight:850;font-size:.86rem;cursor:pointer}
