@@ -53,7 +53,7 @@
     </section>
 
     <section id="create-profile" class="hidden" aria-labelledby="create-profile-title">
-      <section class="market-hero onboarding-hero" aria-labelledby="create-profile-title">
+      <section class="market-hero" aria-labelledby="create-profile-title">
         <div>
           <p class="eyebrow">Sell Local</p>
           <h1 id="create-profile-title">Set up your seller profile</h1>
@@ -131,24 +131,16 @@
 
     <div id="workspace" class="hidden">
       <section class="market-hero" aria-labelledby="welcome">
-        <div class="market-hero-grid">
+        <div>
           <div class="hero-message">
             <p class="eyebrow">This is responsible rebellion at work</p>
             <h1 id="welcome">Take your power back.<em>One choice at a time.</em></h1>
             <p>You are not stuck. You are not helpless. Put your business in front of people ready to <strong>buy local, hire local and keep local money local.</strong></p>
             <div id="status-strip"></div>
           </div>
-          <div class="town-map-panel">
-            <div id="seller-town-map" class="town-map" role="img" aria-label="A North Florida map with a small American town growing into a bright, prominent location marker">
-              <div class="town-map-kicker">North Florida · Small towns belong on the map</div>
-              <div class="town-glow" aria-hidden="true"></div>
-              <img class="town-pin" src="assets/brand/Rebel%20Ranch%20Local/interface/rrl-small-town-pin.webp" alt="A thriving small American town inside a location marker" width="487" height="520">
-              <div class="town-name">Small Town, USA<small>One town at a time.</small></div>
-            </div>
-            <div class="hero-manifesto">
-              <p>Our community.<br>Our families.<br>Our children.<br>Our money.</p>
-              <p>We protect all four by deciding what we support, what we invest in and what we do with opportunity.</p>
-            </div>
+          <div class="hero-manifesto">
+            <p>Our community.<br>Our families.<br>Our children.<br>Our money.</p>
+            <p>We protect all four by deciding what we support, what we invest in and what we do with opportunity.</p>
           </div>
         </div>
       </section>
