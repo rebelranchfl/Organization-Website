@@ -1,0 +1,14 @@
+{
+  "pipeline": "IMAGE_GENERATION",
+  "project_id": "RRA-2026-0001",
+  "generated_at": "2026-08-27",
+  "assets": [
+    {
+      "id": "water-55gal-layered-filter-v1",
+      "file": "water-55gal-layered-filter-v1.html",
+      "type": "generated-educational-visual",
+      "purpose": "Realistic 55-gallon layered filtration system teaching visual",
+      "status": "GENERATED"
+    }
+  ]
+}

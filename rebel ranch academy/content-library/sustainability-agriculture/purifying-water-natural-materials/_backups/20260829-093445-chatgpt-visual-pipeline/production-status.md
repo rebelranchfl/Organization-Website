@@ -1,8 +1,8 @@
 # RRA-2026-0001 — Visual Production Status
 
 **Stage:** VISUAL_PRODUCTION  
-**Progress:** Deliverable-based tracking; no arbitrary percentage
-**Cycle:** 06 — Personal ChatGPT image-production handoff
+**Progress:** 94%  
+**Cycle:** 05c — Browser-runtime regression exercise  
 **AI-Agent:** ChatGPT/GPT-5.6 Sol  
 **Session:** RRA Visual Production Agent
 
@@ -121,16 +121,9 @@ Exact GitHub-main destination files and fragments are present for every currentl
 
 The known missing-fragment defect is closed.
 
-## Current generated-image handoff
-
-- The damaged inline/base64 image has been replaced in the working change with a real `1024 × 1536` WebP file.
-- The generated artwork contains no baked-in labels; exact layer names and functions remain deterministic learner-page content.
-- Supabase records the asset as `READY_FOR_INTEGRATION`, not as deployed or verified.
-- The personal-ChatGPT operating contract is recorded in `ACADEMY-CHATGPT-IMAGE-PRODUCTION-STANDARD.md`.
-
 ## Remaining hard gate
 
-Final Product QA is **not PASS yet**. The new image has not yet passed GitHub deployment and exact deployed-route browser QA.
+Final Product QA is **not PASS yet**.
 
 The execution environment blocks normal URL/file navigation with `ERR_BLOCKED_BY_ADMINISTRATOR`. Because of that, this cycle could not honestly exercise the exact real-browser sequence:
 

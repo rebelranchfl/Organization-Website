@@ -170,10 +170,8 @@ jobs:
           const urls=[
             'https://rebelranchministries.org/water-learning-experience-final.html',
             'https://rebelranchministries.org/water-system-visual-preview.html',
-            'https://rebelranchministries.org/water-system-implementation-visuals.html',
-            'https://rebelranchministries.org/rebel%20ranch%20academy/content-library/sustainability-agriculture/purifying-water-natural-materials/visual-production/assets/generated/water-55gal-layered-filter-v1.html'
+            'https://rebelranchministries.org/water-system-implementation-visuals.html'
           ];
-          const imageUrl='https://rebelranchministries.org/rebel%20ranch%20academy/content-library/sustainability-agriculture/purifying-water-natural-materials/visual-production/assets/generated/water-55gal-layered-filter-v1.webp';
           const browser=await chromium.launch({headless:true});
           const failures=[];
           for(const viewport of [{name:'desktop',width:1440,height:1000},{name:'mobile',width:390,height:844}]){
@@ -187,20 +185,12 @@ jobs:
               if(!body)failures.push(`${viewport.name} ${url} empty body`);
               const broken=await page.locator('img').evaluateAll(imgs=>imgs.filter(i=>!i.complete||i.naturalWidth===0).map(i=>i.getAttribute('src')));
               if(broken.length)failures.push(`${viewport.name} ${url} broken images: ${broken.length}`);
-              for(const frame of page.frames()){
-                const frameBroken=await frame.locator('img').evaluateAll(imgs=>imgs.filter(i=>!i.complete||i.naturalWidth===0).map(i=>i.getAttribute('src'))).catch(()=>[]);
-                if(frameBroken.length)failures.push(`${viewport.name} ${url} nested-frame broken images: ${frameBroken.length}`);
-              }
               const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth+2);
               if(overflow)failures.push(`${viewport.name} ${url} horizontal overflow`);
             }
             if(consoleErrors.length)failures.push(`${viewport.name} console errors: ${consoleErrors.join(' | ')}`);
             await page.close();
           }
-          const assetResponse=await fetch(imageUrl);
-          if(!assetResponse.ok)failures.push(`direct image HTTP ${assetResponse.status}`);
-          if(!String(assetResponse.headers.get('content-type')||'').startsWith('image/'))failures.push('direct image has invalid content type');
-          if(Number(assetResponse.headers.get('content-length')||0)<10000)failures.push('direct image is unexpectedly small or empty');
           await browser.close();
           if(failures.length){console.error(failures.join('\n'));process.exit(1)}
           console.log('DEPLOYED_BROWSER_QA_PASS');
