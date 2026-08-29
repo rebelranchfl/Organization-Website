@@ -4,7 +4,7 @@ import {supabase} from './supabase-client.js';
 
 const $=id=>document.getElementById(id);
 const state={identity:null,data:null,adminData:null,view:'status',busy:false,orderFilter:{window:'24h'}};
-const routes=['today','status','listings','connections','notifications','history','kpis','admin'];
+const routes=['today','status','listings','orders','questions','notifications','history','kpis','admin'];
 const oneSignalAppId='3d048078-bf37-42ff-a1b7-3c1994cc62af';
 let oneSignalClient=null;
 
@@ -23,22 +23,6 @@ function connectOrderAlerts(userId){
       OneSignal.Notifications.addEventListener('permissionChange',update);
     }catch(error){console.error('OneSignal setup failed',error)}
   });
-}
-
-function updateHeaderAuthLinks(){
-  const joinLink=$('header-join-link');
-  if(!state.identity){
-    joinLink.textContent='Join the Rebellion';
-    joinLink.classList.remove('hidden');
-    return;
-  }
-  const sp=state.identity.sellerProfile;
-  if(sp&&sp.profile_status==='active'){
-    joinLink.classList.add('hidden');
-  }else{
-    joinLink.textContent=sp?'Application Status':'Join the Rebellion';
-    joinLink.classList.remove('hidden');
-  }
 }
 
 function message(text,error=false){
@@ -65,15 +49,14 @@ function showAccess(title,copy,label='Go to My Account',href='account.html'){
 function isEligible(view){if(view==='admin')return state.identity.isAdmin;return routes.includes(view)}
 function dashboardNavItems(){
   const unreadQuestions=(state.data?.inquiries||[]).filter(i=>!i.responded_at).length;
-  const openOrders=(state.data?.orders||[]).filter(o=>['new','change_proposed'].includes(o.status)).length;
-  const connectionsCount=unreadQuestions+openOrders;
   const unreadNotifications=(state.data?.notifications||[]).filter(n=>!n.is_read).length;
   const items=[
-    ['today','Command Center'],
-    ['listings','My Listings'],
-    ['connections',`Local Connections${connectionsCount?` (${connectionsCount})`:''}`],
+    ['today','Today'],
+    ['orders','Orders'],
+    ['questions',`Questions${unreadQuestions?` (${unreadQuestions})`:''}`],
+    ['status','Store Details'],
+    ['listings','Listings & Services'],
     ['notifications',`Notifications${unreadNotifications?` (${unreadNotifications})`:''}`],
-    ['status','Settings'],
     ['history','History'],
     ['kpis','KPIs']
   ];
@@ -90,8 +73,7 @@ function closeAccountMenu(){
 
 function updateSwitcher(){
   const el=$('dashboard-nav');
-  el.innerHTML=dashboardNavItems().map(([k,label,isAdmin])=>`<button type="button" class="${isAdmin?'tab-admin':''}" data-view="${k}" aria-pressed="${state.view===k}">${label}</button>`).join('')
-    +'<a class="tab-link" href="business-request.html?service=general-business-service&ref=marketplace-seller-dashboard-nav">Business Freedom</a>';
+  el.innerHTML=dashboardNavItems().map(([k,label,isAdmin])=>`<button type="button" class="${isAdmin?'tab-admin':''}" data-view="${k}" aria-pressed="${state.view===k}">${label}</button>`).join('');
   el.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>navigate(b.dataset.view));
 }
 
@@ -121,10 +103,7 @@ function render(){
   updateSwitcher();
   renderBanners();
   const statusEl=$('status-strip');
-  if(statusEl){
-    statusEl.innerHTML=statusStrip(state);
-    statusEl.querySelectorAll('[data-goto-view]').forEach(b=>b.onclick=()=>navigate(b.dataset.gotoView));
-  }
+  if(statusEl)statusEl.innerHTML=statusStrip(state);
 }
 
 async function withBusy(button,work){
@@ -673,7 +652,6 @@ function bindAccountStep(){
       const {error}=await supabase.auth.signInWithPassword({email:$('si-email').value.trim(),password:$('si-password').value});
       if(error)throw error;
       state.identity=await loadSellerIdentity();
-      updateHeaderAuthLinks();
       await afterSignedIn();
     });
   };
@@ -749,7 +727,6 @@ function bindOnboardingForm(){
       const {error}=await actions.createSellerProfile(state.identity,payload);
       if(error)throw error;
       state.identity=await loadSellerIdentity();
-      updateHeaderAuthLinks();
       state.data=await loadSellerWorkspace(state.identity);
       if(state.identity.isAdmin)state.adminData=await loadSellerAdminSummary();
       $('create-profile').classList.add('hidden');
@@ -769,7 +746,6 @@ $('enable-order-alerts').onclick=async()=>{
 };
 $('signout').onclick=async()=>{if(oneSignalClient)await oneSignalClient.logout();await actions.signOut();location.href='account.html'};
 $('header-feedback-btn').onclick=()=>$('feedback-dialog').showModal();
-document.querySelectorAll('.next-moves [data-goto-view]').forEach(b=>b.onclick=()=>navigate(b.dataset.gotoView));
 $('feedback-close').onclick=()=>$('feedback-dialog').close();
 $('feedback-cancel').onclick=()=>$('feedback-dialog').close();
 {
@@ -793,7 +769,6 @@ window.addEventListener('hashchange',()=>{
 async function init(){
   try{
     state.identity=await loadSellerIdentity();
-    updateHeaderAuthLinks();
     $('loading').classList.add('hidden');
     if(!state.identity){
       $('create-profile').classList.remove('hidden');

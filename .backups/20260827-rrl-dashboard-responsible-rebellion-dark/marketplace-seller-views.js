@@ -110,8 +110,7 @@ export function statusStrip(state){
   const live=sp.profile_status==='active'&&sp.public_slug;
   return `<div class="status-strip">
     <span class="status-badge ${tone}">${esc(stateLabel)}</span>
-    <button class="primary" type="button" data-goto-view="listings">Put Me on the Map</button>
-    ${live?`<a class="button" href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}" target="_blank" rel="noopener">View My Storefront ↗</a>`:''}
+    ${live?`<a class="button primary" href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}" target="_blank" rel="noopener">View My Public Listing ↗</a>${sp.has_unpublished_changes?`<a class="button" href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}&preview=1" target="_blank" rel="noopener">Preview Unpublished Changes ↗</a>`:''}`:''}
   </div>`;
 }
 
@@ -320,10 +319,12 @@ export function notifications(state){
   ${items.length?`<div class="list">${items.map(n=>`<article class="list-item ${n.is_read?'is-read':'is-unread'}"><span class="list-icon" aria-hidden="true">${icon(n.is_read?'check':'dot')}</span><details class="disclosure" ${n.is_read?'':'open'}><summary>${esc(n.title)}</summary><p>${esc(n.body||'')}</p><small>${new Date(n.created_at).toLocaleString()}</small>${n.is_read?'':`<div class="actions"><button data-mark-read="${n.id}">Mark read</button></div>`}</details></article>`).join('')}</div>`:empty('Nothing unread','Every notification has been marked read.')}`;
 }
 
-function questionsBody(state){
+export function questions(state){
   const items=[...state.data.inquiries].sort((a,b)=>(!!a.responded_at===!!b.responded_at?0:a.responded_at?1:-1));
-  if(!items.length)return empty('No questions yet','Buyer questions will appear here.');
-  return `<div class="list">${items.map(m=>`<article class="list-item ${m.is_read?'is-read':'is-unread'}"><span class="list-icon" aria-hidden="true">${icon(m.is_read?'check':'dot')}</span><details class="disclosure" ${m.responded_at?'':'open'}><summary><strong>${esc(m.sender_name)}</strong> <span class="tag" style="margin-left:6px">${m.sender_is_member?'Member':'Non-member'}</span> ${m.responded_at?`<span class="status-badge" style="margin-left:6px">Responded ${new Date(m.responded_at).toLocaleDateString()}</span>`:'<span class="status-badge review" style="margin-left:6px">Needs response</span>'}</summary><p>${esc(m.message)}</p>${m.sender_contact?`<p><strong>Contact:</strong> ${esc(m.sender_contact)}${contactActions(m.sender_contact)}</p>`:''}<small>${new Date(m.created_at).toLocaleString()}</small><div class="actions">${m.is_read?'':`<button data-mark-inquiry-read="${m.id}">Mark read</button>`}${m.responded_at?'':`<button class="primary" data-mark-inquiry-responded="${m.id}">Mark Responded</button>`}</div></details></article>`).join('')}</div>`;
+  if(!items.length)return `${heading('Questions','Buyer questions','Questions are kept separate from orders so your order inbox stays clear.')}${empty('No questions yet','Buyer questions will appear here.')}`;
+  const needsResponse=items.filter(m=>!m.responded_at).length;
+  return `${heading('Questions','Buyer questions',`${needsResponse} need${needsResponse===1?'s':''} a response`)}
+  <div class="list">${items.map(m=>`<article class="list-item ${m.is_read?'is-read':'is-unread'}"><span class="list-icon" aria-hidden="true">${icon(m.is_read?'check':'dot')}</span><details class="disclosure" ${m.responded_at?'':'open'}><summary><strong>${esc(m.sender_name)}</strong> <span class="tag" style="margin-left:6px">${m.sender_is_member?'Member':'Non-member'}</span> ${m.responded_at?`<span class="status-badge" style="margin-left:6px">Responded ${new Date(m.responded_at).toLocaleDateString()}</span>`:'<span class="status-badge review" style="margin-left:6px">Needs response</span>'}</summary><p>${esc(m.message)}</p>${m.sender_contact?`<p><strong>Contact:</strong> ${esc(m.sender_contact)}${contactActions(m.sender_contact)}</p>`:''}<small>${new Date(m.created_at).toLocaleString()}</small><div class="actions">${m.is_read?'':`<button data-mark-inquiry-read="${m.id}">Mark read</button>`}${m.responded_at?'':`<button class="primary" data-mark-inquiry-responded="${m.id}">Mark Responded</button>`}</div></details></article>`).join('')}</div>`;
 }
 
 const ORDER_ACTIONS={
@@ -364,7 +365,7 @@ function withinWindow(dateStr,days){
   return Date.now()-new Date(dateStr).getTime()<=days*86400000;
 }
 
-function ordersBody(state){
+export function orders(state){
   const f=state.data.fulfillment||{},allItems=state.data.orders||[];
   const win=state.orderFilter?.window||'24h';
   const days=ORDER_WINDOWS[win];
@@ -403,21 +404,7 @@ function ordersBody(state){
     </article>`;
   };
   const cards=items.length?`<div class="order-list">${items.map(orderCard).join('')}</div>`:empty(allItems.length?'No orders in this window':'No orders yet',allItems.length?'Try "All time" to see older orders.':'New structured orders and service requests will appear here — separate from buyer questions.');
-  return `${statsRow}${filterRow}<div>${cards}</div><div style="margin-top:18px">${settings}</div>`;
-}
-
-export function connections(state){
-  const openOrders=(state.data.orders||[]).filter(o=>['new','change_proposed'].includes(o.status)).length;
-  const needsResponse=(state.data.inquiries||[]).filter(i=>!i.responded_at).length;
-  return `${heading('Local Connections','Buyers, questions and orders — one inbox','No corporate maze. No buried relationship. Connect directly with the people buying local.')}
-  <section class="connections-section">
-    <div class="panel-header"><h3>Orders</h3>${openOrders?`<span class="status-badge review">${openOrders} open</span>`:''}</div>
-    ${ordersBody(state)}
-  </section>
-  <section class="connections-section" style="margin-top:32px">
-    <div class="panel-header"><h3>Questions</h3>${needsResponse?`<span class="status-badge review">${needsResponse} need${needsResponse===1?'s':''} response</span>`:''}</div>
-    ${questionsBody(state)}
-  </section>`;
+  return `${heading('Orders','Order inbox','Every item, quantity, fulfillment choice, buyer contact, and optional photo in one place.')}${statsRow}${filterRow}<div>${cards}</div><div style="margin-top:18px">${settings}</div>`;
 }
 
 const HISTORY_WINDOWS={'7d':7,'30d':30,'90d':90,all:null};
@@ -462,8 +449,8 @@ export function today(state){
   if(!merged.length)return `${heading('Today',"You're all caught up",'Nothing needs your attention right now.')}${empty('Nothing waiting','New orders and questions will show up here first, oldest first.')}`;
   return `${heading('Today','What needs you right now',`${merged.length} item${merged.length===1?'':'s'} waiting, oldest first.`)}
   <div class="list">${merged.map(item=>item.kind==='order'?
-    `<article class="list-item"><span class="list-icon" aria-hidden="true">${icon('receipt')}</span><div><h3>Order #${item.order_number} — ${esc(item.buyer_name)}</h3><p>${esc(label(item.status))} · ${new Date(item.created_at).toLocaleString()}</p></div><button data-goto-view="connections">Open in Local Connections</button></article>`
-    :`<article class="list-item"><span class="list-icon" aria-hidden="true">${icon('message')}</span><div><h3>Question from ${esc(item.sender_name)}</h3><p>${item.is_read?'Read':'Unread'}${item.responded_at?' · Responded':' · Needs response'} · ${new Date(item.created_at).toLocaleString()}</p></div><button data-goto-view="connections">Open in Local Connections</button></article>`
+    `<article class="list-item"><span class="list-icon" aria-hidden="true">${icon('receipt')}</span><div><h3>Order #${item.order_number} — ${esc(item.buyer_name)}</h3><p>${esc(label(item.status))} · ${new Date(item.created_at).toLocaleString()}</p></div><button data-goto-view="orders">Open in Orders</button></article>`
+    :`<article class="list-item"><span class="list-icon" aria-hidden="true">${icon('message')}</span><div><h3>Question from ${esc(item.sender_name)}</h3><p>${item.is_read?'Read':'Unread'}${item.responded_at?' · Responded':' · Needs response'} · ${new Date(item.created_at).toLocaleString()}</p></div><button data-goto-view="questions">Open in Questions</button></article>`
   ).join('')}</div>`;
 }
 
@@ -504,4 +491,4 @@ export function kpis(state){
   </section>`;
 }
 
-export const renderers={status,listings,connections,notifications,history,admin,today,kpis};
+export const renderers={status,listings,orders,questions,notifications,history,admin,today,kpis};
