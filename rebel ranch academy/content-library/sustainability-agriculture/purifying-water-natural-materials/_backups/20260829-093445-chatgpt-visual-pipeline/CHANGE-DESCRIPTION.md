@@ -12,5 +12,6 @@ Authorized scope:
 4. Make the Ops Dashboard distinguish waiting for ChatGPT image generation from a genuinely running GitHub integration job.
 5. Strengthen deployed browser QA so nested frames and dependent assets are tested.
 6. Keep RRA-2026-0001 in VISUAL_PRODUCTION and keep every other Academy project on its intentional owner hold.
+7. Make the existing live-route QA run automatically when Water or its stage dashboard changes, rather than only when the QA file itself changes.
 
 This change does not authorize Final Product Review, publishing, release, sale, public pricing, or work on another Academy project.
