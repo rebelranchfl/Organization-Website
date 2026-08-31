@@ -1,0 +1,26 @@
+{
+  "pipeline": "IMAGE_GENERATION",
+  "project_id": "RRA-2026-0001",
+  "generated_at": "2026-08-29",
+  "generator": "CHATGPT_BUILT_IN_IMAGE_GENERATION",
+  "generation_mode": "PERSONAL_CHATGPT_CONTROLLED_HANDOFF",
+  "assets": [
+    {
+      "id": "water-55gal-layered-filter-v1",
+      "file": "water-55gal-layered-filter-v1.webp",
+      "wrapper": "water-55gal-layered-filter-v1.html",
+      "type": "generated-educational-visual",
+      "purpose": "Realistic 55-gallon layered filtration system teaching visual",
+      "status": "GENERATED_AND_BINARY_VALIDATED",
+      "width": 1024,
+      "height": 1536,
+      "format": "webp",
+      "embedded_text": false,
+      "qa": {
+        "binary_valid": true,
+        "visual_inspection": "PASS_FOR_INTEGRATION",
+        "deployed_browser_qa": "PENDING"
+      }
+    }
+  ]
+}

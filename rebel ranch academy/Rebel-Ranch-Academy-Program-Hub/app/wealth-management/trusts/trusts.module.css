@@ -1,0 +1,294 @@
+/*
+  Reuses the tokens already defined in app/globals.css (--navy, --gold,
+  --cream, --paper, --ink, --muted, --line, etc.) and the site's existing
+  "important callout" treatment (the same border-left/background pattern
+  globals.css already uses for .challenge) instead of inventing new colors.
+  No pill-radius shapes on anything non-clickable, per the repo's
+  interactive-shape rule.
+*/
+
+.shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: clamp(32px, 5vw, 64px) clamp(20px, 5vw, 48px) 96px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--light-text-accent);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0 0 12px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(32px, 4.5vw, 48px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.lede {
+  max-width: 680px;
+  margin: 0 0 32px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 340px) 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--paper);
+}
+
+.panelHead {
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.panelHead h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.panelBody {
+  padding: 18px 20px 20px;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.field:last-child {
+  border-bottom: none;
+}
+
+.fieldLabel {
+  font-size: 13.5px;
+  color: var(--ink);
+}
+
+.toggle {
+  appearance: none;
+  position: relative;
+  width: 40px;
+  height: 22px;
+  border-radius: 20px;
+  background: var(--line);
+  cursor: pointer;
+  flex: none;
+  transition: background 0.15s ease;
+}
+
+.toggle:checked {
+  background: var(--gold);
+}
+
+.toggle::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--paper);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  transition: transform 0.15s ease;
+}
+
+.toggle:checked::before {
+  transform: translateX(18px);
+}
+
+.subCondition {
+  margin-top: 10px;
+  padding: 12px 14px;
+  border-left: 3px solid var(--gold);
+  background: var(--cream);
+  border-radius: 3px;
+}
+
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.radioOpt {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.radioOpt input {
+  margin-top: 3px;
+  accent-color: var(--gold);
+}
+
+.determinations {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.finding {
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--paper);
+}
+
+.findingFlag {
+  border-left: 4px solid var(--gold);
+  background: #eee5d3; /* same callout tone globals.css already uses for .challenge */
+}
+
+.findingTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.findingNum {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.findingTitle {
+  margin: 2px 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 19px;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+/* A small bordered tag, not a pill — this is a status label, not a button. */
+.statusTag {
+  flex: none;
+  padding: 4px 8px;
+  border: 1px solid var(--ink);
+  border-radius: 2px;
+  color: var(--ink);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.findingFlag .statusTag {
+  border-color: var(--gold-dark);
+  color: var(--gold-dark);
+}
+
+.findingReason {
+  margin: 8px 0 12px;
+  color: var(--muted);
+  font-size: 14.5px;
+  line-height: 1.65;
+}
+
+.findingReason em {
+  font-style: italic;
+  color: var(--ink);
+}
+
+.citeRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+}
+
+.citeLabel {
+  color: var(--muted);
+}
+
+.citeText {
+  color: var(--gold-dark);
+}
+
+.verifyStatus {
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.note {
+  margin-bottom: 24px;
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--paper);
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.note strong {
+  color: var(--ink);
+}
+
+/* Locked / paywall state */
+.locked {
+  display: grid;
+  place-items: center;
+  min-height: 420px;
+  padding: 48px 24px;
+  border: 1px solid var(--gold);
+  border-radius: 5px;
+  background: linear-gradient(135deg, #1b2638, var(--navy));
+  color: #fff;
+  text-align: center;
+}
+
+.locked h2 {
+  margin: 0 0 12px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.locked p {
+  max-width: 480px;
+  margin: 0 auto 24px;
+  color: var(--silver);
+  font-size: 15px;
+  line-height: 1.7;
+}

@@ -12,6 +12,41 @@ interface Env {
       };
     };
   };
+  // Set via `wrangler secret put WEALTH_MANAGEMENT_PREVIEW_PASSWORD` (or the
+  // Cloudflare dashboard's Worker secrets UI) — never hardcode this value in
+  // source. Requests to /wealth-management* are refused entirely until this
+  // is set and the visitor supplies it.
+  WEALTH_MANAGEMENT_PREVIEW_PASSWORD?: string;
+}
+
+const WEALTH_MANAGEMENT_PATH = "/wealth-management";
+const PREVIEW_REALM = 'Basic realm="Rebel Ranch Academy — Wealth Management preview", charset="UTF-8"';
+
+function unauthorized(): Response {
+  return new Response("Authentication required.", {
+    status: 401,
+    headers: { "WWW-Authenticate": PREVIEW_REALM },
+  });
+}
+
+// HTTP Basic Auth check, enforced at the Worker — before Next.js routing,
+// before any React rendering, before a single byte of the page's HTML is
+// produced. Fails closed: if the secret was never configured, nobody gets
+// in, including the owner, until it's set.
+function hasValidPreviewPassword(request: Request, expectedPassword: string | undefined): boolean {
+  if (!expectedPassword) return false;
+  const header = request.headers.get("Authorization");
+  if (!header || !header.startsWith("Basic ")) return false;
+  let decoded: string;
+  try {
+    decoded = atob(header.slice("Basic ".length));
+  } catch {
+    return false;
+  }
+  const separatorIndex = decoded.indexOf(":");
+  if (separatorIndex === -1) return false;
+  const suppliedPassword = decoded.slice(separatorIndex + 1);
+  return suppliedPassword === expectedPassword;
 }
 
 interface ExecutionContext {
@@ -28,6 +63,12 @@ interface ExecutionContext {
 const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+
+    if (url.pathname === WEALTH_MANAGEMENT_PATH || url.pathname.startsWith(WEALTH_MANAGEMENT_PATH + "/")) {
+      if (!hasValidPreviewPassword(request, env.WEALTH_MANAGEMENT_PREVIEW_PASSWORD)) {
+        return unauthorized();
+      }
+    }
 
     if (url.pathname === "/_vinext/image") {
       const allowedWidths = [...DEFAULT_DEVICE_SIZES, ...DEFAULT_IMAGE_SIZES];

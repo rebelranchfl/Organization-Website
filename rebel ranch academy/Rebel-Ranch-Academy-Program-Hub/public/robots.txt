@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /wealth-management/
 
 Sitemap: https://academy.rebelranchministries.org/sitemap.xml

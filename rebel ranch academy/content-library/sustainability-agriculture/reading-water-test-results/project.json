@@ -1,0 +1,88 @@
+{
+  "project_id": "RRA-2026-0008",
+  "working_title": "Reading Water Test Results Without the Confusion",
+  "slug": "reading-water-test-results",
+  "learning_area": "sustainability-agriculture",
+  "named_program": null,
+  "created_at": "2026-08-23T11:15:00-04:00",
+  "created_by": "RRA Opportunity Intelligence / Research Agent",
+  "current_status": "READY_FOR_REVIEW",
+  "workflow_stage": "RESEARCH_REVIEW",
+  "revision_number": 1,
+  "source_opportunity": {
+    "opportunity_id": "d6d75b0d-a054-41b8-8e3b-462b523ec126",
+    "opportunity_key": "water-results-interpretation",
+    "parent_project_id": "RRA-2026-0001",
+    "opportunity_score": 86,
+    "score_confidence": "MEDIUM",
+    "recommendation": "PURSUE_NOW"
+  },
+  "owner_input": {
+    "idea": "Opportunity Intelligence spin-off: turn a laboratory or screening report into understandable next questions and treatment jobs without turning one number into a complete diagnosis.",
+    "owner_notes": "Preserve Water Through the Layers at Product Design. Do not reopen the approved Water research foundation unless Product Design routes a specific evidence gap back.",
+    "requested_audience": [],
+    "requested_angle": "Evidence-first measurement literacy: read the analyte, result, units, qualifier, method sensitivity, benchmark type, sample context and decision consequence before prescribing a product.",
+    "requested_sources": [],
+    "excluded_sources": []
+  },
+  "context_review": {
+    "status": "COMPLETE",
+    "completed_at": "2026-08-23T11:15:00-04:00",
+    "documents_reviewed": [
+      "AGENTS.md",
+      "docs/rebel-ranch-ecosystem-charter.md",
+      "docs/non-negotiables.md",
+      "rebel ranch academy/REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md",
+      "rebel ranch academy/Rebel-Ranch-Academy-Program-Hub/README.md",
+      "rebel ranch academy/ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md",
+      "rebel ranch academy/ACADEMY-CONTENT-PROJECT-SCHEMA.md",
+      "rebel ranch academy/ACADEMY-REVISION-PRESERVATION-STANDARD.md",
+      "rebel ranch academy/ACADEMY-SOURCE-REVIEW-POLICY.md",
+      "rebel ranch academy/ACADEMY-PRODUCT-PHASE-WORKFLOW-EXTENSION.md",
+      "rebel ranch academy/ACADEMY-THINK-LIKE-A-REBEL-FRAMEWORK.md",
+      "rebel ranch academy/ACADEMY-RESPONSIBLE-REBELLION-EVIDENCE-FIRST-STANDARD.md",
+      "rebel ranch academy/ACADEMY-LATE-FINDING-CONTROL-STANDARD.md"
+    ],
+    "websites_reviewed": [
+      "https://rebelranchministries.org",
+      "https://academy.rebelranchministries.org (crawler fetch failed; current Program Hub GitHub source reviewed as durable source of truth)"
+    ],
+    "audiences_identified": [
+      "private-well households",
+      "rural families and homeowners",
+      "homesteaders",
+      "parents and homeschool families",
+      "learners comparing water-treatment decisions"
+    ],
+    "learning_area_reason": "Interpreting water-quality evidence is a practical water/resource-management skill supporting household wells, homesteads, treatment decisions and resilient systems.",
+    "conflicts_found": []
+  },
+  "research": {
+    "status": "COMPLETE",
+    "started_at": "2026-08-23T11:15:00-04:00",
+    "completed_at": "2026-08-23T11:20:00-04:00",
+    "source_count": 14,
+    "primary_or_direct_source_count": 14,
+    "conflicts_found": [
+      "Public-water MCLs and action levels are useful evidence/reference points but do not make a private household well federally regulated under the Safe Drinking Water Act.",
+      "MCL, MCLG, action-level/treatment-technique and secondary/aesthetic values answer different questions and must not be flattened into one safe/unsafe number.",
+      "A non-detect does not prove absolute zero; interpretation depends on the method/reporting/detection limit supplied by the laboratory."
+    ],
+    "unresolved_questions": [
+      "Product-stage market/comparable research for report interpreters, calculators and existing consumer tools",
+      "Product-stage analyte-specific expansion if an automated results interpreter is proposed",
+      "Product-stage current-threshold refresh plan so worked examples do not become stale",
+      "Product-stage interaction design for lab qualifiers and raw-versus-post-treatment sample points"
+    ],
+    "sources_file": "sources.md",
+    "research_file": "research.md"
+  },
+  "concept": {"status":"NOT_STARTED","learning_outcome":null,"central_question":null,"major_principles":[],"historical_or_lost_knowledge_angle":null,"current_use_angle":null,"transfer_the_principle_summary":null,"proposed_format":null,"activity_types":[],"visual_needs":[]},
+  "content": {"status":"NOT_STARTED","master_content_file":"master-content.md"},
+  "materials": {"status":"NOT_STARTED","material_types":[],"files":[],"preview_files":[]},
+  "pricing": {"status":"NOT_STARTED","proposed_price":null,"currency":"USD","role":null,"reasoning_file":"pricing.md","owner_approved_price":null},
+  "qa": {"status":"COMPLETE","completed_at":"2026-08-23T11:24:00-04:00","qa_file":"qa-review.md","blockers":[]},
+  "owner_review": {"status":"PENDING","latest_decision":null,"latest_comment":null,"reviewed_at":null,"review_history_file":"owner-review.md","source_decisions_complete":false},
+  "release": {"status":"NOT_STARTED","approved_at":null,"published_at":null,"destination":null,"live_url":null,"release_files":[],"release_notes":null},
+  "agent": {"active_agent":null,"last_agent":"RRA Research/Content Agent","session_title":"RRA Content Agent","last_updated_at":"2026-08-23T11:24:00-04:00"}
+}

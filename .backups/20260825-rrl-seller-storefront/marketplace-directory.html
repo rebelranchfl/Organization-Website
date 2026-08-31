@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Search the Rebel Ranch Marketplace directory — real local sellers, by name, product, category, or location.">
+  <title>Marketplace Directory | Rebel Ranch Ministries</title>
+  <link rel="icon" type="image/png" href="assets/brand/rrm-logo-black.png">
+  <link rel="stylesheet" href="assets/css/public-surface.css">
+  <link rel="stylesheet" href="assets/css/marketplace-directory.css">
+  <script src="assets/js/public-shell.js" defer></script>
+</head>
+<body class="rrm-public-rules">
+<div class="rr-page">
+<main>
+
+  <section class="hero">
+    <p class="eyebrow">Rebel Ranch Marketplace</p>
+    <h1>Find a Real Local Seller</h1>
+    <p class="lead">Search by business name, what they sell, category, or location. Every seller here is a real neighbor, reviewed by Rebel Ranch Ministries before they're listed — contact them directly, payment and pickup happen between you and them.</p>
+  </section>
+
+  <section id="directory-results-section">
+    <div class="directory-controls">
+      <input type="search" id="directory-search" placeholder="Search sellers, products, services…" aria-label="Search sellers">
+      <select id="directory-category" aria-label="Filter by category"><option value="">All categories</option></select>
+      <select id="directory-region" aria-label="Filter by location"><option value="">All locations</option></select>
+    </div>
+    <p class="directory-result-count" id="directory-result-count"></p>
+    <div id="directory-grid" class="grid"></div>
+  </section>
+
+</main>
+</div>
+
+<script type="module" src="assets/js/marketplace-directory-search.js"></script>
+</body>
+</html>

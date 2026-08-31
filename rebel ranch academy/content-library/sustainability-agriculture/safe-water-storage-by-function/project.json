@@ -1,0 +1,124 @@
+{
+  "project_id": "RRA-2026-0004",
+  "working_title": "Containers Are Containers — Safe Storage by Function",
+  "slug": "safe-water-storage-by-function",
+  "learning_area": "sustainability-agriculture",
+  "named_program": null,
+  "created_at": "2026-08-22T14:58:58-04:00",
+  "created_by": "RRA Opportunity Intelligence / Research Agent",
+  "current_status": "READY_FOR_REVIEW",
+  "workflow_stage": "PRODUCT_REVIEW",
+  "revision_number": 1,
+  "source_opportunity": {
+    "opportunity_id": "f622f7de-38a4-4443-84b8-4ff8e37fba26",
+    "opportunity_key": "safe-water-storage",
+    "parent_project_id": "RRA-2026-0001",
+    "opportunity_score": 89,
+    "score_confidence": "MEDIUM",
+    "recommendation": "PURSUE_NOW"
+  },
+  "owner_input": {
+    "idea": "Opportunity Intelligence spin-off: teach safe water storage by function so learners can distinguish drinking-water storage, livestock storage and agricultural/non-potable uses without treating every container as equivalent.",
+    "owner_notes": "Spawn strong Water opportunities into normal Academy research when sufficiently defined and not blocked by an owner gate.",
+    "requested_audience": [],
+    "requested_angle": "Function before form; use what you have only after suitability is checked; safe storage prevents recontamination; teach why intended use changes the standard.",
+    "requested_sources": [],
+    "excluded_sources": []
+  },
+  "context_review": {
+    "status": "COMPLETE",
+    "completed_at": "2026-08-22T14:58:58-04:00",
+    "documents_reviewed": ["AGENTS.md", "docs/rebel-ranch-ecosystem-charter.md", "docs/non-negotiables.md", "REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md", "Program Hub README.md", "ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md", "ACADEMY-CONTENT-PROJECT-SCHEMA.md", "ACADEMY-REVISION-PRESERVATION-STANDARD.md", "ACADEMY-SOURCE-REVIEW-POLICY.md", "ACADEMY-PRODUCT-PHASE-WORKFLOW-EXTENSION.md", "ACADEMY-THINK-LIKE-A-REBEL-FRAMEWORK.md", "ACADEMY-RESPONSIBLE-REBELLION-EVIDENCE-FIRST-STANDARD.md", "ACADEMY-LATE-FINDING-CONTROL-STANDARD.md"],
+    "websites_reviewed": ["https://rebelranchministries.org (live fetch attempted; cache unavailable)", "https://academy.rebelranchministries.org (live fetch attempted; crawler unavailable; current GitHub hub source reviewed)"],
+    "audiences_identified": ["rural households", "homesteaders", "families building emergency water reserves", "livestock keepers", "small growers", "homeschool families"],
+    "learning_area_reason": "Storage is a core water-system function connecting household safety, resilience, agriculture and practical resource management.",
+    "conflicts_found": []
+  },
+  "research": {
+    "status": "COMPLETE",
+    "started_at": "2026-08-22T14:58:58-04:00",
+    "completed_at": "2026-08-22T14:58:58-04:00",
+    "source_count": 10,
+    "primary_or_direct_source_count": 7,
+    "conflicts_found": ["Storage guidance differs by intended use. Potable household storage requires stronger contamination controls than many livestock or irrigation uses; the project therefore rejects a one-standard-fits-all container rule."],
+    "unresolved_questions": ["species-specific livestock thresholds beyond general clean/fresh-water guidance", "crop-specific agricultural-water requirements for particular commodities and postharvest uses", "material-specific long-term migration performance for every reused container type"],
+    "sources_file": "sources.md",
+    "research_file": "research.md"
+  },
+  "product_design": {
+    "status": "COMPLETE",
+    "product_opportunity_research_file": "product-opportunity-research.md",
+    "scorecard_file": "product-recommendation-scorecard.md",
+    "functional_decomposition_file": "functional-decomposition.md",
+    "interactive_scenario_file": "interactive-scenario-map.md",
+    "architecture_file": "product-architecture.md",
+    "manuscript_file": "product-manuscript.md",
+    "integrated_learner_flow_file": "integrated-learner-flow.md",
+    "implementation_tools_file": "implementation/storage-system-tools-spec.md",
+    "learner_signal_plan_file": "learner-signal-plan.md",
+    "preservation_check_file": "product-preservation-check.md",
+    "visual_brief_file": "visual-production-brief.md",
+    "pricing_packaging_file": "product-pricing-packaging.md",
+    "qa_file": "product-qa.md"
+  },
+  "concept": {
+    "status": "COMPLETE",
+    "learning_outcome": "Inspect existing containers, match them to one or more real water-storage jobs, calculate capacity/weight/redundancy, correct failure points and build a living multi-use storage plan.",
+    "central_question": "What can this specific container responsibly do in my actual water system?",
+    "major_principles": ["Function before form", "Requirements follow the job", "Use what you have after suitability is checked", "Storage is an operating system", "Testing verifies the decision that actually needs verification"],
+    "historical_or_lost_knowledge_angle": "Compare durable storage functions across historical/global vessel forms without assuming old or modern automatically means safe/better.",
+    "current_use_angle": "Household, emergency, homestead, livestock, irrigation and produce-contact branches.",
+    "transfer_the_principle_summary": "Define the job and failure consequence first, then decide whether the available form is suitable.",
+    "proposed_format": "Free quick-check plus paid interactive multi-use planning system with printable/offline personalized result.",
+    "activity_types": ["real-container audit", "capacity/weight planning", "failure-mode exercise", "maintenance planning"],
+    "visual_needs": ["container lineup", "history decision visual", "container anatomy cutaway", "dispensing contamination comparison", "multi-use branch map", "capacity-weight-redundancy comparison", "maintenance loop", "personalized system map"]
+  },
+  "content": {
+    "status": "COMPLETE",
+    "master_content_file": "master-content.md",
+    "product_manuscript_file": "product-manuscript.md"
+  },
+  "materials": {
+    "status": "DESIGNED_NOT_RENDERED",
+    "material_types": ["interactive selector", "container inventory", "capacity/weight planner", "branch map", "container anatomy visual", "maintenance planner", "failure-mode activity", "personalized storage plan"],
+    "files": ["implementation/storage-system-tools-spec.md"],
+    "preview_files": []
+  },
+  "pricing": {
+    "status": "PROPOSED_NOT_PUBLIC",
+    "proposed_price": 29,
+    "currency": "USD",
+    "role": "Free quick-check + paid interactive core",
+    "reasoning_file": "product-pricing-packaging.md",
+    "owner_approved_price": null
+  },
+  "qa": {
+    "status": "COMPLETE",
+    "completed_at": "2026-08-22T17:20:00-04:00",
+    "qa_file": "product-qa.md",
+    "blockers": []
+  },
+  "owner_review": {
+    "status": "PENDING_PRODUCT_REVIEW",
+    "latest_decision": null,
+    "latest_comment": null,
+    "reviewed_at": null,
+    "review_history_file": "owner-review.md",
+    "source_decisions_complete": false
+  },
+  "release": {
+    "status": "NOT_STARTED",
+    "approved_at": null,
+    "published_at": null,
+    "destination": null,
+    "live_url": null,
+    "release_files": [],
+    "release_notes": null
+  },
+  "agent": {
+    "active_agent": null,
+    "last_agent": "RRA Product Design Agent — ChatGPT/GPT-5.6 Sol",
+    "session_title": "RRA Product Design Agent",
+    "last_updated_at": "2026-08-22T17:20:00-04:00"
+  }
+}

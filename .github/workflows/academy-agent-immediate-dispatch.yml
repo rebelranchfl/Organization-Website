@@ -1,0 +1,18 @@
+name: Academy Agent Immediate Dispatch (Retired)
+
+# Retired 2026-08-27. The old polling dispatcher was not actually tied to the owner button
+# and could leave PENDING requests sitting indefinitely. Direct dispatch now occurs through
+# the authenticated Supabase Edge Function academy-agent-dispatch, which calls the Water
+# runner workflow immediately when (and only when) the GitHub dispatch credential exists.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  retired:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Retired. Use academy-agent-dispatch -> academy-agent-runner.yml."

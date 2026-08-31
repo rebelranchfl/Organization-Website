@@ -1,0 +1,115 @@
+/* Academy owner usability layer — owner-only Operations Review + Stage Review */
+
+body.orv3,
+body:has(.asr-shell){font-size:15px}
+
+/* Stronger hierarchy and readable working width */
+body.orv3>main{padding-left:24px;padding-right:24px}
+body.orv3 #content>.panel:nth-child(2){padding:20px}
+body.orv3 .queue-grid{grid-template-columns:minmax(260px,330px) minmax(0,1fr);gap:18px}
+body.orv3 .queue-item{padding:15px}
+body.orv3 .queue-title{font-size:.92rem;line-height:1.35}
+body.orv3 .queue-meta{font-size:.76rem;line-height:1.4}
+body.orv3 .status{font-size:.72rem}
+body.orv3 .orv3-card{padding:16px}
+body.orv3 .orv3-card-head h3{font-size:.96rem}
+body.orv3 .orv3-project-title,
+body.orv3 .orv3-attention-row strong{font-size:.82rem}
+body.orv3 .orv3-project-meta,
+body.orv3 .orv3-attention-row small,
+body.orv3 .orv3-activity-row{font-size:.73rem}
+
+/* Operations sidebar: primary navigation strong, reference lists quieter. */
+body.orv3 .orv3-nav button,
+body.orv3 .orv3-nav a{min-height:40px;font-size:.88rem}
+body.orv3 .orv3-nav-static{font-size:.76rem;color:#879889}
+body.orv3 .aou-sidebar-details{margin-top:8px;border-top:1px solid #1f3827;padding-top:8px}
+body.orv3 .aou-sidebar-details>summary{cursor:pointer;padding:7px 8px;color:#7dc95d;font-size:.68rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;list-style:none}
+body.orv3 .aou-sidebar-details>summary::-webkit-details-marker{display:none}
+body.orv3 .aou-sidebar-details>summary::before{content:'›';display:inline-block;margin-right:7px;transition:transform .15s ease}
+body.orv3 .aou-sidebar-details[open]>summary::before{transform:rotate(90deg)}
+body.orv3 .aou-sidebar-details .orv3-nav-group{margin-top:4px}
+body.orv3 .aou-sidebar-details .orv3-nav-title{display:none}
+
+/* Shared collapsible secondary controls */
+.aou-collapsible{margin:12px 0;border:1px solid #31513a;border-radius:9px;background:#091b10;overflow:hidden}
+.aou-collapsible>summary{cursor:pointer;padding:12px 14px;color:#dbe5dc;font-weight:900;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.aou-collapsible>summary::-webkit-details-marker{display:none}
+.aou-collapsible>summary::after{content:'Open';color:#8fc2ff;font-size:.72rem;font-weight:800}
+.aou-collapsible[open]>summary::after{content:'Close'}
+.aou-collapsible>#academy-late-findings{margin:0;border:0;border-top:1px solid #31513a;border-radius:0}
+.aou-collapsible .alf{margin-top:0}
+
+/* Dedicated Stage Review: make the current owner job dominant. */
+body:has(.asr-shell){background:#06100a}
+.asr-shell{width:min(1420px,96vw);padding-top:18px}
+.asr-topbar{position:sticky;top:0;z-index:80;padding:12px 0;background:rgba(6,16,10,.97);backdrop-filter:blur(8px)}
+.asr-topbar h1{font-size:clamp(1.8rem,3vw,2.65rem)}
+.asr-topbar p:last-child{font-size:.86rem}
+.asr-stage-strip{position:sticky;top:78px;z-index:65;padding:8px 0 10px;background:#06100a;grid-template-columns:repeat(11,172px)}
+.asr-stage{min-height:72px;padding:11px}
+.asr-stage .name{font-size:.82rem;line-height:1.25}
+.asr-stage .state{font-size:.7rem}
+.asr-status{margin-top:14px;padding:17px 18px;border-radius:8px}
+.asr-status.owner{box-shadow:0 0 0 1px rgba(224,164,73,.18),0 12px 28px rgba(0,0,0,.22)}
+.asr-status h3{font-size:1rem}
+.asr-status p{font-size:.86rem;line-height:1.5}
+.asr-status .next{font-size:.82rem;line-height:1.45}
+.asr-page{padding:24px}
+.asr-page-head h3{font-size:1.65rem}
+.asr-page-head p{font-size:.88rem}
+.asr-summary-grid{gap:12px;margin-top:16px}
+.asr-summary{padding:15px}
+.asr-summary strong{font-size:.72rem}
+.asr-summary span{font-size:.88rem;line-height:1.5}
+.asr-section{margin-top:18px}
+.asr-section h4{font-size:1rem}
+.asr-history-row{padding:12px 13px}
+.asr-history-row p{font-size:.82rem;line-height:1.45}
+.asr-review{padding:20px;margin-top:18px}
+.asr-review h4{font-size:1.08rem}
+.asr-review .asr-note{font-size:.82rem}
+.asr-review-actions button{min-height:44px;padding:10px 15px}
+
+/* Owner research review becomes the primary content surface. */
+#asr-owner-research-review{margin-top:18px!important;border-color:#52705a!important;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+#asr-owner-research-review>h4{font-size:1.15rem!important;color:#f2d38b}
+#asr-owner-research-review .orr-intro{font-size:.9rem!important;max-width:920px}
+#asr-owner-research-review .orr-tabs button{min-height:42px;padding:9px 14px!important;font-size:.82rem}
+#asr-owner-research-review .orr-reader{font-size:.9rem;line-height:1.68}
+#asr-owner-research-review .orr-reader p{max-width:1000px}
+#asr-owner-research-review .orr-line{font-size:13px;line-height:1.55}
+
+/* Quick-jump navigation stays close to the current task. */
+.aou-jumpbar{display:flex;flex-wrap:wrap;gap:8px;margin:15px 0 4px;padding:10px;border:1px solid #2e5238;border-radius:8px;background:#0a1d11}
+.aou-jumpbar strong{display:flex;align-items:center;margin-right:4px;color:#f2d38b;font-size:.74rem;text-transform:uppercase;letter-spacing:.05em}
+.aou-jumpbar button{min-height:36px;padding:7px 10px;border:1px solid #3f6849;border-radius:6px;background:#12301c;color:#edf2e9;font:inherit;font-size:.76rem;font-weight:850;cursor:pointer}
+.aou-jumpbar button:hover{border-color:#75a87d;background:#193b23}
+.aou-jumpbar button.primary-jump{border-color:#c28c37;background:#4f3816;color:#fff3d1}
+
+/* Current action shortcut */
+.aou-action-shortcut{margin-top:10px;padding:8px 11px;border:1px solid #b98432;border-radius:6px;background:#4b3515;color:#fff2cf;font:inherit;font-size:.78rem;font-weight:900;cursor:pointer}
+
+/* Advanced/raw records should look secondary, not like the product being reviewed. */
+.asr-advanced-records,
+.rr-advanced-records{opacity:.92}
+.asr-advanced-records>summary,
+.rr-advanced-records>summary{font-size:.82rem;color:#aebcaf!important}
+.asr-advanced-records[open],
+.rr-advanced-records[open]{opacity:1}
+
+/* Focused owner decision area */
+.aou-owner-focus{outline:2px solid rgba(224,164,73,.7);outline-offset:4px;transition:outline-color .4s ease}
+
+@media(max-width:1000px){
+  body.orv3 .queue-grid{grid-template-columns:1fr}
+  .asr-stage-strip{top:72px}
+}
+@media(max-width:760px){
+  body.orv3>main{padding-left:12px;padding-right:12px}
+  .asr-shell{width:min(96vw,900px)}
+  .asr-topbar{position:static}
+  .asr-stage-strip{position:static;grid-template-columns:repeat(11,150px)}
+  .asr-page{padding:16px}
+  .aou-jumpbar{position:sticky;top:0;z-index:55}
+}

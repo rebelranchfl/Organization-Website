@@ -1,0 +1,439 @@
+.backups/2026-08-22-social-content-hub-v1-supabase/20260822193500_social_content_hub_v1.sql.bak
+.backups/2026-08-22-social-content-hub-v1-supabase/CHANGE-DESCRIPTION.md
+.backups/2026-08-22-social-content-hub-v1-supabase/public-shell.js.bak
+.backups/2026-08-24-rrl10-asset-fix/CHANGE-DESCRIPTION.md
+.backups/2026-08-24-rrl10-asset-fix/RRL-10-how-sellers-join.jpg.bak
+.backups/20260822-1457-ET-water-rebuild-product-approval/INTENDED-CHANGES.md
+.backups/20260822-1457-ET-water-rebuild-product-approval/owner-product-review.md
+.backups/20260822-1457-ET-water-rebuild-product-approval/visual-production-brief.md
+.backups/20260822-1457-ET-water-rebuild-product-approval/visual-production-handoff.md
+.backups/20260822-academy-owner-usability/INTENDED-CHANGES.md
+.backups/20260822-academy-owner-usability/NOTE.md
+.backups/20260822-academy-owner-usability/README.md
+.backups/20260822-academy-owner-usability/supabase-client.js
+.backups/20260822-disabled-runner-documentation/ACADEMY-MANUAL-AGENT-RUNNER.md
+.backups/20260822-disabled-runner-documentation/INTENDED-CHANGES.md
+.backups/20260822-owner-action-queue/INTENDED-CHANGES.md
+.backups/20260822-owner-action-queue/academy-owner-usability.js
+.backups/20260822-owner-action-queue/operations-review-final-product-acceptance.js
+.backups/20260822-owner-action-queue/supabase-client.js
+.backups/20260822-research-review-owner-experience/INTENDED-CHANGES.md
+.backups/20260822-research-review-owner-experience/operations-review-enhancements.js
+.backups/20260822-rra-2026-0004-safe-water-storage/INTENDED-CHANGES.md
+.backups/20260822-rra-content-agent-approval-handoffs/INTENDED-CHANGES.md
+.backups/20260822-stage-review-owner-experience/INTENDED-CHANGES.md
+.backups/20260822-stage-review-owner-experience/academy-stage-review.html
+.backups/20260822-supabase-session-lock-recovery/CHANGE.md
+.backups/20260822-supabase-session-lock-recovery/supabase-client.js
+.backups/20260823-operations-dashboard-cache-bust/CHANGE-DESCRIPTION.md
+.backups/20260823-operations-dashboard-cache-bust/COMPLETE
+.backups/20260823-operations-dashboard-cache-bust/NOTE.txt
+.backups/20260823-operations-dashboard-cache-bust/README.md
+.backups/20260823-operations-dashboard-cache-bust/supabase-client.js
+.backups/20260823-operations-entrypoint-cache/CHANGE-DESCRIPTION.md
+.backups/20260823-operations-overview-loader/CHANGE-DESCRIPTION.md
+.backups/20260823-operations-overview-loader/operations-review-dashboard-v3.js
+.backups/20260823-operations-v3-recovery/supabase-client.js
+.backups/20260823-rra-2026-0005-automatic-chicken-watering/CHANGE-DESCRIPTION.md
+.backups/20260824-0936-rebel-ranch-local-real-springs-hero/CHANGE-DESCRIPTION.md
+.backups/20260824-0936-rebel-ranch-local-real-springs-hero/assets/css/rebel-ranch-local.css
+.backups/20260824-rebel-ranch-local-approved-concept/CHANGE-DESCRIPTION.md
+.backups/20260824-rebel-ranch-local-approved-concept/marketplace.html
+.backups/20260824-rebel-ranch-local-approved-concept/rebel-ranch-local.css
+.backups/20260824-rebel-ranch-local-ui-v1/CHANGE-DESCRIPTION.md
+.backups/20260824-rebel-ranch-local-ui-v1/marketplace.html
+.backups/20260824-rrl-category-images-icons-logo/CHANGE-DESCRIPTION.md
+.backups/20260824-rrl-category-images-icons-logo/marketplace.html
+.backups/20260824-rrl-category-images-icons-logo/rebel-ranch-local-emblem.png
+.backups/20260824-rrl-category-images-icons-logo/rebel-ranch-local-home.js
+.backups/20260824-rrl-category-images-icons-logo/rebel-ranch-local.css
+.backups/20260824-rrl-concept-replication/CHANGE-DESCRIPTION.md
+.backups/20260824-rrl-concept-replication/marketplace.html
+.backups/20260824-rrl-concept-replication/rebel-ranch-local-home.js
+.backups/20260824-rrl-concept-replication/rebel-ranch-local.css
+.backups/20260824-rrl-concept-replication/rrl-community-religious-rejected.webp
+.backups/20260824-rrl-literal-approved-ui/marketplace.html
+.backups/20260824-rrl-literal-approved-ui/rebel-ranch-local.css
+.backups/20260825-business-freedom-interactive/README.md
+.backups/20260825-business-freedom-interactive/business-fixes.pre-interactive.html
+.backups/20260825-creation-home-cleanup/CHANGE-DESCRIPTION.md
+.backups/20260825-creation-home-cleanup/creation.html
+.backups/20260825-creation-station-docs-cleanup/ADDENDUM-site-navigation.md
+.backups/20260825-creation-station-docs-cleanup/CHANGE-DESCRIPTION.md
+.backups/20260825-creation-station-docs-cleanup/assets/js/site-navigation.js
+.backups/20260825-creation-station-docs-cleanup/creation-station-experience.html
+.backups/20260825-creation-station-docs-cleanup/creation-station-live-classes.html
+.backups/20260825-creation-station-docs-cleanup/creation-station-membership.html
+.backups/20260825-creation-station-docs-cleanup/creation.html
+.backups/20260825-creation-station-docs-cleanup/docs/creation-station-positioning.md
+.backups/20260825-creation-station-docs-cleanup/docs/creation-station-visual-rules.md
+.backups/20260825-creation-station-docs-cleanup/docs/rebel-ranch-ecosystem-charter.md
+.backups/20260825-creation-station-pathway-cleanup/CHANGE-DESCRIPTION.md
+.backups/20260825-creation-station-pathway-cleanup/assets/components/creation-station-footer/footer.html
+.backups/20260825-creation-station-pathway-cleanup/creation-station-disclaimer.html
+.backups/20260825-creation-station-pathway-cleanup/creation-station-experience.html
+.backups/20260825-creation-station-pathway-cleanup/creation-station-live-classes.html
+.backups/20260825-creation-station-pathway-cleanup/creation-station-studio.html
+.backups/20260825-creation-station-pathway-cleanup/creation.html
+.backups/20260825-creation-station-positioning/AGENTS.md
+.backups/20260825-creation-station-positioning/CHANGE-DESCRIPTION.md
+.backups/20260825-creation-studio-publishing-orders/CHANGE-DESCRIPTION.md
+.backups/20260825-creation-studio-publishing-orders/assets/js/creation-station-app.js
+.backups/20260825-creation-studio-publishing-orders/assets/js/creation-station-data.js
+.backups/20260825-creation-studio-publishing-orders/assets/js/creation-station-studio-public.js
+.backups/20260825-creation-studio-publishing-orders/assets/js/creation-station-views.js
+.backups/20260825-creation-studio-publishing-orders/creation-station-dashboard.html
+.backups/20260825-creation-studio-publishing-orders/creation-station-studio.html
+.backups/20260825-creation-studio-publishing-orders/docs/creation-station-backend-alignment-2026-08-25.md
+.backups/20260825-creation-visual-streamline/CHANGE-DESCRIPTION.md
+.backups/20260825-creation-visual-streamline/creation.html
+.backups/20260825-digital-experience-first/AGENTS.md
+.backups/20260825-digital-experience-first/CHANGE-DESCRIPTION.md
+.backups/20260825-digital-experience-first/rebel-ranch-ecosystem-charter.md
+.backups/20260825-homepage-digital-experience/CHANGE_DESCRIPTION.md
+.backups/20260825-homepage-digital-experience/index.before.html
+.backups/20260825-homepage-digital-experience/public-shell.before.js
+.backups/20260825-marketplace-order-notification-docs/ATTRIBUTION-CORRECTION.md
+.backups/20260825-marketplace-order-notification-docs/CHANGE-DESCRIPTION.md
+.backups/20260825-marketplace-order-notification-docs/docs/email-delivery-setup.md
+.backups/20260825-marketplace-order-notification-docs/docs/rebel-ranch-ecosystem-charter.md
+.backups/20260825-marketplace-order-notifications/ATTRIBUTION-CORRECTION.md
+.backups/20260825-marketplace-order-notifications/CHANGE-DESCRIPTION.md
+.backups/20260825-marketplace-order-notifications/assets/js/marketplace-seller-app.js
+.backups/20260825-marketplace-order-notifications/marketplace-seller-dashboard.html
+.backups/20260825-marketplace-order-notifications/supabase/functions/submit-marketplace-order/index.ts
+.backups/20260825-notification-session-attribution-correction/CHANGE-DESCRIPTION.md
+.backups/20260825-notification-session-attribution-correction/OneSignalSDKWorker.js
+.backups/20260825-notification-session-attribution-correction/docs/marketplace-order-notifications-handoff-2026-08-25.md
+.backups/20260825-notification-session-attribution-correction/original-docs-change-description.md
+.backups/20260825-notification-session-attribution-correction/original-feature-change-description.md
+.backups/20260825-notification-session-attribution-correction/original-hotfix-change-description.md
+.backups/20260825-notification-session-attribution-correction/original-structured-orders-change-description.md
+.backups/20260825-notification-session-attribution-correction/supabase/functions/submit-marketplace-order/index.ts
+.backups/20260825-notification-session-attribution-correction/supabase/migrations/20260825091000_marketplace_order_service_role_grants.sql
+.backups/20260825-notification-session-attribution-correction/supabase/migrations/20260825143000_marketplace_structured_orders.sql
+.backups/20260825-programs-ecosystem/CHANGE-DESCRIPTION.md
+.backups/20260825-programs-ecosystem/public-shell.js
+.backups/20260825-programs-ecosystem/rebel-ranch-ecosystem-charter.md
+.backups/20260825-programs-ecosystem/rrm-visual-rules.md
+.backups/20260825-programs-ecosystem/sitemap.xml
+.backups/20260825-programs-interactive/CHANGE-DESCRIPTION.md
+.backups/20260825-programs-interactive/programs-original-exact.html
+.backups/20260825-programs-interactive/programs.html
+.backups/20260825-public-copy-audit/CHANGE-DESCRIPTION.md
+.backups/20260825-rrl-inline-categories-mission/CHANGE-DESCRIPTION.md
+.backups/20260825-rrl-inline-categories-mission/art-photography.webp
+.backups/20260825-rrl-inline-categories-mission/marketplace.html
+.backups/20260825-rrl-inline-categories-mission/rebel-ranch-local-home.js
+.backups/20260825-rrl-inline-categories-mission/rebel-ranch-local.css
+.backups/20260825-rrl-order-submit-hotfix/ATTRIBUTION-CORRECTION.md
+.backups/20260825-rrl-order-submit-hotfix/CHANGE-DESCRIPTION.md
+.backups/20260825-rrl-order-submit-hotfix/index.ts
+.backups/20260825-rrl-order-submit-hotfix/marketplace-seller-public.js
+.backups/20260825-rrl-seller-storefront/CHANGE-DESCRIPTION.md
+.backups/20260825-rrl-seller-storefront/marketplace-directory.html
+.backups/20260825-rrl-seller-storefront/marketplace-seller-page.css
+.backups/20260825-rrl-seller-storefront/marketplace-seller-page.html
+.backups/20260825-rrl-seller-storefront/marketplace-seller-public.js
+.backups/20260825-rrl-seller-storefront/marketplace-seller-views.js
+.backups/20260825-rrl-seller-storefront/marketplace.html
+.backups/20260825-rrl-structured-orders/ATTRIBUTION-CORRECTION.md
+.backups/20260825-rrl-structured-orders/CHANGE-DESCRIPTION.md
+.backups/20260825-rrl-structured-orders/config.toml
+.backups/20260825-rrl-structured-orders/marketplace-seller-app.js
+.backups/20260825-rrl-structured-orders/marketplace-seller-dashboard.html
+.backups/20260825-rrl-structured-orders/marketplace-seller-data.js
+.backups/20260825-rrl-structured-orders/marketplace-seller-page.css
+.backups/20260825-rrl-structured-orders/marketplace-seller-page.html
+.backups/20260825-rrl-structured-orders/marketplace-seller-public.js
+.backups/20260825-rrl-structured-orders/marketplace-seller-views.js
+.backups/20260825-rrl-structured-orders/marketplace-seller.css
+.backups/20260827-rrl-dashboard-responsible-rebellion-dark/CHANGE-DESCRIPTION.md
+.backups/20260827-rrl-dashboard-responsible-rebellion-dark/marketplace-seller-app.js
+.backups/20260827-rrl-dashboard-responsible-rebellion-dark/marketplace-seller-dashboard.html
+.backups/20260827-rrl-dashboard-responsible-rebellion-dark/marketplace-seller-views.js
+.backups/20260827-rrl-dashboard-responsible-rebellion-dark/marketplace-seller.css
+.backups/20260829-rrl-small-town-map-integration/CHANGE-DESCRIPTION.md
+.backups/20260829-rrl-small-town-map-integration/marketplace-seller-app.js.bak
+.backups/20260829-rrl-small-town-map-integration/marketplace-seller-dashboard.html.bak
+.backups/20260829-rrl-small-town-map-integration/marketplace-seller.css.bak
+.github/workflows/academy-agent-immediate-dispatch.yml
+.github/workflows/academy-live-route-qa.yml
+OneSignalSDKWorker.js
+assets/brand/Rebel Ranch Local/interface/categories/art-photography.webp
+assets/brand/Rebel Ranch Local/interface/categories/automotive-services.webp
+assets/brand/Rebel Ranch Local/interface/categories/baked-goods.webp
+assets/brand/Rebel Ranch Local/interface/categories/childcare-tutoring.webp
+assets/brand/Rebel Ranch Local/interface/categories/classes-workshops.webp
+assets/brand/Rebel Ranch Local/interface/categories/cleaning-lawn-care.webp
+assets/brand/Rebel Ranch Local/interface/categories/eggs-dairy.webp
+assets/brand/Rebel Ranch Local/interface/categories/handmade-goods.webp
+assets/brand/Rebel Ranch Local/interface/categories/herbal-natural-remedies.webp
+assets/brand/Rebel Ranch Local/interface/categories/honey.webp
+assets/brand/Rebel Ranch Local/interface/categories/meat-poultry.webp
+assets/brand/Rebel Ranch Local/interface/categories/other.webp
+assets/brand/Rebel Ranch Local/interface/categories/pet-care-grooming.webp
+assets/brand/Rebel Ranch Local/interface/categories/plants-nursery.webp
+assets/brand/Rebel Ranch Local/interface/categories/produce.webp
+assets/brand/Rebel Ranch Local/interface/categories/trades-services.webp
+assets/brand/Rebel Ranch Local/interface/categories/value-added-foods.webp
+assets/brand/Rebel Ranch Local/interface/rebel-ranch-local-emblem-v2.webp
+assets/brand/Rebel Ranch Local/interface/rebel-ranch-local-emblem.png
+assets/brand/Rebel Ranch Local/interface/rrl-community.webp
+assets/brand/Rebel Ranch Local/interface/rrl-door-goods.webp
+assets/brand/Rebel Ranch Local/interface/rrl-door-marketplace.webp
+assets/brand/Rebel Ranch Local/interface/rrl-door-services.webp
+assets/brand/Rebel Ranch Local/interface/rrl-home-hero.webp
+assets/brand/Rebel Ranch Local/interface/rrl-north-florida-map.webp
+assets/brand/Rebel Ranch Local/interface/rrl-seller-cta.webp
+assets/brand/Rebel Ranch Local/interface/rrl-small-town-pin.webp
+assets/brand/Rebel Ranch Local/rebel-ranch-local-north-florida-springs-hero.jpg
+assets/brand/Rebel Ranch Local/rebel-ranch-local-primary-logo.jpg
+assets/brand/Rebel Ranch Local/rrl-goods-door.jpg
+assets/brand/Rebel Ranch Local/rrl-marketplace-door.jpg
+assets/brand/Rebel Ranch Local/rrl-services-door.jpg
+assets/css/academy-owner-usability.css
+assets/css/rebel-ranch-local.css
+assets/js/academy-owner-usability.js
+assets/js/academy-stage-controller.js
+assets/js/academy-stage-review-action-flow.js
+assets/js/academy-stage-review-completion-router.js
+assets/js/academy-stage-review-conditional.js
+assets/js/academy-stage-review-navigation.js
+assets/js/academy-stage-review-owner-experience.js
+assets/js/academy-stage-review-research-lazy.js
+assets/js/academy-stage-status-truth.js
+assets/js/creation-station-order-privacy.js
+assets/js/operations-review-action-inbox.js
+assets/js/operations-review-owner-navigation.js
+assets/js/rebel-ranch-local-home.js
+creation-station-orders.html
+docs/creation-station-backend-alignment-2026-08-25.md
+docs/creation-station-positioning.md
+docs/digital-experience-first.md
+docs/marketplace-order-notifications-handoff-2026-08-25.md
+docs/rrl-visual-rules.md
+index.html
+marketing/social-media/rebel-ranch-marketplace/campaigns/2026-08-launch/visuals/approved/README.md
+marketing/social-media/rebel-ranch-marketplace/campaigns/2026-08-launch/visuals/approved/RRL-03-community-input.jpg
+marketing/social-media/rebel-ranch-marketplace/campaigns/2026-08-launch/visuals/approved/RRL-04-seller-benefit.jpg
+marketing/social-media/rebel-ranch-marketplace/campaigns/2026-08-launch/visuals/approved/RRL-05-buyer-benefit.jpg
+marketing/social-media/rebel-ranch-marketplace/campaigns/2026-08-launch/visuals/approved/RRL-06-marketplace-spotlight.jpg
+marketing/social-media/rebel-ranch-marketplace/campaigns/2026-08-launch/visuals/approved/RRL-07-why-rrm-built-this.jpg
+marketing/social-media/rebel-ranch-marketplace/campaigns/2026-08-launch/visuals/approved/RRL-08-goods-spotlight.jpg
+marketing/social-media/rebel-ranch-marketplace/campaigns/2026-08-launch/visuals/approved/RRL-09-services-spotlight.jpg
+marketing/social-media/rebel-ranch-marketplace/campaigns/2026-08-launch/visuals/approved/RRL-10-how-sellers-join.jpg
+marketing/social-media/rebel-ranch-marketplace/campaigns/2026-08-launch/visuals/approved/RRL-12-community-benefit.jpg
+marketing/social-media/rebel-ranch-marketplace/campaigns/2026-08-launch/visuals/approved/RRL-14-launch-roundup.jpg
+programs.html
+rebel ranch academy/ACADEMY-CHATGPT-IMAGE-PRODUCTION-STANDARD.md
+rebel ranch academy/ACADEMY-RENDERED-PRODUCT-QA-STANDARD.md
+rebel ranch academy/Rebel-Ranch-Academy-Program-Hub/package.json
+rebel ranch academy/Rebel-Ranch-Academy-Program-Hub/public/robots.txt
+rebel ranch academy/Rebel-Ranch-Academy-Program-Hub/worker/index.ts
+rebel ranch academy/content-library/personal-capability/build-a-backup-water-plan/concept.md
+rebel ranch academy/content-library/personal-capability/build-a-backup-water-plan/content-outline.md
+rebel ranch academy/content-library/personal-capability/build-a-backup-water-plan/context-review.md
+rebel ranch academy/content-library/personal-capability/build-a-backup-water-plan/master-content.md
+rebel ranch academy/content-library/personal-capability/build-a-backup-water-plan/owner-review.md
+rebel ranch academy/content-library/personal-capability/build-a-backup-water-plan/pricing.md
+rebel ranch academy/content-library/personal-capability/build-a-backup-water-plan/project.json
+rebel ranch academy/content-library/personal-capability/build-a-backup-water-plan/qa-review.md
+rebel ranch academy/content-library/personal-capability/build-a-backup-water-plan/research.md
+rebel ranch academy/content-library/personal-capability/build-a-backup-water-plan/revision-history.md
+rebel ranch academy/content-library/personal-capability/build-a-backup-water-plan/revision-impact.md
+rebel ranch academy/content-library/personal-capability/build-a-backup-water-plan/sources.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/_backups/2026-08-22-1758-ET-product-design/intended-change.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/_backups/2026-08-22-1758-ET-product-design/project.json.before
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/_backups/20260823-1052-ET-product-approval/CHANGE-DESCRIPTION.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/_backups/20260823-1052-ET-product-approval/owner-product-review.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/_backups/20260823-1052-ET-product-approval/visual-production-brief.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/activities/product-tools.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/functional-decomposition.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/integrated-learner-flow.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/interactive-scenario-map.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/learner-signal-plan.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/opportunity-funnel-map.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/owner-product-review.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/pricing-packaging-recommendation.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/product-architecture.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/product-design-handoff.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/product-manuscript.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/product-opportunity-research.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/product-preservation-check.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/product-qa.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/product-recommendation-scorecard.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/research-social-influence-addendum.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/sources-social-influence-addendum.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/visual-production-brief.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/visual-production-handoff.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/working-files/2026-08-22-revision-1-baseline/CHANGE-RECORD.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/working-files/2026-08-22-revision-1-baseline/project-json.md
+rebel ranch academy/content-library/personal-capability/fact-opinion-bias/working-files/2026-08-22-revision-1-baseline/research.md
+rebel ranch academy/content-library/sustainability-agriculture/automatic-chicken-watering/concept.md
+rebel ranch academy/content-library/sustainability-agriculture/automatic-chicken-watering/content-outline.md
+rebel ranch academy/content-library/sustainability-agriculture/automatic-chicken-watering/context-review.md
+rebel ranch academy/content-library/sustainability-agriculture/automatic-chicken-watering/master-content.md
+rebel ranch academy/content-library/sustainability-agriculture/automatic-chicken-watering/owner-review.md
+rebel ranch academy/content-library/sustainability-agriculture/automatic-chicken-watering/pricing.md
+rebel ranch academy/content-library/sustainability-agriculture/automatic-chicken-watering/project.json
+rebel ranch academy/content-library/sustainability-agriculture/automatic-chicken-watering/qa-review.md
+rebel ranch academy/content-library/sustainability-agriculture/automatic-chicken-watering/research.md
+rebel ranch academy/content-library/sustainability-agriculture/automatic-chicken-watering/revision-history.md
+rebel ranch academy/content-library/sustainability-agriculture/automatic-chicken-watering/revision-impact.md
+rebel ranch academy/content-library/sustainability-agriculture/automatic-chicken-watering/sources.md
+rebel ranch academy/content-library/sustainability-agriculture/gravity-head-pressure-flow/_backups/20260823T1306/CHANGE-DESCRIPTION.md
+rebel ranch academy/content-library/sustainability-agriculture/gravity-head-pressure-flow/concept.md
+rebel ranch academy/content-library/sustainability-agriculture/gravity-head-pressure-flow/content-outline.md
+rebel ranch academy/content-library/sustainability-agriculture/gravity-head-pressure-flow/context-review.md
+rebel ranch academy/content-library/sustainability-agriculture/gravity-head-pressure-flow/master-content.md
+rebel ranch academy/content-library/sustainability-agriculture/gravity-head-pressure-flow/owner-review.md
+rebel ranch academy/content-library/sustainability-agriculture/gravity-head-pressure-flow/pricing.md
+rebel ranch academy/content-library/sustainability-agriculture/gravity-head-pressure-flow/project.json
+rebel ranch academy/content-library/sustainability-agriculture/gravity-head-pressure-flow/qa-review.md
+rebel ranch academy/content-library/sustainability-agriculture/gravity-head-pressure-flow/research.md
+rebel ranch academy/content-library/sustainability-agriculture/gravity-head-pressure-flow/revision-history.md
+rebel ranch academy/content-library/sustainability-agriculture/gravity-head-pressure-flow/revision-impact.md
+rebel ranch academy/content-library/sustainability-agriculture/gravity-head-pressure-flow/sources.md
+rebel ranch academy/content-library/sustainability-agriculture/know-your-water-home-well-testing/_backups/20260823-1201-ET-product-opportunity-research/CHANGE-DESCRIPTION.md
+rebel ranch academy/content-library/sustainability-agriculture/know-your-water-home-well-testing/_backups/20260823-1201-ET-product-opportunity-research/product-design-handoff.md
+rebel ranch academy/content-library/sustainability-agriculture/know-your-water-home-well-testing/_backups/20260823-1255-ET-product-design-cycle/CHANGE-DESCRIPTION.md
+rebel ranch academy/content-library/sustainability-agriculture/know-your-water-home-well-testing/_backups/20260823-research-approval-handoff/CHANGE-DESCRIPTION.md
+rebel ranch academy/content-library/sustainability-agriculture/know-your-water-home-well-testing/_backups/20260823-research-approval-handoff/owner-review.md
+rebel ranch academy/content-library/sustainability-agriculture/know-your-water-home-well-testing/_backups/20260823-research-approval-handoff/project.json
+rebel ranch academy/content-library/sustainability-agriculture/know-your-water-home-well-testing/functional-decomposition.md
+rebel ranch academy/content-library/sustainability-agriculture/know-your-water-home-well-testing/implementation/my-well-test-plan-spec.md
+rebel ranch academy/content-library/sustainability-agriculture/know-your-water-home-well-testing/integrated-learner-flow.md
+rebel ranch academy/content-library/sustainability-agriculture/know-your-water-home-well-testing/interactive-scenario-map.md
+rebel ranch academy/content-library/sustainability-agriculture/know-your-water-home-well-testing/learner-signal-plan.md
+rebel ranch academy/content-library/sustainability-agriculture/know-your-water-home-well-testing/opportunity-funnel-map.md
+rebel ranch academy/content-library/sustainability-agriculture/know-your-water-home-well-testing/pricing-packaging-recommendation.md
+rebel ranch academy/content-library/sustainability-agriculture/know-your-water-home-well-testing/product-architecture.md
+rebel ranch academy/content-library/sustainability-agriculture/know-your-water-home-well-testing/product-design-handoff.md
+rebel ranch academy/content-library/sustainability-agriculture/know-your-water-home-well-testing/product-manuscript.md
+rebel ranch academy/content-library/sustainability-agriculture/know-your-water-home-well-testing/product-opportunity-qa.md
+rebel ranch academy/content-library/sustainability-agriculture/know-your-water-home-well-testing/product-opportunity-research.md
+rebel ranch academy/content-library/sustainability-agriculture/know-your-water-home-well-testing/product-preservation-check.md
+rebel ranch academy/content-library/sustainability-agriculture/know-your-water-home-well-testing/product-qa.md
+rebel ranch academy/content-library/sustainability-agriculture/know-your-water-home-well-testing/product-recommendation-scorecard.md
+rebel ranch academy/content-library/sustainability-agriculture/know-your-water-home-well-testing/visual-production-brief.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260822-1747-rendered-qa-cycle/CHANGE-DESCRIPTION.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260822-1747-rendered-qa-cycle/final-product-qa.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260822-1747-rendered-qa-cycle/index.html
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260822-1747-rendered-qa-cycle/water-system-implementation-visuals.html
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260822-1747-rendered-qa-cycle/water-system-visual-preview.html
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260822-1845-rendered-qa-cycle/CHANGE-SCOPE.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260822-1845-rendered-qa-cycle/final-product-qa.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260822-1845-rendered-qa-cycle/visual-production/water-learning-experience-final.html
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260822-1953-runtime-qa-cycle/CHANGE-SCOPE.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260822-1953-runtime-qa-cycle/final-product-qa.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260822-1953-runtime-qa-cycle/production-status.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260822-2046-navigation-return-hardening/CHANGE-SCOPE.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260822-2046-navigation-return-hardening/water-system-implementation-visuals.html
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260822-2046-navigation-return-hardening/water-system-visual-preview.html
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260822-2148-cycle05e-return-integrity/BACKUP-CORRECTION.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260822-2148-cycle05e-return-integrity/CHANGE-SCOPE.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260822-2148-cycle05e-return-integrity/final-product-qa.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260822-2148-cycle05e-return-integrity/water-system-implementation-visuals.html
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260822-2148-cycle05e-return-integrity/water-system-visual-preview.html
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260823-1559-ET-final-review-return/CHANGE-DESCRIPTION.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260823-1559-ET-final-review-return/owner-final-product-review.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260823-1559-ET-final-review-return/visual-production-handoff.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260823-1608-ET-review-event-id-correction/CHANGE-DESCRIPTION.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260823-1608-ET-review-event-id-correction/owner-final-product-review.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260823-1608-ET-review-event-id-correction/product-review-reentry-2026-08-23.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260823-1608-ET-review-event-id-correction/visual-production-handoff.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260824-2203-ET-product-approval/CHANGE-DESCRIPTION.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260824-2203-ET-product-approval/owner-product-review.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260824-2203-ET-product-approval/visual-production-brief.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260829-093445-chatgpt-visual-pipeline/CHANGE-DESCRIPTION.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260829-093445-chatgpt-visual-pipeline/academy-agent-runner.yml
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260829-093445-chatgpt-visual-pipeline/academy-live-route-qa.yml
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260829-093445-chatgpt-visual-pipeline/academy-stage-review.html
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260829-093445-chatgpt-visual-pipeline/academy-stage-review.js
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260829-093445-chatgpt-visual-pipeline/asset-manifest.json
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260829-093445-chatgpt-visual-pipeline/production-status.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260829-093445-chatgpt-visual-pipeline/water-55gal-layered-filter-v1.html
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/_backups/20260829-093445-chatgpt-visual-pipeline/water-learning-experience-final.html
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/product-review-reentry-2026-08-23.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/visual-production-handoff-2026-08-24.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/visual-production/assets/generated/README.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/visual-production/assets/generated/asset-manifest.json
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/visual-production/assets/generated/water-55gal-layered-filter-v1.html
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/visual-production/assets/generated/water-55gal-layered-filter-v1.webp
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/visual-production/cycle-05-rendered-qa.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/visual-production/cycle-05b-state-fix-applied.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/visual-production/cycle-05c-browser-runtime-qa.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/visual-production/cycle-05d-navigation-return-hardening.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/visual-production/cycle-05e-qa-evidence-sync.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/visual-production/owner-corrective-directive-2026-08-27.md
+rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/visual-production/water-learning-experience-current.html
+rebel ranch academy/content-library/sustainability-agriculture/rainwater-catch-store-use/concept.md
+rebel ranch academy/content-library/sustainability-agriculture/rainwater-catch-store-use/content-outline.md
+rebel ranch academy/content-library/sustainability-agriculture/rainwater-catch-store-use/context-review.md
+rebel ranch academy/content-library/sustainability-agriculture/rainwater-catch-store-use/master-content.md
+rebel ranch academy/content-library/sustainability-agriculture/rainwater-catch-store-use/owner-review.md
+rebel ranch academy/content-library/sustainability-agriculture/rainwater-catch-store-use/pricing.md
+rebel ranch academy/content-library/sustainability-agriculture/rainwater-catch-store-use/project.json
+rebel ranch academy/content-library/sustainability-agriculture/rainwater-catch-store-use/qa-review.md
+rebel ranch academy/content-library/sustainability-agriculture/rainwater-catch-store-use/research.md
+rebel ranch academy/content-library/sustainability-agriculture/rainwater-catch-store-use/revision-history.md
+rebel ranch academy/content-library/sustainability-agriculture/rainwater-catch-store-use/revision-impact.md
+rebel ranch academy/content-library/sustainability-agriculture/rainwater-catch-store-use/sources.md
+rebel ranch academy/content-library/sustainability-agriculture/reading-water-test-results/_backups/20260823-1124-cycle-completion/CHANGE-DESCRIPTION.md
+rebel ranch academy/content-library/sustainability-agriculture/reading-water-test-results/_backups/20260823-initial-research/CHANGE-DESCRIPTION.md
+rebel ranch academy/content-library/sustainability-agriculture/reading-water-test-results/concept.md
+rebel ranch academy/content-library/sustainability-agriculture/reading-water-test-results/content-outline.md
+rebel ranch academy/content-library/sustainability-agriculture/reading-water-test-results/context-review.md
+rebel ranch academy/content-library/sustainability-agriculture/reading-water-test-results/master-content.md
+rebel ranch academy/content-library/sustainability-agriculture/reading-water-test-results/owner-review.md
+rebel ranch academy/content-library/sustainability-agriculture/reading-water-test-results/pricing.md
+rebel ranch academy/content-library/sustainability-agriculture/reading-water-test-results/project.json
+rebel ranch academy/content-library/sustainability-agriculture/reading-water-test-results/qa-review.md
+rebel ranch academy/content-library/sustainability-agriculture/reading-water-test-results/research.md
+rebel ranch academy/content-library/sustainability-agriculture/reading-water-test-results/revision-history.md
+rebel ranch academy/content-library/sustainability-agriculture/reading-water-test-results/revision-impact.md
+rebel ranch academy/content-library/sustainability-agriculture/reading-water-test-results/sources.md
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/_backups/2026-08-22-1709-ET-product-opportunity/intended-change.md
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/_backups/2026-08-22-1720-ET-product-review-gate/intended-change.md
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/_backups/2026-08-22-1720-ET-product-review-gate/project.json
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/concept.md
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/content-outline.md
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/context-review.md
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/functional-decomposition.md
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/implementation/storage-system-tools-spec.md
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/integrated-learner-flow.md
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/interactive-scenario-map.md
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/learner-signal-plan.md
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/master-content.md
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/owner-review.md
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/pricing.md
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/product-architecture.md
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/product-design-handoff.md
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/product-manuscript.md
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/product-opportunity-research.md
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/product-preservation-check.md
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/product-pricing-packaging.md
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/product-qa.md
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/product-recommendation-scorecard.md
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/project.json
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/qa-review.md
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/research.md
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/sources.md
+rebel ranch academy/content-library/sustainability-agriculture/safe-water-storage-by-function/visual-production-brief.md
+social-content-hub.html
+supabase/functions/submit-creation-studio-order/index.ts
+supabase/functions/submit-marketplace-order/index.ts
+supabase/migrations/20260822194155_social_content_hub_v1.sql
+supabase/migrations/20260822194239_social_content_hub_fk_indexes.sql
+supabase/migrations/20260825091000_marketplace_order_service_role_grants.sql
+supabase/migrations/20260825143000_marketplace_structured_orders.sql
+supabase/migrations/20260825235500_creation_station_studio_publish_orders.sql
+supabase/migrations/20260825235900_creation_station_studio_order_grants.sql
+supabase/migrations/20260826000500_creation_station_studio_minor_acknowledgement.sql
+supabase/migrations/20260829095000_academy_chatgpt_visual_production_jobs.sql
+supabase/migrations/20260829095500_academy_visual_jobs_service_role.sql
+supabase/tests/social_content_hub_v1_access.sql
+water-learning-experience-final.html
+water-system-implementation-visuals.html
+water-system-visual-preview.html
