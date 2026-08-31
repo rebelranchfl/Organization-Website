@@ -1,10 +1,45 @@
 import {loadSellerIdentity,loadSellerWorkspace,loadSellerAdminSummary,loadApplicationDetail,actions,adminActions} from './marketplace-seller-data.js';
-import {renderers} from './marketplace-seller-views.js';
+import {renderers,banners,statusStrip,orderResponseBody} from './marketplace-seller-views.js';
 import {supabase} from './supabase-client.js';
 
 const $=id=>document.getElementById(id);
-const state={identity:null,data:null,adminData:null,view:'status',busy:false};
-const routes=['status','listings','requirements','programs','messages','notifications','history','admin'];
+const state={identity:null,data:null,adminData:null,view:'status',busy:false,orderFilter:{window:'24h'}};
+const routes=['today','status','listings','connections','notifications','history','kpis','admin'];
+const oneSignalAppId='3d048078-bf37-42ff-a1b7-3c1994cc62af';
+let oneSignalClient=null;
+
+function connectOrderAlerts(userId){
+  window.OneSignalDeferred=window.OneSignalDeferred||[];
+  window.OneSignalDeferred.push(async OneSignal=>{
+    try{
+      await OneSignal.init({appId:oneSignalAppId,allowLocalhostAsSecureOrigin:false});
+      await OneSignal.login(userId);
+      oneSignalClient=OneSignal;
+      const update=()=>{
+        const enabled=OneSignal.Notifications.permission;
+        $('order-alerts-banner').classList.toggle('hidden',enabled);
+      };
+      update();
+      OneSignal.Notifications.addEventListener('permissionChange',update);
+    }catch(error){console.error('OneSignal setup failed',error)}
+  });
+}
+
+function updateHeaderAuthLinks(){
+  const joinLink=$('header-join-link');
+  if(!state.identity){
+    joinLink.textContent='Join the Rebellion';
+    joinLink.classList.remove('hidden');
+    return;
+  }
+  const sp=state.identity.sellerProfile;
+  if(sp&&sp.profile_status==='active'){
+    joinLink.classList.add('hidden');
+  }else{
+    joinLink.textContent=sp?'Application Status':'Join the Rebellion';
+    joinLink.classList.remove('hidden');
+  }
+}
 
 function message(text,error=false){
   const el=$('app-status');
@@ -19,6 +54,7 @@ function showAccess(title,copy,label='Go to My Account',href='account.html'){
   $('loading').classList.add('hidden');
   $('create-profile').classList.add('hidden');
   $('workspace').classList.add('hidden');
+  $('dashboard-tabs').classList.add('hidden');
   $('access-title').textContent=title;
   $('access-copy').textContent=copy;
   $('access-link').textContent=label;
@@ -27,16 +63,35 @@ function showAccess(title,copy,label='Go to My Account',href='account.html'){
 }
 
 function isEligible(view){if(view==='admin')return state.identity.isAdmin;return routes.includes(view)}
-function eligibleViews(){
-  const views=[['status','Status'],['listings','Listings'],['requirements','Requirements'],['programs','Programs'],['messages','Messages'],['notifications','Notifications'],['history','History']];
-  if(state.identity.isAdmin)views.push(['admin','Admin']);
-  return views;
+function dashboardNavItems(){
+  const unreadQuestions=(state.data?.inquiries||[]).filter(i=>!i.responded_at).length;
+  const openOrders=(state.data?.orders||[]).filter(o=>['new','change_proposed'].includes(o.status)).length;
+  const connectionsCount=unreadQuestions+openOrders;
+  const unreadNotifications=(state.data?.notifications||[]).filter(n=>!n.is_read).length;
+  const items=[
+    ['today','Command Center'],
+    ['listings','My Listings'],
+    ['connections',`Local Connections${connectionsCount?` (${connectionsCount})`:''}`],
+    ['notifications',`Notifications${unreadNotifications?` (${unreadNotifications})`:''}`],
+    ['status','Settings'],
+    ['history','History'],
+    ['kpis','KPIs']
+  ];
+  if(state.identity.isAdmin)items.push(['admin','Admin',true]);
+  return items;
 }
-function chooseInitial(){const hash=location.hash.slice(1);if(routes.includes(hash)&&isEligible(hash))return hash;return'status'}
+function chooseInitial(){const hash=location.hash.slice(1);if(routes.includes(hash)&&isEligible(hash))return hash;return'today'}
+
+function closeAccountMenu(){
+  const menu=$('account-actions'),toggle=$('menu-toggle');
+  menu.classList.remove('open');
+  toggle.setAttribute('aria-expanded','false');
+}
 
 function updateSwitcher(){
-  const el=$('view-switcher');
-  el.innerHTML=eligibleViews().map(([key,label])=>`<button type="button" data-view="${key}" aria-pressed="${state.view===key}">${label}</button>`).join('');
+  const el=$('dashboard-nav');
+  el.innerHTML=dashboardNavItems().map(([k,label,isAdmin])=>`<button type="button" class="${isAdmin?'tab-admin':''}" data-view="${k}" aria-pressed="${state.view===k}">${label}</button>`).join('')
+    +'<a class="tab-link" href="business-request.html?service=general-business-service&ref=marketplace-seller-dashboard-nav">Business Freedom</a>';
   el.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>navigate(b.dataset.view));
 }
 
@@ -49,11 +104,37 @@ function navigate(view){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
+function showTownMap(replay=false){
+  const map=$('seller-town-map');
+  if(!map||(!replay&&map.dataset.activated==='true'))return;
+  map.dataset.activated='true';
+  map.classList.remove('is-on-map');
+  if(replay)void map.offsetWidth;
+  requestAnimationFrame(()=>map.classList.add('is-on-map'));
+}
+
+function renderBanners(){
+  const el=$('dashboard-banners');
+  if(!el)return;
+  el.innerHTML=banners(state);
+  el.querySelectorAll('[data-dismiss-banner]').forEach(b=>b.onclick=()=>{
+    try{localStorage.setItem(`rrl_seller_banner_${state.identity.sellerProfile.id}_${b.dataset.dismissBanner}`,b.dataset.dismissValue||'1')}catch{}
+    renderBanners();
+  });
+}
+
 function render(){
   const renderer=renderers[state.view]||renderers.status;
   $('screen').innerHTML=renderer(state);
   bindScreen();
   updateSwitcher();
+  renderBanners();
+  const statusEl=$('status-strip');
+  if(statusEl){
+    statusEl.innerHTML=statusStrip(state);
+    statusEl.querySelectorAll('[data-goto-view]').forEach(b=>b.onclick=()=>{showTownMap(true);navigate(b.dataset.gotoView)});
+  }
+  showTownMap();
 }
 
 async function withBusy(button,work){
@@ -62,7 +143,7 @@ async function withBusy(button,work){
   const old=button?.textContent;
   if(button){button.disabled=true;button.textContent='Working…'}
   try{await work()}
-  catch(e){message(e.message||'That action could not be completed.',true)}
+  catch(e){message(friendlyError(e),true)}
   finally{state.busy=false;if(button){button.disabled=false;button.textContent=old}}
 }
 
@@ -79,6 +160,8 @@ function friendlyError(e){
     return 'This seller still has pending compliance requirements. Wait for the seller to submit their attestation, verify any uploaded documents, or waive/mark N/A on the Admin tab before approving.';
   if(e?.message==='application_not_awaiting_review')
     return 'This application is no longer awaiting review — refresh and try again.';
+  if(e?.message?.includes('listing_limit_reached'))
+    return `You've used all ${state.identity.sellerProfile.listing_limit} of your free listings. Contact Rebel Ranch Ministries to add more.`;
   return e?.message||'That action could not be completed.';
 }
 
@@ -94,14 +177,13 @@ function bindScreen(){
         business_name:$('pf-business-name').value.trim(),
         short_description:$('pf-short-description').value.trim(),
         long_description:$('pf-long-description').value.trim(),
-        page_theme:profileForm.querySelector('input[name="pf-theme"]:checked')?.value||state.identity.sellerProfile.page_theme,
         why_shop_points:whyShopPoints.length?whyShopPoints:null
       };
-      const {error}=await actions.updateSellerProfile(state.identity,updates);
+      const {data,error}=await actions.saveDraftProfile(state.identity,updates);
       if(error)throw error;
-      state.identity.sellerProfile={...state.identity.sellerProfile,...updates};
+      state.identity.sellerProfile=data;
       await refresh();
-      message('Profile updated.');
+      message('Saved as a draft — publish when ready to make it live.');
     });
   };
 
@@ -112,14 +194,31 @@ function bindScreen(){
       const file=logoForm.querySelector('[data-field="logo-file"]').files[0];
       if(!file)throw new Error('Choose an image to upload.');
       if(file.size>5242880)throw new Error('Image is larger than 5 MB.');
-      const result=await actions.uploadLogo(state.identity,file);
+      const result=await actions.uploadLogoDraft(state.identity,file);
       if(result.error)throw result.error;
-      state.identity.sellerProfile={...state.identity.sellerProfile,logo_object_path:result.data.logo_object_path};
+      state.identity.sellerProfile=result.data;
       logoForm.reset();
       await refresh();
-      message('Logo updated.');
+      message('Logo saved as a draft — publish when ready to make it live.');
     });
   };
+
+  root.querySelectorAll('[data-action="publish-profile"]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
+    const {data,error}=await actions.publishSellerProfile(state.identity);
+    if(error)throw error;
+    if(data)state.identity.sellerProfile=data;
+    await refresh();
+    message('Changes are now live on your public page.');
+  }));
+
+  root.querySelectorAll('[data-action="discard-profile-draft"]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
+    if(!confirm('Discard your unpublished changes? This cannot be undone.'))return;
+    const {data,error}=await actions.discardDraftProfile(state.identity);
+    if(error)throw error;
+    if(data)state.identity.sellerProfile=data;
+    await refresh();
+    message('Draft discarded.');
+  }));
 
   const addListingForm=root.querySelector('#add-listing-form');
   if(addListingForm)addListingForm.onsubmit=e=>{
@@ -129,7 +228,7 @@ function bindScreen(){
         listing_type:$('new-listing-type').value,
         title:$('new-listing-title').value.trim(),
         description:$('new-listing-description').value.trim(),
-        price_label:$('new-listing-price').value.trim()
+        price_label:$('new-listing-price').value.trim(),unit_price:$('new-listing-unit-price').value||null,price_type:$('new-listing-price-type').value
       };
       if(!fields.title)throw new Error('Enter a title for this listing.');
       const {error}=await actions.createListing(state.identity,fields);
@@ -178,6 +277,58 @@ function bindScreen(){
     message('Photo removed.');
   }));
 
+  root.querySelectorAll('[data-quantity-form]').forEach(form=>form.onsubmit=e=>{
+    e.preventDefault();
+    const listingId=form.dataset.quantityForm;
+    withBusy(e.submitter,async()=>{
+      const raw=form.querySelector('[data-field="quantity"]').value;
+      const quantity=raw.trim()===''?null:Math.max(0,parseInt(raw,10)||0);
+      const {error}=await actions.updateListingQuantity(state.identity,listingId,quantity);
+      if(error)throw error;
+      await refresh();
+      message(quantity===null?'Stock set to unlimited.':`Stock updated to ${quantity}.`);
+    });
+  });
+
+  root.querySelectorAll('[data-goto-view]').forEach(b=>b.onclick=()=>{state.view=b.dataset.gotoView;location.hash=state.view;render();window.scrollTo({top:0,behavior:'smooth'})});
+
+  root.querySelectorAll('[data-edit-listing-form]').forEach(form=>form.onsubmit=e=>{
+    e.preventDefault();
+    const listingId=form.dataset.editListingForm;
+    const listing=state.data.listings.find(l=>l.id===listingId);
+    withBusy(e.submitter,async()=>{
+      const unitPriceRaw=form.querySelector('[data-field="unit_price"]').value;
+      const updates={
+        title:form.querySelector('[data-field="title"]').value.trim(),
+        description:form.querySelector('[data-field="description"]').value.trim()||null,
+        price_label:form.querySelector('[data-field="price_label"]').value.trim()||null,
+        price_type:form.querySelector('[data-field="price_type"]').value,
+        unit_price:unitPriceRaw===''?null:Number(unitPriceRaw)
+      };
+      if(!updates.title)throw new Error('Enter a title for this listing.');
+      const {error}=await actions.saveDraftListing(state.identity,listingId,listing?.draft_data,updates);
+      if(error)throw error;
+      await refresh();
+      message('Saved as a draft — publish when ready to make it live.');
+    });
+  });
+
+  root.querySelectorAll('[data-publish-listing]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
+    const listing=state.data.listings.find(l=>l.id===b.dataset.publishListing);
+    const {error}=await actions.publishListing(state.identity,b.dataset.publishListing,listing?.draft_data);
+    if(error)throw error;
+    await refresh();
+    message('Listing changes are now live on your public page.');
+  }));
+
+  root.querySelectorAll('[data-discard-listing-draft]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
+    if(!confirm('Discard your unpublished changes to this listing? This cannot be undone.'))return;
+    const {error}=await actions.discardDraftListing(state.identity,b.dataset.discardListingDraft);
+    if(error)throw error;
+    await refresh();
+    message('Draft discarded.');
+  }));
+
   root.querySelectorAll('[data-action="submit-application"]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
     const app=state.data.applications[0];
     const {error}=await actions.submitApplication(state.identity,app.id);
@@ -201,11 +352,24 @@ function bindScreen(){
     message('Category removed.');
   }));
 
+  root.querySelectorAll('[data-move-category]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
+    const list=[...state.data.categoryAssignments];
+    const idx=list.findIndex(a=>a.id===b.dataset.moveCategory);
+    const to=idx+(b.dataset.direction==='up'?-1:1);
+    if(idx<0||to<0||to>=list.length)return;
+    [list[idx],list[to]]=[list[to],list[idx]];
+    const {error}=await actions.reorderCategories(state.identity,list.map(a=>a.id));
+    if(error)throw error;
+    await refresh();
+    message('Category order saved.');
+  }));
+
   const addCategoryForm=root.querySelector('#add-category-form');
   if(addCategoryForm)addCategoryForm.onsubmit=e=>{
     e.preventDefault();
     withBusy(e.submitter,async()=>{
-      const {error}=await actions.assignCategory(state.identity,$('new-category').value);
+      const nextOrder=state.data.categoryAssignments.length;
+      const {error}=await actions.assignCategory(state.identity,$('new-category').value,false,nextOrder);
       if(error)throw error;
       await refresh();
       message('Category added.');
@@ -238,6 +402,63 @@ function bindScreen(){
 
   root.querySelectorAll('[data-mark-inquiry-read]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
     const {error}=await actions.markInquiryRead(state.identity,b.dataset.markInquiryRead);
+    if(error)throw error;
+    await refresh();
+  }));
+
+  root.querySelectorAll('[data-mark-inquiry-responded]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
+    const {error}=await actions.markInquiryResponded(state.identity,b.dataset.markInquiryResponded);
+    if(error)throw error;
+    await refresh();
+    message('Marked as responded.');
+  }));
+
+  const listingFilterSelect=root.querySelector('#listing-filter');
+  if(listingFilterSelect)listingFilterSelect.onchange=()=>{state.listingFilter=listingFilterSelect.value;render()};
+
+  const notifFilterSelect=root.querySelector('#notif-filter');
+  if(notifFilterSelect)notifFilterSelect.onchange=()=>{state.notifFilter=notifFilterSelect.value;render()};
+
+  const historyWindowSelect=root.querySelector('#history-window');
+  if(historyWindowSelect)historyWindowSelect.onchange=()=>{state.historyFilter={window:historyWindowSelect.value};render()};
+
+  const orderWindowSelect=root.querySelector('#order-window');
+  if(orderWindowSelect)orderWindowSelect.onchange=()=>{state.orderFilter={window:orderWindowSelect.value};render()};
+
+  const fulfillmentForm=root.querySelector('#fulfillment-form');
+  if(fulfillmentForm)fulfillmentForm.onsubmit=e=>{e.preventDefault();withBusy(e.submitter,async()=>{const {error}=await actions.saveFulfillment(state.identity,{offers_pickup:$('fulfill-pickup').checked,offers_delivery:$('fulfill-delivery').checked,offers_meetup:$('fulfill-meetup').checked,offers_shipping:$('fulfill-shipping').checked,public_notes:$('fulfill-notes').value.trim()||null});if(error)throw error;await refresh();message('Fulfillment options updated.');})};
+  root.querySelectorAll('[data-order-action]').forEach(b=>b.onclick=()=>{
+    const status=b.dataset.orderAction,orderId=b.dataset.orderId;
+    if(['accepted','change_proposed'].includes(status)){openOrderResponseDialog(orderId,status);return}
+    withBusy(b,async()=>{
+      const updates={status,is_read:true};
+      if(status==='declined'&&!confirm('Decline this order?'))return;
+      const {error}=await actions.updateOrder(state.identity,orderId,updates);
+      if(error)throw error;
+      await refresh();
+      message(`Order marked ${status.replaceAll('_',' ')}.`);
+    });
+  });
+  root.querySelectorAll('[data-order-photo]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{const result=await actions.getOrderPhotoUrl(b.dataset.orderPhoto);if(result.error)throw result.error;window.open(result.data.signedUrl,'_blank','noopener');}));
+
+  root.querySelectorAll('[data-propose-date-form]').forEach(form=>form.onsubmit=e=>{
+    e.preventDefault();
+    const orderId=form.dataset.proposeDateForm;
+    withBusy(e.submitter,async()=>{
+      const value=form.querySelector('[data-field="proposed-date"]').value||null;
+      const {error}=await actions.updateOrder(state.identity,orderId,{seller_proposed_date:value});
+      if(error)throw error;
+      await refresh();
+      message(value?'Proposed date saved.':'Proposed date cleared.');
+    });
+  });
+
+  root.querySelectorAll('[data-pack-item]').forEach(cb=>cb.onchange=()=>withBusy(null,async()=>{
+    const [orderId,idx]=cb.dataset.packItem.split(':');
+    const order=state.data.orders.find(o=>o.id===orderId);
+    if(!order)return;
+    const items=(order.items||[]).map((x,i)=>i===Number(idx)?{...x,packed:cb.checked}:x);
+    const {error}=await actions.updateOrder(state.identity,orderId,{items});
     if(error)throw error;
     await refresh();
   }));
@@ -275,36 +496,6 @@ function bindScreen(){
       message('Document uploaded — pending verification.');
     });
   });
-
-  root.querySelectorAll('[data-link-creator]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
-    const {error}=await actions.linkCreatorAffiliation(state.identity,b.dataset.linkCreator);
-    if(error)throw error;
-    await refresh();
-    message('Creator linked to your seller profile.');
-  }));
-
-  root.querySelectorAll('[data-toggle-affiliation]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
-    const isPublic=b.dataset.public==='true';
-    const {error}=await actions.setCreatorAffiliationPublic(state.identity,b.dataset.toggleAffiliation,isPublic);
-    if(error){message(friendlyError(error),true);return}
-    await refresh();
-    message(isPublic?'Affiliation is now public.':'Affiliation is now private.');
-  }));
-
-  root.querySelectorAll('[data-link-household]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
-    const {error}=await actions.linkHouseholdAffiliation(state.identity,b.dataset.linkHousehold);
-    if(error)throw error;
-    await refresh();
-    message('Household linked to your seller profile.');
-  }));
-
-  root.querySelectorAll('[data-toggle-household]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
-    const isPublic=b.dataset.public==='true';
-    const {error}=await actions.setHouseholdAffiliationPublic(state.identity,b.dataset.toggleHousehold,isPublic);
-    if(error){message(friendlyError(error),true);return}
-    await refresh();
-    message(isPublic?'Household is now public.':'Household is now private.');
-  }));
 
   root.querySelectorAll('[data-mark-read]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
     const {error}=await actions.markNotificationRead(state.identity,b.dataset.markRead);
@@ -368,6 +559,55 @@ function bindScreen(){
     await refresh();
     message('Seller reactivated.');
   }));
+  root.querySelectorAll('[data-log-traffic]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
+    const views=prompt(`Page views from Google Analytics for ${b.dataset.businessName} (today):`);
+    if(views===null||views.trim()==='')return;
+    const pageViews=Math.max(0,parseInt(views,10)||0);
+    const {error}=await adminActions.logStorefrontViews(b.dataset.logTraffic,pageViews,new Date().toISOString().slice(0,10));
+    if(error)throw error;
+    await refresh();
+    message(`Logged ${pageViews} views for ${b.dataset.businessName}.`);
+  }));
+  root.querySelectorAll('[data-spotlight-seller]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
+    const {error}=await adminActions.spotlightSeller(b.dataset.spotlightSeller,b.dataset.businessName);
+    if(error)throw error;
+    await refresh();
+    message(`${b.dataset.businessName} added to this week's Shop Spotlight — finish it in the Social Content Hub.`);
+  }));
+}
+
+function openOrderResponseDialog(orderId,defaultStatus){
+  const order=state.data.orders.find(o=>o.id===orderId);
+  if(!order)return;
+  $('order-response-title').textContent=`Order #${order.order_number} — ${order.buyer_name}`;
+  $('order-response-body').innerHTML=orderResponseBody(order);
+  $('order-response-body').querySelectorAll('[data-full-qty]').forEach(cb=>cb.onchange=()=>{
+    const input=$('order-response-body').querySelector(`[data-confirm-qty="${cb.dataset.fullQty}"]`);
+    input.disabled=cb.checked;
+    if(cb.checked)input.value=order.items[cb.dataset.fullQty].quantity;
+  });
+  const submit=(status)=>withBusy(null,async()=>{
+    const body=$('order-response-body');
+    const items=(order.items||[]).map((x,i)=>({...x,confirmed_quantity:Number(body.querySelector(`[data-confirm-qty="${i}"]`).value)||0}));
+    const updates={status,is_read:true,items};
+    const total=body.querySelector('#or-total').value;
+    if(total)updates.confirmed_total=Number(total);
+    const details=body.querySelector('#or-details').value.trim();
+    if(details)updates.fulfillment_details=details;
+    const payment=body.querySelector('#or-payment').value.trim();
+    if(payment)updates.payment_instructions=payment;
+    const note=body.querySelector('#or-note').value.trim();
+    if(note)updates.seller_note=note;
+    const {error}=await actions.updateOrder(state.identity,orderId,updates);
+    if(error){message(friendlyError(error),true);return}
+    $('order-response-dialog').close();
+    await refresh();
+    message(`Order marked ${status.replaceAll('_',' ')}.`);
+  });
+  $('order-response-accept').onclick=()=>submit('accepted');
+  $('order-response-propose').onclick=()=>submit('change_proposed');
+  $('order-response-decline').onclick=()=>{if(confirm('Decline this order?'))submit('declined')};
+  $('order-response-dialog').showModal();
 }
 
 async function openReviewDialog(applicationId,sellerProfileId){
@@ -380,7 +620,7 @@ async function openReviewDialog(applicationId,sellerProfileId){
     <p><strong>Categories:</strong> ${detail.categories.map(c=>c.marketplace_categories?.name).filter(Boolean).join(', ')||'None'}</p>
     <p><strong>Requirements:</strong></p>
     <ul>${detail.requirements.map(r=>`<li>${r.compliance_requirements?.title||'Requirement'} — ${r.assignment_status}</li>`).join('')||'<li>None</li>'}</ul>
-    ${pendingCount?`<p class="status-badge negative">${pendingCount} requirement(s) still pending — resolve them before approving.</p>`:''}
+    ${pendingCount?`<p class="warning-text">${pendingCount} requirement(s) still pending — resolve them before approving.</p>`:''}
   `;
   $('review-approve').disabled=pendingCount>0;
   $('review-approve').title=pendingCount>0?'Resolve every pending requirement before approving.':'';
@@ -421,6 +661,7 @@ async function afterSignedIn(){
   if(state.identity.isAdmin)state.adminData=await loadSellerAdminSummary();
   $('create-profile').classList.add('hidden');
   $('workspace').classList.remove('hidden');
+  $('dashboard-tabs').classList.remove('hidden');
   state.view=chooseInitial();
   render();
 }
@@ -442,6 +683,7 @@ function bindAccountStep(){
       const {error}=await supabase.auth.signInWithPassword({email:$('si-email').value.trim(),password:$('si-password').value});
       if(error)throw error;
       state.identity=await loadSellerIdentity();
+      updateHeaderAuthLinks();
       await afterSignedIn();
     });
   };
@@ -517,10 +759,12 @@ function bindOnboardingForm(){
       const {error}=await actions.createSellerProfile(state.identity,payload);
       if(error)throw error;
       state.identity=await loadSellerIdentity();
+      updateHeaderAuthLinks();
       state.data=await loadSellerWorkspace(state.identity);
       if(state.identity.isAdmin)state.adminData=await loadSellerAdminSummary();
       $('create-profile').classList.add('hidden');
       $('workspace').classList.remove('hidden');
+      $('dashboard-tabs').classList.remove('hidden');
       state.view='status';
       render();
       message('Seller profile created. Review your application before submitting.');
@@ -528,23 +772,28 @@ function bindOnboardingForm(){
   };
 }
 
-$('signout').onclick=async()=>{await actions.signOut();location.href='account.html'};
+$('enable-order-alerts').onclick=async()=>{
+  if(!oneSignalClient){message('Order alerts are still loading. Try again in a moment.',true);return}
+  try{await oneSignalClient.Notifications.requestPermission()}
+  catch(error){message('Your browser could not enable order alerts. Check its notification settings.',true)}
+};
+$('signout').onclick=async()=>{if(oneSignalClient)await oneSignalClient.logout();await actions.signOut();location.href='account.html'};
 $('header-feedback-btn').onclick=()=>$('feedback-dialog').showModal();
+document.querySelectorAll('.next-moves [data-goto-view]').forEach(b=>b.onclick=()=>navigate(b.dataset.gotoView));
 $('feedback-close').onclick=()=>$('feedback-dialog').close();
 $('feedback-cancel').onclick=()=>$('feedback-dialog').close();
 {
   const menuToggle=$('menu-toggle');
   const accountActions=$('account-actions');
-  const closeMenu=()=>{accountActions.classList.remove('open');menuToggle.setAttribute('aria-expanded','false')};
   menuToggle.onclick=(event)=>{
     event.stopPropagation();
     const open=accountActions.classList.toggle('open');
     menuToggle.setAttribute('aria-expanded',String(open));
   };
   document.addEventListener('click',(event)=>{
-    if(accountActions.classList.contains('open')&&!accountActions.contains(event.target)&&event.target!==menuToggle){closeMenu()}
+    if(accountActions.classList.contains('open')&&!accountActions.contains(event.target)&&event.target!==menuToggle){closeAccountMenu()}
   });
-  document.addEventListener('keydown',(event)=>{if(event.key==='Escape')closeMenu()});
+  document.addEventListener('keydown',(event)=>{if(event.key==='Escape')closeAccountMenu()});
 }
 window.addEventListener('hashchange',()=>{
   const v=location.hash.slice(1);
@@ -554,6 +803,7 @@ window.addEventListener('hashchange',()=>{
 async function init(){
   try{
     state.identity=await loadSellerIdentity();
+    updateHeaderAuthLinks();
     $('loading').classList.add('hidden');
     if(!state.identity){
       $('create-profile').classList.remove('hidden');
@@ -568,15 +818,11 @@ async function init(){
       return;
     }
     state.data=await loadSellerWorkspace(state.identity);
+    connectOrderAlerts(state.identity.user.id);
     if(state.identity.isAdmin)state.adminData=await loadSellerAdminSummary();
-    const sp=state.identity.sellerProfile;
-    if(sp.profile_status==='active'&&sp.public_slug){
-      const link=$('header-live-link');
-      link.href=`marketplace-seller-page.html?seller=${encodeURIComponent(sp.public_slug)}`;
-      link.classList.remove('hidden');
-    }
     state.view=chooseInitial();
     $('workspace').classList.remove('hidden');
+    $('dashboard-tabs').classList.remove('hidden');
     render();
   }catch(e){
     showAccess('Your dashboard could not load',e.message||'Check your network connection and try again.','Try again',location.href);

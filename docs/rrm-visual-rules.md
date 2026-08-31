@@ -1,22 +1,26 @@
 # Rebel Ranch Ministries Visual Rules
 
 **Status:** Approved and locked  
-**Version:** 2.2  
-**Current rollout:** Phase 1 — homepage and forms reached directly from the homepage. This governs which pages receive Phase 1 styling and structural rebuilds; it does not restrict which already-approved program pages the homepage may link to — see the updated linking rule below.  
+**Version:** 2.3  
+**Current rollout:** Phase 1 public surfaces plus the owner-approved Programs Hub extension (`programs.html`). This governs which pages receive the current RRM public styling and structural rebuilds; it does not restrict which already-approved program pages may be linked as destinations.  
 **Authority:** This document supersedes conflicting public-site surface guidance in `brand-guide.md` and `site-design-system.md`.
 
 Every agent must read this document before starting visual, layout, or public-page work. If a requested project or target does not comply with these rules, raise a flag and identify the conflict before changing files.
 
-## Phase 1 boundary
+## Phase 1 boundary and approved Programs Hub extension
 
-- Phase 1 applies only to `index.html`, `align-interest.html`, `business-request.html`, `support-supplies-interest.html`, `contact.html`, `support.html`, and `academy-learning-interest.html` (added 2026-08-05: `support.html` was reconnected to the shared header/footer shell and given a "cost behind the help" section per owner request — see the shared-header rule below; added 2026-08-21: `academy-learning-interest.html` was reconnected to the shared header/footer shell and rewritten to lead with curiosity instead of disclaimers per owner request — reused the existing "Academy interest form pages" `.interest-hero`/`.interest-card`/`.interest-form`/`.interest-note` component already defined for `support-supplies-interest.html` rather than inventing new styling — see `.backups/20260821-academy-learning-interest-phase1-restyle/CHANGE-DESCRIPTION.md`).
-- Do not migrate, restyle, or otherwise change any other repository page as part of Phase 1.
+- Phase 1 applies to `index.html`, `align-interest.html`, `business-request.html`, `support-supplies-interest.html`, `contact.html`, `support.html`, and `academy-learning-interest.html` (added 2026-08-05: `support.html` was reconnected to the shared header/footer shell and given a "cost behind the help" section per owner request; added 2026-08-21: `academy-learning-interest.html` was reconnected to the shared header/footer shell and rewritten to lead with curiosity instead of disclaimers).
+- **Owner-approved extension — 2026-08-25:** `programs.html` is an approved main Rebel Ranch Ministries public surface. It uses the same page frame, hero, section-divider, card, action, spacing, shared-shell, and accessibility rules in this document. This approval does not authorize migration or redesign of any other program page.
+- `programs.html` is the permanent public explanation and routing hub for the RRM program ecosystem. The homepage may remain the changing front door for current activity, launches, featured work, and participation paths.
+- Roots, Boots & Animal Poops and Rebel Ranch Rescue may be represented as anchored sections on `programs.html` until separate program pages are explicitly approved and built. Do not invent dead routes or placeholder destination pages.
+- Do not migrate, restyle, or otherwise change any other repository page as part of this extension.
 - Creation Station has an intentionally separate visual system. Do not touch Creation Station files, pages, or components unless the user gives separate, explicit authorization.
-- Future rules will be applied in later phases. A Phase 1 task never grants permission to perform a site-wide conversion.
+- Rebel Ranch Local (Marketplace) has its own intentionally separate, locked visual system — see `docs/rrl-visual-rules.md`. This document does not govern `marketplace.html`, `marketplace-seller-page.html`, `marketplace-seller-dashboard.html`, or any other RRL/Marketplace page; those follow RRL's own tokens (`assets/css/rebel-ranch-local.css`) and brand guide (`marketing/social-media/rebel-ranch-marketplace/brand/BRAND.md`), not RRM's forest-green/gold system.
+- Future rules will be applied in later phases. Approval of `programs.html` never grants permission to perform a site-wide conversion.
 
 ## Page frame and colors
 
-- The Phase 1 page background is one consistent forest green: `#204227`.
+- The current approved RRM page background is one consistent forest green: `#204227`.
 - Black `#050806` remains reserved for the shared header and footer.
 - Primary headings use cream `#F0EDD8`.
 - Body text on green surfaces uses `#D7D1B3`.
@@ -25,7 +29,7 @@ Every agent must read this document before starting visual, layout, or public-pa
 
 ## Hero
 
-- A Phase 1 page that has a hero uses `linear-gradient(180deg, #1D4024 0%, #122A18 100%)` across the full section width.
+- An approved RRM public page that has a hero uses `linear-gradient(180deg, #1D4024 0%, #122A18 100%)` across the full section width.
 - The hero fade begins below the black header and continues to the first section handoff.
 - The fade belongs to the section itself. Do not show it as a bordered, rounded, floating, or container-shaped rectangle.
 - Preserve the established inner content width and responsive spacing.
@@ -40,21 +44,23 @@ Every agent must read this document before starting visual, layout, or public-pa
 ## Cards and forms
 
 - Cards are reserved for services, paths, programs, and real choices.
-- Phase 1 card and form surfaces use `linear-gradient(180deg, #1D4024 0%, #122A18 100%)`.
+- Approved RRM card and form surfaces use `linear-gradient(180deg, #1D4024 0%, #122A18 100%)`.
 - Standard card structure remains a `1px solid #284A29` border, a `3px` `#C17F24` to `#97C459` top accent, `20px` corners, and `24px` padding.
 - Form-specific borders, corner radii, fields, and spacing remain as established unless separately approved; only the form surface uses the standard fade.
-- All Phase 1 cards use the same surface fade. Do not create a separate fill for Monthly Guidance or General Contact.
+- All approved RRM cards use the same surface fade unless an owner-approved program-specific rule explicitly says otherwise.
 - Card-shadow treatment is intentionally deferred pending visual review; do not change it as part of this standard.
 
-## Actions and homepage link routing
+## Actions and program routing
 
 - Primary buttons use `#C17F24` to `#7B4B13` with cream text.
 - Supporting buttons use `#28502F`, a `#4A7C59` border, and cream text.
-- Homepage program and action links may point to: forms, internal homepage anchors, the approved direct PayPal destination, or the approved entry page(s) of a program that already has its own live, built pages. As of 2026-08-04 that includes Business Freedom's homepage section, Creation Station, and Rebel Ranch Marketplace. This rule was written when Business Freedom was the only built program; it no longer applies as written now that Creation Station and Marketplace exist as real, approved destinations.
-- A homepage card may link to more than one page within an already-approved program (for example, Creation Station's membership page and its live-sessions page) as long as every destination is an existing, approved page — never a newly invented or unapproved one.
-- Rebel Ranch Academy's live program destination is the interactive Program Hub at `https://academy.rebelranchministries.org`. The homepage card and shared-header Academy link must point there. The older `academy.html` file is intentionally unchanged and on hold for a later content review; it is not the general public Academy destination. Do not redirect, delete, or edit `academy.html` without separate owner approval. (Updated 2026-08-20 by owner direction; see `.backups/20260820-rra-cloudflare-migration/CHANGE-DESCRIPTION.md`.)
-- As of 2026-08-05, the shared-header nav groups Business Freedom, Creation Station, Marketplace, and Partner With Us under a single "Programs" dropdown (`.rrm-nav-dropdown` in `assets/js/public-shell.js` / `assets/css/public-surface.css`) instead of listing each inline, to keep the header from overloading. Home, the Programs dropdown, Support the Mission, and Contact remain the only top-level items.
-- The shared-header **Support the Mission** link now goes to `support.html` (updated 2026-08-05 — previously went straight to the PayPal link below). `support.html` gives visitors the cost/mission context before asking for a payment. The direct PayPal link (`https://www.paypal.com/ncp/payment/QM7MMH9V4LDBY`) is still used by the on-page "Choose Your Support Amount" buttons on both the homepage and `support.html` itself.
+- Full pill radius is reserved for real clickable controls. Non-interactive labels, status text, or informational elements must not use pill styling.
+- Homepage and Programs Hub program/action links may point to forms, internal anchors, the approved direct PayPal destination, or approved live program entry pages.
+- A program card may link to more than one page within an already-approved program as long as every destination is an existing, approved page — never a newly invented or unapproved one.
+- Rebel Ranch Academy's live program destination is the interactive Program Hub at `https://academy.rebelranchministries.org`. The shared-header Academy link must point there. The older `academy.html` file is intentionally unchanged and on hold for a later content review; it is not the general public Academy destination. Do not redirect, delete, or edit `academy.html` without separate owner approval.
+- `programs.html` is the canonical RRM program overview. The shared-header Programs control must provide a route to `programs.html` while retaining direct navigation to approved programs.
+- Until separate pages exist, Roots, Boots & Animal Poops routes to `programs.html#roots-boots` and Rebel Ranch Rescue routes to `programs.html#rescue`.
+- The shared-header **Support the Mission** link goes to `support.html`. The direct PayPal link remains used by approved on-page support actions.
 - Required Privacy Policy and Legal Disclosures links and official social-media links remain available; they are not program-navigation links.
 
 ## Locked spacing
@@ -66,7 +72,13 @@ Every agent must read this document before starting visual, layout, or public-pa
 - Section-heading-to-content spacing: `clamp(2rem, 4vw, 3.25rem)`.
 - Card grid gap: `18px`; two-column gap: `20px`; card padding: `24px`.
 
-## Do not use in Phase 1
+## Shared shell
+
+- Every live RRM public page uses `assets/css/public-surface.css` and `assets/js/public-shell.js` for the shared header/footer shell.
+- The official RRM logo must be linked from `assets/`; never embed the logo or any other image as base64 data in HTML or CSS.
+- The Programs dropdown may include direct links to Business Freedom, Creation Station, Rebel Ranch Academy, Marketplace, Roots, Boots & Animal Poops, Rebel Ranch Rescue, and Partner With Us. `programs.html` must also be accessible as the all-programs destination.
+
+## Do not use on approved RRM public surfaces
 
 - The former `#1A3620` page background.
 - The former `#274D2C` to `#1D3D24` card fade.
@@ -74,4 +86,5 @@ Every agent must read this document before starting visual, layout, or public-pa
 - A bounded or rounded hero-gradient container.
 - White or cream page surfaces.
 - Large multicolor divider bars, thick featured-card borders, brown-and-gold card surfaces, decorative copy boxes, or nested boxes.
-- Any Phase 1 change that alters Creation Station or expands into unapproved repository pages.
+- Non-clickable pill-shaped labels or badges.
+- Any approved-surface change that alters Creation Station or expands into unapproved repository pages.

@@ -1,18 +1,228 @@
-name: Academy Run Agent Now — Disabled
+name: Academy Water Visual Production Runner
 
-# Disabled by owner direction on 2026-08-22.
-# Reason: do not create any additional OpenAI API fees at this time.
-# The runner code is intentionally preserved for possible future reuse.
+# Direct owner-triggered execution only. No polling, no scheduled pickup, no public claim RPC.
+# The Supabase Edge Function academy-agent-dispatch authenticates the owner, claims the
+# request, and dispatches this workflow with a one-time callback token.
 
 on:
   workflow_dispatch:
+    inputs:
+      request_id:
+        description: "Claimed Academy run request UUID"
+        required: true
+        type: string
+      callback_token:
+        description: "One-time completion token"
+        required: true
+        type: string
 
 permissions:
-  contents: read
+  contents: write
+  pages: write
+  copilot-requests: write
+
+concurrency:
+  group: academy-water-visual-production
+  cancel-in-progress: false
 
 jobs:
-  disabled:
-    if: ${{ false }}
+  run-water-visual-production:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      PROJECT_ID: RRA-2026-0001
+      PROJECT_PATH: rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials
+      VISUAL_ASSET_PATH: rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/visual-production/assets/generated
+      CALLBACK_URL: https://dfrwxpuojeiykaignyny.supabase.co/functions/v1/academy-agent-dispatch/complete
+      REQUEST_ID: ${{ inputs.request_id }}
+      CALLBACK_TOKEN: ${{ inputs.callback_token }}
+      GITHUB_TOKEN: ${{ github.token }}
     steps:
-      - run: echo "Run Agent Now is disabled by owner direction."
+      - name: Check out current main
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Record starting commit
+        id: start
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Validate generated visual asset contract
+        id: assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          manifest="$VISUAL_ASSET_PATH/asset-manifest.json"
+          [[ -f "$manifest" ]] || { echo "Missing generated-asset manifest"; exit 51; }
+          jq -e '.pipeline == "IMAGE_GENERATION" and (.assets|type=="array") and (.assets|length>0)' "$manifest" >/dev/null
+          while IFS= read -r rel; do
+            [[ -n "$rel" && -f "$VISUAL_ASSET_PATH/$rel" ]] || { echo "Missing manifest asset: $rel"; exit 52; }
+          done < <(jq -r '.assets[].file' "$manifest")
+
+      - name: Build owner-directed integration prompt
+        shell: bash
+        run: |
+          mkdir -p .agent-run
+          cat > .agent-run/prompt.md <<'PROMPT'
+          You are the Rebel Ranch Academy Visual Integration + Browser QA worker for RRA-2026-0001 — Water Through the Layers.
+
+          NON-NEGOTIABLE OWNER REQUIREMENTS
+          - Water is the exclusive Academy production priority.
+          - Finished visuals must be polished educational infographic quality, not box/wireframe diagrams.
+          - Do not substitute SVG/CSS wireframes for required finished physical-system imagery.
+          - Zero tolerance for clipping, overlap, hidden words, incorrect leader lines, broken images, broken links, or 404 routes.
+          - Clearer water is not proof of potable water; preserve source-appropriate testing/treatment safety language.
+          - Keep the project in VISUAL_PRODUCTION until the exact deployed learner experience passes QA.
+          - The owner must not be used as the person who discovers basic QA failures.
+
+          REQUIRED WORK
+          1. Read the approved Water research/product records, visual-production brief, owner corrective directive, generated asset manifest, current root learner page, and current owner preview manifest.
+          2. Replace remaining old nested wireframe/rectangle-stack visuals that are still surfaced to the learner or owner.
+          3. Integrate only generated/finished imagery that is actually correct. If a generated asset has a visible labeling or leader-line defect, do not present it as QA-passed; correct the presentation or leave the stage incomplete and record the defect.
+          4. Keep explanatory labels outside generated artwork where deterministic HTML positioning prevents image-model text/leader-line mistakes.
+          5. Maintain root routes: /water-learning-experience-final.html, /water-system-visual-preview.html, /water-system-implementation-visuals.html.
+          6. Make desktop and mobile layouts readable and navigable.
+          7. Write .agent-run/result.json containing result_summary, progress_detail, progress_next.
+
+          AUTHORIZED FILES ONLY
+          - rebel ranch academy/content-library/sustainability-agriculture/purifying-water-natural-materials/**
+          - water-learning-experience-final.html
+          - water-system-visual-preview.html
+          - water-system-implementation-visuals.html
+          - .agent-run/**
+          PROMPT
+
+      - name: Install GitHub Copilot CLI
+        run: npm install -g @github/copilot
+
+      - name: Run Water visual integration agent
+        id: agent
+        shell: bash
+        run: |
+          set -o pipefail
+          copilot --yolo -p "$(cat .agent-run/prompt.md)" 2>&1 | tee .agent-run/copilot-last-message.txt
+
+      - name: Validate scope and commit durable Water work
+        id: commit
+        if: steps.agent.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t changed < <( { git diff --name-only; git ls-files --others --exclude-standard; } | sort -u )
+          for f in "${changed[@]}"; do
+            [[ -z "$f" ]] && continue
+            case "$f" in
+              .agent-run/*) ;;
+              "$PROJECT_PATH"/*) ;;
+              water-learning-experience-final.html|water-system-visual-preview.html|water-system-implementation-visuals.html) ;;
+              *) echo "Unexpected file outside authorized Water scope: $f"; exit 1 ;;
+            esac
+          done
+          git add -A -- "$PROJECT_PATH" water-learning-experience-final.html water-system-visual-preview.html water-system-implementation-visuals.html 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No durable Water change was produced."
+            exit 42
+          fi
+          for required in water-learning-experience-final.html water-system-visual-preview.html water-system-implementation-visuals.html; do
+            [[ -f "$required" ]] || { echo "Missing required root route: $required"; exit 43; }
+          done
+          git config user.name "Rebel Ranch Academy Visual Production Runner"
+          git config user.email "285707125+rebelranchfl@users.noreply.github.com"
+          git commit -m "Complete Water Visual Production cycle" -m "Request: ${REQUEST_ID}"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Request and wait for GitHub Pages deployment
+        id: deploy
+        if: steps.commit.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds" >/dev/null
+          for i in $(seq 1 30); do
+            state=$(gh api "repos/${GITHUB_REPOSITORY}/pages/builds/latest" --jq '.status')
+            echo "Pages status: $state"
+            [[ "$state" == "built" ]] && exit 0
+            [[ "$state" == "errored" ]] && exit 61
+            sleep 10
+          done
+          echo "Pages deployment did not reach built status in time."
+          exit 62
+
+      - name: Install Playwright browser
+        if: steps.deploy.outcome == 'success'
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm install --save-dev playwright >/dev/null
+          npx playwright install --with-deps chromium >/dev/null
+
+      - name: Verify exact deployed owner-facing Water routes in Chromium
+        id: browserqa
+        if: steps.deploy.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > .agent-run/browser-qa.mjs <<'JS'
+          import { chromium } from 'playwright';
+          const urls=[
+            'https://rebelranchministries.org/water-learning-experience-final.html',
+            'https://rebelranchministries.org/water-system-visual-preview.html',
+            'https://rebelranchministries.org/water-system-implementation-visuals.html',
+            'https://rebelranchministries.org/rebel%20ranch%20academy/content-library/sustainability-agriculture/purifying-water-natural-materials/visual-production/assets/generated/water-55gal-layered-filter-v1.html'
+          ];
+          const imageUrl='https://rebelranchministries.org/rebel%20ranch%20academy/content-library/sustainability-agriculture/purifying-water-natural-materials/visual-production/assets/generated/water-55gal-layered-filter-v1.webp';
+          const browser=await chromium.launch({headless:true});
+          const failures=[];
+          for(const viewport of [{name:'desktop',width:1440,height:1000},{name:'mobile',width:390,height:844}]){
+            const page=await browser.newPage({viewport:{width:viewport.width,height:viewport.height}});
+            const consoleErrors=[];
+            page.on('console',m=>{if(m.type()==='error')consoleErrors.push(m.text())});
+            for(const url of urls){
+              const res=await page.goto(url,{waitUntil:'networkidle',timeout:45000});
+              if(!res||res.status()>=400)failures.push(`${viewport.name} ${url} HTTP ${res?.status()}`);
+              const body=(await page.locator('body').innerText().catch(()=>'' )).trim();
+              if(!body)failures.push(`${viewport.name} ${url} empty body`);
+              const broken=await page.locator('img').evaluateAll(imgs=>imgs.filter(i=>!i.complete||i.naturalWidth===0).map(i=>i.getAttribute('src')));
+              if(broken.length)failures.push(`${viewport.name} ${url} broken images: ${broken.length}`);
+              for(const frame of page.frames()){
+                const frameBroken=await frame.locator('img').evaluateAll(imgs=>imgs.filter(i=>!i.complete||i.naturalWidth===0).map(i=>i.getAttribute('src'))).catch(()=>[]);
+                if(frameBroken.length)failures.push(`${viewport.name} ${url} nested-frame broken images: ${frameBroken.length}`);
+              }
+              const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth+2);
+              if(overflow)failures.push(`${viewport.name} ${url} horizontal overflow`);
+            }
+            if(consoleErrors.length)failures.push(`${viewport.name} console errors: ${consoleErrors.join(' | ')}`);
+            await page.close();
+          }
+          const assetResponse=await fetch(imageUrl);
+          if(!assetResponse.ok)failures.push(`direct image HTTP ${assetResponse.status}`);
+          if(!String(assetResponse.headers.get('content-type')||'').startsWith('image/'))failures.push('direct image has invalid content type');
+          if(Number(assetResponse.headers.get('content-length')||0)<10000)failures.push('direct image is unexpectedly small or empty');
+          await browser.close();
+          if(failures.length){console.error(failures.join('\n'));process.exit(1)}
+          console.log('DEPLOYED_BROWSER_QA_PASS');
+          JS
+          node .agent-run/browser-qa.mjs
+
+      - name: Finalize run in Supabase through one-time callback
+        if: always()
+        shell: bash
+        env:
+          COMMIT_SHA: ${{ steps.commit.outputs.sha }}
+          AGENT_OUTCOME: ${{ steps.agent.outcome }}
+          COMMIT_OUTCOME: ${{ steps.commit.outcome }}
+          DEPLOY_OUTCOME: ${{ steps.deploy.outcome }}
+          BROWSER_OUTCOME: ${{ steps.browserqa.outcome }}
+        run: |
+          set -euo pipefail
+          success=false
+          if [[ "$AGENT_OUTCOME" == "success" && "$COMMIT_OUTCOME" == "success" && "$DEPLOY_OUTCOME" == "success" && "$BROWSER_OUTCOME" == "success" && -n "${COMMIT_SHA:-}" ]]; then success=true; fi
+          summary="Water Visual Production cycle completed and deployed browser QA passed."
+          if [[ -f .agent-run/result.json ]]; then summary=$(jq -r '.result_summary // "Water Visual Production cycle completed."' .agent-run/result.json); fi
+          error=""
+          if [[ "$success" != "true" ]]; then error="Water Visual Production did not pass the full chain (agent=${AGENT_OUTCOME}, commit=${COMMIT_OUTCOME}, deploy=${DEPLOY_OUTCOME}, browser=${BROWSER_OUTCOME})."; fi
+          payload=$(jq -n --arg request_id "$REQUEST_ID" --arg callback_token "$CALLBACK_TOKEN" --argjson success "$success" --arg commit "${COMMIT_SHA:-}" --arg summary "$summary" --arg error "$error" '{request_id:$request_id,callback_token:$callback_token,success:$success,commit_sha:$commit,summary:$summary,error:$error}')
+          curl -fsS -H "Content-Type: application/json" -d "$payload" "$CALLBACK_URL"

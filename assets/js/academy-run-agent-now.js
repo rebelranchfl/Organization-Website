@@ -1,6 +1,7 @@
 import { supabase } from './supabase-client.js';
 
 const SUPPORTED=new Set(['PRODUCT_WORKING','VISUAL_PRODUCTION']);
+const EXCLUSIVE_PROJECT='RRA-2026-0001';
 let timer=null,busy=false,lastProject='';
 
 function css(){if(document.getElementById('academy-run-agent-now-css'))return;const s=document.createElement('style');s.id='academy-run-agent-now-css';s.textContent=`
@@ -19,21 +20,22 @@ async function fetchData(id){const [p,r,q]=await Promise.all([
  supabase.from('academy_agent_run_requests').select('*').eq('project_id',id).order('requested_at',{ascending:false}).limit(1).maybeSingle()
 ]);if(p.error)throw p.error;if(r.error)throw r.error;if(q.error)throw q.error;return{project:p.data,runner:r.data,run:q.data}}
 function render(host,{project:p,runner:r,run}){
- const supported=SUPPORTED.has(p.workflow_stage)&&p.current_status==='AGENT_WORKING'&&!p.owner_hold;
+ const exclusive=p.project_id===EXCLUSIVE_PROJECT;
+ const supported=exclusive&&SUPPORTED.has(p.workflow_stage)&&p.current_status==='AGENT_WORKING'&&!p.owner_hold;
  const ready=runnerReady(r);
  const active=run&&['PENDING','RUNNING'].includes(run.status);
  let why='';
- if(p.owner_hold)why='Project is on owner hold.';
+ if(!exclusive)why='Academy stop-work is active. Water Through the Layers is the only project authorized to run.';
+ else if(p.owner_hold)why='Project is on owner hold.';
  else if(p.current_status!=='AGENT_WORKING')why='Run Agent Now is available only while an agent-owned stage is actively working.';
- else if(!SUPPORTED.has(p.workflow_stage))why='V1 supports Product Design build work and Visual Production. Research/review/release stages still use their existing workers.';
- else if(!ready)why='Manual runner is not connected yet. The scheduled Academy worker will continue normally.';
- else if(active)why=run.status==='PENDING'?'Manual run queued. The GitHub runner checks about every 5 minutes.':'Manual run is working now.';
- else why='Starts an extra current-stage work cycle without changing the normal hourly worker.';
- const enabled=supported&&ready&&!active;
- const dot=ready?'':' off';
- host.innerHTML=`<div class="aran-row"><div class="aran-copy"><strong><span class="aran-live${dot}"></span>Run Agent Now</strong><span>${esc(why)}</span></div><button type="button" id="aran-run" class="aran-button" ${enabled?'':'disabled'}>${active?(run.status==='RUNNING'?'Agent Running…':'Run Queued…'):'Run Current Stage Now'}</button></div><div class="aran-state${run?.status==='FAILED'?' error':''}">${run?`Latest manual run: <b>${esc(run.status)}</b> · requested ${esc(fmt(run.requested_at))}${run.claimed_at?` · started ${esc(fmt(run.claimed_at))}`:''}${run.completed_at?` · finished ${esc(fmt(run.completed_at))}`:''}${run.result_summary?`<br>${esc(run.result_summary)}`:''}${run.error_message?`<br>${esc(run.error_message)}`:''}`:`Runner status: <b>${ready?'Ready':'Not connected'}</b>${r?.last_heartbeat?` · last heartbeat ${esc(fmt(r.last_heartbeat))}`:''}`}</div>`;
+ else if(!SUPPORTED.has(p.workflow_stage))why='Run Agent Now supports Product Design and Visual Production stages.';
+ else if(active)why=run.status==='PENDING'?'Immediate run requested. The dispatcher is waiting to hand it to the agent.':'Agent is working this run now.';
+ else why='Starts the current Water production stage now. It does not wait for the normal scheduled pickup.';
+ const enabled=supported&&!active;
+ const dot=active&&run.status==='RUNNING'?'':' wait';
+ host.innerHTML=`<div class="aran-row"><div class="aran-copy"><strong><span class="aran-live${dot}"></span>Run Agent Now</strong><span>${esc(why)}</span></div><button type="button" id="aran-run" class="aran-button" ${enabled?'':'disabled'}>${active?(run.status==='RUNNING'?'Agent Running…':'Dispatching…'):'Run Current Stage Now'}</button></div><div class="aran-state${run?.status==='FAILED'?' error':''}">${run?`Latest immediate run: <b>${esc(run.status)}</b> · requested ${esc(fmt(run.requested_at))}${run.claimed_at?` · started ${esc(fmt(run.claimed_at))}`:''}${run.completed_at?` · finished ${esc(fmt(run.completed_at))}`:''}${run.result_summary?`<br>${esc(run.result_summary)}`:''}${run.error_message?`<br>${esc(run.error_message)}`:''}`:`Immediate dispatcher: <b>Available</b>${ready&&r?.last_heartbeat?` · agent runner last heartbeat ${esc(fmt(r.last_heartbeat))}`:''}`}</div>`;
  const b=host.querySelector('#aran-run');if(enabled&&b)b.onclick=()=>requestRun(p.project_id,b);
 }
-async function requestRun(id,button){button.disabled=true;button.textContent='Queuing…';const{error}=await supabase.rpc('request_academy_agent_run',{p_project_id:id});if(error){button.textContent='Run Current Stage Now';button.disabled=false;alert(error.message);return}await refresh(true)}
+async function requestRun(id,button){button.disabled=true;button.textContent='Dispatching…';const{error}=await supabase.rpc('request_academy_agent_run',{p_project_id:id});if(error){button.textContent='Run Current Stage Now';button.disabled=false;alert(error.message);return}await refresh(true)}
 async function refresh(force=false){const id=projectId();if(!id||busy)return;if(id!==lastProject){lastProject=id}busy=true;try{const d=await fetchData(id);const h=mount();if(h)render(h,d)}catch(e){console.warn('Run Agent Now',e)}finally{busy=false}}
-css();new MutationObserver(()=>queueMicrotask(refresh)).observe(document.body,{childList:true,subtree:true});setTimeout(refresh,700);timer=setInterval(refresh,15000);
+css();new MutationObserver(()=>queueMicrotask(refresh)).observe(document.body,{childList:true,subtree:true});setTimeout(refresh,700);timer=setInterval(refresh,10000);

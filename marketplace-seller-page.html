@@ -2,21 +2,51 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XS0BSM0Z7Q"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XS0BSM0Z7Q');</script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="A Rebel Ranch Marketplace seller page — vetted local sellers, contacted and paid directly.">
-  <title>Seller | Rebel Ranch Marketplace</title>
+  <meta name="description" content="A Rebel Ranch Local seller storefront — real local goods and services, direct from independent sellers.">
+  <title>Seller | Rebel Ranch Local</title>
   <link rel="icon" type="image/png" href="assets/brand/rrm-logo-black.png">
-  <link rel="stylesheet" href="assets/css/brand-tokens.css">
-  <link rel="stylesheet" href="assets/css/public-surface.css">
+  <link rel="stylesheet" href="assets/css/rebel-ranch-local.css">
   <link rel="stylesheet" href="assets/css/marketplace-seller-page.css">
-  <script src="assets/js/public-shell.js" defer></script>
 </head>
-<body>
-  <main class="shell" id="main-content">
+<body class="rrl-page">
+  <header class="rrl-header">
+    <div class="rrl-shell rrl-header-inner">
+      <a class="rrl-brand" href="marketplace.html" aria-label="Rebel Ranch Local home">
+        <img src="assets/brand/Rebel%20Ranch%20Local/interface/rebel-ranch-local-emblem-v2.webp" alt="Rebel Ranch Local">
+        <span class="rrl-brand-copy"><strong>REBEL RANCH LOCAL</strong><span>MARKETPLACE • GOODS • SERVICES</span></span>
+      </a>
+      <nav class="rrl-nav" aria-label="Rebel Ranch Local navigation">
+        <a href="marketplace.html#rrl-featured">Browse⌄</a>
+        <a href="marketplace.html#rrl-categories">Categories⌄</a>
+        <a href="marketplace.html#rrl-featured">Sellers</a>
+        <a href="marketplace.html#rrl-why">About</a>
+        <a href="index.html">Resources⌄</a>
+      </nav>
+      <div class="rrl-header-tools">
+        <a class="rrl-icon-link" href="marketplace.html#rrl-search" aria-label="Search">⌕</a>
+        <a class="rrl-icon-link" href="account.html" aria-label="Account">◉</a>
+        <a class="rrl-join" href="marketplace-seller-dashboard.html">Join / Sign In</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="rrl-shell rrl-storefront-main" id="main-content">
     <section id="loading" class="state-message">
       <h1>Loading seller…</h1>
     </section>
   </main>
+
+  <section class="rrl-section rrl-mission-section">
+    <div class="rrl-shell rrl-mission">
+      <img src="assets/brand/Rebel%20Ranch%20Ministries/rrm-logo-black.png" alt="Rebel Ranch Ministries">
+      <div class="rrl-mission-copy"><h3>FAITH. FAMILY. FREEDOM.</h3><p>Rebel Ranch Ministries is responsible rebellion in action—helping real people build practical skills, protect their freedom of choice, support local businesses, and strengthen their communities.</p><a href="index.html">Learn more about Rebel Ranch Ministries →</a></div>
+      <div class="rrl-mission-photo" aria-hidden="true"></div>
+    </div>
+  </section>
 
   <script type="module" src="assets/js/marketplace-seller-public.js"></script>
 </body>

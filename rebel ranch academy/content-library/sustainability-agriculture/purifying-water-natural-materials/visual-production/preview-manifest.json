@@ -1,32 +1,16 @@
 {
   "project_id": "RRA-2026-0001",
   "title": "Water Through the Layers",
-  "stage": "FINAL_PRODUCT_REVIEW",
-  "status": "READY_FOR_OWNER_FINAL_PRODUCT_REVIEW",
+  "stage": "VISUAL_PRODUCTION",
+  "status": "IN_PROGRESS_NOT_OWNER_READY",
+  "primary_release_candidate": "water-learning-experience-current.html",
   "assets": [
     {
-      "label": "Owner Final Product Review Entry",
-      "file": "index.html",
-      "type": "interactive-html",
-      "description": "Single owner entry point for the completed Water learner-facing review package."
-    },
-    {
-      "label": "Water Through the Layers — Complete Learner Experience",
-      "file": "water-learning-experience-final.html",
-      "type": "interactive-html",
-      "description": "Complete human-first sequence with source scenes, goal, evidence limits, Dirty Is Visible. Danger Isn't., test-result interpretation, treatment-job planning, historical/global context, evidence-literacy ladder, living My Water Plan, optional deeper science/technical layers, and privacy-minimized review-mode learner signals."
-    },
-    {
-      "label": "Deeper Decision Visuals",
-      "file": "water-system-visual-preview.html",
-      "type": "responsive-html",
-      "description": "Optional technical source/testing/treatment/UV/Class A-Class B/POU-POE visual layer."
-    },
-    {
-      "label": "Deeper Implementation Visuals",
-      "file": "water-system-implementation-visuals.html",
-      "type": "responsive-html",
-      "description": "Optional Function Before Form, scale, animal watering, surface-water caution, evidence ladder, historical/global, and system-diagram visual layer."
+      "label": "Current Water Learner Preview",
+      "file": "water-learning-experience-current.html",
+      "type": "deployed-route-forwarder",
+      "description": "Loads the current deployed root Water learner page. Old nested wireframe previews are no longer the owner-review default."
     }
-  ]
+  ],
+  "qa_note": "Visual Production remains in progress. Do not advance to Final Product Review until the corrected visual set is integrated and the deployed learner route passes desktop, mobile, links, rendering, and content QA."
 }

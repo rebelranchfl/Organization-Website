@@ -7,7 +7,7 @@ Before planning, editing, designing, reviewing, or publishing anything:
 1. Read this repository `AGENTS.md` in full.
 2. Read `docs/rebel-ranch-ecosystem-charter.md` in full.
 3. Identify which program, sub-brand, rollout phase, and files the requested task belongs to.
-4. For main Rebel Ranch Ministries visual work, read `docs/rrm-visual-rules.md` in full. For an approved sub-brand such as Creation Station, read that sub-brand's approved standards instead of applying the main RRM visual system to it.
+4. For main Rebel Ranch Ministries visual work, read `docs/rrm-visual-rules.md` in full. For Creation Station work, read `docs/creation-station-positioning.md` in full first, then read the applicable Creation Station visual rules and current handoff/status documents instead of applying the main RRM visual system to it.
 5. Read the other standards and implementation notes relevant to the approved program and task.
 6. Read the complete target files and their connected styles or scripts before editing.
 
@@ -27,11 +27,24 @@ Check for more specific `AGENTS.md` files in the target folder. More specific in
 ## Ecosystem alignment
 
 - Treat the owner's stated scope, exclusions, phases, and approvals as binding.
-- Keep Faith, Family, and Nature Church, Rebel Ranch Ministries, Creation Station, Rebel Ranch Marketplace, Rebel Ranch Academy, Business Freedom, and 3P Help Me distinct.
+- Keep Faith, Family, and Nature Church, Rebel Ranch Ministries, Creation Station, Rebel Ranch Marketplace, Rebel Ranch Academy, Business Freedom, Roots, Boots & Animal Poops, Rebel Ranch Rescue, and 3P Help Me distinct.
 - Connected programs may link to one another, but do not merge their names, offers, audiences, access rules, finances, or visual identities.
-- Preserve the Charter's definitions for Creation Station, the Creation Station dashboard, the Creation Station portfolio, Creation Station Studio, and the Rebel Ranch Marketplace.
+- Preserve the Charter's definitions for Creation Station, the Creation Station dashboard, the Creation Station portfolio, Creation Station Studio, the Rebel Ranch Marketplace, Roots, Boots & Animal Poops, and Rebel Ranch Rescue.
+- For Creation Station, also preserve `docs/creation-station-positioning.md`; it governs the creative-development scope, parent value, beta posture, Studio/Marketplace distinction, and the boundary between current creative programming and future trades/vocational education.
 - Do not implement anything listed as an open decision in the Charter without explicit owner approval.
 - If project code, older documentation, and the Charter disagree, stop and explain the conflict in plain language. Do not guess.
+
+## Digital experience first
+
+- Rebel Ranch Ministries is a multi-program digital ecosystem, not a brochure website. New public-facing work must be designed as a digital experience first.
+- Before creating or redesigning a public surface, answer this question: **How does a person interact with the RRM ecosystem here?** Define what the visitor should be able to choose, discover, search, filter, follow, learn, contribute, manage, request, buy, sell, contact, or otherwise do.
+- Static explanatory content may support an experience, but do not default to long-form static pages when interaction, live/current content, personalization, filtering, user pathways, management, contribution, learning, or direct actions would materially improve the experience.
+- "Interactive" does not mean adding decorative motion or gimmicks. Interaction must help the visitor accomplish something real.
+- HTML, CSS, and JavaScript may remain the delivery technology. A digital experience does not require a framework, database, login, or backend unless the actual functionality requires one.
+- Design architecture for the program's mature direction so today's work does not become throwaway brochure content, but present only functionality that actually exists today. Do not imply future features are live.
+- Existing Marketplace, Academy, and Creation Station experiences establish the maturity level of the ecosystem. New work must build forward from that maturity rather than reverting to static brochure patterns.
+- The Programs Hub uses an owner-approved **"I want to..."** intent model: visitors should be able to express what they need and have the experience respond with relevant program paths, current activity, and next actions rather than being forced through six long program essays.
+- Current activity should make RRM feel alive. When relevant and technically appropriate, public experiences should surface real current program activity such as learning, listings, projects, rescue updates, agricultural work, videos, launches, or opportunities to participate.
 
 ## Scope-safe collaboration
 

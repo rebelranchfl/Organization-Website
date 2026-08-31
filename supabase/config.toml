@@ -3,3 +3,6 @@ verify_jwt = true
 
 [functions.paypal-webhook]
 verify_jwt = false
+
+[functions.submit-marketplace-order]
+verify_jwt = false

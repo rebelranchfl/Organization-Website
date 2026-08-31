@@ -1,14 +1,15 @@
 # RRA-2026-0001 — Visual Production Brief
 
-**Status:** PRODUCT DESIGN REBUILD — NOT YET AUTHORIZED FOR VISUAL PRODUCTION  
+**Status:** OWNER-APPROVED PRODUCT DESIGN — AUTHORIZED VIA NEW VISUAL HANDOFF  
 **Product:** Build Your Water System + free Know Your Water layer  
-**Governing architecture:** `product-architecture.md` + `product-manuscript-responsible-rebellion-addendum.md` + `integrated-learner-flow.md`
+**Governing architecture:** `product-architecture.md` + `product-manuscript-responsible-rebellion-addendum.md` + `integrated-learner-flow.md`  
+**Current authorization:** `visual-production-handoff-2026-08-24.md` — owner Product Review approval recorded 2026-08-24 20:39 ET
 
 ## Why this brief changed
 
-Owner Final Product Review found that the previous learner experience was too text-heavy, forced one intended use, produced weak personalized value, lost state during deeper navigation, and contained dead routes/404s. The owner routed Water back to Product Design. The old Visual Production authorization is therefore stale.
+Owner Final Product Review found that the previous learner experience was too text-heavy, forced one intended use, produced weak personalized value, lost state during deeper navigation, and contained dead routes/404s. The owner routed Water back to Product Design, superseding the old Visual Production authorization.
 
-Visual Production may begin only after the owner approves this rebuilt Product Design.
+Product Design preserved and revalidated the corrected architecture under the Responsible Rebellion / Evidence-First standard. The owner approved that Product Design again on 2026-08-24. Visual Production is now authorized only through `visual-production-handoff-2026-08-24.md` and must implement this rebuilt brief. The superseded historical `visual-production-handoff.md` remains non-authoritative.
 
 ## Visual objective
 
@@ -170,8 +171,12 @@ If the learner mainly receives words in cards instead of usable system diagrams,
 
 ## Authorization boundary
 
-This brief is a future handoff input only. **No Visual Production, public pricing, publishing, release or deployment is authorized until the owner approves the rebuilt Product Design and a new authorized Visual handoff is recorded.**
+The owner has approved the revalidated Product Design and `visual-production-handoff-2026-08-24.md` is the active Visual Production permission boundary.
+
+**Visual Production is authorized. Public pricing, publishing, release, selling, storefront activation, affiliate placement, SEO/public product pages and deployment are still not authorized.**
+
+The finished integrated product must return to Final Product Review before any release action may occur.
 
 ---
 AI-Agent: ChatGPT/GPT-5.6 Sol  
-Session: RRA Product Design Agent
+Session: RRA Product Design Agent — Water Product Review Approval

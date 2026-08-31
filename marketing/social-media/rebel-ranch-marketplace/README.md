@@ -31,6 +31,10 @@ Rebel Ranch Local gives local sellers/providers a fairer place to be found and g
 - Seller/provider deals directly with the buyer.
 - Seller controls accepted payment methods and pickup/delivery/shipping arrangements.
 - Participation is intended for genuine local growers, makers, sole proprietors, service providers, tradespeople, side businesses, young entrepreneurs with appropriate parent/guardian involvement, and very small teams aligned with the mission.
+- Up to 5 active listings included free per seller.
+- Seller dashboard supports one-tap call/text/email straight from an order or buyer question — no copy-pasting contact info.
+- Featured/paid placement is intentionally not offered — visibility stays a level playing field for every free-tier seller. Instead, one free-tier shop is spotlighted weekly across Rebel Ranch Ministries' own channels at no cost (in progress, not yet live — do not promise a specific cadence until it's running).
+- Optional paid help is available through Rebel Ranch Ministries' separate Business Freedom program (e.g. help getting a professional storefront, catching up on buyer messages, or setting up a faster way to get paid) — always off to the side as a choice, never required to sell on the Marketplace.
 
 ## Buyer model
 

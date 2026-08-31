@@ -1,6 +1,5 @@
 /* Operations Review → dedicated Academy stage review navigation
-   AI-Agent: ChatGPT/GPT-5.6 Sol
-   Session: RR Website — Final Product Review navigation/preview fix */
+   Lightweight/event-driven: no whole-page MutationObserver. */
 const MAP={
   'Idea + Context':'IDEA','Research Working':'RESEARCH_WORKING','Research':'RESEARCH_WORKING',
   'Research Review':'RESEARCH_REVIEW','Product Opportunity':'PRODUCT_OPPORTUNITY_RESEARCH',
@@ -42,7 +41,7 @@ function addShortcut(){
   if(!box){
     box=document.createElement('div');box.id='open-current-stage-review-box';
     box.style.cssText='display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin:12px 0;padding:14px;border:2px solid #e0a449;border-radius:9px;background:#251f11';
-    box.innerHTML='<div><strong style="display:block;color:#f2d38b">Focused Stage Review</strong><span style="color:#c8d2c9;font-size:.84rem">Open the current phase on its own page. Final Product Review includes the actual learner-facing product preview before approval controls.</span></div><button type="button" class="button primary" id="open-current-stage-review">Open Current Stage Review →</button>';
+    box.innerHTML='<div><strong style="display:block;color:#f2d38b">Focused Stage Review</strong><span style="color:#c8d2c9;font-size:.84rem">Open the current phase on its own page for detailed review and testing.</span></div><button type="button" class="button primary" id="open-current-stage-review">Open Current Stage Review →</button>';
     anchor.insertAdjacentElement('afterend',box);
   }
   const button=box.querySelector('#open-current-stage-review');
@@ -54,10 +53,18 @@ function decorate(){
     const stage=MAP[x.querySelector('span')?.textContent?.trim()];if(!stage)return;
     x.dataset.stageReview=stage;x.tabIndex=0;x.setAttribute('role','link');x.setAttribute('aria-label',`Open ${x.querySelector('span')?.textContent?.trim()} stage review`);x.style.cursor='pointer';
   });
-  document.querySelectorAll('.lsw-stage[data-stage]').forEach(x=>{x.dataset.stageReview=x.dataset.stage;x.tabIndex=0;x.setAttribute('role','link');x.style.cursor='pointer'});
   addShortcut();
 }
-document.addEventListener('click',e=>{const x=e.target.closest('[data-stage-review]');if(!x)return;e.preventDefault();e.stopImmediatePropagation();go(x.dataset.stageReview)},true);
+function scheduleDecorate(){
+  queueMicrotask(decorate);
+  setTimeout(decorate,80);
+  setTimeout(decorate,220);
+}
+document.addEventListener('click',e=>{
+  const stageTarget=e.target.closest('[data-stage-review]');
+  if(stageTarget){e.preventDefault();e.stopImmediatePropagation();go(stageTarget.dataset.stageReview);return;}
+  if(e.target.closest('.queue-item'))scheduleDecorate();
+},true);
 document.addEventListener('keydown',e=>{if(!['Enter',' '].includes(e.key))return;const x=e.target.closest('[data-stage-review]');if(x){e.preventDefault();go(x.dataset.stageReview)}},true);
-new MutationObserver(()=>queueMicrotask(decorate)).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
-queueMicrotask(decorate);
+window.addEventListener('popstate',scheduleDecorate);
+setTimeout(scheduleDecorate,250);

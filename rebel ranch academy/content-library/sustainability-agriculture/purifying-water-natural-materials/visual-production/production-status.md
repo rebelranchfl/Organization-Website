@@ -1,86 +1,153 @@
 # RRA-2026-0001 — Visual Production Status
 
-**Stage:** FINAL_PRODUCT_REVIEW  
-**Cycle:** 04 — Integrated learner experience finalization  
+**Stage:** VISUAL_PRODUCTION  
+**Progress:** Deliverable-based tracking; no arbitrary percentage
+**Cycle:** 06 — Personal ChatGPT image-production handoff
 **AI-Agent:** ChatGPT/GPT-5.6 Sol  
 **Session:** RRA Visual Production Agent
 
 ## Coordination checks
 
-- No `PENDING` or `RUNNING` manual agent request exists for this project.
-- No routed or in-progress Visual Production late finding exists.
-- No pending Visual Production owner feedback remains.
-- `visual-production-handoff.md` remains `Status: AUTHORIZED`.
+- Supabase control plane confirms `RRA-2026-0001` is `VISUAL_PRODUCTION / AGENT_WORKING`.
+- `visual-production-handoff.md` remains `Status: AUTHORIZED — RESPONSIBLE REBELLION REBUILD`.
+- No unresolved `PENDING_OWNER`, routed, in-progress, or spin-off late finding is currently blocking Visual Production.
+- `preview-manifest.json` remains correctly marked `VISUAL_PRODUCTION / RENDERED_QA_IN_PROGRESS`.
 
-## Completed this cycle
+## Why this status file changed
 
-Created `water-learning-experience-final.html` as the completed primary learner-facing sequence and updated the owner review package to lead with it.
+The previous `production-status.md` still described the superseded Cycle 04 state as `FINAL_PRODUCT_REVIEW` and claimed Final Product QA PASS. That no longer matched the owner return, the current Supabase lifecycle record, the Rendered Product QA Standard, or the current `final-product-qa.md`.
 
-The final integrated sequence now includes, in context:
-1. **Tell us about your water** — recognizable water-source scenes.
-2. **What do you need the water to do?** — intended use and scale.
-3. **What do you actually know?** — observation, testing status, and unknowns.
-4. **Dirty Is Visible. Danger Isn't.** — safe simulated-water investigation that explicitly separates visible change from potable-safety proof.
-5. **My Water Test Results** — ordinary-language result interpretation and remaining unknowns.
-6. **Build My Water Treatment Plan** — function-before-form job sequence with UV and surface-water boundaries preserved.
-7. **Water Through Time, Place, and Evidence** — historical/global context, Moringa and copper boundaries, modernization tradeoffs, and the claim/evidence ladder in the main sequence rather than only in detached deeper files.
-8. **My Water Plan** — living summary generated from the learner's own structured choices, with print and reset controls.
+This file is corrected so GitHub and the owner control plane describe the same real stage.
 
-Also completed:
-- optional deeper source/testing/UV/Class A-Class B/POU-POE links remain available;
-- optional deeper Function Before Form, scale, automated animal water, surface-water caution, historical/global, evidence-ladder and block-diagram material remains available;
-- review-mode learner-signal instrumentation remains privacy-minimized and uses the existing `public.record_academy_learner_signal` function;
-- source, intended-use, testing, concern, scale, tool-completion, result-category, depth-choice, format-preference and abandonment signals are represented without names, emails, addresses, IPs, browser fingerprints, or open-ended personal stories;
-- `index.html` now describes the package as Final Product Review rather than an in-progress rebuild;
-- `preview-manifest.json` now points to the completed integrated experience and identifies the package as ready for owner Final Product Review.
+## Current learner-facing release candidate
 
-## Preservation / safety result
+Primary:
 
-PASS. The completed learner-facing package preserves:
-- clear water versus safe water;
-- testing/diagnosis before treatment selection;
-- original natural-material filtration teaching and `Dirty Is Visible. Danger Isn't.`;
-- treatment-function distinctions;
-- source protection and intended-use differences;
-- historical/global/resource-spectrum teaching;
-- Moringa mechanism and limitations;
-- copper evidence limits;
-- acoustic/frequency and lunar material as evidence-literacy, not health recommendations;
+- `water-learning-experience-final.html`
+
+Connected depth layers:
+
+- `water-system-visual-preview.html`;
+- `water-system-implementation-visuals.html`.
+
+Current owner/QA entry:
+
+- `index.html`.
+
+The package remains private review/QA work. No public release is authorized.
+
+## Durable corrections already present
+
+The current release candidate preserves the Responsible Rebellion rebuild requirements, including:
+
+- multi-select intended uses;
+- shared-source / multi-use branch logic;
+- living My Water Plan with distinct selected-use branches;
+- saved source/use/testing/concern/scale state;
+- whole-system branch visual;
+- 55-gallon layered filtration cutaway;
+- historical/regional/modern comparison;
+- clear-water-versus-safe-water teaching;
+- treatment-job teaching;
+- UV function/Class A-Class B/POU-POE boundaries;
+- Function Before Form / substitutions;
+- scale translation;
+- animal-water distribution;
+- surface-water chemical/toxin caution;
 - evidence/claim ladder;
-- Think Like a Rebel / Function Before Form / TRANSFER THE PRINCIPLE;
-- educational-demonstration versus verified-potable-treatment boundary;
-- UV as microbial disinfection/inactivation only;
-- UV pretreatment/clarity, Class A/Class B, certified model/flow, POU/POE, non-removal, downstream recontamination, power/maintenance, and potable safety-critical reactor boundaries;
-- surface-water chemical/toxin caution.
+- Dirty Is Visible. Danger Isn't.;
+- Think Like a Rebel / TRANSFER THE PRINCIPLE;
+- targeted safety boundaries without generic disclaimer clutter.
 
-No new factual/evidence blocker was discovered.
+## Browser-runtime work completed this cycle
 
-## Verification completed
+A functioning Playwright + Chromium runtime was used to exercise the primary interaction behavior.
 
-- Relative links used by the integrated experience point to files present in `visual-production/`.
-- Referenced deeper anchors `#source-decision`, `#clear-safe`, `#uv-train`, and `#uv-class-pou` are present in `water-system-visual-preview.html`.
-- Responsive breakpoints collapse primary grids for tablet/mobile widths.
-- Print rules move the integrated experience to light printable surfaces and hide navigation/action controls.
-- Safety meaning is stated in text and structure, not color alone.
-- Non-clickable information containers are not styled as full pills/capsules; rounded button/link treatment is reserved for interactive controls.
-- The database routine `public.record_academy_learner_signal` exists for the instrumented structured signal calls.
-- No live/public browser deployment test was performed because release/deployment is not authorized at this gate.
+### Multi-use test
 
-## Final Product QA
+Profile exercised:
 
-Re-run against the authorized handoff, Product Design package, evidence crosswalk, Revision Preservation Standard, Learner Experience standard, and current integrated review package: **PASS**.
+- private well;
+- drinking/cooking + animal water + emergency backup simultaneously;
+- laboratory results;
+- microbial concern;
+- farm/distribution scale.
 
-## Owner action
+Result:
 
-Visual Production is complete. The project is ready for owner Final Product Review.
+- all 3 uses remained selected together;
+- My Water Plan rendered 3 distinct branches;
+- the personalized branch diagram included all three uses;
+- the complete structured state was saved together.
 
-Owner decision:
-- Approve for Release;
-- Needs Visual / Delivery Work;
-- Return to Product Design; or
-- Reject Product.
+### State restore test
 
-Approval at Final Product Review does not itself publish or deploy the product; release preparation and release decision remain separate later gates.
+The saved state was loaded into a fresh browser document.
+
+Result:
+
+- source, all 3 uses, testing state, concern and scale restored;
+- My Water Plan rebuilt the same 3 branches without re-entry;
+- the prior state-overwrite defect did not recur in the exercised load path.
+
+### Materially different profile
+
+Second profile exercised:
+
+- rainwater;
+- household + irrigation;
+- screening test;
+- sediment/particles concern;
+- 55-gallon scale.
+
+Result:
+
+- a different 2-branch My Water Plan rendered;
+- summary/branch output changed materially from the first profile.
+
+### Mobile / print
+
+- Chromium viewport `375 × 812` produced `scrollWidth = clientWidth = 375` in the exercised primary surface;
+- print media hid progress/action controls as intended;
+- the Print My Water Plan control invoked the print action in the browser runtime.
+
+## Route verification
+
+Exact GitHub-main destination files and fragments are present for every currently referenced deeper route:
+
+- decision page: `#clear-safe`, `#testing`, `#uv`;
+- implementation page: `#scale`, `#substitutions`;
+- main internal steps: `#start`, `#use`, `#know`, `#system`, `#activity`, `#history`, `#myplan`, `#evidence`.
+
+The known missing-fragment defect is closed.
+
+## Current generated-image handoff
+
+- The damaged inline/base64 image has been replaced in the working change with a real `1024 × 1536` WebP file.
+- The generated artwork contains no baked-in labels; exact layer names and functions remain deterministic learner-page content.
+- Supabase records the asset as `READY_FOR_INTEGRATION`, not as deployed or verified.
+- The personal-ChatGPT operating contract is recorded in `ACADEMY-CHATGPT-IMAGE-PRODUCTION-STANDARD.md`.
+
+## Remaining hard gate
+
+Final Product QA is **not PASS yet**. The new image has not yet passed GitHub deployment and exact deployed-route browser QA.
+
+The execution environment blocks normal URL/file navigation with `ERR_BLOCKED_BY_ADMINISTRATOR`. Because of that, this cycle could not honestly exercise the exact real-browser sequence:
+
+`main experience → deeper page → Back to where I was → exact prior location/state`.
+
+That linked navigation/history-back behavior must still be exercised in a browser/runtime that permits normal navigation. Static GitHub route/fragment existence has passed, and fresh-document state restore has passed, but neither is a substitute for the required actual click-through return test.
+
+## Next action
+
+Run the exact current GitHub-main release candidate in a browser that permits normal navigation and verify:
+
+1. every deeper link opens its intended page/fragment;
+2. **Back to where I was** returns to the exact prior point;
+3. all selected uses and plan state remain intact after the round trip;
+4. no 404/wrong destination appears.
+
+If those pass, re-run the final preview/manifest identity check and only then mark Final Product QA PASS / move to `FINAL_PRODUCT_REVIEW`.
 
 ## Release boundary
 
