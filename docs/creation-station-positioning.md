@@ -3,15 +3,17 @@
 **Status:** Owner-approved and governing
 
 **Approved:** 2026-08-25  
-**Updated:** 2026-08-25 — product-language, Studio-flow, and ordering clarification
+**Reconciled:** 2026-09-06 — aligned with current implementation and RRM governance
 
-This document defines what Creation Station is, what it is not, the value it must communicate, and the boundaries future AI agents must preserve when writing, designing, reviewing, or building Creation Station experiences.
+This document defines what Creation Station is, what it is not, the value it must communicate, and the durable boundaries AI agents must preserve when writing, designing, reviewing, or building Creation Station experiences.
 
 Read this document together with:
 - `docs/rebel-ranch-ecosystem-charter.md`
 - `docs/creation-station-visual-rules.md`
 - `docs/creation-station-dashboard-visual-rules.md`
-- the current Creation Station handoff/status documents relevant to the work
+- the applicable current Creation Station system/technical controls when implementation status matters.
+
+Dated handoffs and historical reviews are not current authority. When current implementation status matters, use the applicable current system control and verify the implementation rather than relying on an older handoff.
 
 ## 1. Core definition
 
@@ -35,7 +37,7 @@ Creation Station is not merely an arts-and-crafts entertainment product, and it 
 
 ## 2. Hard boundary: creative work is not trades education
 
-Future AI agents must not interpret the words **create**, **make**, **build**, **project**, **hands-on**, or **skills** as authorization to expand Creation Station into trades education.
+AI agents must not interpret the words **create**, **make**, **build**, **project**, **hands-on**, or **skills** as authorization to expand Creation Station into trades education.
 
 Within Creation Station, those words refer to the creative context unless the owner explicitly says otherwise.
 
@@ -123,13 +125,13 @@ Accurate alternatives include:
 
 A visible next step is not the same thing as a guided lesson.
 
-## 5. The Creation Companion: motivation and momentum, not instruction
+## 5. The Creation Companion: current capability and future direction
 
-The Creation Companion is part of the current Creation Station dashboard experience.
+The Creation Companion is **built and is part of the current Creation Station dashboard experience**.
 
-Its job is to help the creator stay engaged with their own work by providing age-aware encouragement, prompts, celebration, reflection, and reminders about what comes next.
+Its current job is to help the creator stay engaged with their own work by providing age-aware encouragement, prompts, celebration, reflection, and reminders about what comes next.
 
-The Companion may:
+The current Companion may:
 - motivate;
 - encourage;
 - celebrate progress;
@@ -140,14 +142,14 @@ The Companion may:
 - encourage them through frustration or unfinished work; and
 - help maintain momentum.
 
-The Companion does **not** currently:
+The current Companion does **not**:
 - teach a craft;
 - provide a project tutorial;
 - walk the creator through how to physically make a specific item;
 - replace an instructor; or
 - turn a creator's project into a guided class.
 
-Future instruction or project-teaching capability may be added later, but it must not be marketed as current functionality before it actually exists.
+The strategic direction is to develop the Companion into increasingly useful, customizable, age-appropriate AI assistance that can meaningfully support creators. That future capability must remain distinguishable from what the Companion can actually do now.
 
 ## 6. The Creation Station progression
 
@@ -288,7 +290,7 @@ It must **not** route to the project/dashboard Experience page unless the CTA ex
 
 The current approved Studio example on `creation.html` is an acceptable Studio destination until a dedicated live Studio demo is intentionally created.
 
-## 13. Public Studio publication intent
+## 13. Public Studio publication
 
 The owner-approved product direction is **self-service publication for a qualifying paid public-page tier after the required adult/parent acknowledgement is completed**.
 
@@ -305,16 +307,7 @@ For qualifying paid access, the intended user experience is:
 
 Do not tell customers their Studio is being “submitted for RRM review and publication” unless that is once again explicitly made the product workflow.
 
-### Known implementation conflict — 2026-08-25
-
-The current dashboard code attempts to follow the owner-approved direction above by setting a qualifying paid Studio to approved/live after acknowledgement.
-
-However, the current Supabase publication guard still contains older logic that reserves `approved`/`published` status transitions for an administrator.
-
-Therefore:
-- public copy must not invent a manual editorial review as a benefit;
-- the backend conflict must be resolved deliberately before the self-service publication workflow can be considered fully verified in production; and
-- no agent may silently weaken parent controls or database security simply to make the front end appear to work.
+Changing database, security, deployment, and implementation details for this workflow belong in the applicable Creation Station system/technical controls rather than this Program Bible. No agent may weaken parent controls or database security merely to make the front end appear to work.
 
 ## 14. Creation Station Studio and Rebel Ranch Local are separate
 
@@ -330,30 +323,21 @@ Creation Station membership does not equal Marketplace approval, and a Studio pa
 
 When Creation Station visually references Rebel Ranch Local, use the **current Rebel Ranch Local light cream/olive/tan identity**, not retired dark Marketplace treatments.
 
-## 15. Studio ordering direction
+## 15. Studio ordering
 
-The public Creation Station Studio already supports products, a cart, and order requests. Its current order-request model is simpler than Rebel Ranch Local.
+Creation Station Studio supports a **structured direct-order request model** while remaining separate from Rebel Ranch Local ordering.
 
-The mature direction is to bring Studio ordering up to the same **structured direct-order standard** already proven in Rebel Ranch Local while keeping Studio orders and Marketplace seller orders as separate systems.
+The current Studio order experience is designed around:
 
-The target Studio order experience is:
+**choose products → quantities and optional item notes → fulfillment choice → buyer information → optional timing/address/note → send order request → creator/parent receives the structured order → accept/change/decline/ready/complete → confirm total/payment/fulfillment**
 
-**choose products → build order → quantities → fulfillment choice → buyer information → optional note → send order → creator/parent receives a structured order → accept/change/complete → confirm total/payment/fulfillment**
+The system supports structured order information including order numbers, product/item snapshots, quantities, fulfillment selection, buyer contact information, order status, read state, confirmed totals where appropriate, payment instructions, fulfillment details, and a creator/parent Studio Orders inbox.
 
-When implemented, Studio ordering should support appropriate equivalents of:
-- structured order items rather than only a plain-text cart summary;
-- an order number;
-- fulfillment selection;
-- buyer contact information;
-- order status;
-- read/unread state;
-- accepted/completed state;
-- confirmed total where appropriate;
-- payment instructions/direct payment link;
-- fulfillment details; and
-- a clear creator/parent dashboard order inbox.
+Sending an order request does not finalize payment. The creator/family confirms availability, final total, fulfillment, and payment instructions. RRM does not process the creator's payment through this order-request workflow.
 
-Do **not** simply insert Creation Station Studio orders into Marketplace `seller_orders` unless the owner explicitly chooses to merge those systems. A Studio creator is not automatically a Marketplace seller.
+Studio orders remain separate from Marketplace `seller_orders`. A Studio creator is not automatically a Marketplace seller.
+
+Detailed database fields, permissions, Edge Functions, migrations, security controls, and current implementation verification belong in the applicable Creation Station backend/system authority.
 
 ## 16. Beta posture
 
@@ -461,6 +445,8 @@ The goal is **streamline the experience, not shrink the program**.
 Creation Station is a creative-development pathway that helps people make, finish, document, belong, learn, present, and potentially earn from creative work while building confidence, business awareness, independence, and self-sufficiency.
 
 For families, it also creates practical value by giving parents time back, making screen use more productive, helping creative spending build lasting capability, and giving children a structured path toward greater responsibility.
+
+The Creation Companion is **built and current**, while more capable customizable AI assistance remains future direction.
 
 Current project tools are **structured and Companion-supported, not guided instruction**.
 
