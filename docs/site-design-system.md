@@ -9,7 +9,7 @@ This document answers **how a public experience should be structured and used**.
 Read this together with:
 
 - `AGENTS.md` — repository-wide AI/operator control and verification;
-- `docs/rebel-ranch-ecosystem-charter.md` — current organization/program structure and status;
+- `docs/rebel-ranch-ecosystem-charter.md` — organization identity, program relationships, mission, and permanent boundaries;
 - `docs/digital-experience-first.md` — shared digital-experience architecture;
 - `docs/brand-guide.md` — RRM organization brand only;
 - `docs/rrm-visual-rules.md` — current RRM public-surface visual implementation;
@@ -17,7 +17,7 @@ Read this together with:
 
 **Every RRM program has its own brand.** This shared design system must not be used to erase or replace a program's approved brand. If a program-specific rule conflicts with a shared design pattern and the intended treatment is not already documented, stop and route the conflict to the owner.
 
-Current program availability, rollout status, pricing, live destinations, and feature status must come from the Ecosystem Charter and applicable program records. Do not duplicate those changing facts here.
+Organization identity, program relationships, mission, and permanent boundaries come from the Ecosystem Charter. Current availability, rollout status, pricing, live destinations, feature status, and other changing operational facts come from the applicable program, system, or project controls. Do not duplicate those changing facts here.
 
 ## 1. Page purpose
 
@@ -37,6 +37,8 @@ Follow `digital-experience-first.md`.
 A page is not successful merely because it contains complete explanatory copy. Where the visitor can meaningfully choose, search, filter, learn, contribute, request, manage, contact, buy, sell, or otherwise act, the experience should support that job directly.
 
 Interaction must have a real purpose. Decorative motion or extra controls do not satisfy this requirement.
+
+Digital-first design governs digital delivery. It must not be interpreted as requiring RRM or its programs to replace valuable human, community, mentorship, real-world, agricultural, service, or future hands-on experiences with digital substitutes.
 
 ## 3. Sections versus cards
 
