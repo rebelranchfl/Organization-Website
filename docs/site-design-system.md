@@ -1,159 +1,143 @@
-# Rebel Ranch Ministries Site Design System
+# Rebel Ranch Ministries — Shared Site Design System
 
-This guide is the working standard for public Rebel Ranch Ministries pages. Use it before adding a page, changing a section, or redesigning a program page.
+**Purpose:** Define shared public-page and UX construction principles for Rebel Ranch Ministries without duplicating RRM brand rules or program-specific brand/workflow rules.
 
-## Visual-rule precedence
+This document answers **how a public experience should be structured and used**. It does not define the detailed brand identity of RRM or any program.
 
-[rrm-visual-rules.md](./rrm-visual-rules.md) is the approved and locked source of truth for public-site surfaces. It supersedes this document and `brand-guide.md` for page backgrounds, cards, dividers, General Contact, buttons, and spacing whenever there is a conflict.
+## Authority and routing
 
-For brand colors, logo use, and typography, see [brand-guide.md](./brand-guide.md). For mission, entity, and voice requirements, see [non-negotiables.md](./non-negotiables.md).
+Read this together with:
 
-## The page should answer four questions in order
+- `AGENTS.md` — repository-wide AI/operator control and verification;
+- `docs/rebel-ranch-ecosystem-charter.md` — current organization/program structure and status;
+- `docs/digital-experience-first.md` — shared digital-experience architecture;
+- `docs/brand-guide.md` — RRM organization brand only;
+- `docs/rrm-visual-rules.md` — current RRM public-surface visual implementation;
+- the applicable program-specific brand, visual, workflow, and operating documents for program surfaces.
 
-1. What is this page or program?
+**Every RRM program has its own brand.** This shared design system must not be used to erase or replace a program's approved brand. If a program-specific rule conflicts with a shared design pattern and the intended treatment is not already documented, stop and route the conflict to the owner.
+
+Current program availability, rollout status, pricing, live destinations, and feature status must come from the Ecosystem Charter and applicable program records. Do not duplicate those changing facts here.
+
+## 1. Page purpose
+
+A public experience should answer four questions in a useful order:
+
+1. What is this?
 2. Who is it for and why does it matter?
-3. What can the visitor do here today?
-4. What is the one best next step?
+3. What can the visitor actually do here now?
+4. What is the clearest next step?
 
-Every page does not need every possible message. Lead with the visitor's immediate need, then give only the context required to make the next action clear.
+Every surface does not need every possible message. Lead with the visitor's immediate need and provide only the context necessary to understand and act.
 
-## Sections versus cards
+## 2. Digital experience first
 
-**Sections are for stories, explanations, and invitations.**
+Follow `digital-experience-first.md`.
 
-Use a section for:
+A page is not successful merely because it contains complete explanatory copy. Where the visitor can meaningfully choose, search, filter, learn, contribute, request, manage, contact, buy, sell, or otherwise act, the experience should support that job directly.
 
-- Mission, origin, or community context
-- A program overview or explanation
-- A partnership or support invitation
-- Image galleries and visual storytelling
-- A closing call to action
+Interaction must have a real purpose. Decorative motion or extra controls do not satisfy this requirement.
 
-Sections should feel open and calm. They may use a background treatment, a divider, imagery, or a two-column layout, but they should not automatically receive a bordered card/panel around every paragraph.
+## 3. Sections versus cards
 
-**Cards are for choices or comparable offers.**
+**Sections are for stories, explanations, context, and invitations.**
 
-Use cards only when visitors need to compare or choose among parallel items, such as:
+Use sections for things such as:
 
-- Business Freedom service offers
-- Membership tiers
-- Marketplace products or seller options
-- Classes, events, or plans with distinct actions
+- purpose or mission context;
+- program explanation;
+- current activity or proof;
+- image/visual storytelling;
+- supporting information;
+- a closing invitation or action.
 
-Do not use cards just to contain ordinary copy. If removing the border would not make the content less understandable, it probably belongs in a section instead.
+Do not automatically put ordinary copy into decorative boxes.
 
-## Surface language
+**Cards are for real choices or comparable items.**
 
-- **Phase 1 pages:** use the solid `#204227` page background. Apply this only to the homepage and forms named in [rrm-visual-rules.md](./rrm-visual-rules.md); later pages wait for their approved rollout phase.
-- **Heroes:** use the full-width `#1D4024` to `#122A18` vertical fade, with no border, rounded container, or visible rectangle around the fade.
-- **Cards and forms:** use the same `#1D4024` to `#122A18` vertical fade, preserving the approved card borders, 20px corners, 24px padding, and gold-to-green top rule. Use cards only for true choices or comparable offers.
-- **Sections:** remain open—no automatic border or panel. An image, a quiet background shift, or a two-column layout is enough in most cases.
-- **Section dividers:** use at every major section handoff: a full-width, calm green rule with a short gold center accent. Do not add unrelated internal rules between content blocks.
-## Page rhythm
+Use cards when the visitor needs to compare/select among parallel options such as services, programs, products, plans, sessions, listings, or actions.
 
-Use this order unless a program genuinely needs something different:
+If removing the border/container would not make the information harder to understand or choose between, it probably does not need to be a card.
 
-1. Clear hero: purpose and primary action
-2. Available offer or primary content
-3. Why it matters: short context, proof, or story
-4. Supporting paths: what is next, partnership, or support
-5. One clear closing action
-6. Simple footer
+## 4. Page rhythm
 
-Avoid stacking several boxed panels that say similar things. Each section must have one job and introduce new information.
+Use a clear progression unless the user need requires something different:
 
-### Locked major-section rhythm
+1. clear opening purpose and primary action;
+2. the main available content, tool, offer, or choice;
+3. concise explanation/proof/context;
+4. supporting paths or connected actions;
+5. one clear closing next step.
 
-After the hero, every major content section uses `clamp(4.5rem, 8vw, 7rem)` of padding above and below, with no separate section margins or one-off vertical-spacing overrides. Each major handoff uses the approved full-width green divider with its centered gold accent. Do not make individual sections roomier or tighter by adding their own padding or margins.
+Avoid several sections that repeat the same mission statement or CTA. Each major section should have one distinct job.
 
-## Calls to action
+Exact RRM colors, spacing, card surfaces, dividers, button treatments, and visual tokens belong in `rrm-visual-rules.md` and `brand-guide.md`. Exact program-specific treatments belong in that program's brand/visual documentation.
 
-- A hero has one primary action and, at most, two supporting actions.
-- Gold buttons are primary, high-intent actions: pay, apply, request a service, or submit an interest form.
-- Outline buttons are secondary paths: learn more, view details, or explore a related path.
-- Do not repeat a button if the next section already delivers that action.
-- Send visitors directly to the action when the action is known. Examples: PayPal for a donation amount; an interest form for partnership or supply contributions.
-- Keep general contact available in navigation and the footer, but do not make it the primary path when a specific service, partnership, or donation path exists.
+## 5. Calls to action
 
-## Homepage rules
+- Make the primary action clear within the opening experience when an immediate action exists.
+- Do not create competing primary actions without a real user need.
+- Send the visitor directly to the known action rather than through unnecessary intermediary pages.
+- Keep general contact available, but do not use it as the primary route when a more specific approved action exists.
+- Do not repeat the same CTA merely to fill space.
+- Never make a non-clickable element look like a clickable control.
 
-The homepage is the public front door. It should make these paths unmistakable:
+### Pill rule
 
-- **Business Freedom:** available now; practical help for sole business owners
-- **Partnership:** ways for local people to bring skills, resources, products, or connections
-- **Mission support:** direct financial and supply support
-- **What is next:** Creation Station, Academy, and the local-first Marketplace, clearly labeled as being built when they are not yet available
+**Pill/capsule shapes are reserved for actual clickable controls only.**
 
-The homepage should not make future programs look live, or make visitors hunt for the action they came to take.
+Do not use pill styling for non-clickable badges, labels, tags, statuses, metrics, or decorative elements.
 
-## Local-first Marketplace language
+## 6. Brand boundaries
 
-When describing the Marketplace:
+- RRM organization surfaces use the approved RRM brand and visual rules.
+- Every RRM program has its own brand and must use its approved program-brand rules.
+- A program may intentionally share RRM elements, but that relationship must be documented in the program brand.
+- Do not silently default an undefined program brand to RRM.
+- Do not mix program logos, colors, visual systems, offers, or identities simply because the programs are connected inside RRM.
 
-- Lead with the benefit to local small businesses and community members.
-- State that it is local-first and designed to keep opportunity in the community.
-- Do not imply it is live until it is ready.
-- Avoid unsupported guarantees. Say it is designed to help local businesses compete, rather than promising a specific commercial result.
+## 7. Shared shell and common infrastructure
 
-## Headers and footers
+When a surface is governed by the shared RRM public shell, use the approved shared header/footer/navigation implementation rather than hand-authoring a duplicate shell.
 
-### Header
+Detailed shared-shell implementation belongs with shared system operations and applicable visual rules, not repeated here.
 
-Every visible public page and public form uses the shared public header from `assets/js/public-shell.js`. Do not create or edit page-specific header markup or styling.
+Authentication, accounts, database, email, deployment, analytics, security, and other genuinely shared infrastructure should be documented once at repository/shared-system level. Program documents should state only their program-specific behavior, roles, permissions, and user paths.
 
-**Updated 2026-08-05** (owner-directed nav rework — see `rrm-visual-rules.md` v2.2): the navigation is now:
+## 8. Content and voice
 
-- Home
-- Programs (dropdown) — Business Freedom, Creation Station, Marketplace, Partner With Us
-- Support the Mission
-- Contact
+- Use plain, specific language.
+- Explain technical terms when they are necessary.
+- State what is actually available now before describing future direction.
+- Do not present planned features as live.
+- Use short headings and let body copy carry necessary detail.
+- Remove repeated messaging rather than restating the same idea in several sections.
+- Frame problems clearly without unsupported blame or guarantees.
+- Program-specific voice and catchphrases must come from the applicable approved program brand/content standards.
 
-Destinations:
+## 9. Visuals and imagery
 
-- **Business Freedom** (in Programs dropdown) → `index.html#business-freedom`
-- **Creation Station** (in Programs dropdown) → `creation.html`
-- **Marketplace** (in Programs dropdown) → `marketplace.html`
-- **Partner With Us** (in Programs dropdown) → `align-interest.html`
-- **Support the Mission** → `support.html` (previously went straight to PayPal; that direct link now lives as the on-page "Choose Your Support Amount" button on both the homepage and `support.html`)
-- **Contact** → `contact.html`
+Use imagery when it helps a visitor understand the real subject, system, person, object, process, result, or choice.
 
-The old rule "do not add Business Freedom to the main navigation" no longer applies — the header was overloading as more programs went live, so Business Freedom, Creation Station, and Marketplace were grouped into one "Programs" dropdown instead of listed inline. See `assets/js/public-shell.js` and `.rrm-nav-dropdown` in `assets/css/public-surface.css`.
+Do not treat decorative graphics as a substitute for explanation or functionality.
 
-Creation Station is not part of the Phase 1 public-surface rollout and retains its separate approved visual system.
+Official organization/program logos and brand assets must be the exact verified approved assets. Do not redraw, recreate, approximate, or replace them with generated substitutes.
 
-### Footer
+## 10. Before release
 
-Every visible public page and public form uses the shared public footer from `assets/js/public-shell.js`. Do not create or edit page-specific footer markup or styling.
+Before any public surface is called ready/live, verify the applicable user journey end to end.
 
-The footer is a compact black utility band that contains:
+Confirm, as applicable:
 
-- Logo, organization name, and gold “Faith · Family · Freedom” tagline
-- Contact, Privacy Policy, and Legal Disclosures links
-- Facebook, Instagram, and YouTube links
-- Short organization identifier and copyright
+- the visitor can understand what the surface is for;
+- the primary action is clear;
+- every button/control works and goes to the intended approved destination;
+- no non-clickable pill/capsule styling exists;
+- no planned feature is presented as live;
+- program brand and RRM brand boundaries are correct;
+- the applicable shared shell and security boundaries are intact;
+- desktop and mobile layouts are usable with no clipping or overflow;
+- no placeholder, draft, test, or internal-only content is exposed;
+- the actual released experience matches the reviewed candidate.
 
-Full legal, privacy, and program-fee language belongs on linked policy pages.
-
-### Service-card actions
-
-Each Business Freedom service card has one gold primary button that goes directly to `business-request.html` with the relevant service selected. “View Everything Included” is disclosure content, not a competing action.
-
-## Content and voice
-
-- Use plain, specific language. Prefer "Local People Creating Practical Solutions." over abstract labels such as "online hub" or "ecosystem."
-- State what is available now before describing the broader vision.
-- Use short headings; let body copy provide the explanation.
-- Do not repeat the same mission statement in several sections. Give each section a distinct purpose.
-- Frame problems without blame: identify the pressure, then offer a practical path forward.
-
-## Before publishing a page
-
-Confirm:
-
-- The primary action is obvious within the first screen.
-- Every button goes to the intended destination.
-- No future program is presented as currently available.
-- Cards are used only for choices or comparisons.
-- Repeated messages and duplicate calls to action have been removed.
-- Header and footer match the public-site standard.
-- The mobile layout is readable, with no overflow, clipped text, or unnecessary stacked panels.
+Do not call the work complete merely because files were changed or committed. Follow the repository-wide end-to-end verification requirement in `AGENTS.md`.
