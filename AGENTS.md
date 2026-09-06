@@ -96,6 +96,24 @@ Examples include:
 
 Authentication, accounts, Supabase/database, email, deployment, shared shell/navigation, security/permissions, and other genuinely shared systems belong to repository/shared-system operations. Program documents should reference those shared systems and document only the program-specific behavior or permissions.
 
+### Marketing — repository-wide vs program-specific
+
+Marketing has **two connected levels** and they must not be mixed into one uncontrolled documentation pile.
+
+**Repository-level Marketing** is the authoritative home for marketing systems and methods that apply across more than one RRM program, including shared marketing rules, common workflows, owner approval processes, publishing processes, shared analytics/reporting, cross-program campaign coordination, and reusable content-production methods.
+
+**Program-level Marketing** belongs inside the applicable program ecosystem. It governs that program's specific audiences, campaigns, offers, messaging, assets, launch plans, program-specific calls to action, and execution.
+
+Use this routing test:
+
+- if the marketing rule/process applies across multiple programs → repository-level Marketing;
+- if the marketing material only makes sense for one program → that program's Marketing area;
+- if a program uses a shared marketing workflow → reference the repo-level workflow instead of copying it into the program;
+- repository-level Marketing may coordinate programs but must not redefine or override a program's approved brand, audience decisions, offers, or program-specific marketing rules;
+- when an existing marketing document contains both shared and program-specific material, read the actual content, preserve both, and separate the authoritative information during consolidation rather than choosing a home based on the filename or current folder.
+
+Do not create anticipated marketing folders merely because this architecture permits them. Create/reorganize folders when actual content requires them and after references/dependencies are verified.
+
 ## 6. Documentation consolidation rule
 
 Before creating a new documentation file:
