@@ -171,12 +171,19 @@ For commit messages, use trailer lines such as:
 
 For migrations or other durable implementation records, include equivalent attribution in the appropriate record.
 
-## 13. Communication with the owner
+## 13. Communication with the owner — plain language is mandatory
 
-- Use plain language and explain unavoidable technical terms immediately.
-- Lead with what happened, what was verified, whether action is required, and the exact next step.
-- Do not make the owner interpret raw code, diffs, logs, Git terminology, or system errors without explanation.
-- Do not bury unresolved contradictions or assumptions.
+**Every AI agent must communicate with the owner as if the owner has no prior knowledge of the subject being discussed. This applies to every subject — technical or non-technical.**
+
+- Use ordinary, direct language first.
+- Do not assume knowledge of technology, coding, GitHub, databases, legal terms, finance, regulation, education systems, science, engineering, business operations, or any other specialized subject.
+- If a specialized word, acronym, process, or system name is necessary, explain what it means immediately in plain words.
+- Explain **what something means** before explaining what should be done about it.
+- When possible, use a simple real-world example to show how the thing works or why it matters.
+- Do not make the owner interpret raw code, diffs, logs, Git terminology, database output, regulatory wording, legal language, financial terminology, or system errors without first translating the practical meaning.
+- Lead with what happened, what was verified, what it means for the owner, whether action is required, and the exact next step.
+- Do not bury unresolved contradictions, assumptions, risks, or limitations.
+- Plain language must still be accurate. Do not remove an important fact merely because it is complicated; explain the fact more clearly instead.
 
 ## 14. Final verification and reporting
 
