@@ -21,9 +21,8 @@ The page record is the north star. Do not substitute conversation memory, an exi
 
 ## Current program state
 
-- The public Business Freedom hub is live at `business-fixes.html` as `business-freedom-hub-v1.2`.
-- `business-freedom-hub-v1.2` aligns all seven hub choices, six service summaries, interactive results, and request-form names to the canonical map. It was published and verified on GitHub Pages at desktop and phone widths on 2026-09-06.
-- `business-freedom-hub-v1.3` corrects the `Keep Your Money` choice, interactive result, full service card, details, action, and request description to the landing page's recognition story and whole-business method. It is integrated and verified locally, but it is not committed, pushed, deployed, or public.
+- The public Business Freedom hub is live at `business-fixes.html` as `business-freedom-hub-v1.3`.
+- `business-freedom-hub-v1.3` aligns all seven hub choices and corrects the `Keep Your Money` choice, interactive result, full service card, details, action, and request description to the landing page's recognition story and whole-business method. It was published in commit `3e36e9d` and verified on GitHub Pages at desktop and phone widths on 2026-09-06.
 - Three dedicated service pages are live: `Get Your Time Back`, `Stop Losing Customers`, and `Keep Your Money`.
 - The hub contains seven choices, but only six are core paid services. `I've Got the Potential` is a routing choice and does not need a landing page.
 - `Get Seen, Get Found`, the fourth core service, is the next approved landing-page priority. A local draft exists, but its content and design are not approved.
@@ -37,7 +36,7 @@ The page record is the north star. Do not substitute conversation memory, an exi
 |---|---|---|---|
 | 1 | Get Your Time Back | Time and owner capacity | Existing live page |
 | 2 | Stop Losing Customers | Leads and customer follow-up | Existing live page |
-| 3 | Keep Your Money | `You do quality work. Money comes in. Too little of it stays.` | Existing live page; hub recognition correction verified locally and awaiting publication |
+| 3 | Keep Your Money | `You do quality work. Money comes in. Too little of it stays.` | Existing live page; corrected hub and request path are live |
 | 4 | Get Seen, Get Found | Online visibility and social media | Next landing page; existing local draft only |
 | 5 | Automated Payment Processing | `Tired of waiting for systems and programs to deposit my money.` | Dedicated landing page required; not created |
 | 6 | Add an Operations Leader to Your Team | `I need an experienced & certified pro on my side, but can't afford a full-time employee.` | Comprehensive landing page required; existing local Guidance draft is superseded in direction |
@@ -68,8 +67,8 @@ Business Freedom provides the approved ongoing access, professional judgment, pl
 
 1. COMPLETE AND LIVE: documentation alignment.
 2. COMPLETE AND LIVE: hub and request-form name alignment; no landing page was created or linked.
-3. LOCALLY COMPLETE; PUBLICATION PENDING: publish the verified `Keep Your Money` recognition correction only after separate owner authorization.
-4. NEXT AFTER THE CORRECTION: continue imagery planning before changing or creating any landing page.
+3. COMPLETE AND LIVE: the `Keep Your Money` recognition correction is published and publicly verified.
+4. NEXT: continue imagery planning before changing or creating any landing page.
 5. When separately approved, complete `Get Seen, Get Found`, starting with an audit of the existing local draft rather than automatically creating a replacement.
 6. Develop `Automated Payment Processing` as its own dedicated landing page only after approval.
 7. Develop `Add an Operations Leader to Your Team` as one comprehensive premium landing page with the three professional capabilities fully explained only after approval.
@@ -77,7 +76,7 @@ Business Freedom provides the approved ongoing access, professional judgment, pl
 
 ## Current authorization boundary
 
-The owner authorized an immediate local correction of every recurring `Keep Your Money` hub/request description and the governing records. That correction is complete and verified locally. This instruction did not authorize a new commit, push, deployment, landing page, imagery, styling, price, form submission, or unrelated change.
+The owner authorized an immediate correction of every recurring `Keep Your Money` hub/request description and the governing records, then instructed Codex to push the verified correction. Commit `3e36e9d` was deployed successfully through GitHub Pages run `34051160959` and publicly verified. No landing page, imagery, styling, price, form submission, dormant page, or unrelated work was included.
 
 Files in the verified local correction:
 

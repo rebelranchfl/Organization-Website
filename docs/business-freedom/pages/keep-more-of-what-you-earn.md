@@ -155,7 +155,7 @@ This inventory is binding source material for the page. It may be condensed with
 | 2026-09-05 | Complete verified `money-recognition-v1.3` page | APPROVED for release | Commit, push, merge, publish, and verify this exact page and only its required approved files | After reviewing the integrated closer, the owner instructed `push live`. |
 | 2026-09-06 | Existing-page route and complete release set | APPROVED | Reuse existing repository pages instead of creating unnecessary Business Freedom detail pages; publish whatever completed local work is not live | Resolves the next-page question by routing to the live hub's `Get Seen, Get Found` selector result and includes both approved phone images required by the completed page. |
 | 2026-09-06 | Page/service name `Keep Your Money` | APPROVED and INTEGRATED | Replace the current `Keep More of What You Earn` page name and align the hub and request form to the same concise, social-friendly name | Owner explicitly supplied the new name and instructed it to be used; page story, scope, pricing, URL, and supporting copy remain unchanged. |
-| 2026-09-06 | Hub and request-form service identity | APPROVED, INTEGRATED, and VERIFIED locally | Replace recurring symptom-list summaries with the landing page's approved recognition story and whole-business method | The symptom inventory describes possible underlying causes. It does not define the service, and repeatedly presenting it as the identity blames or reduces the business owner instead of showing the mismatch between money earned and money retained. |
+| 2026-09-06 | Hub and request-form service identity | LIVE | Replace recurring symptom-list summaries with the landing page's approved recognition story and whole-business method | The symptom inventory describes possible underlying causes. It does not define the service, and repeatedly presenting it as the identity blames or reduces the business owner instead of showing the mismatch between money earned and money retained. |
 
 ## Rejection ledger
 
@@ -255,6 +255,7 @@ This inventory is binding source material for the page. It may be condensed with
 | `money-recognition-v1.3` | Public next-page route | Live `Next: Get Seen, Get Found` navigation opened `https://rebelranchministries.org/business-fixes.html#visibility`, displayed the existing Visibility result, selected the Visibility choice, and retained the online-presence request action | 2026-09-06 Codex/browser | PASS |
 | `money-recognition-v1.3` | Public release state | Exact approved page is available at `https://rebelranchministries.org/business-money-leaks.html` after GitHub Pages publication | 2026-09-06 Codex/browser | LIVE |
 | `business-freedom-hub-v1.3` | Local hub and request-form recognition alignment | Choice, result, full service card, details, action, and request description use the landing page's recognition story and whole-business method; recurring old symptom phrases are absent at 1440px and 390px; no broken images or new layout overflow | 2026-09-06 Codex/static/browser | PASS; publication pending |
+| `business-freedom-hub-v1.3` | Public hub and request-form recognition alignment | GitHub Pages deployment run `34051160959` succeeded from commit `3e36e9d`; public desktop and phone checks showed the exact recognition story and method, no recurring old symptom phrases, no broken images, and no browser errors | 2026-09-06 Codex/GitHub/browser | LIVE |
 
 ## Change log
 
@@ -284,14 +285,15 @@ This inventory is binding source material for the page. It may be condensed with
 | 2026-09-06 | Verified `money-recognition-v1.4` locally | Required quality gate before release | Landing page, hub, request form, and three completed-page routes | Browser title, social title, H1, matching service names, desktop and phone layout, and routes passed. |
 | 2026-09-06 | Published and publicly verified `money-recognition-v1.4` | Owner instructed completed local work to be pushed live | Release commit `717b57e`; public landing page, hub, and request forms | New title and completed-page routes are live; the held $49.99 offer was not added to the hub. |
 | 2026-09-06 | Corrected the hub and request-form `Keep Your Money` identity | Stop the approved internal cause inventory and old hub wording from replacing the landing page's actual recognition story | `business-fixes.html`, `assets/js/business-request.js`, Business Freedom hub and handoff records, this record | Exact landing-page story and method are integrated and verified locally; the landing page itself was not changed; publication is pending separate authorization. |
+| 2026-09-06 | Published and publicly verified the `Keep Your Money` identity correction | Owner instructed Codex to push the verified correction | Release commit `3e36e9d`; GitHub Pages run `34051160959`; public hub and request page | Exact landing-page story and whole-business method are live; the old symptom-led identity is absent. |
 
 ## Flags and unanswered questions
 
 - LIVE: `money-recognition-v1.4` is published and verified at `https://rebelranchministries.org/business-money-leaks.html`.
 - ROUTE VERIFIED: `Next: Get Seen, Get Found` points to `business-fixes.html#visibility`, which activates the existing live hub result. The proposed detail page remains unpublished.
-- LOCAL CORRECTION VERIFIED: the Business Freedom hub and request form now use the landing page's exact `Keep Your Money` recognition story and whole-business method. The currently public hub still has the superseded summaries until this correction is separately published.
+- LIVE: the Business Freedom hub and request form use the landing page's exact `Keep Your Money` recognition story and whole-business method; public desktop and phone checks passed.
 - FLAG: generated PNG source files are retained alongside optimized WebP delivery assets; deletion was not authorized and is not required for owner review.
 
 ## Next permitted action
 
-Preserve the live landing page. Publish only the verified hub/request correction after separate owner authorization, then continue imagery planning. Do not publish unfinished detail-page drafts or add the $49.99 Get Paid Faster offer to the hub.
+Preserve the live landing page and corrected hub/request identity. Continue imagery planning. Do not publish unfinished detail-page drafts or add the $49.99 Get Paid Faster offer to the hub.
