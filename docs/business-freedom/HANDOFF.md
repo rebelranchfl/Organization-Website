@@ -23,6 +23,7 @@ The page record is the north star. Do not substitute conversation memory, an exi
 
 - The public Business Freedom hub is live at `business-fixes.html` as `business-freedom-hub-v1.2`.
 - `business-freedom-hub-v1.2` aligns all seven hub choices, six service summaries, interactive results, and request-form names to the canonical map. It was published and verified on GitHub Pages at desktop and phone widths on 2026-09-06.
+- `business-freedom-hub-v1.3` corrects the `Keep Your Money` choice, interactive result, full service card, details, action, and request description to the landing page's recognition story and whole-business method. It is integrated and verified locally, but it is not committed, pushed, deployed, or public.
 - Three dedicated service pages are live: `Get Your Time Back`, `Stop Losing Customers`, and `Keep Your Money`.
 - The hub contains seven choices, but only six are core paid services. `I've Got the Potential` is a routing choice and does not need a landing page.
 - `Get Seen, Get Found`, the fourth core service, is the next approved landing-page priority. A local draft exists, but its content and design are not approved.
@@ -36,7 +37,7 @@ The page record is the north star. Do not substitute conversation memory, an exi
 |---|---|---|---|
 | 1 | Get Your Time Back | Time and owner capacity | Existing live page |
 | 2 | Stop Losing Customers | Leads and customer follow-up | Existing live page |
-| 3 | Keep Your Money | Waste, loss, and retained revenue | Existing live page |
+| 3 | Keep Your Money | `You do quality work. Money comes in. Too little of it stays.` | Existing live page; hub recognition correction verified locally and awaiting publication |
 | 4 | Get Seen, Get Found | Online visibility and social media | Next landing page; existing local draft only |
 | 5 | Automated Payment Processing | `Tired of waiting for systems and programs to deposit my money.` | Dedicated landing page required; not created |
 | 6 | Add an Operations Leader to Your Team | `I need an experienced & certified pro on my side, but can't afford a full-time employee.` | Comprehensive landing page required; existing local Guidance draft is superseded in direction |
@@ -48,7 +49,7 @@ This is the broad payment-processing service. It designs, sets up, creates, conn
 
 This service is distinct from:
 
-- `Keep Your Money`, which finds operational waste and helps the business retain more of what it earns.
+- `Keep Your Money`, which follows every dollar across the whole operation, identifies root causes in connected systems and processes, and builds one clean flow so the financial result better reflects the work and sales.
 - `Get Paid Faster — Set Up Your Payment Links`, the narrow $49.99 Marketplace offer for a seller who needs a basic way to accept online payment.
 
 ## Add an Operations Leader to Your Team boundary
@@ -67,14 +68,24 @@ Business Freedom provides the approved ongoing access, professional judgment, pl
 
 1. COMPLETE AND LIVE: documentation alignment.
 2. COMPLETE AND LIVE: hub and request-form name alignment; no landing page was created or linked.
-3. NEXT: complete `Get Seen, Get Found`, starting with an audit of the existing local draft rather than automatically creating a replacement.
-4. Develop `Automated Payment Processing` as its own dedicated landing page.
-5. Develop `Add an Operations Leader to Your Team` as one comprehensive premium landing page with the three professional capabilities fully explained.
-6. Review the separate $49.99 Marketplace payment-link page last.
+3. LOCALLY COMPLETE; PUBLICATION PENDING: publish the verified `Keep Your Money` recognition correction only after separate owner authorization.
+4. NEXT AFTER THE CORRECTION: continue imagery planning before changing or creating any landing page.
+5. When separately approved, complete `Get Seen, Get Found`, starting with an audit of the existing local draft rather than automatically creating a replacement.
+6. Develop `Automated Payment Processing` as its own dedicated landing page only after approval.
+7. Develop `Add an Operations Leader to Your Team` as one comprehensive premium landing page with the three professional capabilities fully explained only after approval.
+8. Review the separate $49.99 Marketplace payment-link page last.
 
 ## Current authorization boundary
 
-The owner authorized the hub and request-form alignment and then separately instructed Codex to push all completed alignment work live. That release is complete and verified. No new landing page, imagery, styling, price, form submission, or unrelated change was included.
+The owner authorized an immediate local correction of every recurring `Keep Your Money` hub/request description and the governing records. That correction is complete and verified locally. This instruction did not authorize a new commit, push, deployment, landing page, imagery, styling, price, form submission, or unrelated change.
+
+Files in the verified local correction:
+
+- `business-fixes.html`
+- `assets/js/business-request.js`
+- `docs/business-freedom/HANDOFF.md`
+- `docs/business-freedom/pages/business-freedom-hub.md`
+- `docs/business-freedom/pages/keep-more-of-what-you-earn.md`
 
 ## Live alignment files
 

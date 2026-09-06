@@ -18,7 +18,7 @@
     'money-leaks': {
       name: 'Keep Your Money',
       price: 'Starting at $199 · Normally $449',
-      description: 'Resources, Processes, and Streamlining to reduce wasted time, effort, and operating costs.'
+      description: 'You do quality work. Money comes in. Too little of it stays. We follow every dollar across the whole operation, find root causes, and build one clean flow so costs and financial results are easier to see.'
     },
     'online-presence': {
       name: 'Get Seen, Get Found',
