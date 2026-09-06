@@ -4,9 +4,9 @@
 
 - Page file: `business-fixes.html`
 - Program: Rebel Ranch Ministries → Business Freedom
-- Current state: LIVE; `business-freedom-hub-v1.2` is public at `https://rebelranchministries.org/business-fixes.html`
+- Current state: `business-freedom-hub-v1.3` is verified locally; `business-freedom-hub-v1.2` remains public at `https://rebelranchministries.org/business-fixes.html`
 - Last updated: 2026-09-06
-- Current exact version: `business-freedom-hub-v1.2`
+- Current exact version: `business-freedom-hub-v1.3`
 
 ## North star
 
@@ -33,6 +33,7 @@
   - `business-money-leaks.html`
 - Preserve the exact approved recognition statement for `Automated Payment Processing`: `Tired of waiting for systems and programs to deposit my money.`
 - Preserve the exact approved recognition statement for `Add an Operations Leader to Your Team`: `I need an experienced & certified pro on my side, but can't afford a full-time employee.`
+- Preserve the approved `Keep Your Money` recognition story in every shortened hub and request-form use: `You do quality work. Money comes in. Too little of it stays.` The supporting explanation must describe following every dollar, analyzing the whole operation, finding root causes across connected systems and processes, and building one clean flow. Do not substitute lists of wasted time, trips, fuel, materials, software, repeated work, or other individual causes for this service identity, and do not frame the owner as the failure.
 - Preserve the separate $49.99 `Get Paid Faster — Set Up Your Payment Links` offer in its existing Marketplace/request-form path. Do not add it to this hub yet.
 - Do not publish the proposed local Visibility, Get Paid Faster, or Guidance detail-page drafts.
 - Do not change prices, layout, styling, or the existing request destinations in this alignment pass.
@@ -50,6 +51,7 @@
 | 2026-09-06 | Operations Leader recognition | APPROVED | `I need an experienced & certified pro on my side, but can't afford a full-time employee.` | Expresses access to expertise the small business cannot support as a full-time position without implying the owner makes bad decisions. |
 | 2026-09-06 | `I've Got the Potential` routing choice | APPROVED | Use `I just don't know how to get there.` as its supporting statement and do not create a landing page | This is a routing path for visitors who need help identifying the right Business Freedom service, not a separate paid service. |
 | 2026-09-06 | `business-freedom-hub-v1.2` alignment | LIVE | Align and publish the seven hub choices, six service summaries, interactive results, and request form to the canonical map without creating landing pages | Owner authorized the alignment and then separately instructed Codex to push all completed work live. The three existing completed-page links were preserved, and the $49.99 Marketplace option remained separate. |
+| 2026-09-06 | `Keep Your Money` recognition alignment | APPROVED, INTEGRATED, and VERIFIED locally | Replace every symptom-led hub and request-form summary with the completed landing page's recognition story and whole-business method | The live hub continued repeating supporting causes as the service identity even after the landing page established the correct story. The owner directed immediate correction before imagery planning continues. |
 
 ## Verification matrix
 
@@ -59,12 +61,14 @@
 | `business-freedom-hub-v1.1` | Public naming, completed-page links, request paths, held offer, and phone/desktop presentation | GitHub Pages; desktop and 390px phone | Time, Leads, and Money reach the correct live pages; request forms show approved names; Get Paid Faster is absent from the hub; no broken images were found. The shared footer retains an unrelated pre-existing 8px phone overscroll when a vertical scrollbar is present. | 2026-09-06 Codex | PASS for this release; shared-footer note recorded |
 | `business-freedom-hub-v1.2` | Canonical names and supporting statements across seven choices, six service cards, interactive results, and eight request-form options | Local server; 1440px desktop and 390px phone | Exact names and approved recognition statements rendered correctly; existing Time, Leads, and Money page links remained the only detail-page links; the $49.99 Marketplace option remained unchanged and absent from the hub; no broken images or new layout overflow were found | 2026-09-06 Codex | PASS |
 | `business-freedom-hub-v1.2` | Public naming, all interactive routes, completed-page links, held Marketplace offer, request-form choices, desktop/mobile presentation, shared shell, and linked assets | GitHub Pages; 1440px desktop and 390px phone | All seven approved hub names and results, six service summaries, and eight request-form choices rendered correctly; only the three completed detail pages were linked; Get Paid Faster remained absent from the hub; no broken images or embedded base64 images were found. The unrelated pre-existing shared-footer phone overscroll remained 8px when the vertical scrollbar was present. | 2026-09-06 Codex | PASS for this release; shared-footer note remains recorded |
+| `business-freedom-hub-v1.3` | `Keep Your Money` choice, interactive result, full service card, details, action, and request-form description | Local server; 1440px desktop and 390px phone | Exact recognition story and whole-business method rendered; old symptom-led identity phrases were absent; approved landing-page route and pricing were unchanged; no broken images or new layout overflow were found. The unrelated pre-existing shared-footer 8px phone overscroll remains. | 2026-09-06 Codex | PASS; publication pending |
 
 ## Flags and unanswered questions
 
 - The filename and final offer details for the Automated Payment Processing landing page are not approved.
 - The existing local `business-guidance.html` draft predates the approved Operations Leader direction and must not be treated as approved page content.
+- `business-freedom-hub-v1.3` is verified locally but is not committed, pushed, deployed, or public.
 
 ## Next permitted action
 
-Proceed to `Get Seen, Get Found` one approved stage at a time, beginning with an audit of the dormant local draft. Do not change or publish that page without separate owner approval.
+Publish only the verified `business-freedom-hub-v1.3` correction after separate owner authorization. Then continue imagery planning; do not change or publish a new landing page without separate owner approval.
