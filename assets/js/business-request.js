@@ -6,7 +6,7 @@
       description: 'Rebel Ranch and 3P Help Me partnered to deliver these donated professional services to support local businesses. This ensures that local businesses receive the guidance and support they need at a price they can afford.'
     },
     'owner-capacity-recovery': {
-      name: 'Give Me Back My Time',
+      name: 'Get Your Time Back',
       price: 'Starting at $199 · Normally $249',
       description: 'Owner Capacity Recovery for sole operators carrying every role in the business.'
     },
@@ -16,7 +16,7 @@
       description: 'Lead Capture and Customer Follow-Up that protects opportunities during a busy workday.'
     },
     'money-leaks': {
-      name: 'Fixing Money Leaks',
+      name: 'Keep Your Money',
       price: 'Starting at $199 · Normally $449',
       description: 'Resources, Processes, and Streamlining to reduce wasted time, effort, and operating costs.'
     },

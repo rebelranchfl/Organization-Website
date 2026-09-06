@@ -1,14 +1,14 @@
-# Keep More of What You Earn — Decision Record
+# Keep Your Money — Decision Record
 
 ## Control
 
 - Page file: `business-money-leaks.html`
 - Program: Rebel Ranch Ministries → Business Freedom
 - Delivery boundary: RRM program supported by donated 3P Help Me expertise; do not merge the organizations or present 3P Help Me as RRM.
-- Current state: LIVE; publicly verified at `https://rebelranchministries.org/business-money-leaks.html`
+- Current state: VERIFIED LOCALLY; owner-approved `Keep Your Money` naming update is pending release
 - Last updated: 2026-09-06
-- Current authorized work: none; preserve this live version unless the owner explicitly reopens it
-- Current version: `money-recognition-v1.3` — LIVE
+- Current authorized work: publish and publicly verify the title-only `money-recognition-v1.4` update without changing the approved page story, copy, visuals, pricing, service scope, or URL
+- Current version: `money-recognition-v1.4` — owner-approved title verified locally; release pending
 
 ## North star
 
@@ -32,7 +32,7 @@
 
 ## Approved exact copy
 
-- Page/program title: `Keep More of What You Earn`
+- Page/program title: `Keep Your Money`
 - Hero message: `You do quality work. Money comes in. Too little of it stays.`
 - Primary CTA: `Find Where My Money Is Going`
 
@@ -153,6 +153,7 @@ This inventory is binding source material for the page. It may be condensed with
 | 2026-09-05 | `money creates options` closing visual v11 | APPROVED for integration | Incorporate the exact image generated as `exec-6bb45853-ecd3-4203-88ee-7841716414dd.png` | Owner said it “nailed it”; it directly shows a motivated owner, growing retained money, and the choices that money creates. |
 | 2026-09-05 | Complete verified `money-recognition-v1.3` page | APPROVED for release | Commit, push, merge, publish, and verify this exact page and only its required approved files | After reviewing the integrated closer, the owner instructed `push live`. |
 | 2026-09-06 | Existing-page route and complete release set | APPROVED | Reuse existing repository pages instead of creating unnecessary Business Freedom detail pages; publish whatever completed local work is not live | Resolves the next-page question by routing to the live hub's `Get Seen, Get Found` selector result and includes both approved phone images required by the completed page. |
+| 2026-09-06 | Page/service name `Keep Your Money` | APPROVED and INTEGRATED | Replace the current `Keep More of What You Earn` page name and align the hub and request form to the same concise, social-friendly name | Owner explicitly supplied the new name and instructed it to be used; page story, scope, pricing, URL, and supporting copy remain unchanged. |
 
 ## Rejection ledger
 
@@ -275,14 +276,16 @@ This inventory is binding source material for the page. It may be condensed with
 | 2026-09-06 | Routed the next-page action to the existing live Business Freedom hub | Owner directed the work to reuse existing pages and avoid unnecessary new detail pages | `business-money-leaks.html`, this record | `#visibility` opens the hub's existing Get Seen, Get Found result; proposed Visibility page remains unpublished. |
 | 2026-09-06 | Corrected the complete publishing set from six to eight files | The earlier handoff omitted two approved phone images that the verified page directly references | Five approved WebP images, page HTML, page stylesheet, and this record | The complete desktop and phone experience can be published without missing assets. |
 | 2026-09-06 | Published and publicly verified `money-recognition-v1.3` | Owner instructed all completed local work to be pushed live | Eight-file release set; commits `88cf5e9` and `398ef3d`; public URL | Desktop, phone, images, overflow, browser log, and existing Visibility route passed; page is LIVE. |
+| 2026-09-06 | Integrated the owner-approved `Keep Your Money` name | Make the landing-page name concise, catchy, relevant, and suitable for social promotion | `business-money-leaks.html`, Business Freedom hub, service request form, this record | `money-recognition-v1.4` integrated; verification and release pending. |
+| 2026-09-06 | Verified `money-recognition-v1.4` locally | Required quality gate before release | Landing page, hub, request form, and three completed-page routes | Browser title, social title, H1, matching service names, desktop and phone layout, and routes passed. |
 
 ## Flags and unanswered questions
 
-- LIVE: `money-recognition-v1.3` is published and verified at `https://rebelranchministries.org/business-money-leaks.html`.
+- CURRENT PUBLIC VERSION: `money-recognition-v1.3` is published and verified at `https://rebelranchministries.org/business-money-leaks.html`; title-only `money-recognition-v1.4` is verified locally and pending release.
 - ROUTE VERIFIED: `Next: Get Seen, Get Found` points to `business-fixes.html#visibility`, which activates the existing live hub result. The proposed detail page remains unpublished.
-- FLAG: the Business Freedom hub still uses older Money naming; hub alignment is outside this pass.
+- HUB ALIGNED: the Business Freedom hub and request form use `Keep Your Money`; the three completed landing pages are connected from their matching hub paths.
 - FLAG: generated PNG source files are retained alongside optimized WebP delivery assets; deletion was not authorized and is not required for owner review.
 
 ## Next permitted action
 
-None. Preserve the live page unless the owner explicitly reopens it. Continue Business Freedom planning from the existing hub and page map; do not publish unfinished detail-page drafts merely because local files exist.
+Publish and publicly verify `money-recognition-v1.4`. Do not publish unfinished detail-page drafts or add the $49.99 Get Paid Faster offer to the hub.
