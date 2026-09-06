@@ -4,7 +4,7 @@
 
 - Page file: `business-fixes.html`
 - Program: Rebel Ranch Ministries → Business Freedom
-- Current state: VERIFIED LOCALLY; owner-approved naming and completed-page links pending release
+- Current state: LIVE; publicly verified at `https://rebelranchministries.org/business-fixes.html`
 - Last updated: 2026-09-06
 - Current exact version: `business-freedom-hub-v1.1`
 
@@ -42,6 +42,7 @@
 | Version | Check | Environment/width | Evidence | Date/verifier | Result |
 |---|---|---|---|---|---|
 | `business-freedom-hub-v1.1` | Naming, completed-page links, request paths, desktop/mobile layout, and overflow | Local server at 1440px and 390px | Time, Leads, and Money selector results and service-card links reach the correct completed pages; request forms show the approved names; page width equals viewport on phone | 2026-09-06 Codex | PASS |
+| `business-freedom-hub-v1.1` | Public naming, completed-page links, request paths, held offer, and phone/desktop presentation | GitHub Pages; desktop and 390px phone | Time, Leads, and Money reach the correct live pages; request forms show approved names; Get Paid Faster is absent from the hub; no broken images were found. The shared footer retains an unrelated pre-existing 8px phone overscroll when a vertical scrollbar is present. | 2026-09-06 Codex | PASS for this release; shared-footer note recorded |
 
 ## Flags and unanswered questions
 
@@ -50,4 +51,4 @@
 
 ## Next permitted action
 
-Publish and publicly verify only the approved naming and completed-page links. Do not rename Guidance, add Get Paid Faster to the hub, or create new public pages without another owner decision.
+None. Preserve this live version unless the owner explicitly reopens it. Do not rename Guidance, add Get Paid Faster to the hub, or create new public pages without another owner decision.
