@@ -101,7 +101,7 @@ Do not make Creation Station itself look like Rebel Ranch Local. This exception 
 - Preserve its purple-to-pink Creation Station energy, rainbow rhythm, borderless gradient primary actions, teal supporting actions, white/pale supporting surfaces, section treatments, cards, tracker styling, and responsive presentation.
 - Preserve the current Creation Companion customizer and entry transition.
 - The Experience page proves the **member/dashboard/project experience**. It is not the default destination for a CTA that specifically promises to show a public Studio.
-- Wording on the Experience page must follow `docs/creation-station-positioning.md`, including the rule that current projects are structured/Companion-supported rather than guided instruction.
+- Wording on the Experience page must follow `docs/creation-station/creation-station-operations.md`, including the rule that current projects are structured/Companion-supported rather than guided instruction.
 
 ## 10. Visual explanation over repeated text
 
@@ -150,4 +150,4 @@ Before presenting a Creation Station public-marketing page for review:
 
 ## 13. Still open
 
-This document does not settle every future Creation Station surface. Dashboard feature scope, future project instruction, future AI teaching capability, Studio order-system expansion, and other program experiences remain governed by `docs/creation-station-positioning.md`, the current implementation, and future owner decisions.
+This document does not settle every future Creation Station surface. Dashboard feature scope, future project instruction, future AI teaching capability, Studio order-system expansion, and other program experiences remain governed by `docs/creation-station/creation-station-operations.md`, the current implementation, and future owner decisions.
