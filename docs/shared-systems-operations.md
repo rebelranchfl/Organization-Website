@@ -152,11 +152,49 @@ Repository-wide security principles:
 
 Program-specific security requirements remain in the program's own operating documents and schema/policies.
 
-## 7. Deployment and hosting
+## 7. Deployment, hosting, and domain routing
 
-Deployment is **not currently one single repository-wide mechanism**.
+These are separate jobs and must not be treated as the same thing:
 
-### Rebel Ranch Academy Program Hub — verified current workflow
+- **GitHub repository:** where RRM keeps the master website/application code and files.
+- **Cloudflare DNS:** controls where each RRM web address points.
+- **Hosting / serving:** the service that actually answers a visitor's request and sends the website/application to the visitor.
+
+A Cloudflare-managed domain can still point directly to another host. Cloudflare controlling DNS does not automatically mean Cloudflare is serving every website.
+
+### Verified current RRM domain routing — 2026-09-06
+
+The owner reviewed the active Cloudflare DNS records for `rebelranchministries.org`.
+
+Verified current routing:
+
+- root `rebelranchministries.org` has A records `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, and `185.199.111.153` and is set to **DNS only**;
+- `www.rebelranchministries.org` is a CNAME to `rebelranchfl.github.io` and is set to **DNS only**;
+- `academy.rebelranchministries.org` is routed to the Cloudflare Worker `rebel-ranch-academy` and is proxied through Cloudflare;
+- `shop.rebelranchministries.org` is a CNAME to Printify's custom-domain target.
+
+Plain-language current architecture:
+
+```text
+Cloudflare controls the RRM domain directions
+│
+├── rebelranchministries.org / www
+│   └── GitHub Pages serves the main RRM website
+│
+├── academy.rebelranchministries.org
+│   └── Cloudflare Worker serves the RRA application
+│
+└── shop.rebelranchministries.org
+    └── Printify serves the shop
+```
+
+### Main RRM website — verified current publishing route
+
+The main RRM website files are maintained in GitHub and are currently served through **GitHub Pages**. Cloudflare manages the domain/DNS directions but the root and `www` records send visitors directly to GitHub Pages.
+
+The historical GitHub Pages deployment record in `docs/github-pages-deploy-outage-2026-08-06.md` is therefore still relevant as history for the same publishing route, but it remains an incident record rather than the primary current operating instruction.
+
+### Rebel Ranch Academy — verified current publishing route
 
 The repository contains:
 
@@ -170,23 +208,44 @@ That workflow currently:
 - deploys non-PR runs to `academy.rebelranchministries.org` using the `rebel-ranch-academy` Cloudflare deployment target;
 - uses protected `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` GitHub secrets.
 
-This is an RRA-specific deployment implementation even though GitHub Actions and Cloudflare are shared infrastructure providers.
+Plain-language RRA path:
 
-### Main RRM website — current host NOT VERIFIED in this consolidation pass
+```text
+RRA source/code in GitHub
+        ↓
+GitHub automation builds it
+        ↓
+Cloudflare Worker receives it
+        ↓
+academy.rebelranchministries.org
+```
 
-The repository contains historical GitHub Pages material, including `.nojekyll`, `CNAME`, and the incident record `docs/github-pages-deploy-outage-2026-08-06.md`.
+GitHub remains the master source for the RRA code. The Worker is the service that runs/serves the Academy application.
 
-Those files prove GitHub Pages was used at that historical point. They do **not** by themselves prove the present main-site hosting arrangement.
+### Future architecture direction — owner-approved direction, not a current migration project
 
-Therefore:
+The owner wants RRM to move toward more useful automation and interactive systems rather than manually managing processes that can be automated.
 
-**Current main-site hosting/deployment authority: NOT VERIFIED in this document yet.**
+As each RRM program matures, evaluate whether moving that program from simple static-page hosting toward a Cloudflare Worker/application model would provide a real benefit, such as:
 
-Before changing or troubleshooting main-site deployment, verify the current hosting/deployment path from the active infrastructure/configuration rather than relying on the historical GitHub Pages incident record.
+- making decisions based on a request or user state;
+- routing people or requests automatically;
+- checking conditions before taking an action;
+- communicating with Supabase or other approved systems;
+- running program logic;
+- supporting personalized or interactive experiences;
+- reducing repeated manual work;
+- supporting reliable automation behind the program.
+
+**Direction:** keep GitHub as the master code/source repository. Evaluate Worker/application delivery **program by program** where it enables useful automation, logic, integration, or interactivity.
+
+This direction does **not** authorize a blanket migration of the main RRM site or every program today. Do not create a large conversion project merely for technical consistency. A program should move when there is a defined functional reason, approved scope, and verified migration plan.
+
+Long-term alignment means the programs should move toward a coherent application/automation architecture where that improves how RRM actually operates. It does not require every public page to use identical hosting technology.
 
 ## 8. Historical deployment incidents
 
-`docs/github-pages-deploy-outage-2026-08-06.md` is a historical incident/lessons-learned record. It should not be treated as current deployment instructions unless current infrastructure verification shows the same GitHub Pages path is still active.
+`docs/github-pages-deploy-outage-2026-08-06.md` is a historical incident/lessons-learned record. Its recorded GitHub Pages route is consistent with the currently verified main-site route, but the document itself remains a historical incident record, not the complete deployment authority.
 
 Historical incident records belong in archive/history during the physical repository reorganization after references are checked.
 
