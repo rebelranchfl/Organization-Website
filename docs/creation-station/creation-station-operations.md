@@ -9,8 +9,8 @@ This document defines what Creation Station is, what it is not, the value it mus
 
 Read this document together with:
 - `docs/rebel-ranch-ecosystem-charter.md`
-- `docs/creation-station-visual-rules.md`
-- `docs/creation-station-dashboard-visual-rules.md`
+- `docs/creation-station/brand/public-visual-rules.md`
+- `docs/creation-station/brand/dashboard-visual-rules.md`
 - the applicable current Creation Station system/technical controls when implementation status matters.
 
 Dated handoffs and historical reviews are not current authority. When current implementation status matters, use the applicable current system control and verify the implementation rather than relying on an older handoff.
