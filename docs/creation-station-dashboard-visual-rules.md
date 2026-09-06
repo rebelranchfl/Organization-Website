@@ -1,10 +1,11 @@
 # Creation Station Dashboard (Member App) Visual Rules
 
-**Status:** Owner-approved and locked
+**Status:** Owner-approved and governing
 
-**Version:** 1.0
+**Version:** 1.1
 
-**Approved:** 2026-08-08
+**Approved:** 2026-08-08  
+**Reconciled:** 2026-09-06 — aligned with current Creation Station authority and implementation posture
 
 **Approved reference:** `assets/css/creation-station.css` (the same file that governs `creation.html`, per `creation-station-visual-rules.md`)
 
@@ -12,13 +13,19 @@
 
 ## Why this document exists
 
-`creation-station-visual-rules.md` locks the Creation Station **public marketing page** (`creation.html`) and says, in its own "Still open" section, that dashboard details are *not* covered and remain open. That gap is exactly why the member dashboard (`creation-station-dashboard.html` and everything under it — Studio, Projects, Portfolio, Resources, Sessions, Growth, Creation Station Studio, Parent, Admin views) has drifted from the homepage over time: nobody ever pinned it to exact values, only to a general "purple/pink/teal/gold, colorful" description.
+`creation-station-visual-rules.md` locks the Creation Station **public marketing page** (`creation.html`) but does not govern the full member dashboard experience. This document governs the dashboard's durable visual identity: colors, gradients, typography, button emphasis, and the distinction between interactive controls and non-interactive labels.
 
-This document closes that gap. It does **not** change the dashboard's layout, navigation structure, or features — those remain open per the same section of `creation-station-visual-rules.md`. It only pins the dashboard's **colors, gradients, fonts, and button emphasis** to byte-match the approved homepage reference, so the two feel like one product.
+Read this document together with:
+- `docs/rebel-ranch-ecosystem-charter.md`
+- `docs/creation-station-positioning.md`
+- `docs/creation-station-visual-rules.md`
+- the applicable current Creation Station system/technical controls when implementation status matters.
+
+Dated handoffs and historical implementation notes are not current authority. Verify current implementation rather than relying on an older handoff.
 
 ## 1. Canonical color tokens — copy exactly, do not re-derive
 
-Pulled directly from `assets/css/creation-station.css`'s `:root` block (the owner-locked homepage reference). The dashboard's own `:root` in `assets/css/creation-station-dashboard.css` must use these same values, not its own independently-chosen ones:
+Pulled directly from `assets/css/creation-station.css`'s `:root` block (the owner-locked homepage reference). The dashboard's own `:root` in `assets/css/creation-station-dashboard.css` must use these same values, not independently chosen approximations:
 
 ```css
 --ink: #271b31;
@@ -46,59 +53,75 @@ Pulled directly from `assets/css/creation-station.css`'s `:root` block (the owne
 --deep-gradient: linear-gradient(145deg, #23043d 0%, #46106e 48%, #7f2586 100%);
 ```
 
-**Why this matters:** the dashboard previously had its own close-but-not-identical values for shared colors (its `--pink` was `#ec4e91` vs. the homepage's `#f04b98`; its `--teal` was `#0098a5` vs. `#0397a4`; its rainbow gradient ran at 90deg with different stops vs. the homepage's 135deg). Near-miss colors read as "off" more than colors that are simply different — this is likely a real source of the "doesn't quite match" feeling.
+Near-miss colors are not acceptable substitutes for the canonical tokens.
 
 ## 2. Page canvas — two tones, not one
 
-The homepage isn't uniformly dark or uniformly light — it alternates. The dashboard should follow the same rhythm:
+The public Creation Station identity alternates dark/jewel-tone moments with light content areas. The dashboard should preserve that rhythm:
 
-- **Dark/jewel-tone bands** (hero banners, featured moments): use `--deep-gradient` or a close variant, matching `.hero`/`.studio-hero`/`.path-feature` on the homepage.
-- **Light bands** (ordinary content, cards, panels): use the homepage's pale lavender-white, **`#f8f3ff`** (with `#fbf8ff` as a secondary light shade), not the dashboard's previous warm cream (`#fff8ed`). Update `--cream`/`--paper` accordingly.
-- The sidebar itself (`linear-gradient(180deg,#1a0f33,#0e0720)`) is already correctly dark and already uses the correct rainbow wordmark treatment — keep it as-is.
+- **Dark/jewel-tone bands** (hero banners, featured moments): use `--deep-gradient` or a close variant consistent with the approved public identity.
+- **Light bands** (ordinary content, cards, panels): use pale lavender-white, **`#f8f3ff`**, with `#fbf8ff` as a secondary light shade, rather than warm cream.
+- The sidebar (`linear-gradient(180deg,#1a0f33,#0e0720)`) is an approved dark treatment and should remain consistent unless a later owner-approved redesign supersedes it.
 
-## 3. Button emphasis — keep the primary/default distinction, just fix the exact colors
+## 3. Button emphasis
 
-**Correction after checking the homepage's actual CSS:** the homepage's plain `.btn` class has no background of its own at all — every real homepage button always carries an explicit role class (`.primary`, `.light`, `.outline-light`, `.preview`). The homepage never had to design a "neutral, ordinary-action" button because it only ever has one or two buttons per section.
+The dashboard is an application with many ordinary actions, so it needs a clear distinction between ordinary controls and the primary/recommended action.
 
-The dashboard is a real app with dozens of ordinary buttons per screen (Save, Cancel, Add, Remove, and more), so its plain `button`/`.button` **needs** a distinct neutral look, with `.button.primary` reserved for the one recommended action per screen — that's a legitimate, useful difference from the homepage, not a bug. Do not flip the default button color to pink/gold; doing so would erase the primary/secondary distinction users rely on to find the one recommended action.
-
-The only real fix here is value drift, not structure: make sure the purple/teal used in the default button and the pink/gold used in `.button.primary` are the exact reconciled hex values from section 1 (the dashboard's old `.button.primary`/`#hero-cta` used a hardcoded `#ffbe45` gold stop instead of the real homepage `--primary` gradient — replace it with the real `--primary` token so the "this is the one important button" color matches the homepage exactly, even though the everyday/default button correctly stays purple-teal).
+- Plain/default buttons may retain a neutral Creation Station treatment.
+- `.button.primary` is reserved for the primary/recommended action and must use the canonical `--primary` gradient rather than an independently chosen approximation.
+- Do not make every action visually primary.
+- Do not style non-actions as buttons.
 
 ## 4. Typography
 
-Match the homepage's font stack exactly:
+Match the public Creation Station font stack:
 
 ```css
 font-family: "Segoe UI", ui-sans-serif, system-ui, -apple-system, Roboto, Arial, sans-serif;
 ```
 
-The dashboard previously listed plain `Arial, Helvetica, sans-serif` with no "Segoe UI" preference — a small but real, easily-fixed mismatch.
-
 ## 5. Rainbow wordmark
 
-Use the homepage's exact formula everywhere the dashboard renders "Creation Station" as a wordmark (sidebar brand, footer tagline, any headline moment):
+Use the approved formula wherever the dashboard intentionally renders “Creation Station” as a rainbow wordmark:
 
 ```css
 background: linear-gradient(135deg, #f04b98 0%, #ff756d 20%, #f7c94c 43%, #b7d957 65%, #55d7d1 100%);
--webkit-background-clip: text; background-clip: text; color: transparent;
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
 ```
 
-## 6. Tags and badges must not look like buttons — standing rule
+## 6. Non-interactive elements must not look clickable
 
-**Confirmed 2026-08-15, after repeated owner complaints across sessions.** A non-interactive label (a `.tag`, a status badge, anything that doesn't click) must never be styled closely enough to a real `.button`/`.button.primary` that a user reasonably expects it to be clickable — same pill radius, same solid gradient fill, same font weight, sitting the same size next to real buttons. If it doesn't do anything when clicked, it must look clearly different from something that does.
+This is a standing rule across Creation Station and the broader RRM web system.
 
-**Confirmed current violation, not yet fixed:** the Parent View's Membership panel (`parent()` in `assets/js/creation-station-views.js`) renders three `.tag` elements — "Private portfolio," "Progress tracking," "Parent control" — as solid purple pills sitting directly above the real "See all benefits" button. Visually they read as three more buttons, not labels. This needs a distinct treatment (e.g., outlined/lighter fill, smaller, or a different shape entirely) so they read as descriptive tags, not actions — a separate, not-yet-authorized fix from this documentation change.
+**Pill-shaped UI is reserved for clickable links/actions.** Non-interactive labels, status indicators, tags, badges, descriptors, and informational text must not use pill styling or otherwise visually imitate clickable controls.
 
-## 7. What this document does not settle
+If an element does not perform an action or navigate when clicked, it must be visually distinct from buttons and links. This applies regardless of whether older code or documentation used `.tag`, badge, chip, or similar patterns.
 
-Layout (sidebar vs. any other structure), navigation, feature scope, gamification design, and Companion/Nova work remain governed by `docs/creation-station-handoff-2026-08-14.md` (current status and open work) and future owner decisions — this document is colors, fonts, and button emphasis only. The older `creation-station-studio-dashboard-handoff.md` (2026-07-27) is historical background only; it is superseded and known stale in places (e.g., it claims no gamification exists; points/streaks/an achievement badge are now live and confirmed, see the charter's Gamification section).
+Any existing violation should be treated as an implementation issue to evaluate and correct through the normal owner-controlled change and verification process; this document does not by itself claim that every existing instance has already been corrected.
+
+## 7. Scope and authority boundaries
+
+This document governs **dashboard visual identity**, not Creation Station's entire product definition or technical architecture.
+
+- Product definition, audience, current capabilities, the Creation Companion, Studio pathway, membership/product positioning, and future direction are governed by `docs/creation-station-positioning.md`.
+- Public-page visual identity is governed by `docs/creation-station-visual-rules.md`.
+- Backend, security, data, publication, and implementation status belong in the applicable current Creation Station system/technical controls.
+- Layout, navigation, feature scope, gamification, and Companion evolution may continue to improve under owner direction and the ecosystem Charter's continuous-improvement standard.
+
+The Creation Companion is **built and part of the current dashboard experience**. Its current capability and future AI-assistance direction must be described according to `docs/creation-station-positioning.md`; do not revert to historical language that treats the Companion as merely open or unbuilt work.
+
+Historical handoffs and phase documents may explain how the system evolved, but they do not override current governing documents or verified current implementation.
 
 ## Implementation check
 
-Before presenting a Creation Station dashboard page for review:
+Before presenting a Creation Station dashboard visual change as complete:
 
-1. Confirm `:root` color tokens in `creation-station-dashboard.css` byte-match section 1 above.
-2. Confirm `.button.primary`/`#hero-cta` uses the exact `--primary` gradient token (not a hardcoded gold stop), and that the plain/default button correctly stays purple→teal — don't flip it.
-3. Confirm the font stack starts with `"Segoe UI"`.
-4. Confirm light-toned sections use `#f8f3ff`/`#fbf8ff`, not the old cream.
-5. Confirm the rainbow wordmark formula matches section 5 exactly, wherever it's used.
+1. Confirm canonical color tokens in `creation-station-dashboard.css` match section 1 where those tokens are used.
+2. Confirm `.button.primary` and equivalent primary actions use the approved primary treatment and ordinary actions remain visually secondary.
+3. Confirm the font stack begins with `"Segoe UI"`.
+4. Confirm light-toned sections use the approved lavender-white family rather than the retired warm cream treatment.
+5. Confirm intentional Creation Station rainbow wordmarks use the approved formula.
+6. Confirm non-interactive elements do not use pill styling or visually impersonate clickable controls.
+7. Verify the rendered dashboard end-to-end before describing an implementation change as resolved or complete.
