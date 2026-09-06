@@ -1,0 +1,1 @@
+Backup of docs/rebel-ranch-ecosystem-charter.md before owner-approved RRL structure correction. Original blob SHA: a1d35d00dce79ac07f5f05c6fd451d965fc21c52. Full original remains recoverable from that Git blob/commit history.
