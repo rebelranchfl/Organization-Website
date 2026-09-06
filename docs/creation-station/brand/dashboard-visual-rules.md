@@ -7,18 +7,18 @@
 **Approved:** 2026-08-08  
 **Reconciled:** 2026-09-06 — aligned with current Creation Station authority and implementation posture
 
-**Approved reference:** `assets/css/creation-station.css` (the same file that governs `creation.html`, per `creation-station-visual-rules.md`)
+**Approved reference:** `assets/css/creation-station.css` (the same file that governs `creation.html`, per `docs/creation-station/brand/public-visual-rules.md`)
 
 **Matching CSS:** `assets/css/creation-station-dashboard.css`
 
 ## Why this document exists
 
-`creation-station-visual-rules.md` locks the Creation Station **public marketing page** (`creation.html`) but does not govern the full member dashboard experience. This document governs the dashboard's durable visual identity: colors, gradients, typography, button emphasis, and the distinction between interactive controls and non-interactive labels.
+`docs/creation-station/brand/public-visual-rules.md` locks the Creation Station **public marketing page** (`creation.html`) but does not govern the full member dashboard experience. This document governs the dashboard's durable visual identity: colors, gradients, typography, button emphasis, and the distinction between interactive controls and non-interactive labels.
 
 Read this document together with:
 - `docs/rebel-ranch-ecosystem-charter.md`
-- `docs/creation-station-positioning.md`
-- `docs/creation-station-visual-rules.md`
+- `docs/creation-station/creation-station-operations.md`
+- `docs/creation-station/brand/public-visual-rules.md`
 - the applicable current Creation Station system/technical controls when implementation status matters.
 
 Dated handoffs and historical implementation notes are not current authority. Verify current implementation rather than relying on an older handoff.
@@ -105,12 +105,12 @@ Any existing violation should be treated as an implementation issue to evaluate 
 
 This document governs **dashboard visual identity**, not Creation Station's entire product definition or technical architecture.
 
-- Product definition, audience, current capabilities, the Creation Companion, Studio pathway, membership/product positioning, and future direction are governed by `docs/creation-station-positioning.md`.
-- Public-page visual identity is governed by `docs/creation-station-visual-rules.md`.
+- Product definition, audience, current capabilities, the Creation Companion, Studio pathway, membership/product positioning, and future direction are governed by `docs/creation-station/creation-station-operations.md`.
+- Public-page visual identity is governed by `docs/creation-station/brand/public-visual-rules.md`.
 - Backend, security, data, publication, and implementation status belong in the applicable current Creation Station system/technical controls.
 - Layout, navigation, feature scope, gamification, and Companion evolution may continue to improve under owner direction and the ecosystem Charter's continuous-improvement standard.
 
-The Creation Companion is **built and part of the current dashboard experience**. Its current capability and future AI-assistance direction must be described according to `docs/creation-station-positioning.md`; do not revert to historical language that treats the Companion as merely open or unbuilt work.
+The Creation Companion is **built and part of the current dashboard experience**. Its current capability and future AI-assistance direction must be described according to `docs/creation-station/creation-station-operations.md`; do not revert to historical language that treats the Companion as merely open or unbuilt work.
 
 Historical handoffs and phase documents may explain how the system evolved, but they do not override current governing documents or verified current implementation.
 
