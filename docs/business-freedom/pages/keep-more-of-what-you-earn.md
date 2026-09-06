@@ -5,10 +5,10 @@
 - Page file: `business-money-leaks.html`
 - Program: Rebel Ranch Ministries → Business Freedom
 - Delivery boundary: RRM program supported by donated 3P Help Me expertise; do not merge the organizations or present 3P Help Me as RRM.
-- Current state: APPROVED for release; the unfinished next-page route was resolved by owner direction to reuse the existing Business Freedom hub rather than create or publish an unnecessary detail page
+- Current state: LIVE; publicly verified at `https://rebelranchministries.org/business-money-leaks.html`
 - Last updated: 2026-09-06
-- Current authorized work: commit, push, merge, publish, and verify the complete approved page with `Next: Get Seen, Get Found` routed to `business-fixes.html#visibility`
-- Current version: `money-recognition-v1.3` — APPROVED for commit, push, merge, deployment, and live verification
+- Current authorized work: none; preserve this live version unless the owner explicitly reopens it
+- Current version: `money-recognition-v1.3` — LIVE
 
 ## North star
 
@@ -245,6 +245,11 @@ This inventory is binding source material for the page. It may be condensed with
 | `money-recognition-v1.3` | Phone release recheck at 390×844 | Approved 852×1847 hero, 1003×1568 systems image, and complete 1717×916 closing image loaded; page/content width 375/375; route visible and readable | 2026-09-06 Codex/browser | PASS |
 | `money-recognition-v1.3` | Release references and browser errors | Every local stylesheet, image, route, and script exists; no base64 image is present; browser error/warning log is empty | 2026-09-06 Codex/static/browser | PASS |
 | `money-recognition-v1.3` | Live-branch dependency check | GitHub `main` advanced only through three Rebel Ranch Academy documentation files; none overlap the eight-file Business Freedom release set | 2026-09-06 Codex/Git | PASS |
+| `money-recognition-v1.3` | GitHub release | Release commit `88cf5e9` was combined with current `main` in `398ef3d` and fast-forwarded to GitHub `main` without rewriting history | 2026-09-06 Codex/Git | PASS |
+| `money-recognition-v1.3` | Public desktop verification at 1440×1000 | Live page loaded the 1672×941 hero, 1672×941 systems visual, and 1717×916 closing visual; page/content width 1425/1425; no broken images or browser errors/warnings | 2026-09-06 Codex/browser | PASS |
+| `money-recognition-v1.3` | Public phone verification at 390×844 | Live page selected the approved 852×1847 hero and 1003×1568 systems phone images; complete closing visual rendered at 375×200; page/content width 375/375; no broken images or browser errors/warnings | 2026-09-06 Codex/browser | PASS |
+| `money-recognition-v1.3` | Public next-page route | Live `Next: Get Seen, Get Found` navigation opened `https://rebelranchministries.org/business-fixes.html#visibility`, displayed the existing Visibility result, selected the Visibility choice, and retained the online-presence request action | 2026-09-06 Codex/browser | PASS |
+| `money-recognition-v1.3` | Public release state | Exact approved page is available at `https://rebelranchministries.org/business-money-leaks.html` after GitHub Pages publication | 2026-09-06 Codex/browser | LIVE |
 
 ## Change log
 
@@ -269,14 +274,15 @@ This inventory is binding source material for the page. It may be condensed with
 | 2026-09-05 | Stopped release at the published-route dependency gate | The next-page link would be dead unless an unapproved draft were also published | `business-money-leaks.html`, Git index, this record | Nothing committed, pushed, merged, or deployed; owner was asked to approve a temporary route to `business-fixes.html#service-visibility`. |
 | 2026-09-06 | Routed the next-page action to the existing live Business Freedom hub | Owner directed the work to reuse existing pages and avoid unnecessary new detail pages | `business-money-leaks.html`, this record | `#visibility` opens the hub's existing Get Seen, Get Found result; proposed Visibility page remains unpublished. |
 | 2026-09-06 | Corrected the complete publishing set from six to eight files | The earlier handoff omitted two approved phone images that the verified page directly references | Five approved WebP images, page HTML, page stylesheet, and this record | The complete desktop and phone experience can be published without missing assets. |
+| 2026-09-06 | Published and publicly verified `money-recognition-v1.3` | Owner instructed all completed local work to be pushed live | Eight-file release set; commits `88cf5e9` and `398ef3d`; public URL | Desktop, phone, images, overflow, browser log, and existing Visibility route passed; page is LIVE. |
 
 ## Flags and unanswered questions
 
-- RELEASE AUTHORIZED: the owner reviewed the integrated closer, said it was nailed, instructed `push live`, and on 2026-09-06 directed completed local work to be published while existing pages are reused instead of creating unnecessary detail pages.
-- ROUTE RESOLVED: `Next: Get Seen, Get Found` points to `business-fixes.html#visibility`, which activates the existing live hub result. The proposed detail page remains unpublished.
+- LIVE: `money-recognition-v1.3` is published and verified at `https://rebelranchministries.org/business-money-leaks.html`.
+- ROUTE VERIFIED: `Next: Get Seen, Get Found` points to `business-fixes.html#visibility`, which activates the existing live hub result. The proposed detail page remains unpublished.
 - FLAG: the Business Freedom hub still uses older Money naming; hub alignment is outside this pass.
 - FLAG: generated PNG source files are retained alongside optimized WebP delivery assets; deletion was not authorized and is not required for owner review.
 
 ## Next permitted action
 
-Repeat static and desktop/phone verification for the corrected route, publish the complete eight-file approved release set, verify the public result, and then update this record to `LIVE`. Do not publish the unfinished detail-page drafts.
+None. Preserve the live page unless the owner explicitly reopens it. Continue Business Freedom planning from the existing hub and page map; do not publish unfinished detail-page drafts merely because local files exist.
