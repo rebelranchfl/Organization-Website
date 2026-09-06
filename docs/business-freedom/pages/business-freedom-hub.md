@@ -4,9 +4,9 @@
 
 - Page file: `business-fixes.html`
 - Program: Rebel Ranch Ministries → Business Freedom
-- Current state: LIVE; publicly verified at `https://rebelranchministries.org/business-fixes.html`
+- Current state: VERIFIED locally; `business-freedom-hub-v1.2` alignment is not committed, pushed, or live; `business-freedom-hub-v1.1` remains public at `https://rebelranchministries.org/business-fixes.html`
 - Last updated: 2026-09-06
-- Current exact version: `business-freedom-hub-v1.1`
+- Current exact version: `business-freedom-hub-v1.2`
 
 ## North star
 
@@ -18,16 +18,24 @@
 
 ## Approved specification
 
-- Use `Get Your Time Back` consistently for Owner Capacity Recovery.
-- Use `Keep Your Money` consistently for Resources, Processes & Streamlining.
+- Align each core hub choice, selector result, full service card, request form, and dedicated landing page to one approved public name.
+- Use this canonical order and map:
+  1. `Get Your Time Back` — core service with a live landing page.
+  2. `Stop Losing Customers` — core service with a live landing page.
+  3. `Keep Your Money` — core service with a live landing page.
+  4. `Get Seen, Get Found` — core service and next landing-page priority; existing local draft is not approved.
+  5. `Automated Payment Processing` — core service requiring a dedicated landing page.
+  6. `Add an Operations Leader to Your Team` — core recurring service requiring one comprehensive landing page.
+  7. `I've Got the Potential` — routing choice with the supporting statement `I just don't know how to get there.`; no landing page.
 - Link the three completed landing pages from their matching selector results and full service cards:
   - `business-time.html`
   - `business-leads.html`
   - `business-money-leaks.html`
-- Keep Visibility, broader Payment Processing & Revenue Cycle, and Guidance usable in this interactive hub without creating or publishing additional detail pages.
+- Preserve the exact approved recognition statement for `Automated Payment Processing`: `Tired of waiting for systems and programs to deposit my money.`
+- Preserve the exact approved recognition statement for `Add an Operations Leader to Your Team`: `I need an experienced & certified pro on my side, but can't afford a full-time employee.`
 - Preserve the separate $49.99 `Get Paid Faster — Set Up Your Payment Links` offer in its existing Marketplace/request-form path. Do not add it to this hub yet.
 - Do not publish the proposed local Visibility, Get Paid Faster, or Guidance detail-page drafts.
-- Do not change prices, service scope, layout, styling, or the existing request destinations in this pass.
+- Do not change prices, layout, styling, or the existing request destinations in this alignment pass.
 
 ## Decision ledger
 
@@ -36,6 +44,12 @@
 | 2026-09-06 | `business-freedom-hub-v1.1` naming and links | APPROVED and INTEGRATED | Rename Money to `Keep Your Money`; align Time to `Get Your Time Back`; connect the three completed detail pages | Names must be catchy, relevant, and suitable for social promotion; existing pages should be used before new pages are built. |
 | 2026-09-06 | $49.99 Get Paid Faster hub placement | BLOCKED | Hold until the other Business Freedom work is complete and the Marketplace-specific path can be reviewed last | The offer is for Marketplace sellers who lack an online payment method; many local sellers intentionally use cash or COD. |
 | 2026-09-06 | New public pages | BLOCKED | Build no additional pages without separate owner approval | Existing pages and the interactive hub must be worked first. |
+| 2026-09-06 | Canonical six-service map | APPROVED | Use one public name across each hub choice, result, full service card, request option, and matching landing page | The live hub mixed problem statements, service names, draft pages, and a routing choice in a way that obscured the actual service map. |
+| 2026-09-06 | `Automated Payment Processing` | APPROVED | Use this as the broad payment-processing service; design and automate the linkages between merchant services, payment systems, and supporting software | Most money movement is automated after owner approval; the service's value is making disconnected systems work together. |
+| 2026-09-06 | `Add an Operations Leader to Your Team` | APPROVED | Build one comprehensive premium page explaining Operations Strategist, Operations Manager, and Process Engineer capabilities | This is the highest-priced recurring Business Freedom asset and must show the value and distinction of all three professional capabilities. |
+| 2026-09-06 | Operations Leader recognition | APPROVED | `I need an experienced & certified pro on my side, but can't afford a full-time employee.` | Expresses access to expertise the small business cannot support as a full-time position without implying the owner makes bad decisions. |
+| 2026-09-06 | `I've Got the Potential` routing choice | APPROVED | Use `I just don't know how to get there.` as its supporting statement and do not create a landing page | This is a routing path for visitors who need help identifying the right Business Freedom service, not a separate paid service. |
+| 2026-09-06 | `business-freedom-hub-v1.2` alignment | INTEGRATED | Align the seven hub choices, six service summaries, interactive results, and request form to the canonical map without creating landing pages | Owner explicitly authorized alignment only. The three existing completed-page links were preserved, and the $49.99 Marketplace option remained separate. |
 
 ## Verification matrix
 
@@ -43,12 +57,14 @@
 |---|---|---|---|---|---|
 | `business-freedom-hub-v1.1` | Naming, completed-page links, request paths, desktop/mobile layout, and overflow | Local server at 1440px and 390px | Time, Leads, and Money selector results and service-card links reach the correct completed pages; request forms show the approved names; page width equals viewport on phone | 2026-09-06 Codex | PASS |
 | `business-freedom-hub-v1.1` | Public naming, completed-page links, request paths, held offer, and phone/desktop presentation | GitHub Pages; desktop and 390px phone | Time, Leads, and Money reach the correct live pages; request forms show approved names; Get Paid Faster is absent from the hub; no broken images were found. The shared footer retains an unrelated pre-existing 8px phone overscroll when a vertical scrollbar is present. | 2026-09-06 Codex | PASS for this release; shared-footer note recorded |
+| `business-freedom-hub-v1.2` | Canonical names and supporting statements across seven choices, six service cards, interactive results, and eight request-form options | Local server; 1440px desktop and 390px phone | Exact names and approved recognition statements rendered correctly; existing Time, Leads, and Money page links remained the only detail-page links; the $49.99 Marketplace option remained unchanged and absent from the hub; no broken images or new layout overflow were found | 2026-09-06 Codex | PASS |
 
 ## Flags and unanswered questions
 
-- Guidance needs a stronger, value-led public name. No replacement has been approved yet.
-- Broader Payment Processing & Revenue Cycle remains distinct from the Marketplace-specific $49.99 payment-link setup.
+- The public hub and request form do not yet use every canonical name. The verified local alignment requires separate commit, push, and deployment authorization.
+- The filename and final offer details for the Automated Payment Processing landing page are not approved.
+- The existing local `business-guidance.html` draft predates the approved Operations Leader direction and must not be treated as approved page content.
 
 ## Next permitted action
 
-None. Preserve this live version unless the owner explicitly reopens it. Do not rename Guidance, add Get Paid Faster to the hub, or create new public pages without another owner decision.
+Obtain separate authorization to commit and publish only `business-freedom-hub-v1.2` and its required records. After public verification, proceed to `Get Seen, Get Found` one approved stage at a time.

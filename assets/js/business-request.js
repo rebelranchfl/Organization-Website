@@ -1,9 +1,9 @@
 ﻿(() => {
   const services = {
     'general-business-service': {
-      name: 'Tell Us What Your Business Needs',
+      name: 'I\'ve Got the Potential',
       price: 'You will be contacted within 24 hours',
-      description: 'Rebel Ranch and 3P Help Me partnered to deliver these donated professional services to support local businesses. This ensures that local businesses receive the guidance and support they need at a price they can afford.'
+      description: 'I just don\'t know how to get there. Tell us what is happening now and what you want to build, change, or accomplish so we can identify the right starting point.'
     },
     'owner-capacity-recovery': {
       name: 'Get Your Time Back',
@@ -11,7 +11,7 @@
       description: 'Owner Capacity Recovery for sole operators carrying every role in the business.'
     },
     'lead-capture-follow-up': {
-      name: 'Stop Losing Customers While You Are Busy Doing the Work',
+      name: 'Stop Losing Customers',
       price: 'Starting at $199 · Normally $349',
       description: 'Lead Capture and Customer Follow-Up that protects opportunities during a busy workday.'
     },
@@ -26,14 +26,14 @@
       description: 'Online Presence and Social Media improvements that help local customers find, understand, and contact the business.'
     },
     'revenue-cycle': {
-      name: 'Turn Finished Work Into Money in the Bank',
+      name: 'Automated Payment Processing',
       price: 'Starting at $199 · Normally $449',
-      description: 'Payment Processing and Revenue Cycle improvements that reduce delays between completed work and usable cash.'
+      description: 'Design, setup, connection, automation, and streamlining for the merchant services, payment systems, and software that move money through your business.'
     },
     'ongoing-business-guidance': {
-      name: 'Ongoing Business Strategy & Operational Guidance',
+      name: 'Add an Operations Leader to Your Team',
       price: '$299 per month',
-      description: 'Continued business-specific planning, problem-solving, and decision support throughout the month.'
+      description: 'Ongoing access to operations strategy, operations management, and process engineering support without adding a full-time employee.'
     },
     'get-paid-faster': {
       name: 'Get Paid Faster — Set Up Your Payment Links',
