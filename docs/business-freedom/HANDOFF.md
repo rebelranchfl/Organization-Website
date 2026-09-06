@@ -21,8 +21,8 @@ The page record is the north star. Do not substitute conversation memory, an exi
 
 ## Current program state
 
-- The public Business Freedom hub is live at `business-fixes.html` as `business-freedom-hub-v1.1`.
-- `business-freedom-hub-v1.2` is INTEGRATED and VERIFIED locally. It aligns all seven hub choices, six service summaries, interactive results, and request-form names to the canonical map. It is not committed, pushed, or live.
+- The public Business Freedom hub is live at `business-fixes.html` as `business-freedom-hub-v1.2`.
+- `business-freedom-hub-v1.2` aligns all seven hub choices, six service summaries, interactive results, and request-form names to the canonical map. It was published and verified on GitHub Pages at desktop and phone widths on 2026-09-06.
 - Three dedicated service pages are live: `Get Your Time Back`, `Stop Losing Customers`, and `Keep Your Money`.
 - The hub contains seven choices, but only six are core paid services. `I've Got the Potential` is a routing choice and does not need a landing page.
 - `Get Seen, Get Found`, the fourth core service, is the next approved landing-page priority. A local draft exists, but its content and design are not approved.
@@ -65,25 +65,31 @@ Business Freedom provides the approved ongoing access, professional judgment, pl
 
 ## Required order from here
 
-1. COMPLETED LOCALLY: documentation alignment.
-2. COMPLETED AND VERIFIED LOCALLY: hub and request-form name alignment; no landing page was created or linked.
-3. Obtain separate authorization to commit, push, and publish only the verified alignment files and required records.
-4. After public verification, complete `Get Seen, Get Found`, starting with an audit of the existing local draft rather than automatically creating a replacement.
-5. Develop `Automated Payment Processing` as its own dedicated landing page.
-6. Develop `Add an Operations Leader to Your Team` as one comprehensive premium landing page with the three professional capabilities fully explained.
-7. Review the separate $49.99 Marketplace payment-link page last.
+1. COMPLETE AND LIVE: documentation alignment.
+2. COMPLETE AND LIVE: hub and request-form name alignment; no landing page was created or linked.
+3. NEXT: complete `Get Seen, Get Found`, starting with an audit of the existing local draft rather than automatically creating a replacement.
+4. Develop `Automated Payment Processing` as its own dedicated landing page.
+5. Develop `Add an Operations Leader to Your Team` as one comprehensive premium landing page with the three professional capabilities fully explained.
+6. Review the separate $49.99 Marketplace payment-link page last.
 
 ## Current authorization boundary
 
-The owner authorized the existing hub and request-form alignment with no landing-page work. The local HTML and JavaScript alignment is complete and verified. No commit, push, merge, deployment, new page, imagery, styling, price, form submission, or unrelated change is authorized by that instruction.
+The owner authorized the hub and request-form alignment and then separately instructed Codex to push all completed alignment work live. That release is complete and verified. No new landing page, imagery, styling, price, form submission, or unrelated change was included.
 
-## Verified local alignment files
+## Live alignment files
 
 - `business-fixes.html`
 - `assets/js/business-request.js`
 - `docs/business-freedom/README.md`
 - `docs/business-freedom/HANDOFF.md`
 - `docs/business-freedom/pages/business-freedom-hub.md`
+
+Supporting page-direction records published with the alignment:
+
+- `docs/business-freedom/pages/get-seen-get-found.md`
+- `docs/business-freedom/pages/automated-payment-processing.md`
+- `docs/business-freedom/pages/ongoing-business-guidance.md`
+- `docs/business-freedom/pages/get-paid-faster.md`
 
 ## Unrelated work that must remain untouched
 

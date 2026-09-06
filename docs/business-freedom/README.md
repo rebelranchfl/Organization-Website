@@ -2,7 +2,7 @@
 
 These records are the north star for Business Freedom work. Read this index, `HANDOFF.md`, the control system, and the applicable page record before any concept, copy, image, code, review, or release work.
 
-Current alignment state: `business-freedom-hub-v1.2` is INTEGRATED and VERIFIED locally in `business-fixes.html` and `assets/js/business-request.js`; it is not committed, pushed, or live. The public site still serves `business-freedom-hub-v1.1` until separately authorized publication.
+Current alignment state: `business-freedom-hub-v1.2` is LIVE in `business-fixes.html` and `assets/js/business-request.js`. The published hub, all seven interactive results, six service summaries, and eight request-form choices were verified on GitHub Pages at desktop and phone widths on 2026-09-06.
 
 ## Canonical service and page map
 
@@ -24,9 +24,9 @@ Current alignment state: `business-freedom-hub-v1.2` is INTEGRATED and VERIFIED 
 
 ## Required work order
 
-1. COMPLETED LOCALLY: document the canonical map and remove conflicting records.
-2. COMPLETED AND VERIFIED LOCALLY: align the hub and request form to the approved public names without building a landing page. Publication still requires separate authorization.
-3. NEXT PAGE AFTER ALIGNMENT PUBLICATION: complete `Get Seen, Get Found` by evaluating and reusing the existing local draft where it meets the approved direction.
+1. COMPLETE AND LIVE: document the canonical map and remove conflicting records.
+2. COMPLETE AND LIVE: align the hub and request form to the approved public names without building a landing page.
+3. NEXT PAGE: complete `Get Seen, Get Found` by evaluating and reusing the existing local draft where it meets the approved direction.
 4. Develop the dedicated `Automated Payment Processing` landing page.
 5. Develop the comprehensive `Add an Operations Leader to Your Team` landing page.
 6. Review the separate $49.99 Marketplace payment-link offer last.
