@@ -1,0 +1,216 @@
+# Rebel Ranch Ministries — Shared Systems Operations
+
+**Status:** Repository-level shared-system operating reference  
+**Applies to:** Infrastructure used by more than one RRM program or public surface.  
+**Governing control:** `/AGENTS.md`
+
+## Purpose
+
+This document is the shared infrastructure "Bible" for systems used across multiple Rebel Ranch Ministries programs and public surfaces.
+
+It does **not** define program-specific business rules, brand rules, course workflows, seller workflows, creator workflows, or program-specific permissions. Those belong inside the applicable program ecosystem and should reference this document where they depend on shared infrastructure.
+
+If a shared-system fact conflicts with a program document, code, deployment record, or older handoff, stop and bring the specific conflict to the owner. Do not guess.
+
+## 1. Shared-system boundary
+
+A system belongs here when more than one RRM program or repository surface depends on the same underlying infrastructure.
+
+Current shared-system areas include:
+
+- Supabase browser client and production backend foundation;
+- authentication and account access;
+- shared account/role infrastructure;
+- shared email delivery;
+- shared public header/footer/navigation shell;
+- common security and permission boundaries;
+- shared deployment/infrastructure facts that are truly repository-wide;
+- other common services adopted across multiple programs.
+
+Program-specific tables, workflows, notifications, dashboards, automations, and deployments remain with the program unless they later become genuinely shared infrastructure.
+
+## 2. Supabase foundation
+
+### Verified current browser client
+
+The repository has one shared browser Supabase client at:
+
+`assets/js/supabase-client.js`
+
+Verified current configuration:
+
+- production project URL: `https://dfrwxpuojeiykaignyny.supabase.co`;
+- publishable browser key is stored in the shared browser client as a publishable key;
+- the client uses a bounded browser authentication lock to avoid stale browser-lock hangs;
+- owner/program surfaces load their own focused scripts on top of the shared client rather than each creating an independent Supabase client.
+
+The shared browser client is infrastructure. Program-specific data access belongs in program-specific services/scripts and database policies.
+
+### Database source of truth
+
+Repository database changes live under:
+
+- `supabase/migrations/`
+- `supabase/functions/`
+- `supabase/tests/`
+- `supabase/config.toml`
+
+A migration file existing in GitHub does **not** by itself prove the migration is live in production. Production state must be verified against the actual Supabase project before a live-status claim.
+
+Likewise, a direct production migration does not prove the matching repository history is aligned. Both repository and production state must be checked where exact synchronization matters.
+
+## 3. Authentication and accounts
+
+### Shared account entry point
+
+The repository contains a shared RRM account surface at:
+
+`account.html`
+
+It is used as a common account/sign-in entry point for RRM program access rather than requiring every program to create an unrelated authentication system.
+
+Related shared account/auth surfaces include:
+
+- `auth-confirm.html`
+- `reset-password.html`
+- `membership-status.html`
+
+Program-specific dashboards may use the same authenticated account but must enforce their own program permissions and access rules.
+
+### Authorization rule
+
+UI visibility is never the security boundary.
+
+Hiding a link/card/control based on a browser-visible role does not prove authorization. Protected data/actions must also be enforced by the applicable database Row Level Security (RLS), RPC/function permission checks, storage policies, or other server-side controls.
+
+Administrator-only pages must independently verify authentication/authorization even if the account dashboard only shows their links to administrators.
+
+### Shared roles vs program permissions
+
+Shared account roles may be used to identify broad access such as administrator status, but program-specific authority belongs to that program's access model.
+
+Do not infer that one shared role automatically grants every program action unless the applicable database policy/program standard explicitly says so.
+
+## 4. Shared email delivery
+
+The shared authentication email system is documented in:
+
+`docs/email-delivery-setup.md`
+
+Verified recorded architecture:
+
+- Supabase Auth uses custom SMTP;
+- SMTP provider: Resend;
+- SMTP host: `smtp.resend.com`;
+- SMTP port: `465`;
+- sender: `Rebel Ranch Ministries <noreply@rebelranchministries.org>`;
+- the domain was recorded as verified in Resend;
+- a password-reset email was previously verified end to end after the custom SMTP setup.
+
+That historical successful test proves the configuration worked at that verification point. It does not prove future email delivery without a current test when the exact current state matters.
+
+Program-specific transactional email behavior belongs with the relevant program. Example: Marketplace seller-order notification logic belongs in the Marketplace documentation and should reference the shared email/Resend infrastructure rather than redefine the shared auth SMTP system.
+
+Secrets must not be committed to the repository. Protected server-side keys belong in the appropriate protected environment/secret store.
+
+## 5. Shared public shell and navigation
+
+The current shared RRM public header/footer/navigation implementation is:
+
+`assets/js/public-shell.js`
+
+with shared styling in:
+
+`assets/css/public-surface.css`
+
+Verified current behavior in `public-shell.js` includes:
+
+- shared RRM header and footer injection;
+- RRM organization logo from `assets/brand/Rebel Ranch Ministries/rrm-logo-white.png`;
+- common RRM navigation routes;
+- Programs routing to current program destinations;
+- My Account routing to `account.html`;
+- common footer legal/social links;
+- administrator account-dashboard convenience links for Operations Review, Store Manager, and Social Content Hub.
+
+The administrator link injection is a convenience only. Each destination must still enforce its own authorization.
+
+Program sites/subdomains with their own approved shell/brand do not automatically inherit the RRM shell. Program documentation controls that decision.
+
+## 6. Security and permissions
+
+Repository-wide security principles:
+
+- preserve RLS and server-side authorization;
+- do not expose service-role/server secrets in browser code;
+- do not weaken private storage controls for presentation convenience;
+- do not treat hidden UI as access control;
+- do not assume authenticated means authorized;
+- verify role/ownership/household/program boundaries in the actual database policy or trusted server function;
+- protect minors' records and parent/guardian control according to the applicable program rules;
+- do not move private user data into public storage merely to simplify delivery.
+
+Program-specific security requirements remain in the program's own operating documents and schema/policies.
+
+## 7. Deployment and hosting
+
+Deployment is **not currently one single repository-wide mechanism**.
+
+### Rebel Ranch Academy Program Hub — verified current workflow
+
+The repository contains:
+
+`.github/workflows/deploy-rebel-ranch-academy.yml`
+
+That workflow currently:
+
+- builds/tests the Academy Program Hub;
+- uses Cloudflare Wrangler;
+- deploys pull-request previews to a separate Academy preview worker;
+- deploys non-PR runs to `academy.rebelranchministries.org` using the `rebel-ranch-academy` Cloudflare deployment target;
+- uses protected `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` GitHub secrets.
+
+This is an RRA-specific deployment implementation even though GitHub Actions and Cloudflare are shared infrastructure providers.
+
+### Main RRM website — current host NOT VERIFIED in this consolidation pass
+
+The repository contains historical GitHub Pages material, including `.nojekyll`, `CNAME`, and the incident record `docs/github-pages-deploy-outage-2026-08-06.md`.
+
+Those files prove GitHub Pages was used at that historical point. They do **not** by themselves prove the present main-site hosting arrangement.
+
+Therefore:
+
+**Current main-site hosting/deployment authority: NOT VERIFIED in this document yet.**
+
+Before changing or troubleshooting main-site deployment, verify the current hosting/deployment path from the active infrastructure/configuration rather than relying on the historical GitHub Pages incident record.
+
+## 8. Historical deployment incidents
+
+`docs/github-pages-deploy-outage-2026-08-06.md` is a historical incident/lessons-learned record. It should not be treated as current deployment instructions unless current infrastructure verification shows the same GitHub Pages path is still active.
+
+Historical incident records belong in archive/history during the physical repository reorganization after references are checked.
+
+## 9. Program-specific systems discovered during shared-system review
+
+The following material is **not** shared-system authority and should remain within its program ecosystem during later consolidation:
+
+- `docs/phase-3-architecture.md` — Creation Station architecture, despite references to the shared Supabase client;
+- Marketplace Gate 1/2 deployment plans, handoffs, reconciliation records, listing/directory handoffs, and notification handoffs — Marketplace implementation/history;
+- RRA content-agent workflows, Academy deployment workflow, and Academy-specific automation — RRA implementation;
+- program-specific storage buckets, RLS rules, notifications, seller/creator tables, and business workflows.
+
+When such documents contain a genuinely shared fact, move/copy the shared fact into this document and have the program document reference it. Do not move program-specific logic into shared operations.
+
+## 10. Verification rule for shared systems
+
+Before changing a shared system:
+
+1. verify every program/surface known to depend on it;
+2. verify the exact current implementation and current production state;
+3. identify program-specific assumptions that could break;
+4. make the smallest authorized change;
+5. test the shared function itself;
+6. test the affected end-user paths in every materially affected program/surface;
+7. do not call the change complete until those paths pass.
+
+A shared-system change has a wider blast radius than a program-only change. Treat it accordingly.
