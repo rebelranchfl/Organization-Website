@@ -1,51 +1,59 @@
-# Email Delivery Setup
+# Shared Email Delivery Setup
 
-## Summary
+**Status:** Shared-system component record  
+**Parent shared-system reference:** `docs/shared-systems-operations.md`
 
-Date: 2026-07-25
+## Purpose
 
-Supabase Auth's default built-in email sender was unreliable for this
-project — signup confirmation and password-reset emails were not
-arriving (confirmed during Marketplace Gate 2 testing; see
-`docs/marketplace-gate-2-frontend-deployment-record.md`). This is a
-known limitation of Supabase's default emailer, meant for development
-only, not production use.
+This document records the shared email-delivery configuration used by Rebel Ranch Ministries infrastructure. It does not define program-specific notification workflows.
 
-## What was configured
+Program-specific email behavior belongs in that program's own documentation and should reference this shared system rather than redefining it.
 
-Custom SMTP was configured on the production Supabase project
-(`dfrwxpuojeiykaignyny`) via the Management API's `/config/auth`
-endpoint, using [Resend](https://resend.com) as the SMTP provider:
+## Shared authentication email
+
+Date originally configured: 2026-07-25
+
+Supabase Auth's default built-in email sender was unreliable during production testing, so custom SMTP was configured on the production Supabase project:
+
+`dfrwxpuojeiykaignyny`
+
+Provider: Resend
 
 - Host: `smtp.resend.com`
 - Port: `465`
 - Sender name: `Rebel Ranch Ministries`
 - Sender address: `noreply@rebelranchministries.org`
 
-The `rebelranchministries.org` domain was added and DNS-verified in
-Resend, which is what allows sending to any recipient (not just the
-account owner's own email — Resend's default sandbox address,
-`onboarding@resend.dev`, only sends to the account's own verified
-email until a real domain is verified).
+The `rebelranchministries.org` domain was recorded as DNS-verified in Resend.
 
-Confirmed working end-to-end: a password-reset email requested for
-`rebelranchfl@gmail.com` was received, correctly sent from
-`noreply@rebelranchministries.org`.
+At the time of configuration, a password-reset email was tested end to end and received successfully from `noreply@rebelranchministries.org`.
 
-## Where the credentials live
+That historical test proves the setup worked at that verification point. It does not prove current delivery without a new end-to-end test when current delivery status matters.
 
-The Resend API key and the Supabase personal access token used to make
-this change are stored as local Windows user environment variables
-(`RESEND_API_KEY`, `SUPABASE_ACCESS_TOKEN`) on the machine used for
-this session — not committed to the repository. If SMTP settings need
-to be changed again (e.g. rotating the Resend API key), use the same
-Management API pattern:
+## Credentials and secrets
 
-```
+The Resend API key and Supabase access credentials are not committed to this repository.
+
+Historical setup records state that the Resend API key and Supabase personal access token used for configuration were stored as local Windows user environment variables:
+
+- `RESEND_API_KEY`
+- `SUPABASE_ACCESS_TOKEN`
+
+Protected server-side credentials must remain in appropriate secret/environment storage. Do not place them in browser JavaScript, Markdown documentation, commit messages, logs, or public configuration.
+
+## Historical Management API configuration pattern
+
+The recorded configuration pattern was:
+
+```text
 PATCH https://api.supabase.com/v1/projects/dfrwxpuojeiykaignyny/config/auth
 Authorization: Bearer <supabase personal access token>
 Content-Type: application/json
+```
 
+with SMTP values equivalent to:
+
+```json
 {
   "smtp_admin_email": "noreply@rebelranchministries.org",
   "smtp_host": "smtp.resend.com",
@@ -56,25 +64,28 @@ Content-Type: application/json
 }
 ```
 
-Note `smtp_port` must be sent as a string, not a number, or the API
-rejects the request.
+Historical note: `smtp_port` was required as a string by the API used at that time.
 
-## Marketplace seller order email — added 2026-08-25
+Before changing current SMTP configuration, verify the current Supabase configuration/API requirements rather than assuming this historical request shape remains unchanged.
 
-Resend is also used by the production `submit-marketplace-order` Edge
-Function to alert a seller after a structured Marketplace order has
-been stored. This use is separate from Supabase Auth SMTP:
+## Program-specific transactional email
 
-- Auth confirmation/reset mail is sent through Supabase's configured
-  Resend SMTP connection.
-- Marketplace order alerts are sent directly to Resend's HTTP API by
-  the Edge Function.
-- The Edge Function reads `RESEND_API_KEY` from protected Supabase
-  Edge Function secrets.
-- The alert includes only the order number and the authenticated seller
-  dashboard link. Private buyer and order details stay in the dashboard.
-- A Resend failure is logged but does not undo or reject a saved order.
+Programs may use Resend or another approved delivery path for their own transactional messages, but that logic belongs to the program.
 
-See `docs/marketplace-order-notifications-handoff-2026-08-25.md` for
-the production architecture, exact files, verification, limitations,
-and remaining end-to-end testing.
+Example: Marketplace structured-order seller notifications are documented in:
+
+`docs/marketplace-order-notifications-handoff-2026-08-25.md`
+
+The Marketplace implementation has historically used a server-side Edge Function and protected `RESEND_API_KEY` secret for order alerts. Marketplace-specific message content, failure handling, privacy boundaries, and verification belong in Marketplace documentation, not here.
+
+## Verification rule
+
+Do not claim email delivery is working because configuration exists.
+
+For a current "working" claim, verify the exact requested flow end to end, for example:
+
+- account confirmation email;
+- password-reset email;
+- program transactional notification.
+
+Record what was tested, the delivery path, and the observed result.
