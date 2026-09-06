@@ -127,7 +127,7 @@ For repository cleanup:
 - **duplicate + consistent** → consolidate into the proper authoritative document;
 - **duplicate + useful extra detail** → preserve the useful detail in the proper authoritative document;
 - **contradictory** → stop and obtain owner clarification one conflict at a time;
-- **outdated/superseded** → remove from active authority only after references/dependencies are verified; preserve history in archive/backups when needed.
+- **outdated/superseded** → remove from active authority only after references/dependencies are verified; preserve history in archive when needed.
 
 Do not classify documents by title alone. Read the contents first.
 
@@ -141,16 +141,35 @@ Do not classify documents by title alone. Read the contents first.
 - Preserve unrelated files, functionality, styling, content, configuration, data, and working state.
 - Open decisions remain open until the owner decides them.
 
-## 8. Mandatory backup before file edits
+## 8. Recoverability and backup strategy
 
-Before editing an existing repository file:
+**Every change must be recoverable.**
 
-1. Create a timestamped backup of the exact file.
-2. Create or update a written change description stating what will be changed and what will not be changed.
-3. Verify both backup and description exist.
-4. Only then edit the original.
+Use Git and the right protection level instead of creating duplicate file backups before ordinary edits.
 
-Backups are historical safety records, not active sources of truth.
+### Normal/small changes
+
+- Git commit history is the recovery mechanism.
+- Do not create a duplicate `.backups` copy merely because a tracked file is being edited.
+- Keep commits clear enough that the prior state and the change can be identified and restored if needed.
+
+### Multi-file, structural, risky, migration, deployment, or potentially destructive work
+
+- Before making the risky change, create or verify a dedicated branch, checkpoint, or other clear Git recovery point appropriate to the work.
+- Keep risky work isolated until it is reviewed and verified.
+- Do not treat a branch as permission to skip authorization, testing, or end-to-end verification.
+
+### Disaster recovery
+
+- Periodically maintain a full repository backup outside this repository so loss of the GitHub repository itself does not remove the only copy.
+- Disaster backup is separate from normal Git version history and separate from temporary working branches.
+- Do not store the disaster backup inside the same repository it is intended to protect.
+
+### Existing `.backups` material
+
+- Existing `.backups` folders are historical material created under the prior workflow.
+- Do not treat them as active sources of truth.
+- Do not automatically delete them. Review them during repository cleanup, verify whether any unique information must be preserved, then archive/remove redundant material through an owner-authorized cleanup step.
 
 ## 9. Brand and asset control
 
@@ -211,6 +230,6 @@ After authorized work:
 2. Review the final changed-file/system list.
 3. Confirm unrelated work remained untouched.
 4. Verify the exact requested outcome end to end when the required environment/tools permit it.
-5. Report every changed file/system, backup location, checks performed, limitations, unresolved conflicts, and remaining owner decisions.
+5. Report every changed file/system, checks performed, limitations, unresolved conflicts, remaining owner decisions, and the branch/checkpoint/recovery point when one was required for the work.
 
 If end-to-end verification is impossible with the available access, say exactly what is verified and what is not. Do not upgrade partial evidence into a completion claim.
