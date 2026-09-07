@@ -18,10 +18,10 @@ Read this together with:
 6. `/rebel ranch academy/docs/workflow/ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md`
 7. `/rebel ranch academy/docs/workflow/ACADEMY-CONTENT-PROJECT-SCHEMA.md`
 8. `/rebel ranch academy/docs/intelligence/ACADEMY-CONTINUOUS-IMPROVEMENT-LOOP.md`
-9. `/rebel ranch academy/ACADEMY-RESPONSIBLE-REBELLION-EVIDENCE-FIRST-STANDARD.md`
-10. `/rebel ranch academy/ACADEMY-RENDERED-PRODUCT-QA-STANDARD.md`
-11. `/rebel ranch academy/ACADEMY-FINAL-PRODUCT-ACCEPTANCE-STANDARD.md`
-12. `/rebel ranch academy/ACADEMY-RELEASE-WORKFLOW-STANDARD.md`
+9. `/rebel ranch academy/docs/intelligence/ACADEMY-RESPONSIBLE-REBELLION-EVIDENCE-FIRST-STANDARD.md`
+10. `/rebel ranch academy/docs/qa/ACADEMY-RENDERED-PRODUCT-QA-STANDARD.md`
+11. `/rebel ranch academy/docs/qa/ACADEMY-FINAL-PRODUCT-ACCEPTANCE-STANDARD.md`
+12. `/rebel ranch academy/docs/workflow/ACADEMY-RELEASE-WORKFLOW-STANDARD.md`
 13. `/rebel ranch academy/systems/automation/runner-status.md`
 14. this file.
 
