@@ -26,16 +26,21 @@ jobs:
       - name: Run runner contract self-test
         run: node .github/scripts/academy-agent-runner.mjs self-test
 
-      - name: Enforce dormant-safe runner boundaries
+      - name: Enforce dormant-safe least-privilege boundaries
         shell: bash
         run: |
           set -euo pipefail
           script='.github/scripts/academy-agent-runner.mjs'
           ! grep -q 'OPENAI_API_KEY' "$script"
+          ! grep -q 'SUPABASE_BACKEND_KEY' "$script"
+          ! grep -q 'SUPABASE_SERVICE_ROLE_KEY' "$script"
+          ! grep -q '/rest/v1/' "$script"
           ! grep -q 'current main checkout' "$script"
           ! grep -q "current_status.*READY_FOR_REVIEW" "$script"
           ! grep -q "workflow_stage.*PRODUCT_REVIEW" "$script"
           ! grep -q "workflow_stage.*FINAL_PRODUCT_REVIEW" "$script"
+          grep -q '/context' "$script"
+          grep -q 'CALLBACK_TOKEN' "$script"
           grep -q 'independent verification is required before advancement' "$script"
           grep -q "github_branch==='main'" "$script"
-          echo 'ACADEMY_RUNNER_DORMANT_SAFE_BOUNDARIES_PASS'
+          echo 'ACADEMY_RUNNER_LEAST_PRIVILEGE_BOUNDARIES_PASS'
