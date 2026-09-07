@@ -102,22 +102,36 @@ Use the smallest relevant set for the task, but these are the current core contr
 
 No Academy production automation may be treated as active merely because old code, database objects, workflows, schedules, or project records exist. Reactivation requires repaired backend/pipeline behavior, end-to-end verification of the exact path being restored, and a new explicit owner authorization.
 
-### Existing Academy workflow / intelligence / production standards — when relevant
+### Academy workflow / intelligence / production / QA standards — when relevant
+
+#### Workflow
 - `/rebel ranch academy/docs/workflow/ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md`
 - `/rebel ranch academy/docs/workflow/ACADEMY-CONTENT-PROJECT-SCHEMA.md`
 - `/rebel ranch academy/docs/workflow/ACADEMY-OWNER-CONTROL-STANDARD.md`
 - `/rebel ranch academy/docs/workflow/ACADEMY-LATE-FINDING-CONTROL-STANDARD.md`
 - `/rebel ranch academy/docs/workflow/ACADEMY-REVISION-PRESERVATION-STANDARD.md`
+- `/rebel ranch academy/docs/workflow/ACADEMY-PRODUCT-PHASE-WORKFLOW-EXTENSION.md`
+- `/rebel ranch academy/docs/workflow/ACADEMY-RELEASE-WORKFLOW-STANDARD.md`
+
+#### Intelligence / reasoning
 - `/rebel ranch academy/docs/intelligence/ACADEMY-CONTINUOUS-IMPROVEMENT-LOOP.md`
-- `/rebel ranch academy/ACADEMY-AUDIENCE-CONVERSION-INTELLIGENCE-STANDARD.md`
-- `/rebel ranch academy/ACADEMY-OPPORTUNITY-INTELLIGENCE-STANDARD.md`
-- `/rebel ranch academy/ACADEMY-PRODUCT-DESIGN-AGENT-STANDARD.md`
-- `/rebel ranch academy/ACADEMY-PRODUCT-PHASE-WORKFLOW-EXTENSION.md`
-- `/rebel ranch academy/ACADEMY-LEARNER-EXPERIENCE-LANGUAGE-VISUAL-STANDARD.md`
-- `/rebel ranch academy/ACADEMY-FINAL-PRODUCT-ACCEPTANCE-STANDARD.md`
-- `/rebel ranch academy/ACADEMY-CHATGPT-IMAGE-PRODUCTION-STANDARD.md`
-- `/rebel ranch academy/ACADEMY-RELEASE-WORKFLOW-STANDARD.md`
-- other existing Academy standards only when their subject applies to the current task.
+- `/rebel ranch academy/docs/intelligence/ACADEMY-AUDIENCE-CONVERSION-INTELLIGENCE-STANDARD.md`
+- `/rebel ranch academy/docs/intelligence/ACADEMY-OPPORTUNITY-INTELLIGENCE-STANDARD.md`
+- `/rebel ranch academy/docs/intelligence/ACADEMY-RESPONSIBLE-REBELLION-EVIDENCE-FIRST-STANDARD.md`
+- `/rebel ranch academy/docs/intelligence/ACADEMY-SOURCE-REVIEW-POLICY.md`
+- `/rebel ranch academy/docs/intelligence/ACADEMY-THINK-LIKE-A-REBEL-FRAMEWORK.md`
+
+#### Product / learner experience
+- `/rebel ranch academy/docs/production/ACADEMY-PRODUCT-DESIGN-AGENT-STANDARD.md`
+- `/rebel ranch academy/docs/production/ACADEMY-LEARNER-EXPERIENCE-LANGUAGE-VISUAL-STANDARD.md`
+- `/rebel ranch academy/docs/production/ACADEMY-CHATGPT-IMAGE-PRODUCTION-STANDARD.md`
+- `/rebel ranch academy/docs/production/ACADEMY-VISUAL-PRODUCTION-AGENT-STANDARD.md`
+
+#### QA / owner acceptance
+- `/rebel ranch academy/docs/qa/ACADEMY-RENDERED-PRODUCT-QA-STANDARD.md`
+- `/rebel ranch academy/docs/qa/ACADEMY-FINAL-PRODUCT-ACCEPTANCE-STANDARD.md`
+
+Read other existing Academy standards only when their subject applies to the current task.
 
 This list is an entry map, not permission to keep creating more standards. Prefer updating/consolidating an existing controlling document over creating another document.
 
