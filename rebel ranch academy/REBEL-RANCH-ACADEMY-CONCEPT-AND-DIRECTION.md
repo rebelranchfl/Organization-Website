@@ -2,6 +2,7 @@
 
 **Status:** Owner-approved concept and program direction  
 **Approved:** 2026-08-20  
+**Reconciled with current RRM program structure:** 2026-09-07  
 **Program:** Rebel Ranch Academy (RRA)  
 **Parent program:** Rebel Ranch Ministries (RRM)  
 **Parent organization:** Faith, Family & Nature Church, Inc.
@@ -13,9 +14,8 @@ This document gives the owner, staff, contractors, and AI agents one shared unde
 Read this document together with:
 
 1. the repository `AGENTS.md`;
-2. `docs/rebel-ranch-ecosystem-charter.md`;
-3. `docs/non-negotiables.md`; and
-4. any later owner-approved RRA visual, curriculum, or offer standards.
+2. `docs/rebel-ranch-ecosystem-charter.md`; and
+3. any later owner-approved RRA visual, curriculum, or offer standards.
 
 If an older note, prototype, page, or draft conflicts with this direction, stop and raise the conflict. Do not silently choose one.
 
@@ -94,13 +94,21 @@ A simple distinction:
 
 Do not combine these offers or imply that an Academy class includes Business Freedom services.
 
-### Rebel Ranch Marketplace
+### Rebel Ranch Local / Marketplace
 
-The Marketplace gives approved local sellers visibility and a way to be discovered. It remains free for buyers and approved sellers under the current Charter.
+Rebel Ranch Local is RRM's broader local-economic and community-commerce program. Marketplace is one component of RRL.
 
 Marketplace participants may be directed to RRA for education involving pricing, money, customer relationships, communication, planning, operations, resilience, or leadership.
 
 Marketplace participation is not Academy enrollment, and Academy participation is not Marketplace approval.
+
+### Roots, Boots & Animal Poops
+
+Roots, Boots & Animal Poops (RBAP) is a separate RRM program focused on agriculture, animal stewardship, homesteading, long-term food production, food security, sustainability, and related practical capability.
+
+RRA may teach, organize, package, expand, or distribute education developed from RBAP subjects and real-world experience, but **RBAP is not a department, learning area, or named program inside Rebel Ranch Academy.**
+
+RRA and RBAP may work together without losing their separate program identities.
 
 ### 3P Help Me
 
@@ -114,27 +122,19 @@ RRA should be organized as one Academy with several learning areas. The subjects
 
 ### Required naming structure
 
-Use this hierarchy:
+For programs and series that belong to RRA, use this hierarchy:
 
 ```text
 Rebel Ranch Ministries
 └── Rebel Ranch Academy
     └── Learning Area
-        └── Named Program or Series
+        └── Named RRA Program or Series
             └── Individual Class, Session, Course, or Resource
 ```
 
-Example:
+A separate RRM program may contribute subject matter or real-world knowledge to RRA without being nested under RRA. For example, agriculture education may draw from RBAP while RBAP remains a separate RRM program.
 
-```text
-Rebel Ranch Ministries
-└── Rebel Ranch Academy
-    └── Sustainability & Agriculture
-        └── Roots, Boots & Animal Poops
-            └── Raising Chickens for Food, Soil & Sustainability
-```
-
-Do not turn every learning area into an unrelated brand. Named programs may have supporting identities, logos, and campaign styles, but they must clearly identify themselves as part of Rebel Ranch Academy.
+Do not turn every learning area into an unrelated brand. RRA-owned named programs may have supporting identities, logos, and campaign styles, but they must clearly identify themselves as part of Rebel Ranch Academy.
 
 ## 6. Learning areas
 
@@ -224,6 +224,8 @@ Potential subjects include:
 - sustainability; and
 - practical independence.
 
+RRA may build education in this learning area from its own research and curriculum and may also draw from RBAP knowledge, practice, media, and experience. That educational connection does not move RBAP under RRA.
+
 ### 6.6 Family, Community & Leadership
 
 Potential subjects include:
@@ -238,24 +240,20 @@ Potential subjects include:
 - service; and
 - responsible citizenship.
 
-## 7. Roots, Boots & Animal Poops
+## 7. RRA relationship with Roots, Boots & Animal Poops
 
-Roots, Boots & Animal Poops is a named program or series inside RRA's Sustainability & Agriculture learning area.
+RBAP and RRA are sibling programs under Rebel Ranch Ministries.
 
-It may serve:
+RBAP develops and practices agriculture, animal stewardship, homesteading, food-production, sustainability, and related real-world capability. RRA may turn appropriate knowledge from those areas into broader educational experiences, courses, resources, or learning paths.
 
-- adults;
-- homesteaders;
-- homeschool families;
-- children and teens learning with parent or guardian involvement;
-- future growers and animal stewards; and
-- people who want to understand food, land, animals, and practical self-sufficiency.
+A simple distinction is:
 
-It may use its existing approved logo and an agriculture-specific supporting style. It must still be identified as:
+- **RBAP:** the agriculture, animal-stewardship, homesteading, and food-production program and its real-world practice.
+- **RRA:** the broader education program that may teach applicable agriculture and sustainability knowledge alongside many other subjects.
 
-> A Rebel Ranch Academy Program
+When RRA uses RBAP material, branding must remain accurate. Do not present RBAP as “A Rebel Ranch Academy Program.” Do not remove RBAP's own program identity. If a joint educational product is created later, its exact co-branding and ownership must be approved before publication.
 
-The existing RRA and Roots, Boots & Animal Poops logo files in the repository must be used as supplied. Do not redraw, recreate, or substitute either logo.
+The existing RRA and RBAP logo files in the repository must be used as supplied when their respective brands are represented. Do not redraw, recreate, or substitute either logo.
 
 ## 8. Audience paths
 
@@ -303,7 +301,7 @@ Primary message:
 
 > Learn where real food comes from—and how to grow, raise, and steward it responsibly.
 
-Relevant areas may include Roots, Boots & Animal Poops, food systems, soil, water, animal stewardship, land care, and resourcefulness.
+Relevant RRA education may include food systems, soil, water, animal stewardship, land care, resourcefulness, and sustainability. RRA may connect learners to RBAP where the separate RBAP program is the more appropriate destination.
 
 ## 9. Marketing direction
 
@@ -313,7 +311,7 @@ Each campaign should contain:
 
 1. one audience;
 2. one problem, aspiration, or learning need;
-3. one RRA learning area or named program;
+3. one RRA learning area or approved RRA program/series;
 4. one clear benefit;
 5. one real clickable action; and
 6. visible Rebel Ranch Academy identification.
@@ -326,8 +324,10 @@ Examples of focused campaign directions:
 - communication for difficult people and hard conversations;
 - business knowledge for sole owners;
 - money and tax understanding;
-- Roots, Boots & Animal Poops for agriculture and homesteading; and
+- sustainability or agriculture education when offered through RRA; and
 - confidence, accountability, and responsible independence.
+
+If a campaign is actually promoting RBAP, follow RBAP's own program and brand controls rather than presenting the campaign as an RRA program campaign.
 
 Do not reduce RRA to ranching or agriculture because “Ranch” appears in the name. Agriculture is one learning area inside a much broader Academy.
 
@@ -449,6 +449,6 @@ Its subjects may range from emotional intelligence and communication to business
 
 RRA should market each need to the correct audience instead of trying to explain the entire Academy in one advertisement.
 
-Named programs such as Roots, Boots & Animal Poops may have distinct supporting identities, but they remain clearly nested under Rebel Ranch Academy.
+Separate RRM programs such as Roots, Boots & Animal Poops may contribute knowledge, real-world practice, media, or educational subject matter to RRA without becoming nested under the Academy. Each program keeps its own identity and controls.
 
 The result should be a credible, polished, grounded Academy that helps children and adults become capable, confident, responsible, accountable, independent, resilient, and strong.
