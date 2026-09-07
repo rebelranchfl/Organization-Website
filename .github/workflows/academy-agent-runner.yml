@@ -1,26 +1,152 @@
 name: Academy Agent Runner — DISABLED
 
 # OWNER DIRECTION — CURRENT STATE
+# Academy automated production remains OFF.
 #
-# Academy automated production is temporarily offline.
-# The downstream pipeline/backend must be repaired and verified before AI production
-# is allowed to resume. This prevents agents from creating additional material that
-# could require extensive rework because of unresolved downstream failures.
+# This file now contains the repaired reactivation candidate so the pipeline can be
+# inspected and verified before a future owner decision. The production job remains
+# hard-disabled with `if: ${{ false }}`. Do not remove that gate until the complete
+# path has passed end-to-end verification and the owner explicitly authorizes restart.
 #
-# This workflow intentionally contains no executable production job.
-# Do not restore the former Water visual-production runner, hourly execution,
-# polling/dispatch execution, or any other Academy production trigger without a
-# new explicit owner decision followed by end-to-end verification of the pipeline.
+# Critical architecture:
+# - Supabase dispatcher claims one exact request and dispatches this workflow on the
+#   project's recorded NON-PUBLISHED work branch.
+# - This worker receives only a one-time run token; it receives no Supabase service key.
+# - The worker may edit only the exact Academy project folder.
+# - It may never push to main, deploy, publish, or advance its own review stage.
+# - Successful worker output still requires an independent stage verifier.
 
 on:
   workflow_dispatch:
+    inputs:
+      request_id:
+        description: "Already-claimed Academy run request UUID"
+        required: true
+        type: string
+      callback_token:
+        description: "One-time context/completion credential"
+        required: true
+        type: string
 
 permissions:
-  contents: read
+  contents: write
+  copilot-requests: write
+
+concurrency:
+  group: academy-agent-${{ github.ref_name }}
+  cancel-in-progress: false
 
 jobs:
-  disabled:
+  academy-worker:
     if: ${{ false }}
     runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      REQUEST_ID: ${{ inputs.request_id }}
+      CALLBACK_TOKEN: ${{ inputs.callback_token }}
+      ACADEMY_DISPATCH_URL: https://dfrwxpuojeiykaignyny.supabase.co/functions/v1/academy-agent-dispatch
+      GITHUB_TOKEN: ${{ github.token }}
     steps:
-      - run: echo "Academy agent production is temporarily disabled pending backend/pipeline repair and end-to-end verification."
+      - name: Check out exact dispatched work branch
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Prepare verified one-run context
+        id: prepare
+        run: node .github/scripts/academy-agent-runner.mjs prepare
+
+      - name: Install GitHub Copilot CLI
+        if: steps.prepare.outcome == 'success'
+        run: npm install -g @github/copilot
+
+      - name: Execute authorized Academy stage
+        id: agent
+        if: steps.prepare.outcome == 'success'
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          copilot --yolo -p "$(cat .agent-run/prompt.md)" 2>&1 | tee .agent-run/worker-last-message.txt
+
+      - name: Validate project-only scope and commit candidate
+        id: commit
+        if: steps.agent.outcome == 'success'
+        continue-on-error: true
+        env:
+          PROJECT_PATH: ${{ steps.prepare.outputs.project_path }}
+          BASE_COMMIT_SHA: ${{ steps.prepare.outputs.base_commit_sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ -n "$PROJECT_PATH" ]] || { echo "Missing verified project path"; exit 41; }
+          [[ "$GITHUB_REF_NAME" != "main" ]] || { echo "Academy production may not run on main"; exit 42; }
+          [[ "$(git rev-parse HEAD)" == "$BASE_COMMIT_SHA" ]] || { echo "Checkout moved away from dispatcher-recorded base commit"; exit 43; }
+
+          mapfile -t changed < <( { git diff --name-only; git ls-files --others --exclude-standard; } | sort -u )
+          durable=0
+          for f in "${changed[@]}"; do
+            [[ -z "$f" ]] && continue
+            case "$f" in
+              .agent-run/*) ;;
+              "$PROJECT_PATH"/*) durable=1 ;;
+              *) echo "Unauthorized Academy worker change outside project: $f"; exit 44 ;;
+            esac
+          done
+          [[ "$durable" == "1" ]] || { echo "Worker produced no durable project change"; exit 45; }
+
+          node .github/scripts/academy-agent-runner.mjs finalize
+
+          git add -A -- "$PROJECT_PATH"
+          git diff --cached --quiet && { echo "No durable project changes staged"; exit 46; }
+          git config user.name "Rebel Ranch Academy Agent Runner"
+          git config user.email "285707125+rebelranchfl@users.noreply.github.com"
+          git commit -m "Advance Academy project ${REQUEST_ID}" -m "AI-Agent: RRA ${GITHUB_REF_NAME} runner" -m "Independent verification required before stage advancement."
+
+          result_sha="$(git rev-parse HEAD)"
+          echo "sha=$result_sha" >> "$GITHUB_OUTPUT"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+      - name: Report run completion to control plane
+        if: always()
+        env:
+          RESULT_COMMIT_SHA: ${{ steps.commit.outputs.sha }}
+          PREPARE_OUTCOME: ${{ steps.prepare.outcome }}
+          AGENT_OUTCOME: ${{ steps.agent.outcome }}
+          COMMIT_OUTCOME: ${{ steps.commit.outcome }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          success=false
+          summary=""
+          error=""
+
+          if [[ "$PREPARE_OUTCOME" == "success" && "$AGENT_OUTCOME" == "success" && "$COMMIT_OUTCOME" == "success" && -n "${RESULT_COMMIT_SHA:-}" ]]; then
+            success=true
+            if [[ -f .agent-run/result.json ]]; then
+              summary="$(jq -r '.result_summary // "Academy worker cycle completed; independent verification is required."' .agent-run/result.json)"
+            else
+              summary="Academy worker cycle completed; independent verification is required."
+            fi
+          else
+            error="Academy worker chain failed (prepare=${PREPARE_OUTCOME}, agent=${AGENT_OUTCOME}, commit=${COMMIT_OUTCOME}). Review the exact workflow step before retrying."
+          fi
+
+          payload="$(jq -n \
+            --arg request_id "$REQUEST_ID" \
+            --arg callback_token "$CALLBACK_TOKEN" \
+            --argjson success "$success" \
+            --arg commit "${RESULT_COMMIT_SHA:-}" \
+            --arg summary "$summary" \
+            --arg error "$error" \
+            '{request_id:$request_id,callback_token:$callback_token,success:$success,commit_sha:$commit,summary:$summary,error:$error}')"
+
+          curl -fsS \
+            -H 'Content-Type: application/json' \
+            --data "$payload" \
+            "$ACADEMY_DISPATCH_URL/complete"
+
+      - name: Confirm no publication occurred
+        if: always()
+        run: |
+          echo "Academy worker finished on $GITHUB_REF_NAME. This workflow does not deploy or publish and does not advance owner review gates."
