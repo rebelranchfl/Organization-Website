@@ -1,39 +1,69 @@
-# Business Freedom Page Records
+# Business Freedom — Program Index
 
-These records are the north star for Business Freedom work. Read this index, `HANDOFF.md`, the control system, and the applicable page record before any concept, copy, image, code, review, or release work.
+**Status:** Current index  
+**Program:** Rebel Ranch Ministries → Business Freedom  
+**Last updated:** 2026-09-07
 
-Current alignment state: `business-freedom-hub-v1.2` is LIVE in `business-fixes.html` and `assets/js/business-request.js`. The published hub, all seven interactive results, six service summaries, and eight request-form choices were verified on GitHub Pages at desktop and phone widths on 2026-09-06.
+Read `business-freedom-operations.md` first for the program-level purpose, boundaries, current service map, funding priority, and operating direction.
 
-## Canonical service and page map
+Then read the applicable record in `pages/` before changing, promoting, or publishing a specific Business Freedom page or offer.
 
-| Hub position | Approved public name | Page/file | Record | Current state |
-|---|---|---|---|---|
-| 1 | Get Your Time Back | `business-time.html` | `pages/get-your-time-back.md` | LIVE; preserve unless reopened |
-| 2 | Stop Losing Customers | `business-leads.html` | `pages/stop-losing-customers.md` | LIVE; preserve unless reopened |
-| 3 | Keep Your Money | `business-money-leaks.html` | `pages/keep-more-of-what-you-earn.md` | LIVE; preserve unless reopened |
-| 4 | Get Seen, Get Found | `business-visibility.html` | `pages/get-seen-get-found.md` | APPROVED as the next landing-page priority; existing local draft is not approved |
-| 5 | Automated Payment Processing | No public page created; filename requires approval | `pages/automated-payment-processing.md` | APPROVED; dedicated landing-page direction recorded |
-| 6 | Add an Operations Leader to Your Team | Existing local file `business-guidance.html` must be reworked before use | `pages/ongoing-business-guidance.md` | APPROVED; comprehensive landing-page direction recorded |
-| 7 | I've Got the Potential | Hub routing choice only; no landing page | `pages/business-freedom-hub.md` | APPROVED direction; supporting line: `I just don't know how to get there.` |
+## Current public state
 
-## Separate Marketplace-specific offer
+The main Business Freedom hub is `business-fixes.html`.
 
-| Offer | File | Record | Current state |
-|---|---|---|---|
-| Get Paid Faster — Set Up Your Payment Links | `business-get-paid-faster.html` | `pages/get-paid-faster.md` | BLOCKED until last; existing local draft is not approved and the offer does not replace Automated Payment Processing |
+`business-freedom-hub-v1.3` is the current recorded public hub version. The governing record is `pages/business-freedom-hub.md`.
 
-## Required work order
+The three current dedicated Business Freedom landing pages are:
 
-1. COMPLETE AND LIVE: document the canonical map and remove conflicting records.
-2. COMPLETE AND LIVE: align the hub and request form to the approved public names without building a landing page.
-3. NEXT PAGE: complete `Get Seen, Get Found` by evaluating and reusing the existing local draft where it meets the approved direction.
-4. Develop the dedicated `Automated Payment Processing` landing page.
-5. Develop the comprehensive `Add an Operations Leader to Your Team` landing page.
-6. Review the separate $49.99 Marketplace payment-link offer last.
+| Approved public name | Public file | Current state |
+|---|---|---|
+| Get Your Time Back | `business-time.html` | LIVE |
+| Stop Losing Customers | `business-leads.html` | LIVE |
+| Keep Your Money | `business-money-leaks.html` | LIVE |
 
-- Seven hub choices do not mean seven service pages: six choices represent core Business Freedom services, and `I've Got the Potential` is a routing choice.
-- A file's existence does not make its content approved or mean that it exists on GitHub.
-- The local Visibility, Guidance, and Get Paid Faster HTML drafts are not currently tracked on GitHub and are not live.
-- Work proceeds one approved stage and one page at a time.
-- Update the applicable record before implementation and after every owner decision.
-- Concept, copy, desktop, mobile, integration, commit, push, merge, and deployment are separate approvals.
+These pages are part of the approved hub map even though separate page decision records for the first two are not currently present in this folder. Their current repository files and the hub record must be verified before changes.
+
+## Current page and offer records
+
+| Record | What it controls | Current direction |
+|---|---|---|
+| `pages/business-freedom-hub.md` | Main Business Freedom hub and canonical routing map | LIVE and governing |
+| `pages/keep-more-of-what-you-earn.md` | Keep Your Money | Live dedicated page direction/history |
+| `pages/get-seen-get-found.md` | Get Seen, Get Found | Approved next landing-page priority; no approved public page currently exists |
+| `pages/automated-payment-processing.md` | Automated Payment Processing | Approved dedicated landing-page direction; no public page currently exists |
+| `pages/ongoing-business-guidance.md` | Add an Operations Leader to Your Team | Approved comprehensive recurring-service direction; no approved public page currently exists |
+| `pages/get-paid-faster.md` | Separate Marketplace-specific payment-link setup | Hold until core Business Freedom work is complete |
+
+## Canonical Business Freedom map
+
+1. Get Your Time Back
+2. Stop Losing Customers
+3. Keep Your Money
+4. Get Seen, Get Found
+5. Automated Payment Processing
+6. Add an Operations Leader to Your Team
+7. I've Got the Potential — routing choice only, not a separate paid service
+
+The separate **Get Paid Faster — Set Up Your Payment Links** offer is Marketplace-specific and does not replace Automated Payment Processing.
+
+## Current work order
+
+1. Preserve and use the live hub plus the three existing dedicated pages.
+2. Complete **Get Seen, Get Found** next, subject to the page-stage owner approvals recorded in its decision record.
+3. Develop **Automated Payment Processing** after Visibility.
+4. Develop **Add an Operations Leader to Your Team** after that as the premium recurring offer.
+5. Review the separate Marketplace payment-link offer last.
+
+Business Freedom is currently RRM's first funding-focused program priority because the owner identified it as the easiest active program to promote and use for near-term earned revenue.
+
+## Documentation rule
+
+Do not recreate the deleted `HANDOFF.md`, do not route work to a nonexistent page-development control file, and do not create duplicate session summaries.
+
+Use:
+
+- `business-freedom-operations.md` for program authority;
+- this README for navigation and current work order;
+- the applicable file under `pages/` for page-specific decisions; and
+- current repository code plus public verification for actual implementation state.
