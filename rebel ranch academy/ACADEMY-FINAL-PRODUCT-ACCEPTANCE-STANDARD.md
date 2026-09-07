@@ -15,11 +15,20 @@ Governing rule:
 
 > **Complete is not the same as acceptable. The finished customer experience must prove its value.**
 
+This standard must be read with:
+
+- `/rebel ranch academy/ACADEMY-RENDERED-PRODUCT-QA-STANDARD.md`;
+- `/rebel ranch academy/ACADEMY-RESPONSIBLE-REBELLION-EVIDENCE-FIRST-STANDARD.md`;
+- `/rebel ranch academy/docs/intelligence/ACADEMY-CONTINUOUS-IMPROVEMENT-LOOP.md`;
+- the applicable Product Design / Learner Experience / Visual Production standards.
+
 ## 1. What Final Product Review must inspect
 
 The owner must be able to experience the product from the beginning as the learner/customer would, including relevant questions, branches, visuals, activities, personalized outputs, optional depth, downloads/printables, navigation, and final result.
 
 Disconnected files, asset galleries, screenshots, manifest lists, descriptions of what the learner would see, or agent summaries do not substitute for the integrated experience.
+
+Before the product is presented for Final Product Review, the exact rendered release candidate must pass the Rendered Product QA Standard. That machine/agent QA is preparation for owner review, not a substitute for owner judgment.
 
 ## 2. Hard acceptance criteria
 
@@ -47,6 +56,7 @@ Before `FINAL_PRODUCT_REVIEW` may receive an `APPROVE` decision, all applicable 
 - Recognizable scenes/images establish concepts where useful.
 - Diagrams, cutaways, comparisons, components, processes, branch maps, before/after examples, or other relevant visuals are present where they materially improve understanding.
 - Technical visuals remain available as optional depth when appropriate.
+- Generated educational visuals have passed the applicable factual, brand, text, learner-clarity, file, integration, and deployed verification gates.
 
 ### E. Practical implementation
 - Where the evidence supports application, the learner can see what to do with the knowledge.
@@ -72,6 +82,7 @@ Before `FINAL_PRODUCT_REVIEW` may receive an `APPROVE` decision, all applicable 
 - Historical, traditional, regional, modern, engineering, scientific, and field evidence is represented appropriately where approved.
 - Government/institutional guidance is accurately represented as evidence, not automatic Academy doctrine.
 - The product does not overclaim and does not under-teach.
+- Material facts, calculations, cited relationships, and consequential claims are traceable to the approved evidence base.
 
 ### I. Testing / verification integrity
 - Testing is used to verify, refine, compare, or decide when appropriate; it is not treated as permission to educate.
@@ -90,7 +101,7 @@ Before `FINAL_PRODUCT_REVIEW` may receive an `APPROVE` decision, all applicable 
 - Mobile/screen behavior is usable where applicable.
 - Printable materials print correctly where applicable.
 - No draft, placeholder, internal-only, or test content appears in the customer experience.
-- Preview/review version matches the actual release candidate.
+- Preview/review version matches the actual release candidate tested by Rendered Product QA.
 
 ### L. Owner "Would I pay for this?" test
 For paid products, the owner must be able to answer **yes** to:
@@ -109,6 +120,8 @@ Final Product Approval moves the accepted product toward the separate Release Wo
 
 `FINAL PRODUCT APPROVAL → RELEASE PREP → OWNER RELEASE DECISION → PUBLISH → VERIFY LIVE → LIVE`
 
+The owner remains the final acceptance authority even when all machine/agent QA passes.
+
 ## 4. Failure routing
 
 If one or more criteria fail, the product must be routed to the stage that owns the defect:
@@ -119,6 +132,25 @@ If one or more criteria fail, the product must be routed to the stage that owns 
 - mixed structural problems → Product Design first, then Visual Production after owner Product Review.
 
 Do not mark a criterion passed because another stage can fix it later.
+
+### Improvement signal rule
+
+A Final Product QA failure or owner Final Product Review correction must also be evaluated under the Academy Continuous Improvement & Learning Loop when it reveals a potentially reusable lesson.
+
+Record the signal when appropriate, including:
+
+- what the product was expected to do;
+- what the learner-facing result actually did;
+- the failed acceptance gate;
+- best-supported root cause or `UNKNOWN_PENDING_RESEARCH`;
+- correction made/proposed;
+- re-verification result;
+- whether the lesson is isolated or recurring;
+- which existing control should be strengthened if the lesson becomes sufficiently supported and owner-authorized.
+
+Do **not** create an improvement event for every minor wording preference. Use it for meaningful preventable failures, repeated waste, strong success patterns, or system lessons.
+
+A correction does not become a `VERIFIED_SYSTEM_LESSON` until the next relevant result supports that conclusion.
 
 ## 5. Water lesson carried forward
 
@@ -132,3 +164,5 @@ Do not mark a criterion passed because another stage can fix it later.
 - the learner reaches the end without a substantive usable payoff.
 
 These are now system-level Final Product Acceptance failures for every applicable Academy product.
+
+This precedent illustrates the correct learning loop: preserve the valid research, identify the actual product-design/learner-experience failure, correct the smallest responsible stage, re-test the rendered product, return it to owner review, and reuse only the lessons that survive verification.
