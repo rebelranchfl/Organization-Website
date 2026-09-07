@@ -12,15 +12,16 @@ Then read the applicable record in `pages/` before changing, promoting, or publi
 
 The main Business Freedom hub is `business-fixes.html`.
 
-`business-freedom-hub-v1.3` is the current recorded public hub version. The governing record is `pages/business-freedom-hub.md`.
+`business-freedom-hub-v1.4` is the current recorded public hub version. The governing record is `pages/business-freedom-hub.md`.
 
-The three current dedicated Business Freedom landing pages are:
+The four current dedicated Business Freedom landing pages are:
 
 | Approved public name | Public file | Current state |
 |---|---|---|
 | Get Your Time Back | `business-time.html` | LIVE |
 | Stop Losing Customers | `business-leads.html` | LIVE |
 | Keep Your Money | `business-money-leaks.html` | LIVE |
+| Get Seen, Get Found | `business-visibility.html` | LIVE |
 
 These pages are part of the approved hub map even though separate page decision records for the first two are not currently present in this folder. Their current repository files and the hub record must be verified before changes.
 
@@ -30,7 +31,7 @@ These pages are part of the approved hub map even though separate page decision 
 |---|---|---|
 | `pages/business-freedom-hub.md` | Main Business Freedom hub and canonical routing map | LIVE and governing |
 | `pages/keep-more-of-what-you-earn.md` | Keep Your Money | Live dedicated page direction/history |
-| `pages/get-seen-get-found.md` | Get Seen, Get Found | Approved next landing-page priority; no approved public page currently exists |
+| `pages/get-seen-get-found.md` | Get Seen, Get Found | LIVE and linked from the Business Freedom hub |
 | `pages/automated-payment-processing.md` | Automated Payment Processing | Approved dedicated landing-page direction; no public page currently exists |
 | `pages/ongoing-business-guidance.md` | Add an Operations Leader to Your Team | Approved comprehensive recurring-service direction; no approved public page currently exists |
 | `pages/get-paid-faster.md` | Separate Marketplace-specific payment-link setup | Hold until core Business Freedom work is complete |
@@ -49,11 +50,10 @@ The separate **Get Paid Faster — Set Up Your Payment Links** offer is Marketpl
 
 ## Current work order
 
-1. Preserve and use the live hub plus the three existing dedicated pages.
-2. Complete **Get Seen, Get Found** next, subject to the page-stage owner approvals recorded in its decision record.
-3. Develop **Automated Payment Processing** after Visibility.
-4. Develop **Add an Operations Leader to Your Team** after that as the premium recurring offer.
-5. Review the separate Marketplace payment-link offer last.
+1. Preserve and use the live hub plus the four existing dedicated pages.
+2. Develop **Automated Payment Processing** next.
+3. Develop **Add an Operations Leader to Your Team** after that as the premium recurring offer.
+4. Review the separate Marketplace payment-link offer last.
 
 Business Freedom is currently RRM's first funding-focused program priority because the owner identified it as the easiest active program to promote and use for near-term earned revenue.
 

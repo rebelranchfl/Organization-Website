@@ -4,9 +4,9 @@
 
 - Page file: `business-fixes.html`
 - Program: Rebel Ranch Ministries → Business Freedom
-- Current state: LIVE at `business-freedom-hub-v1.3`; the approved `v1.4` Visibility landing-page route is pending publication
+- Current state: LIVE; `business-freedom-hub-v1.4` is public and verified at `https://rebelranchministries.org/business-fixes.html`
 - Last updated: 2026-09-07
-- Current exact version: `business-freedom-hub-v1.3`; `business-freedom-hub-v1.4` is APPROVED
+- Current exact version: `business-freedom-hub-v1.4`
 
 ## North star
 
@@ -53,7 +53,7 @@
 | 2026-09-06 | `I've Got the Potential` routing choice | APPROVED | Use `I just don't know how to get there.` as its supporting statement and do not create a landing page | This is a routing path for visitors who need help identifying the right Business Freedom service, not a separate paid service. |
 | 2026-09-06 | `business-freedom-hub-v1.2` alignment | LIVE | Align and publish the seven hub choices, six service summaries, interactive results, and request form to the canonical map without creating landing pages | Owner authorized the alignment and then separately instructed Codex to push all completed work live. The three existing completed-page links were preserved, and the $49.99 Marketplace option remained separate. |
 | 2026-09-06 | `Keep Your Money` recognition alignment | LIVE | Replace every symptom-led hub and request-form summary with the completed landing page's recognition story and whole-business method | The live hub continued repeating supporting causes as the service identity even after the landing page established the correct story. The owner directed immediate correction and then authorized publication before imagery planning continues. |
-| 2026-09-07 | `business-freedom-hub-v1.4` Visibility route | APPROVED | Link `Get Seen, Get Found` from both its selector result and its full service card using the existing landing-page pattern | The owner originally required the Business Freedom homepage to link its completed landing pages and explicitly authorized the completed Visibility page to be pushed live. |
+| 2026-09-07 | `business-freedom-hub-v1.4` Visibility route | LIVE | Link `Get Seen, Get Found` from both its selector result and its full service card using the existing landing-page pattern | The owner required the Business Freedom homepage to link its completed landing pages and authorized the Visibility page to be pushed live; production build `1200386004` completed from merge `1d5e8208`, and both public routes were verified. |
 
 ## Verification matrix
 
@@ -65,13 +65,14 @@
 | `business-freedom-hub-v1.2` | Public naming, all interactive routes, completed-page links, held Marketplace offer, request-form choices, desktop/mobile presentation, shared shell, and linked assets | GitHub Pages; 1440px desktop and 390px phone | All seven approved hub names and results, six service summaries, and eight request-form choices rendered correctly; only the three completed detail pages were linked; Get Paid Faster remained absent from the hub; no broken images or embedded base64 images were found. The unrelated pre-existing shared-footer phone overscroll remained 8px when the vertical scrollbar was present. | 2026-09-06 Codex | PASS for this release; shared-footer note remains recorded |
 | `business-freedom-hub-v1.3` | `Keep Your Money` choice, interactive result, full service card, details, action, and request-form description | Local server; 1440px desktop and 390px phone | Exact recognition story and whole-business method rendered; old symptom-led identity phrases were absent; approved landing-page route and pricing were unchanged; no broken images or new layout overflow were found. The unrelated pre-existing shared-footer 8px phone overscroll remains. | 2026-09-06 Codex | PASS; publication pending |
 | `business-freedom-hub-v1.3` | Public deployment, exact recognition story, interactive result, full service content, request description, responsive layout, and browser log | GitHub Pages; 1440px desktop and 390px phone | Deployment run `34051160959` completed successfully from commit `3e36e9d`; the recognition story, whole-business method, and approved action rendered publicly; old symptom-led identity phrases were absent; no broken images or browser errors were found. The unrelated pre-existing shared-footer 8px phone overscroll remains. | 2026-09-06 Codex | LIVE |
+| `business-freedom-hub-v1.4` | Visibility selector result, full service card, landing-page routes, and public deployment | Local route test and GitHub Pages | Both Visibility pathways expose `business-visibility.html`; local selector behavior passed; production build `1200386004` completed from merge `1d5e8208`; both live homepage routes and the destination page returned successfully. | 2026-09-07 Codex | LIVE |
 
 ## Flags and unanswered questions
 
 - The filename and final offer details for the Automated Payment Processing landing page are not approved.
 - The existing local `business-guidance.html` draft predates the approved Operations Leader direction and must not be treated as approved page content.
-- `business-freedom-hub-v1.3` is live and publicly verified.
+- `business-freedom-hub-v1.4` is live and publicly verified.
 
 ## Next permitted action
 
-Publish and verify only the approved `business-freedom-hub-v1.4` Visibility route. Do not change or publish another landing page without separate owner approval.
+Develop the next approved Business Freedom landing-page priority only with its separate page-stage approvals.
