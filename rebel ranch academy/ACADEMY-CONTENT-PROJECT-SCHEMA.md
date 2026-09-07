@@ -192,7 +192,9 @@ Use the current public Program Hub learning-area names unless a newer owner-appr
 - `leadership-community`
 - `sustainability-agriculture`
 
-Named programs such as Roots, Boots & Animal Poops remain nested under the correct learning area.
+A project may connect to or teach subject matter that also relates to another RRM program, but that relationship does not place the other program underneath Rebel Ranch Academy.
+
+For example, Roots, Boots & Animal Poops is a separate RRM program. RRA may create education that uses, supports, or expands RBAP-related subject matter, but the Academy project record must not treat RBAP as an Academy subprogram.
 
 ---
 
