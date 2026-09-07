@@ -305,28 +305,38 @@ Failure of a material item means the product is not ready for Final Product Revi
 
 ## 16. Water rebuild directive — RRA-2026-0001
 
-The current Water research is preserved. The current Final Product Review revealed a product-design failure, not a need to discard the evidence base.
+The Water research remains preserved. The owner Final Product Review identified a learner-facing product failure, not a reason to discard the approved evidence base.
 
-Water must return to Product Design and be rebuilt so that:
+The corrective Product Design requirements were:
 
-- intended uses are multi-select where uses can coexist;
-- selected uses produce understandable parallel system branches;
-- the learner can see common infrastructure and branch-specific differences;
-- actual purification/treatment systems are visually taught;
-- examples include practical DIY/low-resource and modern alternatives supported by the approved evidence;
-- treatment layers/components explain function, substitutions, history/regions, strengths and limitations;
-- testing guides personalization and verification without blocking the education;
-- affordable/free/local testing options are surfaced when verified and relevant;
-- My Water Plan becomes a substantive personalized system output, not a generalized summary;
-- responsible build/test/compare experiments are included where appropriate;
-- all deeper-learning links work without 404s;
-- learner answers persist across the complete experience;
-- optional science/evidence depth remains available;
-- generic disclaimer clutter is removed; only specific immediate-hazard warnings belong inside the lesson;
+- intended uses must be multi-select where uses can coexist;
+- selected uses must produce understandable parallel system branches;
+- the learner must be able to see common infrastructure and branch-specific differences;
+- actual purification/treatment systems must be visually taught;
+- examples should include practical DIY/low-resource and modern alternatives supported by the approved evidence;
+- treatment layers/components must explain function, substitutions, history/regions, strengths and limitations;
+- testing must guide personalization and verification without blocking the education;
+- affordable/free/local testing options should be surfaced when verified and relevant;
+- My Water Plan must be a substantive personalized system output, not a generalized summary;
+- responsible build/test/compare experiments should be included where appropriate;
+- all deeper-learning links must work without 404s;
+- learner answers must persist across the complete experience;
+- optional science/evidence depth must remain available;
+- generic disclaimer clutter must stay out of the lesson; only specific immediate-hazard warnings belong inside it;
 - the final product must pass the paid-value test before a price recommendation survives QA.
 
-The rebuild sequence is:
+The required rebuild sequence remains:
 
 `PRODUCT DESIGN → PRODUCT QA → OWNER PRODUCT REVIEW → VISUAL PRODUCTION → FINAL PRODUCT QA → OWNER FINAL PRODUCT REVIEW`
 
-Do not send Water directly back to Visual Production until Product Design has re-architected the learner journey and owner approval is recorded.
+### Current Water position
+
+The return-to-Product-Design step above was subsequently completed. The rebuilt Product Design package was later approved by the owner at Product Review, and that approval authorized a new Visual Production cycle.
+
+Water is therefore **not waiting to return to Product Design**. Its current authorized stage is **VISUAL_PRODUCTION**.
+
+Visual Production remains incomplete. The learner-facing package has passed substantial interaction, state-restoration, route/fragment, mobile, print, and generated-image checks, but Final Product QA remains open because the required real linked navigation round trip — main experience → deeper page → return to the exact prior place with learner state intact — has not yet been fully exercised in a browser/runtime that permits normal navigation.
+
+Academy automated production is also currently suspended by owner control while the downstream runner/pipeline is repaired and verified. This suspension does not change Water's authorized lifecycle stage; it means no automated agent may claim or advance the work until automation is explicitly re-enabled and verified.
+
+Do not move Water to `FINAL_PRODUCT_REVIEW`, approve it for release, publish it, sell it, or describe it as complete until Final Product QA passes and the later owner gates are separately satisfied.
