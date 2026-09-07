@@ -4,9 +4,9 @@
 
 - Page file: `business-fixes.html`
 - Program: Rebel Ranch Ministries → Business Freedom
-- Current state: LIVE at `business-freedom-hub-v1.4`; the `v1.5` direct Visibility-card route is APPROVED
+- Current state: LIVE at `business-freedom-hub-v1.4`; the `v1.5` direct Visibility-card route is VERIFIED locally and APPROVED for production deployment
 - Last updated: 2026-09-07
-- Current exact version: `business-freedom-hub-v1.4`; `business-freedom-hub-v1.5` is APPROVED
+- Current exact version: `business-freedom-hub-v1.4`; `business-freedom-hub-v1.5` is VERIFIED locally
 
 ## North star
 
@@ -55,6 +55,7 @@
 | 2026-09-06 | `Keep Your Money` recognition alignment | LIVE | Replace every symptom-led hub and request-form summary with the completed landing page's recognition story and whole-business method | The live hub continued repeating supporting causes as the service identity even after the landing page established the correct story. The owner directed immediate correction and then authorized publication before imagery planning continues. |
 | 2026-09-07 | `business-freedom-hub-v1.4` Visibility route | LIVE | Link `Get Seen, Get Found` from both its selector result and its full service card using the existing landing-page pattern | The owner required the Business Freedom homepage to link its completed landing pages and authorized the Visibility page to be pushed live; production build `1200386004` completed from merge `1d5e8208`, and both public routes were verified. |
 | 2026-09-07 | `business-freedom-hub-v1.5` direct Visibility card | APPROVED | Make the primary Visibility choice card itself link directly to `business-visibility.html`, while preserving the existing direct link in the full service card | Owner clarified that the service's associated hub card must lead directly to its landing page and authorized publication after verification passes. |
+| 2026-09-07 | `business-freedom-hub-v1.5` local implementation | VERIFIED | Publish the Visibility choice as a direct landing-page link without changing the behavior of the other six routing choices | Real-browser accessibility inspection identifies the Visibility choice as a link whose destination is `business-visibility.html`; the existing Visibility service-card link remains; hub JavaScript syntax and all local references pass. |
 
 ## Verification matrix
 
@@ -67,6 +68,7 @@
 | `business-freedom-hub-v1.3` | `Keep Your Money` choice, interactive result, full service card, details, action, and request-form description | Local server; 1440px desktop and 390px phone | Exact recognition story and whole-business method rendered; old symptom-led identity phrases were absent; approved landing-page route and pricing were unchanged; no broken images or new layout overflow were found. The unrelated pre-existing shared-footer 8px phone overscroll remains. | 2026-09-06 Codex | PASS; publication pending |
 | `business-freedom-hub-v1.3` | Public deployment, exact recognition story, interactive result, full service content, request description, responsive layout, and browser log | GitHub Pages; 1440px desktop and 390px phone | Deployment run `34051160959` completed successfully from commit `3e36e9d`; the recognition story, whole-business method, and approved action rendered publicly; old symptom-led identity phrases were absent; no broken images or browser errors were found. The unrelated pre-existing shared-footer 8px phone overscroll remains. | 2026-09-06 Codex | LIVE |
 | `business-freedom-hub-v1.4` | Visibility selector result, full service card, landing-page routes, and public deployment | Local route test and GitHub Pages | Both Visibility pathways expose `business-visibility.html`; local selector behavior passed; production build `1200386004` completed from merge `1d5e8208`; both live homepage routes and the destination page returned successfully. | 2026-09-07 Codex | LIVE |
+| `business-freedom-hub-v1.5` | Direct Visibility choice-card route, preserved full-card route, unrelated selector behavior, linked destination, and mobile presentation | Local server and real mobile browser | The primary Visibility choice is a semantic link to `business-visibility.html`; the existing full service card retains its landing-page link; the other six choices remain buttons handled by the existing selector; hub script syntax, references, destination response, and mobile rendering passed. | 2026-09-07 Codex | PASS; publication pending |
 
 ## Flags and unanswered questions
 
@@ -76,4 +78,4 @@
 
 ## Next permitted action
 
-Implement and verify only the approved `business-freedom-hub-v1.5` direct Visibility-card route, then publish it with the concept-faithful Visibility revision after all checks pass.
+Publish the verified `business-freedom-hub-v1.5` direct Visibility-card route with the concept-faithful Visibility revision, then verify both routes in production before marking `v1.5` live.
