@@ -1,64 +1,168 @@
 import fs from 'node:fs/promises';
 import process from 'node:process';
 
-const mode=process.argv[2]||'claim';
+const mode=process.argv[2]||'prepare';
 const url=process.env.SUPABASE_URL||'https://dfrwxpuojeiykaignyny.supabase.co';
 const key=process.env.SUPABASE_BACKEND_KEY||process.env.SUPABASE_SERVICE_ROLE_KEY||'';
-const openai=process.env.OPENAI_API_KEY||'';
 const runner='github-codex-v1';
 const out=process.env.GITHUB_OUTPUT;
 
 function headers(extra={}){
- const base={apikey:key,'Content-Type':'application/json'};
- // Current sb_secret_ keys authenticate through apikey. Legacy service_role JWTs also need Bearer auth.
- if(key&&!key.startsWith('sb_secret_'))base.Authorization=`Bearer ${key}`;
- return{...base,...extra};
+  const base={apikey:key,'Content-Type':'application/json'};
+  if(key&&!key.startsWith('sb_secret_'))base.Authorization=`Bearer ${key}`;
+  return {...base,...extra};
 }
-async function api(path,opts={}){const r=await fetch(`${url}/rest/v1/${path}`,{...opts,headers:headers(opts.headers||{})});const text=await r.text();if(!r.ok)throw new Error(`${r.status} ${text}`);return text?JSON.parse(text):null}
+async function api(path,opts={}){
+  const r=await fetch(`${url}/rest/v1/${path}`,{...opts,headers:headers(opts.headers||{})});
+  const text=await r.text();
+  if(!r.ok)throw new Error(`${r.status} ${text}`);
+  return text?JSON.parse(text):null;
+}
 async function writeOut(name,value){if(out)await fs.appendFile(out,`${name}=${String(value).replace(/\n/g,'%0A')}\n`)}
-async function state(ready,error=null){if(!key)return;await api(`academy_agent_runner_state?runner_key=eq.${runner}`,{method:'PATCH',headers:{Prefer:'return=minimal'},body:JSON.stringify({ready,last_heartbeat:new Date().toISOString(),last_checked_at:new Date().toISOString(),last_error:error,updated_at:new Date().toISOString()})})}
-function agentFor(stage){if(stage==='PRODUCT_WORKING')return'RRA Product Design Agent';if(stage==='VISUAL_PRODUCTION')return'RRA Visual Production Agent';return null}
-function nextReview(stage){return stage==='PRODUCT_WORKING'?'PRODUCT_REVIEW':stage==='VISUAL_PRODUCTION'?'FINAL_PRODUCT_REVIEW':null}
-
-async function claim(){
- if(!key){console.log('Supabase backend secret is not configured.');await writeOut('has_request','false');return}
- if(!openai){await state(false,'OPENAI_API_KEY is not configured in GitHub Actions secrets.');console.log('OPENAI_API_KEY is not configured.');await writeOut('has_request','false');return}
- await state(true,null);
- const rows=await api('academy_agent_run_requests?status=eq.PENDING&order=requested_at.asc&limit=1');
- const req=rows?.[0];if(!req){await writeOut('has_request','false');return}
- const projects=await api(`academy_content_projects?project_id=eq.${encodeURIComponent(req.project_id)}&select=*`);const p=projects?.[0];
- if(!p){await fail(req.id,'Project no longer exists.');await writeOut('has_request','false');return}
- const expected=agentFor(p.workflow_stage);
- if(!expected||p.current_status!=='AGENT_WORKING'||p.owner_hold||p.workflow_stage!==req.requested_stage){await fail(req.id,`Request is stale. Current project state is ${p.current_status}/${p.workflow_stage}${p.owner_hold?' with owner hold':''}.`);await writeOut('has_request','false');return}
- const now=new Date().toISOString();
- await api(`academy_agent_run_requests?id=eq.${req.id}&status=eq.PENDING`,{method:'PATCH',headers:{Prefer:'return=minimal'},body:JSON.stringify({status:'RUNNING',claimed_at:now,runner,attempt_count:(req.attempt_count||0)+1,updated_at:now})});
- const feedback=await api(`academy_stage_feedback?project_id=eq.${encodeURIComponent(p.project_id)}&status=eq.PENDING&order=created_at.asc&select=*`);
- await fs.mkdir('.agent-run',{recursive:true});
- await fs.writeFile('.agent-run/context.json',JSON.stringify({request:req,project:p,pending_stage_feedback:feedback||[]},null,2));
- const prompt=`You are executing one OWNER-REQUESTED immediate Rebel Ranch Academy work cycle inside the checked-out repository.\n\nMANDATORY GOVERNANCE\n1. Read AGENTS.md; rebel ranch academy/AGENTS.md; docs/rebel-ranch-ecosystem-charter.md; rebel ranch academy/docs/workflow/ACADEMY-REVISION-PRESERVATION-STANDARD.md; rebel ranch academy/docs/workflow/ACADEMY-PRODUCT-PHASE-WORKFLOW-EXTENSION.md; rebel ranch academy/docs/intelligence/ACADEMY-SOURCE-REVIEW-POLICY.md; rebel ranch academy/docs/intelligence/ACADEMY-RESPONSIBLE-REBELLION-EVIDENCE-FIRST-STANDARD.md; rebel ranch academy/docs/intelligence/ACADEMY-THINK-LIKE-A-REBEL-FRAMEWORK.md; and rebel ranch academy/docs/production/ACADEMY-LEARNER-EXPERIENCE-LANGUAGE-VISUAL-STANDARD.md before editing. Read additional stage-specific controls from rebel ranch academy/AGENTS.md when they apply.\n2. Read .agent-run/context.json. It contains the authoritative live project state captured immediately before this run.\n3. Work ONLY project ${p.project_id}, current stage ${p.workflow_stage}, as ${expected}.\n4. Project folder: ${p.github_path}. Treat the current main checkout as source of truth. Use Git history/recovery branches for recovery when needed; do not create in-repository backup copies or backup trees.\n5. Do not publish, deploy, sell, activate pricing, create affiliate links, release, bypass an owner gate, change authentication/RLS, or touch unrelated projects.\n6. Continue through as much actionable CURRENT-STAGE work as practical. Do not stop after one cosmetic micro-task. Preserve evidence, safety, owner feedback, revision history, and existing useful work.\n7. Pending owner stage feedback in .agent-run/context.json is first-class work. Apply safe requests or explain a genuine block. Never erase feedback.\n8. Complexity belongs in research/production, not in the learner's way. Use simplest accurate learner language and the full image-led/progressive-depth standard.\n9. Do not treat a generated file, successful commit, or retry as proof of completion. Verify the exact current-stage outcome required by the applicable Academy QA/control standard before recommending a review transition.\n\nSTAGE-SPECIFIC\n${p.workflow_stage==='VISUAL_PRODUCTION'?`Visual Production: rebuild/advance actual learner-facing assets and integrated preview. Preserve approved technical depth underneath plain language. Use recognizable image/scene/SVG illustration, plain message, simple action, personal result, optional deeper diagram, then technical evidence. Keep preview-manifest.json accurate. Fix broken integrated navigation. This runner cannot replace native raster/photographic image generation; if required approved image assets are still missing, leave that requirement open and do not mark Final Product Review ready. Before recommending FINAL_PRODUCT_REVIEW, apply rebel ranch academy/docs/production/ACADEMY-VISUAL-PRODUCTION-AGENT-STANDARD.md and rebel ranch academy/docs/qa/ACADEMY-RENDERED-PRODUCT-QA-STANDARD.md. If the full authorized visual/delivery package and Rendered Product QA are genuinely complete, you may recommend transition to FINAL_PRODUCT_REVIEW; otherwise remain VISUAL_PRODUCTION.`:`Product Design: advance the approved product architecture/manuscript/tools and integrated learner experience under the Academy standards. Do not do new unsupported subject research. Apply rebel ranch academy/docs/production/ACADEMY-PRODUCT-DESIGN-AGENT-STANDARD.md and the current Product Phase workflow. If the complete Product Design package and Product QA are genuinely ready for owner review, you may recommend transition to PRODUCT_REVIEW; otherwise remain PRODUCT_WORKING.`}\n\nRESULT CONTRACT\nBefore finishing, create .agent-run/result.json with ONLY valid JSON using this shape:\n{\n  "progress_percent": 0-100 integer,\n  "progress_stage": "plain owner-readable stage label",\n  "progress_detail": "what this run actually completed",\n  "progress_next": "exact next action",\n  "material_summary": "concise current package summary",\n  "current_status": "AGENT_WORKING or READY_FOR_REVIEW",\n  "workflow_stage": "${p.workflow_stage} or ${nextReview(p.workflow_stage)}",\n  "result_summary": "one short owner-facing summary of this immediate run",\n  "feedback_resolutions": [{"id":"uuid from context","status":"APPLIED or BLOCKED","resolution_note":"what happened"}]\n}\nOnly choose READY_FOR_REVIEW with workflow_stage ${nextReview(p.workflow_stage)} if the stage is truly complete and its required QA/review package exists. Otherwise keep AGENT_WORKING/${p.workflow_stage}. Do not invent completion percentages just to show activity.\n`;
- await fs.writeFile('.agent-run/prompt.md',prompt);
- await writeOut('has_request','true');await writeOut('request_id',req.id);await writeOut('project_id',p.project_id);await writeOut('stage',p.workflow_stage);await writeOut('project_path',p.github_path);await writeOut('agent',expected);
- console.log(`Claimed ${req.id} for ${p.project_id} ${p.workflow_stage}`);
+function agentFor(stage){
+  if(stage==='PRODUCT_WORKING')return 'RRA Product Design Agent';
+  if(stage==='VISUAL_PRODUCTION')return 'RRA Visual Production Agent';
+  return null;
 }
-async function fail(id,message){if(!key)return;const now=new Date().toISOString();await api(`academy_agent_run_requests?id=eq.${id}`,{method:'PATCH',headers:{Prefer:'return=minimal'},body:JSON.stringify({status:'FAILED',completed_at:now,error_message:message,updated_at:now})})}
+function requiredControls(stage){
+  const common=[
+    'AGENTS.md',
+    'docs/rebel-ranch-ecosystem-charter.md',
+    'rebel ranch academy/AGENTS.md',
+    'rebel ranch academy/docs/workflow/ACADEMY-REVISION-PRESERVATION-STANDARD.md',
+    'rebel ranch academy/docs/workflow/ACADEMY-PRODUCT-PHASE-WORKFLOW-EXTENSION.md',
+    'rebel ranch academy/docs/intelligence/ACADEMY-CONTINUOUS-IMPROVEMENT-LOOP.md',
+    'rebel ranch academy/docs/intelligence/ACADEMY-SOURCE-REVIEW-POLICY.md',
+    'rebel ranch academy/docs/intelligence/ACADEMY-RESPONSIBLE-REBELLION-EVIDENCE-FIRST-STANDARD.md',
+    'rebel ranch academy/docs/intelligence/ACADEMY-THINK-LIKE-A-REBEL-FRAMEWORK.md',
+    'rebel ranch academy/docs/production/ACADEMY-LEARNER-EXPERIENCE-LANGUAGE-VISUAL-STANDARD.md'
+  ];
+  if(stage==='PRODUCT_WORKING')common.push('rebel ranch academy/docs/production/ACADEMY-PRODUCT-DESIGN-AGENT-STANDARD.md');
+  if(stage==='VISUAL_PRODUCTION')common.push(
+    'rebel ranch academy/docs/production/ACADEMY-VISUAL-PRODUCTION-AGENT-STANDARD.md',
+    'rebel ranch academy/docs/production/ACADEMY-CHATGPT-IMAGE-PRODUCTION-STANDARD.md',
+    'rebel ranch academy/docs/qa/ACADEMY-RENDERED-PRODUCT-QA-STANDARD.md'
+  );
+  return common;
+}
+async function ensureFile(path){
+  const s=await fs.stat(path).catch(()=>null);
+  if(!s||!s.isFile())throw new Error(`Required control is missing from checkout: ${path}`);
+}
+async function ensureDirectory(path){
+  const s=await fs.stat(path).catch(()=>null);
+  if(!s||!s.isDirectory())throw new Error(`Project directory is missing from checkout: ${path}`);
+}
+function validateResult(result){
+  if(!result||typeof result!=='object'||Array.isArray(result))throw new Error('result.json must contain one JSON object.');
+  const pct=Number(result.progress_percent);
+  if(!Number.isInteger(pct)||pct<0||pct>100)throw new Error('result.json progress_percent must be an integer from 0 to 100.');
+  for(const field of ['progress_stage','progress_detail','progress_next','material_summary','result_summary']){
+    if(typeof result[field]!=='string'||!result[field].trim())throw new Error(`result.json ${field} is required.`);
+  }
+  if(!['STAY_CURRENT_STAGE','REQUEST_INDEPENDENT_VERIFICATION'].includes(result.stage_recommendation))throw new Error('result.json stage_recommendation is invalid.');
+  if(!Array.isArray(result.changed_files))throw new Error('result.json changed_files must be an array.');
+  if(!Array.isArray(result.blockers))throw new Error('result.json blockers must be an array.');
+  if(!Array.isArray(result.feedback_resolutions))throw new Error('result.json feedback_resolutions must be an array.');
+  if(!Array.isArray(result.improvement_signals))throw new Error('result.json improvement_signals must be an array.');
+  if(result.stage_recommendation==='REQUEST_INDEPENDENT_VERIFICATION'&&result.blockers.length)throw new Error('A result with blockers cannot request independent stage verification.');
+  return result;
+}
+
+async function prepare(){
+  if(!key)throw new Error('Supabase backend secret is not configured.');
+  const id=String(process.env.REQUEST_ID||'').trim();
+  if(!id)throw new Error('REQUEST_ID is required. The dispatcher must claim one exact request before this workflow starts.');
+
+  const reqs=await api(`academy_agent_run_requests?id=eq.${encodeURIComponent(id)}&select=*`);
+  const req=reqs?.[0];
+  if(!req)throw new Error(`Run request ${id} does not exist.`);
+  if(req.status!=='RUNNING')throw new Error(`Run request ${id} is ${req.status}; expected RUNNING from the dispatcher.`);
+  if(req.runner!==runner)throw new Error(`Run request ${id} is assigned to ${req.runner||'no runner'}, not ${runner}.`);
+
+  const projects=await api(`academy_content_projects?project_id=eq.${encodeURIComponent(req.project_id)}&select=*`);
+  const p=projects?.[0];
+  if(!p)throw new Error(`Project ${req.project_id} no longer exists.`);
+  const expected=agentFor(req.requested_stage);
+  if(!expected)throw new Error(`Stage ${req.requested_stage} is not executable by ${runner}.`);
+  if(p.owner_hold)throw new Error(`Project ${p.project_id} is on owner hold.`);
+  if(p.current_status!=='AGENT_WORKING')throw new Error(`Project ${p.project_id} is ${p.current_status}; expected AGENT_WORKING after verified dispatch.`);
+  if(p.workflow_stage!==req.requested_stage)throw new Error(`Request stage ${req.requested_stage} no longer matches project stage ${p.workflow_stage}.`);
+  if(!p.github_branch||p.github_branch==='main')throw new Error('Automated Academy production requires a non-published project work branch.');
+  if(!p.github_path)throw new Error(`Project ${p.project_id} has no durable GitHub project path.`);
+
+  const ref=String(process.env.GITHUB_REF_NAME||'').trim();
+  const sha=String(process.env.GITHUB_SHA||'').trim();
+  if(ref!==p.github_branch)throw new Error(`Workflow branch ${ref||'UNKNOWN'} does not match project work branch ${p.github_branch}.`);
+  if(!req.base_commit_sha||sha!==req.base_commit_sha)throw new Error(`Workflow commit ${sha||'UNKNOWN'} does not match dispatcher-recorded base commit ${req.base_commit_sha||'UNKNOWN'}.`);
+
+  for(const control of requiredControls(req.requested_stage))await ensureFile(control);
+  await ensureDirectory(p.github_path);
+
+  const feedback=await api(`academy_stage_feedback?project_id=eq.${encodeURIComponent(p.project_id)}&status=eq.PENDING&order=created_at.asc&select=*`);
+  await fs.mkdir('.agent-run',{recursive:true});
+  const context={request:req,project:p,pending_stage_feedback:feedback||[],runner_contract:{runner,work_branch:p.github_branch,base_commit_sha:req.base_commit_sha,stage:req.requested_stage,worker_may_advance_stage:false,independent_verification_required:true}};
+  await fs.writeFile('.agent-run/context.json',JSON.stringify(context,null,2));
+
+  const stageInstruction=req.requested_stage==='VISUAL_PRODUCTION'
+    ? `VISUAL PRODUCTION\nAdvance the actual learner-facing package only within the approved Product Design and current owner feedback. Preserve technical truth underneath simple learner language. Verify every factual visual claim against the approved source record. Use only verified Academy/RRM brand assets and approved wording. Keep integrated navigation and preview-manifest data accurate. If an approved raster/photographic asset cannot be produced by the available worker, record that as a blocker; do not substitute an invented logo, fake image, or decorative approximation. Rendered Product QA is an independent gate: you may prepare the candidate and evidence needed for QA, but you may not mark Final Product Review ready yourself.`
+    : `PRODUCT DESIGN\nAdvance the approved product architecture, manuscript, tools, activities, audience fit and learner experience within the verified research foundation and current owner feedback. Do not add unsupported factual claims. When a new consequential claim is actually necessary, verify and record it under the Source Review / Evidence First controls rather than guessing. Product QA and owner Product Review remain separate gates: you may prepare the candidate and evidence needed for verification, but you may not mark Product Review ready yourself.`;
+
+  const prompt=`You are executing one OWNER-AUTHORIZED Rebel Ranch Academy work cycle on a NON-PUBLISHED work branch.\n\nHARD BOUNDARIES\n1. Read .agent-run/context.json first, then every control listed by rebel ranch academy/AGENTS.md that applies to this exact stage.\n2. Work ONLY project ${p.project_id}, revision ${p.revision_number}, stage ${req.requested_stage}, as ${expected}.\n3. Project folder: ${p.github_path}. Work branch: ${p.github_branch}. Base commit: ${req.base_commit_sha}. This work branch—not main—is the current production/review source for this run.\n4. Do not edit or merge main. Do not publish, deploy, sell, activate pricing, create affiliate links, bypass owner gates, change authentication/RLS, or touch unrelated projects/programs.\n5. Verify before every consequential action. If a required fact, source, logo, wording, state, dependency or owner direction cannot be verified, STOP that action and record the blocker.\n6. Preserve owner feedback, approved research, useful prior work and revision history. Do not create in-repository backup trees; Git history is recovery.\n7. A generated file, commit, retry, visual, passing local check, or your own opinion is NOT proof that the stage passed. You are a worker, not the verification authority.\n8. When a meaningful failure/correction/success pattern occurs, record an improvement signal with evidence and next verification. Blind retry is not improvement.\n\n${stageInstruction}\n\nRESULT CONTRACT\nBefore finishing, write .agent-run/result.json as valid JSON with exactly the worker report needed for the independent verifier:\n{\n  "progress_percent": 0,\n  "progress_stage": "plain owner-readable stage label",\n  "progress_detail": "what this run actually completed",\n  "progress_next": "exact next action",\n  "material_summary": "concise current package summary",\n  "result_summary": "one short owner-facing summary",\n  "stage_recommendation": "STAY_CURRENT_STAGE or REQUEST_INDEPENDENT_VERIFICATION",\n  "changed_files": ["repository/path"],\n  "blockers": [{"code":"SHORT_CODE","detail":"verified blocker and effect"}],\n  "feedback_resolutions": [{"id":"uuid from context","proposed_status":"APPLIED or BLOCKED","resolution_note":"what happened and what still requires verification"}],\n  "improvement_signals": [{"type":"FAILURE|CORRECTION|SUCCESS_PATTERN|LEARNER_SIGNAL|MARKETING_SIGNAL","observation":"what happened","evidence":"where the evidence lives","root_cause":"verified cause or UNKNOWN_PENDING_RESEARCH","correction":"what changed, if anything","next_verification":"what must prove the lesson"}]\n}\n\nREQUEST_INDEPENDENT_VERIFICATION is only a recommendation that the candidate should enter the separate verifier. It is NEVER permission to change workflow_stage, current_status to READY_FOR_REVIEW, owner review state, release state, or publication state. If any blocker remains, use STAY_CURRENT_STAGE.`;
+  await fs.writeFile('.agent-run/prompt.md',prompt);
+
+  await writeOut('prepared','true');
+  await writeOut('request_id',req.id);
+  await writeOut('project_id',p.project_id);
+  await writeOut('stage',req.requested_stage);
+  await writeOut('project_path',p.github_path);
+  await writeOut('work_branch',p.github_branch);
+  await writeOut('base_commit_sha',req.base_commit_sha);
+  await writeOut('agent',expected);
+  console.log(`Prepared ${req.id} for ${p.project_id} ${req.requested_stage} on ${p.github_branch}@${req.base_commit_sha}`);
+}
+
 async function finalize(){
- if(!key)throw new Error('Supabase backend secret missing');const id=process.env.REQUEST_ID;if(!id)return;
- const outcome=process.env.CODEX_OUTCOME||'unknown';const commit=process.env.RESULT_COMMIT_SHA||null;let result=null;
- try{result=JSON.parse(await fs.readFile('.agent-run/result.json','utf8'))}catch{}
- if(outcome!=='success'){await fail(id,`Codex runner outcome: ${outcome}.`);return}
- const reqs=await api(`academy_agent_run_requests?id=eq.${id}&select=*`);const req=reqs?.[0];if(!req)return;
- const projects=await api(`academy_content_projects?project_id=eq.${encodeURIComponent(req.project_id)}&select=*`);const p=projects?.[0];if(!p){await fail(id,'Project missing during finalize.');return}
- if(result){
-  const stay=req.requested_stage,review=nextReview(stay);const target=result.workflow_stage;
-  const valid=(result.current_status==='AGENT_WORKING'&&target===stay)||(result.current_status==='READY_FOR_REVIEW'&&target===review);
-  if(!valid){await fail(id,`Runner returned invalid lifecycle transition ${result.current_status}/${target}.`);return}
-  const pct=Math.max(0,Math.min(100,Math.round(Number(result.progress_percent)||0)));const patch={current_status:result.current_status,workflow_stage:target,progress_percent:pct,progress_stage:String(result.progress_stage||p.progress_stage||''),progress_detail:String(result.progress_detail||p.progress_detail||''),progress_next:String(result.progress_next||p.progress_next||''),material_summary:String(result.material_summary||p.material_summary||''),last_agent:req.requested_agent,last_synced_at:new Date().toISOString(),progress_updated_at:new Date().toISOString(),updated_at:new Date().toISOString()};
-  if(result.current_status==='READY_FOR_REVIEW')patch.owner_review_status='PENDING';
-  await api(`academy_content_projects?project_id=eq.${encodeURIComponent(p.project_id)}`,{method:'PATCH',headers:{Prefer:'return=minimal'},body:JSON.stringify(patch)});
-  for(const f of Array.isArray(result.feedback_resolutions)?result.feedback_resolutions:[]){if(!f?.id||!['APPLIED','BLOCKED'].includes(f.status))continue;await api(`academy_stage_feedback?id=eq.${encodeURIComponent(f.id)}&project_id=eq.${encodeURIComponent(p.project_id)}`,{method:'PATCH',headers:{Prefer:'return=minimal'},body:JSON.stringify({status:f.status,resolved_at:new Date().toISOString(),resolved_by_agent:req.requested_agent,resolution_note:String(f.resolution_note||'')})})}
- }
- const now=new Date().toISOString();await api(`academy_agent_run_requests?id=eq.${id}`,{method:'PATCH',headers:{Prefer:'return=minimal'},body:JSON.stringify({status:'COMPLETED',completed_at:now,result_commit_sha:commit,result_summary:String(result?.result_summary||'Manual agent cycle completed.'),updated_at:now})});
- await state(true,null);
+  if(!key)throw new Error('Supabase backend secret is not configured.');
+  const id=String(process.env.REQUEST_ID||'').trim();
+  if(!id)throw new Error('REQUEST_ID is required.');
+  if(String(process.env.CODEX_OUTCOME||'')!=='success')throw new Error(`Worker outcome is ${process.env.CODEX_OUTCOME||'unknown'}, not success.`);
+  const commit=String(process.env.RESULT_COMMIT_SHA||'').trim();
+  if(!commit)throw new Error('RESULT_COMMIT_SHA is required before callback completion.');
+
+  const reqs=await api(`academy_agent_run_requests?id=eq.${encodeURIComponent(id)}&select=*`);
+  const req=reqs?.[0];
+  if(!req||req.status!=='RUNNING')throw new Error(`Run request ${id} is not RUNNING.`);
+  const projects=await api(`academy_content_projects?project_id=eq.${encodeURIComponent(req.project_id)}&select=*`);
+  const p=projects?.[0];
+  if(!p)throw new Error(`Project ${req.project_id} is missing during finalize.`);
+  if(p.workflow_stage!==req.requested_stage)throw new Error(`Project stage changed during worker execution: ${p.workflow_stage} vs ${req.requested_stage}.`);
+  if(p.github_branch==='main'||!p.github_branch)throw new Error('Automated Academy production may not finalize against main.');
+  if(String(process.env.GITHUB_REF_NAME||'')!==p.github_branch)throw new Error('Finalize branch does not match the project work branch.');
+  if(commit===req.base_commit_sha)throw new Error('Successful worker cycle produced no new commit.');
+
+  let result;
+  try{result=validateResult(JSON.parse(await fs.readFile('.agent-run/result.json','utf8')))}catch(error){throw new Error(`Worker result contract failed: ${error.message}`)}
+
+  await writeOut('result_valid','true');
+  await writeOut('result_commit_sha',commit);
+  await writeOut('result_summary',result.result_summary);
+  await writeOut('stage_recommendation',result.stage_recommendation);
+  await writeOut('verification_requested',result.stage_recommendation==='REQUEST_INDEPENDENT_VERIFICATION'?'true':'false');
+  console.log(`Validated worker report for ${p.project_id}. Stage remains ${p.workflow_stage}; independent verification is required before advancement.`);
 }
 
-if(mode==='claim')await claim();else if(mode==='finalize')await finalize();else throw new Error(`Unknown mode ${mode}`);
+function selfTest(){
+  const good={progress_percent:50,progress_stage:'Product Design',progress_detail:'Built candidate',progress_next:'Independent QA',material_summary:'Candidate',result_summary:'Worker cycle complete',stage_recommendation:'REQUEST_INDEPENDENT_VERIFICATION',changed_files:['x'],blockers:[],feedback_resolutions:[],improvement_signals:[]};
+  validateResult(good);
+  let blocked=false;
+  try{validateResult({...good,blockers:[{code:'X',detail:'blocked'}]})}catch{blocked=true}
+  if(!blocked)throw new Error('Self-test failed: blocked candidate was allowed to request verification.');
+  if(agentFor('PRODUCT_WORKING')!=='RRA Product Design Agent'||agentFor('VISUAL_PRODUCTION')!=='RRA Visual Production Agent'||agentFor('RESEARCH_WORKING')!==null)throw new Error('Self-test failed: stage ownership map is invalid.');
+  console.log('ACADEMY_RUNNER_CONTRACT_SELF_TEST_PASS');
+}
+
+if(mode==='prepare'||mode==='claim')await prepare();
+else if(mode==='finalize')await finalize();
+else if(mode==='self-test')selfTest();
+else throw new Error(`Unknown mode ${mode}`);
