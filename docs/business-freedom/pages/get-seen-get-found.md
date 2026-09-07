@@ -4,7 +4,7 @@
 
 - Page file: `business-visibility.html`
 - Program: Business Freedom
-- Current state: LIVE at the prior production version; the concept-faithful revision is VERIFIED locally and APPROVED for production deployment
+- Current state: LIVE and production-verified at the concept-faithful revision
 - Last updated: 2026-09-07
 
 ## North star
@@ -65,6 +65,7 @@
 | 2026-09-07 | Full verification and deployment | APPROVED | Verify mobile and desktop presentation, every discovery control, all calls to action, linked assets, shared shell, accessibility basics, and the Business Freedom hub route before publishing the revision | Owner explicitly instructed that all verification must pass before the page is pushed live. |
 | 2026-09-07 | Concept-faithful local build | VERIFIED | Replace the restrained prior implementation with the approved visual sales sequence and two purpose-built hero crops, while preserving the shared RRM shell | Real mobile-browser review passed across the hero, journey, discovery controls, connected-system comparison, service process, before/after, RRL support, closing call to action, and footer. Both desktop and mobile hero crops contain no aprons. |
 | 2026-09-07 | Concept-faithful functional checks | VERIFIED | Publish only after the six discovery controls, primary calls to action, local assets, document structure, and responsive page all pass | All six controls independently changed the selected state, icon, heading, explanation, and missed-connection message; both paid calls to action resolve to `business-request.html?service=online-presence`; 29 local page references, 21 unique IDs, both hero assets, the shared shell, and whitespace checks passed. |
+| 2026-09-07 | Concept-faithful production release | LIVE | Use the owner-approved balanced visual concept as the public `Get Seen, Get Found` page | Pull request `#99` merged as `806855c3`; GitHub Pages deployment `34158308319` completed successfully. Cache-busted public checks returned 200 for the page, request route, stylesheet, script, and both new hero assets; mobile visual review confirmed the new hero and connected-system sections; the public source contains exactly six discovery controls, no Reviews or Directories controls, both paid calls to action, and the shared RRM shell. |
 
 ## Remaining boundaries
 
@@ -82,4 +83,4 @@
 
 ## Next permitted action
 
-- Publish the verified concept-faithful revision through the existing GitHub Pages production path, then confirm the production page, controls, request routes, assets, shared shell, and matching hub-card route before marking the revision live.
+- Use this finished page as an approved Business Freedom visual reference where it fits, without forcing its exact layout onto the remaining service pages. Build the next page only with separate owner approval.
