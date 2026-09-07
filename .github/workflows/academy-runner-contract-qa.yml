@@ -1,0 +1,41 @@
+name: Academy Runner Contract QA
+
+on:
+  push:
+    branches:
+      - academy-production-work
+    paths:
+      - '.github/scripts/academy-agent-runner.mjs'
+      - '.github/workflows/academy-runner-contract-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  runner-contract-qa:
+    if: github.ref_name == 'academy-production-work'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Academy work branch
+        uses: actions/checkout@v6
+
+      - name: Syntax-check runner
+        run: node --check .github/scripts/academy-agent-runner.mjs
+
+      - name: Run runner contract self-test
+        run: node .github/scripts/academy-agent-runner.mjs self-test
+
+      - name: Enforce dormant-safe runner boundaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          script='.github/scripts/academy-agent-runner.mjs'
+          ! grep -q 'OPENAI_API_KEY' "$script"
+          ! grep -q 'current main checkout' "$script"
+          ! grep -q "current_status.*READY_FOR_REVIEW" "$script"
+          ! grep -q "workflow_stage.*PRODUCT_REVIEW" "$script"
+          ! grep -q "workflow_stage.*FINAL_PRODUCT_REVIEW" "$script"
+          grep -q 'independent verification is required before advancement' "$script"
+          grep -q "github_branch==='main'" "$script"
+          echo 'ACADEMY_RUNNER_DORMANT_SAFE_BOUNDARIES_PASS'
