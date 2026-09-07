@@ -2,182 +2,164 @@
 
 **Project:** Water Through the Layers  
 **Product system:** Know Your Water + Build Your Water System  
-**QA status:** IN PROGRESS — RUNTIME BEHAVIOR PARTIALLY EXERCISED; NOT READY FOR OWNER FINAL PRODUCT REVIEW  
+**QA status:** **PASS — READY FOR OWNER FINAL PRODUCT REVIEW**  
+**Authoritative candidate branch:** `academy-production-work`  
+**Verified candidate commit:** `f99cf01527f4a785b95a012fe78760e28b04441f`  
+**GitHub Actions check:** `water-review-candidate-qa` — **SUCCESS**  
+**Run:** `34158439666`  
+**Job:** `101855045592`  
+**Verified:** 2026-09-07  
 **AI-Agent:** ChatGPT/GPT-5.6 Sol  
-**Session:** RRA Visual Production Agent
+**Session:** Academy automation control-plane repair
 
-## Why this QA was reopened
+## Current decision
 
-The owner inspected the actual learner-facing product after the previous PASS and found contradictions between the QA record and the rendered experience: intended use was still single-select, deeper routes produced 404s in the owner experience, tangible visual teaching was insufficient, and My Water Plan was too generalized/text-heavy.
+The Water review candidate has now passed the machine-side Final Product QA required to return to the owner.
 
-Under `ACADEMY-RENDERED-PRODUCT-QA-STANDARD.md`, documentation is evidence of intent; the rendered release candidate is evidence of delivery. The previous PASS remains superseded.
+This **does not** approve the product, release it, publish it, activate pricing, or make it LIVE. It means the integrated candidate is sufficiently verified for the owner to inspect and make the **Final Product Review** decision.
 
-## Exact GitHub-main release-candidate package checked
+The owner remains the final product gate.
 
-Current Visual Production package on `main`, re-read directly during Cycle 05e:
+## Why QA had remained open
 
-- `visual-production/water-learning-experience-final.html` — primary release candidate, Git blob `5114800371d47fb25b97816097c1bc9ac8f48751`;
-- `visual-production/water-system-visual-preview.html` — deeper decision/evidence layer, Git blob `957852ebeea266db5ac68870f366b5e390b82015`;
-- `visual-production/water-system-implementation-visuals.html` — deeper implementation layer, Git blob `cbd4285d436e05de67fc91cc63d0d805c08f1f3c`;
-- `visual-production/index.html` — rendered-QA entry, Git blob `3b8cba86b39aaf57c04c07084daa88f5c7981cc3`;
-- `visual-production/preview-manifest.json` — Git blob `9ed402122383136a4f5bed0800a10178ccaabc49`, marked `VISUAL_PRODUCTION / RENDERED_QA_IN_PROGRESS`, with `water-learning-experience-final.html` as `primary_release_candidate`.
+An earlier Final Product QA PASS was superseded after owner inspection found real learner-facing defects, including:
 
-### Cycle 05e evidence-record correction
+- intended use was still effectively single-select;
+- deeper routes produced 404s in the owner experience;
+- tangible visual teaching was insufficient;
+- My Water Plan was too generalized/text-heavy;
+- QA had relied too heavily on architecture/files instead of exercising the actual rendered experience.
 
-The prior version of this QA record still listed the **pre-Cycle-05d** deeper-page blob SHAs even though GitHub `main` had already advanced to the hardened Cycle 05d files. Fresh current-file reads confirmed the learner-facing pages themselves were correct; the stale part was this QA evidence record.
+Those findings caused the rendered-product gate to reopen.
 
-Current deeper-page return logic now checks the actual referrer before using browser history:
+Later Visual Production cycles corrected the candidate and separately verified:
 
-- `document.referrer` must exist;
-- referrer origin must equal the current page origin;
-- referrer path must end in `/water-learning-experience-final.html`;
-- only then, and only when history exists, does the control call `history.back()`;
-- otherwise the normal link fallback goes to `water-learning-experience-final.html#evidence`.
+- multi-use selection;
+- distinct My Water Plan branches;
+- browser-storage persistence and fresh-document restore;
+- materially different learner profiles producing different outputs;
+- tangible system/function visuals;
+- referenced files and fragments;
+- mobile width/overflow behavior;
+- print behavior;
+- generated Water image integration.
 
-That prevents a directly opened deeper page from using unrelated browser history merely because `history.length > 1`.
+One hard gate remained: the actual linked navigation round trip in a browser capable of normal navigation.
 
-No Cycle 05e edit was made to the current learner-facing HTML after the fresh read showed Cycle 05d had already applied this safeguard.
+## Final hard-gate verification — completed
 
-## Corrections durable in the release candidate
+A dedicated GitHub Actions workflow now serves the **non-published work branch locally** and exercises the actual learner-facing files in Chromium.
 
-- intended uses are checkboxes/multi-select;
-- all selected uses are stored together and each selected use generates a distinct My Water Plan branch;
-- My Water Plan includes shared infrastructure, branch-specific jobs, verification notes, next actions, and a personalized SVG branch diagram;
-- source/use/testing/concern/scale are persisted in browser storage and dependent plan output rebuilds from those inputs;
-- tangible whole-system, 55-gallon cutaway, historical/regional/modern, clear-vs-safe, testing, treatment-job, UV, substitution, scale, surface-water and evidence-ladder teaching is physically present in learner-facing files;
-- the known `#testing` and `#uv` fragment mismatches are corrected with compatibility anchors;
-- both deeper pages have explicit **Back to where I was in Water Through the Layers** controls with same-origin/referrer-guarded history return and a direct fallback to the main experience.
+The successful run verified all of the following against commit `f99cf01527f4a785b95a012fe78760e28b04441f`:
 
-## Exact route/file/anchor verification
+### Profile and personalization
 
-All learner-facing file routes currently referenced by the primary candidate resolve to files present on GitHub `main`:
-
-- `index.html` — present;
-- `water-system-visual-preview.html` — present;
-- `water-system-implementation-visuals.html` — present.
-
-Primary internal navigation IDs present:
-
-- `#start`;
-- `#use`;
-- `#know`;
-- `#system`;
-- `#activity`;
-- `#history`;
-- `#myplan`;
-- `#evidence`.
-
-Referenced deeper fragments present in the exact destination files:
-
-- decision/evidence page: `#clear-safe`, `#testing`, `#uv`, plus existing `#test-tree`, `#uv-train`, `#uv-class-pou`;
-- implementation page: `#scale`, `#substitutions`, `#animals`, `#surface`, `#evidence-ladder`, `#history`, `#whole-system`.
-
-No currently referenced learner-facing file or fragment is missing in the GitHub-main package.
-
-## Browser-runtime exercise completed 2026-08-22 19:53 ET
-
-A functioning Python Playwright + system Chromium runtime was found in the execution environment. Direct URL/file navigation is blocked by the environment's managed browser policy, so the prior cycle used an in-memory browser document to exercise the current release-candidate interaction logic and required learner controls while keeping exact GitHub-main route existence/anchors as a separate static check.
-
-### Profile A — multi-use / high-stakes branch test
-
-Exercised simultaneously:
+The browser selected:
 
 - source: `well`;
-- intended uses: `drink`, `animal`, `emergency`;
-- testing: `lab`;
+- intended uses simultaneously: `drink`, `animal`, `emergency`;
+- testing state: `lab`;
 - concern: `microbial`;
 - scale: `farm`.
 
-Observed browser result:
+Verified result:
 
-- saved state preserved all three intended uses at the same time;
-- My Water Plan rendered **3 distinct branches**;
-- branch output included Drinking / cooking, Animal water, and Emergency backup separately;
-- the personalized branch diagram included all three selected uses;
-- saved state contained the selected source, all uses, testing state, concern and scale together.
+- all three intended uses remained selected together;
+- My Water Plan rendered exactly three distinct use branches;
+- browser storage preserved source, all three uses, testing state, concern, and scale.
 
-### Persistence / new-document restore test
+### Decision/evidence round trip
 
-The saved browser-storage record from Profile A was carried into a fresh browser document using the same release-candidate load/restore behavior.
+The browser:
 
-Observed:
+1. set the learner position to `#system`;
+2. opened `water-system-visual-preview.html` through the actual learner-facing link;
+3. used **Back to where I was in Water Through the Layers**;
+4. returned to `water-learning-experience-final.html#system`;
+5. confirmed the well source, all three selected uses, and three personalized branches remained intact.
 
-- `well` restored;
-- `drink + animal + emergency` all restored together;
-- `lab`, `microbial`, and `farm` restored;
-- My Water Plan rebuilt the same three branches without re-entering the answers.
+**Result: PASS.**
 
-This directly exercises the state-restoration defect corrected earlier and confirms the corrected restore logic does not overwrite saved concern/scale during load.
+### Implementation/scale round trip
 
-### Profile B — materially different-output test
+The browser:
 
-Exercised:
+1. set the learner position to `#use`;
+2. opened the real deeper scale route `water-system-implementation-visuals.html#scale`;
+3. used **Back to where I was in Water Through the Layers**;
+4. returned to `water-learning-experience-final.html#use`;
+5. confirmed the personalized three-branch Water Plan remained intact.
 
-- source: `rain`;
-- intended uses: `house`, `irrigation`;
-- testing: `screen`;
-- concern: `particles`;
-- scale: `55gal`.
+**Result: PASS.**
 
-Observed:
+### Rendered delivery checks
 
-- saved state differed materially from Profile A;
-- My Water Plan rendered **2 different branches** — Household and Garden / irrigation;
-- summary and branch output materially differed from the well/drinking/animal/emergency profile.
+The successful workflow also verified:
 
-### Mobile behavior
+- candidate files exist on the work branch;
+- main learner candidate loads successfully;
+- decision/evidence page loads successfully;
+- implementation page loads successfully;
+- generated Water image wrapper loads successfully;
+- no broken ordinary image elements were detected in the exercised surfaces;
+- no document-level horizontal overflow on the exercised desktop/mobile surfaces;
+- no browser console errors in the primary exercised journey;
+- mobile candidate loads successfully at `390 × 844`.
 
-Chromium viewport exercised at **375 × 812**.
+## QA infrastructure correction discovered during verification
 
-Observed document width:
+The first branch-local QA run failed before reaching Water because the generated Playwright test module was written to `/tmp`, where Node could not resolve the repository-installed `playwright` package.
 
-- `scrollWidth = 375`;
-- `clientWidth = 375`.
+That was a **QA harness failure**, not a Water product failure.
 
-No document-level horizontal overflow was produced in the exercised primary interaction surface.
+Correction:
 
-### Print behavior
+- the test module is now created and executed from the checked-out repository directory;
+- the next exact workflow run completed successfully.
 
-Print media was emulated in Chromium.
+Continuous-improvement lesson:
 
-Observed:
+> QA infrastructure must itself be exercised. A test definition is not proof that the test can run.
 
-- progress navigation hides under print media;
-- action controls hide under print media;
-- the Print My Water Plan control invokes the page print action in the exercised browser runtime.
+The failed harness run was not re-labeled as a product failure, and the successful rerun was required before this QA record changed to PASS.
 
-## Cycle 05e — actual navigation gate recheck
+## Branch/release boundary
 
-The required remaining test was attempted again against the execution browser environment. The managed Chromium policy contains a catch-all URL block, and normal URL/file navigation is rejected with `ERR_BLOCKED_BY_ADMINISTRATOR`. This affects the environment itself rather than a missing Water file or anchor.
+The verified candidate lives on:
 
-Because the governing QA standard requires the actual learner-facing round trip to be exercised, static inspection of the correct return-handler code is **not** being substituted for the missing runtime proof.
+`academy-production-work`
 
-Cycle 05e therefore:
+That branch is the Academy production/review source and is not the approved published source.
 
-1. re-read the exact current GitHub-main files rather than relying on older recorded blob SHAs;
-2. confirmed both deeper pages contain the Cycle 05d same-origin/referrer return safeguard;
-3. confirmed the manifest still names the same primary release candidate and remains `RENDERED_QA_IN_PROGRESS`;
-4. corrected this QA record so it now references the exact current learner-facing blobs;
-5. kept the hard gate closed.
+`main` is being reserved for approved/released website material.
 
-## Water regression test status
+Therefore this QA PASS means:
 
-1. **Choose at least three intended uses simultaneously and keep all three through My Water Plan:** **BROWSER INTERACTION PASS** for well + drinking + animal + emergency; three distinct plan branches observed.
-2. **Every deeper-learning route resolves with zero 404s and correct destination:** **EXACT GITHUB FILE/ANCHOR PASS; DIRECT BROWSER CLICK-THROUGH STILL BLOCKED BY EXECUTION-ENVIRONMENT NAVIGATION POLICY.** No referenced file/fragment is missing.
-3. **State survives deeper navigation and return:** **FRESH-DOCUMENT STORAGE RESTORE PASS; ACTUAL LINK-OUT/HISTORY-BACK STILL NOT CERTIFIED.** Current return-handler code is statically correct, but the required real round trip has not been exercised.
-4. **Tangible treatment/purification visuals actually exist:** **EXACT GITHUB CONTENT PASS.** Required whole-system/cutaway/function/comparison visuals are present in learner-facing files.
-5. **My Water Plan visibly represents shared infrastructure and distinct use branches:** **BROWSER INTERACTION PASS** in the exercised primary interaction surface.
-6. **Two materially different learner profiles produce meaningfully different outputs:** **BROWSER INTERACTION PASS** — Profile A produced 3 well/drinking/animal/emergency branches; Profile B produced 2 rain/household/irrigation branches with different summary/next-path logic.
-7. **Final Product Review preview is the exact corrected release candidate:** **MANIFEST/ENTRY FILE PASS, FINAL CERTIFICATION PENDING.** Manifest and entry point at the current primary file, but Final Product Review must not reopen until the remaining actual navigation/history-back check is exercised in a browser that permits normal navigation.
+```text
+MACHINE / RENDERED QA PASS
+→ OWNER FINAL PRODUCT REVIEW
+```
 
-## Current hard-gate decision
+It does **not** mean:
 
-**DO NOT MARK PASS. DO NOT RETURN TO FINAL PRODUCT REVIEW YET.**
+```text
+QA PASS
+→ PUBLIC WEBSITE
+```
 
-One hard gate remains: exercise the actual linked main → deeper page → **Back to where I was** navigation/history path in a browser/runtime that permits normal URL/file navigation, and confirm the learner lands back at the exact prior place with the full Water Plan state intact.
+The required remaining owner/release chain is:
 
-The current release-candidate code and repository routes are aligned for that test, but the execution environment cannot honestly certify it while its managed browser policy blocks navigation.
+```text
+OWNER FINAL PRODUCT REVIEW
+→ if approved: RELEASE PREP
+→ OWNER RELEASE DECISION
+→ if release approved: promote/publish the exact authorized version
+→ VERIFY LIVE
+→ LIVE
+```
 
-## Release boundary
+## Final QA decision
 
-No public release, deployment, storefront activation, sale, public price activation, promotion, affiliate placement or SEO/public publication is authorized or performed by this QA state.
+**PASS — RETURN THE WORK-BRANCH CANDIDATE TO OWNER FINAL PRODUCT REVIEW.**
+
+No release, deployment, storefront activation, sale, public price activation, marketing publication, affiliate placement, or LIVE claim is authorized by this record.
