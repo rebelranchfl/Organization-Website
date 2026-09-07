@@ -2,22 +2,10 @@ import fs from 'node:fs/promises';
 import process from 'node:process';
 
 const mode=process.argv[2]||'prepare';
-const url=process.env.SUPABASE_URL||'https://dfrwxpuojeiykaignyny.supabase.co';
-const key=process.env.SUPABASE_BACKEND_KEY||process.env.SUPABASE_SERVICE_ROLE_KEY||'';
+const dispatchUrl=process.env.ACADEMY_DISPATCH_URL||'https://dfrwxpuojeiykaignyny.supabase.co/functions/v1/academy-agent-dispatch';
 const runner='github-codex-v1';
 const out=process.env.GITHUB_OUTPUT;
 
-function headers(extra={}){
-  const base={apikey:key,'Content-Type':'application/json'};
-  if(key&&!key.startsWith('sb_secret_'))base.Authorization=`Bearer ${key}`;
-  return {...base,...extra};
-}
-async function api(path,opts={}){
-  const r=await fetch(`${url}/rest/v1/${path}`,{...opts,headers:headers(opts.headers||{})});
-  const text=await r.text();
-  if(!r.ok)throw new Error(`${r.status} ${text}`);
-  return text?JSON.parse(text):null;
-}
 async function writeOut(name,value){if(out)await fs.appendFile(out,`${name}=${String(value).replace(/\n/g,'%0A')}\n`)}
 function agentFor(stage){
   if(stage==='PRODUCT_WORKING')return 'RRA Product Design Agent';
@@ -68,21 +56,34 @@ function validateResult(result){
   if(result.stage_recommendation==='REQUEST_INDEPENDENT_VERIFICATION'&&result.blockers.length)throw new Error('A result with blockers cannot request independent stage verification.');
   return result;
 }
+async function fetchRunContext(id,token){
+  const r=await fetch(`${dispatchUrl}/context`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({request_id:id,callback_token:token})});
+  const text=await r.text();
+  let body=null;
+  try{body=text?JSON.parse(text):null}catch{}
+  if(!r.ok)throw new Error(`Dispatcher context request failed (${r.status}): ${body?.error||'unknown error'}`);
+  if(!body?.request||!body?.project)throw new Error('Dispatcher context response is incomplete.');
+  return body;
+}
+async function readContext(){
+  let context;
+  try{context=JSON.parse(await fs.readFile('.agent-run/context.json','utf8'))}catch{throw new Error('Prepared .agent-run/context.json is missing or invalid.');}
+  if(!context?.request||!context?.project||!context?.runner_contract)throw new Error('Prepared context is incomplete.');
+  return context;
+}
 
 async function prepare(){
-  if(!key)throw new Error('Supabase backend secret is not configured.');
   const id=String(process.env.REQUEST_ID||'').trim();
+  const token=String(process.env.CALLBACK_TOKEN||'').trim();
   if(!id)throw new Error('REQUEST_ID is required. The dispatcher must claim one exact request before this workflow starts.');
+  if(!token)throw new Error('CALLBACK_TOKEN is required as the one-run context/completion credential.');
 
-  const reqs=await api(`academy_agent_run_requests?id=eq.${encodeURIComponent(id)}&select=*`);
-  const req=reqs?.[0];
-  if(!req)throw new Error(`Run request ${id} does not exist.`);
+  const context=await fetchRunContext(id,token);
+  const req=context.request;
+  const p=context.project;
+  if(req.id!==id)throw new Error('Dispatcher returned a different run request.');
   if(req.status!=='RUNNING')throw new Error(`Run request ${id} is ${req.status}; expected RUNNING from the dispatcher.`);
   if(req.runner!==runner)throw new Error(`Run request ${id} is assigned to ${req.runner||'no runner'}, not ${runner}.`);
-
-  const projects=await api(`academy_content_projects?project_id=eq.${encodeURIComponent(req.project_id)}&select=*`);
-  const p=projects?.[0];
-  if(!p)throw new Error(`Project ${req.project_id} no longer exists.`);
   const expected=agentFor(req.requested_stage);
   if(!expected)throw new Error(`Stage ${req.requested_stage} is not executable by ${runner}.`);
   if(p.owner_hold)throw new Error(`Project ${p.project_id} is on owner hold.`);
@@ -99,10 +100,9 @@ async function prepare(){
   for(const control of requiredControls(req.requested_stage))await ensureFile(control);
   await ensureDirectory(p.github_path);
 
-  const feedback=await api(`academy_stage_feedback?project_id=eq.${encodeURIComponent(p.project_id)}&status=eq.PENDING&order=created_at.asc&select=*`);
   await fs.mkdir('.agent-run',{recursive:true});
-  const context={request:req,project:p,pending_stage_feedback:feedback||[],runner_contract:{runner,work_branch:p.github_branch,base_commit_sha:req.base_commit_sha,stage:req.requested_stage,worker_may_advance_stage:false,independent_verification_required:true}};
-  await fs.writeFile('.agent-run/context.json',JSON.stringify(context,null,2));
+  const safeContext={request:req,project:p,pending_stage_feedback:Array.isArray(context.pending_stage_feedback)?context.pending_stage_feedback:[],runner_contract:{runner,work_branch:p.github_branch,base_commit_sha:req.base_commit_sha,stage:req.requested_stage,worker_may_advance_stage:false,independent_verification_required:true}};
+  await fs.writeFile('.agent-run/context.json',JSON.stringify(safeContext,null,2));
 
   const stageInstruction=req.requested_stage==='VISUAL_PRODUCTION'
     ? `VISUAL PRODUCTION\nAdvance the actual learner-facing package only within the approved Product Design and current owner feedback. Preserve technical truth underneath simple learner language. Verify every factual visual claim against the approved source record. Use only verified Academy/RRM brand assets and approved wording. Keep integrated navigation and preview-manifest data accurate. If an approved raster/photographic asset cannot be produced by the available worker, record that as a blocker; do not substitute an invented logo, fake image, or decorative approximation. Rendered Product QA is an independent gate: you may prepare the candidate and evidence needed for QA, but you may not mark Final Product Review ready yourself.`
@@ -123,20 +123,17 @@ async function prepare(){
 }
 
 async function finalize(){
-  if(!key)throw new Error('Supabase backend secret is not configured.');
   const id=String(process.env.REQUEST_ID||'').trim();
   if(!id)throw new Error('REQUEST_ID is required.');
   if(String(process.env.CODEX_OUTCOME||'')!=='success')throw new Error(`Worker outcome is ${process.env.CODEX_OUTCOME||'unknown'}, not success.`);
   const commit=String(process.env.RESULT_COMMIT_SHA||'').trim();
   if(!commit)throw new Error('RESULT_COMMIT_SHA is required before callback completion.');
 
-  const reqs=await api(`academy_agent_run_requests?id=eq.${encodeURIComponent(id)}&select=*`);
-  const req=reqs?.[0];
-  if(!req||req.status!=='RUNNING')throw new Error(`Run request ${id} is not RUNNING.`);
-  const projects=await api(`academy_content_projects?project_id=eq.${encodeURIComponent(req.project_id)}&select=*`);
-  const p=projects?.[0];
-  if(!p)throw new Error(`Project ${req.project_id} is missing during finalize.`);
-  if(p.workflow_stage!==req.requested_stage)throw new Error(`Project stage changed during worker execution: ${p.workflow_stage} vs ${req.requested_stage}.`);
+  const context=await readContext();
+  const req=context.request,p=context.project;
+  if(req.id!==id||req.status!=='RUNNING')throw new Error(`Prepared context does not describe running request ${id}.`);
+  if(req.runner!==runner)throw new Error('Prepared context runner no longer matches this runner contract.');
+  if(p.workflow_stage!==req.requested_stage)throw new Error(`Prepared project stage ${p.workflow_stage} does not match request stage ${req.requested_stage}.`);
   if(p.github_branch==='main'||!p.github_branch)throw new Error('Automated Academy production may not finalize against main.');
   if(String(process.env.GITHUB_REF_NAME||'')!==p.github_branch)throw new Error('Finalize branch does not match the project work branch.');
   if(commit===req.base_commit_sha)throw new Error('Successful worker cycle produced no new commit.');
@@ -159,6 +156,7 @@ function selfTest(){
   try{validateResult({...good,blockers:[{code:'X',detail:'blocked'}]})}catch{blocked=true}
   if(!blocked)throw new Error('Self-test failed: blocked candidate was allowed to request verification.');
   if(agentFor('PRODUCT_WORKING')!=='RRA Product Design Agent'||agentFor('VISUAL_PRODUCTION')!=='RRA Visual Production Agent'||agentFor('RESEARCH_WORKING')!==null)throw new Error('Self-test failed: stage ownership map is invalid.');
+  if(dispatchUrl.includes('service_role'))throw new Error('Self-test failed: dispatcher URL is invalid.');
   console.log('ACADEMY_RUNNER_CONTRACT_SELF_TEST_PASS');
 }
 
