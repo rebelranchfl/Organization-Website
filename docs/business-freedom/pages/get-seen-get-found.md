@@ -4,7 +4,7 @@
 
 - Page file: `business-visibility.html`
 - Program: Business Freedom
-- Current state: APPROVED for commit and GitHub push; merge and deployment remain separate
+- Current state: APPROVED for merge and production deployment; live verification pending
 - Last updated: 2026-09-07
 
 ## North star
@@ -59,11 +59,12 @@
 | 2026-09-07 | Reviews and Directories | APPROVED | Do not add separate Reviews or Directories controls | Reviews are covered inside search/maps, social, and website trust; several included channels already provide directory-style discovery, so separate controls would add less value and weaken the mobile focus. |
 | 2026-09-07 | Final corrected page | APPROVED | Use the no-apron image set, official RRL logo, six tappable discovery controls, and corrected responsive image sizing | Owner reviewed the corrected page and said to push. |
 | 2026-09-07 | Commit and GitHub push | APPROVED | Publish only the exact nine-file visibility-page package on a dedicated branch | Owner explicitly instructed: `ok lets push`. |
+| 2026-09-07 | Merge and production deployment | APPROVED | Merge the approved visibility-page release and publish it through the repository's existing GitHub Pages production path | Owner explicitly instructed: `push live`. |
 
 ## Remaining boundaries
 
 - Exact photography may be refined during local visual verification without changing the approved story or sales hierarchy.
-- Publication, deployment, and application of this style to other Business Freedom pages require separate approval.
+- Application of this style to other Business Freedom pages requires separate approval.
 - Reviews and Directories are intentionally covered by the six approved discovery pathways rather than shown as separate controls.
 
 ## Incident and prevention
@@ -76,4 +77,4 @@
 
 ## Next permitted action
 
-- Commit and push the exact approved visibility-page package to a dedicated branch. Do not merge or deploy without separate approval.
+- Merge the approved release, allow the existing GitHub Pages production process to publish it, verify the public page, and then record the verified `LIVE` state.
