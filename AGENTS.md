@@ -89,7 +89,7 @@ Current routing includes:
 - Rebel Ranch Academy — use `/rebel ranch academy/AGENTS.md` and the governing RRA documents in that program area.
 - Creation Station — use `docs/creation-station/creation-station-operations.md`, `docs/creation-station/brand/public-visual-rules.md`, `docs/creation-station/brand/dashboard-visual-rules.md`, and the applicable files under `docs/creation-station/systems/`.
 - Rebel Ranch Local / Marketplace — use `docs/rebel-ranch-local/brand/visual-rules.md` and the applicable durable system controls under `docs/rebel-ranch-local/systems/`.
-- Business Freedom — use `docs/business-freedom/README.md` plus the applicable service/page decision record in `docs/business-freedom/`.
+- Business Freedom — use `docs/business-freedom/business-freedom-operations.md` first, then `docs/business-freedom/README.md` and the applicable page decision record under `docs/business-freedom/pages/`.
 - Roots Boots & Animal Poops, Back 2 the Basics — How to Survive, Rebel Ranch Rescue, and future programs — use their program-specific authoritative documents as those ecosystems are consolidated. If a program-specific authority does not yet exist, do not invent one or silently apply another program's rules.
 
 ### Shared infrastructure
