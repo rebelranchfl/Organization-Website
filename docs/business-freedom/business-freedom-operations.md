@@ -46,7 +46,19 @@ The approved Business Freedom map is:
 6. **Add an Operations Leader to Your Team** — recurring access to combined operations strategist, operations manager, and process-engineering capability; approved comprehensive landing-page direction. No approved public page currently exists.
 7. **I've Got the Potential** — routing choice for owners who need help identifying the right path; not a separate paid service and does not receive its own landing page.
 
-A separate Marketplace-specific offer, **Get Paid Faster — Set Up Your Payment Links**, remains outside the six core Business Freedom services and must not be substituted for Automated Payment Processing.
+## Marketplace-specific funnel: Get Paid Faster
+
+**Get Paid Faster — Set Up Your Payment Links** is offered only to Rebel Ranch Marketplace vendors.
+
+It stems from Business Freedom's existing merchant-services and automated-payment-processing capability and acts as a Marketplace-to-Business-Freedom funnel/entry offer. It is not one of the six core general-public Business Freedom services.
+
+Agents must preserve all of these boundaries:
+
+- Marketplace controls who is eligible to receive the offer and where the offer appears;
+- Business Freedom provides the underlying merchant-services / automated-payment-processing capability context;
+- the offer may route Marketplace vendors into broader Business Freedom support when appropriate;
+- the offer does not replace, narrow, or redefine the broader **Automated Payment Processing** Business Freedom service; and
+- documentation must not classify the offer in a way that erases either its Marketplace-only eligibility or its Business Freedom origin.
 
 ## Program priority and funding role
 
@@ -88,8 +100,10 @@ Describe the work and intended operating value without promising an outcome that
 
 Use this folder as the Business Freedom program home:
 
+- `AGENTS.md` — Business Freedom-specific agent entry point and routing control.
 - `business-freedom-operations.md` — program-level purpose, boundaries, current service map, and operating direction.
 - `README.md` — quick index and current work-order summary.
+- `brand.md` — approved Business Freedom visual and experience direction.
 - `pages/` — page/service decision records for specific public Business Freedom surfaces and offers.
 
 Do not create duplicate handoffs, session summaries, or competing program authorities. Git history is the recovery record.
