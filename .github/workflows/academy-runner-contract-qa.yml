@@ -6,6 +6,7 @@ on:
       - academy-production-work
     paths:
       - '.github/scripts/academy-agent-runner.mjs'
+      - '.github/workflows/academy-agent-runner.yml'
       - '.github/workflows/academy-runner-contract-qa.yml'
   workflow_dispatch:
 
@@ -23,6 +24,9 @@ jobs:
       - name: Syntax-check runner
         run: node --check .github/scripts/academy-agent-runner.mjs
 
+      - name: Parse workflow YAML
+        run: ruby -e 'require "yaml"; YAML.load_file(".github/workflows/academy-agent-runner.yml"); puts "ACADEMY_WORKFLOW_YAML_PARSE_PASS"'
+
       - name: Run runner contract self-test
         run: node .github/scripts/academy-agent-runner.mjs self-test
 
@@ -31,6 +35,8 @@ jobs:
         run: |
           set -euo pipefail
           script='.github/scripts/academy-agent-runner.mjs'
+          workflow='.github/workflows/academy-agent-runner.yml'
+
           ! grep -q 'OPENAI_API_KEY' "$script"
           ! grep -q 'SUPABASE_BACKEND_KEY' "$script"
           ! grep -q 'SUPABASE_SERVICE_ROLE_KEY' "$script"
@@ -43,4 +49,22 @@ jobs:
           grep -q 'CALLBACK_TOKEN' "$script"
           grep -q 'independent verification is required before advancement' "$script"
           grep -q "github_branch==='main'" "$script"
-          echo 'ACADEMY_RUNNER_LEAST_PRIVILEGE_BOUNDARIES_PASS'
+
+          # Workflow remains hard-disabled and contains no publication path.
+          test "$(grep -F -c 'if: ${{ false' "$workflow")" -ge 3
+          ! grep -qi 'pages: write' "$workflow"
+          ! grep -qi 'deploy' "$workflow"
+          ! grep -q 'HEAD:main' "$workflow"
+          ! grep -q 'SUPABASE_BACKEND_KEY' "$workflow"
+          ! grep -q 'SUPABASE_SERVICE_ROLE_KEY' "$workflow"
+
+          # AI job is read-only and has no persisted checkout credential.
+          grep -A6 '^  academy-worker:' "$workflow" | grep -q 'contents: read'
+          grep -q 'persist-credentials: false' "$workflow"
+
+          # Only the separate non-AI committer receives repository write authority.
+          grep -A7 '^  commit-candidate:' "$workflow" | grep -q 'contents: write'
+          grep -q 'Candidate patch escaped verified project path' "$workflow"
+          grep -q 'git push origin "HEAD:${GITHUB_REF_NAME}"' "$workflow"
+
+          echo 'ACADEMY_RUNNER_AND_WORKFLOW_BOUNDARIES_PASS'
