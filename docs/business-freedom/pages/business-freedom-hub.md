@@ -4,9 +4,9 @@
 
 - Page file: `business-fixes.html`
 - Program: Rebel Ranch Ministries → Business Freedom
-- Current state: LIVE; `business-freedom-hub-v1.3` is public and verified at `https://rebelranchministries.org/business-fixes.html`
-- Last updated: 2026-09-06
-- Current exact version: `business-freedom-hub-v1.3`
+- Current state: LIVE at `business-freedom-hub-v1.3`; the approved `v1.4` Visibility landing-page route is pending publication
+- Last updated: 2026-09-07
+- Current exact version: `business-freedom-hub-v1.3`; `business-freedom-hub-v1.4` is APPROVED
 
 ## North star
 
@@ -23,19 +23,20 @@
   1. `Get Your Time Back` — core service with a live landing page.
   2. `Stop Losing Customers` — core service with a live landing page.
   3. `Keep Your Money` — core service with a live landing page.
-  4. `Get Seen, Get Found` — core service and next landing-page priority; existing local draft is not approved.
+  4. `Get Seen, Get Found` — core service with a live landing page.
   5. `Automated Payment Processing` — core service requiring a dedicated landing page.
   6. `Add an Operations Leader to Your Team` — core recurring service requiring one comprehensive landing page.
   7. `I've Got the Potential` — routing choice with the supporting statement `I just don't know how to get there.`; no landing page.
-- Link the three completed landing pages from their matching selector results and full service cards:
+- Link the four completed landing pages from their matching selector results and full service cards:
   - `business-time.html`
   - `business-leads.html`
   - `business-money-leaks.html`
+  - `business-visibility.html`
 - Preserve the exact approved recognition statement for `Automated Payment Processing`: `Tired of waiting for systems and programs to deposit my money.`
 - Preserve the exact approved recognition statement for `Add an Operations Leader to Your Team`: `I need an experienced & certified pro on my side, but can't afford a full-time employee.`
 - Preserve the approved `Keep Your Money` recognition story in every shortened hub and request-form use: `You do quality work. Money comes in. Too little of it stays.` The supporting explanation must describe following every dollar, analyzing the whole operation, finding root causes across connected systems and processes, and building one clean flow. Do not substitute lists of wasted time, trips, fuel, materials, software, repeated work, or other individual causes for this service identity, and do not frame the owner as the failure.
 - Preserve the separate $49.99 `Get Paid Faster — Set Up Your Payment Links` offer in its existing Marketplace/request-form path. Do not add it to this hub yet.
-- Do not publish the proposed local Visibility, Get Paid Faster, or Guidance detail-page drafts.
+- Do not publish the proposed local Get Paid Faster or Guidance detail-page drafts.
 - Do not change prices, layout, styling, or the existing request destinations in this alignment pass.
 
 ## Decision ledger
@@ -52,6 +53,7 @@
 | 2026-09-06 | `I've Got the Potential` routing choice | APPROVED | Use `I just don't know how to get there.` as its supporting statement and do not create a landing page | This is a routing path for visitors who need help identifying the right Business Freedom service, not a separate paid service. |
 | 2026-09-06 | `business-freedom-hub-v1.2` alignment | LIVE | Align and publish the seven hub choices, six service summaries, interactive results, and request form to the canonical map without creating landing pages | Owner authorized the alignment and then separately instructed Codex to push all completed work live. The three existing completed-page links were preserved, and the $49.99 Marketplace option remained separate. |
 | 2026-09-06 | `Keep Your Money` recognition alignment | LIVE | Replace every symptom-led hub and request-form summary with the completed landing page's recognition story and whole-business method | The live hub continued repeating supporting causes as the service identity even after the landing page established the correct story. The owner directed immediate correction and then authorized publication before imagery planning continues. |
+| 2026-09-07 | `business-freedom-hub-v1.4` Visibility route | APPROVED | Link `Get Seen, Get Found` from both its selector result and its full service card using the existing landing-page pattern | The owner originally required the Business Freedom homepage to link its completed landing pages and explicitly authorized the completed Visibility page to be pushed live. |
 
 ## Verification matrix
 
@@ -72,4 +74,4 @@
 
 ## Next permitted action
 
-Continue imagery planning. Do not change or publish a new landing page without separate owner approval.
+Publish and verify only the approved `business-freedom-hub-v1.4` Visibility route. Do not change or publish another landing page without separate owner approval.
