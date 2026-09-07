@@ -4,7 +4,7 @@
 
 - Page file: `business-visibility.html`
 - Program: Business Freedom
-- Current state: LIVE and publicly verified at `https://rebelranchministries.org/business-visibility.html`
+- Current state: LIVE at the prior production version; the concept-faithful revision is VERIFIED locally and APPROVED for production deployment
 - Last updated: 2026-09-07
 
 ## North star
@@ -61,6 +61,10 @@
 | 2026-09-07 | Commit and GitHub push | APPROVED | Publish only the exact nine-file visibility-page package on a dedicated branch | Owner explicitly instructed: `ok lets push`. |
 | 2026-09-07 | Merge and production deployment | APPROVED | Merge the approved visibility-page release and publish it through the repository's existing GitHub Pages production path | Owner explicitly instructed: `push live`. |
 | 2026-09-07 | Production release | LIVE | Publish the approved page and connect it from both matching paths on the Business Freedom hub | Page build `1200372481` completed from merge `d5cceba1`; hub-route build `1200386004` completed from merge `1d5e8208`; the public page, assets, responsive mobile presentation, and both hub links were verified. |
+| 2026-09-07 | Concept-faithful revision | APPROVED | Rebuild the live page to match the final owner-approved mobile visual concept: photo-backed hero, compact visual journey, six tappable discovery controls, isolated-versus-connected diagram, three-step service explanation, before/after comparison, supporting RRL section, and photographic paid close | Owner confirmed the balanced concept works, then explicitly required the implemented page to look like that image, pass all verification, and be pushed live. |
+| 2026-09-07 | Full verification and deployment | APPROVED | Verify mobile and desktop presentation, every discovery control, all calls to action, linked assets, shared shell, accessibility basics, and the Business Freedom hub route before publishing the revision | Owner explicitly instructed that all verification must pass before the page is pushed live. |
+| 2026-09-07 | Concept-faithful local build | VERIFIED | Replace the restrained prior implementation with the approved visual sales sequence and two purpose-built hero crops, while preserving the shared RRM shell | Real mobile-browser review passed across the hero, journey, discovery controls, connected-system comparison, service process, before/after, RRL support, closing call to action, and footer. Both desktop and mobile hero crops contain no aprons. |
+| 2026-09-07 | Concept-faithful functional checks | VERIFIED | Publish only after the six discovery controls, primary calls to action, local assets, document structure, and responsive page all pass | All six controls independently changed the selected state, icon, heading, explanation, and missed-connection message; both paid calls to action resolve to `business-request.html?service=online-presence`; 29 local page references, 21 unique IDs, both hero assets, the shared shell, and whitespace checks passed. |
 
 ## Remaining boundaries
 
@@ -78,4 +82,4 @@
 
 ## Next permitted action
 
-- No further release action is pending for this page. Future changes require separate page-stage approval.
+- Publish the verified concept-faithful revision through the existing GitHub Pages production path, then confirm the production page, controls, request routes, assets, shared shell, and matching hub-card route before marking the revision live.
