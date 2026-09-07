@@ -86,7 +86,6 @@ Use the smallest relevant set for the task, but these are the current core contr
 ### Organization / repository
 - `/AGENTS.md`
 - `/docs/rebel-ranch-ecosystem-charter.md`
-- `/docs/non-negotiables.md`
 
 ### RRA direction
 - `/rebel ranch academy/REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md`
