@@ -103,8 +103,11 @@ Use the smallest relevant set for the task, but these are the current core contr
 No Academy production automation may be treated as active merely because old code, database objects, workflows, schedules, or project records exist. Reactivation requires repaired backend/pipeline behavior, end-to-end verification of the exact path being restored, and a new explicit owner authorization.
 
 ### Existing Academy production standards — when relevant
-- `/rebel ranch academy/ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md`
-- `/rebel ranch academy/ACADEMY-CONTENT-PROJECT-SCHEMA.md`
+- `/rebel ranch academy/docs/workflow/ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md`
+- `/rebel ranch academy/docs/workflow/ACADEMY-CONTENT-PROJECT-SCHEMA.md`
+- `/rebel ranch academy/docs/workflow/ACADEMY-OWNER-CONTROL-STANDARD.md`
+- `/rebel ranch academy/docs/workflow/ACADEMY-LATE-FINDING-CONTROL-STANDARD.md`
+- `/rebel ranch academy/docs/workflow/ACADEMY-REVISION-PRESERVATION-STANDARD.md`
 - `/rebel ranch academy/ACADEMY-LEARNER-EXPERIENCE-LANGUAGE-VISUAL-STANDARD.md`
 - `/rebel ranch academy/ACADEMY-FINAL-PRODUCT-ACCEPTANCE-STANDARD.md`
 - `/rebel ranch academy/ACADEMY-CHATGPT-IMAGE-PRODUCTION-STANDARD.md`
