@@ -2,49 +2,53 @@
   "project_id": "RRA-2026-0001",
   "working_title": "Water Through the Layers",
   "slug": "purifying-water-natural-materials",
-  "learning_area": "Sustainability & Agriculture",
+  "learning_area": "sustainability-agriculture",
   "named_program": null,
   "created_at": "2026-08-20T21:01:00-04:00",
   "created_by": "owner",
-  "current_status": "NEEDS_MORE_WORK",
-  "workflow_stage": "VISUAL_PRODUCTION",
+  "current_status": "READY_FOR_REVIEW",
+  "workflow_stage": "FINAL_PRODUCT_REVIEW",
   "revision_number": 3,
-  "record_reconciled_at": "2026-09-07T15:32:00-04:00",
+  "github_branch": "academy-production-work",
+  "record_reconciled_at": "2026-09-07T16:12:00-04:00",
   "workflow_control": {
-    "authorized_stage": "VISUAL_PRODUCTION",
+    "authorized_stage": "FINAL_PRODUCT_REVIEW",
     "automation_state": "SUSPENDED_PENDING_PIPELINE_VERIFICATION",
     "automation_may_run": false,
-    "final_product_review_ready": false,
+    "final_product_review_ready": true,
     "release_authorized": false,
-    "current_truth": "Product Design was re-approved by the owner and a new Visual Production cycle was authorized. Visual Production remains incomplete, Final Product QA remains open, automated production is suspended pending verified pipeline repair, and no release is authorized."
+    "published": false,
+    "live_verified": false,
+    "current_truth": "Research and Product Design are owner-approved. The Visual Production candidate on academy-production-work passed branch-local rendered/browser QA, including the previously missing deeper-page return/state-preservation gate. The candidate is ready for Owner Final Product Review. No release is authorized."
   },
   "owner_input": {
     "idea": "Purifying water with natural materials",
-    "owner_notes": "Revision 3 corrective integration: Revision 2 must ADD to Revision 1, not replace it. Preserve the original filtration/natural-material research, experiments, scenarios, source-protection teaching and Diagnose-before-prescribing transfer lesson; integrate the global water practices, copper, Moringa, frequency/energy and lunar-human research as expansions. Follow ACADEMY-REVISION-PRESERVATION-STANDARD.md and revision-impact.md.",
+    "owner_notes": "Preserve the original filtration/natural-material research, experiments, scenarios, source-protection teaching and Diagnose-before-prescribing transfer lesson; integrate global water practices, copper, Moringa, frequency/energy and lunar-human research as evidence-bounded expansions.",
     "requested_audience": [],
     "requested_angle": "integrated filtration foundation + lost knowledge + global practices + mechanism + evidence + practical application",
     "requested_sources": [],
     "excluded_sources": []
   },
   "context_review": {
-    "status": "COMPLETE",
+    "status": "COMPLETE_AND_CONTROL_REFRESHED",
     "completed_at": "2026-08-21T01:10:00-04:00",
-    "documents_reviewed": [
+    "control_refresh_at": "2026-09-07T16:12:00-04:00",
+    "documents_reviewed_current": [
       "/AGENTS.md",
       "/docs/rebel-ranch-ecosystem-charter.md",
-      "/docs/non-negotiables.md",
+      "/rebel ranch academy/AGENTS.md",
       "/rebel ranch academy/REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md",
-      "/rebel ranch academy/Rebel-Ranch-Academy-Program-Hub/README.md",
-      "/rebel ranch academy/ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md",
-      "/rebel ranch academy/ACADEMY-CONTENT-PROJECT-SCHEMA.md",
-      "/rebel ranch academy/ACADEMY-REVISION-PRESERVATION-STANDARD.md",
-      "/rebel ranch academy/ACADEMY-SOURCE-REVIEW-POLICY.md",
-      "/rebel ranch academy/ACADEMY-PRODUCT-PHASE-WORKFLOW-EXTENSION.md",
-      "/rebel ranch academy/ACADEMY-THINK-LIKE-A-REBEL-FRAMEWORK.md"
-    ],
-    "websites_reviewed": [
-      "https://rebelranchministries.org",
-      "https://academy.rebelranchministries.org (direct retrieval attempted; repository README used for current hub direction when retrieval failed)"
+      "/rebel ranch academy/docs/workflow/ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md",
+      "/rebel ranch academy/docs/workflow/ACADEMY-CONTENT-PROJECT-SCHEMA.md",
+      "/rebel ranch academy/docs/workflow/ACADEMY-PRODUCT-PHASE-WORKFLOW-EXTENSION.md",
+      "/rebel ranch academy/docs/workflow/ACADEMY-REVISION-PRESERVATION-STANDARD.md",
+      "/rebel ranch academy/docs/intelligence/ACADEMY-SOURCE-REVIEW-POLICY.md",
+      "/rebel ranch academy/docs/intelligence/ACADEMY-RESPONSIBLE-REBELLION-EVIDENCE-FIRST-STANDARD.md",
+      "/rebel ranch academy/docs/intelligence/ACADEMY-THINK-LIKE-A-REBEL-FRAMEWORK.md",
+      "/rebel ranch academy/docs/production/ACADEMY-LEARNER-EXPERIENCE-LANGUAGE-VISUAL-STANDARD.md",
+      "/rebel ranch academy/docs/production/ACADEMY-VISUAL-PRODUCTION-AGENT-STANDARD.md",
+      "/rebel ranch academy/docs/qa/ACADEMY-RENDERED-PRODUCT-QA-STANDARD.md",
+      "/rebel ranch academy/docs/qa/ACADEMY-FINAL-PRODUCT-ACCEPTANCE-STANDARD.md"
     ],
     "audiences_identified": [
       "adults and families",
@@ -53,138 +57,73 @@
       "homesteaders and agriculture learners",
       "household resilience learners"
     ],
-    "learning_area_reason": "Water systems, resourcefulness, sustainability and practical independence are core Sustainability & Agriculture subjects; evidence-literacy transfers across RRA.",
-    "conflicts_found": [
-      "Revision 2 broadened the project but displaced substantial Revision 1 material; Revision 3 corrected this by restoring the pre-Revision-2 foundation and integrating the expansion additively."
-    ]
+    "learning_area_reason": "Water systems, resourcefulness, sustainability and practical independence fit the Academy sustainability/agriculture learning area; evidence literacy transfers across RRA.",
+    "conflicts_found": []
   },
   "research": {
-    "status": "COMPLETE_REVISION_3_PLUS_TARGETED_UV_APPROVED",
+    "status": "COMPLETE_OWNER_APPROVED",
     "started_at": "2026-08-21T07:01:00-04:00",
     "completed_at": "2026-08-21T15:35:41-04:00",
     "source_count": 24,
     "primary_or_direct_source_count": 17,
+    "sources_file": "sources.md",
+    "research_file": "research.md",
+    "additional_research_files": [
+      "research-uv-addendum.md",
+      "sources-uv-addendum.md",
+      "uv-gap-qa.md"
+    ],
     "conflicts_found": [
-      "Lunar-human sleep literature contains positive studies and direct non-replication/publication-bias concerns.",
-      "Visible acoustic patterns and molecular frequency responses demonstrate effects while not establishing permanent beneficial restructuring of ordinary drinking water.",
+      "Lunar-human sleep literature contains positive studies and non-replication/publication-bias concerns.",
+      "Visible acoustic effects do not establish permanent beneficial restructuring of ordinary drinking water.",
       "Traditional water practices document use; efficacy varies by mechanism, preparation and conditions."
     ],
     "unresolved_questions": [
-      "Final visual production may reveal additional source needs for specific diagrams or captions.",
-      "Exact UV lamp/LED replacement, sleeve cleaning, alarm, parts and installation requirements remain model-specific and must be taken from the exact selected certified device's current manufacturer instructions during Product Design implementation."
+      "Exact maintenance/parts requirements remain model-specific for any later selected certified UV device and must be taken from the exact current manufacturer instructions."
     ],
-    "sources_file": "sources.md",
-    "research_file": "research.md",
-    "baseline_commit": "912bb980164cfc75bd8243ae32af61af7ceb27d8",
-    "integration_result": "Revision 1 filtration, natural-material, source-protection and treatment-job research restored as the foundation; Revision 2 global, copper, Moringa, acoustic/frequency and lunar-human evidence retained as additive expansion. Targeted UV microbiological-disinfection evidence was later added and owner-approved without reopening Revision 3.",
-    "targeted_evidence_return": {
-      "topic": "UV microbiological water treatment/disinfection",
-      "status": "OWNER_APPROVED",
-      "approved_at": "2026-08-21T15:35:41-04:00",
-      "review_event_id": "4d1a6443-2244-49b8-98ed-514578257e0a",
-      "research_file": "research-uv-addendum.md",
-      "sources_file": "sources-uv-addendum.md",
-      "qa_file": "uv-gap-qa.md",
-      "source_count": 8,
-      "source_set_status": "Agent-vetted; owner overrides applied where present.",
-      "preservation_rule": "Additive only; no Revision 3 removal or replacement authorized.",
-      "product_handback": "Resume PRODUCT_WORKING and integrate the approved UV branch into the existing Product Design package."
-    }
+    "owner_approval_event_id": "4d1a6443-2244-49b8-98ed-514578257e0a"
   },
   "concept": {
-    "status": "COMPLETE_REVISION_3_INTEGRATED",
-    "learning_outcome": "Identify the actual water problem before choosing treatment; understand the distinct jobs and limits of natural/material treatment methods; compare historical/global water systems by place and mechanism; investigate copper, Moringa, frequency and lunar-human questions with appropriate evidence boundaries; transfer diagnostic and evidence-literacy principles elsewhere.",
+    "status": "COMPLETE_OWNER_APPROVED_FOUNDATION",
+    "learning_outcome": "Identify the actual water problem before choosing treatment; understand treatment jobs and limits; compare historical/global systems by function and evidence; build a practical multi-use system plan; transfer diagnosis and evidence-literacy principles elsewhere.",
     "central_question": "What is the water problem, what can each method actually do, and what evidence shows the claim is the right size?",
     "major_principles": [
       "Clear water is not automatically safe water.",
-      "Diagnose before prescribing; match treatment to the actual contaminant/problem.",
+      "Diagnose before prescribing.",
       "Water treatment is a chain, not a magic ingredient.",
       "Different materials solve different jobs.",
       "Source protection is part of treatment.",
       "Traditional and modern describe context, not truth value.",
-      "Local source, climate, fuel, materials and infrastructure shape water systems.",
-      "A real mechanism does not make a method universal.",
       "Match the claim to the mechanism and evidence.",
-      "Observation, mechanism, persistence, replication, biological effect, health effect and recommendation are different levels of claim.",
-      "Prove only what the evidence proves.",
-      "UV is a microbiological-disinfection function, not a universal purification step.",
-      "Potable-water UV performance must stay tied to validated class, model, flow and maintenance conditions."
+      "A successful build is not proof; test the result.",
+      "Function before form."
     ],
-    "historical_or_lost_knowledge_angle": "Preserve the original whole-household/source-protection water-system teaching, then expand it with named global practices and laboratory testing of traditional methods.",
-    "current_use_angle": "Use filtration, source protection, copper, Moringa, acoustics/frequency, lunar-human research and approved UV evidence to teach practical water-system diagnosis, treatment-job matching and evidence literacy.",
-    "transfer_the_principle_summary": "Preserve Diagnose before prescribing / match the solution to the actual problem; match the claim to the mechanism and evidence; and function before form when comparing treatment options and substitutions.",
-    "proposed_format": [
-      "45–60 page illustrated RRA Field Guide",
-      "Family Investigation Lab",
-      "2–3 page free evidence-literacy sample"
-    ],
-    "activity_types": [
-      "simulated-water filtration",
-      "change-one-variable comparison",
-      "four scenario diagnosis challenges",
-      "treatment-job matching",
-      "global-method matching",
-      "copper-study evidence analysis",
-      "safe sound/water observation",
-      "lunar sleep journal",
-      "evidence claim ladder",
-      "two transfer-the-principle exercises"
-    ],
-    "visual_needs": [
-      "source-to-cup treatment map",
-      "filter cutaway",
-      "slow-sand versus bottle-demo comparison",
-      "ordinary charcoal versus activated carbon",
-      "contaminant decision map",
-      "historical rural water system",
-      "four scenario cards",
-      "global water-practice map",
-      "copper evidence spread",
-      "Moringa coagulation sequence",
-      "acoustic water diagram",
-      "molecular rapid-rearrangement graphic",
-      "Moon/tide versus human-evidence panel",
-      "evidence claim ladder",
-      "layered-defense / diagnose-before-prescribing visual",
-      "UV treatment-train branch showing test, pretreatment, validated disinfection, safe downstream storage/distribution and verification"
-    ]
+    "transfer_the_principle_summary": "Diagnose before prescribing; match solutions to actual problems; match claims to mechanism/evidence; use function before form when comparing treatment options and substitutions."
   },
   "content": {
-    "status": "COMPLETE_REVISION_3_INTEGRATED",
+    "status": "COMPLETE_PRESERVED",
     "master_content_file": "master-content.md",
-    "preservation_check": "PASS — baseline-comparison QA confirms distinct Revision 1 teaching value remains and Revision 2 is additive; targeted UV research was added separately without modifying the approved Revision 3 master content during the evidence-return cycle."
+    "preservation_check": "Revision 1 teaching value, Revision 2 expansion, Revision 3 corrective integration, and approved UV evidence remain preserved through the Product/Visual rebuild."
   },
   "materials": {
-    "status": "VISUAL_PRODUCTION_IN_PROGRESS",
+    "status": "VISUAL_PRODUCTION_COMPLETE_QA_PASS",
     "material_types": [
-      "integrated field guide master content",
-      "family investigations",
-      "source audit",
-      "pricing proposal",
-      "revision-impact record",
-      "baseline-comparison QA",
-      "targeted UV evidence addendum",
-      "UV source audit",
-      "UV gap QA",
+      "research/source foundation",
       "approved Product Design package",
-      "learner-facing Visual Production release candidate",
-      "generated instructional image assets"
+      "interactive learner-facing Water experience",
+      "decision/evidence depth page",
+      "implementation depth page",
+      "living personalized My Water Plan",
+      "generated instructional image asset"
     ],
     "files": [
       "context-review.md",
-      "sources.md",
       "research.md",
-      "concept.md",
+      "sources.md",
       "master-content.md",
-      "activities/dirty-is-visible-danger-isnt.md",
       "pricing.md",
-      "qa-review.md",
-      "owner-review.md",
-      "revision-impact.md",
-      "research-uv-addendum.md",
-      "sources-uv-addendum.md",
-      "uv-gap-qa.md",
-      "product-design-handoff.md",
+      "product-opportunity-research.md",
+      "product-recommendation-scorecard.md",
       "product-architecture.md",
       "product-manuscript.md",
       "product-qa.md",
@@ -194,10 +133,10 @@
       "final-product-qa.md"
     ],
     "preview_files": [
+      "visual-production/index.html",
       "visual-production/water-learning-experience-final.html",
       "visual-production/water-system-visual-preview.html",
       "visual-production/water-system-implementation-visuals.html",
-      "visual-production/index.html",
       "visual-production/preview-manifest.json"
     ]
   },
@@ -205,45 +144,39 @@
     "status": "WORKING_DIRECTION_ONLY_NOT_PUBLIC",
     "proposed_price": 39,
     "currency": "USD",
-    "role": "paid core illustrated field guide with free public evidence-literacy sample",
+    "role": "paid core Water system learning product with free/public layer to be determined at Release Prep",
     "reasoning_file": "pricing.md",
     "owner_approved_price": 39,
-    "release_note": "The $39 direction is preserved from Product Review but is not authorized as a public/live price until the later Final Product and Release gates are satisfied."
+    "release_note": "The prior $39 direction is preserved. It is not a public/live price until later owner Final Product and Release gates authorize the exact release package."
   },
   "qa": {
-    "status": "FINAL_PRODUCT_QA_IN_PROGRESS",
-    "completed_at": null,
+    "status": "PASS_READY_FOR_OWNER_FINAL_PRODUCT_REVIEW",
+    "completed_at": "2026-09-07T16:12:04-04:00",
     "qa_file": "final-product-qa.md",
-    "research_qa": {
-      "status": "PASS_REVISION_3_AND_TARGETED_UV",
-      "completed_at": "2026-08-21T15:35:41-04:00",
-      "baseline_commit": "912bb980164cfc75bd8243ae32af61af7ceb27d8",
-      "additional_qa_file": "uv-gap-qa.md"
-    },
-    "verified_visual_production_progress": [
-      "multi-use learner input exercised",
-      "distinct My Water Plan branches exercised",
-      "fresh-document state restoration exercised",
-      "materially different learner profiles exercised",
-      "mobile width/overflow check exercised",
-      "print behavior exercised",
-      "current referenced GitHub files and fragments verified present",
-      "generated 55-gallon layered-filter image integrated and verified"
+    "verified_candidate_branch": "academy-production-work",
+    "verified_candidate_commit": "f99cf01527f4a785b95a012fe78760e28b04441f",
+    "github_actions_check": "water-review-candidate-qa",
+    "github_actions_run_id": "34158439666",
+    "github_actions_job_id": "101855045592",
+    "verified_results": [
+      "multi-use learner input preserves drinking, animal, and emergency uses simultaneously",
+      "My Water Plan renders three distinct personalized branches",
+      "source/testing/concern/scale/use state persists",
+      "decision/evidence deeper-page round trip returns to exact #system location with state intact",
+      "implementation/scale deeper-page round trip returns to exact #use location with state intact",
+      "candidate/depth/generated-image routes load successfully in branch-local HTTP runtime",
+      "desktop and mobile exercised surfaces have no document-level horizontal overflow",
+      "primary exercised journey produced no browser console errors"
     ],
-    "blockers": [
-      "The actual linked main experience → deeper page → Back to where I was round trip has not yet been exercised in a browser/runtime that permits normal navigation while proving exact prior location and learner-state preservation."
-    ]
+    "blockers": []
   },
   "owner_review": {
-    "status": "PRODUCT_DESIGN_APPROVED_VISUAL_PRODUCTION_AUTHORIZED",
-    "latest_decision": "APPROVE_PRODUCT_DESIGN",
-    "latest_comment": null,
-    "reviewed_at": "2026-08-24T20:39:53-04:00",
-    "latest_review_event_id": "04c6b9a6-f658-4fb8-a0c6-8eecbec422ca",
+    "status": "PENDING_FINAL_PRODUCT_REVIEW",
+    "latest_completed_decision": "APPROVE_PRODUCT_DESIGN",
+    "latest_completed_reviewed_at": "2026-08-24T20:39:53-04:00",
+    "latest_completed_review_event_id": "04c6b9a6-f658-4fb8-a0c6-8eecbec422ca",
     "review_history_file": "owner-product-review.md",
-    "source_decisions_complete": false,
-    "source_review_policy": "Agent-vetted; owner overrides applied where present.",
-    "next_decision": "No owner decision is currently pending. Finish Visual Production and Final Product QA, then return the actual integrated product to FINAL_PRODUCT_REVIEW for the owner's next decision."
+    "next_decision": "Owner Final Product Review: approve the actual candidate, request Visual/Delivery work, return to Product Design, return to Research, or reject."
   },
   "release": {
     "status": "NOT_STARTED",
@@ -253,13 +186,27 @@
     "live_url": "",
     "release_files": [],
     "live_verified_at": null,
-    "release_notes": "No public release is authorized. Product Review authorized Visual Production only. Final Product QA, Owner Final Product Review, Release Prep, separate Owner Release Decision, publication, and live verification remain unsatisfied gates."
+    "release_notes": "Final Product QA PASS does not authorize release. Owner Final Product Approval, Release Prep, separate Owner Release Decision, publication/promotion to the approved published source, and live verification remain separate gates."
+  },
+  "improvement": {
+    "status": "CURRENT",
+    "latest_improvement_id": "RRA-2026-0001-QA-BRANCH-001",
+    "open_count": 0,
+    "latest_signal_type": "QA_INFRASTRUCTURE_FAILURE_AND_CORRECTION",
+    "latest_evidence_state": "VERIFIED",
+    "latest_root_cause": "The first branch-local Playwright test module was written under /tmp, so Node could not resolve the repository-installed Playwright dependency.",
+    "latest_correction": "Run the generated QA module from the checked-out repository directory and require a successful rerun before changing QA status.",
+    "latest_verification_result": "GitHub Actions check water-review-candidate-qa completed successfully on commit f99cf01527f4a785b95a012fe78760e28b04441f.",
+    "success_pattern_count": 1,
+    "failure_count": 1,
+    "improvement_file": "final-product-qa.md",
+    "last_reviewed_at": "2026-09-07T16:12:04-04:00"
   },
   "agent": {
     "active_agent": null,
-    "last_agent": "RRA Visual Production Agent",
-    "session_title": "RRA Visual Production Agent — Water current-state reconciliation",
-    "last_updated_at": "2026-09-07T15:32:00-04:00",
+    "last_agent": "ChatGPT/GPT-5.6 Sol",
+    "session_title": "Academy automation control-plane repair — Water Final Product QA reconciliation",
+    "last_updated_at": "2026-09-07T16:12:04-04:00",
     "automation_state": "SUSPENDED_PENDING_PIPELINE_VERIFICATION"
   }
 }
