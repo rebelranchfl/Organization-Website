@@ -50,20 +50,24 @@ jobs:
           grep -q 'independent verification is required before advancement' "$script"
           grep -q "github_branch==='main'" "$script"
 
-          # Workflow remains hard-disabled and contains no publication path.
-          test "$(grep -F -c 'if: ${{ false' "$workflow")" -ge 3
+          # All three production jobs remain hard-disabled.
+          test "$(grep -E -c '^[[:space:]]+if:.*false' "$workflow")" -ge 3
+
+          # No public deployment mechanism exists in the worker chain.
           ! grep -qi 'pages: write' "$workflow"
-          ! grep -qi 'deploy' "$workflow"
+          ! grep -qi 'pages/build' "$workflow"
+          ! grep -qi 'actions/deploy' "$workflow"
+          ! grep -qi 'wrangler' "$workflow"
           ! grep -q 'HEAD:main' "$workflow"
           ! grep -q 'SUPABASE_BACKEND_KEY' "$workflow"
           ! grep -q 'SUPABASE_SERVICE_ROLE_KEY' "$workflow"
 
           # AI job is read-only and has no persisted checkout credential.
-          grep -A6 '^  academy-worker:' "$workflow" | grep -q 'contents: read'
+          grep -A7 '^  academy-worker:' "$workflow" | grep -q 'contents: read'
           grep -q 'persist-credentials: false' "$workflow"
 
           # Only the separate non-AI committer receives repository write authority.
-          grep -A7 '^  commit-candidate:' "$workflow" | grep -q 'contents: write'
+          grep -A8 '^  commit-candidate:' "$workflow" | grep -q 'contents: write'
           grep -q 'Candidate patch escaped verified project path' "$workflow"
           grep -q 'git push origin "HEAD:${GITHUB_REF_NAME}"' "$workflow"
 
