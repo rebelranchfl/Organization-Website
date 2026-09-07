@@ -6,7 +6,9 @@ on:
       - academy-production-work
     paths:
       - '.github/scripts/academy-agent-runner.mjs'
+      - '.github/scripts/academy-stage-verifier.mjs'
       - '.github/workflows/academy-agent-runner.yml'
+      - '.github/workflows/academy-stage-verifier.yml'
       - '.github/workflows/academy-runner-contract-qa.yml'
   workflow_dispatch:
 
@@ -21,54 +23,84 @@ jobs:
       - name: Check out Academy work branch
         uses: actions/checkout@v6
 
-      - name: Syntax-check runner
-        run: node --check .github/scripts/academy-agent-runner.mjs
+      - name: Syntax-check runner and independent verifier
+        run: |
+          node --check .github/scripts/academy-agent-runner.mjs
+          node --check .github/scripts/academy-stage-verifier.mjs
 
       - name: Parse workflow YAML
-        run: ruby -e 'require "yaml"; YAML.load_file(".github/workflows/academy-agent-runner.yml"); puts "ACADEMY_WORKFLOW_YAML_PARSE_PASS"'
+        run: |
+          ruby -e 'require "yaml"; YAML.load_file(".github/workflows/academy-agent-runner.yml"); puts "ACADEMY_RUNNER_WORKFLOW_YAML_PARSE_PASS"'
+          ruby -e 'require "yaml"; YAML.load_file(".github/workflows/academy-stage-verifier.yml"); puts "ACADEMY_VERIFIER_WORKFLOW_YAML_PARSE_PASS"'
 
-      - name: Run runner contract self-test
-        run: node .github/scripts/academy-agent-runner.mjs self-test
+      - name: Run runner and verifier contract self-tests
+        run: |
+          node .github/scripts/academy-agent-runner.mjs self-test
+          node .github/scripts/academy-stage-verifier.mjs self-test
 
       - name: Enforce dormant-safe least-privilege boundaries
         shell: bash
         run: |
           set -euo pipefail
-          script='.github/scripts/academy-agent-runner.mjs'
-          workflow='.github/workflows/academy-agent-runner.yml'
+          runner='.github/scripts/academy-agent-runner.mjs'
+          verifier='.github/scripts/academy-stage-verifier.mjs'
+          runner_workflow='.github/workflows/academy-agent-runner.yml'
+          verifier_workflow='.github/workflows/academy-stage-verifier.yml'
 
-          ! grep -q 'OPENAI_API_KEY' "$script"
-          ! grep -q 'SUPABASE_BACKEND_KEY' "$script"
-          ! grep -q 'SUPABASE_SERVICE_ROLE_KEY' "$script"
-          ! grep -q '/rest/v1/' "$script"
-          ! grep -q 'current main checkout' "$script"
-          ! grep -q "current_status.*READY_FOR_REVIEW" "$script"
-          ! grep -q "workflow_stage.*PRODUCT_REVIEW" "$script"
-          ! grep -q "workflow_stage.*FINAL_PRODUCT_REVIEW" "$script"
-          grep -q '/context' "$script"
-          grep -q 'CALLBACK_TOKEN' "$script"
-          grep -q 'independent verification is required before advancement' "$script"
-          grep -q "github_branch==='main'" "$script"
+          ! grep -q 'OPENAI_API_KEY' "$runner"
+          ! grep -q 'SUPABASE_BACKEND_KEY' "$runner"
+          ! grep -q 'SUPABASE_SERVICE_ROLE_KEY' "$runner"
+          ! grep -q '/rest/v1/' "$runner"
+          ! grep -q 'current main checkout' "$runner"
+          ! grep -q "current_status.*READY_FOR_REVIEW" "$runner"
+          ! grep -q "workflow_stage.*PRODUCT_REVIEW" "$runner"
+          ! grep -q "workflow_stage.*FINAL_PRODUCT_REVIEW" "$runner"
+          grep -q '/context' "$runner"
+          grep -q 'CALLBACK_TOKEN' "$runner"
+          grep -q 'independent verification is required before advancement' "$runner"
+          grep -q "github_branch==='main'" "$runner"
 
           # All three production jobs remain hard-disabled.
-          test "$(grep -E -c '^[[:space:]]+if:.*false' "$workflow")" -ge 3
+          test "$(grep -E -c '^[[:space:]]+if:.*false' "$runner_workflow")" -ge 3
 
           # No public deployment mechanism exists in the worker chain.
-          ! grep -qi 'pages: write' "$workflow"
-          ! grep -qi 'pages/build' "$workflow"
-          ! grep -qi 'actions/deploy' "$workflow"
-          ! grep -qi 'wrangler' "$workflow"
-          ! grep -q 'HEAD:main' "$workflow"
-          ! grep -q 'SUPABASE_BACKEND_KEY' "$workflow"
-          ! grep -q 'SUPABASE_SERVICE_ROLE_KEY' "$workflow"
+          ! grep -qi 'pages: write' "$runner_workflow"
+          ! grep -qi 'pages/build' "$runner_workflow"
+          ! grep -qi 'actions/deploy' "$runner_workflow"
+          ! grep -qi 'wrangler' "$runner_workflow"
+          ! grep -q 'HEAD:main' "$runner_workflow"
+          ! grep -q 'SUPABASE_BACKEND_KEY' "$runner_workflow"
+          ! grep -q 'SUPABASE_SERVICE_ROLE_KEY' "$runner_workflow"
 
           # AI job is read-only and has no persisted checkout credential.
-          grep -A7 '^  academy-worker:' "$workflow" | grep -q 'contents: read'
-          grep -q 'persist-credentials: false' "$workflow"
+          grep -A7 '^  academy-worker:' "$runner_workflow" | grep -q 'contents: read'
+          grep -q 'persist-credentials: false' "$runner_workflow"
 
           # Only the separate non-AI committer receives repository write authority.
-          grep -A8 '^  commit-candidate:' "$workflow" | grep -q 'contents: write'
-          grep -q 'Candidate patch escaped verified project path' "$workflow"
-          grep -q 'git push origin "HEAD:${GITHUB_REF_NAME}"' "$workflow"
+          grep -A8 '^  commit-candidate:' "$runner_workflow" | grep -q 'contents: write'
+          grep -q 'Candidate patch escaped verified project path' "$runner_workflow"
+          grep -q 'git push origin "HEAD:${GITHUB_REF_NAME}"' "$runner_workflow"
 
-          echo 'ACADEMY_RUNNER_AND_WORKFLOW_BOUNDARIES_PASS'
+          # Independent verifier is a separate read-only workflow.
+          grep -q '^name: Academy Independent Stage Verifier' "$verifier_workflow"
+          grep -A2 '^permissions:' "$verifier_workflow" | grep -q 'contents: read'
+          ! grep -q 'contents: write' "$verifier_workflow"
+          ! grep -qi 'SUPABASE_' "$verifier_workflow"
+          ! grep -qi '/rest/v1/' "$verifier_workflow"
+          ! grep -qi 'pages: write' "$verifier_workflow"
+          ! grep -qi 'actions/deploy' "$verifier_workflow"
+          ! grep -qi 'wrangler' "$verifier_workflow"
+          ! grep -q 'git push' "$verifier_workflow"
+          grep -q 'RESULT_COMMIT_SHA' "$verifier_workflow"
+          grep -q 'BASE_COMMIT_SHA' "$verifier_workflow"
+          grep -q 'node .github/scripts/academy-stage-verifier.mjs verify' "$verifier_workflow"
+
+          # Deterministic verifier protects scope, lifecycle, owner/release state, and approved stage inputs.
+          grep -q 'outside the verified Academy project' "$verifier"
+          grep -q 'Backup path is prohibited' "$verifier"
+          grep -q 'protectedLifecycleFields' "$verifier"
+          grep -q 'protectedWorkflowControlFields' "$verifier"
+          grep -q "stage==='PRODUCT_WORKING'" "$verifier"
+          grep -q "stage==='VISUAL_PRODUCTION'" "$verifier"
+
+          echo 'ACADEMY_RUNNER_VERIFIER_AND_WORKFLOW_BOUNDARIES_PASS'
