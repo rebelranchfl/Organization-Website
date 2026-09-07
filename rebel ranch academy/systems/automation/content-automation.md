@@ -14,8 +14,8 @@ Read this together with:
 2. `/docs/rebel-ranch-ecosystem-charter.md`
 3. `/rebel ranch academy/REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md`
 4. `/rebel ranch academy/Rebel-Ranch-Academy-Program-Hub/README.md`
-5. `/rebel ranch academy/ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md`
-6. `/rebel ranch academy/ACADEMY-CONTENT-PROJECT-SCHEMA.md`
+5. `/rebel ranch academy/docs/workflow/ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md`
+6. `/rebel ranch academy/docs/workflow/ACADEMY-CONTENT-PROJECT-SCHEMA.md`
 7. `/rebel ranch academy/systems/automation/runner-status.md`
 8. this file.
 
