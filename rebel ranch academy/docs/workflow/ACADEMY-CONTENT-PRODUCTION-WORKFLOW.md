@@ -65,7 +65,7 @@ Before beginning a new content project, the assigned agent must review the compl
 3. `/rebel ranch academy/AGENTS.md`
 4. `/rebel ranch academy/REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md`
 5. `/rebel ranch academy/Rebel-Ranch-Academy-Program-Hub/README.md`
-6. this file: `/rebel ranch academy/ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md`
+6. this file: `/rebel ranch academy/docs/workflow/ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md`
 7. any newer owner-approved RRA curriculum, offer, brand, source, pricing, safety, or delivery standard added later.
 
 ### Required live-site review
