@@ -4,9 +4,9 @@
 
 - Page file: `business-fixes.html`
 - Program: Rebel Ranch Ministries → Business Freedom
-- Current state: LIVE; `business-freedom-hub-v1.4` is public and verified at `https://rebelranchministries.org/business-fixes.html`
+- Current state: LIVE at `business-freedom-hub-v1.4`; the `v1.5` direct Visibility-card route is APPROVED
 - Last updated: 2026-09-07
-- Current exact version: `business-freedom-hub-v1.4`
+- Current exact version: `business-freedom-hub-v1.4`; `business-freedom-hub-v1.5` is APPROVED
 
 ## North star
 
@@ -54,6 +54,7 @@
 | 2026-09-06 | `business-freedom-hub-v1.2` alignment | LIVE | Align and publish the seven hub choices, six service summaries, interactive results, and request form to the canonical map without creating landing pages | Owner authorized the alignment and then separately instructed Codex to push all completed work live. The three existing completed-page links were preserved, and the $49.99 Marketplace option remained separate. |
 | 2026-09-06 | `Keep Your Money` recognition alignment | LIVE | Replace every symptom-led hub and request-form summary with the completed landing page's recognition story and whole-business method | The live hub continued repeating supporting causes as the service identity even after the landing page established the correct story. The owner directed immediate correction and then authorized publication before imagery planning continues. |
 | 2026-09-07 | `business-freedom-hub-v1.4` Visibility route | LIVE | Link `Get Seen, Get Found` from both its selector result and its full service card using the existing landing-page pattern | The owner required the Business Freedom homepage to link its completed landing pages and authorized the Visibility page to be pushed live; production build `1200386004` completed from merge `1d5e8208`, and both public routes were verified. |
+| 2026-09-07 | `business-freedom-hub-v1.5` direct Visibility card | APPROVED | Make the primary Visibility choice card itself link directly to `business-visibility.html`, while preserving the existing direct link in the full service card | Owner clarified that the service's associated hub card must lead directly to its landing page and authorized publication after verification passes. |
 
 ## Verification matrix
 
@@ -75,4 +76,4 @@
 
 ## Next permitted action
 
-Develop the next approved Business Freedom landing-page priority only with its separate page-stage approvals.
+Implement and verify only the approved `business-freedom-hub-v1.5` direct Visibility-card route, then publish it with the concept-faithful Visibility revision after all checks pass.
