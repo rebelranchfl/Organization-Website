@@ -66,8 +66,7 @@ Use the authoritative document for the subject instead of maintaining duplicate 
 
 ### Organization / ecosystem
 
-- `docs/rebel-ranch-ecosystem-charter.md` — organization/program structure, program relationships, current confirmed/open decisions.
-- `docs/non-negotiables.md` — mission, vision, entity/legal/financial boundaries, and true organization-wide non-negotiables. During repository consolidation, overlapping content must be reconciled with the Charter rather than independently expanded.
+- `docs/rebel-ranch-ecosystem-charter.md` — organization/program structure, mission/identity, program relationships, permanent organization-wide boundaries, and current confirmed/open organizational decisions.
 
 ### RRM organization brand
 
@@ -85,16 +84,20 @@ Use the authoritative document for the subject instead of maintaining duplicate 
 
 Read the program-specific controls and standards for the target program. Program documents govern program-specific purpose, brand, workflow, audience, content, operations, and implementation while remaining subject to this repository control.
 
-Examples include:
+Current routing includes:
 
-- Rebel Ranch Academy — use `/rebel ranch academy/AGENTS.md` and its governing RRA documents.
-- Creation Station — use its positioning, brand/visual, workflow, and current operating documents.
-- Rebel Ranch Local / Marketplace — use its RRL/Marketplace brand, visual, workflow, and operating documents.
-- Business Freedom, Roots Boots & Animal Poops, Rebel Ranch Rescue, and future programs — use their program-specific authoritative documents as those ecosystems are consolidated.
+- Rebel Ranch Academy — use `/rebel ranch academy/AGENTS.md` and the governing RRA documents in that program area.
+- Creation Station — use `docs/creation-station/creation-station-operations.md`, `docs/creation-station/brand/public-visual-rules.md`, `docs/creation-station/brand/dashboard-visual-rules.md`, and the applicable files under `docs/creation-station/systems/`.
+- Rebel Ranch Local / Marketplace — use `docs/rebel-ranch-local/brand/visual-rules.md` and the applicable durable system controls under `docs/rebel-ranch-local/systems/`.
+- Business Freedom — use `docs/business-freedom/README.md` plus the applicable service/page decision record in `docs/business-freedom/`.
+- Roots Boots & Animal Poops, Back 2 the Basics — How to Survive, Rebel Ranch Rescue, and future programs — use their program-specific authoritative documents as those ecosystems are consolidated. If a program-specific authority does not yet exist, do not invent one or silently apply another program's rules.
 
 ### Shared infrastructure
 
 Authentication, accounts, Supabase/database, email, deployment, shared shell/navigation, security/permissions, and other genuinely shared systems belong to repository/shared-system operations. Program documents should reference those shared systems and document only the program-specific behavior or permissions.
+
+- `docs/shared-systems-operations.md` — current shared-system operating authority.
+- `docs/email-delivery-setup.md` — focused shared email-delivery setup and operational reference.
 
 ### Marketing — repository-wide vs program-specific
 
@@ -165,11 +168,11 @@ Use Git and the right protection level instead of creating duplicate file backup
 - Disaster backup is separate from normal Git version history and separate from temporary working branches.
 - Do not store the disaster backup inside the same repository it is intended to protect.
 
-### Existing `.backups` material
+### In-repository backup folders
 
-- Existing `.backups` folders are historical material created under the prior workflow.
-- Do not treat them as active sources of truth.
-- Do not automatically delete them. Review them during repository cleanup, verify whether any unique information must be preserved, then archive/remove redundant material through an owner-authorized cleanup step.
+- The former `.backups` tree was removed from `main` on 2026-09-07 after the owner established the current repository state as the operating truth going forward.
+- Do not recreate routine in-repository backup folders or `.bak` copies for ordinary tracked-file edits.
+- Use Git commit history for normal recovery and a branch/checkpoint for risky structural work.
 
 ## 9. Brand and asset control
 
