@@ -150,17 +150,28 @@ Courses must clearly identify hazards and age-appropriate limits. High-voltage e
 
 Understanding a system includes understanding when a person should **not** attempt a task independently.
 
-## Relationship to RRA Program Catalog
+## Relationship to the RRM Program Ecosystem
 
-This method applies across the current and future RRA catalog, including but not limited to:
+This educational method applies to Rebel Ranch Academy. Academy learning may cover subjects that overlap with or support other RRM programs, but educational overlap does **not** place those programs underneath RRA.
 
-- Back 2 the Basics - How to Survive;
+Current separate RRM programs include:
+
+- Rebel Ranch Academy;
+- Creation Station;
+- Rebel Ranch Local;
+- Business Freedom;
+- Roots, Boots & Animal Poops;
+- Back 2 the Basics — How to Survive;
+- Rebel Ranch Rescue.
+
+RRA may create or host education related to agriculture, sustainability, survival, creativity, business, local economic capability, animal stewardship, and other areas when appropriate. When RRA teaches subject matter connected to another RRM program, the other program keeps its own identity, controls, brand, operations, and program authority.
+
+Examples of Academy subject areas may include:
+
 - Solar Technology & Independent Power;
 - Water Systems & Practical Water Science;
 - Food Skills, Cooking & Preservation;
 - Practical Tools, Building & Repair;
-- Roots, Boots & Animal Poops - Agriculture & Sustainability;
-- Creation Station;
 - Artificial Intelligence & Emerging Technology;
 - Cryptocurrency, Blockchain & Digital Assets;
 - Digital Security, Privacy & Digital Identity;
@@ -170,7 +181,8 @@ This method applies across the current and future RRA catalog, including but not
 - Wealth Building & Asset Management;
 - Asset Protection, Risk & Ownership;
 - Problem Solving, Systems & Process Improvement;
-- Community, Local Economy & Responsible Citizenship.
+- Community, Local Economy & Responsible Citizenship;
+- sustainability, agriculture, animal stewardship, creativity, and survival-related education where those subjects appropriately support an Academy learning objective.
 
 Future RRA courses should use this same method unless RRA intentionally documents a different educational need.
 
