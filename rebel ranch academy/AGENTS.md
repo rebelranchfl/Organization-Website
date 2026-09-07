@@ -1,7 +1,7 @@
 # Rebel Ranch Academy — Mandatory Agent Entry Point
 
 **Status:** CONTROLLING RRA AGENT INSTRUCTION  
-**Effective:** 2026-09-06  
+**Effective:** 2026-09-07  
 **Scope:** This file applies to every file, folder, project, workflow, visual, course, document, research task, code change, database action, automation, publication, and other work under or for Rebel Ranch Academy.
 
 This file supplements `/AGENTS.md`. If an older RRA document conflicts with a newer explicit owner directive, STOP and surface the conflict. Do not silently choose or improvise.
@@ -96,7 +96,13 @@ Use the smallest relevant set for the task, but these are the current core contr
 ### Current PEP / HEIP project
 - `/rebel ranch academy/docs/RRA-PEP-HEIP-PROJECT-STATUS.md`
 
-### Existing Academy production system — when relevant
+### Academy automation / backend — when relevant
+- `/rebel ranch academy/systems/automation/runner-status.md` — **current operational authority; Academy automated production is temporarily disabled**
+- `/rebel ranch academy/systems/automation/content-automation.md` — intended automation/backend behavior and reactivation requirements
+
+No Academy production automation may be treated as active merely because old code, database objects, workflows, schedules, or project records exist. Reactivation requires repaired backend/pipeline behavior, end-to-end verification of the exact path being restored, and a new explicit owner authorization.
+
+### Existing Academy production standards — when relevant
 - `/rebel ranch academy/ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md`
 - `/rebel ranch academy/ACADEMY-CONTENT-PROJECT-SCHEMA.md`
 - `/rebel ranch academy/ACADEMY-LEARNER-EXPERIENCE-LANGUAGE-VISUAL-STANDARD.md`
@@ -200,16 +206,25 @@ REPOSITORY CONTROL
 
 PROGRAM CONTROL
   /rebel ranch academy/AGENTS.md
-  RRA core direction / method / workflow controls
+  /rebel ranch academy/REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md
+  /rebel ranch academy/docs/ durable Academy program/project controls
+
+PROGRAM SYSTEMS
+  /rebel ranch academy/systems/ automation, backend, and other Academy-specific systems
 
 PROGRAM / LEARNING AREA
   documents specific to that Academy area
 
 PROJECT
+  /rebel ranch academy/content-library/<learning-area>/<project>/
   one durable project record + required research/source/product records
 
-HISTORY / ARCHIVE
-  superseded handoffs, old implementation records, backups, historical material
+PUBLIC APPLICATION
+  /rebel ranch academy/Rebel-Ranch-Academy-Program-Hub/
+  Academy public application/source; do not relocate merely for documentation cleanup
+
+HISTORY
+  use Git history for superseded copies and recovery; do not recreate in-repository backup trees
 ```
 
 # 11. TURNOVER CHECK
