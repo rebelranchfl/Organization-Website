@@ -52,7 +52,7 @@ jobs:
 
       - name: Exercise Water learner journey and exact return-state behavior
         run: |
-          cat > /tmp/academy-water-qa.mjs <<'JS'
+          cat > academy-water-qa.mjs <<'JS'
           import { chromium } from 'playwright';
           const root='http://127.0.0.1:8000/rebel%20ranch%20academy/content-library/sustainability-agriculture/purifying-water-natural-materials/visual-production/';
           const main=root+'water-learning-experience-final.html';
@@ -135,7 +135,7 @@ jobs:
           if(failures.length){console.error(failures.join('\n'));process.exit(1)}
           console.log('WATER_REVIEW_CANDIDATE_QA_PASS');
           JS
-          node /tmp/academy-water-qa.mjs
+          node academy-water-qa.mjs
 
       - name: Stop local review server
         if: always()
