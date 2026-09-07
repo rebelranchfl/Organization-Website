@@ -4,7 +4,7 @@
 
 - Page file: `business-visibility.html`
 - Program: Business Freedom
-- Current state: APPROVED for merge and production deployment; live verification pending
+- Current state: LIVE and publicly verified at `https://rebelranchministries.org/business-visibility.html`
 - Last updated: 2026-09-07
 
 ## North star
@@ -60,6 +60,7 @@
 | 2026-09-07 | Final corrected page | APPROVED | Use the no-apron image set, official RRL logo, six tappable discovery controls, and corrected responsive image sizing | Owner reviewed the corrected page and said to push. |
 | 2026-09-07 | Commit and GitHub push | APPROVED | Publish only the exact nine-file visibility-page package on a dedicated branch | Owner explicitly instructed: `ok lets push`. |
 | 2026-09-07 | Merge and production deployment | APPROVED | Merge the approved visibility-page release and publish it through the repository's existing GitHub Pages production path | Owner explicitly instructed: `push live`. |
+| 2026-09-07 | Production release | LIVE | Publish the approved page and connect it from both matching paths on the Business Freedom hub | Page build `1200372481` completed from merge `d5cceba1`; hub-route build `1200386004` completed from merge `1d5e8208`; the public page, assets, responsive mobile presentation, and both hub links were verified. |
 
 ## Remaining boundaries
 
@@ -77,4 +78,4 @@
 
 ## Next permitted action
 
-- Merge the approved release, allow the existing GitHub Pages production process to publish it, verify the public page, and then record the verified `LIVE` state.
+- No further release action is pending for this page. Future changes require separate page-stage approval.
