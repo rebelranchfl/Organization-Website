@@ -62,7 +62,7 @@ Before beginning a new content project, the assigned agent must review the compl
 
 1. `/AGENTS.md`
 2. `/docs/rebel-ranch-ecosystem-charter.md`
-3. `/docs/non-negotiables.md`
+3. `/rebel ranch academy/AGENTS.md`
 4. `/rebel ranch academy/REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md`
 5. `/rebel ranch academy/Rebel-Ranch-Academy-Program-Hub/README.md`
 6. this file: `/rebel ranch academy/ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md`
