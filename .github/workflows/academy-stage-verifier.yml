@@ -1,0 +1,98 @@
+name: Academy Independent Stage Verifier
+
+# Independent verification boundary for automated Academy work.
+# This workflow is read-only. It may verify a candidate commit, but it may not
+# update Supabase, advance a workflow stage, publish content, or write to GitHub.
+
+on:
+  workflow_dispatch:
+    inputs:
+      project_id:
+        description: "Academy project ID"
+        required: true
+        type: string
+      project_path:
+        description: "Exact repository path for the Academy project"
+        required: true
+        type: string
+      stage:
+        description: "Automated production stage being verified"
+        required: true
+        type: choice
+        options:
+          - PRODUCT_WORKING
+          - VISUAL_PRODUCTION
+      work_branch:
+        description: "Non-published Academy work branch"
+        required: true
+        type: string
+      base_commit_sha:
+        description: "Dispatcher-recorded base commit"
+        required: true
+        type: string
+      result_commit_sha:
+        description: "Runner-produced result commit"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  verify-stage-boundaries:
+    if: ${{ inputs.work_branch != 'main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out exact Academy work branch
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.work_branch }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Verify exact candidate is current work-branch head
+        shell: bash
+        env:
+          RESULT_COMMIT_SHA: ${{ inputs.result_commit_sha }}
+          WORK_BRANCH: ${{ inputs.work_branch }}
+        run: |
+          set -euo pipefail
+          [[ "$WORK_BRANCH" != "main" ]] || { echo "Verifier may not run against main"; exit 61; }
+          git fetch --no-tags origin "$WORK_BRANCH"
+          actual="$(git rev-parse HEAD)"
+          remote="$(git rev-parse "origin/$WORK_BRANCH")"
+          [[ "$actual" == "$remote" ]] || { echo "Checked-out work branch is not current remote head"; exit 62; }
+          [[ "$actual" == "$RESULT_COMMIT_SHA" ]] || { echo "Result commit is not the current work-branch head"; exit 63; }
+
+      - name: Syntax and contract self-test
+        run: |
+          node --check .github/scripts/academy-stage-verifier.mjs
+          node .github/scripts/academy-stage-verifier.mjs self-test
+
+      - name: Run independent deterministic stage verification
+        env:
+          PROJECT_ID: ${{ inputs.project_id }}
+          PROJECT_PATH: ${{ inputs.project_path }}
+          STAGE: ${{ inputs.stage }}
+          WORK_BRANCH: ${{ inputs.work_branch }}
+          BASE_COMMIT_SHA: ${{ inputs.base_commit_sha }}
+          RESULT_COMMIT_SHA: ${{ inputs.result_commit_sha }}
+        run: node .github/scripts/academy-stage-verifier.mjs verify
+
+      - name: Show verifier verdict
+        if: success()
+        run: cat .stage-verifier/verdict.json
+
+      - name: Upload read-only verification evidence
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-stage-verdict-${{ inputs.project_id }}-${{ inputs.result_commit_sha }}
+          path: .stage-verifier/verdict.json
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Confirm verifier has no mutation or release authority
+        if: always()
+        run: echo "Independent verifier is read-only. No stage advancement, database write, deployment, publication, or release occurs here."
