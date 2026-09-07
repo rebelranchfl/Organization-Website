@@ -3,18 +3,17 @@ name: Academy Agent Runner — DISABLED
 # OWNER DIRECTION — CURRENT STATE
 # Academy automated production remains OFF.
 #
-# This file now contains the repaired reactivation candidate so the pipeline can be
-# inspected and verified before a future owner decision. The production job remains
-# hard-disabled with `if: ${{ false }}`. Do not remove that gate until the complete
-# path has passed end-to-end verification and the owner explicitly authorizes restart.
+# This is the repaired reactivation candidate. Every production job below is still
+# hard-disabled with `false` in its job gate. Do not remove those gates until the
+# complete production + independent-verification path has passed end-to-end testing
+# and the owner explicitly authorizes restart.
 #
-# Critical architecture:
-# - Supabase dispatcher claims one exact request and dispatches this workflow on the
-#   project's recorded NON-PUBLISHED work branch.
-# - This worker receives only a one-time run token; it receives no Supabase service key.
-# - The worker may edit only the exact Academy project folder.
-# - It may never push to main, deploy, publish, or advance its own review stage.
-# - Successful worker output still requires an independent stage verifier.
+# Security / authority separation:
+# 1. AI WORKER: repository READ only, no persisted Git credential, no Supabase service key.
+# 2. COMMITTER: repository WRITE, but no AI execution. It applies only the worker patch
+#    for the exact verified project path and pushes only to the dispatched work branch.
+# 3. REPORTER: sends the one-time completion callback. It does not publish or advance stage.
+# 4. INDEPENDENT VERIFIER: separate system, not this workflow, controls review advancement.
 
 on:
   workflow_dispatch:
@@ -29,8 +28,7 @@ on:
         type: string
 
 permissions:
-  contents: write
-  copilot-requests: write
+  contents: read
 
 concurrency:
   group: academy-agent-${{ github.ref_name }}
@@ -39,40 +37,50 @@ concurrency:
 jobs:
   academy-worker:
     if: ${{ false }}
+    permissions:
+      contents: read
+      copilot-requests: write
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    outputs:
+      project_path: ${{ steps.prepare.outputs.project_path }}
+      base_commit_sha: ${{ steps.prepare.outputs.base_commit_sha }}
+      project_id: ${{ steps.prepare.outputs.project_id }}
+      stage: ${{ steps.prepare.outputs.stage }}
     env:
       REQUEST_ID: ${{ inputs.request_id }}
-      CALLBACK_TOKEN: ${{ inputs.callback_token }}
       ACADEMY_DISPATCH_URL: https://dfrwxpuojeiykaignyny.supabase.co/functions/v1/academy-agent-dispatch
-      GITHUB_TOKEN: ${{ github.token }}
     steps:
-      - name: Check out exact dispatched work branch
+      - name: Check out exact dispatched work branch without write credential
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Prepare verified one-run context
         id: prepare
+        env:
+          CALLBACK_TOKEN: ${{ inputs.callback_token }}
         run: node .github/scripts/academy-agent-runner.mjs prepare
 
       - name: Install GitHub Copilot CLI
         if: steps.prepare.outcome == 'success'
         run: npm install -g @github/copilot
 
-      - name: Execute authorized Academy stage
+      - name: Execute authorized Academy stage with read-only repository token
         id: agent
         if: steps.prepare.outcome == 'success'
-        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -o pipefail
           copilot --yolo -p "$(cat .agent-run/prompt.md)" 2>&1 | tee .agent-run/worker-last-message.txt
 
-      - name: Validate project-only scope and commit candidate
-        id: commit
+      - name: Validate AI scope and package exact candidate patch
+        id: package
         if: steps.agent.outcome == 'success'
-        continue-on-error: true
         env:
           PROJECT_PATH: ${{ steps.prepare.outputs.project_path }}
           BASE_COMMIT_SHA: ${{ steps.prepare.outputs.base_commit_sha }}
@@ -82,6 +90,8 @@ jobs:
           [[ -n "$PROJECT_PATH" ]] || { echo "Missing verified project path"; exit 41; }
           [[ "$GITHUB_REF_NAME" != "main" ]] || { echo "Academy production may not run on main"; exit 42; }
           [[ "$(git rev-parse HEAD)" == "$BASE_COMMIT_SHA" ]] || { echo "Checkout moved away from dispatcher-recorded base commit"; exit 43; }
+          test -s .agent-run/context.json || { echo "Missing prepared context"; exit 44; }
+          test -s .agent-run/result.json || { echo "Missing worker result contract"; exit 45; }
 
           mapfile -t changed < <( { git diff --name-only; git ls-files --others --exclude-standard; } | sort -u )
           durable=0
@@ -90,46 +100,123 @@ jobs:
             case "$f" in
               .agent-run/*) ;;
               "$PROJECT_PATH"/*) durable=1 ;;
-              *) echo "Unauthorized Academy worker change outside project: $f"; exit 44 ;;
+              *) echo "Unauthorized Academy worker change outside project: $f"; exit 46 ;;
             esac
           done
-          [[ "$durable" == "1" ]] || { echo "Worker produced no durable project change"; exit 45; }
+          [[ "$durable" == "1" ]] || { echo "Worker produced no durable project change"; exit 47; }
 
-          node .github/scripts/academy-agent-runner.mjs finalize
+          # Add intent-to-add so a binary-safe patch includes new files while preserving deletions.
+          git add -N -- "$PROJECT_PATH"
+          git diff --binary -- "$PROJECT_PATH" > .agent-run/candidate.patch
+          test -s .agent-run/candidate.patch || { echo "Candidate patch is empty"; exit 48; }
 
-          git add -A -- "$PROJECT_PATH"
-          git diff --cached --quiet && { echo "No durable project changes staged"; exit 46; }
+          tar -czf /tmp/academy-worker-candidate.tgz \
+            .agent-run/context.json \
+            .agent-run/result.json \
+            .agent-run/candidate.patch
+
+      - name: Upload candidate for non-AI committer
+        if: steps.package.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-worker-candidate-${{ inputs.request_id }}
+          path: /tmp/academy-worker-candidate.tgz
+          if-no-files-found: error
+          retention-days: 1
+
+  commit-candidate:
+    if: ${{ false && needs.academy-worker.result == 'success' }}
+    needs: academy-worker
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    outputs:
+      sha: ${{ steps.commit.outputs.sha }}
+    env:
+      REQUEST_ID: ${{ inputs.request_id }}
+      PROJECT_PATH: ${{ needs.academy-worker.outputs.project_path }}
+      BASE_COMMIT_SHA: ${{ needs.academy-worker.outputs.base_commit_sha }}
+    steps:
+      - name: Check out exact dispatcher-recorded base commit
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ needs.academy-worker.outputs.base_commit_sha }}
+          fetch-depth: 0
+
+      - name: Download isolated worker candidate
+        uses: actions/download-artifact@v4
+        with:
+          name: academy-worker-candidate-${{ inputs.request_id }}
+          path: /tmp/academy-candidate
+
+      - name: Apply, validate, and commit exact project patch without AI
+        id: commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ -n "$PROJECT_PATH" ]] || { echo "Missing verified project path"; exit 51; }
+          [[ "$GITHUB_REF_NAME" != "main" ]] || { echo "Committer may not target main"; exit 52; }
+          [[ "$(git rev-parse HEAD)" == "$BASE_COMMIT_SHA" ]] || { echo "Base checkout mismatch"; exit 53; }
+
+          tar -xzf "/tmp/academy-candidate/academy-worker-candidate.tgz"
+          test -s .agent-run/context.json || exit 54
+          test -s .agent-run/result.json || exit 55
+          test -s .agent-run/candidate.patch || exit 56
+
+          git apply --index --binary .agent-run/candidate.patch
+
+          mapfile -t staged < <(git diff --cached --name-only | sort -u)
+          [[ "${#staged[@]}" -gt 0 ]] || { echo "No staged Academy candidate changes"; exit 57; }
+          for f in "${staged[@]}"; do
+            case "$f" in
+              "$PROJECT_PATH"/*) ;;
+              *) echo "Candidate patch escaped verified project path: $f"; exit 58 ;;
+            esac
+          done
+
           git config user.name "Rebel Ranch Academy Agent Runner"
           git config user.email "285707125+rebelranchfl@users.noreply.github.com"
-          git commit -m "Advance Academy project ${REQUEST_ID}" -m "AI-Agent: RRA ${GITHUB_REF_NAME} runner" -m "Independent verification required before stage advancement."
+          git commit -m "Advance Academy project ${REQUEST_ID}" \
+            -m "AI-Agent: RRA work-branch runner" \
+            -m "Independent verification required before stage advancement."
 
           result_sha="$(git rev-parse HEAD)"
-          echo "sha=$result_sha" >> "$GITHUB_OUTPUT"
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+          CODEX_OUTCOME=success RESULT_COMMIT_SHA="$result_sha" \
+            node .github/scripts/academy-agent-runner.mjs finalize
 
-      - name: Report run completion to control plane
-        if: always()
+          # Non-force push fails if the work branch moved since the dispatcher captured BASE_COMMIT_SHA.
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+          echo "sha=$result_sha" >> "$GITHUB_OUTPUT"
+
+  report-completion:
+    if: ${{ false }}
+    needs:
+      - academy-worker
+      - commit-candidate
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    env:
+      REQUEST_ID: ${{ inputs.request_id }}
+      ACADEMY_DISPATCH_URL: https://dfrwxpuojeiykaignyny.supabase.co/functions/v1/academy-agent-dispatch
+      RESULT_COMMIT_SHA: ${{ needs.commit-candidate.outputs.sha }}
+    steps:
+      - name: Report exact run outcome through one-time credential
         env:
-          RESULT_COMMIT_SHA: ${{ steps.commit.outputs.sha }}
-          PREPARE_OUTCOME: ${{ steps.prepare.outcome }}
-          AGENT_OUTCOME: ${{ steps.agent.outcome }}
-          COMMIT_OUTCOME: ${{ steps.commit.outcome }}
+          CALLBACK_TOKEN: ${{ inputs.callback_token }}
+          WORKER_RESULT: ${{ needs.academy-worker.result }}
+          COMMIT_RESULT: ${{ needs.commit-candidate.result }}
         shell: bash
         run: |
           set -euo pipefail
           success=false
           summary=""
           error=""
-
-          if [[ "$PREPARE_OUTCOME" == "success" && "$AGENT_OUTCOME" == "success" && "$COMMIT_OUTCOME" == "success" && -n "${RESULT_COMMIT_SHA:-}" ]]; then
+          if [[ "$WORKER_RESULT" == "success" && "$COMMIT_RESULT" == "success" && -n "${RESULT_COMMIT_SHA:-}" ]]; then
             success=true
-            if [[ -f .agent-run/result.json ]]; then
-              summary="$(jq -r '.result_summary // "Academy worker cycle completed; independent verification is required."' .agent-run/result.json)"
-            else
-              summary="Academy worker cycle completed; independent verification is required."
-            fi
+            summary="Academy worker candidate committed to its non-published work branch; independent stage verification is required before any review advancement."
           else
-            error="Academy worker chain failed (prepare=${PREPARE_OUTCOME}, agent=${AGENT_OUTCOME}, commit=${COMMIT_OUTCOME}). Review the exact workflow step before retrying."
+            error="Academy worker chain failed (worker=${WORKER_RESULT}, committer=${COMMIT_RESULT}). Correct and verify the failed step before retrying."
           fi
 
           payload="$(jq -n \
@@ -146,7 +233,5 @@ jobs:
             --data "$payload" \
             "$ACADEMY_DISPATCH_URL/complete"
 
-      - name: Confirm no publication occurred
-        if: always()
-        run: |
-          echo "Academy worker finished on $GITHUB_REF_NAME. This workflow does not deploy or publish and does not advance owner review gates."
+      - name: Confirm this workflow has no publication authority
+        run: echo "Worker/committer/report chain ends at independent verification. No deploy, publish, release, or owner-gate advancement occurs here."
