@@ -6,8 +6,18 @@
   "named_program": null,
   "created_at": "2026-08-20T21:01:00-04:00",
   "created_by": "owner",
-  "current_status": "APPROVED",
+  "current_status": "NEEDS_MORE_WORK",
+  "workflow_stage": "VISUAL_PRODUCTION",
   "revision_number": 3,
+  "record_reconciled_at": "2026-09-07T15:32:00-04:00",
+  "workflow_control": {
+    "authorized_stage": "VISUAL_PRODUCTION",
+    "automation_state": "SUSPENDED_PENDING_PIPELINE_VERIFICATION",
+    "automation_may_run": false,
+    "final_product_review_ready": false,
+    "release_authorized": false,
+    "current_truth": "Product Design was re-approved by the owner and a new Visual Production cycle was authorized. Visual Production remains incomplete, Final Product QA remains open, automated production is suspended pending verified pipeline repair, and no release is authorized."
+  },
   "owner_input": {
     "idea": "Purifying water with natural materials",
     "owner_notes": "Revision 3 corrective integration: Revision 2 must ADD to Revision 1, not replace it. Preserve the original filtration/natural-material research, experiments, scenarios, source-protection teaching and Diagnose-before-prescribing transfer lesson; integrate the global water practices, copper, Moringa, frequency/energy and lunar-human research as expansions. Follow ACADEMY-REVISION-PRESERVATION-STANDARD.md and revision-impact.md.",
@@ -145,7 +155,7 @@
     "preservation_check": "PASS — baseline-comparison QA confirms distinct Revision 1 teaching value remains and Revision 2 is additive; targeted UV research was added separately without modifying the approved Revision 3 master content during the evidence-return cycle."
   },
   "materials": {
-    "status": "PRODUCT_DESIGN_HANDOFF_AUTHORIZED",
+    "status": "VISUAL_PRODUCTION_IN_PROGRESS",
     "material_types": [
       "integrated field guide master content",
       "family investigations",
@@ -155,7 +165,10 @@
       "baseline-comparison QA",
       "targeted UV evidence addendum",
       "UV source audit",
-      "UV gap QA"
+      "UV gap QA",
+      "approved Product Design package",
+      "learner-facing Visual Production release candidate",
+      "generated instructional image assets"
     ],
     "files": [
       "context-review.md",
@@ -171,45 +184,66 @@
       "research-uv-addendum.md",
       "sources-uv-addendum.md",
       "uv-gap-qa.md",
-      "product-design-handoff.md"
+      "product-design-handoff.md",
+      "product-architecture.md",
+      "product-manuscript.md",
+      "product-qa.md",
+      "owner-product-review.md",
+      "visual-production-handoff-2026-08-24.md",
+      "visual-production/production-status.md",
+      "final-product-qa.md"
     ],
     "preview_files": [
-      "master-content.md",
-      "concept.md",
-      "sources.md",
-      "revision-impact.md",
-      "qa-review.md",
-      "research-uv-addendum.md",
-      "sources-uv-addendum.md",
-      "uv-gap-qa.md"
+      "visual-production/water-learning-experience-final.html",
+      "visual-production/water-system-visual-preview.html",
+      "visual-production/water-system-implementation-visuals.html",
+      "visual-production/index.html",
+      "visual-production/preview-manifest.json"
     ]
   },
   "pricing": {
-    "status": "WORKING_DIRECTION_ONLY",
+    "status": "WORKING_DIRECTION_ONLY_NOT_PUBLIC",
     "proposed_price": 39,
     "currency": "USD",
     "role": "paid core illustrated field guide with free public evidence-literacy sample",
     "reasoning_file": "pricing.md",
     "owner_approved_price": 39,
-    "release_note": "Prior owner price direction is preserved; Product Design must complete market positioning and packaging analysis. No public price is authorized until later owner gates."
+    "release_note": "The $39 direction is preserved from Product Review but is not authorized as a public/live price until the later Final Product and Release gates are satisfied."
   },
   "qa": {
-    "status": "PASS_REVISION_3_AND_TARGETED_UV",
-    "completed_at": "2026-08-21T15:35:41-04:00",
-    "qa_file": "qa-review.md",
-    "baseline_commit": "912bb980164cfc75bd8243ae32af61af7ceb27d8",
-    "additional_qa_file": "uv-gap-qa.md",
-    "blockers": []
+    "status": "FINAL_PRODUCT_QA_IN_PROGRESS",
+    "completed_at": null,
+    "qa_file": "final-product-qa.md",
+    "research_qa": {
+      "status": "PASS_REVISION_3_AND_TARGETED_UV",
+      "completed_at": "2026-08-21T15:35:41-04:00",
+      "baseline_commit": "912bb980164cfc75bd8243ae32af61af7ceb27d8",
+      "additional_qa_file": "uv-gap-qa.md"
+    },
+    "verified_visual_production_progress": [
+      "multi-use learner input exercised",
+      "distinct My Water Plan branches exercised",
+      "fresh-document state restoration exercised",
+      "materially different learner profiles exercised",
+      "mobile width/overflow check exercised",
+      "print behavior exercised",
+      "current referenced GitHub files and fragments verified present",
+      "generated 55-gallon layered-filter image integrated and verified"
+    ],
+    "blockers": [
+      "The actual linked main experience → deeper page → Back to where I was round trip has not yet been exercised in a browser/runtime that permits normal navigation while proving exact prior location and learner-state preservation."
+    ]
   },
   "owner_review": {
-    "status": "APPROVED",
-    "latest_decision": "APPROVE_RESEARCH_FOUNDATION_TARGETED_UV",
+    "status": "PRODUCT_DESIGN_APPROVED_VISUAL_PRODUCTION_AUTHORIZED",
+    "latest_decision": "APPROVE_PRODUCT_DESIGN",
     "latest_comment": null,
-    "reviewed_at": "2026-08-21T15:35:41-04:00",
-    "review_history_file": "owner-review.md",
+    "reviewed_at": "2026-08-24T20:39:53-04:00",
+    "latest_review_event_id": "04c6b9a6-f658-4fb8-a0c6-8eecbec422ca",
+    "review_history_file": "owner-product-review.md",
     "source_decisions_complete": false,
     "source_review_policy": "Agent-vetted; owner overrides applied where present.",
-    "next_decision": "No owner research decision is pending. Product Design resumes and will later return for Product Review."
+    "next_decision": "No owner decision is currently pending. Finish Visual Production and Final Product QA, then return the actual integrated product to FINAL_PRODUCT_REVIEW for the owner's next decision."
   },
   "release": {
     "status": "NOT_STARTED",
@@ -218,12 +252,14 @@
     "destination": "",
     "live_url": "",
     "release_files": [],
-    "release_notes": "Research approval authorizes Product Design only. No publishing, deployment, sale, visual production, or final public price is authorized."
+    "live_verified_at": null,
+    "release_notes": "No public release is authorized. Product Review authorized Visual Production only. Final Product QA, Owner Final Product Review, Release Prep, separate Owner Release Decision, publication, and live verification remain unsatisfied gates."
   },
   "agent": {
     "active_agent": null,
-    "last_agent": "ChatGPT/GPT-5.6 Sol",
-    "session_title": "RRA Content Agent — targeted UV approval handback",
-    "last_updated_at": "2026-08-21T16:13:57-04:00"
+    "last_agent": "RRA Visual Production Agent",
+    "session_title": "RRA Visual Production Agent — Water current-state reconciliation",
+    "last_updated_at": "2026-09-07T15:32:00-04:00",
+    "automation_state": "SUSPENDED_PENDING_PIPELINE_VERIFICATION"
   }
 }
