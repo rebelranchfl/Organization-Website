@@ -41,7 +41,7 @@ The approved Business Freedom map is:
 1. **Get Your Time Back** — owner-capacity recovery; live dedicated page at `business-time.html`.
 2. **Stop Losing Customers** — lead capture and customer follow-up; live dedicated page at `business-leads.html`.
 3. **Keep Your Money** — retained income and connected operations; live dedicated page at `business-money-leaks.html`.
-4. **Get Seen, Get Found** — online presence and social-media visibility; approved next dedicated landing-page priority. No approved public page currently exists.
+4. **Get Seen, Get Found** — online presence and social-media visibility; live dedicated page at `business-visibility.html`.
 5. **Automated Payment Processing** — payment systems, merchant services, software connections, and automation; approved dedicated landing-page direction. No public page currently exists.
 6. **Add an Operations Leader to Your Team** — recurring access to combined operations strategist, operations manager, and process-engineering capability; approved comprehensive landing-page direction. No approved public page currently exists.
 7. **I've Got the Potential** — routing choice for owners who need help identifying the right path; not a separate paid service and does not receive its own landing page.
@@ -98,11 +98,10 @@ Program-specific brand, marketing, systems, or project subfolders should be crea
 
 ## Current build order
 
-1. Preserve and promote the three existing live dedicated pages and the live hub.
-2. Complete **Get Seen, Get Found** as the next dedicated landing page after owner approval of the page-stage decisions.
-3. Develop **Automated Payment Processing** after the Visibility page.
-4. Develop **Add an Operations Leader to Your Team** as the premium recurring Business Freedom page.
-5. Review the separate Marketplace payment-link offer last.
+1. Preserve and promote the four existing live dedicated pages and the live hub.
+2. Develop **Automated Payment Processing** after the completed Visibility page.
+3. Develop **Add an Operations Leader to Your Team** as the premium recurring Business Freedom page.
+4. Review the separate Marketplace payment-link offer last.
 
 ## Verification rule
 
