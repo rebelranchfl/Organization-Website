@@ -4,8 +4,8 @@
 
 - Page file: `business-visibility.html`
 - Program: Business Freedom
-- Current state: LIVE and production-verified at the concept-faithful revision
-- Last updated: 2026-09-07
+- Current state: the exact approved-concept rebuild and final owner-approved wording, visual-balance, and closing-image corrections are INTEGRATED and VERIFIED locally; release is pending
+- Last updated: 2026-09-08
 
 ## North star
 
@@ -66,6 +66,32 @@
 | 2026-09-07 | Concept-faithful local build | VERIFIED | Replace the restrained prior implementation with the approved visual sales sequence and two purpose-built hero crops, while preserving the shared RRM shell | Real mobile-browser review passed across the hero, journey, discovery controls, connected-system comparison, service process, before/after, RRL support, closing call to action, and footer. Both desktop and mobile hero crops contain no aprons. |
 | 2026-09-07 | Concept-faithful functional checks | VERIFIED | Publish only after the six discovery controls, primary calls to action, local assets, document structure, and responsive page all pass | All six controls independently changed the selected state, icon, heading, explanation, and missed-connection message; both paid calls to action resolve to `business-request.html?service=online-presence`; 29 local page references, 21 unique IDs, both hero assets, the shared shell, and whitespace checks passed. |
 | 2026-09-07 | Concept-faithful production release | LIVE | Use the owner-approved balanced visual concept as the public `Get Seen, Get Found` page | Pull request `#99` merged as `806855c3`; GitHub Pages deployment `34158308319` completed successfully. Cache-busted public checks returned 200 for the page, request route, stylesheet, script, and both new hero assets; mobile visual review confirmed the new hero and connected-system sections; the public source contains exactly six discovery controls, no Reviews or Directories controls, both paid calls to action, and the shared RRM shell. |
+| 2026-09-07 | Claimed concept-faithful live implementation | REJECTED | The implementation published through pull request `#99` is not the approved visual concept | The owner compared the public desktop page directly with the approved concept and identified a materially different composition. The implementation preserved the outline but changed density, spacing, proportions, imagery, and section layouts. Technical checks did not establish visual fidelity. |
+| 2026-09-07 | Exact approved-concept rebuild | APPROVED | Build the approved concept as shown without reinterpretation or visual deviation | The owner explicitly directed: `build the fucking concept as is and do not fucking deviate`. The approved reference is `codex-clipboard-7799cae7-8eff-4bad-b531-eb5f618f2ad3.png`. |
+| 2026-09-07 | Exact approved-concept local implementation | VERIFIED | Use the approved composition itself: compact split-photo hero, horizontal three-step journey, six-icon discovery row with a photographic expansion, side-by-side isolated/connected diagrams, horizontal three-step service strip, storefront-centered before/after, compact RRL block, and compact photographic close | Direct visual review at 456px mobile and 1183px desktop confirmed the same section composition, density, imagery, and proportions as the approved reference. The earlier stacked mobile cards and wide sparse desktop sections are absent. All six icon controls passed mouse behavior; keyboard activation passed; only one control remains selected; photographic and icon detail states switch correctly; the shared shell, two paid routes, 42 local references, 22 unique IDs, assets, syntax, overflow, and browser console checks passed. |
+| 2026-09-07 | Final discovery imagery and readability revision | VERIFIED LOCALLY | Use the owner-approved image for every discovery doorway; increase small text and icons to the documented readable minimums; shape the Before/After storefront as a map pin; and visually remove the square background around the official RRL emblem | At 456px and 1183px, all six controls load the correct image and keep exactly one selected state. Phone labels render at 15px, explanatory copy at 16px, phone icons at 32px, desktop icons at 40px, body copy at 17px, and the page has no horizontal overflow. Mouse and keyboard activation passed, both paid links remain correct, all requested images load, and no page requests fail. |
+
+| 2026-09-08 | Journey decision language | INTEGRATED AND VERIFIED LOCALLY | Replace "Choose what feels clear" with "Hear about you," "Find and explore," and "Decide you’re the right fit," using the exact supporting sentences approved by the owner. | The natural customer journey is present and readable in the rendered phone and desktop page. |
+| 2026-09-08 | Closing image | INTEGRATED AND VERIFIED LOCALLY | Remove `business-visibility-customer-arrival-v2.jpg` from the closing section. Use the owner-approved generated concept as `business-visibility-customer-purchase-v1.png`. | The rendered close now shows phone research leading to a purchase in a woman-owned crafts, tea, and candle shop; both faces, the product handoff, and live-copy space remain visible on phone and desktop. |
+| 2026-09-08 | RRL section visual balance | INTEGRATED AND VERIFIED LOCALLY | Enlarge the RRL network relative to the copy and optically center it against the full section; do not treat centering inside an undersized right column as sufficient. | Phone and desktop rendering confirm the official emblem is larger and the complete network is balanced against the section copy. |
+| 2026-09-08 | Site-wide visual acceptance control | APPROVED | Apply the shared visual-acceptance, rendered-size, optical-alignment, natural-language, concept-comparison, asset-status, and drift-recovery gate from docs/site-design-system.md; Business Freedom additionally follows brand.md and this record. | Technical success cannot substitute for judging what a visitor sees. Rejections and corrections must remain cumulative so failed assets and language cannot silently return. |
+
+## Active visual and wording register
+
+| Section | Exact item | State | Required takeaway / constraint |
+|---|---|---|---|
+| 02 — customer journey | "Hear about you"; "Find and explore"; "Decide you’re the right fit" with the owner-approved supporting sentences | INTEGRATED AND VERIFIED LOCALLY | Recommendation leads to online research, evaluation, choice, and action; use natural customer language. |
+| 03 — discovery doorways | Six owner-approved expandable images | INTEGRATED AND VERIFIED LOCALLY | Each visual must remain understandable at its actual rendered size; detailed multi-stage visuals may receive more space than simple photographs. |
+| 06 — Before/After | Storefront inside map-pin frame | INTEGRATED AND VERIFIED LOCALLY | Show movement from known locally to digitally discoverable; keep the visual optically centered between both outcomes. |
+| 07 — Rebel Ranch Local | Official RRL emblem and network | INTEGRATED AND VERIFIED LOCALLY | Keep the official emblem; enlarge and optically center the network relative to the complete section. |
+| Closing section | business-visibility-customer-arrival-v2.jpg | REJECTED | Must not remain or return. A person's back is not an acceptable focal point for the service outcome. |
+| Closing section | `business-visibility-customer-purchase-v1.png`, copied without alteration from generated concept `exec-41bb9ae3-0cdc-4163-a1c1-8610d7fcb79d.png` | INTEGRATED AND VERIFIED LOCALLY | Show online discovery leading to an in-person purchase; preserve both faces and usable space for live closing content. |
+
+### Exact approved Section 02 wording
+
+1. **Hear about you** — Someone recommends your business.
+2. **Find and explore** — They research your products, services, work, reviews, and brand.
+3. **Decide you’re the right fit** — They choose you and take the next step.
 
 ## Remaining boundaries
 
@@ -80,7 +106,8 @@
 - Correction: replace the affected assets with versioned images that explicitly require work-appropriate clothing and prohibit aprons, smocks, and bib garments.
 - Preventive control: the Business Freedom photography standard now explicitly prohibits aprons on men; every generated image must be checked for this before owner review.
 - Additional escaped defect: HTML image height hints were being honored as fixed mobile heights, making the page unnecessarily long and cropping subjects out of view. The page stylesheet now explicitly preserves responsive image proportions, and mobile/desktop visual checks were repeated.
+- Second escaped visual-fidelity defect: the agent treated the approved mobile concept as a loose section outline, then created a wide and sparse desktop interpretation. It was incorrectly marked concept-faithful because the section order and functionality passed. Correction requires direct side-by-side visual comparison against the approved reference at phone and desktop widths; matching components or behavior cannot substitute for matching composition, density, imagery, and proportions.
 
 ## Next permitted action
 
-- Use this finished page as an approved Business Freedom visual reference where it fits, without forcing its exact layout onto the remaining service pages. Build the next page only with separate owner approval.
+- Commit, push, merge, deploy, and publicly verify the owner-authorized corrected release. Do not include unrelated work.

@@ -80,6 +80,8 @@ Use the authoritative document for the subject instead of maintaining duplicate 
 - `docs/digital-experience-first.md` — shared RRM digital-experience architecture.
 - `docs/site-design-system.md` — shared page/UX construction principles. It must not be used as a substitute for a program's own brand/visual rules.
 
+For every public-page visual, layout, responsive-design, concept, or image-generation task, agents must read the **Visual acceptance, concept fidelity, and drift recovery** section in `docs/site-design-system.md` before proposing, generating, implementing, reviewing, or approving visual work. They must also read the applicable program brand/visual authority and page decision record. Passing code, link, loading, or overflow checks does not establish visual approval.
+
 ### Program work
 
 Read the program-specific controls and standards for the target program. Program documents govern program-specific purpose, brand, workflow, audience, content, operations, and implementation while remaining subject to this repository control.
@@ -181,6 +183,20 @@ Use Git and the right protection level instead of creating duplicate file backup
 - Locate and verify approved taglines, catchphrases, names, colors, typography, and imagery rules before use.
 - New recurring brand language, taglines, slogans, marks, or identities require owner approval before production use.
 - After generation/design, compare the output against the verified brand inputs. A visually altered/invented logo or unapproved brand phrase fails verification.
+
+### Visual drift stop and recovery rule
+
+If the owner says an agent is off track, has deviated from an approved concept, has reused rejected material, has gone rogue, or has otherwise misunderstood the visual direction, the agent must immediately stop further generation and implementation. It must not attempt another correction from chat memory alone.
+
+Before resuming, the agent must:
+
+1. re-read this `AGENTS.md`, `docs/site-design-system.md`, the applicable program authority, program brand/visual rules, and page decision record;
+2. mark the rejected concept, asset, wording, or treatment as rejected in the applicable page record so it cannot silently return;
+3. compare the current output directly with the approved reference and list the concrete mismatches;
+4. restate the exact authorized correction and exclusions in plain language; and
+5. repeat the shared visual-acceptance gate before showing or implementing another candidate.
+
+Do not call the work corrected, aligned, ready, or complete until the actual rendered result passes both the technical checks and the required visual judgment checks in `docs/site-design-system.md`.
 
 ## 10. Website interaction rule — pills are clickable only
 

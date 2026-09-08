@@ -55,6 +55,34 @@ The visual system should communicate movement from confusion to clarity. It may 
 - Keep paragraphs brief. When an explanation is necessary, use progressive disclosure, a visual sequence, or a before/after comparison.
 - Price and primary action should be visible in the opening screen and repeated in the close.
 
+### Readable type minimums
+
+Business Freedom pages are designed mobile-first. The layout must adapt to readable text; text must never be reduced merely to make a section shorter or force a desktop-style row to fit on a phone.
+
+| Text role | Minimum size | Preferred working range |
+|---|---:|---:|
+| Main body and explanatory copy | `16px` | `16–18px` |
+| Supporting captions and diagram explanations | `14px` | `14–16px` |
+| Interactive labels, links, and navigation | `14px` | `14–16px` |
+| Primary buttons | `16px` | `16–18px` |
+| Eyebrows and short orientation labels | `12px` | `12–14px` |
+| Legal disclosures and true fine print only | `12px` | `12–13px` |
+| Card or explanation headings | `18px` | `18–22px` |
+| Major section headings | `28px` | `28–36px` |
+
+- Use at least `1.4` line height for normal reading copy and at least `1.3` for compact supporting text.
+- When text wraps, allow the section, card, or control to grow vertically.
+- Do not preserve a mockup's compact proportions by shrinking readable text below these minimums.
+- Verify typography at a real phone width and at desktop width before approval or publication.
+
+### Interactive icon and control minimums
+
+- Discovery-control icons must render at least `32px × 32px` on phones and should render about `40px × 40px` on desktop when the layout permits.
+- Every interactive control must provide at least a `44px` touch target, even when its visible icon is smaller.
+- Keep the plain-language label beside or below its icon. Never make an icon carry the meaning by itself.
+- Do not split a word merely to force six controls into one row. Adjust spacing while preserving a readable label size of at least `14px`.
+- Verify icon clarity, label wrapping, selected state, and keyboard focus at real phone and desktop widths.
+
 ## Photography
 
 - Lead with authentic people in recognizable customer and owner situations.
@@ -72,6 +100,17 @@ The visual system should communicate movement from confusion to clarity. It may 
 - On mobile, keep tap targets generous and reveal one concise explanation at a time.
 - Show a clear selected state and support keyboard focus and reduced-motion preferences.
 - Avoid carousels, modals, tiny labels, decorative pills, and large walls of interchangeable cards.
+
+## Visual approval and recovery
+
+Business Freedom inherits the complete site-wide visual-acceptance and drift-recovery requirements in `../site-design-system.md`. Before Business Freedom concept, layout, imagery, image-generation, or responsive work, agents must also read this program standard and the applicable page decision record.
+
+- Record important section visuals, wording, and layout treatments in the page decision record with a clear `PROPOSED`, `APPROVED`, `REJECTED`, `SUPERSEDED`, `INTEGRATED`, or `VERIFIED` state.
+- Carry every owner rejection and correction forward. A rejected image, phrase, crop, proportion, or layout must not silently return in a later revision.
+- Judge imagery at its actual rendered size. Multi-stage explanations may require more room than a simple photograph; do not force all discovery visuals into one identical box.
+- Check optical alignment and relative scale against the entire section, not only the element's immediate container.
+- Require a real-phone and desktop visual inspection, full-page review, close section crops, and direct comparison with the approved concept before approval or publication.
+- If the owner identifies drift, stop work, update the page record, re-read the governing documents, list the specific mismatches, and repeat the shared visual-acceptance gate before continuing.
 
 ## Sales-page sequence
 

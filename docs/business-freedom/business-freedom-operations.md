@@ -121,6 +121,8 @@ Program-specific brand, marketing, systems, or project subfolders should be crea
 
 A page record, local draft, filename, or planned feature is not proof that something is public or approved.
 
+Before any Business Freedom public-page concept, layout, imagery, or image-generation work, agents must read `../site-design-system.md`, `brand.md`, and the applicable record under `pages/`. Business Freedom inherits the shared visual-acceptance, asset-status, concept-fidelity, rendered-size, optical-alignment, and drift-recovery requirements. Program-specific decisions remain in `brand.md` and the applicable page record rather than being duplicated here.
+
 Before any Business Freedom promotion or publication, verify:
 
 - the exact approved service name;
