@@ -125,7 +125,87 @@ Do not treat decorative graphics as a substitute for explanation or functionalit
 
 Official organization/program logos and brand assets must be the exact verified approved assets. Do not redraw, recreate, approximate, or replace them with generated substitutes.
 
-## 10. Before release
+## 10. Visual acceptance, concept fidelity, and drift recovery
+
+This section is mandatory for every public-page visual, layout, responsive-design, concept, and image-generation task. Read it before proposing, generating, implementing, reviewing, or approving visual work. Apply it together with the applicable program brand or visual authority and page decision record.
+
+### 10.1 Maintain cumulative approval state
+
+Visual direction is cumulative. A later task does not erase an earlier owner approval, rejection, correction, exclusion, or warning.
+
+The applicable page decision record must identify important section visuals, wording, and layout treatments using these states:
+
+- `PROPOSED` — may be discussed or previewed but not implemented;
+- `APPROVED` — owner-approved for the stated use, but not proof of implementation;
+- `REJECTED` — must not be reused, retained, or treated as a fallback;
+- `SUPERSEDED` — replaced by a newer approved direction;
+- `INTEGRATED` — placed in the current working implementation, but not proof of visual quality;
+- `VERIFIED` — inspected in the actual rendered experience and confirmed against the approved reference and purpose.
+
+For each important visual or visual section, record enough information to prevent substitution or drift: section purpose, intended two-second takeaway, exact asset or reference, status, approval or rejection date, required wording when applicable, mobile and desktop role, and any prohibited or previously rejected treatment.
+
+If an asset or treatment is rejected, remove it from the active implementation during the authorized correction. Do not leave it in place merely because the replacement is not yet selected; instead, report the section as blocked or pending.
+
+### 10.2 Define the visual job before generation or layout
+
+Before selecting, generating, or placing a visual, state:
+
+1. what the visitor should understand within about two seconds;
+2. how that understanding supports the section's distinct job and the page's user or sales journey;
+3. what the visual must show to communicate that meaning;
+4. where live text and controls will sit;
+5. what must remain visible in phone and desktop crops; and
+6. which approved constraints and rejected patterns must be carried forward.
+
+If the visual does not materially help the visitor understand the subject, process, choice, proof, result, or next action, do not use it merely to fill space.
+
+### 10.3 Image-generation gate
+
+Before asking an image generator to create or revise a public-page visual, verify the applicable brand inputs, page decision record, approved reference, and current rejection list. The prompt must include the section purpose, customer story or action, intended aspect ratio and rendered placement, required focal point, live-text region, crop-safe area, elements that must remain visible, and prohibited or previously rejected elements.
+
+Official logos and exact interface wording must not be generated. Use the verified asset or live page text instead.
+
+Inspect each generated candidate against the prompt before showing it to the owner. Do not knowingly pass along a candidate with an obvious mismatch, meaningless focal subject, wrong clothing or identity, fake or unreadable interface, malformed text, incorrect placement, or repeated rejected pattern. Correct or discard the failed candidate first.
+
+### 10.4 Judge the rendered visual, not the source file
+
+High source resolution is not proof that a visual works on the page. Inspect it at its actual rendered size and in context.
+
+For every important visual, verify:
+
+- the subject and intended meaning are understandable without zooming;
+- the visual is large enough relative to its complexity and surrounding text;
+- detailed diagrams and multi-stage stories receive more display space than simple photographs when needed;
+- the image and text have a deliberate hierarchy rather than competing for attention;
+- placement is optically balanced, not merely mathematically centered inside an undersized or misplaced container;
+- faces, actions, products, signs, controls, and other meaning-carrying elements remain visible in the applicable crops;
+- empty space is intentional and supports live content;
+- overlays do not obscure the meaningful action; and
+- repeated components are not forced into identical layouts when their information density or purpose differs.
+
+### 10.5 Natural-language gate
+
+Headings, labels, captions, and journey steps must sound like language the intended visitor would naturally understand. Test the wording by asking whether a real person would plausibly say it, search for it, or recognize it as their situation. Technically accurate but unnatural marketing language fails this gate and must be rewritten before approval.
+
+### 10.6 Required technical and visual verification
+
+Both verification types are required; neither substitutes for the other.
+
+Technical checks include, as applicable: text and icon sizes, touch targets, contrast, image dimensions and aspect ratios, file and link resolution, selected and focus states, keyboard behavior, responsive overflow, runtime errors, and the actual destination of every action.
+
+Visual judgment checks include: two-second comprehension, relevance, hierarchy, relative scale, optical alignment, balance, crop safety, subject visibility, brand fit, natural wording, and whether the actual page matches the approved concept.
+
+For responsive public pages, inspect at least one real phone width at or below `456px` and one desktop width at or above `1180px`, plus any exact viewport shown in the approved reference. Review both the full page and close section crops. Compare the implementation side by side with the approved concept; matching section names or functionality is not proof of matching composition.
+
+Do not call a visual implementation ready, aligned, verified, or complete until every required technical and visual check passes. Record failures honestly and correct them before publication.
+
+### 10.7 Drift recovery
+
+When the owner identifies drift, deviation, repeated rejected work, or rogue expansion, stop further visual generation and implementation. Re-read the repository control, this section, the applicable program authority, program brand or visual rules, and page decision record. Record the rejection, compare the current result with the approved source, list the specific mismatches, restate the authorized correction and exclusions, and then repeat this complete visual-acceptance gate.
+
+Do not continue from memory, quietly reinterpret the concept, or preserve a rejected treatment as a temporary fallback.
+
+## 11. Before release
 
 Before any public surface is called ready/live, verify the applicable user journey end to end.
 

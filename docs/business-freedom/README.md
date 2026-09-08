@@ -6,7 +6,7 @@
 
 Read `business-freedom-operations.md` first for the program-level purpose, boundaries, current service map, funding priority, and operating direction.
 
-Then read the applicable record in `pages/` before changing, promoting, or publishing a specific Business Freedom page or offer.
+For public-page concepts, layouts, imagery, image generation, or responsive visual work, read `../site-design-system.md` and `brand.md` next. Then read the applicable record in `pages/` before proposing, generating, changing, reviewing, promoting, or publishing a specific Business Freedom page or offer. If the owner identifies drift or deviation, stop and follow the recovery procedure in the shared site design system before continuing.
 
 ## Current public state
 
