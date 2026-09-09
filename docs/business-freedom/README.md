@@ -32,7 +32,7 @@ These pages are part of the approved hub map even though separate page decision 
 | `pages/business-freedom-hub.md` | Main Business Freedom hub and canonical routing map | LIVE and governing |
 | `pages/keep-more-of-what-you-earn.md` | Keep Your Money | Live dedicated page direction/history |
 | `pages/get-seen-get-found.md` | Get Seen, Get Found | LIVE and linked from the Business Freedom hub |
-| `pages/automated-payment-processing.md` | Automated Payment Processing | Approved dedicated landing-page direction; no public page currently exists |
+| `pages/automated-payment-processing.md` | Automated Payment Processing | Approved female-owner concept integrated and verified locally at `business-payment-processing.html`; publication pending |
 | `pages/ongoing-business-guidance.md` | Add an Operations Leader to Your Team | Approved comprehensive recurring-service direction; no approved public page currently exists |
 | `pages/get-paid-faster.md` | Separate Marketplace-specific payment-link setup | Hold until core Business Freedom work is complete |
 

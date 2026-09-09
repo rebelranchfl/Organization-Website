@@ -4,7 +4,7 @@
 
 - Page file: `business-visibility.html`
 - Program: Business Freedom
-- Current state: the exact approved-concept rebuild and final owner-approved wording, visual-balance, and closing-image corrections are INTEGRATED and VERIFIED locally; release is pending
+- Current state: LIVE and production-verified with the exact approved-concept rebuild and final owner-approved wording, visual-balance, and closing-image corrections
 - Last updated: 2026-09-08
 
 ## North star
@@ -75,6 +75,7 @@
 | 2026-09-08 | Closing image | INTEGRATED AND VERIFIED LOCALLY | Remove `business-visibility-customer-arrival-v2.jpg` from the closing section. Use the owner-approved generated concept as `business-visibility-customer-purchase-v1.png`. | The rendered close now shows phone research leading to a purchase in a woman-owned crafts, tea, and candle shop; both faces, the product handoff, and live-copy space remain visible on phone and desktop. |
 | 2026-09-08 | RRL section visual balance | INTEGRATED AND VERIFIED LOCALLY | Enlarge the RRL network relative to the copy and optically center it against the full section; do not treat centering inside an undersized right column as sufficient. | Phone and desktop rendering confirm the official emblem is larger and the complete network is balanced against the section copy. |
 | 2026-09-08 | Site-wide visual acceptance control | APPROVED | Apply the shared visual-acceptance, rendered-size, optical-alignment, natural-language, concept-comparison, asset-status, and drift-recovery gate from docs/site-design-system.md; Business Freedom additionally follows brand.md and this record. | Technical success cannot substitute for judging what a visitor sees. Rejections and corrections must remain cumulative so failed assets and language cannot silently return. |
+| 2026-09-08 | Corrected production release | LIVE AND VERIFIED | Publish the exact locally verified page, approved assets, and governing visual controls without unrelated files | Pull request `#101` merged as `0daa1da3`; GitHub Pages deployment `34258464274` completed successfully. Public phone review at 416px and desktop review at 1833px confirmed the approved composition, 17px body text, 32px/40px discovery icons, no horizontal overflow, the enlarged and centered RRL network, the approved customer-to-purchase close, both paid routes, and the direct Business Freedom hub links. All six discovery controls loaded their correct images and explanations; keyboard activation passed. |
 
 ## Active visual and wording register
 
@@ -110,4 +111,4 @@
 
 ## Next permitted action
 
-- Commit, push, merge, deploy, and publicly verify the owner-authorized corrected release. Do not include unrelated work.
+- Use this finished page as an approved Business Freedom visual reference where its decisions fit. Do not force its exact layout onto another service page; begin another landing page only with separate owner direction.

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Automated Payment Processing | Business Freedom | Rebel Ranch Ministries</title>
+  <meta name="description" content="Connect the approved payment systems that collect money, move it into your business, and keep routine bills and payments on schedule.">
+  <link rel="canonical" href="https://rebelranchministries.org/business-payment-processing.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Automated Payment Processing | Business Freedom">
+  <meta property="og:description" content="Build a connected payment flow that keeps routine money movement working without requiring you to move every dollar yourself.">
+  <meta property="og:url" content="https://rebelranchministries.org/business-payment-processing.html">
+  <meta property="og:image" content="https://rebelranchministries.org/assets/brand/Business%20Freedom/business-payment-hero-v1.webp">
+  <link rel="stylesheet" href="assets/css/public-surface.css">
+  <link rel="stylesheet" href="assets/css/business-payment-processing.css">
+</head>
+<body class="business-payment-page">
+<main>
+  <svg class="pp-symbols" aria-hidden="true">
+    <symbol id="pp-icon-invoice" viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6V3Z"></path><path d="M15 3v4h4M9 11h6M9 15h6"></path></symbol>
+    <symbol id="pp-icon-cart" viewBox="0 0 24 24"><path d="M3 4h2l2.2 10h9.9l2-7H6"></path><circle cx="9" cy="19" r="1.5"></circle><circle cx="17" cy="19" r="1.5"></circle></symbol>
+    <symbol id="pp-icon-qr" viewBox="0 0 24 24"><path d="M3 3h6v6H3V3Zm12 0h6v6h-6V3ZM3 15h6v6H3v-6Zm12 0h2v2h-2v-2Zm4 0h2v6h-2m-4-2h2v2h-2"></path></symbol>
+    <symbol id="pp-icon-card" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 9h18M16 14h2"></path></symbol>
+    <symbol id="pp-icon-bank" viewBox="0 0 24 24"><path d="m3 9 9-5 9 5M5 10v7m4-7v7m6-7v7m4-7v7M3 20h18M2 8h20"></path></symbol>
+    <symbol id="pp-icon-repeat" viewBox="0 0 24 24"><path d="M20 7h-11a5 5 0 0 0-5 5M4 17h11a5 5 0 0 0 5-5"></path><path d="m17 4 3 3-3 3M7 14l-3 3 3 3"></path></symbol>
+    <symbol id="pp-icon-light" viewBox="0 0 24 24"><path d="M9 18h6M10 22h4"></path><path d="M8.2 14.5A7 7 0 1 1 15.8 14.5c-.8.6-1.3 1.5-1.3 2.5h-5c0-1-.5-1.9-1.3-2.5Z"></path></symbol>
+    <symbol id="pp-icon-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3A1.7 1.7 0 0 0 10 3V2.8h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z"></path></symbol>
+    <symbol id="pp-icon-shield" viewBox="0 0 24 24"><path d="M12 3 20 6v6c0 5-3.4 8.2-8 9-4.6-.8-8-4-8-9V6l8-3Z"></path><path d="m8.5 12 2.2 2.2 4.8-5"></path></symbol>
+    <symbol id="pp-icon-store" viewBox="0 0 24 24"><path d="M4 10v10h16V10M3 9l2-5h14l2 5"></path><path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0M9 20v-6h6v6"></path></symbol>
+    <symbol id="pp-icon-wallet" viewBox="0 0 24 24"><path d="M4 6.5h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-12Z"></path><path d="M4 6.5 16 3v3.5M15 12h6v4h-6a2 2 0 0 1 0-4Z"></path></symbol>
+    <symbol id="pp-icon-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M7 3v4m10-4v4M3 10h18M8 14h.01m4 0h.01m4 0h.01M8 18h.01m4 0h.01"></path></symbol>
+    <symbol id="pp-icon-map" viewBox="0 0 24 24"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6Z"></path><path d="M9 3v15m6-12v15"></path></symbol>
+    <symbol id="pp-icon-sliders" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"></path><circle cx="9" cy="6" r="2"></circle><circle cx="15" cy="12" r="2"></circle><circle cx="11" cy="18" r="2"></circle></symbol>
+    <symbol id="pp-icon-link" viewBox="0 0 24 24"><path d="m10 13 4-4"></path><path d="M7.5 16.5 5 19a3.5 3.5 0 0 1-5-5l4-4a3.5 3.5 0 0 1 5 0M16.5 7.5 19 5a3.5 3.5 0 0 1 5 5l-4 4a3.5 3.5 0 0 1-5 0"></path></symbol>
+    <symbol id="pp-icon-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 2.7 2.7L16.5 9"></path></symbol>
+  </svg>
+
+  <section class="pp-hero" id="top">
+    <img class="pp-hero-media" src="assets/brand/Business%20Freedom/business-payment-hero-v1.webp" alt="A woman closes her small business for the evening while her connected payment flow continues." width="1672" height="941" fetchpriority="high">
+    <div class="pp-wrap pp-hero-inner">
+      <div class="pp-hero-copy">
+        <p class="pp-kicker">Business Freedom · Automated Payment Processing</p>
+        <h1>Your payment system should <span>always</span> be working for <em>you.</em></h1>
+        <p class="pp-lead">Get paid. Move money. Keep essential bills on schedule.</p>
+        <p class="pp-price"><small>Automated Payment Processing</small><strong>Starting at $199 · Normally $449</strong></p>
+        <a class="pp-button pp-button-primary" href="business-request.html?service=revenue-cycle">Build My Payment Flow</a>
+      </div>
+      <div class="pp-hero-network" aria-label="Payments flowing through a connected business account to approved destinations">
+        <div class="pp-source-stack" aria-hidden="true">
+          <span><svg><use href="#pp-icon-invoice"></use></svg></span><span><svg><use href="#pp-icon-cart"></use></svg></span><span><svg><use href="#pp-icon-qr"></use></svg></span><span><svg><use href="#pp-icon-card"></use></svg></span><span><svg><use href="#pp-icon-bank"></use></svg></span>
+        </div>
+        <div class="pp-network-line" aria-hidden="true"></div>
+        <span class="pp-account"><svg><use href="#pp-icon-bank"></use></svg><b>Business account</b></span>
+        <div class="pp-network-line" aria-hidden="true"></div>
+        <div class="pp-destination-stack" aria-hidden="true">
+          <span><svg><use href="#pp-icon-light"></use></svg></span><span><svg><use href="#pp-icon-card"></use></svg></span><span><svg><use href="#pp-icon-gear"></use></svg></span><span><svg><use href="#pp-icon-shield"></use></svg></span><span><svg><use href="#pp-icon-store"></use></svg></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pp-section pp-problems" id="payment-problems">
+    <div class="pp-wrap">
+      <div class="pp-problem-grid">
+        <article class="pp-problem pp-problem-limited">
+          <h2>Too few ways to get paid</h2>
+          <div class="pp-problem-visual" aria-hidden="true"><span><svg><use href="#pp-icon-invoice"></use></svg></span><span><svg><use href="#pp-icon-cart"></use></svg></span><span><svg><use href="#pp-icon-card"></use></svg></span><b>×</b></div>
+          <p>A customer may be ready to pay, but one limited option can slow down or stop the transaction.</p>
+        </article>
+        <article class="pp-problem pp-problem-disconnected">
+          <h2>Too many disconnected systems</h2>
+          <div class="pp-tangle" aria-hidden="true"><span><svg><use href="#pp-icon-card"></use></svg></span><span><svg><use href="#pp-icon-bank"></use></svg></span><span><svg><use href="#pp-icon-qr"></use></svg></span><span><svg><use href="#pp-icon-repeat"></use></svg></span></div>
+          <p>Money can arrive, yet you still have to check, enter, transfer, track, and pay across separate places.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="pp-section pp-flow-section" id="connected-flow">
+    <div class="pp-wrap">
+      <div class="pp-section-heading"><div><p class="pp-eyebrow">Your connected money path</p><h2>One connected payment flow</h2><p>Give customers practical ways to pay, connect the systems that handle the money, and route routine payments where you approve.</p></div></div>
+      <div class="pp-flow" aria-label="Customer payments move through a connected business flow into a business account and then to approved destinations">
+        <section class="pp-flow-column">
+          <h3>Customer payments</h3>
+          <div class="pp-flow-icons"><span><svg><use href="#pp-icon-invoice"></use></svg><b>Invoice</b></span><span><svg><use href="#pp-icon-cart"></use></svg><b>Checkout</b></span><span><svg><use href="#pp-icon-qr"></use></svg><b>Link or QR</b></span><span><svg><use href="#pp-icon-card"></use></svg><b>Card or tap</b></span><span><svg><use href="#pp-icon-bank"></use></svg><b>Bank transfer</b></span><span><svg><use href="#pp-icon-repeat"></use></svg><b>Recurring</b></span></div>
+        </section>
+        <span class="pp-flow-arrow" aria-hidden="true">→</span>
+        <section class="pp-flow-column pp-flow-engine"><h3>Connected business flow</h3><span><svg><use href="#pp-icon-gear"></use></svg></span><p>Approved systems pass the routine work forward.</p></section>
+        <span class="pp-flow-arrow" aria-hidden="true">→</span>
+        <section class="pp-flow-column pp-flow-account"><h3>Business account</h3><span><svg><use href="#pp-icon-bank"></use></svg></span><p>Your money reaches the account you approved, subject to provider and bank timing.</p></section>
+        <span class="pp-flow-arrow" aria-hidden="true">→</span>
+        <section class="pp-flow-column">
+          <h3>Approved destinations</h3>
+          <div class="pp-flow-icons pp-destination-icons">
+            <span><svg><use href="#pp-icon-light"></use></svg><b>Utilities</b></span>
+            <span><svg><use href="#pp-icon-card"></use></svg><b>Business card</b></span>
+            <span><svg><use href="#pp-icon-gear"></use></svg><b>Software</b></span>
+            <span><svg><use href="#pp-icon-shield"></use></svg><b>Insurance</b></span>
+            <span><svg><use href="#pp-icon-store"></use></svg><b>Vendors</b></span>
+            <span><svg><use href="#pp-icon-wallet"></use></svg><b>Your pocket</b></span>
+          </div>
+        </section>
+      </div>
+      <p class="pp-boundary">We help design and connect the approved systems around your business. Banks and payment providers control processing, transfer, and deposit timing.</p>
+    </div>
+  </section>
+
+  <section class="pp-section pp-rules" id="your-control">
+    <div class="pp-wrap">
+      <div class="pp-centered-heading"><div><p class="pp-eyebrow">You stay in control</p><h2>You set the rules</h2></div></div>
+      <div class="pp-rule-controls" role="group" aria-label="Payment flow control options">
+        <button class="pp-rule is-active" type="button" data-rule="automatic" aria-pressed="true"><svg><use href="#pp-icon-gear"></use></svg><span><strong>Automatic</strong><small>Routine work continues</small></span></button>
+        <button class="pp-rule" type="button" data-rule="scheduled" aria-pressed="false"><svg><use href="#pp-icon-calendar"></use></svg><span><strong>Scheduled</strong><small>Payments happen on time</small></span></button>
+        <button class="pp-rule" type="button" data-rule="approval" aria-pressed="false"><svg><use href="#pp-icon-shield"></use></svg><span><strong>Approval required</strong><small>You confirm before it moves</small></span></button>
+      </div>
+      <p class="pp-rule-detail" id="pp-rule-detail" aria-live="polite"><strong>Automatic:</strong> Repetitive handoffs and updates continue after the system receives the authorized trigger.</p>
+    </div>
+  </section>
+
+  <section class="pp-section pp-build" id="how-we-help">
+    <div class="pp-wrap">
+      <div class="pp-centered-heading"><div><p class="pp-eyebrow">Built around your business</p><h2>We build the flow around your business</h2></div></div>
+      <div class="pp-build-steps">
+        <article><span><svg><use href="#pp-icon-map"></use></svg></span><b>1</b><h3>Map</h3><p>Follow how money arrives, moves, gets recorded, and leaves today.</p></article>
+        <article><span><svg><use href="#pp-icon-sliders"></use></svg></span><b>2</b><h3>Choose</h3><p>Select practical payment methods and rules that fit your customers and business.</p></article>
+        <article><span><svg><use href="#pp-icon-link"></use></svg></span><b>3</b><h3>Connect</h3><p>Link the approved payment systems and supporting business tools.</p></article>
+        <article><span><svg><use href="#pp-icon-check"></use></svg></span><b>4</b><h3>Automate &amp; test</h3><p>Test each handoff and keep owner approval wherever it is needed.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="pp-section pp-outcome" id="before-after">
+    <div class="pp-wrap">
+      <div class="pp-outcome-grid">
+        <article class="pp-outcome-card pp-before">
+          <img src="assets/brand/Business%20Freedom/business-payment-manual-v1.webp" alt="A small-business owner manually sorting bills, receipts, and payment records after hours." width="1672" height="941" loading="lazy">
+          <div><p class="pp-outcome-label">Before</p><h2>You move every dollar.</h2><ul><li>Check separate payment systems</li><li>Repeat entries and transfers</li><li>Remember each routine bill</li></ul></div>
+        </article>
+        <div class="pp-outcome-arrow" aria-hidden="true">→</div>
+        <article class="pp-outcome-card pp-after">
+          <img src="assets/brand/Business%20Freedom/business-payment-relief-v1.webp" alt="The owner relaxes outside her business after work while routine payment processes continue." width="1672" height="941" loading="lazy">
+          <div><p class="pp-outcome-label">After</p><h2>The system handles the routine.</h2><ul><li>Practical ways for customers to pay</li><li>Connected handoffs and updates</li><li>Approved bills stay on schedule</li></ul></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="pp-close" id="get-started">
+    <img class="pp-close-media" src="assets/brand/Business%20Freedom/business-payment-close-v1.webp" alt="" width="1672" height="941" loading="lazy">
+    <div class="pp-wrap pp-close-inner">
+      <div class="pp-close-copy">
+        <h2>Let the system carry the routine.</h2>
+        <p>Build a payment flow that collects through the right channels, connects the necessary systems, and keeps you in control without requiring you to move every dollar yourself.</p>
+        <p class="pp-price"><small>Automated Payment Processing</small><strong>Starting at $199 · Normally $449</strong></p>
+        <a class="pp-button pp-button-primary" href="business-request.html?service=revenue-cycle">Build My Payment Flow</a>
+        <a class="pp-secondary-link" href="business-fixes.html">Back to Business Freedom</a>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="assets/js/public-shell.js"></script>
+<script src="assets/js/business-payment-processing.js"></script>
+</body>
+</html>

@@ -27,11 +27,12 @@
   5. `Automated Payment Processing` — core service requiring a dedicated landing page.
   6. `Add an Operations Leader to Your Team` — core recurring service requiring one comprehensive landing page.
   7. `I've Got the Potential` — routing choice with the supporting statement `I just don't know how to get there.`; no landing page.
-- Link the four completed landing pages from their matching selector results and full service cards:
+- Link the five completed landing pages from their matching selector results and full service cards:
   - `business-time.html`
   - `business-leads.html`
   - `business-money-leaks.html`
   - `business-visibility.html`
+  - `business-payment-processing.html`
 - Preserve the exact approved recognition statement for `Automated Payment Processing`: `Tired of waiting for systems and programs to deposit my money.`
 - Preserve the exact approved recognition statement for `Add an Operations Leader to Your Team`: `I need an experienced & certified pro on my side, but can't afford a full-time employee.`
 - Preserve the approved `Keep Your Money` recognition story in every shortened hub and request-form use: `You do quality work. Money comes in. Too little of it stays.` The supporting explanation must describe following every dollar, analyzing the whole operation, finding root causes across connected systems and processes, and building one clean flow. Do not substitute lists of wasted time, trips, fuel, materials, software, repeated work, or other individual causes for this service identity, and do not frame the owner as the failure.
@@ -57,6 +58,7 @@
 | 2026-09-07 | `business-freedom-hub-v1.5` direct Visibility card | APPROVED | Make the primary Visibility choice card itself link directly to `business-visibility.html`, while preserving the existing direct link in the full service card | Owner clarified that the service's associated hub card must lead directly to its landing page and authorized publication after verification passes. |
 | 2026-09-07 | `business-freedom-hub-v1.5` local implementation | VERIFIED | Publish the Visibility choice as a direct landing-page link without changing the behavior of the other six routing choices | Real-browser accessibility inspection identifies the Visibility choice as a link whose destination is `business-visibility.html`; the existing Visibility service-card link remains; hub JavaScript syntax and all local references pass. |
 | 2026-09-07 | `business-freedom-hub-v1.5` production release | LIVE | Keep the primary Visibility choice linked directly to the concept-faithful landing page | Pull request `#99` merged as `806855c3` and GitHub Pages deployment `34158308319` completed successfully. Cache-busted public source and real-browser accessibility inspection both confirm the Visibility choice is a link to `business-visibility.html`; its mobile card presentation and the destination page were visually verified. |
+| 2026-09-08 | Automated Payment Processing route | APPROVED and LOCALLY VERIFIED | Link the primary payment-processing choice and full service card directly to `business-payment-processing.html`, while preserving the existing request action | The owner approved the female-owner full-page concept and then authorized implementation; the local page, responsive presentation, interactions, and routes passed verification. Publication remains a separate gate. |
 
 ## Verification matrix
 
@@ -71,10 +73,11 @@
 | `business-freedom-hub-v1.4` | Visibility selector result, full service card, landing-page routes, and public deployment | Local route test and GitHub Pages | Both Visibility pathways expose `business-visibility.html`; local selector behavior passed; production build `1200386004` completed from merge `1d5e8208`; both live homepage routes and the destination page returned successfully. | 2026-09-07 Codex | LIVE |
 | `business-freedom-hub-v1.5` | Direct Visibility choice-card route, preserved full-card route, unrelated selector behavior, linked destination, and mobile presentation | Local server and real mobile browser | The primary Visibility choice is a semantic link to `business-visibility.html`; the existing full service card retains its landing-page link; the other six choices remain buttons handled by the existing selector; hub script syntax, references, destination response, and mobile rendering passed. | 2026-09-07 Codex | PASS; publication pending |
 | `business-freedom-hub-v1.5` | Production deployment, direct Visibility choice-card destination, landing-page response, and mobile rendering | GitHub Pages and real mobile browser | Deployment `34158308319` succeeded; the public hub source and accessibility tree identify the Visibility choice as a direct `business-visibility.html` link; both hub and destination returned 200 and displayed the approved mobile experience. | 2026-09-07 Codex | LIVE |
+| Payment-processing local integration | Approved page composition, readable hero photograph, removal of borrowed section numbers, responsive layout, interactive control buttons, three photographic assets, request route, and both hub landing-page routes | Local server; phone and desktop browser | The closing-shop story remains visible behind readable hero copy; no page-section numbers render; all three images load at their natural 1672×941 dimensions; the rule controls update their explanation and pressed state; both calls to action reach `business-request.html?service=revenue-cycle`; both hub links reach `business-payment-processing.html`; no horizontal overflow or browser errors were found. | 2026-09-08 Codex | PASS; publication pending |
 
 ## Flags and unanswered questions
 
-- The filename and final offer details for the Automated Payment Processing landing page are not approved.
+- The Automated Payment Processing filename, concept, price presentation, primary action, page, and local hub routes are approved and locally verified; publication remains pending.
 - The existing local `business-guidance.html` draft predates the approved Operations Leader direction and must not be treated as approved page content.
 - `business-freedom-hub-v1.5` is live and publicly verified.
 
