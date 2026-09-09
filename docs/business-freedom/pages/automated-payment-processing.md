@@ -2,10 +2,10 @@
 
 ## Control
 
-- Public page file: not created; filename requires owner approval before implementation
+- Public page file: `business-payment-processing.html`
 - Program: Rebel Ranch Ministries → Business Freedom
-- Current state: APPROVED; dedicated landing-page direction recorded for work after `Get Seen, Get Found`
-- Last updated: 2026-09-06
+- Current state: APPROVED, locally integrated, and locally verified; publication pending
+- Last updated: 2026-09-08
 
 ## North star
 
@@ -36,6 +36,31 @@ Potential systems and movements within scope include:
 
 Exact providers, integrations, deliverables, and technical boundaries must be confirmed during page development rather than invented.
 
+## Approved page and visual direction
+
+- Public filename: `business-payment-processing.html`.
+- Hero headline: `Your payment system should ALWAYS be working for YOU.`
+- Primary call to action: `Build My Payment Flow` linking to `business-request.html?service=revenue-cycle`.
+- Price presentation: `Starting at $199 · Normally $449`.
+- The hero must show the value of a smooth payment system continuing after the owner stops working; it must not reduce the service to one customer and one provider failing to share a payment method.
+- Use the approved full-page mobile-first concept: hero; two distinct problem causes; one connected payment flow; owner control rules; four-step service method; human before/after; and a photographic paid close.
+- Use the same female sole proprietor throughout the photography. She wears practical ordinary business clothing and no apron.
+- Show incoming payment paths, a connected business flow, the approved business account, and approved outgoing destinations without inventing platform logos, fake dashboards, providers, or guarantees.
+- Build diagrams and exact wording as live page elements rather than generated interface text so they remain readable and responsive.
+- The final implementation must use the shared RRM header/footer and the approved Business Freedom Slate Ocean palette.
+- Keep the hero photograph visibly legible at phone and desktop sizes. The contrast treatment may support the headline, but it must not hide the owner-closing-the-shop story.
+- Do not reuse the same photograph in consecutive sections. The before/after result and final paid close must have distinct visual jobs.
+- The approved-destinations diagram must end with `Your pocket` and a wallet symbol so the owner is represented alongside routine business payments.
+
+## Explicit exclusions and rejected directions
+
+- Do not use the rejected hero direction centered on `The customer is ready to pay. Can you accept?`; that describes only one narrow mismatch.
+- Do not show fake payment dashboards, fake software screens, platform-logo clutter, generic corporate meetings, men in aprons, cream backgrounds, tiny text, or visuals that are too small to explain their purpose.
+- Do not imply instant deposits, universal provider support, guaranteed timing, or RRM control of customer funds.
+- Do not copy the Visibility page layout merely because both pages share the same Business Freedom brand.
+- Do not add page-section numbers. They were inherited from the Visibility page rather than approved for this concept. The four numbered service-method milestones may remain because their order carries meaning.
+- Do not use an unexplained long red connector in the limited-payment-methods visual. Keep the option symbols balanced and self-explanatory.
+
 ## Differentiation
 
 - `Keep Your Money` addresses operational waste, hidden loss, and retaining more of what the business earns.
@@ -50,6 +75,11 @@ Exact providers, integrations, deliverables, and technical boundaries must be co
 | 2026-09-06 | Recognition statement | APPROVED | `Tired of waiting for systems and programs to deposit my money.` | Uses the business owner's recognizable experience of waiting on disconnected payment systems. |
 | 2026-09-06 | Automation positioning | APPROVED | Be direct that modern money movement is largely automated after owner approval and that this service automates the linkages between systems | This accurately describes the present payment landscape and the professional value being delivered. |
 | 2026-09-06 | Dedicated landing page | APPROVED | Give this core service its own page after `Get Seen, Get Found` | It is a distinct, substantial service and cannot be represented only by a short hub card. |
+| 2026-09-08 | Payment-system hero | REJECTED | Do not center the page on one customer and provider who cannot align on a payment method | That is one narrow payment problem and does not communicate the value of a connected system that works while the owner is not working. |
+| 2026-09-08 | Full-page female-owner concept | APPROVED | Use `Your payment system should ALWAYS be working for YOU.` and preserve the approved mobile-first story and composition with a woman throughout | The approved concept shows the complete value: ways to collect, connected processing, an approved account, routine outgoing payments, owner-set rules, and time returned to the owner. |
+| 2026-09-08 | Public filename | APPROVED | Use `business-payment-processing.html` | The owner approved implementation after the filename was surfaced as the only unresolved prerequisite. |
+| 2026-09-08 | Section labels and hero contrast | CORRECTED and LOCALLY VERIFIED | Remove borrowed page-section numbers and keep the closing-shop photograph visibly readable behind the hero | The owner identified that the page numbers did not belong to this concept and that the original dark overlay hid the background story. The corrected phone rendering shows the photograph without sacrificing headline readability. |
+| 2026-09-08 | Hero fill, limited-options balance, owner destination, and unique close | CORRECTED and LOCALLY VERIFIED | Make the hero image fill the entire hero, remove the unexplained red line, balance four limited-option symbols, add `Your pocket` with a wallet, and use a distinct home-evening closing photograph | The owner identified all four issues in the rendered page. Phone inspection confirms the hero image now equals the full section height, the option row is balanced, the destination grid has six complete items, and the close no longer repeats the before/after photograph. |
 
 ## Required page work
 
@@ -61,9 +91,9 @@ Exact providers, integrations, deliverables, and technical boundaries must be co
 
 ## Flags and unanswered questions
 
-- Public filename, price presentation, exact service boundaries, supported providers, deliverables, hero, imagery, CTA, and final page structure require later owner approval.
-- No public HTML page exists for this service.
+- Exact supported providers, deliverables, and client-specific technical boundaries remain determined customer by customer and must not be invented on the public page.
+- Local implementation is not proof of publication; live deployment verification remains required before the page can be called live.
 
 ## Next permitted action
 
-Wait until the documentation/hub alignment and `Get Seen, Get Found` page are complete. Then prepare the page decision brief; do not implement without separate authorization.
+Present the locally verified page for owner review. Publication requires separate owner authorization.

@@ -42,7 +42,7 @@ The approved Business Freedom map is:
 2. **Stop Losing Customers** — lead capture and customer follow-up; live dedicated page at `business-leads.html`.
 3. **Keep Your Money** — retained income and connected operations; live dedicated page at `business-money-leaks.html`.
 4. **Get Seen, Get Found** — online presence and social-media visibility; live dedicated page at `business-visibility.html`.
-5. **Automated Payment Processing** — payment systems, merchant services, software connections, and automation; approved dedicated landing-page direction. No public page currently exists.
+5. **Automated Payment Processing** — payment systems, merchant services, software connections, and automation; approved landing page integrated and verified locally at `business-payment-processing.html`, with publication pending.
 6. **Add an Operations Leader to Your Team** — recurring access to combined operations strategist, operations manager, and process-engineering capability; approved comprehensive landing-page direction. No approved public page currently exists.
 7. **I've Got the Potential** — routing choice for owners who need help identifying the right path; not a separate paid service and does not receive its own landing page.
 
