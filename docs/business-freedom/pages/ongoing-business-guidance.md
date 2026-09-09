@@ -5,7 +5,7 @@
 - Existing local page file: `business-guidance.html`
 - Program: Rebel Ranch Ministries → Business Freedom
 - Current state: APPROVED; the existing local Ongoing Business Guidance draft is SUPERSEDED in direction and is not approved for integration or publication
-- Last updated: 2026-09-06
+- Last updated: 2026-09-09
 - Public implementation state: no approved page version exists
 
 ## North star
@@ -63,6 +63,24 @@ These capabilities are distinct and must be explained clearly. They belong on on
 - Do not imply employment, unlimited availability, or that hands-on 3P Help Me implementation is included in the Business Freedom price.
 - Do not create three thin landing pages unless the owner later approves distinct offers, prices, or engagement models.
 
+## Mandatory pre-build learning gate
+
+This is the next core Business Freedom landing page. Before proposing its visual concept, the agent must read and apply `AGENTS.md`, `docs/site-design-system.md` section 10.8, `docs/business-freedom/business-freedom-operations.md`, `docs/business-freedom/README.md`, `docs/business-freedom/brand.md`, and this complete record.
+
+The agent must present a working brief—not merely say the documents were read—that identifies:
+
+- the recognizable owner moment and the paid recurring value;
+- how Operations Strategist, Operations Manager, and Process Engineer remain distinct while forming one Operations Leader;
+- why the service matters to a small business without blaming the owner or reducing the offer to generic advice;
+- the exact job and two-second takeaway of every proposed section and visual;
+- the mobile-first composition and how desktop expands the same approved concept;
+- the natural-language test for every headline, label, and process step;
+- the image plan, including unique visual jobs, crop-safe focal subjects, live-text regions, and the complete rejection list;
+- the paid CTA hierarchy and the separate 3P Help Me boundary; and
+- the technical and human visual evidence that must pass before implementation can be shown as ready.
+
+The first page-stage deliverable is `concept only`. It must not alter `business-guidance.html` or production assets. After the owner approves a concept, create a concept-to-page map and obtain separate implementation authorization. Do not copy the Visibility or Payment Processing layout by default.
+
 ## Flags and unanswered questions
 
 - Exact price presentation, included time, deliverables, CTA, page structure, imagery, examples, and final copy require page-stage approval.
@@ -70,4 +88,4 @@ These capabilities are distinct and must be explained clearly. They belong on on
 
 ## Next permitted action
 
-Wait until the earlier map-alignment and `Get Seen, Get Found` work is complete. Then prepare a decision brief for this page from the approved direction; do not implement without separate authorization.
+Prepare the mandatory working brief and a service-specific mobile-first concept only. Do not modify the existing page or production assets until the owner approves the concept and separately authorizes implementation.

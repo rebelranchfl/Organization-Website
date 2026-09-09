@@ -198,6 +198,22 @@ Before resuming, the agent must:
 
 Do not call the work corrected, aligned, ready, or complete until the actual rendered result passes both the technical checks and the required visual judgment checks in `docs/site-design-system.md`.
 
+### Mandatory visual working brief and execution loop
+
+Reading the governing documents is not proof that an agent understood or applied them. Before proposing, generating, coding, or revising a public-page visual experience, the agent must produce a short working brief from the current authoritative sources that identifies:
+
+- the exact page, program, audience, paid or free offer, and authorized mode (`discussion`, `concept only`, `implementation`, or `correction`);
+- the visitor's recognizable problem and intended two-second takeaway;
+- the distinct job of every planned section and visual;
+- the exact approved reference, wording, price, action, assets, and shared-shell requirements;
+- the cumulative rejected, superseded, protected, and out-of-scope treatments;
+- the phone-first composition and desktop expansion plan; and
+- the technical and human visual evidence required before the next approval or publication gate.
+
+The brief may be communicated to the owner and recorded in the applicable page decision record; do not create a duplicate session-summary document. If the agent cannot accurately restate these items, it has not understood the governing material and must stop before acting.
+
+Every visual task must follow the complete learning and execution loop in `docs/site-design-system.md` section 10.8. An owner correction is durable input to that loop: classify it at the correct repository, program, or page level; update the authoritative record; correct only the authorized mismatch; and use the recorded lesson during the next page rather than repeating the failure.
+
 ## 10. Website interaction rule — pills are clickable only
 
 **No pill design or pill/capsule shape may appear on a web page unless the element is actually clickable.**

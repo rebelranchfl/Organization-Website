@@ -3,7 +3,7 @@
 **Status:** Current program authority  
 **Program:** Rebel Ranch Ministries → Business Freedom  
 **Current priority:** First active funding-focused program for promotion and near-term earned revenue  
-**Last updated:** 2026-09-07
+**Last updated:** 2026-09-09
 
 ## Purpose
 
@@ -42,7 +42,7 @@ The approved Business Freedom map is:
 2. **Stop Losing Customers** — lead capture and customer follow-up; live dedicated page at `business-leads.html`.
 3. **Keep Your Money** — retained income and connected operations; live dedicated page at `business-money-leaks.html`.
 4. **Get Seen, Get Found** — online presence and social-media visibility; live dedicated page at `business-visibility.html`.
-5. **Automated Payment Processing** — payment systems, merchant services, software connections, and automation; approved landing page integrated and verified locally at `business-payment-processing.html`, with publication pending.
+5. **Automated Payment Processing** — payment systems, merchant services, software connections, and automation; approved page deployed at `business-payment-processing.html` through pull request `#102`, with owner/public experience verification pending.
 6. **Add an Operations Leader to Your Team** — recurring access to combined operations strategist, operations manager, and process-engineering capability; approved comprehensive landing-page direction. No approved public page currently exists.
 7. **I've Got the Potential** — routing choice for owners who need help identifying the right path; not a separate paid service and does not receive its own landing page.
 
@@ -112,16 +112,17 @@ Program-specific brand, marketing, systems, or project subfolders should be crea
 
 ## Current build order
 
-1. Preserve and promote the four existing live dedicated pages and the live hub.
-2. Develop **Automated Payment Processing** after the completed Visibility page.
-3. Develop **Add an Operations Leader to Your Team** as the premium recurring Business Freedom page.
-4. Review the separate Marketplace payment-link offer last.
+1. Preserve and promote the hub plus the five deployed dedicated pages, while keeping verification states accurate.
+2. Develop **Add an Operations Leader to Your Team** as the premium recurring Business Freedom page.
+3. Review the separate Marketplace payment-link offer last.
 
 ## Verification rule
 
 A page record, local draft, filename, or planned feature is not proof that something is public or approved.
 
 Before any Business Freedom public-page concept, layout, imagery, or image-generation work, agents must read `../site-design-system.md`, `brand.md`, and the applicable record under `pages/`. Business Freedom inherits the shared visual-acceptance, asset-status, concept-fidelity, rendered-size, optical-alignment, and drift-recovery requirements. Program-specific decisions remain in `brand.md` and the applicable page record rather than being duplicated here.
+
+Before acting, the agent must complete the Business Freedom working brief required by `brand.md` and any pre-build learning gate in the applicable page record. The brief is the evidence that the governing material was understood and must be carried through concept, implementation, visual inspection, and release verification.
 
 Before any Business Freedom promotion or publication, verify:
 
