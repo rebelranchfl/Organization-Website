@@ -4,8 +4,8 @@
 
 - Public page file: `business-payment-processing.html`
 - Program: Rebel Ranch Ministries → Business Freedom
-- Current state: APPROVED, locally integrated, and locally verified; publication pending
-- Last updated: 2026-09-08
+- Current state: DEPLOYED through PR `#102` and GitHub Pages run `34386140764`; owner/public experience verification pending
+- Last updated: 2026-09-09
 
 ## North star
 
@@ -80,6 +80,19 @@ Exact providers, integrations, deliverables, and technical boundaries must be co
 | 2026-09-08 | Public filename | APPROVED | Use `business-payment-processing.html` | The owner approved implementation after the filename was surfaced as the only unresolved prerequisite. |
 | 2026-09-08 | Section labels and hero contrast | CORRECTED and LOCALLY VERIFIED | Remove borrowed page-section numbers and keep the closing-shop photograph visibly readable behind the hero | The owner identified that the page numbers did not belong to this concept and that the original dark overlay hid the background story. The corrected phone rendering shows the photograph without sacrificing headline readability. |
 | 2026-09-08 | Hero fill, limited-options balance, owner destination, and unique close | CORRECTED and LOCALLY VERIFIED | Make the hero image fill the entire hero, remove the unexplained red line, balance four limited-option symbols, add `Your pocket` with a wallet, and use a distinct home-evening closing photograph | The owner identified all four issues in the rendered page. Phone inspection confirms the hero image now equals the full section height, the option row is balanced, the destination grid has six complete items, and the close no longer repeats the before/after photograph. |
+| 2026-09-09 | Public release | DEPLOYED; OWNER/PUBLIC VERIFICATION PENDING | Merge the approved page and hub routes through PR `#102` | PR `#102` merged as `2d36e522`; GitHub Pages deployment run `34386140764` completed successfully. The owner explicitly elected to perform public verification, so this record must not claim public-experience verification yet. |
+
+## Implementation learning and permanent controls
+
+| Failure observed | Root cause | Permanent control | Earlier detection |
+|---|---|---|---|
+| Approved mobile concept became a different desktop/page composition | Section names and functionality were treated as sufficient fidelity instead of mapping the approved hierarchy, scale, imagery, and layout | Create and verify a concept-to-page map before coding; responsive work may reflow the concept but cannot replace it | Compare phone and desktop renders side by side with the approved concept before owner review |
+| Hero photograph remained difficult to see after overlay adjustments | A more-specific shared image rule forced the absolutely positioned hero image back to automatic height, so the image occupied only a shallow strip | For every hero/background image, verify computed styles and confirm the rendered image height equals the intended section height before adjusting overlays | Measure section height and rendered image height at phone and desktop widths |
+| Unexplained red connector and blank space weakened the problem visual | Decoration was added without a defined visitor meaning or optical-balance check | Every connector and empty area must have a recorded communication purpose; otherwise remove it and rebalance the symbols | Apply the two-second comprehension and optical-balance checks to an isolated section crop |
+| Approved-destinations grid ended with an empty-looking position | The content set and final grid balance were not reviewed together | Verify the complete semantic set and the final row at every responsive breakpoint; include the owner outcome when it is part of the approved story | Count visible items and inspect final-row balance in phone and desktop crops |
+| The same relief photograph appeared in the before/after result and the immediate paid close | Asset existence was checked, but adjacent image-source uniqueness and section-job distinction were not | Neighboring sections with different jobs require distinct visuals; repeated photography must be intentional and documented | Compare adjacent image sources and state what new information each image contributes |
+| Technical checks passed while visual defects remained | Link, load, interaction, and overflow checks were treated as proof of visual quality | Keep technical proof and human visual proof as separate mandatory gates; both must pass | Use the shared site loop's full-page and close-crop visual questions before any readiness claim |
+| Corrections required repeated owner rounds | The agent presented implementation before completing its own visitor-level visual critique | Inspect wording, image meaning, placement, scale, balance, repetition, and natural speech before owner review | Complete and record the Business Freedom working brief, concept map, and acceptance evidence first |
 
 ## Required page work
 
@@ -92,8 +105,8 @@ Exact providers, integrations, deliverables, and technical boundaries must be co
 ## Flags and unanswered questions
 
 - Exact supported providers, deliverables, and client-specific technical boundaries remain determined customer by customer and must not be invented on the public page.
-- Local implementation is not proof of publication; live deployment verification remains required before the page can be called live.
+- Deployment is recorded, but the owner/public experience has not been verified in this record. Do not label this release publicly verified until that check is completed.
 
 ## Next permitted action
 
-Present the locally verified page for owner review. Publication requires separate owner authorization.
+Preserve the deployed page. Record the owner's public verification when supplied; any further page change requires separate authorization and must rerun the shared visual learning and execution loop.

@@ -2,19 +2,21 @@
 
 **Status:** Current index  
 **Program:** Rebel Ranch Ministries → Business Freedom  
-**Last updated:** 2026-09-07
+**Last updated:** 2026-09-09
 
 Read `business-freedom-operations.md` first for the program-level purpose, boundaries, current service map, funding priority, and operating direction.
 
 For public-page concepts, layouts, imagery, image generation, or responsive visual work, read `../site-design-system.md` and `brand.md` next. Then read the applicable record in `pages/` before proposing, generating, changing, reviewing, promoting, or publishing a specific Business Freedom page or offer. If the owner identifies drift or deviation, stop and follow the recovery procedure in the shared site design system before continuing.
 
+Before taking visual action, produce and apply the mandatory Business Freedom working brief defined in `brand.md`. Opening the files or saying they were read is not proof that the requirements were understood.
+
 ## Current public state
 
 The main Business Freedom hub is `business-fixes.html`.
 
-`business-freedom-hub-v1.4` is the current recorded public hub version. The governing record is `pages/business-freedom-hub.md`.
+`business-freedom-hub-v1.5` is the current publicly verified hub baseline. The Automated Payment Processing route was subsequently deployed through pull request `#102`; owner/public experience verification of that release remains pending. The governing record is `pages/business-freedom-hub.md`.
 
-The four current dedicated Business Freedom landing pages are:
+The five current dedicated Business Freedom landing pages are:
 
 | Approved public name | Public file | Current state |
 |---|---|---|
@@ -22,6 +24,7 @@ The four current dedicated Business Freedom landing pages are:
 | Stop Losing Customers | `business-leads.html` | LIVE |
 | Keep Your Money | `business-money-leaks.html` | LIVE |
 | Get Seen, Get Found | `business-visibility.html` | LIVE |
+| Automated Payment Processing | `business-payment-processing.html` | DEPLOYED through PR `#102`; owner/public verification pending |
 
 These pages are part of the approved hub map even though separate page decision records for the first two are not currently present in this folder. Their current repository files and the hub record must be verified before changes.
 
@@ -32,7 +35,7 @@ These pages are part of the approved hub map even though separate page decision 
 | `pages/business-freedom-hub.md` | Main Business Freedom hub and canonical routing map | LIVE and governing |
 | `pages/keep-more-of-what-you-earn.md` | Keep Your Money | Live dedicated page direction/history |
 | `pages/get-seen-get-found.md` | Get Seen, Get Found | LIVE and linked from the Business Freedom hub |
-| `pages/automated-payment-processing.md` | Automated Payment Processing | Approved female-owner concept integrated and verified locally at `business-payment-processing.html`; publication pending |
+| `pages/automated-payment-processing.md` | Automated Payment Processing | Approved female-owner page deployed through PR `#102`; owner/public verification pending |
 | `pages/ongoing-business-guidance.md` | Add an Operations Leader to Your Team | Approved comprehensive recurring-service direction; no approved public page currently exists |
 | `pages/get-paid-faster.md` | Separate Marketplace-specific payment-link setup | Hold until core Business Freedom work is complete |
 
@@ -50,10 +53,9 @@ The separate **Get Paid Faster — Set Up Your Payment Links** offer is Marketpl
 
 ## Current work order
 
-1. Preserve and use the live hub plus the four existing dedicated pages.
-2. Develop **Automated Payment Processing** next.
-3. Develop **Add an Operations Leader to Your Team** after that as the premium recurring offer.
-4. Review the separate Marketplace payment-link offer last.
+1. Preserve and use the hub plus the five deployed dedicated pages.
+2. Develop **Add an Operations Leader to Your Team** next as the premium recurring offer.
+3. Review the separate Marketplace payment-link offer last.
 
 Business Freedom is currently RRM's first funding-focused program priority because the owner identified it as the easiest active program to promote and use for near-term earned revenue.
 

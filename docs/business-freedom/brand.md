@@ -92,6 +92,7 @@ Business Freedom pages are designed mobile-first. The layout must adapt to reada
 - Compose mobile images intentionally; do not rely on a desktop crop when it removes the story.
 - Do not use staged handshakes, old technology as shorthand for small business, generic laptop meetings, fake dashboards, platform logos, invented statistics, or invented testimonials.
 - Do not show men wearing aprons. Use clothing appropriate to their actual work, such as work shirts, polos, T-shirts, coveralls, uniforms, or ordinary business-casual clothing.
+- When an approved supporting-program logo appears, locate and use the exact official transparent-background asset when one exists. Do not use a screenshot or visually boxed version merely because it is easier to find, and never ask an image generator to recreate the logo.
 
 ## Interaction
 
@@ -111,6 +112,33 @@ Business Freedom inherits the complete site-wide visual-acceptance and drift-rec
 - Check optical alignment and relative scale against the entire section, not only the element's immediate container.
 - Require a real-phone and desktop visual inspection, full-page review, close section crops, and direct comparison with the approved concept before approval or publication.
 - If the owner identifies drift, stop work, update the page record, re-read the governing documents, list the specific mismatches, and repeat the shared visual-acceptance gate before continuing.
+
+### Business Freedom working brief and acceptance loop
+
+Before discussion becomes a concept or a concept becomes code, apply the complete loop in `../site-design-system.md` section 10.8 and state the following in the working brief:
+
+1. the owner-operated business situation the visitor should recognize immediately;
+2. the paid service being sold, its approved starting price, and its one primary action;
+3. the service-specific persuasion path—attention, recognition, explanation, value, help, and close;
+4. the distinct job and two-second takeaway for every major section and visual;
+5. which approved concept, wording, assets, and page-specific decisions are binding;
+6. which rejected layouts, phrases, colors, imagery, clothing, symbols, and shortcuts must not return;
+7. how the approved mobile composition works first and how it expands to desktop without becoming a different page; and
+8. the exact technical and human evidence required before owner review or publication.
+
+The following checks are mandatory for Business Freedom sales pages:
+
+- Do not default to the layout of a previous service page. Choose the structure that best sells and explains this specific service.
+- Lead with the paid offer. A free RRM or program connection may support trust, discovery, or mission, but it must not become the primary path on a paid page.
+- Use visuals to catch attention and explain complexity; use concise live text to relate, clarify, persuade, and close.
+- Confirm every photo, icon, connector, label, and empty area has an understandable purpose. Remove unexplained decoration rather than defending it.
+- Do not repeat the same photograph in neighboring sections or use visually similar images when the sections are supposed to communicate different stages.
+- For background photographs, verify the rendered image fills the section, the focal subject remains visible, and the overlay does not erase the story.
+- Build diagrams, labels, interface-like explanations, and official logos as verified live elements or approved assets—not generated fake screens or image-generator text.
+- Test headings and steps in ordinary speech. If the intended owner would not naturally say, search, or understand the phrase, rewrite it before review.
+- Verify phone typography, icon scale, touch size, optical centering, and section balance before expanding the composition for desktop.
+
+An agent may not call the page understood, aligned, or ready merely because this document was opened. The completed working brief, concept map, rendered comparisons, and recorded verification are the evidence that the process was actually applied.
 
 ## Sales-page sequence
 

@@ -4,9 +4,9 @@
 
 - Page file: `business-fixes.html`
 - Program: Rebel Ranch Ministries → Business Freedom
-- Current state: LIVE and production-verified at `business-freedom-hub-v1.5`
-- Last updated: 2026-09-07
-- Current exact version: `business-freedom-hub-v1.5`
+- Current state: `business-freedom-hub-v1.5` remains the publicly verified baseline; the Automated Payment Processing route was deployed through PR `#102` with owner/public verification pending
+- Last updated: 2026-09-09
+- Current exact version: `business-freedom-hub-v1.5` baseline plus payment-route release `#102`
 
 ## North star
 
@@ -24,7 +24,7 @@
   2. `Stop Losing Customers` — core service with a live landing page.
   3. `Keep Your Money` — core service with a live landing page.
   4. `Get Seen, Get Found` — core service with a live landing page.
-  5. `Automated Payment Processing` — core service requiring a dedicated landing page.
+  5. `Automated Payment Processing` — core service with a dedicated page deployed at `business-payment-processing.html`; owner/public verification pending.
   6. `Add an Operations Leader to Your Team` — core recurring service requiring one comprehensive landing page.
   7. `I've Got the Potential` — routing choice with the supporting statement `I just don't know how to get there.`; no landing page.
 - Link the five completed landing pages from their matching selector results and full service cards:
@@ -59,6 +59,7 @@
 | 2026-09-07 | `business-freedom-hub-v1.5` local implementation | VERIFIED | Publish the Visibility choice as a direct landing-page link without changing the behavior of the other six routing choices | Real-browser accessibility inspection identifies the Visibility choice as a link whose destination is `business-visibility.html`; the existing Visibility service-card link remains; hub JavaScript syntax and all local references pass. |
 | 2026-09-07 | `business-freedom-hub-v1.5` production release | LIVE | Keep the primary Visibility choice linked directly to the concept-faithful landing page | Pull request `#99` merged as `806855c3` and GitHub Pages deployment `34158308319` completed successfully. Cache-busted public source and real-browser accessibility inspection both confirm the Visibility choice is a link to `business-visibility.html`; its mobile card presentation and the destination page were visually verified. |
 | 2026-09-08 | Automated Payment Processing route | APPROVED and LOCALLY VERIFIED | Link the primary payment-processing choice and full service card directly to `business-payment-processing.html`, while preserving the existing request action | The owner approved the female-owner full-page concept and then authorized implementation; the local page, responsive presentation, interactions, and routes passed verification. Publication remains a separate gate. |
+| 2026-09-09 | Automated Payment Processing route release | DEPLOYED; OWNER/PUBLIC VERIFICATION PENDING | Merge the landing page and both hub routes through PR `#102` | PR `#102` merged as `2d36e522`; GitHub Pages run `34386140764` completed successfully. The owner elected to verify the public experience, so deployment must not be recorded as public verification. |
 
 ## Verification matrix
 
@@ -73,14 +74,15 @@
 | `business-freedom-hub-v1.4` | Visibility selector result, full service card, landing-page routes, and public deployment | Local route test and GitHub Pages | Both Visibility pathways expose `business-visibility.html`; local selector behavior passed; production build `1200386004` completed from merge `1d5e8208`; both live homepage routes and the destination page returned successfully. | 2026-09-07 Codex | LIVE |
 | `business-freedom-hub-v1.5` | Direct Visibility choice-card route, preserved full-card route, unrelated selector behavior, linked destination, and mobile presentation | Local server and real mobile browser | The primary Visibility choice is a semantic link to `business-visibility.html`; the existing full service card retains its landing-page link; the other six choices remain buttons handled by the existing selector; hub script syntax, references, destination response, and mobile rendering passed. | 2026-09-07 Codex | PASS; publication pending |
 | `business-freedom-hub-v1.5` | Production deployment, direct Visibility choice-card destination, landing-page response, and mobile rendering | GitHub Pages and real mobile browser | Deployment `34158308319` succeeded; the public hub source and accessibility tree identify the Visibility choice as a direct `business-visibility.html` link; both hub and destination returned 200 and displayed the approved mobile experience. | 2026-09-07 Codex | LIVE |
-| Payment-processing local integration | Approved page composition, readable hero photograph, removal of borrowed section numbers, responsive layout, interactive control buttons, three photographic assets, request route, and both hub landing-page routes | Local server; phone and desktop browser | The closing-shop story remains visible behind readable hero copy; no page-section numbers render; all three images load at their natural 1672×941 dimensions; the rule controls update their explanation and pressed state; both calls to action reach `business-request.html?service=revenue-cycle`; both hub links reach `business-payment-processing.html`; no horizontal overflow or browser errors were found. | 2026-09-08 Codex | PASS; publication pending |
+| Payment-processing local integration | Approved page composition, readable hero photograph, removal of borrowed section numbers, responsive layout, interactive control buttons, four photographic assets, request route, and both hub landing-page routes | Local server; phone and desktop browser | The closing-shop story remains visible behind readable hero copy; no page-section numbers render; all four images load at their natural 1672×941 dimensions; the rule controls update their explanation and pressed state; both calls to action reach `business-request.html?service=revenue-cycle`; both hub links reach `business-payment-processing.html`; no horizontal overflow or browser errors were found. | 2026-09-08 Codex | PASS; deployment followed through PR `#102` |
+| Payment-processing deployment | Merge and GitHub Pages deployment only | GitHub PR and Actions | PR `#102` merged as `2d36e522`; Pages run `34386140764` completed successfully. No public-page or public hub-route verification was performed because the owner elected to verify personally. | 2026-09-09 Codex | DEPLOYED; OWNER/PUBLIC VERIFICATION PENDING |
 
 ## Flags and unanswered questions
 
-- The Automated Payment Processing filename, concept, price presentation, primary action, page, and local hub routes are approved and locally verified; publication remains pending.
+- The Automated Payment Processing filename, concept, price presentation, primary action, page, and local hub routes are approved and locally verified. The page and hub routes are deployed through PR `#102`; owner/public verification remains pending.
 - The existing local `business-guidance.html` draft predates the approved Operations Leader direction and must not be treated as approved page content.
 - `business-freedom-hub-v1.5` is live and publicly verified.
 
 ## Next permitted action
 
-Keep the finished Visibility card and landing-page route stable while the next Business Freedom landing page is separately approved and developed.
+Preserve the five deployed landing-page routes. Develop `Add an Operations Leader to Your Team` next only after its service-specific concept is approved through the shared visual learning and execution loop.

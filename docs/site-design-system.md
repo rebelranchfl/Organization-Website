@@ -205,6 +205,86 @@ When the owner identifies drift, deviation, repeated rejected work, or rogue exp
 
 Do not continue from memory, quietly reinterpret the concept, or preserve a rejected treatment as a temporary fallback.
 
+### 10.8 Mandatory visual learning and execution loop
+
+Use this loop for every public-page concept, image, layout, responsive implementation, correction, and release:
+
+**VERIFY TRUTH → WRITE THE WORKING BRIEF → DEFINE EACH VISUAL JOB → CONCEPT ONLY → OWNER DECISION → MAP THE APPROVED CONCEPT → IMPLEMENT EXACTLY → TECHNICAL PROOF → HUMAN VISUAL PROOF → RECORD LEARNING → RELEASE GATE → LEARN FROM RESULTS**
+
+#### A. Verify truth
+
+Read the current repository control, ecosystem charter, shared site rules, applicable program authority and brand, page decision record, target page, connected styles/scripts, and approved reference. Verify the current public/local status instead of relying on chat memory or a prior summary.
+
+#### B. Write the working brief
+
+Before creating anything, restate the required brief from `AGENTS.md`: audience, recognizable problem, offer, page goal, section jobs, exact approved elements, rejected patterns, scope, phone-first plan, desktop expansion, and acceptance evidence. This is the practical proof that the instructions were understood. Reading file names or saying “understood” is not enough.
+
+#### C. Separate discussion, concept, implementation, and correction
+
+- `discussion` authorizes analysis and recommendations only;
+- `concept only` authorizes preview imagery or a mockup, not page or production-file changes;
+- `implementation` authorizes building the exact approved concept within the stated scope; and
+- `correction` authorizes only the named fixes and does not reopen unrelated design decisions.
+
+Never treat approval of a concept as permission to replace it with a new design during implementation. Never treat a request to discuss or preview as permission to code.
+
+#### D. Define and test every visual job
+
+For every section, record the two-second takeaway, what the visual must show, why it advances the user or sales journey, the intended visual hierarchy, text/control placement, crop-safe content, and prohibited patterns. Reject a visual when it merely fills space, repeats the neighboring section, requires an agent explanation, or uses decoration whose meaning a visitor cannot identify.
+
+Unexplained connector lines, accidental blank areas, empty interface panels, misleading icons, duplicated adjacent photographs, and repeated photographs with no new storytelling job fail this test. Necessary empty space is intentional only when it supports live text, hierarchy, focus, or responsive cropping.
+
+#### E. Map the approved concept before coding
+
+Create a concept-to-page map covering section order, wording, visual subject, relative scale, alignment, interaction, paid action, and phone/desktop behavior. Mark every item as `exact`, `responsive adaptation`, or `owner decision required`. A responsive adaptation may stack, resize, or reflow the approved content; it may not replace the concept's story, imagery, hierarchy, or persuasion logic.
+
+#### F. Implement the smallest exact change
+
+Use live HTML/CSS/SVG for labels, diagrams, controls, logos, and exact wording whenever generated pixels would reduce accuracy or accessibility. Reuse a photograph only when the repeated use is intentional, non-adjacent where possible, and performs the same approved job. Do not add numbers, icons, lines, boxes, images, phrases, or decorative systems simply because another page used them.
+
+#### G. Run technical proof
+
+At minimum, verify the actual rendered experience for:
+
+- text size, line height, icon size, control size, contrast, focus and selected states;
+- exact wording, price, primary action, links, interaction behavior, runtime errors, and local asset references;
+- image file resolution, load state, rendered width and height, aspect ratio, `object-fit`, focal-point crop, and CSS specificity;
+- full-width behavior and exact `scrollWidth` versus `clientWidth`; and
+- distinct image sources when adjacent sections are intended to tell different stories.
+
+For a hero or full-section background, confirm that the rendered image fills the intended container; compare the image element's rendered height to the section height. Confirm that overlays preserve text contrast without hiding the action, person, product, or setting that carries the story.
+
+#### H. Run human visual proof
+
+Inspect the actual page at a real phone width no greater than `456px` and a desktop width of at least `1180px`. Review the full page and close crops of every important section. Compare against the approved concept side by side and ask:
+
+1. What is noticed first?
+2. Is the intended meaning clear in about two seconds?
+3. Is the visual large enough for its complexity?
+4. Are scale, spacing, alignment, and empty space optically balanced?
+5. Does every symbol and connector have an obvious purpose?
+6. Does the wording sound like something the intended person would naturally say or understand?
+7. Does each section advance the story rather than repeat the previous section?
+8. Does the paid action remain visually and logically primary on a paid page?
+
+A technically passing page fails until these human checks pass.
+
+#### I. Record learning at the correct level
+
+After owner feedback or a discovered failure, identify the root cause rather than recording only the visible symptom:
+
+- repository-wide recurring process or quality rule → update repository/shared authority;
+- Business Freedom or another program's recurring brand/sales rule → update that program authority; and
+- one page's wording, asset, composition, or exception → update that page decision record.
+
+Do not create a new handoff or session-summary file when an existing authority is the correct home. Record what failed, why it failed, the correction, the permanent control, and the verification that would have caught it sooner.
+
+#### J. Release and result gate
+
+Keep these states separate: `CONCEPT APPROVED`, `INTEGRATED LOCALLY`, `LOCALLY VERIFIED`, `DEPLOYED`, and `PUBLICLY VERIFIED`. A successful build or deployment is not public-experience verification. When the owner elects to verify personally, record the release as deployed with owner/public verification pending rather than silently upgrading it to publicly verified.
+
+The next page must begin with the recorded lessons from this loop. Learning is complete only when the durable authority is updated and the new rule is actually used in the next working brief and verification.
+
 ## 11. Before release
 
 Before any public surface is called ready/live, verify the applicable user journey end to end.
