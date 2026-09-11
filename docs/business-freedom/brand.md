@@ -94,6 +94,17 @@ Business Freedom pages are designed mobile-first. The layout must adapt to reada
 - Do not show men wearing aprons. Use clothing appropriate to their actual work, such as work shirts, polos, T-shirts, coveralls, uniforms, or ordinary business-casual clothing.
 - When an approved supporting-program logo appears, locate and use the exact official transparent-background asset when one exists. Do not use a screenshot or visually boxed version merely because it is easier to find, and never ask an image generator to recreate the logo.
 
+### Program-aligned visual reset
+
+Business Freedom must look and feel connected to the actual Rebel Ranch Ministries ecosystem rather than to a generic stock-photo definition of small business.
+
+- Start with RRM's real program relationships: Rebel Ranch Local and Marketplace connect local makers, growers, producers, service providers, sole operators, and buyers; Creation Station turns ideas and skills into real work; Roots, Boots & Animal Poops shows real production systems; Rebel Ranch Academy builds practical capability; and the RRM mission connects capability back to family, freedom, and community.
+- Do not force every service into a photograph. Use the visual form that explains and sells the specific service best: authentic program photography, a verified real interface, a simple live workflow, a real work product, or a restrained before/after explanation.
+- The hero must communicate that Business Freedom helps a capable owner reduce pressure and make the business easier to run. A generic transaction, handshake, house, smiling tradesperson, or person holding a device does not communicate that promise.
+- Never use aprons as generic small-business shorthand. Also reject staged handshakes, repeated HVAC workers, repeated occupations or actors, generic tablet poses, stock meetings, decorative dashboards, and photographs whose meaning depends on an agent explaining them.
+- Each service visual must have its own recognizable job, action, and outcome. Do not reuse one occupation or visual formula merely to make the page look consistent.
+- Use actual RRM or participant imagery when permission and a suitable asset exist. When it does not, do not manufacture a false program connection; use a non-photographic explanation or hold the image decision open.
+
 ## Interaction
 
 - Interactive elements must earn their space by helping the customer understand the problem or decision.
@@ -101,6 +112,23 @@ Business Freedom pages are designed mobile-first. The layout must adapt to reada
 - On mobile, keep tap targets generous and reveal one concise explanation at a time.
 - Show a clear selected state and support keyboard focus and reduced-motion preferences.
 - Avoid carousels, modals, tiny labels, decorative pills, and large walls of interchangeable cards.
+
+## Service icon system
+
+The approved reusable Business Freedom service icons are the exact icon artwork shown in the owner-approved hub concept stored at `assets/brand/Business Freedom/business-freedom-hub-approved-concept.png` (SHA-256 `CDD8326D7B55659A085E816BDF8529895448EABA8217046BFE20D9567130144B`). The eight transparent PNG assets below were extracted directly from that approved concept so the shapes, fills, colors, and visual weight remain the same wherever the program reuses them.
+
+| Service or routing choice | Approved asset | Meaning and approved use |
+|---|---|---|
+| Get Your Time Back | `business-freedom-icon-time.png` | Clock; time, owner capacity, workload, and reclaiming the day |
+| Stop Losing Customers | `business-freedom-icon-leads.png` | Coral customer group; inquiries, leads, relationships, and follow-up |
+| Keep Your Money | `business-freedom-icon-money.png` | Green coin stacks; retained money and financial visibility |
+| Get Seen, Get Found | `business-freedom-icon-visibility.png` | Gold location marker; local discovery, visibility, trust, and customer arrival |
+| Automated Payment Processing | `business-freedom-icon-payments.png` | Cyan payment card; invoices, deposits, merchant services, and money movement |
+| Custom AI Workforce | `business-freedom-icon-ai.png` | Violet AI gear; AI agents, coordinated digital work, automation, and added capacity |
+| Operations Leader | `business-freedom-icon-operations.png` | Gold leader with operating lens; experienced operating leadership and coordination |
+| I've Got the Potential | `business-freedom-icon-potential.png` | Coral compass; direction-finding when the owner knows there is potential but not the path |
+
+Use each icon only for its mapped service meaning inside Business Freedom. Do not redraw, trace, reinterpret, recolor, substitute, convert to emoji, or replace these approved files without owner approval. The owner rejected a separately redrawn outline-vector set on 2026-09-11 because it did not match the approved concept.
 
 ## Visual approval and recovery
 
@@ -159,6 +187,13 @@ This is a decision framework, not a page template. A future service may need a d
 - Secondary links remain visually quieter.
 - A free program may support the story but must not compete with the paid service on a paid landing page.
 - Pricing must distinguish a starting price, flat price, and recurring price accurately. Never imply a monthly charge when none exists.
+
+## Intake forms
+
+- Every Business Freedom service uses the shared Business Freedom intake form and the approved Slate Ocean visual system inside the page body.
+- Keep the shared RRM header and footer unchanged. Do not apply the RRM green-and-gold page treatment to the Business Freedom form itself.
+- Use cyan for form structure, focus, and supporting links. Reserve paid-action orange for the submit button.
+- Keep fields readable and full width on phones, maintain at least 44px touch targets, and do not use pill-shaped labels or decorative controls.
 
 ## Reference implementation
 

@@ -30,6 +30,11 @@
       price: 'Starting at $199 · Normally $449',
       description: 'Design, setup, connection, automation, and streamlining for the merchant services, payment systems, and software that move money through your business.'
     },
+    'custom-ai-workforce': {
+      name: 'Custom AI Workforce',
+      price: 'Custom estimate',
+      description: 'Tell us what work your business needs completed so we can determine the scope and design the right custom AI agent or virtual operations team.'
+    },
     'ongoing-business-guidance': {
       name: 'Add an Operations Leader to Your Team',
       price: '$299 per month',
