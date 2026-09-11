@@ -197,7 +197,24 @@ Visual judgment checks include: two-second comprehension, relevance, hierarchy, 
 
 For responsive public pages, inspect at least one real phone width at or below `456px` and one desktop width at or above `1180px`, plus any exact viewport shown in the approved reference. Review both the full page and close section crops. Compare the implementation side by side with the approved concept; matching section names or functionality is not proof of matching composition.
 
+Before owner review, inspect every interactive visual state—not only the default state—and apply these overlay checks:
+
+- Inventory the symbols, labels, badges, text, and interface marks already baked into each image asset, then inventory the live HTML/CSS overlays placed above it. Do not show the same X, check, arrow, label, icon, or status in both layers unless the approved concept intentionally requires repetition.
+- For a split comparison, verify each symbol against the visible center of its own half after the final crop and `object-fit` behavior are applied. Centering against the outer edge, full image, or overlay container does not establish correct placement.
+- Inspect the final composite at actual rendered size for doubled marks, near-duplicates, clipped symbols, off-center badges, collisions with faces or actions, and overlays that compete with embedded artwork.
+- Capture or directly inspect every selectable state at the required phone and desktop widths. A passing Cost, first, or default state is not evidence that the other states pass.
+
 Do not call a visual implementation ready, aligned, verified, or complete until every required technical and visual check passes. Record failures honestly and correct them before publication.
+
+#### Evidence-backed visual claim gate
+
+Visual verification is established by an evidence bundle and the repository checker described in `docs/verification-gates.md`, not by an agent saying that it looked at the page.
+
+Before `LOCALLY VERIFIED` may be used, the bundle must identify the exact target and approved reference by file fingerprint; record authorized scope and protected areas; include passing build, asset/overlay, and measurement checks; include the required phone and desktop full-page images and close crops for every interactive state; and include a passing independent visual review by someone other than the builder. The checker calculates the result. A manifest must never contain a self-assigned `status` or `verified` field.
+
+The automated measurements establish objective facts such as file identity, viewport width, duplicate marks, clipping, collision, and stated tolerances. They do not establish taste, clarity, balance, persuasion, or concept fidelity. Those remain explicit visual-review questions, and important owner-facing work still requires owner approval before it can be called `OWNER APPROVED`.
+
+Use only the narrower status supported by the evidence: `BUILT LOCALLY`, `TECHNICALLY CHECKED`, `VISUALLY REVIEWED`, `LOCALLY VERIFIED`, `OWNER APPROVED`, `DEPLOYED`, or `PUBLICLY VERIFIED`. Missing or failed required evidence means `NOT VERIFIED` for the requested claim.
 
 ### 10.7 Drift recovery
 
@@ -225,6 +242,8 @@ Before creating anything, restate the required brief from `AGENTS.md`: audience,
 - `concept only` authorizes preview imagery or a mockup, not page or production-file changes;
 - `implementation` authorizes building the exact approved concept within the stated scope; and
 - `correction` authorizes only the named fixes and does not reopen unrelated design decisions.
+
+Every public-page `concept only` deliverable must include a complete full-page visual for owner review before implementation. A written brief, section outline, isolated hero, individual assets, or cropped sections does not substitute for the full-page concept. The complete phone composition is required. When the desktop composition materially expands, rearranges, or changes the visual hierarchy, show the complete desktop composition too. Label unresolved price, action, copy, asset, interaction, availability, and service-structure decisions as proposed or open instead of inventing approval. Owner revisions begin from the complete visual and must preserve cumulative decisions.
 
 Never treat approval of a concept as permission to replace it with a new design during implementation. Never treat a request to discuss or preview as permission to code.
 
@@ -268,6 +287,8 @@ Inspect the actual page at a real phone width no greater than `456px` and a desk
 8. Does the paid action remain visually and logically primary on a paid page?
 
 A technically passing page fails until these human checks pass.
+
+For interactive image comparisons, the human proof must also confirm one clear symbol treatment per meaning, optical centering within each comparison side, and no accidental duplication between the image artwork and live page overlays in every state.
 
 #### I. Record learning at the correct level
 

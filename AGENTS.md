@@ -60,6 +60,18 @@ State separately:
 - what remains unverified;
 - what still requires owner action or approval.
 
+### Executable claim gate
+
+For visual work and any other workflow that has a repository verification gate, a written claim by an agent is not evidence and has no authority to establish status. The gate's calculated result controls the claim.
+
+- Run the applicable executable gate against the required evidence record immediately before using a controlled status or equivalent wording.
+- Never type or manually assign a passing status inside the evidence record. The checker must calculate it from the source lock, authorized scope, build checks, asset/overlay inventory, measurements, screenshots, independent visual review, approvals, deployment evidence, and public recheck required for that level.
+- A missing, stale, failed, substituted, or unreviewed requirement results in `NOT VERIFIED`. Correct the failure and rerun the gate; do not explain it away or silently lower the standard.
+- The person or agent that built the work may not serve as the independent visual reviewer. Important visual judgment and owner approval remain human decision gates; automation can require and record those decisions but cannot invent them.
+- If an applicable gate cannot be run, report the highest narrower state that is actually supported and explicitly say what remains unverified.
+
+The repository-wide architecture, controlled status vocabulary, evidence contract, and local command are defined in `docs/verification-gates.md`. Public-page visual work also follows `docs/site-design-system.md`.
+
 ## 5. Required source routing
 
 Use the authoritative document for the subject instead of maintaining duplicate rules in this file.
