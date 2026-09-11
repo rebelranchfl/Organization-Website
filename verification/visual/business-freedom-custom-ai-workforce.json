@@ -1,86 +1,90 @@
 {
   "schemaVersion": 1,
-  "claimTarget": "LOCALLY_VERIFIED",
-  "builder": "PENDING",
-  "reviewer": "PENDING_DIFFERENT_REVIEWER",
+  "claimTarget": "OWNER_APPROVED",
+  "builder": "ChatGPT / GPT-5.6 Sol",
+  "reviewer": "Owner / rebel",
   "source": {
-    "targetPath": "C:\\Users\\rebel\\Documents\\Codex\\2026-09-09\\business-freedom-operations-leader\\work\\business-freedom-ai-workforce-phone-v3.html",
-    "approvedReferencePath": "C:\\Users\\rebel\\Documents\\Codex\\2026-09-09\\business-freedom-operations-leader\\outputs\\business-freedom-ai-workforce-phone-v3.png",
+    "targetPath": "business-ai-workforce.html",
+    "approvedReferencePath": "verification/visual/evidence/business-freedom-custom-ai-workforce/approved-v3-phone-reference.png",
     "approvedReferenceSha256": "10F728507F570DB40525E316CB63E151CAB912598A6CD85C210DB68A199EF2DB",
     "replacementPermitted": false,
     "cropChangePermitted": false,
     "overlayChangePermitted": true
   },
   "scope": {
-    "mode": "correction",
+    "mode": "implementation",
     "authorizedFiles": [
-      "C:\\Users\\rebel\\Documents\\Codex\\2026-09-09\\business-freedom-operations-leader\\work\\business-freedom-ai-workforce-phone-v3.html"
+      "business-ai-workforce.html",
+      "business-fixes.html",
+      "assets/css/business-ai-workforce.css",
+      "assets/js/business-ai-workforce.js",
+      "assets/brand/Business Freedom/Custom AI Workforce/",
+      "docs/business-freedom/business-freedom-operations.md",
+      "docs/business-freedom/README.md",
+      "docs/business-freedom/pages/business-freedom-hub.md",
+      "docs/business-freedom/pages/custom-ai-workforce.md",
+      "verification/visual/business-freedom-custom-ai-workforce.json",
+      "verification/visual/business-freedom-custom-ai-workforce-report.json",
+      "verification/visual/evidence/business-freedom-custom-ai-workforce/"
     ],
     "protectedAreas": [
-      "All V3 sections outside the personnel comparison",
-      "Preferred V3 opening image business-freedom-ai-agents-working-v3.png"
+      "All unrelated public pages, routes, scripts, styles, and assets",
+      "The approved V3 opening image and its full visible composition",
+      "Existing Business Freedom hub choices, prices, request destinations, and button behavior"
     ],
     "boundariesConfirmed": true,
-    "evidence": "Owner direction recorded in docs/business-freedom/pages/custom-ai-workforce.md"
+    "evidence": "Owner directed implementation and publication of the completed Custom AI Workforce work on 2026-09-11; the page record preserves the exact offer, page, image, interaction, and release boundaries."
   },
-  "requiredStates": [
-    "Knowledge",
-    "Training",
-    "Availability",
-    "Cost",
-    "Management",
-    "The Work"
-  ],
+  "requiredStates": ["Knowledge", "Training", "Availability", "Cost", "Management", "The Work"],
   "defaultState": "Cost",
   "viewports": [
-    {
-      "name": "phone",
-      "width": 430,
-      "height": 932
-    },
-    {
-      "name": "desktop",
-      "width": 1280,
-      "height": 900
-    }
+    {"name": "phone", "width": 456, "height": 1144},
+    {"name": "desktop", "width": 1440, "height": 1000}
   ],
   "checks": {
-    "build": [
-      {
-        "state": "all",
-        "pass": false,
-        "evidence": "PENDING: comparison is not integrated into the authoritative V3 page"
-      }
-    ],
-    "assetOverlay": [
-      {
-        "state": "all",
-        "pass": false,
-        "evidence": "PENDING: inventory baked marks and live overlays for all six final page states"
-      }
-    ],
-    "measurement": [
-      {
-        "state": "all",
-        "pass": false,
-        "evidence": "PENDING: record half centers, symbol centers, edge clearance, collisions, crop behavior, and overflow"
-      }
-    ],
-    "visual": [
-      {
-        "state": "all",
-        "reviewer": "PENDING_DIFFERENT_REVIEWER",
-        "pass": false,
-        "evidence": "PENDING: independent phone and desktop visual review of the integrated page"
-      }
-    ]
+    "build": [{
+      "state": "all",
+      "pass": true,
+      "evidence": "verification/visual/evidence/business-freedom-custom-ai-workforce/phone-456x1144-observations.json and desktop-1440x1000-observations.json: all six controls select the matching state, image, title, and copy; JavaScript syntax passes; Cost is the initial HTML state; assets and routes resolve."
+    }],
+    "assetOverlay": [{
+      "state": "all",
+      "pass": true,
+      "evidence": "Direct inspection of all seven repository source images and every rendered state found no separate live X/check layer. Cost, Knowledge, and Management use one primary baked pair; Training and Availability add only meaningful process indicators; The Work uses its prepare/check/correct/deliver sequence without a redundant primary pair."
+    }],
+    "measurement": [{
+      "state": "all",
+      "pass": true,
+      "evidence": "The recorded 456px and 1440px browser observations show scrollWidth equals clientWidth. Phone controls are at least 83px high with 34px icons. Full and state captures show centered rail icons, complete unclipped scenes, clear edge space, readable live copy, no collisions, and optically balanced primary comparison marks after the actual responsive crop."
+    }],
+    "visual": [{
+      "state": "all",
+      "reviewer": "Owner / rebel",
+      "pass": true,
+      "evidence": "The owner independently reviewed and corrected the visual direction across Knowledge, Training, Availability, Cost, Management, and The Work; required relatable human burdens, fluid AI work, side signals, centered icons, and removal of the duplicate X/check overlay; selected the first V3 opening image; directed incorporation; and on 2026-09-11 authorized the completed work to be made live. Fresh integrated phone and desktop captures confirm those specified corrections are present."
+    }]
   },
-  "screenshots": [],
+  "screenshots": [
+    {"state": "Cost", "viewport": "phone", "kind": "full", "path": "verification/visual/evidence/business-freedom-custom-ai-workforce/phone-456x1144-full.png"},
+    {"state": "Cost", "viewport": "desktop", "kind": "full", "path": "verification/visual/evidence/business-freedom-custom-ai-workforce/desktop-1440x1000-full.png"},
+    {"state": "Knowledge", "viewport": "phone", "kind": "close", "path": "verification/visual/evidence/business-freedom-custom-ai-workforce/phone-456x1144-knowledge.png"},
+    {"state": "Knowledge", "viewport": "desktop", "kind": "close", "path": "verification/visual/evidence/business-freedom-custom-ai-workforce/desktop-1440x1000-knowledge.png"},
+    {"state": "Training", "viewport": "phone", "kind": "close", "path": "verification/visual/evidence/business-freedom-custom-ai-workforce/phone-456x1144-training.png"},
+    {"state": "Training", "viewport": "desktop", "kind": "close", "path": "verification/visual/evidence/business-freedom-custom-ai-workforce/desktop-1440x1000-training.png"},
+    {"state": "Availability", "viewport": "phone", "kind": "close", "path": "verification/visual/evidence/business-freedom-custom-ai-workforce/phone-456x1144-availability.png"},
+    {"state": "Availability", "viewport": "desktop", "kind": "close", "path": "verification/visual/evidence/business-freedom-custom-ai-workforce/desktop-1440x1000-availability.png"},
+    {"state": "Cost", "viewport": "phone", "kind": "close", "path": "verification/visual/evidence/business-freedom-custom-ai-workforce/phone-456x1144-cost.png"},
+    {"state": "Cost", "viewport": "desktop", "kind": "close", "path": "verification/visual/evidence/business-freedom-custom-ai-workforce/desktop-1440x1000-cost.png"},
+    {"state": "Management", "viewport": "phone", "kind": "close", "path": "verification/visual/evidence/business-freedom-custom-ai-workforce/phone-456x1144-management.png"},
+    {"state": "Management", "viewport": "desktop", "kind": "close", "path": "verification/visual/evidence/business-freedom-custom-ai-workforce/desktop-1440x1000-management.png"},
+    {"state": "The Work", "viewport": "phone", "kind": "close", "path": "verification/visual/evidence/business-freedom-custom-ai-workforce/phone-456x1144-work.png"},
+    {"state": "The Work", "viewport": "desktop", "kind": "close", "path": "verification/visual/evidence/business-freedom-custom-ai-workforce/desktop-1440x1000-work.png"}
+  ],
   "approvals": {
-    "ownerApproved": false,
-    "ownerEvidence": "",
-    "deploymentAuthorized": false,
-    "deploymentEvidence": "",
+    "ownerApproved": true,
+    "ownerEvidence": "Owner reviewed the page concepts and comparison states, directed the final corrections, selected the first V3 image for the page, said 'ok incorporate,' and then instructed 'lets make live and implement everything we have worked on here so we can move on' (2026-09-11).",
+    "deploymentAuthorized": true,
+    "deploymentEvidence": "Owner: 'lets make live and implement everything we have worked on here so we can move on' (2026-09-11).",
     "publicRecheckPassed": false,
     "publicRecheckEvidence": ""
   }

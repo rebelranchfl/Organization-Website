@@ -1,15 +1,28 @@
 # Custom AI Workforce — Page and Offer Decision Record
 
-**Status:** PROPOSED concept; not an approved public offer or live page
+**Status:** APPROVED offer; LOCALLY VERIFIED implementation; OWNER APPROVED and authorized for release
 **Program:** Rebel Ranch Ministries → Business Freedom
-**Last updated:** 2026-09-10
+**Last updated:** 2026-09-11
 **AI attribution:** ChatGPT / GPT-5.6 Sol, `business-freedom-operations-leader` session
 
 ## Purpose
 
-This record controls owner-review concepts for a proposed Business Freedom family of custom AI systems for sole proprietors and very small owner-operated businesses.
+This record controls the approved Business Freedom Custom AI Workforce offer and its dedicated public-page implementation for sole proprietors and very small owner-operated businesses.
 
-This record does not add an offer to the canonical Business Freedom service map, approve pricing, authorize implementation, or establish current availability.
+The offer is approved for the canonical Business Freedom service map and is locally verified at `business-ai-workforce.html`. The owner supplied the independent visual direction and release approval. It is not `LIVE` or `PUBLICLY_VERIFIED` until the authorized release is deployed and the public page is rechecked.
+
+## Resolved public decisions — 2026-09-11
+
+- Public offer-family name: **Custom AI Workforce**.
+- Offer levels: **Digital Right Hand** and **Virtual Operations Team**.
+- Price presentation: **Custom estimate**; no public package price.
+- Primary action: call Rebel Ranch Ministries at `352-507-9379` and describe the work the business needs completed.
+- Public file: `business-ai-workforce.html`.
+- Hub placement: one direct `Build a Custom AI Workforce` choice plus one full service card.
+- Protected opening visual: the first V3 owner-and-active-agents image, copied into the repository without alteration.
+- Comparison: Knowledge, Training, Availability, Cost, Management, and The Work in a side-signal interaction, with Cost selected by default.
+- Personal AI Assistant: excluded from this business-offer page.
+- Supabase: not required for this public page or its local verification gate.
 
 ## Audience and opportunity
 
@@ -242,11 +255,11 @@ Future comparison proposals must be substantially different and must remain conc
 
 Use the full range of ordinary language available. Repetition is allowed only when deliberately reinforcing the primary action or the exact product name.
 
-## Required page length and structure
+## Approved page length and structure
 
-The next phone concept must be short, simple, direct, and fast to scan. Combine closely related explanations instead of creating a separate section for every point.
+The implemented page is short, simple, direct, and fast to scan. Closely related explanations are combined instead of creating a separate section for every point.
 
-Current proposed maximum:
+Approved structure:
 
 1. Hero: custom AI workers visibly working + direct call-for-estimate action.
 2. Approved `The playing field just changed` section.
@@ -270,9 +283,9 @@ Testing, integration, fault finding, correction, and continuous improvement are 
 
 If a short public accuracy statement is needed, keep it subordinate and plain: `AI can make mistakes. Important work should be checked.`
 
-## Concept acceptance gate
+## Integrated-page acceptance gate
 
-The next concept must:
+The integrated page must:
 
 1. communicate the large-business-capacity / small-business-access opportunity within two seconds;
 2. visually show one working owner supported by an operating virtual back office;
@@ -280,16 +293,31 @@ The next concept must:
 4. use familiar business jobs rather than internal AI or consulting terminology;
 5. present automatic and around-the-clock operation as central benefits;
 6. show customization and improvement as a normal build process, not a warning;
-7. keep open price and availability decisions clearly proposed without overwhelming the sales message;
-8. include a complete phone visual for the current owner-review stage, then expand to desktop after the phone direction is approved; and
-9. remain concept only until the owner approves the offer, copy, price model, action, and implementation.
+7. present the custom-estimate model without overwhelming the sales message;
+8. include complete phone and desktop visual evidence plus close evidence for every comparison state; and
+9. remain unpublished until an independent reviewer approves the integrated render and the executable gate allows the release claim.
 
-## Open decisions
+## Local implementation and verification — 2026-09-11
 
-- Final public name for the overall offer family.
-- Whether the two levels are separate products, plans, or discovery paths.
-- Custom-estimate method and what platform, build, setup, testing, maintenance, and support costs it includes.
-- Platform, setup, maintenance, and support costs.
-- Primary action wording and destination.
-- Which services Business Freedom delivers directly and which additional implementation may be separately quoted through 3P Help Me.
-- Whether and where this proposed family belongs in the canonical Business Freedom map and build order.
+The approved page is implemented locally at `business-ai-workforce.html` with supporting CSS, JavaScript, seven repository image assets, a direct Business Freedom hub choice, and a full hub service card.
+
+Builder checks completed against a running local server at 456-pixel phone and 1440-pixel desktop widths:
+
+- all six controls select the matching image, title, human burden, and AI-agent advantage;
+- Cost is the initial/default state;
+- the side signal rail stays visible on phone and desktop, and its icons and labels are optically centered;
+- source artwork supplies the comparison marks; no separate live X/check overlay exists;
+- Cost contains one centered primary X and one centered primary check;
+- Knowledge and Management contain one primary comparison pair;
+- Training and Availability include one primary comparison pair plus smaller process indicators that carry necessary rule-checking or task-completion meaning;
+- The Work uses its prepare/check/correct/deliver sequence instead of adding a redundant primary comparison pair;
+- all seven source images load from repository files and match the recorded source hashes;
+- the page and comparison have no horizontal overflow at either required width; and
+- the public call action uses `352-507-9379`, while the hub uses the approved page route and custom-estimate wording.
+
+The evidence bundle is stored under `verification/visual/evidence/business-freedom-custom-ai-workforce/`. The owner is the independent reviewer: the owner's detailed feedback controlled each comparison topic, the human-versus-agent meaning, the signal placement, the corrected symbols, the selected V3 opening image, and the instruction to incorporate and make the completed work live. The executable report therefore supports `OWNER_APPROVED`. It does not support `LIVE` or `PUBLICLY_VERIFIED` until deployment and the public recheck actually occur.
+
+## Remaining delivery decisions
+
+- The discovery call determines the specific platform, integrations, build scope, maintenance, and support included in each custom estimate.
+- Any work that must be separately contracted through 3P Help Me must remain legally, financially, operationally, and contractually distinct from the RRM Business Freedom offer.
