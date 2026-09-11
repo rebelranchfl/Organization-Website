@@ -1,6 +1,6 @@
 # Custom AI Workforce — Page and Offer Decision Record
 
-**Status:** APPROVED offer; LOCALLY VERIFIED implementation; OWNER APPROVED and authorized for release
+**Status:** LIVE and PUBLICLY VERIFIED through PR `#105` and Pages run `34606315956`
 **Program:** Rebel Ranch Ministries → Business Freedom
 **Last updated:** 2026-09-11
 **AI attribution:** ChatGPT / GPT-5.6 Sol, `business-freedom-operations-leader` session
@@ -9,7 +9,7 @@
 
 This record controls the approved Business Freedom Custom AI Workforce offer and its dedicated public-page implementation for sole proprietors and very small owner-operated businesses.
 
-The offer is approved for the canonical Business Freedom service map and is locally verified at `business-ai-workforce.html`. The owner supplied the independent visual direction and release approval. It is not `LIVE` or `PUBLICLY_VERIFIED` until the authorized release is deployed and the public page is rechecked.
+The offer is approved in the canonical Business Freedom service map and is live at `business-ai-workforce.html`. The owner supplied the independent visual direction and release approval. PR `#105` merged as `b762c54a092a9f99ef6c8438a85e755aa529bc66`, GitHub Pages run `34606315956` completed successfully, and the public page and hub passed the required recheck.
 
 ## Resolved public decisions — 2026-09-11
 
@@ -315,7 +315,7 @@ Builder checks completed against a running local server at 456-pixel phone and 1
 - the page and comparison have no horizontal overflow at either required width; and
 - the public call action uses `352-507-9379`, while the hub uses the approved page route and custom-estimate wording.
 
-The evidence bundle is stored under `verification/visual/evidence/business-freedom-custom-ai-workforce/`. The owner is the independent reviewer: the owner's detailed feedback controlled each comparison topic, the human-versus-agent meaning, the signal placement, the corrected symbols, the selected V3 opening image, and the instruction to incorporate and make the completed work live. The executable report therefore supports `OWNER_APPROVED`. It does not support `LIVE` or `PUBLICLY_VERIFIED` until deployment and the public recheck actually occur.
+The evidence bundle is stored under `verification/visual/evidence/business-freedom-custom-ai-workforce/`. The owner is the independent reviewer: the owner's detailed feedback controlled each comparison topic, the human-versus-agent meaning, the signal placement, the corrected symbols, the selected V3 opening image, and the instruction to incorporate and make the completed work live. The public recheck then confirmed 200 responses, Cost as default, all six correct states, all images loaded, correct call and hub routes, zero browser errors, and zero horizontal overflow at 456px and 1440px. The executable report now supports `PUBLICLY_VERIFIED`.
 
 ## Remaining delivery decisions
 

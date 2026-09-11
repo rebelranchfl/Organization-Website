@@ -43,7 +43,7 @@ The approved Business Freedom map is:
 3. **Keep Your Money** — retained income and connected operations; live dedicated page at `business-money-leaks.html`.
 4. **Get Seen, Get Found** — online presence and social-media visibility; live dedicated page at `business-visibility.html`.
 5. **Automated Payment Processing** — payment systems, merchant services, software connections, and automation; approved page deployed at `business-payment-processing.html` through pull request `#102`, with owner/public experience verification pending.
-6. **Custom AI Workforce** — one Digital Right Hand or a coordinated Virtual Operations Team built around the business's procedures, tools, boundaries, and recurring digital work; locally verified and owner approved for release at `business-ai-workforce.html`.
+6. **Custom AI Workforce** — one Digital Right Hand or a coordinated Virtual Operations Team built around the business's procedures, tools, boundaries, and recurring digital work; live and publicly verified at `business-ai-workforce.html` through pull request `#105` and Pages run `34606315956`.
 7. **Add an Operations Leader to Your Team** — recurring access to combined operations strategist, operations manager, and process-engineering capability; approved comprehensive landing-page direction. No approved public page currently exists.
 8. **I've Got the Potential** — routing choice for owners who need help identifying the right path; not a separate paid service and does not receive its own landing page.
 
@@ -51,7 +51,7 @@ The approved Business Freedom map is:
 
 **Get Paid Faster — Set Up Your Payment Links** is offered only to Rebel Ranch Marketplace vendors.
 
-It stems from Business Freedom's existing merchant-services and automated-payment-processing capability and acts as a Marketplace-to-Business-Freedom funnel/entry offer. It is not one of the six core general-public Business Freedom services.
+It stems from Business Freedom's existing merchant-services and automated-payment-processing capability and acts as a Marketplace-to-Business-Freedom funnel/entry offer. It is not one of the seven core general-public Business Freedom services.
 
 Agents must preserve all of these boundaries:
 
@@ -113,10 +113,9 @@ Program-specific brand, marketing, systems, or project subfolders should be crea
 
 ## Current build order
 
-1. Publish the owner-approved **Custom AI Workforce** page with its direct hub routes and publicly recheck it.
-2. Preserve and promote the hub plus all deployed dedicated pages, while keeping verification states accurate.
-3. Develop **Add an Operations Leader to Your Team** as the premium recurring Business Freedom page.
-4. Review the separate Marketplace payment-link offer last.
+1. Preserve and promote the hub plus all deployed dedicated pages, including **Custom AI Workforce**, while keeping verification states accurate.
+2. Develop **Add an Operations Leader to Your Team** as the premium recurring Business Freedom page.
+3. Review the separate Marketplace payment-link offer last.
 
 ## Verification rule
 

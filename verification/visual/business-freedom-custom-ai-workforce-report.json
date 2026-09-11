@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "requestedClaim": "OWNER_APPROVED",
+  "requestedClaim": "PUBLICLY_VERIFIED",
   "claimAllowed": true,
-  "calculatedStatus": "OWNER_APPROVED",
-  "highestSupportedStatus": "DEPLOYED",
+  "calculatedStatus": "PUBLICLY_VERIFIED",
+  "highestSupportedStatus": "PUBLICLY_VERIFIED",
   "gates": {
     "source": true,
     "scope": true,
@@ -14,9 +14,9 @@
     "screenshots": true,
     "ownerApproval": true,
     "deployment": true,
-    "publicRecheck": false
+    "publicRecheck": true
   },
   "errors": [],
-  "manifestSha256": "476287b3d3415cc34ca2fc1d79ce5a214fc410eb81132a4c78fcb584bb85739f",
-  "generatedAt": "2026-09-11T13:43:01.214Z"
+  "manifestSha256": "ad0e09f3f714d7b8135930b31edf018308cd1afea573acbbe16407955c8dc494",
+  "generatedAt": "2026-09-11T13:57:40.474Z"
 }

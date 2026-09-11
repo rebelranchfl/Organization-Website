@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "claimTarget": "OWNER_APPROVED",
+  "claimTarget": "PUBLICLY_VERIFIED",
   "builder": "ChatGPT / GPT-5.6 Sol",
   "reviewer": "Owner / rebel",
   "source": {
@@ -85,7 +85,7 @@
     "ownerEvidence": "Owner reviewed the page concepts and comparison states, directed the final corrections, selected the first V3 image for the page, said 'ok incorporate,' and then instructed 'lets make live and implement everything we have worked on here so we can move on' (2026-09-11).",
     "deploymentAuthorized": true,
     "deploymentEvidence": "Owner: 'lets make live and implement everything we have worked on here so we can move on' (2026-09-11).",
-    "publicRecheckPassed": false,
-    "publicRecheckEvidence": ""
+    "publicRecheckPassed": true,
+    "publicRecheckEvidence": "PR #105 merged as b762c54a092a9f99ef6c8438a85e755aa529bc66; GitHub Pages run 34606315956 completed successfully. Cache-busted public checks returned 200 for business-ai-workforce.html and business-fixes.html. At 456px and 1440px, Cost opened by default; all six controls selected the correct state and loaded the matching image; all images loaded; both page call links and the hub call link use tel:+13525079379; the hub exposes two business-ai-workforce.html routes with Custom estimate; browser errors and horizontal overflow were zero. Public visual inspection confirmed the approved hero and corrected comparison composition."
   }
 }
