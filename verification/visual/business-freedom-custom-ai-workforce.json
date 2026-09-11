@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "claimTarget": "LOCALLY_VERIFIED",
+  "builder": "PENDING",
+  "reviewer": "PENDING_DIFFERENT_REVIEWER",
+  "source": {
+    "targetPath": "C:\\Users\\rebel\\Documents\\Codex\\2026-09-09\\business-freedom-operations-leader\\work\\business-freedom-ai-workforce-phone-v3.html",
+    "approvedReferencePath": "C:\\Users\\rebel\\Documents\\Codex\\2026-09-09\\business-freedom-operations-leader\\outputs\\business-freedom-ai-workforce-phone-v3.png",
+    "approvedReferenceSha256": "10F728507F570DB40525E316CB63E151CAB912598A6CD85C210DB68A199EF2DB",
+    "replacementPermitted": false,
+    "cropChangePermitted": false,
+    "overlayChangePermitted": true
+  },
+  "scope": {
+    "mode": "correction",
+    "authorizedFiles": [
+      "C:\\Users\\rebel\\Documents\\Codex\\2026-09-09\\business-freedom-operations-leader\\work\\business-freedom-ai-workforce-phone-v3.html"
+    ],
+    "protectedAreas": [
+      "All V3 sections outside the personnel comparison",
+      "Preferred V3 opening image business-freedom-ai-agents-working-v3.png"
+    ],
+    "boundariesConfirmed": true,
+    "evidence": "Owner direction recorded in docs/business-freedom/pages/custom-ai-workforce.md"
+  },
+  "requiredStates": [
+    "Knowledge",
+    "Training",
+    "Availability",
+    "Cost",
+    "Management",
+    "The Work"
+  ],
+  "defaultState": "Cost",
+  "viewports": [
+    {
+      "name": "phone",
+      "width": 430,
+      "height": 932
+    },
+    {
+      "name": "desktop",
+      "width": 1280,
+      "height": 900
+    }
+  ],
+  "checks": {
+    "build": [
+      {
+        "state": "all",
+        "pass": false,
+        "evidence": "PENDING: comparison is not integrated into the authoritative V3 page"
+      }
+    ],
+    "assetOverlay": [
+      {
+        "state": "all",
+        "pass": false,
+        "evidence": "PENDING: inventory baked marks and live overlays for all six final page states"
+      }
+    ],
+    "measurement": [
+      {
+        "state": "all",
+        "pass": false,
+        "evidence": "PENDING: record half centers, symbol centers, edge clearance, collisions, crop behavior, and overflow"
+      }
+    ],
+    "visual": [
+      {
+        "state": "all",
+        "reviewer": "PENDING_DIFFERENT_REVIEWER",
+        "pass": false,
+        "evidence": "PENDING: independent phone and desktop visual review of the integrated page"
+      }
+    ]
+  },
+  "screenshots": [],
+  "approvals": {
+    "ownerApproved": false,
+    "ownerEvidence": "",
+    "deploymentAuthorized": false,
+    "deploymentEvidence": "",
+    "publicRecheckPassed": false,
+    "publicRecheckEvidence": ""
+  }
+}

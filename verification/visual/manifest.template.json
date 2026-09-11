@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "claimTarget": "LOCALLY_VERIFIED",
+  "builder": "REPLACE_WITH_BUILDER_NAME",
+  "reviewer": "REPLACE_WITH_DIFFERENT_REVIEWER_NAME",
+  "source": {
+    "targetPath": "REPLACE_WITH_EXACT_TARGET_PATH",
+    "approvedReferencePath": "REPLACE_WITH_APPROVED_REFERENCE_PATH",
+    "approvedReferenceSha256": "REPLACE_WITH_64_CHARACTER_SHA256",
+    "replacementPermitted": false,
+    "cropChangePermitted": false,
+    "overlayChangePermitted": false
+  },
+  "scope": {
+    "mode": "correction",
+    "authorizedFiles": [
+      "REPLACE_WITH_AUTHORIZED_FILE"
+    ],
+    "protectedAreas": [
+      "REPLACE_WITH_PROTECTED_AREA_OR_WRITE_NONE"
+    ],
+    "boundariesConfirmed": false,
+    "evidence": "REPLACE_WITH_SCOPE_AUTHORITY"
+  },
+  "requiredStates": [
+    "default"
+  ],
+  "defaultState": "default",
+  "viewports": [
+    {
+      "name": "phone",
+      "width": 430,
+      "height": 932
+    },
+    {
+      "name": "desktop",
+      "width": 1280,
+      "height": 900
+    }
+  ],
+  "checks": {
+    "build": [
+      {
+        "state": "all",
+        "pass": false,
+        "evidence": "REPLACE_WITH_BUILD_AND_TECHNICAL_REPORT"
+      }
+    ],
+    "assetOverlay": [
+      {
+        "state": "all",
+        "pass": false,
+        "evidence": "REPLACE_WITH_BAKED_AND_LIVE_LAYER_INVENTORY"
+      }
+    ],
+    "measurement": [
+      {
+        "state": "all",
+        "pass": false,
+        "evidence": "REPLACE_WITH_CENTER_EDGE_COLLISION_AND_OVERFLOW_MEASUREMENTS"
+      }
+    ],
+    "visual": [
+      {
+        "state": "all",
+        "reviewer": "REPLACE_WITH_DIFFERENT_REVIEWER_NAME",
+        "pass": false,
+        "evidence": "REPLACE_WITH_TWO_SECOND_MEANING_BALANCE_CROP_AND_CONCEPT_REVIEW"
+      }
+    ]
+  },
+  "screenshots": [
+    {
+      "state": "default",
+      "viewport": "phone",
+      "kind": "full",
+      "path": "REPLACE_WITH_PHONE_FULL_PAGE_PNG"
+    },
+    {
+      "state": "default",
+      "viewport": "desktop",
+      "kind": "full",
+      "path": "REPLACE_WITH_DESKTOP_FULL_PAGE_PNG"
+    },
+    {
+      "state": "default",
+      "viewport": "phone",
+      "kind": "close",
+      "path": "REPLACE_WITH_PHONE_CLOSE_CROP_PNG"
+    },
+    {
+      "state": "default",
+      "viewport": "desktop",
+      "kind": "close",
+      "path": "REPLACE_WITH_DESKTOP_CLOSE_CROP_PNG"
+    }
+  ],
+  "approvals": {
+    "ownerApproved": false,
+    "ownerEvidence": "",
+    "deploymentAuthorized": false,
+    "deploymentEvidence": "",
+    "publicRecheckPassed": false,
+    "publicRecheckEvidence": ""
+  }
+}
