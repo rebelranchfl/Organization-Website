@@ -2,7 +2,7 @@
 
 **Status:** Current index  
 **Program:** Rebel Ranch Ministries → Business Freedom  
-**Last updated:** 2026-09-09
+**Last updated:** 2026-09-11
 
 Read `business-freedom-operations.md` first for the program-level purpose, boundaries, current service map, funding priority, and operating direction.
 
@@ -14,9 +14,9 @@ Before taking visual action, produce and apply the mandatory Business Freedom wo
 
 The main Business Freedom hub is `business-fixes.html`.
 
-`business-freedom-hub-v1.5` is the current publicly verified hub baseline. The Automated Payment Processing route was subsequently deployed through pull request `#102`; owner/public experience verification of that release remains pending. The governing record is `pages/business-freedom-hub.md`.
+`business-freedom-hub-v1.5` is the current publicly verified hub baseline. The Automated Payment Processing route was subsequently deployed through pull request `#102`; owner/public experience verification of that release remains pending. A direct Custom AI Workforce choice and full service card are locally verified, owner approved, and authorized for release. The governing record is `pages/business-freedom-hub.md`.
 
-The five current dedicated Business Freedom landing pages are:
+The current dedicated Business Freedom landing pages and release states are:
 
 | Approved public name | Public file | Current state |
 |---|---|---|
@@ -25,6 +25,7 @@ The five current dedicated Business Freedom landing pages are:
 | Keep Your Money | `business-money-leaks.html` | LIVE |
 | Get Seen, Get Found | `business-visibility.html` | LIVE |
 | Automated Payment Processing | `business-payment-processing.html` | DEPLOYED through PR `#102`; owner/public verification pending |
+| Custom AI Workforce | `business-ai-workforce.html` | LOCALLY VERIFIED; OWNER APPROVED; release authorized |
 
 These pages are part of the approved hub map even though separate page decision records for the first two are not currently present in this folder. Their current repository files and the hub record must be verified before changes.
 
@@ -36,6 +37,7 @@ These pages are part of the approved hub map even though separate page decision 
 | `pages/keep-more-of-what-you-earn.md` | Keep Your Money | Live dedicated page direction/history |
 | `pages/get-seen-get-found.md` | Get Seen, Get Found | LIVE and linked from the Business Freedom hub |
 | `pages/automated-payment-processing.md` | Automated Payment Processing | Approved female-owner page deployed through PR `#102`; owner/public verification pending |
+| `pages/custom-ai-workforce.md` | Custom AI Workforce | Approved offer and locally verified implementation; release authorized |
 | `pages/ongoing-business-guidance.md` | Add an Operations Leader to Your Team | Approved comprehensive recurring-service direction; no approved public page currently exists |
 | `pages/get-paid-faster.md` | Separate Marketplace-specific payment-link setup | Hold until core Business Freedom work is complete |
 
@@ -46,16 +48,18 @@ These pages are part of the approved hub map even though separate page decision 
 3. Keep Your Money
 4. Get Seen, Get Found
 5. Automated Payment Processing
-6. Add an Operations Leader to Your Team
-7. I've Got the Potential — routing choice only, not a separate paid service
+6. Custom AI Workforce
+7. Add an Operations Leader to Your Team
+8. I've Got the Potential — routing choice only, not a separate paid service
 
 The separate **Get Paid Faster — Set Up Your Payment Links** offer is Marketplace-specific and does not replace Automated Payment Processing.
 
 ## Current work order
 
-1. Preserve and use the hub plus the five deployed dedicated pages.
-2. Develop **Add an Operations Leader to Your Team** next as the premium recurring offer.
-3. Review the separate Marketplace payment-link offer last.
+1. Release the owner-approved **Custom AI Workforce** page with its hub routes and publicly recheck it.
+2. Preserve and use the hub plus every deployed dedicated page.
+3. Develop **Add an Operations Leader to Your Team** next as the premium recurring offer.
+4. Review the separate Marketplace payment-link offer last.
 
 Business Freedom is currently RRM's first funding-focused program priority because the owner identified it as the easiest active program to promote and use for near-term earned revenue.
 

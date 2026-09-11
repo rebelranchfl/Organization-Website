@@ -4,9 +4,9 @@
 
 - Page file: `business-fixes.html`
 - Program: Rebel Ranch Ministries → Business Freedom
-- Current state: `business-freedom-hub-v1.5` remains the publicly verified baseline; the Automated Payment Processing route was deployed through PR `#102` with owner/public verification pending
-- Last updated: 2026-09-09
-- Current exact version: `business-freedom-hub-v1.5` baseline plus payment-route release `#102`
+- Current state: `business-freedom-hub-v1.5` remains the publicly verified baseline; the Automated Payment Processing route was deployed through PR `#102` with owner/public verification pending; Custom AI Workforce routes are locally verified, owner approved, and authorized for release
+- Last updated: 2026-09-11
+- Current exact version: `business-freedom-hub-v1.5` baseline plus payment-route release `#102`; local Custom AI Workforce route addition pending release
 
 ## North star
 
@@ -25,14 +25,16 @@
   3. `Keep Your Money` — core service with a live landing page.
   4. `Get Seen, Get Found` — core service with a live landing page.
   5. `Automated Payment Processing` — core service with a dedicated page deployed at `business-payment-processing.html`; owner/public verification pending.
-  6. `Add an Operations Leader to Your Team` — core recurring service requiring one comprehensive landing page.
-  7. `I've Got the Potential` — routing choice with the supporting statement `I just don't know how to get there.`; no landing page.
-- Link the five completed landing pages from their matching selector results and full service cards:
+  6. `Custom AI Workforce` — core custom digital-worker service with a dedicated page at `business-ai-workforce.html`; use `Build a Custom AI Workforce` for the direct problem-first choice.
+  7. `Add an Operations Leader to Your Team` — core recurring service requiring one comprehensive landing page.
+  8. `I've Got the Potential` — routing choice with the supporting statement `I just don't know how to get there.`; no landing page.
+- Link the six completed landing pages from their matching selector results and full service cards:
   - `business-time.html`
   - `business-leads.html`
   - `business-money-leaks.html`
   - `business-visibility.html`
   - `business-payment-processing.html`
+  - `business-ai-workforce.html`
 - Preserve the exact approved recognition statement for `Automated Payment Processing`: `Tired of waiting for systems and programs to deposit my money.`
 - Preserve the exact approved recognition statement for `Add an Operations Leader to Your Team`: `I need an experienced & certified pro on my side, but can't afford a full-time employee.`
 - Preserve the approved `Keep Your Money` recognition story in every shortened hub and request-form use: `You do quality work. Money comes in. Too little of it stays.` The supporting explanation must describe following every dollar, analyzing the whole operation, finding root causes across connected systems and processes, and building one clean flow. Do not substitute lists of wasted time, trips, fuel, materials, software, repeated work, or other individual causes for this service identity, and do not frame the owner as the failure.
@@ -60,6 +62,7 @@
 | 2026-09-07 | `business-freedom-hub-v1.5` production release | LIVE | Keep the primary Visibility choice linked directly to the concept-faithful landing page | Pull request `#99` merged as `806855c3` and GitHub Pages deployment `34158308319` completed successfully. Cache-busted public source and real-browser accessibility inspection both confirm the Visibility choice is a link to `business-visibility.html`; its mobile card presentation and the destination page were visually verified. |
 | 2026-09-08 | Automated Payment Processing route | APPROVED and LOCALLY VERIFIED | Link the primary payment-processing choice and full service card directly to `business-payment-processing.html`, while preserving the existing request action | The owner approved the female-owner full-page concept and then authorized implementation; the local page, responsive presentation, interactions, and routes passed verification. Publication remains a separate gate. |
 | 2026-09-09 | Automated Payment Processing route release | DEPLOYED; OWNER/PUBLIC VERIFICATION PENDING | Merge the landing page and both hub routes through PR `#102` | PR `#102` merged as `2d36e522`; GitHub Pages run `34386140764` completed successfully. The owner elected to verify the public experience, so deployment must not be recorded as public verification. |
+| 2026-09-11 | Custom AI Workforce page and hub routes | LOCALLY VERIFIED; OWNER APPROVED; RELEASE AUTHORIZED | Add one direct problem-first choice, one full service card, and the approved dedicated page without changing unrelated hub behavior | The owner independently reviewed and corrected every comparison topic, selected the first V3 opening image, approved incorporation, and directed the completed work to be made live. Fresh phone and desktop evidence covers every state, shows no horizontal overflow, and confirms the corrected state/image/copy changes. |
 
 ## Verification matrix
 
@@ -76,13 +79,15 @@
 | `business-freedom-hub-v1.5` | Production deployment, direct Visibility choice-card destination, landing-page response, and mobile rendering | GitHub Pages and real mobile browser | Deployment `34158308319` succeeded; the public hub source and accessibility tree identify the Visibility choice as a direct `business-visibility.html` link; both hub and destination returned 200 and displayed the approved mobile experience. | 2026-09-07 Codex | LIVE |
 | Payment-processing local integration | Approved page composition, readable hero photograph, removal of borrowed section numbers, responsive layout, interactive control buttons, four photographic assets, request route, and both hub landing-page routes | Local server; phone and desktop browser | The closing-shop story remains visible behind readable hero copy; no page-section numbers render; all four images load at their natural 1672×941 dimensions; the rule controls update their explanation and pressed state; both calls to action reach `business-request.html?service=revenue-cycle`; both hub links reach `business-payment-processing.html`; no horizontal overflow or browser errors were found. | 2026-09-08 Codex | PASS; deployment followed through PR `#102` |
 | Payment-processing deployment | Merge and GitHub Pages deployment only | GitHub PR and Actions | PR `#102` merged as `2d36e522`; Pages run `34386140764` completed successfully. No public-page or public hub-route verification was performed because the owner elected to verify personally. | 2026-09-09 Codex | DEPLOYED; OWNER/PUBLIC VERIFICATION PENDING |
+| Custom AI Workforce local routes | Direct hub choice, full service card, dedicated-page destinations, preserved unrelated buttons, phone and desktop overflow | Local server; 456px phone and 1440px desktop | Both new hub links reach `business-ai-workforce.html`; the full card uses Custom estimate and the verified RRM call number; existing button-driven choices retain their existing script; no unrelated page or request-form route was changed. The owner supplied the separate visual review and release approval. | 2026-09-11 Codex + owner | LOCALLY VERIFIED; OWNER APPROVED |
 
 ## Flags and unanswered questions
 
 - The Automated Payment Processing filename, concept, price presentation, primary action, page, and local hub routes are approved and locally verified. The page and hub routes are deployed through PR `#102`; owner/public verification remains pending.
+- The Custom AI Workforce offer, public name, two service levels, no-package-price decision, call action, page filename, V3 hero, comparison states, and local hub routes are locally verified and owner approved. Release is authorized; public verification must still follow deployment.
 - The existing local `business-guidance.html` draft predates the approved Operations Leader direction and must not be treated as approved page content.
 - `business-freedom-hub-v1.5` is live and publicly verified.
 
 ## Next permitted action
 
-Preserve the five deployed landing-page routes. Develop `Add an Operations Leader to Your Team` next only after its service-specific concept is approved through the shared visual learning and execution loop.
+Publish the owner-approved `business-ai-workforce.html` page and its two direct hub routes, publicly recheck the page and hub, then preserve every deployed landing-page route and move to `Add an Operations Leader to Your Team`.

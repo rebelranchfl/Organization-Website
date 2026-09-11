@@ -1,0 +1,131 @@
+{
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "innerWidth": 1440,
+  "clientWidth": 1440,
+  "scrollWidth": 1440,
+  "pageHeight": 5620,
+  "errors": [],
+  "defaultState": "cost",
+  "callLinks": 2,
+  "imageHealth": [
+    {
+      "src": "assets/brand/Rebel%20Ranch%20Ministries/rrm-logo-white.png",
+      "complete": true,
+      "naturalWidth": 2000,
+      "naturalHeight": 2000
+    },
+    {
+      "src": "assets/brand/Business%20Freedom/Custom%20AI%20Workforce/ai-workforce-hero-v3.png",
+      "complete": true,
+      "naturalWidth": 1024,
+      "naturalHeight": 1536
+    },
+    {
+      "src": "assets/brand/Business%20Freedom/Custom%20AI%20Workforce/compare-cost.png",
+      "complete": true,
+      "naturalWidth": 1672,
+      "naturalHeight": 941
+    },
+    {
+      "src": "assets/brand/Rebel%20Ranch%20Ministries/rrm-logo-white.png",
+      "complete": true,
+      "naturalWidth": 2000,
+      "naturalHeight": 2000
+    }
+  ],
+  "controls": [
+    {
+      "state": "knowledge",
+      "width": 160,
+      "height": 122,
+      "iconWidth": 36,
+      "iconHeight": 36,
+      "textAlign": "center"
+    },
+    {
+      "state": "training",
+      "width": 160,
+      "height": 122,
+      "iconWidth": 36,
+      "iconHeight": 36,
+      "textAlign": "center"
+    },
+    {
+      "state": "availability",
+      "width": 160,
+      "height": 122,
+      "iconWidth": 36,
+      "iconHeight": 36,
+      "textAlign": "center"
+    },
+    {
+      "state": "cost",
+      "width": 160,
+      "height": 122,
+      "iconWidth": 36,
+      "iconHeight": 36,
+      "textAlign": "center"
+    },
+    {
+      "state": "management",
+      "width": 160,
+      "height": 122,
+      "iconWidth": 36,
+      "iconHeight": 36,
+      "textAlign": "center"
+    },
+    {
+      "state": "work",
+      "width": 160,
+      "height": 122,
+      "iconWidth": 36,
+      "iconHeight": 36,
+      "textAlign": "center"
+    }
+  ],
+  "keyboard": {
+    "afterArrowDown": "management",
+    "afterArrowUp": "cost"
+  },
+  "states": {
+    "knowledge": {
+      "active": "knowledge",
+      "title": "One role versus broad capability",
+      "person": "One person usually brings experience and training for one main position.",
+      "agent": "One custom agent can combine broad knowledge and use many connected digital tools."
+    },
+    "training": {
+      "active": "training",
+      "title": "Your rules checked every time",
+      "person": "People need paid training, practice, reminders, and retraining as procedures change.",
+      "agent": "The agent checks each job against your rules, corrects failures, and checks again before delivery."
+    },
+    "availability": {
+      "active": "availability",
+      "title": "Work does not have to wait",
+      "person": "Sick days, vacations, lateness, and family emergencies can interrupt the work.",
+      "agent": "The agent can keep approved digital work moving around the clock."
+    },
+    "cost": {
+      "active": "cost",
+      "title": "Real employee costs keep coming",
+      "person": "Wages, payroll taxes, workers’ compensation, recruiting, paid training, and retraining.",
+      "agent": "Custom build, software, maintenance, and updates—without recurring employee costs."
+    },
+    "management": {
+      "active": "management",
+      "title": "Manage the work—not the people problems",
+      "person": "Scheduling changes, staff conflict, turnover, replacement, and personnel paperwork take the owner’s time.",
+      "agent": "No staff disputes, call-outs, or turnover. Maintain and update the system as the business changes."
+    },
+    "work": {
+      "active": "work",
+      "title": "From unfinished tasks to finished work",
+      "person": "One person switches between jobs. Delays and rework pile up.",
+      "agent": "The agent completes every step, checks the work, corrects failures, and delivers the finished result."
+    }
+  }
+}
