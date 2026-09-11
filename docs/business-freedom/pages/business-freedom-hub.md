@@ -4,9 +4,9 @@
 
 - Page file: `business-fixes.html`
 - Program: Rebel Ranch Ministries → Business Freedom
-- Current state: `business-freedom-hub-v1.5` remains the publicly verified baseline; the Automated Payment Processing route was deployed through PR `#102` with owner/public verification pending; Custom AI Workforce routes are locally verified, owner approved, and authorized for release
+- Current state: Custom AI Workforce direct and full-card routes are LIVE and PUBLICLY VERIFIED through PR `#105`; the earlier `business-freedom-hub-v1.5` baseline remains preserved; the Automated Payment Processing route was deployed through PR `#102` with owner/public verification pending
 - Last updated: 2026-09-11
-- Current exact version: `business-freedom-hub-v1.5` baseline plus payment-route release `#102`; local Custom AI Workforce route addition pending release
+- Current exact version: `business-freedom-hub-v1.5` baseline plus payment-route release `#102` and publicly verified Custom AI Workforce route release `#105`
 
 ## North star
 
@@ -63,6 +63,7 @@
 | 2026-09-08 | Automated Payment Processing route | APPROVED and LOCALLY VERIFIED | Link the primary payment-processing choice and full service card directly to `business-payment-processing.html`, while preserving the existing request action | The owner approved the female-owner full-page concept and then authorized implementation; the local page, responsive presentation, interactions, and routes passed verification. Publication remains a separate gate. |
 | 2026-09-09 | Automated Payment Processing route release | DEPLOYED; OWNER/PUBLIC VERIFICATION PENDING | Merge the landing page and both hub routes through PR `#102` | PR `#102` merged as `2d36e522`; GitHub Pages run `34386140764` completed successfully. The owner elected to verify the public experience, so deployment must not be recorded as public verification. |
 | 2026-09-11 | Custom AI Workforce page and hub routes | LOCALLY VERIFIED; OWNER APPROVED; RELEASE AUTHORIZED | Add one direct problem-first choice, one full service card, and the approved dedicated page without changing unrelated hub behavior | The owner independently reviewed and corrected every comparison topic, selected the first V3 opening image, approved incorporation, and directed the completed work to be made live. Fresh phone and desktop evidence covers every state, shows no horizontal overflow, and confirms the corrected state/image/copy changes. |
+| 2026-09-11 | Custom AI Workforce public release | LIVE and PUBLICLY VERIFIED | Merge and deploy the approved page plus both hub routes, then inspect the real public surfaces | PR `#105` merged as `b762c54a`; Pages run `34606315956` completed successfully. Cache-busted public checks at 456px and 1440px returned 200, loaded all six matching comparison states without broken images or browser errors, preserved Cost as default, showed zero horizontal overflow, and confirmed both hub routes, Custom estimate, and the verified call number. |
 
 ## Verification matrix
 
@@ -80,14 +81,15 @@
 | Payment-processing local integration | Approved page composition, readable hero photograph, removal of borrowed section numbers, responsive layout, interactive control buttons, four photographic assets, request route, and both hub landing-page routes | Local server; phone and desktop browser | The closing-shop story remains visible behind readable hero copy; no page-section numbers render; all four images load at their natural 1672×941 dimensions; the rule controls update their explanation and pressed state; both calls to action reach `business-request.html?service=revenue-cycle`; both hub links reach `business-payment-processing.html`; no horizontal overflow or browser errors were found. | 2026-09-08 Codex | PASS; deployment followed through PR `#102` |
 | Payment-processing deployment | Merge and GitHub Pages deployment only | GitHub PR and Actions | PR `#102` merged as `2d36e522`; Pages run `34386140764` completed successfully. No public-page or public hub-route verification was performed because the owner elected to verify personally. | 2026-09-09 Codex | DEPLOYED; OWNER/PUBLIC VERIFICATION PENDING |
 | Custom AI Workforce local routes | Direct hub choice, full service card, dedicated-page destinations, preserved unrelated buttons, phone and desktop overflow | Local server; 456px phone and 1440px desktop | Both new hub links reach `business-ai-workforce.html`; the full card uses Custom estimate and the verified RRM call number; existing button-driven choices retain their existing script; no unrelated page or request-form route was changed. The owner supplied the separate visual review and release approval. | 2026-09-11 Codex + owner | LOCALLY VERIFIED; OWNER APPROVED |
+| Custom AI Workforce public release | Deployment, page response, approved composition, six comparison states, image health, call actions, two hub routes, phone/desktop overflow, and browser errors | GitHub Pages; 456px phone and 1440px desktop | PR `#105` merged as `b762c54a`; Pages run `34606315956` succeeded; page and hub returned 200; all states and images loaded; Cost was default; call links and Custom estimate were correct; both hub routes were present; no browser errors or horizontal overflow occurred. | 2026-09-11 Codex/browser | LIVE; PUBLICLY VERIFIED |
 
 ## Flags and unanswered questions
 
 - The Automated Payment Processing filename, concept, price presentation, primary action, page, and local hub routes are approved and locally verified. The page and hub routes are deployed through PR `#102`; owner/public verification remains pending.
-- The Custom AI Workforce offer, public name, two service levels, no-package-price decision, call action, page filename, V3 hero, comparison states, and local hub routes are locally verified and owner approved. Release is authorized; public verification must still follow deployment.
+- The Custom AI Workforce offer, public name, two service levels, no-package-price decision, call action, page filename, V3 hero, comparison states, and hub routes are live and publicly verified through PR `#105` and Pages run `34606315956`.
 - The existing local `business-guidance.html` draft predates the approved Operations Leader direction and must not be treated as approved page content.
 - `business-freedom-hub-v1.5` is live and publicly verified.
 
 ## Next permitted action
 
-Publish the owner-approved `business-ai-workforce.html` page and its two direct hub routes, publicly recheck the page and hub, then preserve every deployed landing-page route and move to `Add an Operations Leader to Your Team`.
+Preserve the publicly verified `business-ai-workforce.html` page and both hub routes. Move to `Add an Operations Leader to Your Team` only after its service-specific concept is approved through the shared visual learning and execution loop.
