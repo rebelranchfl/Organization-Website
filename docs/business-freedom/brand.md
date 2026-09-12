@@ -125,10 +125,26 @@ The approved reusable Business Freedom service icons are the exact icon artwork 
 | Get Seen, Get Found | `business-freedom-icon-visibility.png` | Gold location marker; local discovery, visibility, trust, and customer arrival |
 | Automated Payment Processing | `business-freedom-icon-payments.png` | Cyan payment card; invoices, deposits, merchant services, and money movement |
 | Custom AI Workforce | `business-freedom-icon-ai.png` | Violet AI gear; AI agents, coordinated digital work, automation, and added capacity |
-| Operations Leader | `business-freedom-icon-operations.png` | Gold leader with operating lens; experienced operating leadership and coordination |
+| Operations Leader | `business-freedom-icon-operations.png` | Gold owner with three cyan workflow paths; experienced operating leadership, connected work, and coordination |
 | I've Got the Potential | `business-freedom-icon-potential.png` | Coral compass; direction-finding when the owner knows there is potential but not the path |
 
 Use each icon only for its mapped service meaning inside Business Freedom. Do not redraw, trace, reinterpret, recolor, substitute, convert to emoji, or replace these approved files without owner approval. The owner rejected a separately redrawn outline-vector set on 2026-09-11 because it did not match the approved concept.
+
+The Operations Leader icon was replaced with direct owner approval on 2026-09-12. The earlier person-and-lens artwork and both canvas-adjusted versions are rejected and must not return. The approved replacement is the centered gold owner with three cyan workflow paths in the canonical `business-freedom-icon-operations.png` file. Its artwork is centered inside a square transparent canvas with equal safety space so it is not cropped or optically pulled to one side.
+
+### Get Your Time Back explanatory icons
+
+These five transparent PNGs are approved for the `Why you're stuck` swipe on `business-time.html`. They explain the operating cycle; they are not service-routing icons and must not be substituted elsewhere without review.
+
+| Card | Approved asset | Meaning |
+|---|---|---|
+| Paper and memory | `business-time-icon-paper-memory.png` | A paper process still depends on memory and the owner |
+| Partly used software | `business-time-icon-partly-used-software.png` | A tool is present but not fully configured, connected, or used |
+| Another workaround | `business-time-icon-workaround.png` | A detour and bandage cover the gap instead of fixing the flow |
+| Duplicate work and daily fires | `business-time-icon-duplicate-fires.png` | Repeated entry and unresolved gaps create urgent problems |
+| Everything returns to you | `business-time-icon-returns-to-owner.png` | Disconnected work converges back on the owner |
+
+All five use a centered 320×240 transparent canvas with visible safety space on every edge. Display them with `object-fit: contain`; never crop them with `cover` or position them by compensating for hidden padding.
 
 ## Visual approval and recovery
 

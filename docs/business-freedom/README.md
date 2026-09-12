@@ -2,7 +2,7 @@
 
 **Status:** Current index  
 **Program:** Rebel Ranch Ministries → Business Freedom  
-**Last updated:** 2026-09-11
+**Last updated:** 2026-09-12
 
 Read `business-freedom-operations.md` first for the program-level purpose, boundaries, current service map, funding priority, and operating direction.
 
@@ -34,6 +34,7 @@ These pages are part of the approved hub map even though separate page decision 
 | Record | What it controls | Current direction |
 |---|---|---|
 | `pages/business-freedom-hub.md` | Main Business Freedom hub and canonical routing map | LIVE and governing |
+| `pages/get-your-time-back.md` | Get Your Time Back | Owner-approved page and icon set authorized for production release; deployment pending |
 | `pages/keep-more-of-what-you-earn.md` | Keep Your Money | Live dedicated page direction/history |
 | `pages/get-seen-get-found.md` | Get Seen, Get Found | LIVE and linked from the Business Freedom hub |
 | `pages/automated-payment-processing.md` | Automated Payment Processing | Approved female-owner page deployed through PR `#102`; owner/public verification pending |
