@@ -1,15 +1,51 @@
-.request-main {
-  min-height: calc(100vh - 5rem);
-  padding: clamp(3rem, 7vw, 6rem) 0;
+.bf-request-page {
+  --bf-deep: #102635;
+  --bf-ocean: #173244;
+  --bf-panel: #21475a;
+  --bf-raised: #28566b;
+  --bf-cyan: #19bfe6;
+  --bf-sky: #65c7e8;
+  --bf-orange: #ff6500;
+  --bf-white: #fff;
+  --bf-muted: #d7e4ec;
+  background: var(--bf-ocean);
+  color: var(--bf-white);
 }
 
-.request-wrap { max-width: 61.25rem; }
+.bf-request-page .request-main {
+  min-height: calc(100vh - 5rem);
+  padding: clamp(2.25rem, 6vw, 5rem) 0;
+  background:
+    radial-gradient(circle at 88% 8%, rgba(25, 191, 230, .16), transparent 28rem),
+    linear-gradient(180deg, var(--bf-deep), var(--bf-ocean));
+}
 
-.request-card {
+.bf-request-page .request-wrap {
+  width: min(92vw, 61.25rem);
+  max-width: 61.25rem;
+}
+
+.bf-request-page .request-card {
+  position: relative;
+  overflow: hidden;
   padding: clamp(1.5rem, 4vw, 3rem);
-  background: var(--rrm-card-2);
-  border: 1px solid var(--rrm-card-line);
-  box-shadow: var(--shadow);
+  background: linear-gradient(145deg, rgba(40, 86, 107, .72), rgba(16, 38, 53, .96));
+  border: 1px solid rgba(25, 191, 230, .58);
+  border-radius: .75rem;
+  box-shadow: 0 1.25rem 3.5rem rgba(0, 0, 0, .32);
+}
+
+.bf-request-page .request-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: var(--bf-cyan);
+}
+
+.bf-request-page .eyebrow {
+  color: var(--bf-cyan);
+  letter-spacing: .22em;
 }
 
 .request-summary {
@@ -19,7 +55,7 @@
   align-items: start;
   margin-bottom: 1.8rem;
   padding-bottom: 1.8rem;
-  border-bottom: 1px solid var(--rrm-gold-dark);
+  border-bottom: 1px solid rgba(25, 191, 230, .42);
 }
 
 .request-summary h1 {
@@ -29,7 +65,7 @@
 
 .request-summary > div > p {
   max-width: 46rem;
-  color: var(--rrm-muted);
+  color: var(--bf-muted);
 }
 
 .request-note {
@@ -39,7 +75,7 @@
 
 .request-price {
   margin: .25rem 0 0;
-  color: var(--rrm-gold-bright);
+  color: var(--bf-cyan);
   font-size: 1.5rem;
   font-weight: 900;
   white-space: nowrap;
@@ -54,21 +90,42 @@
 .form-grid label {
   display: grid;
   gap: .45rem;
-  color: var(--rrm-ink);
+  color: var(--bf-white);
   font-weight: 850;
 }
 
 .form-grid .full { grid-column: 1 / -1; }
+
+.form-grid .text-consent[hidden] { display: none; }
 
 .form-grid input,
 .form-grid select,
 .form-grid textarea {
   width: 100%;
   padding: .9rem 1rem;
-  color: var(--rrm-ink);
-  background: var(--rrm-bg-1);
-  border: 1px solid var(--rrm-gold-dark);
-  border-radius: .35rem;
+  color: var(--bf-white);
+  background: rgba(16, 38, 53, .9);
+  border: 1px solid rgba(101, 199, 232, .72);
+  border-radius: .5rem;
+  font: inherit;
+}
+
+.form-grid input::placeholder,
+.form-grid textarea::placeholder {
+  color: #b9ccd6;
+}
+
+.form-grid input:focus,
+.form-grid select:focus,
+.form-grid textarea:focus {
+  outline: 3px solid rgba(25, 191, 230, .34);
+  outline-offset: 2px;
+  border-color: var(--bf-cyan);
+}
+
+.form-grid select option {
+  color: var(--bf-white);
+  background: var(--bf-deep);
 }
 
 .form-grid textarea {
@@ -79,19 +136,45 @@
 .invoice-notice {
   margin: 1.4rem 0;
   padding: 1.2rem;
-  color: var(--rrm-ink);
-  background: var(--rrm-card-1);
-  border-left: .3rem solid var(--rrm-gold-bright);
+  color: var(--bf-muted);
+  background: rgba(16, 38, 53, .86);
+  border-left: .3rem solid var(--bf-cyan);
+}
+
+.invoice-notice a {
+  color: var(--bf-sky);
+  font-weight: 800;
+}
+
+.bf-request-page .btn.primary {
+  min-height: 3.5rem;
+  padding-inline: 1.5rem;
+  color: var(--bf-white);
+  background: var(--bf-orange);
+  border: 1px solid var(--bf-orange);
+  border-radius: .55rem;
+  box-shadow: 0 .8rem 1.8rem rgba(0, 0, 0, .25);
+}
+
+.bf-request-page .btn.primary:hover {
+  background: #ff7a24;
+  border-color: #ff7a24;
 }
 
 .form-status {
   min-height: 1.5rem;
   margin: 1rem 0 0;
-  color: var(--rrm-green);
+  color: var(--bf-sky);
   font-weight: 800;
 }
 
 @media (max-width: 650px) {
+  .bf-request-page .request-main { padding: 1rem 0 2.25rem; }
+
+  .bf-request-page .request-wrap { width: min(100% - 1.25rem, 61.25rem); }
+
+  .bf-request-page .request-card { padding: 1.35rem 1rem 1.5rem; }
+
   .request-summary,
   .form-grid {
     grid-template-columns: 1fr;
@@ -99,4 +182,5 @@
 
   .form-grid .full { grid-column: auto; }
   .request-price { white-space: normal; }
+  .bf-request-page .btn.primary { width: 100%; }
 }
