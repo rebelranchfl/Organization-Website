@@ -1,0 +1,77 @@
+{
+  "project_id": "RRA-2026-0011",
+  "working_title": "What Is Emotional Intelligence?",
+  "slug": "what-is-emotional-intelligence",
+  "learning_area": "communication-emotional-intelligence",
+  "named_program": null,
+  "created_at": "2026-09-13T19:10:29-04:00",
+  "created_by": "Owner (rebelranchfl@gmail.com), via live Academy content-idea intake",
+  "current_status": "READY_FOR_REVIEW",
+  "workflow_stage": "RESEARCH_REVIEW",
+  "revision_number": 1,
+  "owner_input": {
+    "idea": "What is Emotional Intelligence?",
+    "owner_notes": "First fully fresh (non-Water-lineage) project submitted after the automation pause; owner-designated end-to-end pipeline verification project. Owner directive: Claude performs the research/product-testing work directly; ChatGPT is used only for image generation in Visual Production; Claude resumes control through to completion.",
+    "requested_audience": [],
+    "requested_angle": "",
+    "requested_sources": [],
+    "excluded_sources": []
+  },
+  "context_review": {
+    "status": "COMPLETE",
+    "completed_at": "2026-09-13T23:45:00-04:00",
+    "documents_reviewed": [
+      "AGENTS.md",
+      "docs/rebel-ranch-ecosystem-charter.md",
+      "docs/non-negotiables.md",
+      "rebel ranch academy/REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md",
+      "rebel ranch academy/Rebel-Ranch-Academy-Program-Hub/README.md",
+      "rebel ranch academy/ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md",
+      "rebel ranch academy/ACADEMY-CONTENT-PROJECT-SCHEMA.md",
+      "rebel ranch academy/ACADEMY-SOURCE-REVIEW-POLICY.md",
+      "rebel ranch academy/ACADEMY-RESPONSIBLE-REBELLION-EVIDENCE-FIRST-STANDARD.md",
+      "rebel ranch academy/ACADEMY-THINK-LIKE-A-REBEL-FRAMEWORK.md",
+      "rebel ranch academy/ACADEMY-LATE-FINDING-CONTROL-STANDARD.md",
+      "rebel ranch academy/ACADEMY-REVISION-PRESERVATION-STANDARD.md"
+    ],
+    "websites_reviewed": [
+      "https://rebelranchministries.org (not directly loaded this pass — tool access limitation, flagged as open item)",
+      "https://academy.rebelranchministries.org (not directly loaded this pass — tool access limitation, flagged as open item)"
+    ],
+    "audiences_identified": [
+      "parents and homeschool families",
+      "adults generally",
+      "sole owners/small-business operators and ministry/community leaders",
+      "teens/young adults (developmental adaptation deferred)"
+    ],
+    "learning_area_reason": "Communication & Emotional Intelligence is an explicitly named RRA learning area covering understanding emotions, self-control, healthy communication, conflict, judgment, and leadership.",
+    "conflicts_found": []
+  },
+  "research": {
+    "status": "COMPLETE",
+    "started_at": "2026-09-13T23:20:00-04:00",
+    "completed_at": "2026-09-13T23:50:00-04:00",
+    "source_count": 7,
+    "primary_or_direct_source_count": 4,
+    "conflicts_found": [
+      "Goleman's 'EI is twice as important as IQ' claim (from his own consulting firm's internal competency-model analysis) is substantially overstated compared to independent peer-reviewed meta-analytic evidence (Joseph & Newman, 2010), which finds ability-based EI adds negligible predictive power once personality and cognitive ability are controlled for.",
+      "Self-report ('mixed') EI measures correlate much more strongly with outcomes than performance-based ability EI tests, suggesting self-report EI surveys may partly reflect self-rating bias rather than pure skill.",
+      "Whether the ability model has three or four branches is not fully settled among researchers; the four-branch version is presented as the current standard framework without claiming total scientific unanimity."
+    ],
+    "unresolved_questions": [
+      "Product-stage: best experiential format for teaching emotion-perception skill (e.g., interactive recognition exercise vs. descriptive teaching)",
+      "Product-stage: whether/how to build a self-reflection or self-assessment tool given self-report validity concerns",
+      "Product-stage: age-appropriate adaptation for a youth/teen-facing version, if wanted"
+    ],
+    "sources_file": "sources.md",
+    "research_file": "research.md"
+  },
+  "concept": {"status":"NOT_STARTED","learning_outcome":null,"central_question":null,"major_principles":[],"historical_or_lost_knowledge_angle":null,"current_use_angle":null,"transfer_the_principle_summary":null,"proposed_format":null,"activity_types":[],"visual_needs":[]},
+  "content": {"status":"NOT_STARTED","master_content_file":"master-content.md"},
+  "materials": {"status":"NOT_STARTED","material_types":[],"files":[],"preview_files":[]},
+  "pricing": {"status":"NOT_STARTED","proposed_price":null,"currency":"USD","role":null,"reasoning_file":"pricing.md","owner_approved_price":null},
+  "qa": {"status":"COMPLETE","completed_at":"2026-09-13T23:52:00-04:00","qa_file":"qa-review.md","blockers":[]},
+  "owner_review": {"status":"PENDING","latest_decision":null,"latest_comment":null,"reviewed_at":null,"review_history_file":"owner-review.md","source_decisions_complete":false},
+  "release": {"status":"NOT_STARTED","approved_at":null,"published_at":null,"destination":null,"live_url":null,"release_files":[],"release_notes":null},
+  "agent": {"active_agent":null,"last_agent":"Claude (Anthropic) — direct owner-supervised session","session_title":"Academy Pipeline Verification","last_updated_at":"2026-09-13T23:52:00-04:00"}
+}
