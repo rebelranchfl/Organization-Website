@@ -6,8 +6,8 @@
   "named_program": null,
   "created_at": "2026-09-13T23:10:29Z",
   "created_by": "owner",
-  "current_status": "APPROVED",
-  "workflow_stage": "VISUAL_PRODUCTION",
+  "current_status": "READY_FOR_REVIEW",
+  "workflow_stage": "FINAL_PRODUCT_REVIEW",
   "_workflow_stage_note": "workflow_stage is not part of the documented ACADEMY-CONTENT-PROJECT-SCHEMA.md field list, but it is what the actually-deployed dashboard (academy-stage-review.js) and the live submit_academy_stage_review() RPC key their Owner Decision buttons on, per ACADEMY-PRODUCT-PHASE-WORKFLOW-EXTENSION.md's multi-gate model. Recorded here so this file matches the real Supabase row instead of only the older documented schema.",
   "revision_number": 1,
   "owner_input": {
