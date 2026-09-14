@@ -24,7 +24,7 @@ Everything both agents read and write is this one table. Do not create a second 
 | `project_id`, `asset_key` | Claude (at brief time) | Identifies the exact project and exact image assignment. |
 | `state` | Both, per Section 3 | The real, only state machine. See allowed values below. |
 | `approved_brief_path` | Claude | Path to the full human-readable brief (`visual-production-brief.md`) — background context, not the operational contract. |
-| `destination_path` | Claude | Exact repository path the final image file belongs at. |
+| `destination_path` | Claude | Path **relative to the project's own `github_path`** (e.g. `illustrations/foo.png` means `<github_path>/illustrations/foo.png`, not the repo root). Found ambiguous and fixed 2026-09-14: the first real test committed a file to the repo root because this wasn't stated explicitly. Future `destination_path` values should be written as the full repo-root-relative path to remove any doubt, rather than relying on this convention being inferred correctly. |
 | `prompt_text` | Claude | The exact generation prompt. ChatGPT should use this, not re-derive its own from the brief file. |
 | `must_include` | Claude | JSON array of specific, checkable required content. |
 | `must_avoid` | Claude | JSON array of specific prohibited shortcuts/inventions. |

@@ -19,6 +19,8 @@ In 1990, psychologists Peter Salovey and John Mayer gave this idea its first rea
 
 That's it. Not a personality type. Not a magic power some people have and others don't. Four specific, practicable abilities.
 
+![The four abilities of emotional intelligence: Perceive, Use, Understand, and Manage, shown as four connected circles with icons and short descriptions.](illustrations/eq-four-abilities-diagram.png)
+
 ## Where this idea came from
 
 This isn't a modern invention out of nowhere, and it isn't ancient wisdom either — it sits right in between. In 1920, psychologist Edward Thorndike noticed that "book smart" and "people smart" were clearly different things, and called the second one *social intelligence*. In 1983, Howard Gardner's theory of multiple intelligences split that further into *interpersonal* intelligence (reading other people) and *intrapersonal* intelligence (reading yourself). Salovey and Mayer took that century-old observation and finally gave it something researchers could actually test and measure.
