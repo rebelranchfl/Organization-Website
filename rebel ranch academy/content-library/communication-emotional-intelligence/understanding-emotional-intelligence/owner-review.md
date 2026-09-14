@@ -24,3 +24,18 @@ Nothing below this line is written until the owner actually decides through the 
 **Resulting state:** `current_status = APPROVED`, `workflow_stage = PRODUCT_OPPORTUNITY_RESEARCH`
 
 This approves the Research Foundation only (context review + research + sources). It does **not** approve `concept.md`, `master-content.md`, `activities/name-it-to-tame-it.md`, or `pricing.md` — those remain `DRAFT_AHEAD_OF_GATE` in `project.json` and were written before this gate existed in the real workflow sequence. The next authorized stage is Product Opportunity Research (with its own Recommendation Scorecard), not Product Design directly.
+
+---
+
+## Review #2
+
+**Date:** 2026-09-14T11:36:07Z
+**Gate:** PRODUCT_REVIEW
+**Decision:** APPROVE PRODUCT DESIGN
+**Recorded via:** the real dashboard `Approve Product Design` button → `submit_academy_stage_review()` RPC
+**Owner comment:** none supplied
+**Resulting state:** `current_status = APPROVED`, `workflow_stage = VISUAL_PRODUCTION`
+
+This approves `product-opportunity-research.md`, `product-recommendation-scorecard.md`, `product-architecture.md`, `product-manuscript.md`, `activities/name-it-to-tame-it.md`, `pricing.md`, and `product-qa.md` as the Product Design package. It authorizes Visual Production to begin. It does **not** authorize release, publication, or a final price change — those require their own later gates (Final Product Review, then a separate Release Decision).
+
+Visual Production has a real, documented limitation: under the current Image Production Standard, only an owner-started personal ChatGPT conversation can generate the two images specified in `visual-production-brief.md`. No backend worker or agent can invoke that step on its own. Both image assignments remain `BRIEF_REQUIRED` until the owner runs that step.
