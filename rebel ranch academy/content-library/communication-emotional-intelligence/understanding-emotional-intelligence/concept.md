@@ -30,7 +30,7 @@ Thorndike's 1920 "social intelligence" and Gardner's 1983 interpersonal/intraper
 ## Current-use angle
 Reappraisal vs. suppression (Gross, 1998) gives a concrete, practiced-today technique. RULER's five-step structure (Recognize, Understand, Label, Express, Regulate) gives families and classrooms a usable framework with independent evaluation behind it.
 
-## TRANSFER THE PRINCIPLE — planned connections
+## REBEL RANCH PRINCIPLE — planned connections
 Underlying principle: **naming and understanding a signal before reacting to it produces a better decision than reacting on the raw signal.**
 
 - **Personally:** noticing "I'm anxious, not angry" changes what you do next.

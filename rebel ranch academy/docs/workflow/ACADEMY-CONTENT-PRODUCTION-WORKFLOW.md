@@ -193,11 +193,11 @@ Not every subject needs an artificial historical section. The formula is a think
 
 ---
 
-## 7. Required section: TRANSFER THE PRINCIPLE
+## 7. Required section: REBEL RANCH PRINCIPLE
 
 Every substantial RRA learning project must include a section titled:
 
-# TRANSFER THE PRINCIPLE
+# REBEL RANCH PRINCIPLE
 
 This section identifies the deeper principle behind the subject and shows where else it applies.
 
@@ -396,7 +396,7 @@ Before expensive production work, the agent defines:
 - major principles;
 - historical/lost-knowledge angle if relevant;
 - modern-use angle;
-- TRANSFER THE PRINCIPLE connections;
+- REBEL RANCH PRINCIPLE connections;
 - proposed format;
 - proposed activities/interactivity;
 - visual or illustration needs;
@@ -721,7 +721,7 @@ Possible structure:
 - **Try It** — accessible hands-on application;
 - **Take It Further** — deeper analysis or older-learner challenge;
 - **Real-World Application** — adult, household, work, business, or community use;
-- **TRANSFER THE PRINCIPLE** — connections across other areas of life.
+- **REBEL RANCH PRINCIPLE** — connections across other areas of life.
 
 Age changes should adjust complexity, independence, safety, examples, and parent/guardian involvement—not dilute the truth of the lesson.
 
@@ -756,7 +756,7 @@ Before requesting owner approval, the agent must verify:
 - Real examples are included.
 - Practical application exists.
 - The learner must do, decide, practice, build, test, compare, or change something.
-- TRANSFER THE PRINCIPLE is included where required.
+- REBEL RANCH PRINCIPLE is included where required.
 - Analogies identify their limits when necessary.
 
 ### Voice
@@ -906,7 +906,7 @@ A content-development cycle is ready for owner review only when:
 5. material claims are supported or clearly labeled as uncertain/disputed;
 6. the content follows RRA's teaching formula;
 7. the project teaches transferable principles;
-8. TRANSFER THE PRINCIPLE is complete where required;
+8. REBEL RANCH PRINCIPLE is complete where required;
 9. practical application exists;
 10. the material sounds like RRA;
 11. the proposed delivery format is justified;

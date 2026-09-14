@@ -31,4 +31,4 @@ That deliberately reframing a situation in the moment changes how a specific fee
 One personal experiment does not prove the general research finding — it demonstrates the technique, it doesn't replace the meta-analytic evidence already cited in the main lesson. Don't treat one good (or one bad) result as final proof either way.
 
 ## Transfer question
-Pick one of the TRANSFER THE PRINCIPLE areas from the main lesson (family, work, money, communication) and write one sentence about where this same recognize-before-you-react move would help you outside of the exact moment you just analyzed.
+Pick one of the REBEL RANCH PRINCIPLE areas from the main lesson (family, work, money, communication) and write one sentence about where this same recognize-before-you-react move would help you outside of the exact moment you just analyzed.

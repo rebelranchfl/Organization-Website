@@ -9,8 +9,8 @@
       "label": "Full Lesson Preview",
       "file": "eq-lesson-preview.html",
       "type": "release-candidate",
-      "description": "The complete rendered lesson as a learner would see it: full text, both independently-verified images, the practical activity, and the clickable source table. Static, screen-first, no interactivity/branching -- matches the approved Product Architecture (single-page free resource, not an interactive tool)."
+      "description": "The complete rendered lesson as a learner would see it: full text, both independently-verified images, a table of contents, a matching + checkbox activity, a short quiz, inline footnote links, and the clickable source table. Single-page, screen-first, no branching/personalization (per Product Architecture) -- but genuinely interactive within that one page, per owner revision 2026-09-14, not a static scroll."
     }
   ],
-  "qa_note": "This is a straightforward static page, not an interactive multi-path product like RRA-2026-0001. Rendered Product QA for this project is: does the text match master-content.md, do both images load and match the brief, do all source links resolve, is it readable on mobile width. Do not approve Final Product Review until this preview has actually been opened and read, not just confirmed to exist."
+  "qa_note": "Rendered Product QA for this project is: does the text match master-content.md, do both images load and match the brief, do all source links and footnotes resolve, does the matching/checkbox/quiz interaction work correctly (verified via Playwright this session), is it readable on mobile width. Do not approve Final Product Review until this preview has actually been opened and used, not just confirmed to exist."
 }

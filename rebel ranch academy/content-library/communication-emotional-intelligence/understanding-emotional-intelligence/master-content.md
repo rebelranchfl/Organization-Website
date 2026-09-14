@@ -21,9 +21,25 @@ That's it. Not a personality type. Not a magic power some people have and others
 
 ![The four abilities of emotional intelligence: Perceive, Use, Understand, and Manage, shown as four connected circles with icons and short descriptions.](illustrations/eq-four-abilities-diagram.png)
 
+## IQ vs. EQ — the comparison everyone makes but nobody explains
+
+Almost every article about emotional intelligence tells you it's "not the same as IQ" without ever saying what IQ actually is. That's backwards — you can't judge a comparison you were only shown one side of.
+
+**IQ (intelligence quotient)** is a standardized score meant to measure analytical reasoning: how well you solve unfamiliar problems, hold information in working memory, spot patterns, and reason with language and numbers. The modern version, introduced by psychologist David Wechsler in 1939, is a "deviation IQ" — it scores you against other people your age on a scale fixed to an average of 100. It replaced the older method (mental age ÷ actual age × 100), which broke down badly once you were an adult.
+
+Here's the part that matters for this lesson: **IQ tests were never designed to measure how well you read a room, manage a strong feeling, or handle another person's emotions.** That's not a flaw in the test — it's just not what it's for. This is the same gap Edward Thorndike pointed out in 1920, long before "EQ" existed as a term: he noticed that the kind of smart that gets you a top score on an academic test and the kind of smart that gets you through a tense conversation are not the same skill, and called the second one *social intelligence*.
+
+**Two people, same IQ score, different outcome:**
+- A brilliant analyst who can model a spreadsheet nobody else can build, but shuts down or gets defensive the moment a teammate pushes back on it.
+- A classmate with an average test score who can walk into a room where two people are about to argue and get them both talking again in under a minute.
+
+Neither person is "smarter" in some overall sense — they're strong in *different* abilities, and most jobs and relationships need some of both. This tracks with the actual research on the topic (not just this lesson's opinion): the 2010 meta-analysis already cited below found ability-based EI predicts job performance well in high-people-contact work — teaching, nursing, customer service, management — and matters less, or can even slow you down, in fast, narrowly technical work where there isn't time for it.
+
+**Book smart vs. people smart, in plain terms:** book smart (closer to IQ) is how fast and accurately you process information and solve a problem on paper. People smart (closer to EQ) is how accurately you read what's happening in and between people, and what you do with that in the moment. They're measured differently, they develop differently, and — this is the honest, unglamorous version — being high in one tells you very little about the other.
+
 ## Where this idea came from
 
-This isn't a modern invention out of nowhere, and it isn't ancient wisdom either — it sits right in between. In 1920, psychologist Edward Thorndike noticed that "book smart" and "people smart" were clearly different things, and called the second one *social intelligence*. In 1983, Howard Gardner's theory of multiple intelligences split that further into *interpersonal* intelligence (reading other people) and *intrapersonal* intelligence (reading yourself). Salovey and Mayer took that century-old observation and finally gave it something researchers could actually test and measure.
+This isn't a modern invention out of nowhere, and it isn't ancient wisdom either — it sits right in between. Thorndike's 1920 observation above didn't stay unanswered for long: in 1983, Howard Gardner's theory of multiple intelligences split "social intelligence" further into *interpersonal* intelligence (reading other people) and *intrapersonal* intelligence (reading yourself). Salovey and Mayer took that century of observation and finally gave it something researchers could actually test and measure.
 
 ## The part most people get wrong
 
@@ -52,17 +68,19 @@ The results aren't close. **Reappraisal** actually lowers the felt emotion, does
 
 In plain terms: bottling it up doesn't actually work, even though it feels like "handling it." Reframing how you're seeing the situation, before you react, is the one that's backed by the evidence.
 
-## Try It — Name It to Tame It
+## Try It — Match & Check
 
-You can't manage a feeling you haven't accurately named. This activity walks you through picking a real recent moment, naming the emotion precisely instead of settling for "fine" or "mad," and practicing a reappraisal reframe on it.
+Two quick checks, no essay required: match each ability to what it looks like in real life, then spot the difference between reappraisal and suppression in six short scenarios.
 
-Full activity: `activities/name-it-to-tame-it.md`
+Full activity: `activities/match-and-check.md`
 
 ## Take it further — a framework for families and classrooms
 
 If you want a repeatable structure instead of a one-time activity, Yale's Center for Emotional Intelligence built a five-step version of this same idea, called RULER: **R**ecognize the emotion, **U**nderstand its cause, **L**abel it precisely, **E**xpress it appropriately, **R**egulate it effectively. It's been tested with thousands of students across dozens of schools, with results showing more emotionally supportive classrooms where it's used. This lesson borrows the same recognize → name → decide-what-to-do structure for its own activity, without claiming to deliver the full licensed program.
 
-## TRANSFER THE PRINCIPLE
+Want to go deeper on your own? `activities/name-it-to-tame-it.md` is an optional, written, one-on-one version of this same idea — pick a real moment from your own life and work through it in your own words.
+
+## REBEL RANCH PRINCIPLE
 
 The real principle underneath everything above is this:
 

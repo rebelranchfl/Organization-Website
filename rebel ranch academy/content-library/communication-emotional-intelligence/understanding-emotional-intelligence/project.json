@@ -6,10 +6,11 @@
   "named_program": null,
   "created_at": "2026-09-13T23:10:29Z",
   "created_by": "owner",
-  "current_status": "READY_FOR_REVIEW",
-  "workflow_stage": "FINAL_PRODUCT_REVIEW",
+  "current_status": "AGENT_WORKING",
+  "workflow_stage": "VISUAL_PRODUCTION",
   "_workflow_stage_note": "workflow_stage is not part of the documented ACADEMY-CONTENT-PROJECT-SCHEMA.md field list, but it is what the actually-deployed dashboard (academy-stage-review.js) and the live submit_academy_stage_review() RPC key their Owner Decision buttons on, per ACADEMY-PRODUCT-PHASE-WORKFLOW-EXTENSION.md's multi-gate model. Recorded here so this file matches the real Supabase row instead of only the older documented schema.",
-  "revision_number": 1,
+  "_status_correction_2026-09-14": "This file previously read current_status=READY_FOR_REVIEW / workflow_stage=FINAL_PRODUCT_REVIEW, which did not match the live Supabase row (checked directly via SQL: current_status=AGENT_WORKING, workflow_stage=VISUAL_PRODUCTION, progress_percent=60, matching what the owner's own dashboard showed her). Corrected here rather than left stale -- this file is a durable record of the project, not the source of truth for pipeline state; the live database row and the owner's real dashboard are.",
+  "revision_number": 2,
   "owner_input": {
     "idea": "What is Emotional Intelligence?",
     "owner_notes": "Selected by owner 2026-09-14 as the clean subject for end-to-end Academy pipeline reactivation verification (content-automation.md Section 19).",
@@ -56,7 +57,7 @@
     "status": "COMPLETE",
     "started_at": "2026-09-14T00:00:00Z",
     "completed_at": "2026-09-14T00:00:00Z",
-    "source_count": 10,
+    "source_count": 11,
     "primary_or_direct_source_count": 6,
     "conflicts_found": [
       "Goleman's popular 'mixed model' EI vs. Salovey & Mayer's narrower ability model.",
@@ -106,9 +107,9 @@
   },
   "materials": {
     "status": "COMPLETE",
-    "material_types": ["activity worksheet"],
-    "files": ["activities/name-it-to-tame-it.md"],
-    "preview_files": []
+    "material_types": ["interactive matching/checkbox activity", "optional written reflection worksheet"],
+    "files": ["activities/match-and-check.md", "activities/name-it-to-tame-it.md"],
+    "preview_files": ["visual-production/eq-lesson-preview.html", "visual-production/preview-manifest.json"]
   },
   "pricing": {
     "status": "COMPLETE",
@@ -153,6 +154,6 @@
     "active_agent": null,
     "last_agent": "Claude (Claude Code) -- RRA pipeline reactivation verification",
     "session_title": "RRA end-to-end pipeline verification, owner-directed",
-    "last_updated_at": "2026-09-14T00:00:00Z"
+    "last_updated_at": "2026-09-14T18:00:00Z"
   }
 }

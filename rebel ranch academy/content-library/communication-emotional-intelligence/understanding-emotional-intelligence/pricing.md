@@ -7,8 +7,9 @@
 Free (per the working ladder in ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md Section 17).
 
 ## What is included
-- The full master-content lesson (core explanation, historical lineage, the disputed-evidence section, the tested reappraisal technique, TRANSFER THE PRINCIPLE).
-- One complete practical activity ("Name It to Tame It").
+- The full master-content lesson (core explanation, historical lineage, the disputed-evidence section, the tested reappraisal technique, REBEL RANCH PRINCIPLE).
+- One complete practical activity ("Match & Check" — matching + scenario checkboxes), plus an optional written deeper-practice version ("Name It to Tame It").
+- A short comprehension quiz.
 - A full, clickable, linked source table — nothing withheld behind a paywall.
 
 ## Comparable alternatives reviewed

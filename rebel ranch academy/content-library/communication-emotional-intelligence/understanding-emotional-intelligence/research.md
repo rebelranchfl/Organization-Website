@@ -58,7 +58,7 @@ Two concrete, evidence-backed moves carry the practical section:
 - Choose reappraisal over suppression in a real moment and predict what should happen if the research is right (Manage/Regulate) — this becomes the practical activity.
 - Compare two real situations (a work deadline, a disagreement with someone they care about) and identify which of the four abilities was strongest/weakest in each.
 
-## TRANSFER THE PRINCIPLE — research notes for concept.md
+## REBEL RANCH PRINCIPLE — research notes for concept.md
 The underlying principle — *naming and understanding a signal before reacting to it produces a better decision than reacting on the raw signal* — clearly transfers to: business/customer conflict, money decisions made in a panic, leadership under pressure, and parenting a child's meltdown. Concept.md will develop this fully; noting it here so it isn't lost between stages.
 
 ## Unresolved questions carried forward

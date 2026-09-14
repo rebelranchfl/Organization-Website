@@ -61,7 +61,7 @@ Before `FINAL_PRODUCT_REVIEW` may receive an `APPROVE` decision, all applicable 
 ### E. Practical implementation
 - Where the evidence supports application, the learner can see what to do with the knowledge.
 - Functions, components, sequence, alternatives, substitutions, tradeoffs, limits, maintenance, testing/verification, and next actions are clear where applicable.
-- `TRANSFER THE PRINCIPLE` is present for substantial Academy products.
+- `REBEL RANCH PRINCIPLE` is present for substantial Academy products.
 
 ### F. Navigation and state continuity
 - Every internal link/control works.

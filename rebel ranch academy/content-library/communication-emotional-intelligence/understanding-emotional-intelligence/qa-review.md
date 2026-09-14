@@ -22,7 +22,7 @@ Checked against ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md Section 20 (pre-owner-rev
 - [x] Real examples included (traffic, coworker, grocery-store meltdown, hard conversations).
 - [x] Practical application exists (reappraisal technique + full activity).
 - [x] Learner does/decides/practices/compares (the activity requires writing a real reframe and testing it; the close-out requires picking a real upcoming moment).
-- [x] TRANSFER THE PRINCIPLE included, with an explicit "where this stops being a fair comparison" limitation, not just positive analogies.
+- [x] REBEL RANCH PRINCIPLE included, with an explicit "where this stops being a fair comparison" limitation, not just positive analogies.
 - [x] Analogies identify their limits (see above).
 
 ## Voice
@@ -51,6 +51,14 @@ Checked against ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md Section 20 (pre-owner-rev
 None of these block **presenting the project for Owner Review at this gate** — the workflow's actual QA gate (Section 20) is about the content/evidence/pricing package being ready for the owner to look at, not about the product being flawless. They are recorded honestly so nothing here is mistaken for "verified" that isn't.
 
 ## Overall QA status: PASS (for this gate), with the five items above carried forward as open, not resolved.
+
+## Revision note — 2026-09-14, owner review of rendered Visual Production preview
+
+The owner reviewed the actual rendered `eq-lesson-preview.html` (not just this markdown record) and requested changes now in progress:
+- The "Try It" activity (line 24 above, "the activity requires writing a real reframe") is being **replaced**: the owner rejected free-text paragraph writing as impractical for this audience ("nobody is looking to write in paragraph form... this is unacceptable for any material"). The new design is a matching exercise (ability → definition) plus a scenario checkbox exercise (reappraisal vs. suppression identification). Line 24's original QA pass is preserved above as the historical record of what was reviewed at the time; it no longer describes the current activity.
+- "TRANSFER THE PRINCIPLE" (line 25 above) was renamed to "REBEL RANCH PRINCIPLE" — a doctrine-wide rename (ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md Section 7), not a content change.
+- New content added since this QA pass: an IQ-vs-EQ comparison section (with a new source, #11 in sources.md, evidence standard applied identically to the other 10), and a quick multiple-choice quiz.
+- This QA record has not been re-run end-to-end against the new content; treat the additions above as pending their own QA pass before Final Product Review, same standard as everything else in this file.
 
 AI-Agent: Claude (Claude Code)
 Session: RRA pipeline reactivation verification, owner-directed, 2026-09-14
