@@ -1,0 +1,143 @@
+{
+  "project_id": "RRA-2026-0011",
+  "working_title": "What Is Emotional Intelligence?",
+  "slug": "understanding-emotional-intelligence",
+  "learning_area": "communication-emotional-intelligence",
+  "named_program": null,
+  "created_at": "2026-09-13T23:10:29Z",
+  "created_by": "owner",
+  "current_status": "READY_FOR_REVIEW",
+  "revision_number": 1,
+  "owner_input": {
+    "idea": "What is Emotional Intelligence?",
+    "owner_notes": "Selected by owner 2026-09-14 as the clean subject for end-to-end Academy pipeline reactivation verification (content-automation.md Section 19).",
+    "requested_audience": [],
+    "requested_angle": "",
+    "requested_sources": [],
+    "excluded_sources": []
+  },
+  "context_review": {
+    "status": "COMPLETE",
+    "completed_at": "2026-09-14T00:00:00Z",
+    "documents_reviewed": [
+      "AGENTS.md",
+      "rebel ranch academy/AGENTS.md",
+      "rebel ranch academy/REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md",
+      "rebel ranch academy/docs/RRA-EDUCATIONAL-METHOD.md",
+      "rebel ranch academy/Rebel-Ranch-Academy-Program-Hub/README.md",
+      "rebel ranch academy/docs/workflow/ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md",
+      "rebel ranch academy/docs/workflow/ACADEMY-CONTENT-PROJECT-SCHEMA.md",
+      "rebel ranch academy/systems/automation/runner-status.md",
+      "rebel ranch academy/systems/automation/content-automation.md",
+      "rebel ranch academy/docs/production/ACADEMY-CHATGPT-IMAGE-PRODUCTION-STANDARD.md",
+      "rebel ranch academy/docs/production/ACADEMY-VISUAL-PRODUCTION-AGENT-STANDARD.md",
+      "rebel ranch academy/docs/qa/ACADEMY-RENDERED-PRODUCT-QA-STANDARD.md",
+      "rebel ranch academy/docs/qa/ACADEMY-FINAL-PRODUCT-ACCEPTANCE-STANDARD.md"
+    ],
+    "websites_reviewed": [
+      "https://rebelranchministries.org (BLOCKED this session: network egress proxy denies this domain; GitHub main Program Hub source used as fallback)",
+      "https://academy.rebelranchministries.org (BLOCKED this session: same egress restriction; not independently verified)"
+    ],
+    "audiences_identified": [
+      "adults building self-awareness and communication",
+      "parents and homeschool families",
+      "teens navigating conflict and communication"
+    ],
+    "learning_area_reason": "Emotional intelligence is the foundational concept underneath the Communication and Emotional Intelligence learning area's other subjects (difficult conversations, conflict, boundaries, teamwork).",
+    "conflicts_found": [
+      "Found and fixed: create_academy_content_idea() hardcoded github_branch to a dead branch (rra-content-dashboard-foundation, ~900 files stale). Fixed in migration 20260914120000; this row corrected to the real working branch."
+    ]
+  },
+  "research": {
+    "status": "COMPLETE",
+    "started_at": "2026-09-14T00:00:00Z",
+    "completed_at": "2026-09-14T00:00:00Z",
+    "source_count": 10,
+    "primary_or_direct_source_count": 6,
+    "conflicts_found": [
+      "Goleman's popular 'mixed model' EI vs. Salovey & Mayer's narrower ability model.",
+      "Locke (2005): EI may not be a valid form of intelligence at all.",
+      "Joseph & Newman (2010) meta-analysis: EI's link to job performance is inconsistent, not a uniform positive effect."
+    ],
+    "unresolved_questions": [
+      "Live-site review blocked by sandbox network egress this session.",
+      "Thorndike (1920) and Gardner (1983) cited via corroborated secondary summaries, not independently opened primary texts.",
+      "No link-check pass performed on cited URLs this session."
+    ],
+    "sources_file": "sources.md",
+    "research_file": "research.md"
+  },
+  "concept": {
+    "status": "COMPLETE",
+    "learning_outcome": "Learner can name the four EI abilities, distinguish evidenced core from oversold popular version, and apply reappraisal the next time they notice a strong feeling.",
+    "central_question": "Is emotional intelligence a real, useful skill or a buzzword -- and either way, what can you do with it?",
+    "major_principles": [
+      "Understanding people (including yourself) is a distinct, learnable skill.",
+      "EI has a real definition narrower and better-evidenced than its popular version.",
+      "Response to a feeling changes the outcome more than the feeling itself.",
+      "Naming a feeling accurately precedes managing it."
+    ],
+    "historical_or_lost_knowledge_angle": "Thorndike 1920 social intelligence -> Gardner 1983 interpersonal/intrapersonal intelligence -> Salovey & Mayer 1990 formal EI definition.",
+    "current_use_angle": "Reappraisal vs. suppression (Gross 1998); RULER framework (Yale Center for Emotional Intelligence).",
+    "transfer_the_principle_summary": "Naming and understanding a signal before reacting to it produces a better decision than reacting on the raw signal -- applied to personal, family, communication, work/leadership, and money decisions, with an explicit limit on where the analogy stops applying.",
+    "proposed_format": ["screen-first illustrated guide"],
+    "activity_types": ["reflective practice worksheet"],
+    "visual_needs": [
+      "four-abilities diagram (Perceive/Use/Understand/Manage)",
+      "reappraisal-vs-suppression comparison graphic (factual, sourced from Gross 1998, not decorative)"
+    ]
+  },
+  "content": {
+    "status": "COMPLETE",
+    "master_content_file": "master-content.md"
+  },
+  "materials": {
+    "status": "COMPLETE",
+    "material_types": ["activity worksheet"],
+    "files": ["activities/name-it-to-tame-it.md"],
+    "preview_files": []
+  },
+  "pricing": {
+    "status": "COMPLETE",
+    "proposed_price": 0,
+    "currency": "USD",
+    "role": "FREE",
+    "reasoning_file": "pricing.md",
+    "owner_approved_price": null
+  },
+  "qa": {
+    "status": "PASS",
+    "completed_at": "2026-09-14T00:00:00Z",
+    "qa_file": "qa-review.md",
+    "blockers": [
+      "Live-site review incomplete (environment network restriction)",
+      "No live link-check pass performed this session",
+      "Thorndike/Gardner citations not independently opened as primary texts",
+      "Voice/tone match is agent self-assessment pending owner judgment",
+      "Visuals specified but not produced -- Visual Production not yet authorized"
+    ]
+  },
+  "owner_review": {
+    "status": "PENDING",
+    "latest_decision": null,
+    "latest_comment": null,
+    "reviewed_at": null,
+    "review_history_file": "owner-review.md",
+    "source_decisions_complete": false
+  },
+  "release": {
+    "status": "NOT_STARTED",
+    "approved_at": null,
+    "published_at": null,
+    "destination": null,
+    "live_url": null,
+    "release_files": [],
+    "release_notes": null
+  },
+  "agent": {
+    "active_agent": null,
+    "last_agent": "Claude (Claude Code) -- RRA pipeline reactivation verification",
+    "session_title": "RRA end-to-end pipeline verification, owner-directed",
+    "last_updated_at": "2026-09-14T00:00:00Z"
+  }
+}
