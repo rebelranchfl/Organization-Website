@@ -82,31 +82,25 @@ Want to go deeper on your own? `activities/name-it-to-tame-it.md` is an optional
 
 ## REBEL RANCH PRINCIPLE
 
-The real principle underneath everything above is this:
+Every substantial Rebel Ranch Academy lesson ends with a section by this name. It's our own name for a habit of mind, not a fact about emotional intelligence specifically: **whatever you just learned almost never stays useful in only the one place you learned it.** As above, so below — a real skill or a real piece of evidence tends to show up again in situations that don't look anything like the one you first met it in. Naming that connection on purpose, every time, is how it stops being "something from that one lesson" and starts being something you actually reach for. Here's where this lesson's specific idea shows up elsewhere:
 
-> **Naming and understanding a signal before reacting to it produces a better decision than reacting on the raw signal.**
+> **Naming and understanding an emotion before reacting to it produces a better decision than reacting on the raw feeling.**
 
-That shows up far outside "emotions":
+- **Personally** — accurately naming what you're feeling ("I'm actually anxious, not angry") changes how you *interpret* what's happening to you, which changes how you *express* it and *communicate* about it, which is what actually changes your behavior. The name isn't the fix by itself — it's the first link in that chain, and skipping it is why "just calm down" doesn't work: it asks for the last link without the first three.
+- **Family** — when a parent privately recognizes a meltdown as overwhelm instead of defiance, it's the *parent's own response* that changes — softer tone, more patience, less taking it personally — and that changed response, not the label itself, is what de-escalates faster. Announcing "you're having a meltdown" to a child does nothing on its own; changing how you respond because you correctly understood what's happening is the actual mechanism.
+- **Communication and relationships** — most hard conversations go better when someone privately identifies the emotion in the room before arguing the facts, for the same reason as above: it changes how they choose to say what they say next.
+- **Work and leadership** — this is a real, sourced research finding, not a hedge: the meta-analysis cited earlier in this lesson found managing emotion well measurably helps performance in jobs with heavy emotional demands (teaching, nursing, customer service), and can cost you in fast, high-stakes technical work where every second matters — think of an ER trauma team or an air-traffic controller mid-emergency: pausing to process a colleague's stress in that exact moment can cost the seconds that matter more right then than the relationship does. That's not "EQ is bad at work" — it's that *when* it helps most depends on what the job needs in that moment.
+- **Money and decisions under pressure** — an emotion-driven financial decision (panic, fear, excitement — all emotions, not a separate category) is the textbook case of reacting to the raw feeling instead of naming it first.
 
-- **Personally** — noticing "I'm actually anxious, not angry" changes what you do in the next five minutes.
-- **Family** — a parent who names a meltdown ("you're frustrated, not being bad") de-escalates faster than one who only reacts to the behavior.
-- **Communication and relationships** — most hard conversations go better when someone names the emotion in the room before arguing the facts.
-- **Work and leadership** — the research above already shows this isn't a blanket rule: in jobs with heavy emotional demands (teaching, nursing, service), managing emotion well measurably helps performance. In some fast, technical jobs, it can even slow you down. That's the honest, non-oversold version of "EQ matters at work."
-- **Money and decisions under pressure** — a panic-driven financial decision is the textbook case of reacting to the raw signal instead of naming it first.
+**One honest limit, worth naming on purpose (per Rebel Ranch's evidence-first standard, every claim states where it stops applying):** accurately reading someone's emotions doesn't make you right about the facts of a situation. You can correctly sense that a coworker is defensive and still be wrong about whether their underlying objection has merit. The four abilities describe *how* you handle feelings and people — they don't replace actually knowing your subject.
 
-**Where this stops being a fair comparison:** emotional intelligence is not a truth detector and it's not a substitute for actually knowing your subject. A person can read a room perfectly and still be wrong about the facts. The four abilities describe *how* you handle feelings and people — not a general life cheat code.
-
-## What this is not
-
-This lesson describes a psychological concept, not a treatment. If a feeling is persistent, overwhelming, or connected to something like anxiety, depression, or trauma, that calls for a qualified professional — not a worksheet.
-
-## Before you go
+## One thing to try
 
 Pick one specific moment coming up this week where you know a strong feeling is likely — a hard conversation, a deadline, a disagreement you've been avoiding. Decide right now: are you going to bottle it up, or reappraise it? Write down which one you picked, and check back afterward to see if the research held up for you.
 
 ---
 
-**Sources for this lesson:** see `sources.md` for the full, linked source table. Every claim above traces to a specific, cited source — including the parts that disagree with each other.
+Full glossary and the complete, linked source list for every claim in this lesson (including the parts that disagree with each other) are in `sources.md` and rendered as the Glossary and References sections at the end of the interactive lesson.
 
 AI-Agent: Claude (Claude Code)
 Session: RRA pipeline reactivation verification, owner-directed, 2026-09-14

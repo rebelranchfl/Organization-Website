@@ -17,10 +17,13 @@ Single-page, screen-first illustrated guide. No branching, no personalization. D
 7. The one tested technique — reappraisal vs. suppression, with Diagram 2 (comparison, not yet produced)
 8. Try It — links to `activities/match-and-check.md`
 9. Take It Further — RULER reference; also links to the optional `activities/name-it-to-tame-it.md`
-10. REBEL RANCH PRINCIPLE
+10. REBEL RANCH PRINCIPLE — opens with a plain-language explanation of what the name means, per the doctrine addition in ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md Section 7
 11. Quick Quiz — see note below
-12. What this is not — one-line safety boundary
-13. Close — one concrete forward commitment
+12. One Thing To Try — the CREATE-step forward commitment (split out 2026-09-14 second owner review pass; previously combined with sources and a safety disclaimer under one "Before you go" section, which owner found confusing)
+13. Glossary — every defined term from the lesson, consolidated (added 2026-09-14 second pass; replaces an earlier, since-removed per-section glossary design)
+14. References — the full, linked source table with a direct link for every entry, renamed from "Sources" (added 2026-09-14 second pass)
+
+**Removed, 2026-09-14 second pass:** the "What this is not" clinical-professional-referral disclaimer. Owner's explicit instruction — this is non-diagnostic educational content, and the disclaimer was identified as leftover over-regulation from a documented earlier pipeline issue (see `rebel ranch academy/systems/automation/safety-boundary-calibration-flag.md`). The broader safety-standard question this raises for other projects is flagged there, not resolved here.
 
 ## Components
 - `master-content.md` — the manuscript body (see `product-manuscript.md` for how this is used as the product manuscript rather than duplicated).

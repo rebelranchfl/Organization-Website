@@ -60,5 +60,17 @@ The owner reviewed the actual rendered `eq-lesson-preview.html` (not just this m
 - New content added since this QA pass: an IQ-vs-EQ comparison section (with a new source, #11 in sources.md, evidence standard applied identically to the other 10), and a quick multiple-choice quiz.
 - This QA record has not been re-run end-to-end against the new content; treat the additions above as pending their own QA pass before Final Product Review, same standard as everything else in this file.
 
+## Revision note — 2026-09-14, second owner review pass (after the first rebuild above)
+
+The owner reviewed the rebuilt preview again and found a real functional bug plus further content/UX issues:
+- **Real bug, fixed:** `academy_learner_progress` had RLS policies but no base table GRANTs to the `authenticated` role, so every save attempt failed with "permission denied for table academy_learner_progress." Fixed via migration `20260914180000_academy_learner_progress_grants.sql`, applied live and verified against `information_schema.role_table_grants`.
+- Per-section glossary boxes (added in the first rebuild) were **removed** — owner clarified "glossary" meant one consolidated list at the end of the lesson, not a box on every page.
+- The combined "Before you go" section (disclaimer + forward-commitment prompt + sources) was split into three clean sections: "One Thing To Try" (the CREATE-step prompt), "Glossary" (consolidated), and "References" (renamed from "Sources").
+- The "What this is not" clinical disclaimer was **removed** per owner's explicit instruction — flagged as a broader doctrine question in `rebel ranch academy/systems/automation/safety-boundary-calibration-flag.md`, not resolved for other projects.
+- Footnotes #4, #7, #8, #11 previously had no direct link at all; real URLs were located via search (WebFetch itself remained blocked) and added, with each source's verification status stated honestly (link found via search vs. content independently verified are not the same thing, and the References section says which applies to each).
+- The REBEL RANCH PRINCIPLE section was substantially rewritten: opens with a plain explanation of what the name means (also added as a standing requirement in ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md Section 7), replaced "signal" with "emotion" throughout, and each bullet now explains its actual mechanism instead of asserting an outcome.
+- The Match & Check activity gained explicit usage instructions and a large, prominent success banner (the previous "All four matched" text was easy to miss).
+- All of the above was verified with a fresh Playwright pass against the rendered page (TOC section count and order, matching completion, footnote link content, quiz intro copy) before this note was written.
+
 AI-Agent: Claude (Claude Code)
 Session: RRA pipeline reactivation verification, owner-directed, 2026-09-14

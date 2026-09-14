@@ -21,7 +21,7 @@
   .progress-label{display:flex;justify-content:space-between;font-size:.74rem;color:#6b6656;margin-bottom:6px}
   .progress-track{height:7px;border-radius:5px;background:#eee3c8;overflow:hidden}
   .progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),#a97f2f);transition:width .4s ease}
-  .stage{flex:1}
+  .stage{}
   .section{padding:26px 20px 30px;transition:transform .38s ease, opacity .38s ease;background:var(--cream)}
   .section.enter-right{transform:translateX(40px);opacity:0}
   .section.enter-left{transform:translateX(-40px);opacity:0}
@@ -58,11 +58,10 @@
   .signed-out-banner{background:#3a2c10;color:#f4efe2;padding:10px 20px;font-size:.82rem;text-align:center}
   .signed-out-banner a{color:var(--gold);font-weight:700}
 
-  .section-glossary{background:var(--paper);border:1px solid #e3dac2;border-radius:8px;padding:12px 16px;margin:18px 0 4px}
-  .section-glossary h4{margin:0 0 8px}
-  .section-glossary dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:.85rem}
-  .section-glossary dt{font-weight:700;color:#8a5a00;white-space:nowrap}
-  .section-glossary dd{margin:0;color:#3a3627}
+  .glossary-list{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 16px;font-size:.92rem}
+  .glossary-list dt{font-weight:800;color:#8a5a00;white-space:nowrap;font-family:Georgia,'Times New Roman',serif}
+  .glossary-list dd{margin:0;color:#3a3627;padding-bottom:10px;border-bottom:1px solid #e3dac2}
+  @media(max-width:480px){ .glossary-list{grid-template-columns:1fr} .glossary-list dt{margin-top:8px} }
 
   .icon-row{display:flex;gap:10px;flex-wrap:wrap;margin:4px 0 18px}
   .icon-item{flex:1 1 130px;display:flex;flex-direction:column;align-items:center;text-align:center;background:var(--paper);border:1px solid #e3dac2;border-radius:8px;padding:12px 8px}
@@ -80,6 +79,9 @@
   .match-pill.correct{background:#dff2df;border-color:#4c9a4c;cursor:default}
   .match-pill.wrong{background:#f8d7da;border-color:#c0525f}
   .match-status{font-size:.82rem;color:#6b6656;margin:4px 0 18px}
+  .match-instructions{font-size:.86rem;color:#6b6656;font-style:italic;margin:0 0 12px}
+  .match-success{display:none;background:#dff2df;border:2px solid #4c9a4c;color:#1f5c1f;font-size:1.05rem;font-weight:800;text-align:center;padding:14px;border-radius:10px;margin:6px 0 18px}
+  .match-success.show{display:block}
 
   .check-row{display:block;background:var(--paper);border:1px solid #e3dac2;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:.86rem;cursor:pointer}
   .check-row input{margin-right:8px}
@@ -127,7 +129,7 @@
   </header>
   <div id="signedOutBanner" class="signed-out-banner" hidden>You're viewing as a guest — <a href="../../../../../account.html">sign in</a> to save your place and your activity answers.</div>
   <div class="progress-wrap">
-    <div class="progress-label"><span id="sectionLabel">Section 1 of 11</span><span id="percentLabel">0%</span></div>
+    <div class="progress-label"><span id="sectionLabel">Section 1 of 13</span><span id="percentLabel">0%</span></div>
     <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
   </div>
   <div class="stage" id="stage"></div>
@@ -192,14 +194,14 @@ const FOOTNOTES = {
   1: { title: 'Salovey & Mayer, 1990 — original EI definition', url: 'https://journals.sagepub.com/doi/10.2190/DUGG-P24E-52WK-6CDG' },
   2: { title: 'Mayer, Salovey & Caruso — four-branch model', url: 'https://cdn2.psychologytoday.com/assets/attachments/1575/rp2008-mayersaloveycarusob.pdf' },
   3: { title: 'APA Dictionary of Psychology — emotional intelligence', url: 'https://dictionary.apa.org/emotional-intelligence' },
-  4: { title: 'Goleman, 1995 — popularization (bibliographic record only, not independently re-verified)', url: null },
+  4: { title: 'Goleman, 1995 — popularization, labeled as such', url: 'https://en.wikipedia.org/wiki/Emotional_Intelligence' },
   5: { title: 'Locke, 2005 — academic critique', url: 'https://onlinelibrary.wiley.com/doi/10.1002/job.318' },
   6: { title: 'Joseph & Newman, 2010 — meta-analysis', url: 'https://workplaceinsight.net/wp-content/uploads/2018/03/JosephNewman2010.pdf' },
-  7: { title: 'Thorndike, 1920 — social intelligence (corroborated via secondary summaries, not independently opened this session)', url: null },
-  8: { title: 'Gardner, 1983 — Frames of Mind (corroborated via secondary summaries, not independently opened this session)', url: null },
+  7: { title: 'Thorndike, 1920 — social intelligence', url: 'https://archive.org/stream/thorndike-e.-1920.-intelligence-and-its-use.-harpers-magazine/Thorndike,%20E.(1920).%20Intelligence%20and%20its%20use.%20Harper%27s%20Magazine,_djvu.txt' },
+  8: { title: 'Gardner, 1983 — Frames of Mind', url: 'https://books.google.com/books/about/Frames_of_Mind.html?id=ObgOAAAAQAAJ' },
   9: { title: 'Gross, 1998 — reappraisal vs. suppression', url: 'https://journals.sagepub.com/doi/10.1037/1089-2680.2.3.271' },
   10: { title: 'Yale Center for Emotional Intelligence — RULER + independent RCT', url: 'https://rulerapproach.org/' },
-  11: { title: 'IQ / deviation-IQ reference definition (corroborated via secondary summaries, not independently opened this session)', url: null }
+  11: { title: 'IQ / deviation-IQ reference definition', url: 'https://dictionary.apa.org/deviation-iq' }
 };
 
 const ICONS = {
@@ -284,6 +286,7 @@ const sections = [
   { id:'activity', title:'Try It — Match &amp; Check', tocLabel:'Try It — Match & Check', body:`
     <p>Two quick checks, no essay required.</p>
     <h3>Part A — Match each ability to what it looks like in real life</h3>
+    <p class="match-instructions">Click one ability on the left, then click the description on the right that matches it. A correct pair turns green and locks in; a wrong pair flashes red so you can try again.</p>
     <div class="match-wrap" id="matchWrap">
       <div class="match-col">
         <button type="button" class="match-pill" data-ability="perceive">Perceive</button>
@@ -299,6 +302,7 @@ const sections = [
       </div>
     </div>
     <p class="match-status" id="matchStatus">0 of 4 matched.</p>
+    <div class="match-success" id="matchSuccess">🎉 All four matched — nice work!</div>
 
     <h3>Part B — Spot the reappraisal</h3>
     <p>Which of these are examples of <strong>reappraisal</strong> (not suppression)? Check all that apply.</p>
@@ -318,17 +322,18 @@ const sections = [
     <p>Yale's Center for Emotional Intelligence built a five-step version of this idea called RULER${fn(10)}: Recognize, Understand, Label, Express, Regulate — tested with thousands of students, showing more emotionally supportive classrooms where it's used. This lesson's activity borrows the same structure without claiming to deliver the full licensed program.</p>` },
 
   { id:'transfer', title:'REBEL RANCH PRINCIPLE', body:`
-    <blockquote>Naming and understanding a signal before reacting to it produces a better decision than reacting on the raw signal.</blockquote>
+    <p>Every substantial Rebel Ranch Academy lesson ends with a section by this name. It's our own name for a habit of mind, not a fact about emotional intelligence specifically: <strong>whatever you just learned almost never stays useful in only the one place you learned it.</strong> A real skill or a real piece of evidence tends to show up again in situations that don't look anything like the one you first met it in. Naming that connection on purpose, every time, is how it stops being "something from that one lesson" and starts being something you actually reach for. Here's where this lesson's specific idea shows up elsewhere:</p>
+    <blockquote>Naming and understanding an emotion before reacting to it produces a better decision than reacting on the raw feeling.</blockquote>
     <ul>
-      <li><strong>Personally</strong> — noticing "I'm actually anxious, not angry" changes what you do next.</li>
-      <li><strong>Family</strong> — naming a meltdown de-escalates faster than reacting to the behavior alone.</li>
-      <li><strong>Work</strong> — helps most in high emotional-labor jobs; can slow you down in fast, technical ones.</li>
-      <li><strong>Money</strong> — a panic-driven financial decision is the textbook case of reacting to the raw signal.</li>
+      <li><strong>Personally</strong> — accurately naming what you're feeling ("I'm actually anxious, not angry") changes how you <em>interpret</em> what's happening, which changes how you <em>express</em> it and communicate about it, which is what actually changes your behavior. The name isn't the fix by itself — it's the first link in that chain.</li>
+      <li><strong>Family</strong> — when a parent privately recognizes a meltdown as overwhelm instead of defiance, it's the <em>parent's own response</em> that changes — softer tone, more patience, less taking it personally — and that changed response, not the label itself, is what de-escalates faster. Announcing "you're having a meltdown" does nothing on its own; responding differently because you correctly understood what's happening is the actual mechanism.</li>
+      <li><strong>Work and leadership</strong> — this is a real, sourced finding from the research earlier in this lesson, not a hedge: managing emotion well measurably helps performance in jobs with heavy emotional demands (teaching, nursing, customer service), and can cost you in fast, high-stakes technical work — think of an ER trauma team or an air-traffic controller mid-emergency, where pausing to process a colleague's stress in that exact moment can cost seconds that matter more right then than the relationship does. It's not that EQ is bad at work; it's that when it helps most depends on what the job needs in that moment.</li>
+      <li><strong>Money and decisions under pressure</strong> — an emotion-driven financial decision (panic, fear, excitement — all emotions, not a separate category) is the textbook case of reacting to the raw feeling instead of naming it first.</li>
     </ul>
-    <p><strong>Where this stops being fair:</strong> EI is not a truth detector. A person can read a room perfectly and still be wrong about the facts.</p>` },
+    <div class="callout"><strong>One honest limit, worth naming on purpose:</strong> accurately reading someone's emotions doesn't make you right about the facts of a situation. You can correctly sense that a coworker is defensive and still be wrong about whether their underlying objection has merit. The four abilities describe <em>how</em> you handle feelings and people — they don't replace actually knowing your subject.</div>` },
 
   { id:'quiz', title:'Quick Quiz', tocLabel:'Quick Quiz', body:`
-    <p>Five questions, straight from this lesson. Not a validated EI test — just a check that it landed.</p>
+    <p>Five quick questions on what this lesson covered.</p>
     <div id="quizWrap">
       <div class="quiz-q" data-answer="predict">
         <p class="qtext">1. Which of these is NOT one of the four abilities in the Salovey/Mayer/Caruso model?</p>
@@ -379,20 +384,32 @@ const sections = [
     <button type="button" class="action-btn" id="checkQuizBtn">Check My Answers</button>
     <p class="quiz-score" id="quizScore"></p>` },
 
-  { id:'close', title:'Before you go', body:`
-    <p>This lesson describes a psychological concept, not a treatment — a persistent or overwhelming feeling calls for a qualified professional, not a worksheet.</p>
-    <p>Pick one moment coming up this week where a strong feeling is likely. Decide right now: bottle it up, or reappraise it?</p>
-    <h3>Sources</h3>
+  { id:'commit', title:'One Thing To Try', body:`
+    <p>Pick one specific moment coming up this week where you know a strong feeling is likely — a hard conversation, a deadline, a disagreement you've been avoiding. Decide right now: are you going to bottle it up, or reappraise it? Write down which one you picked, and check back afterward to see if the research held up for you.</p>` },
+
+  { id:'glossary', title:'Glossary', tocLabel:'Glossary', body:`
+    <p>Every defined term from this lesson, in one place.</p>
+    <dl class="glossary-list">
+      <dt>Ability</dt><dd>${'Something you can get better at with practice — not a fixed personality type.'}</dd>
+      <dt>Deviation IQ</dt><dd>${'The modern way IQ is scored: your result compared to other people your age, on a scale fixed to an average of 100.'}</dd>
+      <dt>Meta-analysis</dt><dd>${'A study that combines the results of many other studies to find the most reliable overall answer, instead of trusting just one.'}</dd>
+      <dt>Reappraisal</dt><dd>${'Changing how you think about a situation before the feeling fully takes over.'}</dd>
+      <dt>Suppression</dt><dd>${'Feeling something fully but bottling up the outward reaction to it.'}</dd>
+    </dl>` },
+
+  { id:'references', title:'References', tocLabel:'References', body:`
+    <p>The full, linked source list for every claim in this lesson — including the parts that disagree with each other.</p>
     <details class="source"><summary>[1] Salovey &amp; Mayer, 1990 — original EI definition</summary><div class="source-body"><a href="https://journals.sagepub.com/doi/10.2190/DUGG-P24E-52WK-6CDG" target="_blank" rel="noopener">SAGE/DOI</a> · <a href="https://scholars.unh.edu/psych_facpub/450/" target="_blank" rel="noopener">UNH mirror</a>. Primary/direct.</div></details>
     <details class="source"><summary>[2] Mayer, Salovey &amp; Caruso — four-branch model</summary><div class="source-body"><a href="https://cdn2.psychologytoday.com/assets/attachments/1575/rp2008-mayersaloveycarusob.pdf" target="_blank" rel="noopener">PDF</a>. Primary/direct.</div></details>
     <details class="source"><summary>[3] APA Dictionary of Psychology — institutional reference</summary><div class="source-body"><a href="https://dictionary.apa.org/emotional-intelligence" target="_blank" rel="noopener">dictionary.apa.org</a>. Near-primary.</div></details>
-    <details class="source"><summary>[4] Goleman, 1995 — popularization, labeled as such</summary><div class="source-body">Bantam Books — bibliographic record only, not independently re-verified.</div></details>
+    <details class="source"><summary>[4] Goleman, 1995 — popularization, labeled as such</summary><div class="source-body"><a href="https://en.wikipedia.org/wiki/Emotional_Intelligence" target="_blank" rel="noopener">Wikipedia — book article</a>. Bibliographic/summary page; the book's own text was not independently opened this session.</div></details>
     <details class="source"><summary>[5] Locke, 2005 — academic critique</summary><div class="source-body"><a href="https://onlinelibrary.wiley.com/doi/10.1002/job.318" target="_blank" rel="noopener">Wiley/DOI</a>. Primary/direct.</div></details>
     <details class="source"><summary>[6] Joseph &amp; Newman, 2010 — meta-analysis</summary><div class="source-body"><a href="https://workplaceinsight.net/wp-content/uploads/2018/03/JosephNewman2010.pdf" target="_blank" rel="noopener">PDF mirror</a>. Primary/direct.</div></details>
-    <details class="source"><summary>[7], [8] Thorndike, 1920 &amp; Gardner, 1983 — historical precursors</summary><div class="source-body">Corroborated by multiple secondary historical summaries; not independently opened this session.</div></details>
+    <details class="source"><summary>[7] Thorndike, 1920 — social intelligence</summary><div class="source-body"><a href="https://archive.org/stream/thorndike-e.-1920.-intelligence-and-its-use.-harpers-magazine/Thorndike,%20E.(1920).%20Intelligence%20and%20its%20use.%20Harper%27s%20Magazine,_djvu.txt" target="_blank" rel="noopener">archive.org — full text</a>. Direct link to the primary source; the text itself was not independently read this session.</div></details>
+    <details class="source"><summary>[8] Gardner, 1983 — Frames of Mind</summary><div class="source-body"><a href="https://books.google.com/books/about/Frames_of_Mind.html?id=ObgOAAAAQAAJ" target="_blank" rel="noopener">Google Books</a>. Bibliographic page; the book's own text was not independently opened this session.</div></details>
     <details class="source"><summary>[9] Gross, 1998 — reappraisal vs. suppression</summary><div class="source-body"><a href="https://journals.sagepub.com/doi/10.1037/1089-2680.2.3.271" target="_blank" rel="noopener">SAGE/DOI</a>. Primary/direct.</div></details>
     <details class="source"><summary>[10] Yale Center for Emotional Intelligence — RULER + RCT</summary><div class="source-body"><a href="https://rulerapproach.org/" target="_blank" rel="noopener">rulerapproach.org</a> · <a href="https://pg.casel.org/ruler-approach/" target="_blank" rel="noopener">CASEL</a>. Near-primary + independent RCT.</div></details>
-    <details class="source"><summary>[11] IQ / deviation-IQ reference definition</summary><div class="source-body">Corroborated via secondary psychometric reference summaries; not independently opened this session (outbound access to reference sites was blocked in this sandbox).</div></details>` }
+    <details class="source"><summary>[11] IQ / deviation-IQ reference definition</summary><div class="source-body"><a href="https://dictionary.apa.org/deviation-iq" target="_blank" rel="noopener">APA Dictionary — deviation IQ</a> · <a href="https://dictionary.apa.org/iq" target="_blank" rel="noopener">APA Dictionary — IQ</a>. This sandbox's network access blocked fetching these pages' content directly this session, so treat as corroborated-secondary rather than independently content-verified.</div></details>` }
 ];
 
 let current = 0;
@@ -432,7 +449,7 @@ tocOverlay.addEventListener('click', e => { if (e.target === tocOverlay) tocOver
 function showFootnotePopover(target, n){
   const f = FOOTNOTES[n];
   if (!f) return;
-  popoverBody.innerHTML = `<strong>[${n}] ${f.title}</strong>` + (f.url ? `<br><a href="${f.url}" target="_blank" rel="noopener">Open source →</a>` : '<br><em>No direct link — see the full source table in "Before You Go."</em>');
+  popoverBody.innerHTML = `<strong>[${n}] ${f.title}</strong>` + (f.url ? `<br><a href="${f.url}" target="_blank" rel="noopener">Open source →</a>` : '<br><em>No direct link — see the full References section.</em>');
   positionPopover(target);
 }
 
@@ -448,20 +465,6 @@ function renderSection(index, direction){
   const el = document.createElement('div');
   el.className = 'section ' + (direction === 'left' ? 'enter-left' : direction === 'right' ? 'enter-right' : '');
   el.innerHTML = (s.title ? `<h2>${s.title}</h2>` : '') + s.body;
-
-  // Per-section glossary: auto-built from whichever .term spans actually appear
-  // in this section, using the term's own on-page text as the label so it always
-  // matches what the learner just read (not a duplicated, hand-maintained list).
-  const termEls = [...el.querySelectorAll('.term')];
-  const seen = new Map();
-  termEls.forEach(t => { if (!seen.has(t.dataset.term)) seen.set(t.dataset.term, t.textContent); });
-  if (seen.size) {
-    const box = document.createElement('div');
-    box.className = 'section-glossary';
-    const rows = [...seen.entries()].map(([key, label]) => `<dt>${label}</dt><dd>${GLOSSARY[key] || 'Definition not available.'}</dd>`).join('');
-    box.innerHTML = `<h4>Terms in this section</h4><dl>${rows}</dl>`;
-    el.appendChild(box);
-  }
 
   stage.replaceChildren(el);
   requestAnimationFrame(()=> requestAnimationFrame(()=> el.classList.add('active')));
@@ -509,6 +512,7 @@ function wireActivity(container){
   let selectedLeft = null;
   let matchedCount = 0;
   const matchStatus = container.querySelector('#matchStatus');
+  const matchSuccess = container.querySelector('#matchSuccess');
 
   matchWrap.querySelectorAll('[data-ability]').forEach(leftPill => {
     leftPill.addEventListener('click', () => {
@@ -525,7 +529,8 @@ function wireActivity(container){
         selectedLeft.classList.add('correct'); selectedLeft.classList.remove('selected');
         rightPill.classList.add('correct');
         matchedCount++;
-        matchStatus.textContent = matchedCount === 4 ? 'All four matched — nice work.' : `${matchedCount} of 4 matched.`;
+        matchStatus.textContent = `${matchedCount} of 4 matched.`;
+        if (matchedCount === 4) matchSuccess.classList.add('show');
         selectedLeft = null;
         if (matchedCount === 4) saveActivityAnswers(container);
       } else {
@@ -566,7 +571,8 @@ function wireActivity(container){
     matchWrap.querySelectorAll('[data-ability]').forEach(p => p.classList.add('correct'));
     matchWrap.querySelectorAll('[data-match]').forEach(p => p.classList.add('correct'));
     matchedCount = 4;
-    matchStatus.textContent = 'All four matched — nice work.';
+    matchStatus.textContent = '4 of 4 matched.';
+    matchSuccess.classList.add('show');
   }
   if (Array.isArray(lastAnswers.reappraisal_selected)) {
     container.querySelectorAll('#reappraisalCheck input').forEach((box, i) => { box.checked = !!lastAnswers.reappraisal_selected[i]; });

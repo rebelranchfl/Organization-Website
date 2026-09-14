@@ -216,6 +216,8 @@ The agent must consider, when relevant:
 
 The final question is mandatory when analogy could be misleading. RRA uses connections to deepen understanding, not to pretend two different systems are identical.
 
+**First-time-reader framing (added 2026-09-14):** because "REBEL RANCH PRINCIPLE" is RRA's own name for this recurring habit of mind and not a term a new learner will already know, every instance of this section should open with a brief, plain explanation of what the name means in general — this is our name for noticing that a real skill or piece of evidence almost never stays useful in only the one place you learned it — before getting into the specific connections for that project's subject. Exact wording may evolve project to project; the requirement is that a first-time reader isn't left to guess why the section is called what it's called.
+
 ---
 
 ## 8. Research standard
