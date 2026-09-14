@@ -5,10 +5,10 @@
 - Page file: `business-money-leaks.html`
 - Program: Rebel Ranch Ministries → Business Freedom
 - Delivery boundary: RRM program supported by donated 3P Help Me expertise; do not merge the organizations or present 3P Help Me as RRM.
-- Current state: LIVE; publicly verified at `https://rebelranchministries.org/business-money-leaks.html`
-- Last updated: 2026-09-06
-- Current authorized work: none; preserve this live version unless the owner explicitly reopens it
-- Current version: `money-recognition-v1.4` — LIVE
+- Current public state: `money-recognition-v1.4` remains LIVE at `https://rebelranchministries.org/business-money-leaks.html`
+- Last updated: 2026-09-13
+- Current authorized work: publish the owner-approved `money-systems-strategy-v2` release and verify the public page
+- Current local version: `money-systems-strategy-v2` — OWNER APPROVED; desktop and phone verification passed; publication in progress
 
 ## North star
 
@@ -35,6 +35,21 @@
 - Page/program title: `Keep Your Money`
 - Hero message: `You do quality work. Money comes in. Too little of it stays.`
 - Primary CTA: `Find Where My Money Is Going`
+
+## Owner-approved 2026-09-13 redesign
+
+- Source of truth: `exec-351c3287-f7d8-4b39-93f3-5009134339b8.png`, SHA-256 `F1F6EDA86611ADA6C8A8509C5FC928B6C61570C9B5CC71EEF0AACF4A7086AE23`.
+- Approval boundary: reproduce the approved visual, copy, imagery, graphics, pacing, and section order without reinterpretation. The owner explicitly rejected receiving a materially different implementation after concept approval.
+- Page story: modern human hero → complexity/problem → RRM's distinctive systems-thinking value → three-discipline horizontal slider → three concrete deliverables → explicit bridge to separate hands-on implementation → modern human close.
+- Service boundary: this page sells diagnosis, a systems redesign strategy, and an implementation plan. It must say plainly that a fully changed system results from implementation, and that hands-on in-house implementation is a separate next service when the business lacks time, people, tools, technical skill, or resources.
+- Voice: institutional RRM voice using `we`, never personal `I`.
+- Required hero environmental copy: `BETTER SYSTEMS. BETTER BUSINESSES.` and `SMOOTHER OPERATIONS. LARGER PROFITS. BETTER OPPORTUNITIES.`
+- Required value copy: `We untangle`, `A STREAMLINED SYSTEM.`, and `A BETTER TOMORROW.`
+- Required implementation bridge: `FROM PLAN TO IMPLEMENTED. THE SUPPORT TO MAKE IT HAPPEN.`
+- Required human closer: `PEOPLE. SYSTEMS. OPPORTUNITY. A WHOLE NEW LIFE.`
+- Production-image hashes: hero `3749E782BA9A2F5727EDB973CF9B4E5DF30AD48477D9E39A6ED524023A428F04`; problem `F64E305C9834BB142DA4D62754D6EF5581AD468DDB61F1986FC7E51D11ED42B4`; system path `824238BFFE58C6E1DF8750083D777BC5E33D3889964FF59E44E268FC91469008`; implementation `AE86FF3A5DB7D8C75587074C3ACEF76823DF85C4D7F33C6854BE1D12BE8EBD7C`; close `450FCAB196BEAD3F67D5873DA4ECC49933EC96FC838882F431C69A806778900A`.
+
+The earlier recognition strip, dense colorful whole-business infographic, small stacked service cards, button-led ending, dark/rustic/apron imagery, and copy that blurred strategy with implementation are superseded for this page. They remain below only as historical records.
 
 ## Approved page story
 
@@ -132,6 +147,10 @@ This inventory is binding source material for the page. It may be condensed with
 
 | Date | Item/version | State | Owner decision | Why/evidence |
 |---|---|---|---|---|
+| 2026-09-13 | `money-systems-strategy-v2` release | APPROVED FOR PUBLICATION | Publish the approved page; do not create a handoff instead | Owner explicitly instructed `publish. dont do handoff.` after local implementation and verification. |
+| 2026-09-13 | `money-systems-strategy-v2` concept | APPROVED FOR EXACT LOCAL IMPLEMENTATION | Reproduce the approved concept verbatim, including imagery, graphics, copy, section order, and pacing; do not reinterpret it during implementation | Owner explicitly approved the visual after iterative review and warned that prior concept-to-code drift was unacceptable. |
+| 2026-09-13 | Strategy-to-implementation boundary | APPROVED | Promise diagnosis, systems redesign strategy, and an implementation plan; explicitly present hands-on in-house implementation as the separate next service when the business cannot implement alone | Prevents visitors from expecting a fully changed system from the strategy engagement while creating a natural, honest funnel to implementation. |
+| 2026-09-13 | Contemporary visual direction | APPROVED | Use bright, modern, 2026 business imagery with human opening and closing; no aprons, rustic/old-time styling, dark photography, or picture-book pacing | Aligns this page with the rest of Business Freedom while leaving futuristic/robotic visuals to services where they are appropriate. |
 | 2026-09-04 | Title | APPROVED | `Keep More of What You Earn` | Clearly separates retained income from the Time page. |
 | 2026-09-04 | Hero message | APPROVED | `You do quality work. Money comes in. Too little of it stays.` | Immediate, non-blaming, and states the full problem. |
 | 2026-09-03 | Systems-engineering direction | DIRECTIONAL | Complex interconnected operating-system visualization was “good” and “on the right track.” | Complexity and expertise became visible, but the wide artifact was too dense for mobile. |
@@ -261,6 +280,7 @@ This inventory is binding source material for the page. It may be condensed with
 
 | Date | Change | Reason | Files/artifacts | Result |
 |---|---|---|---|---|
+| 2026-09-13 | Built the owner-approved systems-strategy concept locally | Replace the old RRM style with the approved modern Business Freedom story without concept-to-code drift | `business-money-leaks.html`, `assets/css/business-money-leaks.css`, five `business-money-*-2026-v1.png` assets, this record | Exact approved structure and phrases are integrated locally; no commit, push, deployment, or public change was made. |
 | 2026-09-04 | Reconciled page title, hero message, and primary CTA with owner-approved wording | Current file still carried superseded Money language | `business-money-leaks.html` | Exact-copy checks passed; whole page remains BLOCKED. |
 | 2026-09-04 | Created governing decision record and failure history | Prevent drift and repeated rejected work | This record | North star exists; future page work must read it first. |
 | 2026-09-04 | Rebuilt the local page around the approved retained-income story | Remove the Time-page duplicate, owner-blaming paperwork story, and failed carousel | `business-money-leaks.html`, `assets/css/business-money-leaks.css` | Recognition → analysis → transformation → human result now reads as one page. |
