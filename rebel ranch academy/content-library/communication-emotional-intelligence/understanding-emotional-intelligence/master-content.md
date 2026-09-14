@@ -48,6 +48,8 @@ Psychologist James Gross studied two common ways people handle a strong feeling 
 
 The results aren't close. **Reappraisal** actually lowers the felt emotion, doesn't damage your memory of what happened, and doesn't raise stress in the people around you. **Suppression** does not lower the felt emotion — you still feel just as bad — while it *does* hurt your memory of the moment and *raises* physical stress in you and in whoever you're talking to.
 
+![Side-by-side comparison: reappraisal lowers felt emotion, does not damage memory, and does not raise stress on others; suppression does not lower felt emotion, does damage memory, and does raise stress on others.](illustrations/eq-reappraisal-vs-suppression-comparison.png)
+
 In plain terms: bottling it up doesn't actually work, even though it feels like "handling it." Reframing how you're seeing the situation, before you react, is the one that's backed by the evidence.
 
 ## Try It — Name It to Tame It
