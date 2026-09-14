@@ -6,8 +6,8 @@
   "named_program": null,
   "created_at": "2026-09-13T23:10:29Z",
   "created_by": "owner",
-  "current_status": "APPROVED",
-  "workflow_stage": "PRODUCT_OPPORTUNITY_RESEARCH",
+  "current_status": "READY_FOR_REVIEW",
+  "workflow_stage": "PRODUCT_REVIEW",
   "_workflow_stage_note": "workflow_stage is not part of the documented ACADEMY-CONTENT-PROJECT-SCHEMA.md field list, but it is what the actually-deployed dashboard (academy-stage-review.js) and the live submit_academy_stage_review() RPC key their Owner Decision buttons on, per ACADEMY-PRODUCT-PHASE-WORKFLOW-EXTENSION.md's multi-gate model. Recorded here so this file matches the real Supabase row instead of only the older documented schema.",
   "revision_number": 1,
   "owner_input": {
@@ -49,7 +49,7 @@
     "conflicts_found": [
       "Found and fixed: create_academy_content_idea() hardcoded github_branch to a dead branch (rra-content-dashboard-foundation, ~900 files stale). Fixed in migration 20260914120000; this row corrected to the real working branch.",
       "Found and fixed: the deployed dashboard's Owner Decision controls (Approve/Needs More Work/Reject) key entirely on workflow_stage + progress_percent, fields create_academy_content_idea() never set and whose column default (workflow_stage='RESEARCH_WORKING') misrepresents a NEW_IDEA. Every idea created through the only intake path was structurally invisible to the review UI regardless of how much work was done on it. Fixed in migration 20260914140000 (default now 'IDEA', intake sets it explicitly) plus a second migration (20260914130000) reconciling four review-flow RPCs that existed live but had never been committed to any GitHub migration.",
-      "Scope note: this run produced Concept/Content/Materials/Pricing/QA in the same pass as Research, following the older single-gate ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md. The currently-implemented system actually runs ACADEMY-PRODUCT-PHASE-WORKFLOW-EXTENSION.md's multi-gate model, where Concept/Content/Materials/Pricing belong to a separate Product Design stage that requires its own Product Opportunity Research + Recommendation Scorecard and only unlocks after Owner Research Review approval. concept.md/master-content.md/activities/pricing.md are preserved as an early, ahead-of-gate Product Design draft, not as pre-approved -- they were not discarded, but they should not be read as already authorized."
+      "Resolved scope note: this run originally produced Concept/Content/Materials/Pricing/QA in the same pass as Research, following the older single-gate ACADEMY-CONTENT-PRODUCTION-WORKFLOW.md, ahead of the real Owner Research Review gate. After the owner's real Research Foundation approval (2026-09-14T11:22:56Z), Product Opportunity Research and a Recommendation Scorecard were completed properly, and the existing concept/content/materials/pricing draft was re-verified against that scorecard and formalized as the authorized Product Design package (no content changes were needed). This project is now correctly at PRODUCT_REVIEW."
     ]
   },
   "research": {
@@ -71,9 +71,16 @@
     "sources_file": "sources.md",
     "research_file": "research.md"
   },
+  "product_opportunity_research": {
+    "status": "COMPLETE",
+    "completed_at": "2026-09-14T12:00:00Z",
+    "file": "product-opportunity-research.md",
+    "scorecard_file": "product-recommendation-scorecard.md",
+    "recommendation": "Proceed to Product Design at Free / Focused-scope tier."
+  },
   "concept": {
-    "status": "DRAFT_AHEAD_OF_GATE",
-    "_status_note": "Written before Owner Research Review approval and before required Product Opportunity Research/Recommendation Scorecard per ACADEMY-PRODUCT-PHASE-WORKFLOW-EXTENSION.md. Preserved as a draft, not authorized.",
+    "status": "COMPLETE",
+    "_status_note": "Now properly authorized: written after the real Owner Research Review approval (2026-09-14T11:22:56Z) and after Product Opportunity Research + Recommendation Scorecard, per ACADEMY-PRODUCT-PHASE-WORKFLOW-EXTENSION.md. No content changes were needed from the earlier ahead-of-gate draft; formalized into product-architecture.md.",
     "learning_outcome": "Learner can name the four EI abilities, distinguish evidenced core from oversold popular version, and apply reappraisal the next time they notice a strong feeling.",
     "central_question": "Is emotional intelligence a real, useful skill or a buzzword -- and either way, what can you do with it?",
     "major_principles": [
@@ -93,17 +100,18 @@
     ]
   },
   "content": {
-    "status": "DRAFT_AHEAD_OF_GATE",
-    "master_content_file": "master-content.md"
+    "status": "COMPLETE",
+    "master_content_file": "master-content.md",
+    "manuscript_pointer_file": "product-manuscript.md"
   },
   "materials": {
-    "status": "DRAFT_AHEAD_OF_GATE",
+    "status": "COMPLETE",
     "material_types": ["activity worksheet"],
     "files": ["activities/name-it-to-tame-it.md"],
     "preview_files": []
   },
   "pricing": {
-    "status": "DRAFT_AHEAD_OF_GATE",
+    "status": "COMPLETE",
     "proposed_price": 0,
     "currency": "USD",
     "role": "FREE",
@@ -114,6 +122,7 @@
     "status": "PASS",
     "completed_at": "2026-09-14T00:00:00Z",
     "qa_file": "qa-review.md",
+    "product_qa_file": "product-qa.md",
     "blockers": [
       "Live-site review incomplete (environment network restriction)",
       "No live link-check pass performed this session",
@@ -123,13 +132,13 @@
     ]
   },
   "owner_review": {
-    "status": "APPROVED",
+    "status": "PENDING",
     "latest_decision": "APPROVE_RESEARCH_FOUNDATION",
     "latest_comment": null,
     "reviewed_at": "2026-09-14T11:22:56Z",
     "review_history_file": "owner-review.md",
     "source_decisions_complete": false,
-    "_gate_note": "This APPROVE covers RESEARCH_REVIEW only (context review + research + sources), recorded via the real dashboard button and submit_academy_stage_review(). It does not approve the DRAFT_AHEAD_OF_GATE concept/content/materials/pricing files -- those await their own Product Opportunity Research + Product Review gate."
+    "_gate_note": "Research Foundation was approved 2026-09-14T11:22:56Z via the real dashboard button. This project is now presented at the next real gate, PRODUCT_REVIEW (Approve Product Design / Needs More Product Work / Reject Product Concept), covering product-opportunity-research.md, product-recommendation-scorecard.md, product-architecture.md, product-manuscript.md, activities/name-it-to-tame-it.md, pricing.md, and product-qa.md. Approving this gate authorizes Visual Production to begin -- it does not authorize release."
   },
   "release": {
     "status": "NOT_STARTED",
