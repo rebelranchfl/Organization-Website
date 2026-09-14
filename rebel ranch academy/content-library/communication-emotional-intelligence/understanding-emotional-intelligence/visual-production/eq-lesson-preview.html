@@ -5,142 +5,312 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Emotional Intelligence: The Skill Nobody Taught You</title>
 <style>
-  :root{
-    --navy:#0d1b2e; --midnight:#0a1522; --gold:#c9a24b; --cream:#f7f2e7; --paper:#fffdf8; --charcoal:#26241f;
-  }
+  :root{ --navy:#0d1b2e; --midnight:#0a1522; --gold:#c9a24b; --cream:#f7f2e7; --paper:#fffdf8; --charcoal:#26241f; }
   *{box-sizing:border-box}
   body{margin:0;background:var(--cream);color:var(--charcoal);font-family:Arial,Helvetica,sans-serif;line-height:1.65}
-  .wrap{max-width:760px;margin:0 auto;padding:0 20px 60px}
-  header.hero{background:linear-gradient(180deg,var(--midnight),var(--navy));color:#f4efe2;padding:44px 20px 36px}
-  header.hero .inner{max-width:760px;margin:0 auto}
-  .kicker{color:var(--gold);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:.78rem;margin:0 0 10px}
-  h1{font-family:Georgia,'Times New Roman',serif;font-size:2rem;line-height:1.2;margin:0 0 8px;color:#fbf7ec}
-  h2{font-family:Georgia,'Times New Roman',serif;color:var(--navy);font-size:1.4rem;margin:34px 0 12px;border-bottom:2px solid var(--gold);padding-bottom:6px}
-  h3{font-family:Georgia,'Times New Roman',serif;color:var(--navy);font-size:1.15rem;margin:22px 0 8px}
+  .app{max-width:760px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
+  header.hero{background:linear-gradient(180deg,var(--midnight),var(--navy));color:#f4efe2;padding:28px 20px 20px}
+  .kicker{color:var(--gold);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:.72rem;margin:0 0 8px}
+  h1{font-family:Georgia,'Times New Roman',serif;font-size:1.5rem;line-height:1.25;margin:0}
+  .authline{margin-top:10px;font-size:.78rem;color:#cfc6ad}
+  .authline a{color:var(--gold)}
+  .progress-wrap{padding:10px 20px;background:var(--paper);border-bottom:1px solid #e3dac2}
+  .progress-label{display:flex;justify-content:space-between;font-size:.74rem;color:#6b6656;margin-bottom:6px}
+  .progress-track{height:7px;border-radius:5px;background:#eee3c8;overflow:hidden}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),#a97f2f);transition:width .4s ease}
+  .stage{flex:1;position:relative;overflow:hidden}
+  .section{position:absolute;inset:0;padding:26px 20px 30px;overflow-y:auto;transition:transform .38s ease, opacity .38s ease;background:var(--cream)}
+  .section.enter-right{transform:translateX(40px);opacity:0}
+  .section.enter-left{transform:translateX(-40px);opacity:0}
+  .section.active{transform:translateX(0);opacity:1;position:relative}
+  h2{font-family:Georgia,'Times New Roman',serif;color:var(--navy);font-size:1.3rem;margin:0 0 14px;border-bottom:2px solid var(--gold);padding-bottom:6px}
+  h3{font-family:Georgia,'Times New Roman',serif;color:var(--navy);font-size:1.05rem;margin:18px 0 8px}
   p{margin:0 0 14px}
-  img{max-width:100%;height:auto;display:block;margin:18px auto;border:1px solid #e3dac2;border-radius:8px}
-  .lede{color:#d9d2bf;font-size:1.02rem}
+  img{max-width:100%;height:auto;display:block;margin:16px auto;border:1px solid #e3dac2;border-radius:8px}
   ol,ul{padding-left:22px;margin:0 0 14px}
   li{margin:6px 0}
-  blockquote{margin:18px 0;padding:14px 18px;background:var(--paper);border-left:4px solid var(--gold);font-style:italic;color:var(--navy)}
-  .callout{background:var(--paper);border:1px solid #e3dac2;border-radius:8px;padding:16px 18px;margin:18px 0}
-  .activity{background:#0d1b2e0d;border:1px solid var(--gold);border-radius:10px;padding:20px;margin:20px 0}
-  .activity h3{margin-top:0}
-  table{width:100%;border-collapse:collapse;font-size:.82rem;margin:14px 0}
-  th,td{border:1px solid #e3dac2;padding:8px;text-align:left;vertical-align:top}
-  th{background:var(--navy);color:#f4efe2}
-  a{color:#8a5a00}
-  a:hover{color:var(--navy)}
-  .price-tag{display:inline-block;background:var(--navy);color:#f4efe2;padding:4px 10px;border-radius:5px;font-size:.75rem;font-weight:700;letter-spacing:.04em}
-  footer{margin-top:40px;padding-top:18px;border-top:1px solid #e3dac2;color:#6b6656;font-size:.8rem}
-  @media(max-width:480px){h1{font-size:1.55rem}h2{font-size:1.2rem}}
+  blockquote{margin:16px 0;padding:14px 18px;background:var(--paper);border-left:4px solid var(--gold);font-style:italic;color:var(--navy)}
+  .callout{background:var(--paper);border:1px solid #e3dac2;border-radius:8px;padding:16px 18px;margin:16px 0}
+  .term{color:#8a5a00;border-bottom:1px dashed #8a5a00;cursor:pointer;font-weight:600}
+  .term:hover{color:var(--navy)}
+  .popover{display:none;position:absolute;max-width:280px;background:var(--navy);color:#f4efe2;padding:10px 12px;border-radius:8px;font-size:.82rem;box-shadow:0 6px 18px rgba(0,0,0,.25);z-index:20}
+  .popover.show{display:block}
+  .popover .pclose{float:right;cursor:pointer;color:var(--gold);font-weight:900;margin-left:8px}
+  .expand-toggle{display:inline-block;margin-top:-6px;margin-bottom:14px;padding:7px 12px;border:1px solid var(--gold);border-radius:20px;background:transparent;color:#8a5a00;font-weight:700;font-size:.8rem;cursor:pointer}
+  .expand-toggle[aria-expanded="true"]{background:var(--gold);color:var(--navy)}
+  .expand-panel{display:none;background:var(--paper);border:1px solid #e3dac2;border-radius:8px;padding:14px 16px;margin:-6px 0 16px;font-size:.9rem}
+  .expand-panel.open{display:block}
+  details.source{border:1px solid #e3dac2;border-radius:8px;margin:8px 0;background:var(--paper)}
+  details.source summary{padding:10px 14px;cursor:pointer;font-weight:700;color:var(--navy)}
+  details.source .source-body{padding:0 14px 14px;font-size:.85rem;color:#3a3627}
+  details.source .source-body a{color:#8a5a00}
+  .activity-field{margin:14px 0}
+  .activity-field label{display:block;font-weight:700;color:var(--navy);margin-bottom:6px}
+  .activity-field textarea{width:100%;min-height:64px;padding:10px 12px;border:1px solid #cbbf9a;border-radius:7px;font:inherit;background:var(--paper);color:var(--charcoal)}
+  .save-status{font-size:.78rem;color:#6b6656;margin-top:6px;min-height:1.2em}
+  nav.pager{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 20px;background:var(--paper);border-top:1px solid #e3dac2}
+  nav.pager button{padding:11px 16px;border-radius:8px;border:1px solid var(--gold);background:var(--navy);color:#f4efe2;font-weight:800;cursor:pointer;font-size:.88rem}
+  nav.pager button:disabled{opacity:.35;cursor:default}
+  nav.pager .pager-mid{font-size:.78rem;color:#6b6656;text-align:center}
+  .signed-out-banner{background:#3a2c10;color:#f4efe2;padding:10px 20px;font-size:.82rem;text-align:center}
+  .signed-out-banner a{color:var(--gold);font-weight:700}
+  @media(max-width:480px){h1{font-size:1.25rem}h2{font-size:1.12rem}}
 </style>
 </head>
 <body>
-<header class="hero"><div class="inner">
-  <p class="kicker">Rebel Ranch Academy · Communication and Emotional Intelligence</p>
-  <h1>Emotional Intelligence: The Skill Nobody Taught You</h1>
-  <p class="lede">A moment you've probably lived: someone cuts you off in traffic, a coworker takes credit for your idea, your kid melts down in the grocery store. In two seconds you'll either react on the raw feeling, or do something with it first. Most people never learned there's a difference.</p>
-  <span class="price-tag">FREE · Proposed</span>
-</div></header>
-
-<main class="wrap">
-
-<p>That "something" has a name: <strong>emotional intelligence.</strong></p>
-
-<h2>What it actually is</h2>
-<p>In 1990, psychologists Peter Salovey and John Mayer gave this idea its first real, testable definition: <strong>the ability to monitor your own and other people's feelings, tell them apart accurately, and use that information to guide what you think and do next.</strong> They and a colleague, David Caruso, later broke it into four specific abilities. This is the real core of the idea — plain language, no fluff:</p>
-<ol>
-  <li><strong>Perceive</strong> — accurately notice emotion: in a face, a tone of voice, a slumped posture, or in yourself.</li>
-  <li><strong>Use</strong> — let the right mood do the right job. A little seriousness helps you make a careful decision; a little excitement helps you brainstorm.</li>
-  <li><strong>Understand</strong> — know how emotions move and change. Annoyance can turn into resentment. Nervousness can turn into excitement. Seeing that shift coming is a skill.</li>
-  <li><strong>Manage</strong> — sit with a feeling long enough to learn something from it, then choose your next move instead of letting the feeling choose it for you.</li>
-</ol>
-<p>That's it. Not a personality type. Not a magic power some people have and others don't. Four specific, practicable abilities.</p>
-
-<img src="https://raw.githubusercontent.com/rebelranchfl/Organization-Website/claude/funny-shannon-9nq3h4/rebel%20ranch%20academy/content-library/communication-emotional-intelligence/understanding-emotional-intelligence/illustrations/eq-four-abilities-diagram.png" alt="The four abilities of emotional intelligence: Perceive, Use, Understand, and Manage, shown as four connected circles with icons and short descriptions.">
-
-<h2>Where this idea came from</h2>
-<p>This isn't a modern invention out of nowhere, and it isn't ancient wisdom either — it sits right in between. In 1920, psychologist Edward Thorndike noticed that "book smart" and "people smart" were clearly different things, and called the second one <em>social intelligence</em>. In 1983, Howard Gardner's theory of multiple intelligences split that further into <em>interpersonal</em> intelligence (reading other people) and <em>intrapersonal</em> intelligence (reading yourself). Salovey and Mayer took that century-old observation and finally gave it something researchers could actually test and measure.</p>
-
-<h2>The part most people get wrong</h2>
-<p>Here's where this lesson does something most popular articles about "EQ" skip: it tells you what's actually still argued about.</p>
-<p>In 1995, Daniel Goleman wrote a bestselling book that made "EQ" a household phrase — and made a bold claim that it could matter <em>more than IQ</em> for success in life. That book used a much broader definition than Salovey and Mayer's original one, mixing in things like motivation, empathy, and general social skill.</p>
-<p>Ten years later, psychologist Edwin Locke published a pointed academic rebuttal: he argued that once you define "emotional intelligence" that broadly, it stops meaning anything specific enough to call it an intelligence at all — and that Goleman's book claimed more support from the research than the research actually showed.</p>
-<p>So who's right? The most useful answer comes from a 2010 study that combined the results of dozens of independent studies (a meta-analysis) by Dana Joseph and Daniel Newman. Their finding is more interesting than either side's talking point: <strong>ability-based EI predicts job performance inconsistently</strong> — it helps in jobs that require a lot of "emotional labor" (nursing, teaching, customer service), and can even get in the way in fast, technical jobs where managing your emotions takes time you don't have. Self-reported ("mixed model") EI added some predictive value beyond IQ and personality, but not in every study.</p>
-<div class="callout"><strong>The honest takeaway:</strong> emotional intelligence is a real, definable, learnable skill. Whether it deserves to be called an "intelligence," and how much it changes your life, is a legitimate scientific argument that isn't fully settled. That doesn't make the skills useless — it means you should trust the specific, evidence-backed pieces below more than the "EQ beats IQ, period" version that made this topic famous.</div>
-
-<h2>The one technique that's actually been tested</h2>
-<p>Most advice about handling strong emotion is vague: "just calm down," "don't let it get to you." Here's a version backed by real, repeated research.</p>
-<p>Psychologist James Gross studied two common ways people handle a strong feeling in the moment:</p>
-<ul>
-  <li><strong>Reappraisal</strong> — changing how you think about the situation <em>before</em> the feeling fully takes over. ("Maybe they're stressed too, not attacking me.")</li>
-  <li><strong>Suppression</strong> — feeling it fully, but bottling up the outward reaction. ("I'm furious but I'm not going to show it.")</li>
-</ul>
-<p>The results aren't close. <strong>Reappraisal</strong> actually lowers the felt emotion, doesn't damage your memory of what happened, and doesn't raise stress in the people around you. <strong>Suppression</strong> does not lower the felt emotion — you still feel just as bad — while it <em>does</em> hurt your memory of the moment and <em>raises</em> physical stress in you and in whoever you're talking to.</p>
-
-<img src="https://raw.githubusercontent.com/rebelranchfl/Organization-Website/claude/funny-shannon-9nq3h4/rebel%20ranch%20academy/content-library/communication-emotional-intelligence/understanding-emotional-intelligence/illustrations/eq-reappraisal-vs-suppression-comparison.png" alt="Side-by-side comparison: reappraisal lowers felt emotion, does not damage memory, and does not raise stress on others; suppression does not lower felt emotion, does damage memory, and does raise stress on others.">
-
-<p>In plain terms: bottling it up doesn't actually work, even though it feels like "handling it." Reframing how you're seeing the situation, before you react, is the one that's backed by the evidence.</p>
-
-<div class="activity">
-<h3>Try It — Name It to Tame It</h3>
-<p><strong>Purpose:</strong> Practice the two moves the research actually supports — naming a feeling precisely, and reappraising instead of suppressing it — using a real moment from your own life instead of a hypothetical.</p>
-<p><strong>Safety note:</strong> This is a reflection activity, not therapy. If the moment you're thinking of involves ongoing distress, conflict, or safety concerns beyond a normal hard feeling, please talk to a trusted adult or a qualified professional instead of relying on this worksheet.</p>
-<ol>
-  <li><strong>Recognize.</strong> Think of one real moment in the last week or two where you felt something strong. Write one sentence describing what happened.</li>
-  <li><strong>Label precisely.</strong> Don't settle for "mad" or "bad." Was it actually frustration, or was it hurt? Pick the most accurate word you can.</li>
-  <li><strong>Understand.</strong> Did the feeling change or build during the moment? Write the sequence if there was one.</li>
-  <li><strong>Identify which of the four abilities was weakest</strong> in that moment (Perceive / Use / Understand / Manage).</li>
-  <li><strong>Reappraise it, in writing, right now.</strong> Write one alternative, genuinely plausible way of seeing the situation.</li>
-  <li><strong>Predict.</strong> If the research is right, what should be different next time you reappraise instead of suppress?</li>
-  <li><strong>Test it for real.</strong> Next time a strong feeling shows up, try it. Did the felt intensity actually drop?</li>
-</ol>
-<p><em>What this activity can show:</em> that deliberately reframing a situation changes how a specific feeling plays out for you, personally, once. <em>What it cannot prove:</em> one personal experiment doesn't replace the meta-analytic evidence already cited above.</p>
+<div class="app">
+  <header class="hero">
+    <p class="kicker">Rebel Ranch Academy · Communication and Emotional Intelligence</p>
+    <h1>Emotional Intelligence: The Skill Nobody Taught You</h1>
+    <p class="authline" id="authline">Checking your account…</p>
+  </header>
+  <div id="signedOutBanner" class="signed-out-banner" hidden>You're viewing as a guest — <a href="../../../../../account.html">sign in</a> to save your place and your activity answers.</div>
+  <div class="progress-wrap">
+    <div class="progress-label"><span id="sectionLabel">Section 1 of 9</span><span id="percentLabel">0%</span></div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  </div>
+  <div class="stage" id="stage"></div>
+  <nav class="pager">
+    <button id="prevBtn" type="button">← Previous</button>
+    <span class="pager-mid" id="pagerMid"></span>
+    <button id="nextBtn" type="button">Next →</button>
+  </nav>
 </div>
 
-<h2>Take it further — a framework for families and classrooms</h2>
-<p>If you want a repeatable structure instead of a one-time activity, Yale's Center for Emotional Intelligence built a five-step version of this same idea, called RULER: <strong>R</strong>ecognize the emotion, <strong>U</strong>nderstand its cause, <strong>L</strong>abel it precisely, <strong>E</strong>xpress it appropriately, <strong>R</strong>egulate it effectively. It's been tested with thousands of students across dozens of schools, with results showing more emotionally supportive classrooms where it's used. This lesson borrows the same recognize → name → decide-what-to-do structure for its own activity, without claiming to deliver the full licensed program.</p>
+<div class="popover" id="popover"><span class="pclose" id="popoverClose">✕</span><div id="popoverBody"></div></div>
 
-<h2>TRANSFER THE PRINCIPLE</h2>
-<blockquote>Naming and understanding a signal before reacting to it produces a better decision than reacting on the raw signal.</blockquote>
-<p>That shows up far outside "emotions":</p>
-<ul>
-  <li><strong>Personally</strong> — noticing "I'm actually anxious, not angry" changes what you do in the next five minutes.</li>
-  <li><strong>Family</strong> — a parent who names a meltdown de-escalates faster than one who only reacts to the behavior.</li>
-  <li><strong>Communication and relationships</strong> — most hard conversations go better when someone names the emotion in the room before arguing the facts.</li>
-  <li><strong>Work and leadership</strong> — managing emotion well measurably helps performance in high emotional-labor jobs; in some fast, technical jobs it can slow you down. The honest, non-oversold version of "EQ matters at work."</li>
-  <li><strong>Money and decisions under pressure</strong> — a panic-driven financial decision is the textbook case of reacting to the raw signal instead of naming it first.</li>
-</ul>
-<p><strong>Where this stops being a fair comparison:</strong> emotional intelligence is not a truth detector and it's not a substitute for actually knowing your subject. A person can read a room perfectly and still be wrong about the facts.</p>
+<script type="module">
+const PROJECT_ID = 'RRA-2026-0011';
+// Same publishable key already shipped in assets/js/supabase-client.js on every page
+// of the live site. This key is meant to be public -- it identifies the project to
+// Supabase's API; actual access control is enforced by the row-level security
+// policies on academy_learner_progress (see migration 20260914170000), not by
+// keeping this value secret.
+const SUPABASE_URL = 'https://dfrwxpuojeiykaignyny.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_Ts45JL34s7yFGW5hlI0pUA_-HRUt18a';
+let supabase = null;
 
-<h2>What this is not</h2>
-<p>This lesson describes a psychological concept, not a treatment. If a feeling is persistent, overwhelming, or connected to something like anxiety, depression, or trauma, that calls for a qualified professional — not a worksheet.</p>
+// Loaded dynamically and defensively: the reading experience (navigation, content,
+// glossary, expand panels) must render correctly even if this CDN load is slow,
+// blocked, or fails outright. A static top-level import would abort the entire
+// module -- and the entire page -- on any failure here. Verified: this exact
+// failure mode was reproduced during testing (a stale local proxy config broke the
+// CDN fetch and the whole page stayed blank under the old top-level-import version).
+async function loadSupabase(){
+  try {
+    const mod = await Promise.race([
+      import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm'),
+      new Promise((_, reject) => setTimeout(() => reject(new Error('Supabase SDK load timed out')), 6000))
+    ]);
+    supabase = mod.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+  } catch (e) {
+    console.warn('Progress-saving unavailable this session (reading still works):', e);
+    supabase = null;
+  }
+}
 
-<h2>Before you go</h2>
-<p>Pick one specific moment coming up this week where you know a strong feeling is likely. Decide right now: are you going to bottle it up, or reappraise it? Write down which one you picked, and check back afterward to see if the research held up for you.</p>
+const GLOSSARY = {
+  'ability': 'Something you can get better at with practice — not a fixed personality type.',
+  'meta-analysis': 'A study that combines the results of many other studies to find the most reliable overall answer, instead of trusting just one.',
+  'reappraisal': 'Changing how you think about a situation before the feeling fully takes over.',
+  'suppression': 'Feeling something fully but bottling up the outward reaction to it.',
+  'corroboration': 'Independent evidence from a different source that backs up the same claim.'
+};
 
-<h2>Sources</h2>
-<table>
-<thead><tr><th>#</th><th>Claim</th><th>Source</th><th>Link</th></tr></thead>
-<tbody>
-<tr><td>1</td><td>Original EI definition</td><td>Salovey &amp; Mayer, 1990</td><td><a href="https://journals.sagepub.com/doi/10.2190/DUGG-P24E-52WK-6CDG" target="_blank" rel="noopener">SAGE/DOI</a> · <a href="https://scholars.unh.edu/psych_facpub/450/" target="_blank" rel="noopener">UNH mirror</a></td></tr>
-<tr><td>2</td><td>Four-branch ability model</td><td>Mayer, Salovey &amp; Caruso</td><td><a href="https://cdn2.psychologytoday.com/assets/attachments/1575/rp2008-mayersaloveycarusob.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
-<tr><td>3</td><td>Institutional reference definition</td><td>APA Dictionary of Psychology</td><td><a href="https://dictionary.apa.org/emotional-intelligence" target="_blank" rel="noopener">dictionary.apa.org</a></td></tr>
-<tr><td>4</td><td>Popular "EQ" mixed model (labeled as popularization, not science)</td><td>Goleman, 1995</td><td>Bantam Books — bibliographic record only</td></tr>
-<tr><td>5</td><td>Academic critique — EI may not be valid</td><td>Locke, 2005</td><td><a href="https://onlinelibrary.wiley.com/doi/10.1002/job.318" target="_blank" rel="noopener">Wiley/DOI</a></td></tr>
-<tr><td>6</td><td>Meta-analysis — job performance</td><td>Joseph &amp; Newman, 2010</td><td><a href="https://workplaceinsight.net/wp-content/uploads/2018/03/JosephNewman2010.pdf" target="_blank" rel="noopener">PDF mirror</a></td></tr>
-<tr><td>7</td><td>Historical precursor (corroborated, not independently opened)</td><td>Thorndike, 1920</td><td>Harper's Magazine — bibliographic record only</td></tr>
-<tr><td>8</td><td>Historical precursor (corroborated, not independently opened)</td><td>Gardner, 1983</td><td>Basic Books — bibliographic record only</td></tr>
-<tr><td>9</td><td>Reappraisal vs. suppression</td><td>Gross, 1998</td><td><a href="https://journals.sagepub.com/doi/10.1037/1089-2680.2.3.271" target="_blank" rel="noopener">SAGE/DOI</a></td></tr>
-<tr><td>10</td><td>RULER framework + RCT evidence</td><td>Yale Center for Emotional Intelligence</td><td><a href="https://rulerapproach.org/" target="_blank" rel="noopener">rulerapproach.org</a> · <a href="https://pg.casel.org/ruler-approach/" target="_blank" rel="noopener">CASEL</a></td></tr>
-</tbody>
-</table>
-<p style="font-size:.85rem;color:#6b6656">Full auditable source record with corroboration/conflict notes: <code>sources.md</code> in the project folder.</p>
+const sections = [
+  { id:'hook', title:null, body:`
+    <p style="font-size:1.05rem">Someone cuts you off in traffic, or a coworker takes credit for your idea, or your kid melts down in the grocery store. In the space of about two seconds, you're going to do one of two things: react on the raw feeling, or do something with it first. Most people never learned there's a difference — or that the difference is something you can actually get better at.</p>
+    <p>That "something" has a name: <strong>emotional intelligence.</strong></p>` },
 
-<footer>
-  RRA-2026-0011 · Rebel Ranch Academy · This is a release-candidate preview for Owner Final Product Review. Not yet published.
-</footer>
-</main>
+  { id:'core', title:'What it actually is', body:`
+    <p>In 1990, psychologists Peter Salovey and John Mayer gave this idea its first real, testable definition: <strong>the <span class="term" data-term="ability">ability</span> to monitor your own and other people's feelings, tell them apart accurately, and use that information to guide what you think and do next.</strong> They and a colleague, David Caruso, later broke it into four specific abilities.</p>
+    <ol>
+      <li><strong>Perceive</strong> — accurately notice emotion: in a face, a tone of voice, a slumped posture, or in yourself.</li>
+      <li><strong>Use</strong> — let the right mood do the right job.</li>
+      <li><strong>Understand</strong> — know how emotions move and change.</li>
+      <li><strong>Manage</strong> — sit with a feeling long enough to learn something from it, then choose your next move.</li>
+    </ol>
+    <img src="https://raw.githubusercontent.com/rebelranchfl/Organization-Website/claude/funny-shannon-9nq3h4/rebel%20ranch%20academy/content-library/communication-emotional-intelligence/understanding-emotional-intelligence/illustrations/eq-four-abilities-diagram.png" alt="The four abilities of emotional intelligence: Perceive, Use, Understand, and Manage.">
+    <button class="expand-toggle" data-panel="core-deeper" aria-expanded="false">Go deeper: how these four were verified →</button>
+    <div class="expand-panel" id="panel-core-deeper">
+      <p>Both the wording and the connections in this diagram were independently checked against the actual research (not just generated and trusted): each label matches Salovey &amp; Mayer's four-branch model exactly, and the connecting arrows were confirmed to show the abilities as related to each other rather than a strict one-way order — which is what the research actually supports.</p>
+    </div>` },
+
+  { id:'history', title:'Where this idea came from', body:`
+    <p>This isn't a modern invention out of nowhere, and it isn't ancient wisdom either. In 1920, psychologist Edward Thorndike noticed that "book smart" and "people smart" were clearly different things, and called the second one <em>social intelligence</em>. In 1983, Howard Gardner split that further into <em>interpersonal</em> and <em>intrapersonal</em> intelligence. Salovey and Mayer took that century-old observation and finally gave it something researchers could test.</p>` },
+
+  { id:'myth', title:'The part most people get wrong', body:`
+    <p>In 1995, Daniel Goleman wrote a bestselling book that made "EQ" a household phrase — and claimed it could matter <em>more than IQ</em>. That book used a much broader definition than Salovey and Mayer's original one.</p>
+    <p>Ten years later, psychologist Edwin Locke published a pointed rebuttal: once you define "emotional intelligence" that broadly, he argued, it stops meaning anything specific.</p>
+    <p>The most useful answer comes from a 2010 <span class="term" data-term="meta-analysis">meta-analysis</span> by Dana Joseph and Daniel Newman: <strong>ability-based EI predicts job performance inconsistently</strong> — it helps in high emotional-labor jobs, and can slow you down in fast, technical ones.</p>
+    <div class="callout"><strong>The honest takeaway:</strong> emotional intelligence is real and learnable. Whether it deserves to be called an "intelligence" is a legitimate, unsettled argument — that doesn't make the skills useless.</div>` },
+
+  { id:'technique', title:'The one technique that’s actually been tested', body:`
+    <p>Psychologist James Gross studied two ways people handle a strong feeling in the moment: <span class="term" data-term="reappraisal">reappraisal</span> and <span class="term" data-term="suppression">suppression</span>.</p>
+    <p>The results aren't close. <strong>Reappraisal</strong> lowers the felt emotion, doesn't damage memory, and doesn't raise stress in others. <strong>Suppression</strong> does not lower the felt emotion, does damage memory, and does raise stress in everyone involved.</p>
+    <img src="https://raw.githubusercontent.com/rebelranchfl/Organization-Website/claude/funny-shannon-9nq3h4/rebel%20ranch%20academy/content-library/communication-emotional-intelligence/understanding-emotional-intelligence/illustrations/eq-reappraisal-vs-suppression-comparison.png" alt="Reappraisal lowers felt emotion, does not damage memory, does not raise stress on others. Suppression does not lower felt emotion, damages memory, raises stress on others.">
+    <button class="expand-toggle" data-panel="tech-deeper" aria-expanded="false">Go deeper: the easiest place this gets drawn wrong →</button>
+    <div class="expand-panel" id="panel-tech-deeper">
+      <p>The riskiest mistake in an image like this is showing suppression as "working, but with a downside." It doesn't lower the felt emotion at all — that was checked specifically against the actual pixels before this image was accepted, not assumed from the brief alone.</p>
+    </div>` },
+
+  { id:'activity', title:'Try It — Name It to Tame It', body:`
+    <p>You can't manage a feeling you haven't accurately named. Answer for real — your answers save automatically if you're signed in.</p>
+    <div class="activity-field"><label for="a1">1. Recognize — describe one real recent moment you felt something strong.</label><textarea id="a1" data-key="recognize"></textarea></div>
+    <div class="activity-field"><label for="a2">2. Label precisely — what was it actually, beyond "mad" or "bad"?</label><textarea id="a2" data-key="label"></textarea></div>
+    <div class="activity-field"><label for="a3">3. Understand — did the feeling change or build during the moment?</label><textarea id="a3" data-key="understand"></textarea></div>
+    <div class="activity-field"><label for="a4">4. Which of the four abilities was weakest in that moment?</label><textarea id="a4" data-key="weakest"></textarea></div>
+    <div class="activity-field"><label for="a5">5. Reappraise it — write one genuinely plausible different read on the situation.</label><textarea id="a5" data-key="reappraisal"></textarea></div>
+    <div class="activity-field"><label for="a6">6. Predict — what should be different next time you reappraise instead of suppress?</label><textarea id="a6" data-key="prediction"></textarea></div>
+    <div class="save-status" id="saveStatus"></div>` },
+
+  { id:'further', title:'Take it further', body:`
+    <p>Yale's Center for Emotional Intelligence built a five-step version of this idea called RULER: Recognize, Understand, Label, Express, Regulate — tested with thousands of students, showing more emotionally supportive classrooms where it's used. This lesson's activity borrows the same structure without claiming to deliver the full licensed program.</p>` },
+
+  { id:'transfer', title:'TRANSFER THE PRINCIPLE', body:`
+    <blockquote>Naming and understanding a signal before reacting to it produces a better decision than reacting on the raw signal.</blockquote>
+    <ul>
+      <li><strong>Personally</strong> — noticing "I'm actually anxious, not angry" changes what you do next.</li>
+      <li><strong>Family</strong> — naming a meltdown de-escalates faster than reacting to the behavior alone.</li>
+      <li><strong>Work</strong> — helps most in high emotional-labor jobs; can slow you down in fast, technical ones.</li>
+      <li><strong>Money</strong> — a panic-driven financial decision is the textbook case of reacting to the raw signal.</li>
+    </ul>
+    <p><strong>Where this stops being fair:</strong> EI is not a truth detector. A person can read a room perfectly and still be wrong about the facts.</p>` },
+
+  { id:'close', title:'Before you go', body:`
+    <p>This lesson describes a psychological concept, not a treatment — a persistent or overwhelming feeling calls for a qualified professional, not a worksheet.</p>
+    <p>Pick one moment coming up this week where a strong feeling is likely. Decide right now: bottle it up, or reappraise it?</p>
+    <h3>Sources</h3>
+    <details class="source"><summary>Salovey &amp; Mayer, 1990 — original EI definition</summary><div class="source-body"><a href="https://journals.sagepub.com/doi/10.2190/DUGG-P24E-52WK-6CDG" target="_blank" rel="noopener">SAGE/DOI</a> · <a href="https://scholars.unh.edu/psych_facpub/450/" target="_blank" rel="noopener">UNH mirror</a>. Primary/direct.</div></details>
+    <details class="source"><summary>Mayer, Salovey &amp; Caruso — four-branch model</summary><div class="source-body"><a href="https://cdn2.psychologytoday.com/assets/attachments/1575/rp2008-mayersaloveycarusob.pdf" target="_blank" rel="noopener">PDF</a>. Primary/direct.</div></details>
+    <details class="source"><summary>APA Dictionary of Psychology — institutional reference</summary><div class="source-body"><a href="https://dictionary.apa.org/emotional-intelligence" target="_blank" rel="noopener">dictionary.apa.org</a>. Near-primary.</div></details>
+    <details class="source"><summary>Goleman, 1995 — popularization, labeled as such</summary><div class="source-body">Bantam Books — bibliographic record only, not independently re-verified.</div></details>
+    <details class="source"><summary>Locke, 2005 — academic critique</summary><div class="source-body"><a href="https://onlinelibrary.wiley.com/doi/10.1002/job.318" target="_blank" rel="noopener">Wiley/DOI</a>. Primary/direct.</div></details>
+    <details class="source"><summary>Joseph &amp; Newman, 2010 — meta-analysis</summary><div class="source-body"><a href="https://workplaceinsight.net/wp-content/uploads/2018/03/JosephNewman2010.pdf" target="_blank" rel="noopener">PDF mirror</a>. Primary/direct.</div></details>
+    <details class="source"><summary>Thorndike, 1920 &amp; Gardner, 1983 — historical precursors</summary><div class="source-body">Corroborated by multiple secondary historical summaries; not independently opened this session.</div></details>
+    <details class="source"><summary>Gross, 1998 — reappraisal vs. suppression</summary><div class="source-body"><a href="https://journals.sagepub.com/doi/10.1037/1089-2680.2.3.271" target="_blank" rel="noopener">SAGE/DOI</a>. Primary/direct.</div></details>
+    <details class="source"><summary>Yale Center for Emotional Intelligence — RULER + RCT</summary><div class="source-body"><a href="https://rulerapproach.org/" target="_blank" rel="noopener">rulerapproach.org</a> · <a href="https://pg.casel.org/ruler-approach/" target="_blank" rel="noopener">CASEL</a>. Near-primary + independent RCT.</div></details>` }
+];
+
+let current = 0;
+let user = null;
+let saveTimer = null;
+
+const stage = document.getElementById('stage');
+const sectionLabel = document.getElementById('sectionLabel');
+const percentLabel = document.getElementById('percentLabel');
+const progressFill = document.getElementById('progressFill');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const pagerMid = document.getElementById('pagerMid');
+const authline = document.getElementById('authline');
+const signedOutBanner = document.getElementById('signedOutBanner');
+const popover = document.getElementById('popover');
+const popoverBody = document.getElementById('popoverBody');
+
+function renderSection(index, direction){
+  const s = sections[index];
+  const el = document.createElement('div');
+  el.className = 'section ' + (direction === 'left' ? 'enter-left' : direction === 'right' ? 'enter-right' : '');
+  el.innerHTML = (s.title ? `<h2>${s.title}</h2>` : '') + s.body;
+  stage.replaceChildren(el);
+  requestAnimationFrame(()=> requestAnimationFrame(()=> el.classList.add('active')));
+
+  el.querySelectorAll('.term').forEach(t => t.addEventListener('click', e => {
+    const def = GLOSSARY[t.dataset.term] || 'Definition not available.';
+    popoverBody.textContent = def;
+    const r = t.getBoundingClientRect();
+    popover.style.top = (window.scrollY + r.bottom + 6) + 'px';
+    popover.style.left = Math.max(10, r.left) + 'px';
+    popover.classList.add('show');
+  }));
+  el.querySelectorAll('.expand-toggle').forEach(b => b.addEventListener('click', () => {
+    const panel = document.getElementById('panel-' + b.dataset.panel);
+    const open = panel.classList.toggle('open');
+    b.setAttribute('aria-expanded', String(open));
+  }));
+  if (s.id === 'activity') wireActivity(el);
+
+  sectionLabel.textContent = `Section ${index+1} of ${sections.length}`;
+  const pct = Math.round(((index+1)/sections.length)*100);
+  percentLabel.textContent = pct + '%';
+  progressFill.style.width = pct + '%';
+  pagerMid.textContent = s.title || '';
+  prevBtn.disabled = index === 0;
+  nextBtn.textContent = index === sections.length - 1 ? 'Finish' : 'Next →';
+
+  saveProgress(index, pct);
+}
+
+document.getElementById('popoverClose').addEventListener('click', () => popover.classList.remove('show'));
+document.addEventListener('click', e => { if (!popover.contains(e.target) && !e.target.classList?.contains('term')) popover.classList.remove('show'); });
+
+prevBtn.addEventListener('click', () => { if (current>0){ current--; renderSection(current,'left'); } });
+nextBtn.addEventListener('click', () => { if (current<sections.length-1){ current++; renderSection(current,'right'); } });
+
+function wireActivity(container){
+  const status = container.querySelector('#saveStatus');
+  container.querySelectorAll('textarea[data-key]').forEach(ta => {
+    if (user && lastAnswers[ta.dataset.key]) ta.value = lastAnswers[ta.dataset.key];
+    ta.addEventListener('input', () => {
+      clearTimeout(saveTimer);
+      status.textContent = user ? 'Saving…' : 'Sign in to save your answers.';
+      if (!user) return;
+      saveTimer = setTimeout(async () => {
+        const answers = {};
+        container.querySelectorAll('textarea[data-key]').forEach(t => answers[t.dataset.key] = t.value);
+        Object.assign(lastAnswers, answers);
+        const { error } = await supabase.from('academy_learner_progress')
+          .upsert({ user_id: user.id, project_id: PROJECT_ID, activity_answers: lastAnswers, updated_at: new Date().toISOString() }, { onConflict: 'user_id,project_id' });
+        status.textContent = error ? ('Could not save: ' + error.message) : 'Saved.';
+      }, 700);
+    });
+  });
+}
+
+let lastAnswers = {};
+
+async function saveProgress(index, pct){
+  if (!supabase || !user) return;
+  await supabase.from('academy_learner_progress').upsert({
+    user_id: user.id, project_id: PROJECT_ID, current_section: index,
+    total_sections: sections.length, percent_complete: pct, updated_at: new Date().toISOString()
+  }, { onConflict: 'user_id,project_id' });
+}
+
+function init(){
+  // Render immediately in guest mode -- the reading experience must never wait on
+  // a network call. Progress-saving upgrades in place if/when Supabase loads.
+  authline.textContent = 'Viewing as a guest.';
+  signedOutBanner.hidden = false;
+  renderSection(current);
+  upgradeToAuthenticated();
+}
+
+async function upgradeToAuthenticated(){
+  await loadSupabase();
+  if (!supabase) {
+    authline.textContent = 'Reading works offline of your account; progress-saving is temporarily unavailable.';
+    return;
+  }
+  const { data: { session } } = await supabase.auth.getSession();
+  user = session?.user || null;
+  if (!user) {
+    authline.textContent = 'Viewing as a guest.';
+    signedOutBanner.hidden = false;
+    return;
+  }
+  authline.textContent = 'Signed in — your progress and answers save automatically.';
+  signedOutBanner.hidden = true;
+  const { data } = await supabase.from('academy_learner_progress').select('*').eq('user_id', user.id).eq('project_id', PROJECT_ID).maybeSingle();
+  if (data) {
+    current = Math.min(data.current_section || 0, sections.length - 1);
+    lastAnswers = data.activity_answers || {};
+    renderSection(current);
+  }
+}
+
+init();
+</script>
 </body>
 </html>
