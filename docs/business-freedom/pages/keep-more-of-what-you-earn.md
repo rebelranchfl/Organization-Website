@@ -5,10 +5,10 @@
 - Page file: `business-money-leaks.html`
 - Program: Rebel Ranch Ministries → Business Freedom
 - Delivery boundary: RRM program supported by donated 3P Help Me expertise; do not merge the organizations or present 3P Help Me as RRM.
-- Current public state: `money-recognition-v1.4` remains LIVE at `https://rebelranchministries.org/business-money-leaks.html`
+- Current public state: `money-systems-strategy-v2` is LIVE at `https://rebelranchministries.org/business-money-leaks.html`
 - Last updated: 2026-09-13
-- Current authorized work: publish the owner-approved `money-systems-strategy-v2` release and verify the public page
-- Current local version: `money-systems-strategy-v2` — OWNER APPROVED; desktop and phone verification passed; publication in progress
+- Current authorized work: complete; preserve the live approved page unless the owner reopens it
+- Current version: `money-systems-strategy-v2` — LIVE and publicly verified
 
 ## North star
 
@@ -148,6 +148,7 @@ This inventory is binding source material for the page. It may be condensed with
 | Date | Item/version | State | Owner decision | Why/evidence |
 |---|---|---|---|---|
 | 2026-09-13 | `money-systems-strategy-v2` release | APPROVED FOR PUBLICATION | Publish the approved page; do not create a handoff instead | Owner explicitly instructed `publish. dont do handoff.` after local implementation and verification. |
+| 2026-09-13 | `money-systems-strategy-v2` public release | LIVE | Preserve the published approved page | Commit `b189fde` reached `main`; the public page served the new story and assets, all images loaded, slide arrows and desktop tabs reached slides 2 and 3, and page width matched viewport width. |
 | 2026-09-13 | `money-systems-strategy-v2` concept | APPROVED FOR EXACT LOCAL IMPLEMENTATION | Reproduce the approved concept verbatim, including imagery, graphics, copy, section order, and pacing; do not reinterpret it during implementation | Owner explicitly approved the visual after iterative review and warned that prior concept-to-code drift was unacceptable. |
 | 2026-09-13 | Strategy-to-implementation boundary | APPROVED | Promise diagnosis, systems redesign strategy, and an implementation plan; explicitly present hands-on in-house implementation as the separate next service when the business cannot implement alone | Prevents visitors from expecting a fully changed system from the strategy engagement while creating a natural, honest funnel to implementation. |
 | 2026-09-13 | Contemporary visual direction | APPROVED | Use bright, modern, 2026 business imagery with human opening and closing; no aprons, rustic/old-time styling, dark photography, or picture-book pacing | Aligns this page with the rest of Business Freedom while leaving futuristic/robotic visuals to services where they are appropriate. |
@@ -281,6 +282,7 @@ This inventory is binding source material for the page. It may be condensed with
 | Date | Change | Reason | Files/artifacts | Result |
 |---|---|---|---|---|
 | 2026-09-13 | Built the owner-approved systems-strategy concept locally | Replace the old RRM style with the approved modern Business Freedom story without concept-to-code drift | `business-money-leaks.html`, `assets/css/business-money-leaks.css`, five `business-money-*-2026-v1.png` assets, this record | Exact approved structure and phrases are integrated locally; no commit, push, deployment, or public change was made. |
+| 2026-09-13 | Published and publicly verified `money-systems-strategy-v2` | Owner instructed publication instead of a handoff | Release commit `b189fde`; public page and five new image assets | New systems-strategy story is live; old recognition strip is absent; images, slider controls, implementation boundary, closer, and page width passed public checks. |
 | 2026-09-04 | Reconciled page title, hero message, and primary CTA with owner-approved wording | Current file still carried superseded Money language | `business-money-leaks.html` | Exact-copy checks passed; whole page remains BLOCKED. |
 | 2026-09-04 | Created governing decision record and failure history | Prevent drift and repeated rejected work | This record | North star exists; future page work must read it first. |
 | 2026-09-04 | Rebuilt the local page around the approved retained-income story | Remove the Time-page duplicate, owner-blaming paperwork story, and failed carousel | `business-money-leaks.html`, `assets/css/business-money-leaks.css` | Recognition → analysis → transformation → human result now reads as one page. |
