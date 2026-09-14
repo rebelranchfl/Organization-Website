@@ -72,5 +72,15 @@ The owner reviewed the rebuilt preview again and found a real functional bug plu
 - The Match & Check activity gained explicit usage instructions and a large, prominent success banner (the previous "All four matched" text was easy to miss).
 - All of the above was verified with a fresh Playwright pass against the rendered page (TOC section count and order, matching completion, footnote link content, quiz intro copy) before this note was written.
 
+## Revision note — 2026-09-14, third owner review pass (real bugs and two repeat defects)
+
+- **Real functional bug, fixed:** the "permission denied" migration fix above (line 66) held; separately, `min-height:100vh` on the app's flex column meant every short page still forced blank space to appear — just relocated to *after* the nav instead of before it, across at least three pages. Root-caused and removed entirely; verified programmatically across all 13 sections (nav bottom edge now equals total page height on every one, not just a sampled few) rather than by eyeballing screenshots, per the new `interactive-lesson-visual-qa-checklist.md`.
+- **Repeat defect, now actually fixed:** the "core" section had both an icon row and the four-abilities diagram showing the same four items — flagged once already in an earlier round and not fixed in the previous rebuild. The icon row is removed; the diagram is the section's only graphic.
+- The REBEL RANCH PRINCIPLE section was rewritten again: shortened to uniform one-line bullets, replaced an invented and factually poor ER-team/air-traffic-controller example with the owner's own correct reasoning (people require handling; you never know what someone's dealing with; this is the basis of bedside manner and being the first line of conflict resolution before HR).
+- "One Thing To Try" no longer tells the learner to write something down outside the platform — it's now a real saved input (a short text field plus a bottle-it-up/reappraise-it choice) tied to their account.
+- The footnote/source verification-tier language was inconsistent across entries; replaced with exactly two labels ("Content confirmed" / "Existence confirmed only") applied identically everywhere a source appears, documented as a standing policy in `sources.md`.
+- Added an always-visible inline table of contents on the first page, in addition to the header button/modal, since the owner did not consider the button-triggered version sufficient.
+- The "What this is not" disclaimer removal from the previous pass is now owner-confirmed explicitly, not just instructed in the moment — she does not want disclaimers "all over" Academy content generally; the broader doctrine question remains flagged in `safety-boundary-calibration-flag.md` for a deliberate future pass, not applied unilaterally beyond this project.
+
 AI-Agent: Claude (Claude Code)
 Session: RRA pipeline reactivation verification, owner-directed, 2026-09-14

@@ -8,7 +8,7 @@
   :root{ --navy:#0d1b2e; --midnight:#0a1522; --gold:#c9a24b; --cream:#f7f2e7; --paper:#fffdf8; --charcoal:#26241f; }
   *{box-sizing:border-box}
   body{margin:0;background:var(--cream);color:var(--charcoal);font-family:Arial,Helvetica,sans-serif;line-height:1.65}
-  .app{max-width:760px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
+  .app{max-width:760px;margin:0 auto;display:flex;flex-direction:column}
   header.hero{background:linear-gradient(180deg,var(--midnight),var(--navy));color:#f4efe2;padding:20px 20px 20px;display:flex;align-items:flex-start;gap:12px}
   .hero-text{flex:1;min-width:0}
   .kicker{color:var(--gold);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:.72rem;margin:0 0 8px}
@@ -63,10 +63,6 @@
   .glossary-list dd{margin:0;color:#3a3627;padding-bottom:10px;border-bottom:1px solid #e3dac2}
   @media(max-width:480px){ .glossary-list{grid-template-columns:1fr} .glossary-list dt{margin-top:8px} }
 
-  .icon-row{display:flex;gap:10px;flex-wrap:wrap;margin:4px 0 18px}
-  .icon-item{flex:1 1 130px;display:flex;flex-direction:column;align-items:center;text-align:center;background:var(--paper);border:1px solid #e3dac2;border-radius:8px;padding:12px 8px}
-  .icon-item span{font-size:.78rem;font-weight:700;color:var(--navy);margin-top:6px}
-
   .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
   .compare-card{background:var(--paper);border:1px solid #e3dac2;border-radius:10px;padding:14px}
   .compare-card h4{display:flex;align-items:center;gap:8px}
@@ -100,6 +96,13 @@
   .quiz-options label.incorrect{background:#f8d7da;border-color:#c0525f}
   .quiz-score{font-weight:800;color:var(--navy);margin-top:6px}
 
+  .commit-field{margin:12px 0}
+  .commit-field label{display:block;font-weight:700;color:var(--navy);margin-bottom:6px}
+  .commit-field input{width:100%;padding:10px 12px;border:1px solid #cbbf9a;border-radius:7px;font:inherit;font-size:.9rem;background:var(--paper);color:var(--charcoal)}
+  .commit-choice{display:flex;gap:10px;margin:12px 0}
+  .commit-pill{flex:1;padding:12px;border:1px solid #cbbf9a;border-radius:8px;background:var(--paper);color:var(--charcoal);font:inherit;font-weight:700;font-size:.86rem;cursor:pointer}
+  .commit-pill.selected{border-color:var(--navy);background:var(--navy);color:#f4efe2}
+
   .toc-overlay{display:none;position:fixed;inset:0;background:rgba(10,21,34,.55);z-index:40;align-items:flex-start;justify-content:center}
   .toc-overlay.show{display:flex}
   .toc-panel{background:var(--paper);width:min(92%,420px);margin-top:40px;border-radius:12px;padding:18px 0;max-height:80vh;overflow-y:auto;box-shadow:0 10px 30px rgba(0,0,0,.3)}
@@ -108,6 +111,12 @@
   .toc-item:hover{background:#f0e9d4}
   .toc-item.current{font-weight:800;color:var(--navy);border-left:4px solid var(--gold);background:#f6efd9}
   .toc-close{display:block;margin:10px 18px 0;background:none;border:1px solid var(--gold);border-radius:20px;padding:7px 14px;color:#8a5a00;font-weight:700;cursor:pointer}
+
+  .inline-toc{background:var(--paper);border:1px solid #e3dac2;border-radius:10px;padding:14px 16px;margin:20px 0 4px}
+  .inline-toc h3{margin:0 0 8px}
+  .inline-toc-item{display:block;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid #eee3c8;padding:9px 2px;font-size:.88rem;color:var(--charcoal);cursor:pointer;font-family:inherit}
+  .inline-toc-item:last-child{border-bottom:none}
+  .inline-toc-item:hover{color:var(--navy);font-weight:700}
 
   @media(max-width:480px){
     h1{font-size:1.25rem}
@@ -222,12 +231,6 @@ const sections = [
 
   { id:'core', title:'What it actually is', body:`
     <p>In 1990, psychologists Peter Salovey and John Mayer gave this idea its first real, testable definition${fn(1)}: <strong>the <span class="term" data-term="ability">ability</span> to monitor your own and other people's feelings, tell them apart accurately, and use that information to guide what you think and do next.</strong> They and a colleague, David Caruso, later broke it into four specific abilities${fn(2)}.</p>
-    <div class="icon-row">
-      <div class="icon-item">${ICONS.perceive}<span>Perceive</span></div>
-      <div class="icon-item">${ICONS.use}<span>Use</span></div>
-      <div class="icon-item">${ICONS.understand}<span>Understand</span></div>
-      <div class="icon-item">${ICONS.manage}<span>Manage</span></div>
-    </div>
     <ol>
       <li><strong>Perceive</strong> — accurately notice emotion: in a face, a tone of voice, a slumped posture, or in yourself.</li>
       <li><strong>Use</strong> — let the right mood do the right job.</li>
@@ -322,15 +325,15 @@ const sections = [
     <p>Yale's Center for Emotional Intelligence built a five-step version of this idea called RULER${fn(10)}: Recognize, Understand, Label, Express, Regulate — tested with thousands of students, showing more emotionally supportive classrooms where it's used. This lesson's activity borrows the same structure without claiming to deliver the full licensed program.</p>` },
 
   { id:'transfer', title:'REBEL RANCH PRINCIPLE', body:`
-    <p>Every substantial Rebel Ranch Academy lesson ends with a section by this name. It's our own name for a habit of mind, not a fact about emotional intelligence specifically: <strong>whatever you just learned almost never stays useful in only the one place you learned it.</strong> A real skill or a real piece of evidence tends to show up again in situations that don't look anything like the one you first met it in. Naming that connection on purpose, every time, is how it stops being "something from that one lesson" and starts being something you actually reach for. Here's where this lesson's specific idea shows up elsewhere:</p>
+    <p>Every Rebel Ranch Academy lesson ends with a section by this name. It's simple: take what you learn and use it. Knowledge doesn't stay in one place — it applies in different situations across your whole life. Here's this lesson's version:</p>
     <blockquote>Naming and understanding an emotion before reacting to it produces a better decision than reacting on the raw feeling.</blockquote>
     <ul>
-      <li><strong>Personally</strong> — accurately naming what you're feeling ("I'm actually anxious, not angry") changes how you <em>interpret</em> what's happening, which changes how you <em>express</em> it and communicate about it, which is what actually changes your behavior. The name isn't the fix by itself — it's the first link in that chain.</li>
-      <li><strong>Family</strong> — when a parent privately recognizes a meltdown as overwhelm instead of defiance, it's the <em>parent's own response</em> that changes — softer tone, more patience, less taking it personally — and that changed response, not the label itself, is what de-escalates faster. Announcing "you're having a meltdown" does nothing on its own; responding differently because you correctly understood what's happening is the actual mechanism.</li>
-      <li><strong>Work and leadership</strong> — this is a real, sourced finding from the research earlier in this lesson, not a hedge: managing emotion well measurably helps performance in jobs with heavy emotional demands (teaching, nursing, customer service), and can cost you in fast, high-stakes technical work — think of an ER trauma team or an air-traffic controller mid-emergency, where pausing to process a colleague's stress in that exact moment can cost seconds that matter more right then than the relationship does. It's not that EQ is bad at work; it's that when it helps most depends on what the job needs in that moment.</li>
-      <li><strong>Money and decisions under pressure</strong> — an emotion-driven financial decision (panic, fear, excitement — all emotions, not a separate category) is the textbook case of reacting to the raw feeling instead of naming it first.</li>
+      <li><strong>Personally</strong> — notice what you're actually feeling before you react, and you make a better call.</li>
+      <li><strong>Family</strong> — recognizing overwhelm instead of defiance changes how you respond, and that's what actually calms things down.</li>
+      <li><strong>Work and leadership</strong> — you deal with people every day, and you never know what someone's carrying — a bad day, a loss, money trouble. Reading that instead of taking it personally is what good bedside manner and good leadership are built on, and it's why you're usually the first line of conflict resolution before HR gets involved.</li>
+      <li><strong>Money and decisions under pressure</strong> — panic, fear, and excitement are emotions too. Naming one before you act beats a decision made purely on the raw feeling.</li>
     </ul>
-    <div class="callout"><strong>One honest limit, worth naming on purpose:</strong> accurately reading someone's emotions doesn't make you right about the facts of a situation. You can correctly sense that a coworker is defensive and still be wrong about whether their underlying objection has merit. The four abilities describe <em>how</em> you handle feelings and people — they don't replace actually knowing your subject.</div>` },
+    <div class="callout"><strong>One honest limit:</strong> reading emotions well doesn't make you right about the facts. You can sense someone's defensive and still be wrong about why.</div>` },
 
   { id:'quiz', title:'Quick Quiz', tocLabel:'Quick Quiz', body:`
     <p>Five quick questions on what this lesson covered.</p>
@@ -385,7 +388,17 @@ const sections = [
     <p class="quiz-score" id="quizScore"></p>` },
 
   { id:'commit', title:'One Thing To Try', body:`
-    <p>Pick one specific moment coming up this week where you know a strong feeling is likely — a hard conversation, a deadline, a disagreement you've been avoiding. Decide right now: are you going to bottle it up, or reappraise it? Write down which one you picked, and check back afterward to see if the research held up for you.</p>` },
+    <p>Pick one specific moment coming up this week where you know a strong feeling is likely — a hard conversation, a deadline, a disagreement you've been avoiding. Decide right now, and keep it here so you can check back on it.</p>
+    <div class="commit-field">
+      <label for="commitMoment">What's the moment?</label>
+      <input type="text" id="commitMoment" placeholder="e.g. the budget conversation with my manager on Thursday">
+    </div>
+    <div class="commit-choice">
+      <button type="button" class="commit-pill" data-choice="bottle">Bottle it up</button>
+      <button type="button" class="commit-pill" data-choice="reappraise">Reappraise it</button>
+    </div>
+    <button type="button" class="action-btn" id="saveCommitBtn">Save My Answer</button>
+    <p class="save-status" id="commitStatus"></p>` },
 
   { id:'glossary', title:'Glossary', tocLabel:'Glossary', body:`
     <p>Every defined term from this lesson, in one place.</p>
@@ -399,18 +412,26 @@ const sections = [
 
   { id:'references', title:'References', tocLabel:'References', body:`
     <p>The full, linked source list for every claim in this lesson — including the parts that disagree with each other.</p>
-    <details class="source"><summary>[1] Salovey &amp; Mayer, 1990 — original EI definition</summary><div class="source-body"><a href="https://journals.sagepub.com/doi/10.2190/DUGG-P24E-52WK-6CDG" target="_blank" rel="noopener">SAGE/DOI</a> · <a href="https://scholars.unh.edu/psych_facpub/450/" target="_blank" rel="noopener">UNH mirror</a>. Primary/direct.</div></details>
-    <details class="source"><summary>[2] Mayer, Salovey &amp; Caruso — four-branch model</summary><div class="source-body"><a href="https://cdn2.psychologytoday.com/assets/attachments/1575/rp2008-mayersaloveycarusob.pdf" target="_blank" rel="noopener">PDF</a>. Primary/direct.</div></details>
-    <details class="source"><summary>[3] APA Dictionary of Psychology — institutional reference</summary><div class="source-body"><a href="https://dictionary.apa.org/emotional-intelligence" target="_blank" rel="noopener">dictionary.apa.org</a>. Near-primary.</div></details>
-    <details class="source"><summary>[4] Goleman, 1995 — popularization, labeled as such</summary><div class="source-body"><a href="https://en.wikipedia.org/wiki/Emotional_Intelligence" target="_blank" rel="noopener">Wikipedia — book article</a>. Bibliographic/summary page; the book's own text was not independently opened this session.</div></details>
-    <details class="source"><summary>[5] Locke, 2005 — academic critique</summary><div class="source-body"><a href="https://onlinelibrary.wiley.com/doi/10.1002/job.318" target="_blank" rel="noopener">Wiley/DOI</a>. Primary/direct.</div></details>
-    <details class="source"><summary>[6] Joseph &amp; Newman, 2010 — meta-analysis</summary><div class="source-body"><a href="https://workplaceinsight.net/wp-content/uploads/2018/03/JosephNewman2010.pdf" target="_blank" rel="noopener">PDF mirror</a>. Primary/direct.</div></details>
-    <details class="source"><summary>[7] Thorndike, 1920 — social intelligence</summary><div class="source-body"><a href="https://archive.org/stream/thorndike-e.-1920.-intelligence-and-its-use.-harpers-magazine/Thorndike,%20E.(1920).%20Intelligence%20and%20its%20use.%20Harper%27s%20Magazine,_djvu.txt" target="_blank" rel="noopener">archive.org — full text</a>. Direct link to the primary source; the text itself was not independently read this session.</div></details>
-    <details class="source"><summary>[8] Gardner, 1983 — Frames of Mind</summary><div class="source-body"><a href="https://books.google.com/books/about/Frames_of_Mind.html?id=ObgOAAAAQAAJ" target="_blank" rel="noopener">Google Books</a>. Bibliographic page; the book's own text was not independently opened this session.</div></details>
-    <details class="source"><summary>[9] Gross, 1998 — reappraisal vs. suppression</summary><div class="source-body"><a href="https://journals.sagepub.com/doi/10.1037/1089-2680.2.3.271" target="_blank" rel="noopener">SAGE/DOI</a>. Primary/direct.</div></details>
-    <details class="source"><summary>[10] Yale Center for Emotional Intelligence — RULER + RCT</summary><div class="source-body"><a href="https://rulerapproach.org/" target="_blank" rel="noopener">rulerapproach.org</a> · <a href="https://pg.casel.org/ruler-approach/" target="_blank" rel="noopener">CASEL</a>. Near-primary + independent RCT.</div></details>
-    <details class="source"><summary>[11] IQ / deviation-IQ reference definition</summary><div class="source-body"><a href="https://dictionary.apa.org/deviation-iq" target="_blank" rel="noopener">APA Dictionary — deviation IQ</a> · <a href="https://dictionary.apa.org/iq" target="_blank" rel="noopener">APA Dictionary — IQ</a>. This sandbox's network access blocked fetching these pages' content directly this session, so treat as corroborated-secondary rather than independently content-verified.</div></details>` }
+    <div class="callout"><strong>How to read the tag on each source below:</strong> <em>Content confirmed</em> means the specific claim was checked against real material returned by research, not just assumed from a title. <em>Existence confirmed only</em> means we found and linked the real source, but the specific wording inside it was not independently read — treat those claims as well-corroborated, not primary-verified.</div>
+    <details class="source"><summary>[1] Salovey &amp; Mayer, 1990 — original EI definition</summary><div class="source-body"><a href="https://journals.sagepub.com/doi/10.2190/DUGG-P24E-52WK-6CDG" target="_blank" rel="noopener">SAGE/DOI</a> · <a href="https://scholars.unh.edu/psych_facpub/450/" target="_blank" rel="noopener">UNH mirror</a>. Primary source. Content confirmed.</div></details>
+    <details class="source"><summary>[2] Mayer, Salovey &amp; Caruso — four-branch model</summary><div class="source-body"><a href="https://cdn2.psychologytoday.com/assets/attachments/1575/rp2008-mayersaloveycarusob.pdf" target="_blank" rel="noopener">PDF</a>. Primary source. Content confirmed.</div></details>
+    <details class="source"><summary>[3] APA Dictionary of Psychology — institutional reference</summary><div class="source-body"><a href="https://dictionary.apa.org/emotional-intelligence" target="_blank" rel="noopener">dictionary.apa.org</a>. Near-primary source. Content confirmed.</div></details>
+    <details class="source"><summary>[4] Goleman, 1995 — popularization, labeled as such</summary><div class="source-body"><a href="https://en.wikipedia.org/wiki/Emotional_Intelligence" target="_blank" rel="noopener">Wikipedia — book article</a>. Secondary source. Existence confirmed only — the book's own text was not independently read.</div></details>
+    <details class="source"><summary>[5] Locke, 2005 — academic critique</summary><div class="source-body"><a href="https://onlinelibrary.wiley.com/doi/10.1002/job.318" target="_blank" rel="noopener">Wiley/DOI</a>. Primary source. Content confirmed.</div></details>
+    <details class="source"><summary>[6] Joseph &amp; Newman, 2010 — meta-analysis</summary><div class="source-body"><a href="https://workplaceinsight.net/wp-content/uploads/2018/03/JosephNewman2010.pdf" target="_blank" rel="noopener">PDF mirror</a>. Primary source. Content confirmed.</div></details>
+    <details class="source"><summary>[7] Thorndike, 1920 — social intelligence</summary><div class="source-body"><a href="https://archive.org/stream/thorndike-e.-1920.-intelligence-and-its-use.-harpers-magazine/Thorndike,%20E.(1920).%20Intelligence%20and%20its%20use.%20Harper%27s%20Magazine,_djvu.txt" target="_blank" rel="noopener">archive.org — full text</a>. Primary source, direct link. Existence confirmed only — the text itself was not independently read.</div></details>
+    <details class="source"><summary>[8] Gardner, 1983 — Frames of Mind</summary><div class="source-body"><a href="https://books.google.com/books/about/Frames_of_Mind.html?id=ObgOAAAAQAAJ" target="_blank" rel="noopener">Google Books</a>. Secondary/bibliographic page. Existence confirmed only — the book's own text was not independently read.</div></details>
+    <details class="source"><summary>[9] Gross, 1998 — reappraisal vs. suppression</summary><div class="source-body"><a href="https://journals.sagepub.com/doi/10.1037/1089-2680.2.3.271" target="_blank" rel="noopener">SAGE/DOI</a>. Primary source. Content confirmed.</div></details>
+    <details class="source"><summary>[10] Yale Center for Emotional Intelligence — RULER + RCT</summary><div class="source-body"><a href="https://rulerapproach.org/" target="_blank" rel="noopener">rulerapproach.org</a> · <a href="https://pg.casel.org/ruler-approach/" target="_blank" rel="noopener">CASEL</a>. Near-primary source + independent RCT. Content confirmed.</div></details>
+    <details class="source"><summary>[11] IQ / deviation-IQ reference definition</summary><div class="source-body"><a href="https://dictionary.apa.org/deviation-iq" target="_blank" rel="noopener">APA Dictionary — deviation IQ</a> · <a href="https://dictionary.apa.org/iq" target="_blank" rel="noopener">APA Dictionary — IQ</a>. Reference source. Content confirmed for the core mean-100/SD-15 fact; this sandbox's network access blocked opening these exact pages directly, so the pages themselves are existence-confirmed only.</div></details>` }
 ];
+
+// A real, always-visible table of contents on the first page -- not just the
+// header button/modal, which the owner found easy to miss entirely.
+sections[0].body += '<div class="inline-toc"><h3>Contents</h3>' + sections.map((s, i) => {
+  const label = s.tocLabel || s.title || 'Start';
+  return `<button type="button" class="inline-toc-item" data-idx="${i}">${i+1}. ${label}</button>`;
+}).join('') + '</div>';
 
 let current = 0;
 let user = null;
@@ -482,8 +503,13 @@ function renderSection(index, direction){
     const open = panel.classList.toggle('open');
     b.setAttribute('aria-expanded', String(open));
   }));
+  el.querySelectorAll('.inline-toc-item').forEach(b => b.addEventListener('click', () => {
+    const idx = Number(b.dataset.idx);
+    if (idx !== current) { const dir = idx > current ? 'right' : 'left'; current = idx; renderSection(current, dir); }
+  }));
   if (s.id === 'activity') wireActivity(el);
   if (s.id === 'quiz') wireQuiz(el);
+  if (s.id === 'commit') wireCommit(el);
 
   sectionLabel.textContent = `Section ${index+1} of ${sections.length}`;
   const pct = Math.round(((index+1)/sections.length)*100);
@@ -600,6 +626,31 @@ function wireQuiz(container){
       supabase.from('academy_learner_progress')
         .upsert({ user_id: user.id, project_id: PROJECT_ID, activity_answers: lastAnswers, updated_at: new Date().toISOString() }, { onConflict: 'user_id,project_id' });
     }
+  });
+}
+
+function wireCommit(container){
+  const status = container.querySelector('#commitStatus');
+  const moment = container.querySelector('#commitMoment');
+  let choice = lastAnswers.commit_choice || null;
+
+  if (lastAnswers.commit_moment) moment.value = lastAnswers.commit_moment;
+  container.querySelectorAll('.commit-pill').forEach(p => {
+    if (p.dataset.choice === choice) p.classList.add('selected');
+    p.addEventListener('click', () => {
+      container.querySelectorAll('.commit-pill').forEach(x => x.classList.remove('selected'));
+      p.classList.add('selected');
+      choice = p.dataset.choice;
+    });
+  });
+
+  container.querySelector('#saveCommitBtn').addEventListener('click', () => {
+    Object.assign(lastAnswers, { commit_moment: moment.value, commit_choice: choice });
+    if (!user || !supabase) { status.textContent = 'Sign in to save this — it stays right here in your account.'; return; }
+    status.textContent = 'Saving…';
+    supabase.from('academy_learner_progress')
+      .upsert({ user_id: user.id, project_id: PROJECT_ID, activity_answers: lastAnswers, updated_at: new Date().toISOString() }, { onConflict: 'user_id,project_id' })
+      .then(({ error }) => { status.textContent = error ? ('Could not save: ' + error.message) : 'Saved — come back anytime to see it.'; });
   });
 }
 
