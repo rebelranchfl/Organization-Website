@@ -10,6 +10,10 @@ if (stage === 'FINAL_PRODUCT_REVIEW') {
   import('./operations-review-final-product-acceptance.js');
 }
 
+if (stage === 'VISUAL_PRODUCTION') {
+  import('./academy-stage-visual-job-decision.js');
+}
+
 // Late Findings remains opt-in and is never part of normal Stage Review startup.
 if (location.hash === '#late-findings') {
   import('./academy-late-findings.js');

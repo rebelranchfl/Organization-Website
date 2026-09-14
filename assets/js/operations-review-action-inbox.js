@@ -18,22 +18,24 @@ function actionCard(p,type,sub,hash){return `<a class="ops-action-card" href="${
 function justCompleted(){try{const raw=sessionStorage.getItem('rrmJustCompletedReview');if(!raw)return null;const [project,stage,time]=raw.split('|');if(Date.now()-Number(time)>300000){sessionStorage.removeItem('rrmJustCompletedReview');return null}return{project,stage}}catch{return null}}
 
 async function loadActionData(){
-  const [reviewResult,findingResult]=await Promise.all([
+  const [reviewResult,findingResult,visualResult]=await Promise.all([
     supabase.from('academy_content_projects').select('project_id,title,current_status,workflow_stage,progress_next,owner_hold,updated_at').eq('current_status','READY_FOR_REVIEW').order('updated_at',{ascending:false}),
-    supabase.from('academy_late_findings').select('id,project_id,title,status,created_at').eq('status','PENDING_OWNER').order('created_at',{ascending:false})
+    supabase.from('academy_late_findings').select('id,project_id,title,status,created_at').eq('status','PENDING_OWNER').order('created_at',{ascending:false}),
+    supabase.from('academy_visual_production_jobs').select('id,project_id,asset_key,state,verification_outcome,owner_decision,updated_at').in('state',['READY_FOR_CHATGPT','REVISION_REQUIRED']).order('updated_at',{ascending:false})
   ]);
   if(reviewResult.error)throw reviewResult.error;
   const projects=reviewResult.data||[];
   const findings=findingResult.error?[]:(findingResult.data||[]);
+  const visualJobs=(visualResult.error?[]:(visualResult.data||[])).filter(j=>j.state==='READY_FOR_CHATGPT'||(j.state==='REVISION_REQUIRED'&&!j.owner_decision));
   const known=new Set(projects.map(p=>p.project_id));
-  const missing=[...new Set(findings.map(f=>f.project_id).filter(Boolean).filter(id=>!known.has(id)))];
+  const missing=[...new Set([...findings.map(f=>f.project_id),...visualJobs.map(j=>j.project_id)].filter(Boolean).filter(id=>!known.has(id)))];
   if(missing.length){
     const extra=await supabase.from('academy_content_projects').select('project_id,title,current_status,workflow_stage,progress_next,owner_hold,updated_at').in('project_id',missing);
     if(!extra.error)projects.push(...(extra.data||[]));
   }
-  return{projects,findings};
+  return{projects,findings,visualJobs};
 }
-function buildActions(projects,findings){const completed=justCompleted(),map=new Map(projects.map(p=>[p.project_id,p])),actions=[];projects.filter(p=>!p.owner_hold&&p.current_status==='READY_FOR_REVIEW'&&REVIEW_STAGES.has(p.workflow_stage)&&!(completed&&completed.project===p.project_id&&completed.stage===p.workflow_stage)).forEach(p=>actions.push(actionCard(p,'Owner approval required',`${stageLabel(p.workflow_stage)} · ${p.progress_next||'Review the completed work and decide.'}`,reviewHash(p))));const grouped=new Map();findings.forEach(f=>{if(!grouped.has(f.project_id))grouped.set(f.project_id,[]);grouped.get(f.project_id).push(f)});grouped.forEach((rows,id)=>{const p=map.get(id);if(p&&!p.owner_hold)actions.push(actionCard(p,'Late finding decision',`${rows.length} finding${rows.length===1?'':'s'} waiting for your direction`,'late-findings'))});return actions}
+function buildActions(projects,findings,visualJobs){const completed=justCompleted(),map=new Map(projects.map(p=>[p.project_id,p])),actions=[];projects.filter(p=>!p.owner_hold&&p.current_status==='READY_FOR_REVIEW'&&REVIEW_STAGES.has(p.workflow_stage)&&!(completed&&completed.project===p.project_id&&completed.stage===p.workflow_stage)).forEach(p=>actions.push(actionCard(p,'Owner approval required',`${stageLabel(p.workflow_stage)} · ${p.progress_next||'Review the completed work and decide.'}`,reviewHash(p))));const grouped=new Map();findings.forEach(f=>{if(!grouped.has(f.project_id))grouped.set(f.project_id,[]);grouped.get(f.project_id).push(f)});grouped.forEach((rows,id)=>{const p=map.get(id);if(p&&!p.owner_hold)actions.push(actionCard(p,'Late finding decision',`${rows.length} finding${rows.length===1?'':'s'} waiting for your direction`,'late-findings'))});(visualJobs||[]).forEach(j=>{const p=map.get(j.project_id);if(!p||p.owner_hold)return;if(j.state==='READY_FOR_CHATGPT')actions.push(actionCard(p,'Image generation needed',`${j.asset_key} · Approved brief is ready. No agent is currently working on this image.`,'visual-production'));else if(j.state==='REVISION_REQUIRED')actions.push(actionCard(p,'Verification conflict — your decision needed',`${j.asset_key} · Generation self-check and independent verification did not agree. Nothing will retry until you decide.`,'visual-production'))});return actions}
 
 async function loadProjects(detail){
   const body=detail.querySelector('.ops-project-list');
@@ -49,7 +51,7 @@ async function loadProjects(detail){
 function unloadProjects(detail){const body=detail.querySelector('.ops-project-list');if(!body)return;delete body.dataset.loaded;body.innerHTML='<div class="ops-loading-row">Project data is not loaded.</div>';detail.querySelector('summary').textContent='All Projects — load when opened'}
 
 function render(host,data){
-  const actions=buildActions(data.projects,data.findings);
+  const actions=buildActions(data.projects,data.findings,data.visualJobs);
   host.innerHTML=`${actions.length?`<div class="ops-inbox-head"><div><h2>My Action Queue</h2><p>${actions.length} item${actions.length===1?'':'s'} need your decision.</p></div><button type="button" class="ops-refresh" id="ops-refresh">↻ Refresh</button></div><div class="ops-action-list">${actions.join('')}</div>`:`<section class="ops-caught-up"><h2>Nothing needs your decision right now.</h2><p>You can browse projects, start something new, or leave this page. No project data is loaded unless you ask for it.</p></section>`}<details class="ops-secondary" id="ops-projects"><summary>All Projects — load when opened</summary><div class="ops-project-list"><div class="ops-loading-row">Project data is not loaded.</div></div></details><details class="ops-secondary" id="ops-new"><summary>Start a new Academy idea</summary><div class="ops-idea"><form id="ops-idea-form"><div><label for="ops-idea">Idea</label><input id="ops-idea" required></div><button class="button primary" id="ops-idea-submit">Submit for Development</button><div class="wide"><label for="ops-notes">Optional notes</label><textarea id="ops-notes"></textarea></div></form></div></details>`;
   host.querySelector('#ops-refresh')?.addEventListener('click',()=>boot(true));
   const projects=host.querySelector('#ops-projects');
