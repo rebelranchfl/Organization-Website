@@ -95,6 +95,11 @@
   .filter-empty{max-width:760px;margin:0 auto;padding:28px;text-align:center;border:1px solid #284A29;border-radius:20px;background:linear-gradient(180deg,#1D4024 0%,#122A18 100%)}
   .filter-empty h3{margin:0 0 10px;font-size:26px}
   .filter-empty p{margin:0 0 20px;color:var(--muted)}
+  .product-group{margin-bottom:clamp(2.5rem,5vw,3.5rem)}
+  .product-group:last-child{margin-bottom:0}
+  .product-group-header{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px;margin:0 0 18px;padding-bottom:12px;border-bottom:1px solid rgba(151,196,89,.35)}
+  .product-group-heading{margin:0;font-size:clamp(22px,3vw,30px)}
+  .product-group-count{color:var(--muted);font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
   .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .product-card{display:flex;flex-direction:column}
   .product-image{aspect-ratio:1/1;width:100%;object-fit:cover;background:#122A18}
@@ -177,14 +182,14 @@
           <button class="collection-card" type="button" data-collection="working-hands" aria-pressed="false">
             <img class="collection-card-image" src="assets/brand/roots%20boots%20and%20animal%20poops/adult/roots-boots-and-animal-poops-adult%20logo.png" alt="">
             <span class="collection-card-copy">
-              <strong>Working Hands</strong>
+              <strong>Roots, Boots &amp; Animal Poops</strong>
               <span>Rustic, ranch-raised designs built around faith, grit, country, and real work.</span>
-              <small>Explore Working Hands</small>
+              <small>Explore Roots, Boots &amp; Animal Poops</small>
             </span>
           </button>
 
           <button class="collection-card" type="button" data-collection="marketplace" aria-pressed="false">
-            <img class="collection-card-image" src="assets/Market%20Place/rebel-ranch-marketplace-graphic.png" alt="">
+            <img class="collection-card-image" src="assets/brand/Rebel%20Ranch%20Local/interface/rebel-ranch-local-emblem-v2.webp" alt="">
             <span class="collection-card-copy">
               <strong>Rebel Ranch Marketplace</strong>
               <span>Gear for local makers, sellers, and the buy-local movement.</span>
@@ -193,7 +198,7 @@
           </button>
 
           <button class="collection-card" type="button" data-collection="academy" aria-pressed="false">
-            <img class="collection-card-image" src="assets/rebel_ranch_academy_logo_transparent.png" alt="">
+            <img class="collection-card-image" src="assets/rebel_ranch_academy_logo_transparent-cropped.png" alt="">
             <span class="collection-card-copy">
               <strong>Rebel Ranch Academy</strong>
               <span>Real Skills for Real Life — gear for hands-on learners of every age.</span>
@@ -222,7 +227,7 @@
         <a class="btn gold" href="https://rebel-ranch-store.printify.me" target="_blank" rel="noopener">Visit the Rebel Ranch Store</a>
       </div>
 
-      <div class="product-grid" id="product-grid" hidden></div>
+      <div id="product-groups" hidden></div>
 
       <div class="filter-empty" id="filter-empty" hidden>
         <h3 id="filter-empty-heading">More merchandise is on the way.</h3>
@@ -242,7 +247,7 @@ import { validCollections, resolveCollection, resolveType, collectionName } from
 (async () => {
   const productFeed = 'https://rrm-printify-products.rebelranchfl.workers.dev/products';
   const storeUrl = 'https://rebel-ranch-store.printify.me';
-  const grid = document.getElementById('product-grid');
+  const groupsContainer = document.getElementById('product-groups');
   const status = document.getElementById('store-status');
   const productTools = document.getElementById('product-tools');
   const summary = document.getElementById('filter-summary');
@@ -260,6 +265,31 @@ import { validCollections, resolveCollection, resolveType, collectionName } from
     document.getElementById('cs-bridge-banner').hidden = false;
   }
 
+  // One section per program, always in the same order, so "all collections" reads as
+  // organized groups instead of one flat mixed grid.
+  const groupEls = new Map(validCollections.map((collection) => {
+    const section = document.createElement('section');
+    section.className = 'product-group';
+    section.dataset.group = collection;
+    section.hidden = true;
+
+    const header = document.createElement('div');
+    header.className = 'product-group-header';
+    const heading = document.createElement('h3');
+    heading.className = 'product-group-heading';
+    heading.textContent = collectionName(collection);
+    const count = document.createElement('span');
+    count.className = 'product-group-count';
+    header.append(heading, count);
+
+    const grid = document.createElement('div');
+    grid.className = 'product-grid';
+
+    section.append(header, grid);
+    groupsContainer.appendChild(section);
+    return [collection, { section, grid, count }];
+  }));
+
   const money = (value) => Number.isFinite(Number(value))
     ? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(value))
     : '';
@@ -273,18 +303,28 @@ import { validCollections, resolveCollection, resolveType, collectionName } from
       if (visible) visibleCount += 1;
     });
 
+    groupEls.forEach(({ section, grid, count }, collection) => {
+      if (activeCollection !== 'all' && activeCollection !== collection) {
+        section.hidden = true;
+        return;
+      }
+      const groupVisibleCount = [...grid.children].filter((card) => !card.hidden).length;
+      section.hidden = groupVisibleCount === 0;
+      count.textContent = groupVisibleCount ? `${groupVisibleCount} item${groupVisibleCount === 1 ? '' : 's'}` : '';
+    });
+
     collectionButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.collection === activeCollection)));
     typeButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.productType === activeType)));
 
     const collectionLabel = activeCollection === 'all' ? 'all collections' : collectionName(activeCollection);
     const typeLabel = activeType === 'all' ? 'products' : activeType;
     summary.textContent = `${visibleCount} ${typeLabel} in ${collectionLabel}`;
-    grid.hidden = visibleCount === 0;
+    groupsContainer.hidden = visibleCount === 0;
     empty.hidden = visibleCount !== 0;
 
     if (visibleCount === 0 && activeCollection === 'working-hands') {
-      emptyHeading.textContent = 'Working Hands is coming soon.';
-      emptyMessage.textContent = 'New ranch-raised designs are being prepared now. Shop another collection today and check back for the first Working Hands release.';
+      emptyHeading.textContent = 'Roots, Boots & Animal Poops is coming soon.';
+      emptyMessage.textContent = 'New ranch-raised designs are being prepared now. Shop another collection today and check back for the first Roots, Boots & Animal Poops release.';
     } else if (visibleCount === 0 && activeCollection === 'marketplace') {
       emptyHeading.textContent = 'Rebel Ranch Marketplace gear is coming soon.';
       emptyMessage.textContent = 'New designs for local makers and buy-local supporters are being prepared now. Shop another collection today and check back soon.';
@@ -344,7 +384,7 @@ import { validCollections, resolveCollection, resolveType, collectionName } from
 
     copy.append(category, title, price, link);
     card.appendChild(copy);
-    grid.appendChild(card);
+    groupEls.get(collection).grid.appendChild(card);
     productCards.push({ card, collection, type });
   };
 
