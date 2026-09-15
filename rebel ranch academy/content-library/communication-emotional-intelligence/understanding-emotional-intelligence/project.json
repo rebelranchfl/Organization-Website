@@ -152,8 +152,8 @@
   },
   "agent": {
     "active_agent": null,
-    "last_agent": "Claude (Claude Code) -- RRA pipeline reactivation verification",
-    "session_title": "RRA end-to-end pipeline verification, owner-directed",
-    "last_updated_at": "2026-09-15T11:45:00Z"
+    "last_agent": "Claude (Claude Code) -- rendered-product defect fixes (TOC page split, TOC label, readability, Finish button) + pipeline re-verification handoff",
+    "session_title": "RRA-2026-0011 pipeline verification paused; open item is the owner-requested visual/UI redesign, awaiting her direction on 6 proposed options",
+    "last_updated_at": "2026-09-15T13:00:00Z"
   }
 }

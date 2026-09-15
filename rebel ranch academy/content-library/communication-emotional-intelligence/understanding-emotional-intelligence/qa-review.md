@@ -90,5 +90,31 @@ The owner reviewed the rebuilt preview again and found a real functional bug plu
 - Embedded both images in `master-content.md` and `visual-production/eq-lesson-preview.html`. Loaded the actual rendered page and confirmed both images load and are legible at mobile width (390px) before marking anything `VERIFIED` — caught and fixed a stale-proxy-port issue in the test script itself along the way (Chromium was pointed at a proxy port from earlier in the session; the image load "failure" it first reported was the test's fault, not the page's, confirmed by comparing against a fresh `curl` using the current `$HTTPS_PROXY`).
 - Both `academy_visual_production_jobs` rows now read `VERIFIED`, `github_commit_sha` recorded. All four visual-production assignments for this project are complete.
 
+## Revision note — 2026-09-15, fourth owner review pass (repeat TOC defect, label bug, readability, dead Finish button)
+
+Owner flagged four more issues against the rendered preview; all fixed in commit `c3e3f28ecee1a0c26e3363ec19c37f2f75455249` (pushed to this branch) and independently re-verified by pulling the actual commit diff, not just trusting the commit message:
+- **Repeat defect, now fixed:** the Table of Contents was still combined onto the intro/hook page (flagged once already). It now renders as its own dedicated page: `sections.splice(1, 0, tocSection)` inserts a real TOC section instead of appending TOC markup to `sections[0].body`.
+- The "REBEL RANCH PRINCIPLE" TOC entry was rendering in all-caps because the TOC builder fell back to the section's all-caps `<h2>` title. Fixed by giving that section an explicit `tocLabel:'Rebel Ranch Principle'` (title case), matching how every other section's TOC entry already worked.
+- Multiple small/low-contrast UI strings were enlarged and darkened: the pager "Start"/section-name label, save-status text, progress-label, kicker, authline, source bodies, match/quiz/check-row text, and TOC items.
+- **Bug found along the way, fixed:** the "Finish" button on the last section stayed clickable and silently no-opped instead of doing anything. It now disables at the last section the same way "Previous" already disabled at the first (`nextBtn.disabled = index === sections.length - 1`).
+- Verified with a bounded Playwright script (the prior version had hung waiting on a disabled state that never fired — fixed as part of this pass, not just the page) and confirmed visually via screenshots before this note was written.
+
+## Session handoff note — 2026-09-15, pipeline verification paused here; next priority flagged
+
+This marks a deliberate pause in the manual end-to-end pipeline-verification exercise for this project (content-automation.md Section 19), before moving to work on a different Supabase project. Status as independently re-verified this session, not just carried forward from notes:
+- Live Supabase `academy_content_projects` row for RRA-2026-0011 reads `current_status=AGENT_WORKING`, `workflow_stage=VISUAL_PRODUCTION`, `progress_percent=60` — checked by direct SQL against project `dfrwxpuojeiykaignyny`, and it matches `project.json` field for field.
+- Live Supabase `academy_visual_production_jobs`: all four rows for this project (`eq-ruler-framework-diagram`, `eq-reappraisal-vs-suppression-comparison`, `eq-historical-lineage-timeline`, `eq-four-abilities-diagram`) read `state=VERIFIED`, `verification_outcome=PASS`.
+- PR #113 (draft, branch `claude/funny-shannon-9nq3h4`) is open and mergeable against `main`; commit `c3e3f28` is its current head and its diff was pulled and checked line-by-line against the fixes claimed above, not just its commit message.
+
+**Open item, not started — this is the next priority for this project:** the owner reviewed the rendered lesson and said it is "boring and lame" for something meant to be a sellable, professional digital product, not a plain worksheet. She sent a reference screenshot (desktop-width References page: flat cards, one accent color, large dead margins on wide screens). Six directions were proposed and are awaiting her prioritization/go-ahead before any of them are touched, since guessing wrong on design has already caused repeat frustration on this project:
+1. Give cards real presence (shadow/radius/lift vs. flat outlined boxes).
+2. Treat the wide-screen background/side margins instead of leaving them empty cream.
+3. Replace the thin progress bar with a numbered-dot stepper.
+4. Real hero treatment on page 1 (it's the first impression).
+5. A second accent color used sparingly (currently only navy/gold).
+6. Tactile hover/transition feedback on buttons, TOC items, matching pairs.
+
+No redesign work has been done yet. The next session on this project should check whether the owner has given direction on these six items before implementing any of them.
+
 AI-Agent: Claude (Claude Code)
 Session: RRA pipeline reactivation verification, owner-directed, 2026-09-14/2026-09-15
