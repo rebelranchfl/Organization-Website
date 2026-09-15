@@ -40,10 +40,11 @@ export async function loadSellerWorkspace(identity){
     supabase.from('seller_inquiries').select('id,sender_name,sender_contact,sender_is_member,message,is_read,responded_at,created_at').eq('seller_profile_id',spid).order('created_at',{ascending:false}),
     supabase.from('seller_orders').select('*').eq('seller_profile_id',spid).order('created_at',{ascending:false}),
     supabase.from('seller_fulfillment_options').select('*').eq('seller_profile_id',spid).maybeSingle(),
-    supabase.from('seller_storefront_stats').select('page_views,stat_date,source').eq('seller_profile_id',spid).order('stat_date',{ascending:false})
+    supabase.from('seller_storefront_stats').select('page_views,stat_date,source').eq('seller_profile_id',spid).order('stat_date',{ascending:false}),
+    supabase.from('seller_storefront_photos').select('id,object_path,sort_order').eq('seller_profile_id',spid).order('sort_order')
   ]);
   fail(results);
-  const [applications,categoryAssignments,listings,requirementAssignments,attestations,credentials,reviewEvents,notifications,paymentMethods,inquiries,orders,fulfillment,storefrontStats]=results;
+  const [applications,categoryAssignments,listings,requirementAssignments,attestations,credentials,reviewEvents,notifications,paymentMethods,inquiries,orders,fulfillment,storefrontStats,storefrontPhotos]=results;
   return {
     applications:applications.data,
     categoryAssignments:categoryAssignments.data,
@@ -54,7 +55,7 @@ export async function loadSellerWorkspace(identity){
     reviewEvents:reviewEvents.data,
     notifications:notifications.data,
     paymentMethods:paymentMethods.data,
-    inquiries:inquiries.data,orders:orders.data,fulfillment:fulfillment.data,storefrontStats:storefrontStats.data
+    inquiries:inquiries.data,orders:orders.data,fulfillment:fulfillment.data,storefrontStats:storefrontStats.data,storefrontPhotos:storefrontPhotos.data
   };
 }
 
@@ -265,6 +266,19 @@ export const actions={
     const remove=await supabase.storage.from('marketplace-seller-public').remove([image.data.object_path]);
     if(remove.error)return remove;
     return supabase.from('seller_listing_images').delete().eq('id',imageId);
+  },
+  async uploadStorefrontPhoto(identity,file,sortOrder=0){
+    const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,'-'),path=`${identity.user.id}/${identity.sellerProfile.id}/storefront-${crypto.randomUUID()}-${safe}`;
+    const upload=await supabase.storage.from('marketplace-seller-public').upload(path,file);
+    if(upload.error)return upload;
+    return supabase.from('seller_storefront_photos').insert({seller_profile_id:identity.sellerProfile.id,object_path:path,sort_order:sortOrder});
+  },
+  async deleteStorefrontPhoto(identity,photoId){
+    const photo=await supabase.from('seller_storefront_photos').select('object_path').eq('id',photoId).single();
+    if(photo.error)return photo;
+    const remove=await supabase.storage.from('marketplace-seller-public').remove([photo.data.object_path]);
+    if(remove.error)return remove;
+    return supabase.from('seller_storefront_photos').delete().eq('id',photoId);
   }
 };
 
