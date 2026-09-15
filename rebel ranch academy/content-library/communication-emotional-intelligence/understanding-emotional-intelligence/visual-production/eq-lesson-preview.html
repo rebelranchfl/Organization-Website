@@ -322,7 +322,27 @@ const sections = [
     <div class="save-status" id="saveStatus"></div>` },
 
   { id:'further', title:'Take it further', body:`
-    <p>Yale's Center for Emotional Intelligence built a five-step version of this idea called RULER${fn(10)}: Recognize, Understand, Label, Express, Regulate — tested with thousands of students, showing more emotionally supportive classrooms where it's used. This lesson's activity borrows the same structure without claiming to deliver the full licensed program.</p>` },
+    <p>Yale's Center for Emotional Intelligence built a five-step version of this idea called RULER${fn(10)}: Recognize, Understand, Label, Express, Regulate — tested with thousands of students, showing more emotionally supportive classrooms where it's used. This lesson's activity borrows the same structure without claiming to deliver the full licensed program.</p>
+    <h3>Match each step to what it means</h3>
+    <p class="match-instructions">Click one step on the left, then click the description on the right that matches it.</p>
+    <div class="match-wrap" id="rulerMatchWrap">
+      <div class="match-col">
+        <button type="button" class="match-pill" data-ability="recognize">Recognize</button>
+        <button type="button" class="match-pill" data-ability="understand">Understand</button>
+        <button type="button" class="match-pill" data-ability="label">Label</button>
+        <button type="button" class="match-pill" data-ability="express">Express</button>
+        <button type="button" class="match-pill" data-ability="regulate">Regulate</button>
+      </div>
+      <div class="match-col">
+        <button type="button" class="match-pill" data-match="label">Naming it accurately instead of settling for "mad" or "fine."</button>
+        <button type="button" class="match-pill" data-match="express">Communicating the feeling in a way that fits the moment and the relationship.</button>
+        <button type="button" class="match-pill" data-match="recognize">Noticing a feeling is happening, in yourself or someone else, before it takes over.</button>
+        <button type="button" class="match-pill" data-match="regulate">Choosing a response that actually helps, instead of just reacting.</button>
+        <button type="button" class="match-pill" data-match="understand">Figuring out what's actually driving the feeling, not just that it's there.</button>
+      </div>
+    </div>
+    <p class="match-status" id="rulerMatchStatus">0 of 5 matched.</p>
+    <div class="match-success" id="rulerMatchSuccess">🎉 All five matched — that's the whole RULER framework!</div>` },
 
   { id:'transfer', title:'REBEL RANCH PRINCIPLE', body:`
     <p>Every Rebel Ranch Academy lesson ends with a section by this name. It's simple: take what you learn and use it. Knowledge doesn't stay in one place — it applies in different situations across your whole life. Here's this lesson's version:</p>
@@ -510,6 +530,7 @@ function renderSection(index, direction){
   if (s.id === 'activity') wireActivity(el);
   if (s.id === 'quiz') wireQuiz(el);
   if (s.id === 'commit') wireCommit(el);
+  if (s.id === 'further') wireRulerMatch(el);
 
   sectionLabel.textContent = `Section ${index+1} of ${sections.length}`;
   const pct = Math.round(((index+1)/sections.length)*100);
@@ -652,6 +673,55 @@ function wireCommit(container){
       .upsert({ user_id: user.id, project_id: PROJECT_ID, activity_answers: lastAnswers, updated_at: new Date().toISOString() }, { onConflict: 'user_id,project_id' })
       .then(({ error }) => { status.textContent = error ? ('Could not save: ' + error.message) : 'Saved — come back anytime to see it.'; });
   });
+}
+
+function wireRulerMatch(container){
+  const wrap = container.querySelector('#rulerMatchWrap');
+  const status = container.querySelector('#rulerMatchStatus');
+  const success = container.querySelector('#rulerMatchSuccess');
+  let selectedLeft = null;
+  let matchedCount = 0;
+  const total = wrap.querySelectorAll('[data-ability]').length;
+
+  wrap.querySelectorAll('[data-ability]').forEach(leftPill => {
+    leftPill.addEventListener('click', () => {
+      if (leftPill.classList.contains('correct')) return;
+      wrap.querySelectorAll('[data-ability]').forEach(p => p.classList.remove('selected'));
+      leftPill.classList.add('selected');
+      selectedLeft = leftPill;
+    });
+  });
+  wrap.querySelectorAll('[data-match]').forEach(rightPill => {
+    rightPill.addEventListener('click', () => {
+      if (rightPill.classList.contains('correct') || !selectedLeft) return;
+      if (selectedLeft.dataset.ability === rightPill.dataset.match) {
+        selectedLeft.classList.add('correct'); selectedLeft.classList.remove('selected');
+        rightPill.classList.add('correct');
+        matchedCount++;
+        status.textContent = `${matchedCount} of ${total} matched.`;
+        selectedLeft = null;
+        if (matchedCount === total) {
+          success.classList.add('show');
+          Object.assign(lastAnswers, { ruler_matching_complete: true });
+          if (user && supabase) {
+            supabase.from('academy_learner_progress')
+              .upsert({ user_id: user.id, project_id: PROJECT_ID, activity_answers: lastAnswers, updated_at: new Date().toISOString() }, { onConflict: 'user_id,project_id' });
+          }
+        }
+      } else {
+        rightPill.classList.add('wrong');
+        setTimeout(() => rightPill.classList.remove('wrong'), 500);
+      }
+    });
+  });
+
+  if (lastAnswers.ruler_matching_complete) {
+    wrap.querySelectorAll('[data-ability]').forEach(p => p.classList.add('correct'));
+    wrap.querySelectorAll('[data-match]').forEach(p => p.classList.add('correct'));
+    matchedCount = total;
+    status.textContent = `${total} of ${total} matched.`;
+    success.classList.add('show');
+  }
 }
 
 async function saveProgress(index, pct){

@@ -60,8 +60,65 @@ No branding applies to either image (no RRA/RRM logo or wordmark is required in-
 
 ---
 
+## Assignment 3 — RULER Five-Step Framework Diagram
+
+- **Project ID:** RRA-2026-0011
+- **Authorized workflow stage:** Visual Production (in progress; Product Design already owner-approved)
+- **Image ID:** `eq-ruler-framework-diagram`
+- **Educational purpose:** make Yale's RULER framework concrete and memorable as a five-step sequence, since the "Take it further" section was owner-flagged as too thin (text-only, no graphic, no interactivity) — this brief and Assignment 4 exist specifically to fix that gate failure (see the content-density requirement added to ACADEMY-RENDERED-PRODUCT-QA-STANDARD.md 2026-09-14).
+- **Learner-facing concept:** five connected steps in sequence — Recognize → Understand → Label → Express → Regulate. Unlike Assignment 1 (the four abilities, which are explicitly NOT a strict order), RULER's five steps ARE presented as a sequence in the source material — a flow or cycle diagram is appropriate here, not a set of disconnected/equal boxes.
+- **Approved factual content the visual must preserve** (source: `sources.md` #10, Yale Center for Emotional Intelligence RULER approach):
+  1. **R**ecognize the emotion.
+  2. **U**nderstand its cause.
+  3. **L**abel it precisely.
+  4. **E**xpress it appropriately.
+  5. **R**egulate it effectively.
+- **Evidence/source reference:** `sources.md` row #10 (Yale Center for Emotional Intelligence — RULER approach + independent 2013 RCT).
+- **Approved manuscript section supported:** `master-content.md`, "Take it further — a framework for families and classrooms."
+- **Required real-world objects/components:** none required — conceptual/structural diagram, matching the treatment of Assignment 1, not a realistic scene.
+- **Required sequence/orientation/relationship:** left-to-right or circular five-step flow, in the exact order above (Recognize → Understand → Label → Express → Regulate); may show it looping back to Recognize since regulation is ongoing, but do not omit or reorder any step.
+- **Prohibited shortcuts/misleading representations:** do not add, remove, or rename any of the five steps; do not claim or imply this is a clinical/diagnostic tool (it is an evidence-tested classroom/family framework per the RCT already cited, not a treatment); do not claim to be the full licensed RULER program/curriculum.
+- **Safety boundaries:** none applicable.
+- **Required dimensions/aspect/use context:** legible at mobile width (~400px) and desktop; five labels must remain readable without relying on tiny text.
+- **Accessibility/legibility needs:** each step distinguishable by shape/position, not color alone.
+- **Exact repository destination:** `illustrations/eq-ruler-framework-diagram.png` (or `.svg`) within this project folder.
+- **Labeling/text plan:** exactly the five words above (Recognize, Understand, Label, Express, Regulate) — matching `master-content.md` and the rendered Match & Check-style activity already built for this page (`visual-production/eq-lesson-preview.html`, "Take it further" section) so the diagram and the interactive exercise use identical wording.
+- **Inspection checklist:** all five steps present, correctly labeled and spelled, in the correct order; no invented sixth step; no clinical/diagnostic claim; legible at mobile width; not color-only.
+- **Integration checklist:** embedded in `master-content.md` and the rendered page directly under "Take it further," above or alongside the existing matching activity; alt text summarizing the five steps in order.
+- **Deployed-QA checklist:** loads correctly on both desktop and mobile widths in the actual rendered page; no broken image path; alt text present and accurate.
+
+---
+
+## Assignment 4 — Historical Lineage Timeline
+
+- **Project ID:** RRA-2026-0011
+- **Authorized workflow stage:** Visual Production (in progress; Product Design already owner-approved)
+- **Image ID:** `eq-historical-lineage-timeline`
+- **Educational purpose:** make the century-long intellectual lineage of this idea concrete instead of a single paragraph of prose — "Where this idea came from" was owner-flagged as too thin (text-only, no graphic, no interactivity).
+- **Learner-facing concept:** a simple three-point chronological timeline.
+- **Approved factual content the visual must preserve** (source: `sources.md` #7, #8, #1):
+  1. **1920** — Edward Thorndike names "social intelligence."
+  2. **1983** — Howard Gardner splits it into interpersonal and intrapersonal intelligence.
+  3. **1990** — Salovey & Mayer give it a formal, testable definition ("emotional intelligence").
+- **Evidence/source reference:** `sources.md` rows #7 (Thorndike 1920), #8 (Gardner 1983), #1 (Salovey & Mayer 1990).
+- **Approved manuscript section supported:** `master-content.md`, "Where this idea came from."
+- **Required real-world objects/components:** none required. **Do not depict the likenesses/faces of Thorndike, Gardner, Salovey, or Mayer** — this session has not verified authentic portraits or usage rights for any of them, and accuracy of a depicted likeness is not something this pipeline can independently verify. Use abstract/generic representation (a plain timeline with dates, labels, and simple non-representational iconography) instead of any attempt at a specific person's face.
+- **Required sequence/orientation/relationship:** strictly chronological, left-to-right or top-to-bottom: 1920 → 1983 → 1990. Do not reorder.
+- **Prohibited shortcuts/misleading representations:** do not depict specific real named individuals' likenesses (see above); do not invent additional historical milestones not in the sourced record; do not add invented specificity (exact months, quotes, or events) beyond what `sources.md` documents — rows #7 and #8 are flagged there as corroborated-secondary, not independently primary-verified, and the image must not overstate that certainty.
+- **Safety boundaries:** none applicable.
+- **Required dimensions/aspect/use context:** legible at mobile width (~400px) and desktop.
+- **Accessibility/legibility needs:** each date/label distinguishable by position, not color alone.
+- **Exact repository destination:** `illustrations/eq-historical-lineage-timeline.png` (or `.svg`) within this project folder.
+- **Labeling/text plan:** exactly the three date/label pairs above, no more, no fewer.
+- **Inspection checklist:** three correct dates in correct chronological order with correct labels; no depicted likeness of any real named individual; no invented milestones; no overstated precision beyond the sourced record; legible at mobile width.
+- **Integration checklist:** embedded in `master-content.md` and the rendered page directly under "Where this idea came from"; alt text describing the three-point timeline in plain text.
+- **Deployed-QA checklist:** loads correctly on both desktop and mobile widths in the actual rendered page; no broken image path; alt text present and accurate.
+
+---
+
 ## Status
-Both assignments: `BRIEF_REQUIRED`. Will move to `READY_FOR_IMAGE_PRODUCTION` only after Product Design is owner-approved (Owner Product Review), consistent with the Visual Production Agent Standard's activation gate. Neither may be generated before that approval.
+Assignments 1–2: `VERIFIED` (see `academy_visual_production_jobs`; images already produced, independently verified, and integrated into the rendered page).
+Assignments 3–4: `BRIEF_REQUIRED`, queued 2026-09-14 per owner decision to fix two thin, image-less, non-interactive sections flagged during rendered-product review. Same activation gate applies: only an owner-started personal ChatGPT conversation can generate them; no agent/worker can invoke that step.
 
 AI-Agent: Claude (Claude Code)
-Session: RRA pipeline reactivation verification, owner-directed, 2026-09-14
+Session: RRA pipeline reactivation verification, owner-directed, 2026-09-14/2026-09-15
