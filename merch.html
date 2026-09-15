@@ -100,6 +100,8 @@
   .product-group-header{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px;margin:0 0 18px;padding-bottom:12px;border-bottom:1px solid rgba(151,196,89,.35)}
   .product-group-heading{margin:0;font-size:clamp(22px,3vw,30px)}
   .product-group-count{color:var(--muted);font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+  .product-group-more{display:block;min-height:44px;margin-top:18px;padding:11px 18px;border:1px solid var(--green-dark);border-radius:999px;background:#142617;color:var(--gold-bright);font:800 14px/1.2 Arial,Helvetica,sans-serif;cursor:pointer;text-align:center}
+  .product-group-more:hover,.product-group-more:focus-visible{background:#1B341F}
   .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .product-card{display:flex;flex-direction:column}
   .product-image{aspect-ratio:1/1;width:100%;object-fit:cover;background:#122A18}
@@ -285,10 +287,25 @@ import { validCollections, resolveCollection, resolveType, collectionName } from
     const grid = document.createElement('div');
     grid.className = 'product-grid';
 
-    section.append(header, grid);
+    const moreLink = document.createElement('button');
+    moreLink.className = 'product-group-more';
+    moreLink.type = 'button';
+    moreLink.hidden = true;
+    moreLink.addEventListener('click', () => {
+      activeCollection = collection;
+      applyFilters();
+      productTools.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    section.append(header, grid, moreLink);
     groupsContainer.appendChild(section);
-    return [collection, { section, grid, count }];
+    return [collection, { section, grid, count, moreLink }];
   }));
+
+  // Browsing "all collections" is a preview, not the whole catalog — cap each program to a
+  // handful of items so the page reads as curated highlights. Narrowing to one collection
+  // (via its card or its "View all" link) shows everything that program has.
+  const GROUP_PREVIEW_LIMIT = 3;
 
   const money = (value) => Number.isFinite(Number(value))
     ? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(value))
@@ -296,21 +313,25 @@ import { validCollections, resolveCollection, resolveType, collectionName } from
 
   const applyFilters = () => {
     let visibleCount = 0;
-    productCards.forEach(({ card, collection, type }) => {
-      const visible = (activeCollection === 'all' || collection === activeCollection)
-        && (activeType === 'all' || type === activeType);
-      card.hidden = !visible;
-      if (visible) visibleCount += 1;
-    });
 
-    groupEls.forEach(({ section, grid, count }, collection) => {
-      if (activeCollection !== 'all' && activeCollection !== collection) {
-        section.hidden = true;
-        return;
-      }
-      const groupVisibleCount = [...grid.children].filter((card) => !card.hidden).length;
-      section.hidden = groupVisibleCount === 0;
-      count.textContent = groupVisibleCount ? `${groupVisibleCount} item${groupVisibleCount === 1 ? '' : 's'}` : '';
+    groupEls.forEach(({ section, grid, count, moreLink }, collection) => {
+      const collectionActive = activeCollection === 'all' || activeCollection === collection;
+      const showAllInGroup = activeCollection === collection;
+      const cards = [...grid.children];
+      const matchingCards = collectionActive
+        ? cards.filter((card) => activeType === 'all' || card.dataset.productType === activeType)
+        : [];
+      const shownCards = showAllInGroup ? matchingCards : matchingCards.slice(0, GROUP_PREVIEW_LIMIT);
+      const shownSet = new Set(shownCards);
+      cards.forEach((card) => { card.hidden = !shownSet.has(card); });
+      visibleCount += shownCards.length;
+
+      section.hidden = matchingCards.length === 0;
+      count.textContent = matchingCards.length ? `${matchingCards.length} item${matchingCards.length === 1 ? '' : 's'}` : '';
+
+      const remaining = matchingCards.length - shownCards.length;
+      moreLink.hidden = remaining <= 0;
+      if (remaining > 0) moreLink.textContent = `View all ${matchingCards.length} in ${collectionName(collection)} →`;
     });
 
     collectionButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.collection === activeCollection)));
