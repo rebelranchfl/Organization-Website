@@ -41,6 +41,8 @@ Neither person is "smarter" in some overall sense — they're strong in *differe
 
 This isn't a modern invention out of nowhere, and it isn't ancient wisdom either — it sits right in between. Thorndike's 1920 observation above didn't stay unanswered for long: in 1983, Howard Gardner's theory of multiple intelligences split "social intelligence" further into *interpersonal* intelligence (reading other people) and *intrapersonal* intelligence (reading yourself). Salovey and Mayer took that century of observation and finally gave it something researchers could actually test and measure.
 
+![Timeline: 1920, Edward Thorndike names "social intelligence." 1983, Howard Gardner splits it into interpersonal and intrapersonal intelligence. 1990, Salovey & Mayer give it a formal, testable definition ("emotional intelligence").](illustrations/eq-historical-lineage-timeline.png)
+
 ## The part most people get wrong
 
 Here's where this lesson does something most popular articles about "EQ" skip: it tells you what's actually still argued about.
@@ -77,6 +79,8 @@ Full activity: `activities/match-and-check.md`
 ## Take it further — a framework for families and classrooms
 
 If you want a repeatable structure instead of a one-time activity, Yale's Center for Emotional Intelligence built a five-step version of this same idea, called RULER: **R**ecognize the emotion, **U**nderstand its cause, **L**abel it precisely, **E**xpress it appropriately, **R**egulate it effectively. It's been tested with thousands of students across dozens of schools, with results showing more emotionally supportive classrooms where it's used. This lesson borrows the same recognize → name → decide-what-to-do structure for its own activity, without claiming to deliver the full licensed program.
+
+![The RULER framework, five steps in sequence: Recognize a feeling is happening before it takes over. Understand what is actually driving the feeling. Label it accurately instead of settling for "mad" or "fine." Express it in a way that fits the moment and the relationship. Regulate by choosing a response that actually helps, instead of just reacting.](illustrations/eq-ruler-framework-diagram.png)
 
 Want to go deeper on your own? `activities/name-it-to-tame-it.md` is an optional, written, one-on-one version of this same idea — pick a real moment from your own life and work through it in your own words.
 

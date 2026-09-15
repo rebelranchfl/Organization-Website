@@ -82,5 +82,13 @@ The owner reviewed the rebuilt preview again and found a real functional bug plu
 - Added an always-visible inline table of contents on the first page, in addition to the header button/modal, since the owner did not consider the button-triggered version sufficient.
 - The "What this is not" disclaimer removal from the previous pass is now owner-confirmed explicitly, not just instructed in the moment — she does not want disclaimers "all over" Academy content generally; the broader doctrine question remains flagged in `safety-boundary-calibration-flag.md` for a deliberate future pass, not applied unilaterally beyond this project.
 
+## Revision note — 2026-09-15, image integration (Assignments 3–4 complete)
+
+- Owner had ChatGPT/Codex generate the two queued images (RULER diagram, historical lineage timeline). They first reached this session only as images pasted into chat — not files, since this sandbox has no access to the owner's local machine. Independently verified against `must_include`/`must_avoid` from that pasted content first (per contract Section 5), before any file existed in the repo.
+- Owner had it commit directly to GitHub (commit `f9410322b754e7fd5b50d68b4b341fc6a6c4a5e7`, branch `claude/funny-shannon-9nq3h4`). Did not take the "it's done" report at face value — fetched the branch and inspected the actual commit (`git show --stat`) before proceeding, confirming exactly the two expected files at the exact right paths.
+- Opened both committed files directly and re-confirmed they match what was independently verified from the pasted-chat version — no substitution or corruption between chat and commit.
+- Embedded both images in `master-content.md` and `visual-production/eq-lesson-preview.html`. Loaded the actual rendered page and confirmed both images load and are legible at mobile width (390px) before marking anything `VERIFIED` — caught and fixed a stale-proxy-port issue in the test script itself along the way (Chromium was pointed at a proxy port from earlier in the session; the image load "failure" it first reported was the test's fault, not the page's, confirmed by comparing against a fresh `curl` using the current `$HTTPS_PROXY`).
+- Both `academy_visual_production_jobs` rows now read `VERIFIED`, `github_commit_sha` recorded. All four visual-production assignments for this project are complete.
+
 AI-Agent: Claude (Claude Code)
-Session: RRA pipeline reactivation verification, owner-directed, 2026-09-14
+Session: RRA pipeline reactivation verification, owner-directed, 2026-09-14/2026-09-15
