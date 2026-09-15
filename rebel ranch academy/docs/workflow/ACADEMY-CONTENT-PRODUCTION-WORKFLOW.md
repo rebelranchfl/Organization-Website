@@ -193,11 +193,11 @@ Not every subject needs an artificial historical section. The formula is a think
 
 ---
 
-## 7. Required section: TRANSFER THE PRINCIPLE
+## 7. Required section: REBEL RANCH PRINCIPLE
 
 Every substantial RRA learning project must include a section titled:
 
-# TRANSFER THE PRINCIPLE
+# REBEL RANCH PRINCIPLE
 
 This section identifies the deeper principle behind the subject and shows where else it applies.
 
@@ -215,6 +215,8 @@ The agent must consider, when relevant:
 - Where does the comparison stop being valid?
 
 The final question is mandatory when analogy could be misleading. RRA uses connections to deepen understanding, not to pretend two different systems are identical.
+
+**First-time-reader framing (added 2026-09-14):** because "REBEL RANCH PRINCIPLE" is RRA's own name for this recurring habit of mind and not a term a new learner will already know, every instance of this section should open with a brief, plain explanation of what the name means in general — this is our name for noticing that a real skill or piece of evidence almost never stays useful in only the one place you learned it — before getting into the specific connections for that project's subject. Exact wording may evolve project to project; the requirement is that a first-time reader isn't left to guess why the section is called what it's called.
 
 ---
 
@@ -396,7 +398,7 @@ Before expensive production work, the agent defines:
 - major principles;
 - historical/lost-knowledge angle if relevant;
 - modern-use angle;
-- TRANSFER THE PRINCIPLE connections;
+- REBEL RANCH PRINCIPLE connections;
 - proposed format;
 - proposed activities/interactivity;
 - visual or illustration needs;
@@ -721,7 +723,7 @@ Possible structure:
 - **Try It** — accessible hands-on application;
 - **Take It Further** — deeper analysis or older-learner challenge;
 - **Real-World Application** — adult, household, work, business, or community use;
-- **TRANSFER THE PRINCIPLE** — connections across other areas of life.
+- **REBEL RANCH PRINCIPLE** — connections across other areas of life.
 
 Age changes should adjust complexity, independence, safety, examples, and parent/guardian involvement—not dilute the truth of the lesson.
 
@@ -756,7 +758,7 @@ Before requesting owner approval, the agent must verify:
 - Real examples are included.
 - Practical application exists.
 - The learner must do, decide, practice, build, test, compare, or change something.
-- TRANSFER THE PRINCIPLE is included where required.
+- REBEL RANCH PRINCIPLE is included where required.
 - Analogies identify their limits when necessary.
 
 ### Voice
@@ -906,7 +908,7 @@ A content-development cycle is ready for owner review only when:
 5. material claims are supported or clearly labeled as uncertain/disputed;
 6. the content follows RRA's teaching formula;
 7. the project teaches transferable principles;
-8. TRANSFER THE PRINCIPLE is complete where required;
+8. REBEL RANCH PRINCIPLE is complete where required;
 9. practical application exists;
 10. the material sounds like RRA;
 11. the proposed delivery format is justified;

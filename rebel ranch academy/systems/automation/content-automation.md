@@ -355,7 +355,7 @@ and the Responsible Rebellion rule:
 
 > **Question assumptions. Understand the function. Study the evidence. Build or compare alternatives responsibly. Test the result. Compare it with the modern/default system. Let evidence decide.**
 
-Every substantial project must preserve source traceability, uncertainty, conflicting evidence, applicable testing/verification, `TRANSFER THE PRINCIPLE`, and the approved RRA voice.
+Every substantial project must preserve source traceability, uncertainty, conflicting evidence, applicable testing/verification, `REBEL RANCH PRINCIPLE`, and the approved RRA voice.
 
 ## 14. Visual-production boundary
 

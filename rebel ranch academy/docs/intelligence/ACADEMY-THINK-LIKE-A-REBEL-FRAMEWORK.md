@@ -267,7 +267,7 @@ Ask:
 
 > **Where else can this same way of thinking solve a different real-life problem?**
 
-This step connects directly to the Academy requirement `TRANSFER THE PRINCIPLE`.
+This step connects directly to the Academy requirement `REBEL RANCH PRINCIPLE`.
 
 ---
 
