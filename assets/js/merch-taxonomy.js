@@ -34,7 +34,7 @@ export const detectType = (product) => {
 export const collectionName = (collection) => ({
   rrm: 'Official RRM',
   'creation-station': 'Creation Station',
-  'working-hands': 'Working Hands',
+  'working-hands': 'Roots, Boots & Animal Poops',
   marketplace: 'Rebel Ranch Marketplace',
   academy: 'Rebel Ranch Academy'
 }[collection] || 'Rebel Ranch Merchandise');
