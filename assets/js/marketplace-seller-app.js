@@ -1,10 +1,16 @@
 import {loadSellerIdentity,loadSellerWorkspace,loadSellerAdminSummary,loadApplicationDetail,actions,adminActions} from './marketplace-seller-data.js';
-import {renderers,banners,statusStrip,orderResponseBody} from './marketplace-seller-views.js';
+import {renderers,banners,orderResponseBody} from './marketplace-seller-views.js';
 import {supabase} from './supabase-client.js';
 
 const $=id=>document.getElementById(id);
-const state={identity:null,data:null,adminData:null,view:'status',busy:false,orderFilter:{window:'24h'}};
-const routes=['today','status','listings','connections','notifications','history','kpis','admin'];
+const state={identity:null,data:null,adminData:null,view:'stand',busy:false,orderFilter:{window:'24h'}};
+const routes=['stand','storefront','listings','connections','notifications','status','history','kpis','admin'];
+const TAB_ICONS={
+  stand:'<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/>',
+  storefront:'<path d="M4 9l1-5h14l1 5"/><path d="M4 9a2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0"/><path d="M5 9v10h14V9"/>',
+  listings:'<path d="M8 6h13M8 12h13M8 18h13"/><path d="M3 6h.01M3 12h.01M3 18h.01"/>',
+  status:'<path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6z"/>'
+};
 const oneSignalAppId='3d048078-bf37-42ff-a1b7-3c1994cc62af';
 let oneSignalClient=null;
 
@@ -28,7 +34,7 @@ function connectOrderAlerts(userId){
 function updateHeaderAuthLinks(){
   const joinLink=$('header-join-link');
   if(!state.identity){
-    joinLink.textContent='Join the Rebellion';
+    joinLink.textContent='Join Rebel Ranch Local';
     joinLink.classList.remove('hidden');
     return;
   }
@@ -36,7 +42,7 @@ function updateHeaderAuthLinks(){
   if(sp&&sp.profile_status==='active'){
     joinLink.classList.add('hidden');
   }else{
-    joinLink.textContent=sp?'Application Status':'Join the Rebellion';
+    joinLink.textContent=sp?'Application Status':'Join Rebel Ranch Local';
     joinLink.classList.remove('hidden');
   }
 }
@@ -55,6 +61,7 @@ function showAccess(title,copy,label='Go to My Account',href='account.html'){
   $('create-profile').classList.add('hidden');
   $('workspace').classList.add('hidden');
   $('dashboard-tabs').classList.add('hidden');
+  $('account-menu').classList.add('hidden');
   $('access-title').textContent=title;
   $('access-copy').textContent=copy;
   $('access-link').textContent=label;
@@ -64,23 +71,9 @@ function showAccess(title,copy,label='Go to My Account',href='account.html'){
 
 function isEligible(view){if(view==='admin')return state.identity.isAdmin;return routes.includes(view)}
 function dashboardNavItems(){
-  const unreadQuestions=(state.data?.inquiries||[]).filter(i=>!i.responded_at).length;
-  const openOrders=(state.data?.orders||[]).filter(o=>['new','change_proposed'].includes(o.status)).length;
-  const connectionsCount=unreadQuestions+openOrders;
-  const unreadNotifications=(state.data?.notifications||[]).filter(n=>!n.is_read).length;
-  const items=[
-    ['today','Command Center'],
-    ['listings','My Listings'],
-    ['connections',`Local Connections${connectionsCount?` (${connectionsCount})`:''}`],
-    ['notifications',`Notifications${unreadNotifications?` (${unreadNotifications})`:''}`],
-    ['status','Settings'],
-    ['history','History'],
-    ['kpis','KPIs']
-  ];
-  if(state.identity.isAdmin)items.push(['admin','Admin',true]);
-  return items;
+  return [['stand','Stand'],['storefront','Storefront'],['listings','Listings'],['status','Status']];
 }
-function chooseInitial(){const hash=location.hash.slice(1);if(routes.includes(hash)&&isEligible(hash))return hash;return'today'}
+function chooseInitial(){const hash=location.hash.slice(1);if(routes.includes(hash)&&isEligible(hash))return hash;return'stand'}
 
 function closeAccountMenu(){
   const menu=$('account-actions'),toggle=$('menu-toggle');
@@ -90,8 +83,7 @@ function closeAccountMenu(){
 
 function updateSwitcher(){
   const el=$('dashboard-nav');
-  el.innerHTML=dashboardNavItems().map(([k,label,isAdmin])=>`<button type="button" class="${isAdmin?'tab-admin':''}" data-view="${k}" aria-pressed="${state.view===k}">${label}</button>`).join('')
-    +'<a class="tab-link" href="business-request.html?service=general-business-service&ref=marketplace-seller-dashboard-nav">Business Freedom</a>';
+  el.innerHTML=dashboardNavItems().map(([k,label])=>`<button type="button" data-view="${k}" aria-pressed="${state.view===k}"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24">${TAB_ICONS[k]}</svg></span><span>${label}</span></button>`).join('');
   el.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>navigate(b.dataset.view));
 }
 
@@ -102,15 +94,6 @@ function navigate(view){
   render();
   $('screen').focus({preventScroll:true});
   window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function showTownMap(replay=false){
-  const map=$('seller-town-map');
-  if(!map||(!replay&&map.dataset.activated==='true'))return;
-  map.dataset.activated='true';
-  map.classList.remove('is-on-map');
-  if(replay)void map.offsetWidth;
-  requestAnimationFrame(()=>map.classList.add('is-on-map'));
 }
 
 function renderBanners(){
@@ -124,17 +107,11 @@ function renderBanners(){
 }
 
 function render(){
-  const renderer=renderers[state.view]||renderers.status;
+  const renderer=renderers[state.view]||renderers.stand;
   $('screen').innerHTML=renderer(state);
   bindScreen();
   updateSwitcher();
   renderBanners();
-  const statusEl=$('status-strip');
-  if(statusEl){
-    statusEl.innerHTML=statusStrip(state);
-    statusEl.querySelectorAll('[data-goto-view]').forEach(b=>b.onclick=()=>{showTownMap(true);navigate(b.dataset.gotoView)});
-  }
-  showTownMap();
 }
 
 async function withBusy(button,work){
@@ -426,7 +403,27 @@ function bindScreen(){
   if(orderWindowSelect)orderWindowSelect.onchange=()=>{state.orderFilter={window:orderWindowSelect.value};render()};
 
   const fulfillmentForm=root.querySelector('#fulfillment-form');
-  if(fulfillmentForm)fulfillmentForm.onsubmit=e=>{e.preventDefault();withBusy(e.submitter,async()=>{const {error}=await actions.saveFulfillment(state.identity,{offers_pickup:$('fulfill-pickup').checked,offers_delivery:$('fulfill-delivery').checked,offers_meetup:$('fulfill-meetup').checked,offers_shipping:$('fulfill-shipping').checked,public_notes:$('fulfill-notes').value.trim()||null});if(error)throw error;await refresh();message('Fulfillment options updated.');})};
+  if(fulfillmentForm)fulfillmentForm.onsubmit=e=>{e.preventDefault();withBusy(e.submitter,async()=>{const {error}=await actions.saveFulfillment(state.identity,{offers_pickup:$('fulfill-pickup').checked,offers_delivery:$('fulfill-delivery').checked,offers_meetup:$('fulfill-meetup').checked,offers_shipping:$('fulfill-shipping').checked,pickup_hours:$('fulfill-pickup-hours').value.trim()||null,public_notes:$('fulfill-notes').value.trim()||null});if(error)throw error;await refresh();message('Fulfillment options updated.');})};
+
+  const storefrontPhotoInput=root.querySelector('#storefront-photo-input');
+  if(storefrontPhotoInput)storefrontPhotoInput.onchange=()=>{
+    const file=storefrontPhotoInput.files[0];
+    if(!file)return;
+    withBusy(null,async()=>{
+      if(file.size>5242880)throw new Error('Photo is larger than 5 MB.');
+      const sortOrder=(state.data.storefrontPhotos||[]).length;
+      const result=await actions.uploadStorefrontPhoto(state.identity,file,sortOrder);
+      if(result.error)throw result.error;
+      await refresh();
+      message('Photo added.');
+    });
+  };
+  root.querySelectorAll('[data-delete-storefront-photo]').forEach(b=>b.onclick=()=>withBusy(b,async()=>{
+    const {error}=await actions.deleteStorefrontPhoto(state.identity,b.dataset.deleteStorefrontPhoto);
+    if(error)throw error;
+    await refresh();
+    message('Photo removed.');
+  }));
   root.querySelectorAll('[data-order-action]').forEach(b=>b.onclick=()=>{
     const status=b.dataset.orderAction,orderId=b.dataset.orderId;
     if(['accepted','change_proposed'].includes(status)){openOrderResponseDialog(orderId,status);return}
@@ -655,13 +652,19 @@ async function openReviewDialog(applicationId,sellerProfileId){
 function showAccountStep(){$('account-step').classList.remove('hidden');$('business-step').classList.add('hidden')}
 function showBusinessStep(){$('account-step').classList.add('hidden');$('business-step').classList.remove('hidden')}
 
+function showWorkspace(){
+  $('create-profile').classList.add('hidden');
+  $('workspace').classList.remove('hidden');
+  $('dashboard-tabs').classList.remove('hidden');
+  $('account-menu').classList.remove('hidden');
+  $('account-admin-link').classList.toggle('hidden',!state.identity.isAdmin);
+}
+
 async function afterSignedIn(){
   if(!state.identity.sellerProfile){showBusinessStep();bindOnboardingForm();return}
   state.data=await loadSellerWorkspace(state.identity);
   if(state.identity.isAdmin)state.adminData=await loadSellerAdminSummary();
-  $('create-profile').classList.add('hidden');
-  $('workspace').classList.remove('hidden');
-  $('dashboard-tabs').classList.remove('hidden');
+  showWorkspace();
   state.view=chooseInitial();
   render();
 }
@@ -762,10 +765,8 @@ function bindOnboardingForm(){
       updateHeaderAuthLinks();
       state.data=await loadSellerWorkspace(state.identity);
       if(state.identity.isAdmin)state.adminData=await loadSellerAdminSummary();
-      $('create-profile').classList.add('hidden');
-      $('workspace').classList.remove('hidden');
-      $('dashboard-tabs').classList.remove('hidden');
-      state.view='status';
+      showWorkspace();
+      state.view='stand';
       render();
       message('Seller profile created. Review your application before submitting.');
     });
@@ -779,7 +780,6 @@ $('enable-order-alerts').onclick=async()=>{
 };
 $('signout').onclick=async()=>{if(oneSignalClient)await oneSignalClient.logout();await actions.signOut();location.href='account.html'};
 $('header-feedback-btn').onclick=()=>$('feedback-dialog').showModal();
-document.querySelectorAll('.next-moves [data-goto-view]').forEach(b=>b.onclick=()=>navigate(b.dataset.gotoView));
 $('feedback-close').onclick=()=>$('feedback-dialog').close();
 $('feedback-cancel').onclick=()=>$('feedback-dialog').close();
 {
@@ -821,8 +821,7 @@ async function init(){
     connectOrderAlerts(state.identity.user.id);
     if(state.identity.isAdmin)state.adminData=await loadSellerAdminSummary();
     state.view=chooseInitial();
-    $('workspace').classList.remove('hidden');
-    $('dashboard-tabs').classList.remove('hidden');
+    showWorkspace();
     render();
   }catch(e){
     showAccess('Your dashboard could not load',e.message||'Check your network connection and try again.','Try again',location.href);

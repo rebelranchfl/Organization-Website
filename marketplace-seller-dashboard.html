@@ -14,27 +14,22 @@
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to dashboard content</a>
-  <p class="movement-strip">Responsible rebellion is not a slogan. It is where we put our money.</p>
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="marketplace.html" aria-label="Rebel Ranch Local home">
-        <img src="assets/brand/Rebel%20Ranch%20Ministries/rrm-logo-white.png" alt="" width="52" height="52">
-        <span class="brand-text">Rebel Ranch Local<small>Everything local. One easy place.</small></span>
+        <img src="assets/brand/Rebel%20Ranch%20Local/interface/rebel-ranch-local-emblem-v2.webp" alt="" width="44" height="44">
+        <span class="brand-text">Rebel Ranch Local<small>Seller Dashboard</small></span>
       </a>
-      <a id="header-join-link" class="button primary" href="marketplace-seller-dashboard.html">Join the Rebellion</a>
-    </div>
-  </header>
-
-  <nav id="dashboard-tabs" class="dashboard-tabs hidden" aria-label="Dashboard sections">
-    <div id="dashboard-nav" class="dashboard-tab-list"></div>
-    <div class="account-menu">
-      <button id="menu-toggle" class="account-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="account-actions">Account <span aria-hidden="true">▾</span></button>
-      <div id="account-actions" class="account-actions">
-        <p class="menu-section-label">Account</p>
-        <button id="header-feedback-btn" type="button">Send Feedback</button><a href="index.html">Rebel Ranch Ministries Home</a><a href="account.html">RRM Account</a><button id="signout" type="button">Sign out</button>
+      <a id="header-join-link" class="button primary" href="marketplace-seller-dashboard.html">Join Rebel Ranch Local</a>
+      <div id="account-menu" class="account-menu hidden">
+        <button id="menu-toggle" class="account-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="account-actions">Account <span aria-hidden="true">▾</span></button>
+        <div id="account-actions" class="account-actions">
+          <p class="menu-section-label">Account</p>
+          <button id="header-feedback-btn" type="button">Send Feedback</button><a href="index.html">Rebel Ranch Ministries Home</a><a href="account.html">RRM Account</a><a id="account-admin-link" href="#admin" class="hidden" data-goto-view="admin">Admin queue</a><button id="signout" type="button">Sign out</button>
+        </div>
       </div>
     </div>
-  </nav>
+  </header>
 
   <main id="main-content" class="shell" tabindex="-1">
     <div id="app-status" class="notice hidden" role="status" aria-live="polite"></div>
@@ -130,53 +125,6 @@
     </section>
 
     <div id="workspace" class="hidden">
-      <section class="market-hero" aria-labelledby="welcome">
-        <div class="market-hero-grid">
-          <div class="hero-message">
-            <p class="eyebrow">This is responsible rebellion at work</p>
-            <h1 id="welcome">Take your power back.<em>One choice at a time.</em></h1>
-            <p>You are not stuck. You are not helpless. Put your business in front of people ready to <strong>buy local, hire local and keep local money local.</strong></p>
-            <div id="status-strip"></div>
-          </div>
-          <div class="town-map-panel">
-            <div id="seller-town-map" class="town-map" role="img" aria-label="A North Florida map with a small American town growing into a bright, prominent location marker">
-              <div class="town-map-kicker">North Florida · Small towns belong on the map</div>
-              <div class="town-glow" aria-hidden="true"></div>
-              <img class="town-pin" src="assets/brand/Rebel%20Ranch%20Local/interface/rrl-small-town-pin.webp" alt="A thriving small American town inside a location marker" width="487" height="520">
-              <div class="town-name">Small Town, USA<small>One town at a time.</small></div>
-            </div>
-            <div class="hero-manifesto">
-              <p>Our community.<br>Our families.<br>Our children.<br>Our money.</p>
-              <p>We protect all four by deciding what we support, what we invest in and what we do with opportunity.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="next-moves">
-        <div class="next-moves-heading">
-          <h2>Your Next Moves</h2>
-          <button type="button" class="text-link-button" data-goto-view="today">See every action →</button>
-        </div>
-        <div class="next-moves-list">
-          <article class="next-move-card">
-            <p class="next-move-number">01 / Get Seen</p>
-            <p>Add what you sell, make, grow or do. Give local buyers a real reason to choose you.</p>
-            <button type="button" class="text-link-button" data-goto-view="listings">Create a listing →</button>
-          </article>
-          <article class="next-move-card">
-            <p class="next-move-number">02 / Make Contact</p>
-            <p>No corporate maze. No buried relationship. Connect directly with the people buying local.</p>
-            <button type="button" class="text-link-button" data-goto-view="connections">Open connections →</button>
-          </article>
-          <article class="next-move-card">
-            <p class="next-move-number">03 / Build Power</p>
-            <p>Strengthen your business, sharpen your message and become harder to replace.</p>
-            <a class="text-link-button" href="business-request.html?service=general-business-service&amp;ref=marketplace-seller-dashboard-next-moves">Open Business Freedom →</a>
-          </article>
-        </div>
-      </section>
-
       <div id="order-alerts-banner" class="dash-banner hidden">
         <p>Get notified the moment a buyer orders or messages you.</p>
         <div class="dash-banner-actions"><button id="enable-order-alerts" class="button primary" type="button">Enable order alerts</button></div>
@@ -185,13 +133,12 @@
       <div id="dashboard-banners"></div>
 
       <div id="screen" tabindex="-1"></div>
-
-      <section class="manifesto-section">
-        <p class="manifesto-statement">Be a rebel = buy local. Shop local. Build local.</p>
-        <p class="manifesto-body"><strong>Responsible rebellion is not chaos or empty outrage.</strong> Responsible rebellion is calculated, respectful and dignified. It is choice. It takes work and cooperation. Together, we build the alternative — a better future where we support each other and move with values first: supporting and funding what we love, and disengaging from systems and agendas that do not benefit us.</p>
-      </section>
     </div>
   </main>
+
+  <nav id="dashboard-tabs" class="dashboard-tabs hidden" aria-label="Dashboard sections">
+    <div id="dashboard-nav" class="dashboard-tab-list"></div>
+  </nav>
 
   <dialog id="feedback-dialog" aria-labelledby="feedback-title">
     <form action="https://formspree.io/f/xnjrqydq" method="POST">
