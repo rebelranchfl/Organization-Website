@@ -34,6 +34,7 @@ button,input,select,textarea{font:inherit}button,a{-webkit-tap-highlight-color:t
 .primary-nav a:hover,.primary-nav a:focus-visible,.primary-nav a[aria-current="page"]{color:var(--olive)}
 .text-link-button{border:0;background:transparent;padding:6px 0;color:var(--rust);font-weight:850;text-decoration:underline;cursor:pointer}
 .connections-section .panel-header h3{font-size:1.1rem}
+#header-join-link{flex:0 1 auto;text-align:center;line-height:1.25;font-size:13px;padding:9px 16px}
 .account-menu{position:relative;flex:0 0 auto}
 .account-trigger{padding:9px 14px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--olive);font-weight:850;font-size:.86rem;cursor:pointer}
 .account-trigger:hover,.account-trigger:focus-visible{background:var(--paper)}
@@ -159,7 +160,6 @@ details.disclosure[open] summary:before{transform:rotate(90deg)}
 details.disclosure>*:not(summary){margin-top:10px}
 .attestation-done{padding:10px;margin-top:10px;background:var(--sage-bg);border-radius:6px}
 .attestation-done p{margin:6px 0 0;color:var(--sage-ink)}
-.dash-banners{display:grid;gap:10px;margin:18px 0 0}
 .dash-banner{padding:14px 16px;background:var(--paper);border:1px solid var(--line);border-radius:10px;display:flex;flex-direction:column;gap:8px}
 .dash-banner-actions{order:1;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
 .dash-banner p{order:2;margin:0;color:var(--muted);font-size:11.5px;line-height:1.4}
@@ -189,12 +189,15 @@ dialog form{padding:26px;overflow:auto}
 dialog label{margin:14px 0;font-weight:850;color:var(--ink)}
 input,select,textarea{width:100%;min-height:44px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--ink)}
 input:focus,select:focus,textarea:focus{border-color:var(--olive)}
-input::placeholder,textarea::placeholder{color:var(--muted);opacity:.85}
+/* placeholder text is an example, not a value or an instruction — keep it visibly smaller/quieter than real typed text */
+input::placeholder,textarea::placeholder{color:var(--muted);opacity:.8;font-size:13px}
+input[type=file]{color:var(--muted);font-size:13px}
 textarea{min-height:105px;resize:vertical}
 /* a label's helper <span> is a quiet caption, not an instruction: it sits small and muted under the field, not above it */
 label:has(>span):not(.photo-add){display:flex;flex-direction:column;gap:6px}
 label:has(>span):not(.photo-add)>input,label:has(>span):not(.photo-add)>select,label:has(>span):not(.photo-add)>textarea{order:1}
 label:has(>span):not(.photo-add)>span{order:2;color:var(--muted);font-size:11.5px;font-weight:600;line-height:1.4;text-transform:none;letter-spacing:normal}
+.form-hint{margin:0;font-size:11.5px;font-weight:600;color:var(--muted);line-height:1.4}
 .dialog-heading,.dialog-actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
 .dialog-heading h2{color:var(--olive);font-family:Georgia,'Times New Roman',serif}
 .dialog-actions{justify-content:flex-end;margin-top:20px}

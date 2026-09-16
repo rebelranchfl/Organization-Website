@@ -59,43 +59,32 @@ function contactActions(contact){
   return '';
 }
 
-const BANNER_PREFIX='rrl_seller_banner_';
-function bannerDismissedValue(sellerId,id){try{return localStorage.getItem(`${BANNER_PREFIX}${sellerId}_${id}`)}catch{return null}}
-
-export function banners(state){
+// The single highest-priority upsell for this seller, shown as the header CTA
+// once they're live (that slot has nothing else to do for an active seller).
+export function topPromo(state){
   const sp=state.identity?.sellerProfile;
   const data=state.data;
-  if(!sp||!data)return '';
+  if(!sp||!data)return null;
   const ref='ref=marketplace-seller-dashboard';
-  const items=[];
 
   const missingLogo=!sp.logo_object_path,missingListings=!(data.listings||[]).length;
   if(missingLogo||missingListings){
     const what=missingLogo&&missingListings?'a logo and any listings':missingLogo?'a logo':'any listings';
-    items.push({id:'storefront',dismissValue:'1',text:`Your public shop is missing ${what} — a complete storefront earns buyer trust faster.`,ctaText:'Get Seen, Get Found — from $199',href:`business-request.html?service=online-presence&${ref}`});
+    return {id:'storefront',text:`Your public shop is missing ${what}.`,ctaText:'Get Seen, Get Found — from $199',href:`business-request.html?service=online-presence&${ref}`};
   }
 
   const openOrders=(data.orders||[]).filter(o=>['new','change_proposed'].includes(o.status)).length;
   const unreadInquiries=(data.inquiries||[]).filter(i=>!i.is_read).length;
   const backlog=openOrders+unreadInquiries;
-  const dismissedAt=Number(bannerDismissedValue(sp.id,'overwhelmed')||0);
-  if(backlog>=3&&backlog>dismissedAt){
-    items.push({id:'overwhelmed',dismissValue:String(backlog),text:`You have ${backlog} order${backlog===1?'':'s'} and question${backlog===1?'':'s'} waiting on a response.`,ctaText:"Stop Losing Customers While You're Busy — from $199",href:`business-request.html?service=lead-capture-follow-up&${ref}`});
+  if(backlog>=3){
+    return {id:'overwhelmed',text:`${backlog} orders and questions are waiting on a response.`,ctaText:"Stop Losing Customers While You're Busy — from $199",href:`business-request.html?service=lead-capture-follow-up&${ref}`};
   }
 
-  if(!(data.paymentMethods||[]).length&&!bannerDismissedValue(sp.id,'payment')){
-    items.push({id:'payment',choice:true,text:'Buyers currently have no way to pay you except cash or check on pickup.',ctaText:'I want to get paid faster',href:`business-request.html?service=get-paid-faster&${ref}`});
+  if(!(data.paymentMethods||[]).length){
+    return {id:'payment',text:'No way to pay you except cash or check on pickup.',ctaText:'I want to get paid faster',href:`business-request.html?service=get-paid-faster&${ref}`};
   }
 
-  if(!items.length)return '';
-  return `<div class="dash-banners">${items.map(b=>`<div class="dash-banner">
-    <p>${esc(b.text)}</p>
-    <div class="dash-banner-actions">
-      ${b.choice?`<button type="button" class="button" data-dismiss-banner="${b.id}" data-dismiss-value="1">I prefer cash / COD</button>`:''}
-      <a class="button rust" href="${b.href}">${esc(b.ctaText)}</a>
-      ${b.choice?'':`<button type="button" class="button" data-dismiss-banner="${b.id}" data-dismiss-value="${esc(b.dismissValue)}">Not now</button>`}
-    </div>
-  </div>`).join('')}</div>`;
+  return null;
 }
 
 function resolveSellerState(sp,app){
@@ -228,7 +217,7 @@ export function storefront(state){
         <input id="pf-why-1" placeholder="Reason 1" value="${esc(draftWhy[0]||'')}">
         <input id="pf-why-2" placeholder="Reason 2" value="${esc(draftWhy[1]||'')}">
         <input id="pf-why-3" placeholder="Reason 3" value="${esc(draftWhy[2]||'')}">
-        <p class="eyebrow">Changes save as a draft — buyers won't see them until you publish.</p>
+        <p class="form-hint">Changes save as a draft — buyers won't see them until you publish.</p>
         <div class="dialog-actions"><button class="primary" type="submit">Save as Draft</button></div>
       </form>
     </details>
@@ -349,7 +338,7 @@ function listingCard(item,sellerSlug){
         <label>Price <span>Free text — e.g. "$8 each" or "Call for a quote"</span><input data-field="price_label" value="${esc(draftPrice||'')}"></label>
         <label>Pricing type<select data-field="price_type"><option value="fixed" ${draftPriceType==='fixed'?'selected':''}>Fixed price</option><option value="starting_at" ${draftPriceType==='starting_at'?'selected':''}>Starting at</option><option value="quote" ${draftPriceType==='quote'?'selected':''}>Seller confirms price</option></select></label>
         <label>Price (numbers only) <span>Optional — lets us total up fixed-price orders for you</span><input type="number" min="0" step="0.01" data-field="unit_price" value="${draftUnitPrice??''}"></label>
-        <p class="eyebrow">Changes save as a draft — buyers won't see them until you publish.</p>
+        <p class="form-hint">Changes save as a draft — buyers won't see them until you publish.</p>
         <div class="dialog-actions"><button class="primary" type="submit">Save as Draft</button></div>
       </form>
     </details>

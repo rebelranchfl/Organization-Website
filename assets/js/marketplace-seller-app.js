@@ -1,5 +1,5 @@
 import {loadSellerIdentity,loadSellerWorkspace,loadSellerAdminSummary,loadApplicationDetail,actions,adminActions} from './marketplace-seller-data.js';
-import {renderers,banners,orderResponseBody} from './marketplace-seller-views.js';
+import {renderers,topPromo,orderResponseBody} from './marketplace-seller-views.js';
 import {supabase} from './supabase-client.js';
 
 const $=id=>document.getElementById(id);
@@ -35,15 +35,29 @@ function updateHeaderAuthLinks(){
   const joinLink=$('header-join-link');
   if(!state.identity){
     joinLink.textContent='Join Rebel Ranch Local';
-    joinLink.classList.remove('hidden');
+    joinLink.href='marketplace-seller-dashboard.html';
+    joinLink.classList.remove('hidden','rust');
+    joinLink.classList.add('primary');
     return;
   }
   const sp=state.identity.sellerProfile;
   if(sp&&sp.profile_status==='active'){
-    joinLink.classList.add('hidden');
+    // Live sellers already joined — this slot has nothing left to say, so it
+    // carries their single highest-priority upsell instead of sitting empty.
+    const promo=state.data?topPromo(state):null;
+    if(promo){
+      joinLink.textContent=promo.ctaText;
+      joinLink.href=promo.href;
+      joinLink.classList.remove('hidden','primary');
+      joinLink.classList.add('rust');
+    }else{
+      joinLink.classList.add('hidden');
+    }
   }else{
     joinLink.textContent=sp?'Application Status':'Join Rebel Ranch Local';
-    joinLink.classList.remove('hidden');
+    joinLink.href='marketplace-seller-dashboard.html';
+    joinLink.classList.remove('hidden','rust');
+    joinLink.classList.add('primary');
   }
 }
 
@@ -96,22 +110,12 @@ function navigate(view){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-function renderBanners(){
-  const el=$('dashboard-banners');
-  if(!el)return;
-  el.innerHTML=banners(state);
-  el.querySelectorAll('[data-dismiss-banner]').forEach(b=>b.onclick=()=>{
-    try{localStorage.setItem(`rrl_seller_banner_${state.identity.sellerProfile.id}_${b.dataset.dismissBanner}`,b.dataset.dismissValue||'1')}catch{}
-    renderBanners();
-  });
-}
-
 function render(){
   const renderer=renderers[state.view]||renderers.stand;
   $('screen').innerHTML=renderer(state);
   bindScreen();
   updateSwitcher();
-  renderBanners();
+  updateHeaderAuthLinks();
 }
 
 async function withBusy(button,work){
