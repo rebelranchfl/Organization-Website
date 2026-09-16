@@ -140,13 +140,14 @@ export function stand(state){
   const stats=state.data.storefrontStats||[];
   const totalViews=stats.reduce((sum,s)=>sum+s.page_views,0);
   const proHref='business-request.html?service=general-business-service&ref=marketplace-seller-dashboard-stand';
+  const lockIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>';
 
   const revenueTile=sp.is_pro
     ?`<div class="keep-bar"><div><p class="lbl">Yours to keep</p><strong>$${totalRevenue.toFixed(2)}</strong></div><p class="note">No platform<br>commission</p></div>`
-    :`<div class="keep-bar locked"><div><p class="lbl">Yours to keep</p><strong>—</strong></div><a href="${proHref}">Unlock revenue tracking — $9.99/mo →</a></div>`;
+    :`<div class="keep-bar locked"><div><p class="lbl">Yours to keep</p><span class="paywall-figure">$${totalRevenue.toFixed(2)}</span></div><a href="${proHref}">${lockIcon.replace('<svg ','<svg class="lock-icon" ')} Unlock revenue tracking — $9.99/mo</a></div>`;
   const viewsTile=sp.is_pro
     ?`<div class="stat-tile"><strong>${totalViews}</strong><span>Views</span></div>`
-    :`<div class="stat-tile paywall"><strong>—</strong><span>Views</span><a href="${proHref}">Unlock →</a></div>`;
+    :`<div class="stat-tile paywall"><span class="paywall-figure">${totalViews}</span><span>Views</span><a href="${proHref}">${lockIcon} Unlock</a></div>`;
 
   const needsItem=item=>item.kind==='order'
     ?`<div class="needs-card"><span class="needs-avatar" aria-hidden="true">${icon('receipt')}</span><div class="needs-body"><strong>Order #${item.order_number} — ${esc(item.buyer_name)}</strong><span>${esc(label(item.status))} · ${new Date(item.created_at).toLocaleString()}</span></div><button type="button" class="text-link-button" data-goto-view="connections">Open →</button></div>`
@@ -155,7 +156,7 @@ export function stand(state){
   return `
   <header class="stand-header">
     <div class="stand-topline"><span class="stand-avatar">${esc(firstName.slice(0,1).toUpperCase())}</span></div>
-    <h1>Morning, ${esc(firstName)}.</h1>
+    <h1>Welcome back, ${esc(firstName)}.</h1>
     <p class="stand-status-line"><span class="stand-status-dot"></span>${esc(stateLabel)}</p>
   </header>
 
@@ -197,7 +198,7 @@ export function storefront(state){
   const f=state.data.fulfillment||{};
   const checklist=storefrontChecklist(state);
 
-  return `${heading('Storefront','How neighbors see you','This is what buyers see on your public page — build it out, then publish.')}
+  return `${heading('Editor','How neighbors see you','This is what buyers see on your public storefront — build it out, then publish.')}
 
   <section class="panel">
     ${sp.has_unpublished_changes?`<div class="draft-banner"><div><span class="status-badge review">Draft changes pending</span><p>Not visible to buyers yet</p></div><div class="actions">${sp.public_slug?`<a class="button" href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}&preview=1" target="_blank" rel="noopener">Preview as buyer ↗</a>`:''}<button class="primary" data-action="publish-profile">Publish Changes</button><button class="danger" data-action="discard-profile-draft">Discard Draft</button></div></div>`:''}

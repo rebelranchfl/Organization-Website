@@ -71,7 +71,7 @@ function showAccess(title,copy,label='Go to My Account',href='account.html'){
 
 function isEligible(view){if(view==='admin')return state.identity.isAdmin;return routes.includes(view)}
 function dashboardNavItems(){
-  return [['stand','Stand'],['storefront','Storefront'],['listings','Listings'],['status','Status']];
+  return [['stand','Stand'],['storefront','Editor'],['listings','Listings'],['status','Status']];
 }
 function chooseInitial(){const hash=location.hash.slice(1);if(routes.includes(hash)&&isEligible(hash))return hash;return'stand'}
 
