@@ -150,6 +150,8 @@ button,input,select,textarea{font:inherit}button,a{-webkit-tap-highlight-color:t
 details.disclosure{margin-top:14px}
 details.disclosure summary{cursor:pointer;padding:10px 0;font-weight:850;color:var(--ink);list-style:none;display:flex;flex-wrap:nowrap;align-items:center;gap:8px}
 details.disclosure summary::-webkit-details-marker{display:none}
+.disclosure-copy{display:flex;flex-direction:column;gap:2px}
+.disclosure-copy small{font-size:11px;font-weight:600;color:var(--muted);text-transform:none;letter-spacing:normal}
 details.disclosure summary:before{content:'';flex:0 0 auto;width:14px;height:14px;background:var(--olive);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat;transition:transform .15s ease}
 details.disclosure[open] summary:before{transform:rotate(90deg)}
 .list-item details.disclosure{margin-top:0}
@@ -157,10 +159,10 @@ details.disclosure[open] summary:before{transform:rotate(90deg)}
 details.disclosure>*:not(summary){margin-top:10px}
 .attestation-done{padding:10px;margin-top:10px;background:var(--sage-bg);border-radius:6px}
 .attestation-done p{margin:6px 0 0;color:var(--sage-ink)}
-.dash-banners{display:grid;gap:12px;margin:18px 0 0}
-.dash-banner{padding:16px 18px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--rust);border-radius:8px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
-.dash-banner p{margin:0;color:var(--ink);flex:1 1 260px}
-.dash-banner-actions{display:flex;flex-wrap:wrap;gap:8px}
+.dash-banners{display:grid;gap:10px;margin:18px 0 0}
+.dash-banner{padding:14px 16px;background:var(--paper);border:1px solid var(--line);border-radius:10px;display:flex;flex-direction:column;gap:8px}
+.dash-banner-actions{order:1;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.dash-banner p{order:2;margin:0;color:var(--muted);font-size:11.5px;line-height:1.4}
 .button,button{min-height:42px;padding:9px 18px;border:1.5px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink);font-weight:850;text-decoration:none;cursor:pointer;box-shadow:0 1px 3px rgba(42,52,30,.06);transition:transform .12s ease,box-shadow .12s ease,background .12s ease,border-color .12s ease}
 .button:hover,button:hover,.button:focus-visible,button:focus-visible{background:#fff;border-color:var(--olive)}
 .button.primary,button.primary{border:1px solid var(--olive-2);background:linear-gradient(135deg,var(--olive),var(--olive-2));color:#fff;box-shadow:0 6px 16px rgba(47,61,31,.28)}
@@ -184,13 +186,16 @@ button:disabled{opacity:.55;cursor:not-allowed;transform:none!important}
 dialog{width:min(660px,calc(100% - 24px));max-height:90vh;padding:0;border:1px solid var(--line);border-radius:10px;background:#fff;box-shadow:0 20px 60px rgba(32,35,28,.35);color:var(--ink)}
 dialog::backdrop{background:rgba(32,35,28,.45);backdrop-filter:blur(3px)}
 dialog form{padding:26px;overflow:auto}
-dialog label{display:grid;gap:6px;margin:14px 0;font-weight:850;color:var(--ink)}
-dialog label span{color:var(--muted);font-size:.8rem;font-weight:normal}
+dialog label{margin:14px 0;font-weight:850;color:var(--ink)}
 input,select,textarea{width:100%;min-height:44px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--ink)}
 input:focus,select:focus,textarea:focus{border-color:var(--olive)}
 input::placeholder,textarea::placeholder{color:var(--muted);opacity:.85}
 textarea{min-height:105px;resize:vertical}
-.dialog-heading,.dialog-actions{display:flex;align-items:center;justify-content:space-between;gap:12px}
+/* a label's helper <span> is a quiet caption, not an instruction: it sits small and muted under the field, not above it */
+label:has(>span):not(.photo-add){display:flex;flex-direction:column;gap:6px}
+label:has(>span):not(.photo-add)>input,label:has(>span):not(.photo-add)>select,label:has(>span):not(.photo-add)>textarea{order:1}
+label:has(>span):not(.photo-add)>span{order:2;color:var(--muted);font-size:11.5px;font-weight:600;line-height:1.4;text-transform:none;letter-spacing:normal}
+.dialog-heading,.dialog-actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
 .dialog-heading h2{color:var(--olive);font-family:Georgia,'Times New Roman',serif}
 .dialog-actions{justify-content:flex-end;margin-top:20px}
 *:focus-visible{outline:3px solid var(--olive);outline-offset:3px}
@@ -302,6 +307,6 @@ textarea{min-height:105px;resize:vertical}
 @media(max-width:1040px){.header-inner{padding:10px 0;min-height:0}.metric-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:900px){.layout{grid-template-columns:1fr}}
 @media(max-width:780px){.shell{width:min(100% - 22px,1160px);padding-top:20px}.layout{grid-template-columns:1fr}.view-tools{align-items:stretch;flex-direction:column}.card-grid{grid-template-columns:1fr}.market-hero{border-radius:8px}.screen-heading{align-items:flex-start;flex-direction:column}.panel-header{align-items:flex-start}.list-item{grid-template-columns:auto 1fr}.list-item>.button{grid-column:2}.check-grid{grid-template-columns:1fr}.next-move-card{flex-direction:column;align-items:flex-start;gap:10px}.next-move-number{min-width:0}.next-move-card>p:not(.next-move-number){flex:0 1 auto}.stat-row{grid-template-columns:1fr 1fr 1fr}}
-@media(max-width:480px){.header-inner{width:calc(100% - 22px)}.brand-text{font-size:1.05rem}.market-hero{padding:20px 18px}.segmented{display:grid;grid-template-columns:repeat(2,1fr)}.segmented button{text-align:left}.metric-grid{grid-template-columns:1fr}.panel{padding:16px}.panel-header{display:grid}.panel-header .button,.panel-header button{width:100%}.dialog-actions>*{flex:1}.notice{top:8px}}
+@media(max-width:480px){.header-inner{width:calc(100% - 22px)}.brand-text{font-size:1.05rem}.market-hero{padding:20px 18px}.segmented{display:grid;grid-template-columns:repeat(2,1fr)}.segmented button{text-align:left}.metric-grid{grid-template-columns:1fr}.panel{padding:16px}.panel-header{display:grid}.panel-header .button,.panel-header button{width:100%}.dialog-actions>*{flex:1 1 100%}.notice{top:8px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.loader{animation:none}}
 .order-list{display:grid;gap:14px}.order-card .order-items{display:grid;gap:8px;margin:14px 0;padding:12px;border:1px solid var(--line);border-radius:6px;background:var(--paper)}.order-card .order-items p{margin:2px 0 0}.order-card small{color:var(--muted)}

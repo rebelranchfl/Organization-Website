@@ -92,7 +92,7 @@ export function banners(state){
     <p>${esc(b.text)}</p>
     <div class="dash-banner-actions">
       ${b.choice?`<button type="button" class="button" data-dismiss-banner="${b.id}" data-dismiss-value="1">I prefer cash / COD</button>`:''}
-      <a class="button primary" href="${b.href}">${esc(b.ctaText)}</a>
+      <a class="button rust" href="${b.href}">${esc(b.ctaText)}</a>
       ${b.choice?'':`<button type="button" class="button" data-dismiss-banner="${b.id}" data-dismiss-value="${esc(b.dismissValue)}">Not now</button>`}
     </div>
   </div>`).join('')}</div>`;
@@ -270,7 +270,7 @@ export function storefront(state){
   <section class="panel" style="margin-top:18px">
     <div class="panel-header"><h2>Categories</h2></div>
     <details class="disclosure">
-      <summary>Manage categories <span class="eyebrow" style="font-weight:600">— order sets what shows first</span></summary>
+      <summary><span class="disclosure-copy"><strong>Manage categories</strong><small>Order sets what shows first</small></span></summary>
       <div class="list compact">${state.data.categoryAssignments.map((a,i,arr)=>`<article class="list-item"><div><h3>${esc(categoryName(state,a.category_id))}${a.is_primary?' <span class="tag">Primary</span>':''}</h3></div><div class="frame-actions"><button type="button" data-move-category="${a.id}" data-direction="up" ${i===0?'disabled':''} aria-label="Move up">↑</button><button type="button" data-move-category="${a.id}" data-direction="down" ${i===arr.length-1?'disabled':''} aria-label="Move down">↓</button><button class="danger" data-remove-category="${a.id}">Remove</button></div></article>`).join('')||'<p class="eyebrow">No categories yet</p>'}</div>
       ${available.length?`<form id="add-category-form" class="dialog-actions" style="margin-top:14px"><select id="new-category">${available.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')}</select><button class="primary" type="submit">Add</button></form>`:''}
     </details>
