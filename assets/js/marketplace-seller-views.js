@@ -40,6 +40,13 @@ function categoryName(state,id){return state.identity.categories.find(c=>c.id===
 function requirementFor(state,assignmentId){return state.data.requirementAssignments.find(r=>r.id===assignmentId)}
 
 const PAYMENT_LABELS={paypal:'PayPal',venmo:'Venmo',cashapp:'Cash App',zelle:'Zelle',stripe:'Stripe',apple_pay:'Apple Pay',cash:'Cash',check:'Check',other:'Other'};
+const PAYMENT_INITIALS={paypal:'PP',venmo:'V',cashapp:'¢',zelle:'Z',stripe:'S',other:'?'};
+function paymentIcon(methodType){
+  const glyph=PAYMENT_INITIALS[methodType];
+  if(glyph)return `<span class="payment-icon" aria-hidden="true">${esc(glyph)}</span>`;
+  if(methodType==='check')return `<span class="payment-icon" aria-hidden="true">${icon('document')}</span>`;
+  return `<span class="payment-icon" aria-hidden="true">${icon('dollar')}</span>`;
+}
 
 function contactActions(contact){
   const raw=String(contact||'').trim();
@@ -52,43 +59,32 @@ function contactActions(contact){
   return '';
 }
 
-const BANNER_PREFIX='rrl_seller_banner_';
-function bannerDismissedValue(sellerId,id){try{return localStorage.getItem(`${BANNER_PREFIX}${sellerId}_${id}`)}catch{return null}}
-
-export function banners(state){
+// The single highest-priority upsell for this seller, shown as the header CTA
+// once they're live (that slot has nothing else to do for an active seller).
+export function topPromo(state){
   const sp=state.identity?.sellerProfile;
   const data=state.data;
-  if(!sp||!data)return '';
+  if(!sp||!data)return null;
   const ref='ref=marketplace-seller-dashboard';
-  const items=[];
 
   const missingLogo=!sp.logo_object_path,missingListings=!(data.listings||[]).length;
   if(missingLogo||missingListings){
     const what=missingLogo&&missingListings?'a logo and any listings':missingLogo?'a logo':'any listings';
-    items.push({id:'storefront',dismissValue:'1',text:`Your public shop is missing ${what} — a complete storefront earns buyer trust faster.`,ctaText:'Get Seen, Get Found — from $199',href:`business-request.html?service=online-presence&${ref}`});
+    return {id:'storefront',text:`Your public shop is missing ${what}.`,ctaText:'Get Seen, Get Found — from $199',href:`business-request.html?service=online-presence&${ref}`};
   }
 
   const openOrders=(data.orders||[]).filter(o=>['new','change_proposed'].includes(o.status)).length;
   const unreadInquiries=(data.inquiries||[]).filter(i=>!i.is_read).length;
   const backlog=openOrders+unreadInquiries;
-  const dismissedAt=Number(bannerDismissedValue(sp.id,'overwhelmed')||0);
-  if(backlog>=3&&backlog>dismissedAt){
-    items.push({id:'overwhelmed',dismissValue:String(backlog),text:`You have ${backlog} order${backlog===1?'':'s'} and question${backlog===1?'':'s'} waiting on a response.`,ctaText:"Stop Losing Customers While You're Busy — from $199",href:`business-request.html?service=lead-capture-follow-up&${ref}`});
+  if(backlog>=3){
+    return {id:'overwhelmed',text:`${backlog} orders and questions are waiting on a response.`,ctaText:"Stop Losing Customers While You're Busy — from $199",href:`business-request.html?service=lead-capture-follow-up&${ref}`};
   }
 
-  if(!(data.paymentMethods||[]).length&&!bannerDismissedValue(sp.id,'payment')){
-    items.push({id:'payment',choice:true,text:'Buyers currently have no way to pay you except cash or check on pickup.',ctaText:'I want to get paid faster',href:`business-request.html?service=get-paid-faster&${ref}`});
+  if(!(data.paymentMethods||[]).length){
+    return {id:'payment',text:'No way to pay you except cash or check on pickup.',ctaText:'I want to get paid faster',href:`business-request.html?service=get-paid-faster&${ref}`};
   }
 
-  if(!items.length)return '';
-  return `<div class="dash-banners">${items.map(b=>`<div class="dash-banner">
-    <p>${esc(b.text)}</p>
-    <div class="dash-banner-actions">
-      ${b.choice?`<button type="button" class="button" data-dismiss-banner="${b.id}" data-dismiss-value="1">I prefer cash / COD</button>`:''}
-      <a class="button primary" href="${b.href}">${esc(b.ctaText)}</a>
-      ${b.choice?'':`<button type="button" class="button" data-dismiss-banner="${b.id}" data-dismiss-value="${esc(b.dismissValue)}">Not now</button>`}
-    </div>
-  </div>`).join('')}</div>`;
+  return null;
 }
 
 function resolveSellerState(sp,app){
@@ -102,94 +98,214 @@ function resolveSellerState(sp,app){
   return{label:'Draft — Not Submitted Yet',tone:'private'};
 }
 
-export function statusStrip(state){
-  const sp=state.identity?.sellerProfile;
-  if(!sp)return '';
-  const app=state.data?.applications?.[0];
-  const {label:stateLabel,tone}=resolveSellerState(sp,app);
-  const live=sp.profile_status==='active'&&sp.public_slug;
-  return `<div class="status-strip">
-    <span class="status-badge ${tone}">${esc(stateLabel)}</span>
-    <button class="primary" type="button" data-goto-view="listings">Put Me on the Map</button>
-    ${live?`<a class="button" href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}" target="_blank" rel="noopener">View My Storefront ↗</a>`:''}
-  </div>`;
-}
-
 function draftOr(sp,key){return sp.draft_data&&Object.prototype.hasOwnProperty.call(sp.draft_data,key)?sp.draft_data[key]:sp[key]}
 
-export function status(state){
+function storefrontChecklist(state){
+  const sp=state.identity.sellerProfile;
+  const f=state.data.fulfillment||{};
+  const pickupOn=f.offers_pickup!==false;
+  const items=[
+    {label:'Write a short description',done:!!(draftOr(sp,'short_description')||'').trim()},
+    {label:'Add a business photo or logo',done:!!draftOr(sp,'logo_object_path')},
+    {label:'Add at least one category',done:state.data.categoryAssignments.length>0},
+    {label:'Add a payment method',done:state.data.paymentMethods.length>0},
+    {label:pickupOn?'Add your pickup hours':'Set your fulfillment options',done:pickupOn?!!(f.pickup_hours||'').trim():!!state.data.fulfillment},
+    {label:'Add your first listing',done:state.data.listings.length>0}
+  ];
+  const done=items.filter(i=>i.done).length;
+  return {items,done,total:items.length,pct:items.length?Math.round(done/items.length*100):0};
+}
+
+export function stand(state){
+  const sp=state.identity.sellerProfile;
+  const app=state.data.applications[0];
+  const {label:stateLabel}=resolveSellerState(sp,app);
+  const firstName=(state.identity.displayName||sp.business_name||'there').split(' ')[0];
+  const checklist=storefrontChecklist(state);
+  const live=sp.profile_status==='active'&&sp.public_slug;
+
+  const openOrders=(state.data.orders||[]).filter(o=>['new','change_proposed'].includes(o.status)).map(o=>({...o,kind:'order'}));
+  const openQuestions=(state.data.inquiries||[]).filter(i=>!i.is_read||!i.responded_at).map(i=>({...i,kind:'question'}));
+  const needs=[...openOrders,...openQuestions].sort((a,b)=>new Date(a.created_at)-new Date(b.created_at));
+
+  const weekAgo=Date.now()-7*86400000;
+  const weekInquiries=(state.data.inquiries||[]).filter(i=>new Date(i.created_at).getTime()>=weekAgo).length;
+  const weekOrders=(state.data.orders||[]).filter(o=>new Date(o.created_at).getTime()>=weekAgo).length;
+  const completed=(state.data.orders||[]).filter(o=>o.status==='completed');
+  const totalRevenue=completed.reduce((sum,o)=>sum+Number(o.confirmed_total??o.estimated_total??0),0);
+  const stats=state.data.storefrontStats||[];
+  const totalViews=stats.reduce((sum,s)=>sum+s.page_views,0);
+  const proHref='business-request.html?service=general-business-service&ref=marketplace-seller-dashboard-stand';
+  const lockIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>';
+
+  const revenueTile=sp.is_pro
+    ?`<div class="keep-bar"><div><p class="lbl">Yours to keep</p><strong>$${totalRevenue.toFixed(2)}</strong></div><p class="note">No platform<br>commission</p></div>`
+    :`<div class="keep-bar locked"><div><p class="lbl">Yours to keep</p><span class="paywall-figure">$${totalRevenue.toFixed(2)}</span></div><a href="${proHref}">${lockIcon.replace('<svg ','<svg class="lock-icon" ')} Unlock revenue tracking — $9.99/mo</a></div>`;
+  const viewsTile=sp.is_pro
+    ?`<div class="stat-tile"><strong>${totalViews}</strong><span>Views</span></div>`
+    :`<div class="stat-tile paywall"><span class="paywall-figure">${totalViews}</span><span>Views</span><a href="${proHref}">${lockIcon} Unlock</a></div>`;
+
+  const chev='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>';
+  const needsItem=item=>item.kind==='order'
+    ?`<button type="button" class="needs-card" data-goto-view="connections"><span class="needs-avatar" aria-hidden="true">${icon('receipt')}</span><span class="needs-body"><strong>Order #${item.order_number} — ${esc(item.buyer_name)}</strong><span>${esc(label(item.status))} · ${new Date(item.created_at).toLocaleString()}</span></span><span class="needs-chev" aria-hidden="true">${chev}</span></button>`
+    :`<button type="button" class="needs-card" data-goto-view="connections"><span class="needs-avatar">${esc((item.sender_name||'?').slice(0,1).toUpperCase())}</span><span class="needs-body"><strong>${esc(item.sender_name)} asked a question</strong><span>${new Date(item.created_at).toLocaleString()}${item.responded_at?' · Responded':' · Needs response'}</span></span><span class="needs-chev" aria-hidden="true">${chev}</span></button>`;
+
+  return `
+  <header class="stand-header">
+    <div class="stand-topline"><span class="stand-avatar">${esc(firstName.slice(0,1).toUpperCase())}</span></div>
+    <h1>Welcome back, ${esc(firstName)}.</h1>
+    <p class="stand-status-line"><span class="stand-status-dot"></span>${esc(stateLabel)}</p>
+    ${live?`<a class="stand-storefront-link" href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}" target="_blank" rel="noopener">View my public storefront ↗</a>`:''}
+  </header>
+
+  <div class="readiness-card">
+    <div class="readiness-top"><strong>Storefront is ${checklist.pct}% ready</strong><span>${checklist.total-checklist.done} left</span></div>
+    <div class="progress-track"><div class="progress-fill" style="width:${checklist.pct}%"></div></div>
+    <p>${checklist.done===checklist.total?"Everything's set — buyers can find and buy from you.":checklist.items.find(i=>!i.done)?.label+' and you\'ll show up fully in local search.'}</p>
+    <button type="button" class="button primary" style="width:100%" data-goto-view="storefront">Finish storefront</button>
+  </div>
+
+  <section class="panel week-panel">
+    <div class="panel-header"><h2>This week</h2></div>
+    <div class="stat-row">
+      <div class="stat-tile"><strong>${weekInquiries}</strong><span>Inquiries</span></div>
+      <div class="stat-tile"><strong>${weekOrders}</strong><span>Orders</span></div>
+      ${viewsTile}
+    </div>
+    ${revenueTile}
+  </section>
+
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin:0 0 10px">
+    <p class="eyebrow" style="margin:0">Needs you</p>
+    ${needs.length?'<button type="button" class="text-link-button" data-goto-view="connections">See all →</button>':''}
+  </div>
+  ${needs.length?needs.map(needsItem).join(''):`<div class="needs-card"><div class="needs-body"><strong>You're all caught up</strong><span>New orders and questions will show up here first.</span></div></div>`}
+  `;
+}
+
+export function storefront(state){
   const sp=state.identity.sellerProfile;
   const app=state.data.applications[0];
   const canEdit=!app||['draft','changes_requested'].includes(app.status);
   const assignedIds=new Set(state.data.categoryAssignments.map(a=>a.category_id));
   const available=state.identity.categories.filter(c=>!assignedIds.has(c.id));
-  const {label:stateLabel,tone:stateTone}=resolveSellerState(sp,app);
   const draftLogo=draftOr(sp,'logo_object_path');
   const draftWhy=draftOr(sp,'why_shop_points')||[];
+  const photos=state.data.storefrontPhotos||[];
+  const f=state.data.fulfillment||{};
+  const checklist=storefrontChecklist(state);
 
-  return `${heading('Seller status','Your Marketplace profile','Manage your business details and application status.')}
-  <div class="layout">
-    <div class="stack">
-      <section class="panel">
-        <div class="panel-header"><div><p class="eyebrow">Business</p><h2>${esc(sp.business_name)}</h2></div><span class="status-badge ${stateTone}">${esc(stateLabel)}</span></div>
-        ${sp.has_unpublished_changes?`<div class="draft-banner"><div><span class="status-badge review">Draft changes pending</span><p>Not visible to buyers yet</p></div><div class="actions">${sp.public_slug?`<a class="button" href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}&preview=1" target="_blank" rel="noopener">Preview as buyer ↗</a>`:''}<button class="primary" data-action="publish-profile">Publish Changes</button><button class="danger" data-action="discard-profile-draft">Discard Draft</button></div></div>`:''}
-        <details class="disclosure">
-          <summary>Update store details</summary>
-          <div class="logo-row">
-            ${draftLogo?`<img class="logo-preview" src="${esc(publicUrl(draftLogo))}" alt="Your business logo">`:'<div class="logo-preview logo-preview-empty">No logo yet</div>'}
-            <form id="logo-upload-form" class="dialog-actions">
-              <label>Business logo <span>JPEG, PNG, WebP, or an iPhone photo (HEIC); 5 MB max. Saved as a draft — publish to make it live.</span><input data-field="logo-file" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" required></label>
-              <button class="primary" type="submit">${draftLogo?'Replace logo':'Upload logo'}</button>
-            </form>
-          </div>
-          <form id="profile-form" class="onboarding-form">
-            <label>Business name<input id="pf-business-name" value="${esc(draftOr(sp,'business_name'))}" ${canEdit?'':'disabled'} required></label>
-            <label>Short description<textarea id="pf-short-description">${esc(draftOr(sp,'short_description')||'')}</textarea></label>
-            <label>Long description <span>Shown in the About section of your public page</span><textarea id="pf-long-description">${esc(draftOr(sp,'long_description')||'')}</textarea></label>
-            <p>Your public storefront uses the approved Rebel Ranch Local appearance. Your logo, business story, listings, and photographs make the page your own.</p>
-            <label>Why shop with you? <span>Up to 3 reasons buyers should choose you — shown on your public page. Leave blank to use our default copy.</span></label>
-            <input id="pf-why-1" placeholder="Reason 1" value="${esc(draftWhy[0]||'')}">
-            <input id="pf-why-2" placeholder="Reason 2" value="${esc(draftWhy[1]||'')}">
-            <input id="pf-why-3" placeholder="Reason 3" value="${esc(draftWhy[2]||'')}">
-            <p class="eyebrow">Changes save as a draft — buyers won't see them until you publish.</p>
-            <div class="dialog-actions"><button class="primary" type="submit">Save as Draft</button></div>
-          </form>
-        </details>
-      </section>
-      <section class="panel">
-        <div class="panel-header"><div><p class="eyebrow">Application</p><h2>${app?label(app.status):'Not started'}</h2></div>${app?badge(app.status):''}</div>
-        ${app?`<p>${app.review_notes?esc(app.review_notes):'No reviewer notes yet.'}</p>
-        <div class="actions">${['draft','changes_requested'].includes(app.status)?'<button class="primary" data-action="submit-application">Submit for review</button>':''}${app.status==='draft'?'<button class="danger" data-action="withdraw-application">Withdraw</button>':''}</div>`:empty('No application yet','Something went wrong creating your application — contact support.')}
-      </section>
-      ${complianceSection(state)}
+  return `${heading('Editor','How neighbors see you','This is what buyers see on your public storefront — build it out, then publish.')}
+
+  <section class="panel">
+    ${sp.has_unpublished_changes?`<div class="draft-banner"><div><span class="status-badge review">Draft changes pending</span><p>Not visible to buyers yet</p></div><div class="actions">${sp.public_slug?`<a class="button" href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}&preview=1" target="_blank" rel="noopener">Preview as buyer ↗</a>`:''}<button class="primary" data-action="publish-profile">Publish Changes</button><button class="danger" data-action="discard-profile-draft">Discard Draft</button></div></div>`:''}
+    <div class="panel-header"><div><p class="eyebrow">Business</p><h2>${esc(draftOr(sp,'business_name'))}</h2></div><span class="badge-local">Local</span></div>
+    <div class="logo-row">
+      ${draftLogo?`<img class="logo-preview" src="${esc(publicUrl(draftLogo))}" alt="Your business logo">`:'<div class="logo-preview logo-preview-empty">No logo yet</div>'}
+      <form id="logo-upload-form" class="dialog-actions">
+        <label>Business logo <span>JPEG, PNG, WebP, or an iPhone photo (HEIC); 5 MB max. Saved as a draft — publish to make it live.</span><input data-field="logo-file" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" required></label>
+        <button class="primary" type="submit">${draftLogo?'Replace logo':'Upload logo'}</button>
+      </form>
     </div>
-    <aside class="stack">
-      <section class="panel">
-        <div class="panel-header"><h2>Categories</h2></div>
-        <div class="tag-row">${state.data.categoryAssignments.map(a=>`<span class="tag">${esc(categoryName(state,a.category_id))}${a.is_primary?' · Primary':''}</span>`).join('')||'<p class="eyebrow">No categories yet</p>'}</div>
-        <details class="disclosure">
-          <summary>Manage categories</summary>
-          <p class="eyebrow">Order controls which categories show first on your public page.</p>
-          <div class="list">${state.data.categoryAssignments.map((a,i,arr)=>`<article class="list-item"><span class="list-icon" aria-hidden="true">${icon('tag')}</span><div><h3>${esc(categoryName(state,a.category_id))}</h3><p>${a.is_primary?'Primary':`Position ${i+1}`}</p></div><div class="frame-actions"><button type="button" data-move-category="${a.id}" data-direction="up" ${i===0?'disabled':''} aria-label="Move up">↑</button><button type="button" data-move-category="${a.id}" data-direction="down" ${i===arr.length-1?'disabled':''} aria-label="Move down">↓</button><button class="danger" data-remove-category="${a.id}">Remove</button></div></article>`).join('')||'<p class="eyebrow">No categories yet</p>'}</div>
-          ${available.length?`<form id="add-category-form" class="dialog-actions" style="margin-top:14px"><select id="new-category">${available.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')}</select><button class="primary" type="submit">Add</button></form>`:''}
-        </details>
-      </section>
-      <section class="panel">
-        <div class="panel-header"><div><h2>Payment methods</h2><p>Shown on your public page so buyers know how to pay you directly.</p></div></div>
-        <div class="tag-row">${state.data.paymentMethods.map(m=>`<span class="tag">${esc(PAYMENT_LABELS[m.method_type]||label(m.method_type))}</span>`).join('')||'<p class="eyebrow">No payment methods added yet</p>'}</div>
-        <details class="disclosure">
-          <summary>Manage payment methods</summary>
-          <div class="list">${state.data.paymentMethods.map(m=>`<article class="list-item"><span class="list-icon" aria-hidden="true">${icon('dollar')}</span><div><h3>${esc(PAYMENT_LABELS[m.method_type]||label(m.method_type))}</h3><p>${esc(m.label)}</p></div><button class="danger" data-remove-payment="${m.id}">Remove</button></article>`).join('')||'<p class="eyebrow">No payment methods added yet</p>'}</div>
-          <form id="add-payment-form" class="onboarding-form" style="margin-top:14px">
-            <label>Type<select id="new-payment-type">${Object.entries(PAYMENT_LABELS).map(([k,t])=>`<option value="${k}">${t}</option>`).join('')}</select></label>
-            <label>Label or handle<input id="new-payment-label" placeholder="e.g. @cypresscreek or (352) 555-0142" required></label>
-            <label>Link <span>Optional — e.g. a PayPal.me or Cash App link</span><input id="new-payment-link" type="url" placeholder="https://paypal.me/…"></label>
-            <div class="dialog-actions"><button class="primary" type="submit">Add payment method</button></div>
-          </form>
-        </details>
-      </section>
-    </aside>
-  </div>`;
+    <details class="disclosure">
+      <summary>Edit business details</summary>
+      <form id="profile-form" class="onboarding-form">
+        <label>Business name<input id="pf-business-name" value="${esc(draftOr(sp,'business_name'))}" ${canEdit?'':'disabled'} required></label>
+        <label>Short description<textarea id="pf-short-description">${esc(draftOr(sp,'short_description')||'')}</textarea></label>
+        <label>Long description <span>Shown in the About section of your public page</span><textarea id="pf-long-description">${esc(draftOr(sp,'long_description')||'')}</textarea></label>
+        <label>Why shop with you? <span>Up to 3 reasons buyers should choose you — shown on your public page. Leave blank to use our default copy.</span></label>
+        <input id="pf-why-1" placeholder="Reason 1" value="${esc(draftWhy[0]||'')}">
+        <input id="pf-why-2" placeholder="Reason 2" value="${esc(draftWhy[1]||'')}">
+        <input id="pf-why-3" placeholder="Reason 3" value="${esc(draftWhy[2]||'')}">
+        <p class="form-hint">Changes save as a draft — buyers won't see them until you publish.</p>
+        <div class="dialog-actions"><button class="primary" type="submit">Save as Draft</button></div>
+      </form>
+    </details>
+    <div class="tag-row" style="margin-top:14px">${state.data.categoryAssignments.map(a=>`<span class="tag">${esc(categoryName(state,a.category_id))}${a.is_primary?' · Primary':''}</span>`).join('')||'<p class="eyebrow">No categories yet</p>'}</div>
+  </section>
+
+  <div class="section-row" style="display:flex;align-items:baseline;justify-content:space-between;margin:24px 0 10px"><p class="eyebrow" style="margin:0">Photos</p><span style="font-size:12.5px;font-weight:700;color:var(--muted)">${photos.length} added</span></div>
+  <section class="panel">
+    <div class="photo-row">
+      <label class="photo-add" for="storefront-photo-input">
+        ${icon('sparkle')}
+        <span>Add photo</span>
+        <input id="storefront-photo-input" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" class="sr-only">
+      </label>
+      ${photos.map(p=>`<span class="photo-tile"><img src="${esc(publicUrl(p.object_path))}" alt=""><button type="button" data-delete-storefront-photo="${p.id}" aria-label="Remove photo">×</button></span>`).join('')}
+    </div>
+  </section>
+
+  <div class="section-row" style="display:flex;align-items:baseline;justify-content:space-between;margin:24px 0 10px"><p class="eyebrow" style="margin:0">Still to do</p><span style="font-size:12.5px;font-weight:700;color:var(--muted)">${checklist.total-checklist.done} of ${checklist.total}</span></div>
+  <section class="panel">
+    <div class="todo-list">${checklist.items.map(i=>`<div class="todo-row"><span class="todo-mark ${i.done?'done':''}"></span><strong>${esc(i.label)}</strong>${i.done?'':'<span class="text-link-button">See below</span>'}</div>`).join('')}</div>
+  </section>
+
+  <section class="panel" style="margin-top:18px">
+    <div class="panel-header"><div><h2>Payment methods</h2><p>Shown on your public page so buyers know how to pay you directly.</p></div></div>
+    <div class="tag-row">${state.data.paymentMethods.map(m=>`<span class="tag">${esc(PAYMENT_LABELS[m.method_type]||label(m.method_type))}</span>`).join('')||'<p class="eyebrow">No payment methods added yet</p>'}</div>
+    <details class="disclosure">
+      <summary>Manage payment methods</summary>
+      <div class="list">${state.data.paymentMethods.map(m=>`<article class="list-item">${paymentIcon(m.method_type)}<div><h3>${esc(PAYMENT_LABELS[m.method_type]||label(m.method_type))}</h3><p>${esc(m.label)}</p></div><button class="danger" data-remove-payment="${m.id}">Remove</button></article>`).join('')||'<p class="eyebrow">No payment methods added yet</p>'}</div>
+      <form id="add-payment-form" class="onboarding-form" style="margin-top:14px">
+        <label>Type<select id="new-payment-type">${Object.entries(PAYMENT_LABELS).map(([k,t])=>`<option value="${k}">${t}</option>`).join('')}</select></label>
+        <label>Label or handle<input id="new-payment-label" placeholder="e.g. @cypresscreek or (352) 555-0142" required></label>
+        <label>Link <span>Optional — e.g. a PayPal.me or Cash App link</span><input id="new-payment-link" type="url" placeholder="https://paypal.me/…"></label>
+        <div class="dialog-actions"><button class="primary" type="submit">Add payment method</button></div>
+      </form>
+    </details>
+  </section>
+
+  <section class="panel" style="margin-top:18px">
+    <div class="panel-header"><h2>Categories</h2></div>
+    <details class="disclosure">
+      <summary><span class="disclosure-copy"><strong>Manage categories</strong><small>Order sets what shows first</small></span></summary>
+      <div class="list compact">${state.data.categoryAssignments.map((a,i,arr)=>`<article class="list-item"><div><h3>${esc(categoryName(state,a.category_id))}${a.is_primary?' <span class="tag">Primary</span>':''}</h3></div><div class="frame-actions"><button type="button" data-move-category="${a.id}" data-direction="up" ${i===0?'disabled':''} aria-label="Move up">↑</button><button type="button" data-move-category="${a.id}" data-direction="down" ${i===arr.length-1?'disabled':''} aria-label="Move down">↓</button><button class="danger" data-remove-category="${a.id}">Remove</button></div></article>`).join('')||'<p class="eyebrow">No categories yet</p>'}</div>
+      ${available.length?`<form id="add-category-form" class="dialog-actions" style="margin-top:14px"><select id="new-category">${available.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')}</select><button class="primary" type="submit">Add</button></form>`:''}
+    </details>
+  </section>
+
+  <section class="panel" style="margin-top:18px">
+    <div class="panel-header"><div><h2>Fulfillment &amp; pickup</h2><p>How buyers get what they order from you.</p></div></div>
+    <details class="disclosure">
+      <summary>Manage fulfillment options</summary>
+      <form id="fulfillment-form" class="onboarding-form">
+        <div class="check-grid">
+          <label><input id="fulfill-pickup" type="checkbox" ${f.offers_pickup!==false?'checked':''}> Pickup</label>
+          <label><input id="fulfill-delivery" type="checkbox" ${f.offers_delivery?'checked':''}> Local delivery</label>
+          <label><input id="fulfill-meetup" type="checkbox" ${f.offers_meetup!==false?'checked':''}> Meet-up</label>
+          <label><input id="fulfill-shipping" type="checkbox" ${f.offers_shipping?'checked':''}> Shipping</label>
+        </div>
+        <label>Pickup hours <span>Shown to buyers so they know when to come by</span><input id="fulfill-pickup-hours" placeholder="e.g. Sat 9am–1pm, or by appointment" value="${esc(f.pickup_hours||'')}"></label>
+        <label>Public fulfillment note<textarea id="fulfill-notes">${esc(f.public_notes||'')}</textarea></label>
+        <button class="primary" type="submit">Save fulfillment options</button>
+      </form>
+    </details>
+  </section>`;
+}
+
+export function status(state){
+  const sp=state.identity.sellerProfile;
+  const app=state.data.applications[0];
+  const {label:stateLabel,tone:stateTone}=resolveSellerState(sp,app);
+  const events=(state.data.reviewEvents||[]).slice(0,5);
+
+  return `${heading('Status','Your standing','Application status, compliance requirements and review history.')}
+
+  <div class="standing-card ${stateTone}">
+    <span class="standing-check" aria-hidden="true">${icon('check')}</span>
+    <div><strong>${esc(stateLabel)}</strong><span>${sp.profile_status==='active'?'Renews as long as your listings and requirements stay current':app?.review_notes?esc(app.review_notes):'No reviewer notes yet'}</span></div>
+  </div>
+
+  <section class="panel">
+    <div class="panel-header"><div><p class="eyebrow">Application</p><h2>${app?label(app.status):'Not started'}</h2></div>${app?badge(app.status):''}</div>
+    ${app?`<div class="actions">${['draft','changes_requested'].includes(app.status)?'<button class="primary" data-action="submit-application">Submit for review</button>':''}${app.status==='draft'?'<button class="danger" data-action="withdraw-application">Withdraw</button>':''}</div>`:empty('No application yet','Something went wrong creating your application — contact support.')}
+  </section>
+
+  ${complianceSection(state)}
+
+  <div class="section-row" style="display:flex;align-items:baseline;justify-content:space-between;margin:24px 0 10px"><p class="eyebrow" style="margin:0">Review history</p>${events.length?'<button type="button" class="text-link-button" data-goto-view="history">See all →</button>':''}</div>
+  ${events.length?`<div class="list">${events.map(e=>`<article class="list-item"><span class="list-icon" aria-hidden="true">${icon('history')}</span><div><h3>${e.from_status?`${label(e.from_status)} → ${label(e.to_status)}`:label(e.to_status)}</h3><p>${e.note?esc(e.note):''}</p><small>${new Date(e.recorded_at).toLocaleString()}</small></div></article>`).join('')}</div>`:empty('No history yet','Once your application moves through review, each step will show up here.')}`;
 }
 
 function listingCard(item,sellerSlug){
@@ -221,8 +337,8 @@ function listingCard(item,sellerSlug){
         <label>Description<textarea data-field="description">${esc(draftDesc||'')}</textarea></label>
         <label>Price <span>Free text — e.g. "$8 each" or "Call for a quote"</span><input data-field="price_label" value="${esc(draftPrice||'')}"></label>
         <label>Pricing type<select data-field="price_type"><option value="fixed" ${draftPriceType==='fixed'?'selected':''}>Fixed price</option><option value="starting_at" ${draftPriceType==='starting_at'?'selected':''}>Starting at</option><option value="quote" ${draftPriceType==='quote'?'selected':''}>Seller confirms price</option></select></label>
-        <label>Numeric unit price <span>Optional; used to estimate fixed-price orders</span><input type="number" min="0" step="0.01" data-field="unit_price" value="${draftUnitPrice??''}"></label>
-        <p class="eyebrow">Changes save as a draft — buyers won't see them until you publish.</p>
+        <label>Price (numbers only) <span>Optional — lets us total up fixed-price orders for you</span><input type="number" min="0" step="0.01" data-field="unit_price" value="${draftUnitPrice??''}"></label>
+        <p class="form-hint">Changes save as a draft — buyers won't see them until you publish.</p>
         <div class="dialog-actions"><button class="primary" type="submit">Save as Draft</button></div>
       </form>
     </details>
@@ -251,7 +367,7 @@ export function listings(state){
         <label>Description<textarea id="new-listing-description"></textarea></label>
         <label>Price <span>Free text — e.g. "$8 each" or "Call for a quote"</span><input id="new-listing-price" placeholder="$8 each"></label>
         <label>Pricing type<select id="new-listing-price-type"><option value="fixed">Fixed price</option><option value="starting_at">Starting at</option><option value="quote">Seller confirms price</option></select></label>
-        <label>Numeric unit price <span>Optional; used to estimate fixed-price orders</span><input id="new-listing-unit-price" type="number" min="0" step="0.01" placeholder="8.00"></label>
+        <label>Price (numbers only) <span>Optional — lets us total up fixed-price orders for you</span><input id="new-listing-unit-price" type="number" min="0" step="0.01" placeholder="8.00"></label>
         <div class="dialog-actions"><button class="primary" type="submit">Add listing</button></div>
       </form>
     </details>
@@ -365,7 +481,7 @@ function withinWindow(dateStr,days){
 }
 
 function ordersBody(state){
-  const f=state.data.fulfillment||{},allItems=state.data.orders||[];
+  const allItems=state.data.orders||[];
   const win=state.orderFilter?.window||'24h';
   const days=ORDER_WINDOWS[win];
   const items=allItems.filter(o=>withinWindow(o.created_at,days));
@@ -379,8 +495,6 @@ function ordersBody(state){
     ${metric('Owed to You',`$${owedTotal.toFixed(2)}`,'Open orders, estimated')}
   </div>`;
   const filterRow=`<div class="view-tools" style="margin:14px 0"><label style="display:flex;align-items:center;gap:8px;font-weight:800;color:var(--ink)">Showing<select id="order-window"><option value="24h" ${win==='24h'?'selected':''}>Last 24 hours</option><option value="7d" ${win==='7d'?'selected':''}>Last 7 days</option><option value="all" ${win==='all'?'selected':''}>All time</option></select></label></div>`;
-  const currentMethods=[f.offers_pickup!==false&&'Pickup',f.offers_delivery&&'Local delivery',f.offers_meetup!==false&&'Meet-up',f.offers_shipping&&'Shipping'].filter(Boolean).join(', ')||'None set';
-  const settings=`<section class="panel"><div class="panel-header"><h2>Fulfillment options</h2><span class="tag">${esc(currentMethods)}</span></div><details class="disclosure"><summary>Manage fulfillment options</summary><form id="fulfillment-form" class="onboarding-form"><div class="check-grid"><label><input id="fulfill-pickup" type="checkbox" ${f.offers_pickup!==false?'checked':''}> Pickup</label><label><input id="fulfill-delivery" type="checkbox" ${f.offers_delivery?'checked':''}> Local delivery</label><label><input id="fulfill-meetup" type="checkbox" ${f.offers_meetup!==false?'checked':''}> Meet-up</label><label><input id="fulfill-shipping" type="checkbox" ${f.offers_shipping?'checked':''}> Shipping</label></div><label>Public fulfillment note<textarea id="fulfill-notes">${esc(f.public_notes||'')}</textarea></label><button class="primary" type="submit">Save fulfillment options</button></form></details></section>`;
   const orderTotal=o=>o.confirmed_total!==null?`$${Number(o.confirmed_total).toFixed(2)}`:o.estimated_total!==null?`Est. $${Number(o.estimated_total).toFixed(2)}`:'Total needs confirmation';
   const orderCard=o=>{
     const active=!['completed','declined'].includes(o.status);
@@ -403,7 +517,7 @@ function ordersBody(state){
     </article>`;
   };
   const cards=items.length?`<div class="order-list">${items.map(orderCard).join('')}</div>`:empty(allItems.length?'No orders in this window':'No orders yet',allItems.length?'Try "All time" to see older orders.':'New structured orders and service requests will appear here — separate from buyer questions.');
-  return `${statsRow}${filterRow}<div>${cards}</div><div style="margin-top:18px">${settings}</div>`;
+  return `${statsRow}${filterRow}<div>${cards}</div>`;
 }
 
 export function connections(state){
@@ -504,4 +618,4 @@ export function kpis(state){
   </section>`;
 }
 
-export const renderers={status,listings,connections,notifications,history,admin,today,kpis};
+export const renderers={stand,storefront,status,listings,connections,notifications,history,admin,today,kpis};
