@@ -40,6 +40,13 @@ function categoryName(state,id){return state.identity.categories.find(c=>c.id===
 function requirementFor(state,assignmentId){return state.data.requirementAssignments.find(r=>r.id===assignmentId)}
 
 const PAYMENT_LABELS={paypal:'PayPal',venmo:'Venmo',cashapp:'Cash App',zelle:'Zelle',stripe:'Stripe',apple_pay:'Apple Pay',cash:'Cash',check:'Check',other:'Other'};
+const PAYMENT_INITIALS={paypal:'PP',venmo:'V',cashapp:'¢',zelle:'Z',stripe:'S',other:'?'};
+function paymentIcon(methodType){
+  const glyph=PAYMENT_INITIALS[methodType];
+  if(glyph)return `<span class="payment-icon" aria-hidden="true">${esc(glyph)}</span>`;
+  if(methodType==='check')return `<span class="payment-icon" aria-hidden="true">${icon('document')}</span>`;
+  return `<span class="payment-icon" aria-hidden="true">${icon('dollar')}</span>`;
+}
 
 function contactActions(contact){
   const raw=String(contact||'').trim();
@@ -149,15 +156,17 @@ export function stand(state){
     ?`<div class="stat-tile"><strong>${totalViews}</strong><span>Views</span></div>`
     :`<div class="stat-tile paywall"><span class="paywall-figure">${totalViews}</span><span>Views</span><a href="${proHref}">${lockIcon} Unlock</a></div>`;
 
+  const chev='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>';
   const needsItem=item=>item.kind==='order'
-    ?`<div class="needs-card"><span class="needs-avatar" aria-hidden="true">${icon('receipt')}</span><div class="needs-body"><strong>Order #${item.order_number} — ${esc(item.buyer_name)}</strong><span>${esc(label(item.status))} · ${new Date(item.created_at).toLocaleString()}</span></div><button type="button" class="text-link-button" data-goto-view="connections">Open →</button></div>`
-    :`<div class="needs-card"><span class="needs-avatar">${esc((item.sender_name||'?').slice(0,1).toUpperCase())}</span><div class="needs-body"><strong>${esc(item.sender_name)} asked a question</strong><span>${new Date(item.created_at).toLocaleString()}${item.responded_at?' · Responded':' · Needs response'}</span></div><button type="button" class="text-link-button" data-goto-view="connections">Open →</button></div>`;
+    ?`<button type="button" class="needs-card" data-goto-view="connections"><span class="needs-avatar" aria-hidden="true">${icon('receipt')}</span><span class="needs-body"><strong>Order #${item.order_number} — ${esc(item.buyer_name)}</strong><span>${esc(label(item.status))} · ${new Date(item.created_at).toLocaleString()}</span></span><span class="needs-chev" aria-hidden="true">${chev}</span></button>`
+    :`<button type="button" class="needs-card" data-goto-view="connections"><span class="needs-avatar">${esc((item.sender_name||'?').slice(0,1).toUpperCase())}</span><span class="needs-body"><strong>${esc(item.sender_name)} asked a question</strong><span>${new Date(item.created_at).toLocaleString()}${item.responded_at?' · Responded':' · Needs response'}</span></span><span class="needs-chev" aria-hidden="true">${chev}</span></button>`;
 
   return `
   <header class="stand-header">
     <div class="stand-topline"><span class="stand-avatar">${esc(firstName.slice(0,1).toUpperCase())}</span></div>
     <h1>Welcome back, ${esc(firstName)}.</h1>
     <p class="stand-status-line"><span class="stand-status-dot"></span>${esc(stateLabel)}</p>
+    ${live?`<a class="stand-storefront-link" href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}" target="_blank" rel="noopener">View my public storefront ↗</a>`:''}
   </header>
 
   <div class="readiness-card">
@@ -167,16 +176,15 @@ export function stand(state){
     <button type="button" class="button primary" style="width:100%" data-goto-view="storefront">Finish storefront</button>
   </div>
 
-  <p class="eyebrow">This week</p>
-  <div class="stat-row">
-    <div class="stat-tile"><strong>${weekInquiries}</strong><span>Inquiries</span></div>
-    <div class="stat-tile"><strong>${weekOrders}</strong><span>Orders</span></div>
-    ${viewsTile}
-  </div>
-
-  ${revenueTile}
-
-  ${live?`<p style="margin:-10px 0 18px"><a class="text-link-button" href="marketplace-seller-page.html?seller=${esc(sp.public_slug)}" target="_blank" rel="noopener">View my public storefront ↗</a></p>`:''}
+  <section class="panel week-panel">
+    <div class="panel-header"><h2>This week</h2></div>
+    <div class="stat-row">
+      <div class="stat-tile"><strong>${weekInquiries}</strong><span>Inquiries</span></div>
+      <div class="stat-tile"><strong>${weekOrders}</strong><span>Orders</span></div>
+      ${viewsTile}
+    </div>
+    ${revenueTile}
+  </section>
 
   <div style="display:flex;align-items:baseline;justify-content:space-between;margin:0 0 10px">
     <p class="eyebrow" style="margin:0">Needs you</p>
@@ -249,7 +257,7 @@ export function storefront(state){
     <div class="tag-row">${state.data.paymentMethods.map(m=>`<span class="tag">${esc(PAYMENT_LABELS[m.method_type]||label(m.method_type))}</span>`).join('')||'<p class="eyebrow">No payment methods added yet</p>'}</div>
     <details class="disclosure">
       <summary>Manage payment methods</summary>
-      <div class="list">${state.data.paymentMethods.map(m=>`<article class="list-item"><span class="list-icon" aria-hidden="true">${icon('dollar')}</span><div><h3>${esc(PAYMENT_LABELS[m.method_type]||label(m.method_type))}</h3><p>${esc(m.label)}</p></div><button class="danger" data-remove-payment="${m.id}">Remove</button></article>`).join('')||'<p class="eyebrow">No payment methods added yet</p>'}</div>
+      <div class="list">${state.data.paymentMethods.map(m=>`<article class="list-item">${paymentIcon(m.method_type)}<div><h3>${esc(PAYMENT_LABELS[m.method_type]||label(m.method_type))}</h3><p>${esc(m.label)}</p></div><button class="danger" data-remove-payment="${m.id}">Remove</button></article>`).join('')||'<p class="eyebrow">No payment methods added yet</p>'}</div>
       <form id="add-payment-form" class="onboarding-form" style="margin-top:14px">
         <label>Type<select id="new-payment-type">${Object.entries(PAYMENT_LABELS).map(([k,t])=>`<option value="${k}">${t}</option>`).join('')}</select></label>
         <label>Label or handle<input id="new-payment-label" placeholder="e.g. @cypresscreek or (352) 555-0142" required></label>
@@ -261,17 +269,16 @@ export function storefront(state){
 
   <section class="panel" style="margin-top:18px">
     <div class="panel-header"><h2>Categories</h2></div>
-    <details class="disclosure" open>
-      <summary>Manage categories</summary>
-      <p class="eyebrow">Order controls which categories show first on your public page.</p>
-      <div class="list">${state.data.categoryAssignments.map((a,i,arr)=>`<article class="list-item"><span class="list-icon" aria-hidden="true">${icon('tag')}</span><div><h3>${esc(categoryName(state,a.category_id))}</h3><p>${a.is_primary?'Primary':`Position ${i+1}`}</p></div><div class="frame-actions"><button type="button" data-move-category="${a.id}" data-direction="up" ${i===0?'disabled':''} aria-label="Move up">↑</button><button type="button" data-move-category="${a.id}" data-direction="down" ${i===arr.length-1?'disabled':''} aria-label="Move down">↓</button><button class="danger" data-remove-category="${a.id}">Remove</button></div></article>`).join('')||'<p class="eyebrow">No categories yet</p>'}</div>
+    <details class="disclosure">
+      <summary>Manage categories <span class="eyebrow" style="font-weight:600">— order sets what shows first</span></summary>
+      <div class="list compact">${state.data.categoryAssignments.map((a,i,arr)=>`<article class="list-item"><div><h3>${esc(categoryName(state,a.category_id))}${a.is_primary?' <span class="tag">Primary</span>':''}</h3></div><div class="frame-actions"><button type="button" data-move-category="${a.id}" data-direction="up" ${i===0?'disabled':''} aria-label="Move up">↑</button><button type="button" data-move-category="${a.id}" data-direction="down" ${i===arr.length-1?'disabled':''} aria-label="Move down">↓</button><button class="danger" data-remove-category="${a.id}">Remove</button></div></article>`).join('')||'<p class="eyebrow">No categories yet</p>'}</div>
       ${available.length?`<form id="add-category-form" class="dialog-actions" style="margin-top:14px"><select id="new-category">${available.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')}</select><button class="primary" type="submit">Add</button></form>`:''}
     </details>
   </section>
 
   <section class="panel" style="margin-top:18px">
     <div class="panel-header"><div><h2>Fulfillment &amp; pickup</h2><p>How buyers get what they order from you.</p></div></div>
-    <details class="disclosure" open>
+    <details class="disclosure">
       <summary>Manage fulfillment options</summary>
       <form id="fulfillment-form" class="onboarding-form">
         <div class="check-grid">
@@ -341,7 +348,7 @@ function listingCard(item,sellerSlug){
         <label>Description<textarea data-field="description">${esc(draftDesc||'')}</textarea></label>
         <label>Price <span>Free text — e.g. "$8 each" or "Call for a quote"</span><input data-field="price_label" value="${esc(draftPrice||'')}"></label>
         <label>Pricing type<select data-field="price_type"><option value="fixed" ${draftPriceType==='fixed'?'selected':''}>Fixed price</option><option value="starting_at" ${draftPriceType==='starting_at'?'selected':''}>Starting at</option><option value="quote" ${draftPriceType==='quote'?'selected':''}>Seller confirms price</option></select></label>
-        <label>Numeric unit price <span>Optional; used to estimate fixed-price orders</span><input type="number" min="0" step="0.01" data-field="unit_price" value="${draftUnitPrice??''}"></label>
+        <label>Price (numbers only) <span>Optional — lets us total up fixed-price orders for you</span><input type="number" min="0" step="0.01" data-field="unit_price" value="${draftUnitPrice??''}"></label>
         <p class="eyebrow">Changes save as a draft — buyers won't see them until you publish.</p>
         <div class="dialog-actions"><button class="primary" type="submit">Save as Draft</button></div>
       </form>
@@ -371,7 +378,7 @@ export function listings(state){
         <label>Description<textarea id="new-listing-description"></textarea></label>
         <label>Price <span>Free text — e.g. "$8 each" or "Call for a quote"</span><input id="new-listing-price" placeholder="$8 each"></label>
         <label>Pricing type<select id="new-listing-price-type"><option value="fixed">Fixed price</option><option value="starting_at">Starting at</option><option value="quote">Seller confirms price</option></select></label>
-        <label>Numeric unit price <span>Optional; used to estimate fixed-price orders</span><input id="new-listing-unit-price" type="number" min="0" step="0.01" placeholder="8.00"></label>
+        <label>Price (numbers only) <span>Optional — lets us total up fixed-price orders for you</span><input id="new-listing-unit-price" type="number" min="0" step="0.01" placeholder="8.00"></label>
         <div class="dialog-actions"><button class="primary" type="submit">Add listing</button></div>
       </form>
     </details>
