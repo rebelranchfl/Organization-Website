@@ -63,6 +63,23 @@ Every agent must read this document before starting visual, layout, or public-pa
 - The shared-header **Support the Mission** link goes to `support.html`. The direct PayPal link remains used by approved on-page support actions.
 - Required Privacy Policy and Legal Disclosures links and official social-media links remain available; they are not program-navigation links.
 
+## RRM icon system
+
+Icons on the Rebel Ranch Ministries public site use one consistent visual family unless an approved program-specific standard explicitly overrides it.
+
+- Every icon sits inside a dark-green circular disk using `#173A26`.
+- The circle uses a thin `2px` border in `#4A7C59`.
+- Icon artwork uses gold `#EF9F27` and green `#97C459` linework.
+- Do not mix white, burgundy, tan, brown, multicolor, or bare glyph icons into the same RRM page icon family.
+- Do not place some icons in circles while leaving neighboring icons without circles.
+- The circular disk is an icon container, not a button or pill. Interaction belongs to the clearly clickable row, card, or control containing it.
+- Keep stroke weight, visual weight, internal spacing, and displayed size consistent within each section.
+- Icons with different meanings must use different symbols. In particular, **Rebel Ranch Academy**, **Educators**, and **Knowledge** must not repeat the same education symbol.
+- Check every icon against the actual surface behind it. Dark-green artwork must not disappear against the forest-green page.
+- When an expandable source strengthens a specific outcome, place the corresponding outcome icon and label inside that expansion so visitors do not have to compare disconnected icon groups.
+
+The approved symbol assignments and filenames are listed in [`rrm-icon-inventory.md`](rrm-icon-inventory.md).
+
 ## Locked spacing
 
 - Content width: `min(1160px, 92vw)`.

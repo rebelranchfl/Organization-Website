@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <title>Rescue</title>
+  <g stroke="#EF9F27" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="30" cy="44" rx="10" ry="14" transform="rotate(-22 30 44)"/>
+    <ellipse cx="53" cy="29" rx="10" ry="14"/>
+    <ellipse cx="76" cy="29" rx="10" ry="14"/>
+    <ellipse cx="99" cy="44" rx="10" ry="14" transform="rotate(22 99 44)"/>
+    <path d="M65 48c-14 0-35 21-35 42 0 13 9 22 21 22 7 0 10-4 14-4s7 4 14 4c12 0 21-9 21-22 0-21-21-42-35-42Z"/>
+  </g>
+  <path d="M65 96 50 82c-7-7-3-19 7-19 4 0 7 2 8 5 2-3 5-5 9-5 10 0 14 12 7 19L65 96Z" stroke="#97C459" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

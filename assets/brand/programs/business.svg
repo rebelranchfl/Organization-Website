@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <title>Business</title>
+  <g stroke="#EF9F27" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 38h96v64H16V38Z"/>
+    <path d="M44 38V25h40v13M16 60c28 15 68 15 96 0M56 64h16v13H56V64Z"/>
+  </g>
+  <g stroke="#97C459" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M34 91 50 77l13 10 25-25"/>
+    <path d="M77 62h11v11"/>
+  </g>
+</svg>

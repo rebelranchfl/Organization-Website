@@ -57,6 +57,18 @@ Defined as CSS custom properties in `assets/css/brand-tokens.css`. These are **R
 
 For current RRM public-surface application, follow `rrm-visual-rules.md` when it is more specific.
 
+## RRM Icons
+
+The approved RRM public-site icon family uses a dark-green circular
+disk (`#173A26`), a thin dark-green border (`#4A7C59`), and gold
+(`#EF9F27`) plus green (`#97C459`) line artwork. Icons on the same RRM
+page must not switch between colored badge styles, bare glyphs, white
+symbols, or unrelated illustration systems.
+
+The detailed construction rules and approved symbol assignments are in
+[`rrm-visual-rules.md`](rrm-visual-rules.md) and
+[`rrm-icon-inventory.md`](rrm-icon-inventory.md).
+
 ## RRM Typography
 
 The current RRM organization website uses the system stack (`Arial, Helvetica, sans-serif`). This is an RRM rule. **Do not treat it as a prohibition on a separately approved program typography system.**

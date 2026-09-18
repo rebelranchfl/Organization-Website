@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <title>Local</title>
+  <g stroke="#EF9F27" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 43h78l-8-22H20l-8 22Z"/>
+    <path d="M12 43c0 8 6 14 14 14s14-6 14-14c0 8 6 14 14 14s14-6 14-14c0 8 6 14 14 14 3 0 6-1 8-3"/>
+    <path d="M20 58v47h66M34 105V72h23v33M67 72h15"/>
+  </g>
+  <g stroke="#97C459" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M112 72c0 16-19 36-19 36S74 88 74 72a19 19 0 1 1 38 0Z"/>
+    <circle cx="93" cy="72" r="6"/>
+  </g>
+</svg>

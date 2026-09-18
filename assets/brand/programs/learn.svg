@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <title>Learn</title>
+  <g stroke="#EF9F27" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 24c18-5 34-2 48 9v68c-14-11-30-14-48-9V24Z"/>
+    <path d="M116 24c-18-5-34-2-48 9v68c14-11 30-14 48-9V24Z"/>
+    <path d="M60 33h8"/>
+    <path d="M23 42c9-1 18 1 27 6M23 58c9-1 18 1 27 6M78 48c8-5 17-7 27-6"/>
+  </g>
+  <g stroke="#97C459" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="94" cy="84" r="22"/>
+    <path d="m84 84 7 7 14-17"/>
+  </g>
+</svg>

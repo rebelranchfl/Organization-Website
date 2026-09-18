@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <title>Create</title>
+  <g stroke="#EF9F27" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M19 25 35 13l27 27-13 13L19 25Z"/>
+    <path d="m49 53 52 52c4 4 10 4 14 0s4-10 0-14L62 40"/>
+    <path d="m23 22-9 16 11 11 17-8"/>
+  </g>
+  <g stroke="#97C459" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m91 16 21 21-65 65-28 8 8-28 64-66Z"/>
+    <path d="m82 25 21 21M27 82l20 20"/>
+  </g>
+</svg>
