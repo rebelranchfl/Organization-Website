@@ -9,20 +9,27 @@ Every agent must read this document before starting visual, layout, or styling w
 ## Source of truth
 
 - **Brand/palette/voice:** `marketing/social-media/rebel-ranch-marketplace/brand/BRAND.md`.
-- **Implemented design tokens:** `assets/css/rebel-ranch-local.css` — defines `--olive`, `--cream`, `--paper`, `--tan`, `--line`, `--ink`, `--muted`, `--shadow` and the shared `.rrl-*` header/hero/card classes. Any new or corrected RRL page should load this file and reuse these tokens rather than inventing new hex values or a parallel palette.
+- **Implemented design tokens:** `assets/css/rebel-ranch-local.css` — defines `--olive`/`--olive-2`, `--cream`/`--cream-warm`, `--paper`, `--tan`/`--tan-2`, `--rust`/`--rust-2`, `--brown`/`--brown-2`, `--line`, `--ink`, `--muted`, `--shadow`/`--shadow-lift` and the shared `.rrl-*` header/hero/card classes. Any new or corrected RRL page should load this file and reuse these tokens rather than inventing new hex values or a parallel palette.
 
 ## Palette
 
 | Role | Name | Hex |
 |---|---|---|
-| Primary | Ranch Olive | `#2F3D1F` (`rebel-ranch-local.css`: `#2f3d1f`) |
+| Primary | Ranch Olive | `#2F3D1F` (`rebel-ranch-local.css`: `--olive:#2f3d1f`, `--olive-2:#3c4e29` for gradients) |
 | Secondary | Sage | `#6B7F4A` |
-| Light canvas | Cream | `#F2E9DA` (`rebel-ranch-local.css`: `#f5eddf`/`#fbf6ec`) |
-| Warm accent | Saddle Tan | `#B47A4A` (`rebel-ranch-local.css`: `#b47a4a`) |
-| Dark warm | Leather Brown | `#5A3A24` |
+| Light canvas | Cream | `#F2E9DA` (`rebel-ranch-local.css`: `--cream:#f5eddf`, `--cream-warm:#ecdcbe` for section variety, `--paper:#fbf6ec`) |
+| Warm accent | Saddle Tan | `#B47A4A` (`rebel-ranch-local.css`: `--tan:#b47a4a`, `--tan-2:#96613a` for gradients) |
+| Primary warm accent | Rust | `--rust:#b5502a`, `--rust-2:#93401a` for gradients — see "Rust usage" below |
+| Dark warm | Leather Brown | `#5A3A24` (`rebel-ranch-local.css`: `--brown:#5c3a22`, `--brown-2:#432911` for gradients) |
 | Dark neutral | Ranch Charcoal | `#1A1A1A` |
 
 Camo/field-inspired direction, not tactical/military. Do not introduce RRM's forest-green/gold (`--rrm-green`, `--rrm-gold`, `#204227`, etc.) on an RRL page.
+
+### Rust usage
+
+On RRL's **public-facing pages** (`marketplace.html` and similar), rust is the primary warm accent — used freely for icon badges, borders/frames, category labels, and share/invite links, not restricted to a single meaning.
+
+This is a deliberate, narrower exception to the seller **dashboard's** color rule (`assets/js/marketplace-seller-views.js` / `assets/css/marketplace-seller.css`), where rust/orange is reserved for money, urgency, or promo *only*, alongside olive = brand/primary action, sage = status-good, amber = status-pending/caution, red = destructive-only. That stricter rule still governs the dashboard. Do not backport the dashboard's narrow rust rule onto public RRL pages, and do not backport the public pages' broader rust usage onto the dashboard.
 
 ## Typography
 

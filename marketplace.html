@@ -20,15 +20,12 @@
       </a>
       <nav class="rrl-nav" aria-label="Rebel Ranch Local navigation">
         <a href="#rrl-featured">Browse⌄</a>
-        <a href="#rrl-categories">Categories⌄</a>
         <a href="#rrl-featured">Sellers</a>
         <a href="#rrl-why">About</a>
         <a href="index.html">Resources⌄</a>
       </nav>
       <div class="rrl-header-tools">
-        <a class="rrl-icon-link" href="#rrl-search" aria-label="Search">⌕</a>
-        <a class="rrl-icon-link" href="account.html" aria-label="Saved local listings">♡</a>
-        <a class="rrl-icon-link" href="account.html" aria-label="Account">◉</a>
+        <a class="rrl-account-link" href="account.html">Account</a>
         <a class="rrl-join" href="marketplace-seller-dashboard.html">Join / Sign In</a>
       </div>
     </div>
@@ -44,40 +41,9 @@
           <button type="submit" aria-label="Search Rebel Ranch Local">⌕</button>
         </form>
         <div class="rrl-hero-actions">
-          <a class="rrl-action" href="#rrl-doors">Browse Marketplace</a>
-          <a class="rrl-action" href="#rrl-doors" data-hero-services>Explore Services</a>
+          <a class="rrl-action" href="#rrl-categories">Browse Marketplace</a>
+          <a class="rrl-action" href="#rrl-categories" data-hero-services>Explore Services</a>
         </div>
-      </div>
-    </section>
-
-    <section id="rrl-doors" class="rrl-shell rrl-door-grid" aria-label="Choose what you are looking for">
-      <button class="rrl-door" type="button" data-rrl-door="marketplace">
-        <div class="rrl-door-media rrl-door-marketplace" aria-hidden="true"></div>
-        <div class="rrl-door-copy"><h2>MARKETPLACE</h2><strong>Food & Farm</strong><p>Fresh local food, farm products,<br>and pantry staples.</p><span>Browse Marketplace →</span></div>
-      </button>
-      <button class="rrl-door" type="button" data-rrl-door="goods">
-        <div class="rrl-door-media rrl-door-goods" aria-hidden="true"></div>
-        <div class="rrl-door-copy"><h2>GOODS</h2><strong>Handmade & Local</strong><p>Handcrafted items, home goods,<br>art, and local creations.</p><span>Browse Goods →</span></div>
-      </button>
-      <button class="rrl-door" type="button" data-rrl-door="services">
-        <div class="rrl-door-media rrl-door-services" aria-hidden="true"></div>
-        <div class="rrl-door-copy"><h2>SERVICES</h2><strong>• Skilled Local Help •</strong><p>Trusted local pros for home, land,<br>business, and more.</p><span>Browse Services →</span></div>
-      </button>
-    </section>
-
-    <section id="rrl-featured" class="rrl-section rrl-featured-section">
-      <div class="rrl-shell">
-        <div class="rrl-section-head"><h2>FEATURED LOCAL</h2><a href="#rrl-search">Search all local sellers →</a></div>
-        <div id="rrl-featured-grid" class="rrl-featured-grid"><div class="rrl-empty">Loading local listings…</div></div>
-        <p id="rrl-live-status" class="rrl-status" aria-live="polite"></p>
-      </div>
-    </section>
-
-    <section id="rrl-categories" class="rrl-section rrl-category-section">
-      <div class="rrl-shell">
-        <div class="rrl-section-head"><h2>BROWSE BY CATEGORY</h2></div>
-        <div id="rrl-category-row" class="rrl-category-row"></div>
-        <div id="rrl-category-expanded" class="rrl-category-row rrl-category-expanded" hidden></div>
       </div>
     </section>
 
@@ -94,11 +60,38 @@
       </div>
     </section>
 
+    <section id="rrl-categories" class="rrl-section rrl-category-section">
+      <div class="rrl-shell">
+        <div id="rrl-doors" class="rrl-door-grid" aria-label="Choose what you are looking for">
+          <button class="rrl-door" type="button" data-rrl-door="marketplace">
+            <div class="rrl-door-media rrl-door-marketplace" aria-hidden="true"></div>
+            <div class="rrl-door-copy"><h2>MARKETPLACE</h2><strong>Food & Farm</strong><p>Fresh local food, farm products,<br>and pantry staples.</p><span>Browse Marketplace →</span></div>
+          </button>
+          <button class="rrl-door" type="button" data-rrl-door="goods">
+            <div class="rrl-door-media rrl-door-goods" aria-hidden="true"></div>
+            <div class="rrl-door-copy"><h2>GOODS</h2><strong>Handmade & Local</strong><p>Handcrafted items, home goods,<br>art, and local creations.</p><span>Browse Goods →</span></div>
+          </button>
+          <button class="rrl-door" type="button" data-rrl-door="services">
+            <div class="rrl-door-media rrl-door-services" aria-hidden="true"></div>
+            <div class="rrl-door-copy"><h2>SERVICES</h2><strong>• Skilled Local Help •</strong><p>Trusted local pros for home, land,<br>business, and more.</p><span>Browse Services →</span></div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="rrl-featured" class="rrl-section rrl-featured-section" hidden>
+      <div class="rrl-shell">
+        <div class="rrl-section-head"><h2>LOCAL LISTINGS</h2><a href="#rrl-search">Search all local sellers →</a></div>
+        <div id="rrl-featured-grid" class="rrl-featured-grid"><div class="rrl-empty">Loading local listings…</div></div>
+        <p id="rrl-live-status" class="rrl-status" aria-live="polite"></p>
+      </div>
+    </section>
+
     <section class="rrl-section rrl-cta-section">
       <div class="rrl-shell rrl-seller-cta">
         <div class="rrl-cta-photo" aria-hidden="true"></div>
         <div class="rrl-cta-copy"><h2>Sell or provide a service locally?</h2><p>Reach more neighbors, grow your business,<br>and be part of something bigger.</p></div>
-        <div class="rrl-cta-action"><a href="marketplace-seller-dashboard.html">Join Rebel Ranch Local</a><small>It’s free and easy to get started.</small></div>
+        <div class="rrl-cta-action"><a href="marketplace-seller-dashboard.html">Join Rebel Ranch Local</a><small>It's free and easy to get started.</small><button type="button" id="rrl-invite-share" class="rrl-invite-link" data-share-text="Check out Rebel Ranch Local — find local food, goods, and services from real people near you.">Know someone who'd love this? Share Rebel Ranch Local →</button></div>
       </div>
     </section>
 
