@@ -5,6 +5,64 @@
   --rrm-surface-gold-bright: #ef9f27;
   --rrm-surface-green: #97c459;
   --rrm-surface-shadow: 0 18px 55px rgba(0, 0, 0, .32);
+  --rrm-content-width: min(1160px, 92vw);
+  --rrm-section-space: clamp(4.5rem, 8vw, 7rem);
+  --rrm-heading-space: clamp(2rem, 4vw, 3.25rem);
+  --rrm-grid-gap: 18px;
+  --rrm-column-gap: 20px;
+}
+
+/* Shared type and spacing baseline for RRM organization pages. Program-branded
+   sites and internal operations tools are intentionally outside this layer. */
+body.rrm-site-standard {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 16px;
+  line-height: 1.65;
+}
+body.rrm-site-standard main h1 {
+  font-size: clamp(3rem, 8vw, 6.4rem);
+  line-height: 1.08;
+  letter-spacing: -.025em;
+}
+body.rrm-site-standard main h2 {
+  font-size: clamp(2.15rem, 5vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: -.025em;
+}
+body.rrm-site-standard main h3 {
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  line-height: 1.15;
+}
+body.rrm-site-standard main p,
+body.rrm-site-standard main li,
+body.rrm-site-standard main label,
+body.rrm-site-standard main input,
+body.rrm-site-standard main textarea,
+body.rrm-site-standard main select {
+  font-size: 1rem;
+}
+body.rrm-site-standard main p { line-height: 1.65; }
+body.rrm-site-standard main > section:not(.hero):not(.bf-hero) {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: var(--rrm-section-space) !important;
+  padding-bottom: var(--rrm-section-space) !important;
+}
+body.rrm-site-standard main .section-head {
+  margin-bottom: var(--rrm-heading-space) !important;
+}
+body.rrm-site-standard main :is(.grid,.program-grid,.source-list,.card-grid,.path-grid,.options-grid) {
+  gap: var(--rrm-grid-gap) !important;
+}
+body.rrm-site-standard main :is(.split,.hero-grid,.two-column,.two-col,.form-layout,.contact-layout) {
+  column-gap: var(--rrm-column-gap) !important;
+}
+body.rrm-site-standard main :is(.btn,.button,button[type="submit"]) {
+  min-height: 3rem;
+}
+body.rrm-site-standard main :is(.fine-print,.legal-note,.form-note,small) {
+  font-size: .8rem;
+  line-height: 1.5;
 }
 
 /* Every public-facing card shares the Alignment page's border treatment. */
@@ -84,17 +142,17 @@ body.rrm-public-shell { padding-top: 0; }
 .rrm-public-brand small { margin-top:.2rem; color:#ef9f27; font:700 .72rem/1.2 Arial,Helvetica,sans-serif; }
 .rrm-public-links { display:flex; align-items:center; gap:.15rem; }
 .rrm-public-links a { min-height:2.75rem; display:inline-flex; align-items:center; padding:0 .65rem; color:#c9c5a7; border-radius:.65rem; font:800 .9rem/1.2 Arial,Helvetica,sans-serif; text-decoration:none; }
-.rrm-public-links a:hover { color:#97c459; background:#142617; }
+.rrm-public-links a:hover,.rrm-public-links a:focus-visible { color:#ef9f27; background:#142617; }
 .rrm-public-menu { display:none; width:3rem; height:3rem; padding:0; color:#f0edd8; background:#142617; border:1px solid #4a7c59; border-radius:.75rem; }
 .rrm-nav-dropdown { position:relative; }
 .rrm-nav-dropdown-toggle { display:inline-flex; align-items:center; gap:.35rem; min-height:2.75rem; padding:0 .65rem; color:#c9c5a7; background:none; border:none; border-radius:.65rem; font:800 .9rem/1.2 Arial,Helvetica,sans-serif; cursor:pointer; }
-.rrm-nav-dropdown-toggle:hover,.rrm-nav-dropdown[data-open="true"] .rrm-nav-dropdown-toggle { color:#97c459; background:#142617; }
+.rrm-nav-dropdown-toggle:hover,.rrm-nav-dropdown-toggle:focus-visible,.rrm-nav-dropdown[data-open="true"] .rrm-nav-dropdown-toggle { color:#ef9f27; background:#142617; }
 .rrm-nav-dropdown-toggle .caret { font-size:.6em; transition:.2s transform; }
 .rrm-nav-dropdown[data-open="true"] .rrm-nav-dropdown-toggle .caret { transform:rotate(180deg); }
 .rrm-nav-dropdown-menu { display:none; position:absolute; top:calc(100% + .4rem); left:0; min-width:12rem; padding:.4rem; background:#07120a; border:1px solid #1e3a20; border-radius:.85rem; box-shadow:0 .65rem 1.8rem rgba(0,0,0,.35); z-index:10; }
 .rrm-nav-dropdown[data-open="true"] .rrm-nav-dropdown-menu { display:grid; gap:.1rem; }
 .rrm-nav-dropdown-menu a { min-height:2.5rem; display:flex; align-items:center; padding:0 .65rem; color:#c9c5a7; border-radius:.6rem; font:700 .88rem/1.2 Arial,Helvetica,sans-serif; text-decoration:none; }
-.rrm-nav-dropdown-menu a:hover { color:#97c459; background:#142617; }
+.rrm-nav-dropdown-menu a:hover,.rrm-nav-dropdown-menu a:focus-visible { color:#ef9f27; background:#142617; }
 .rrm-public-footer { width:100%; margin:0; padding:24px max(4vw,24px); color:#88836d; background:#050806; border-top:1px solid #1d321e; font-size:13px; }
 .rrm-public-footer-inner { width:min(1160px,92vw); margin:auto; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:16px 24px; }
 .rrm-footer-brand { display:inline-flex; align-items:center; gap:.8rem; min-width:0; color:#f0edd8; text-decoration:none; }
@@ -108,12 +166,11 @@ body.rrm-public-shell { padding-top: 0; }
 .rrm-footer-bottom { display:flex; flex-direction:column; align-items:center; gap:6px; }
 .rrm-socials { display:flex; justify-content:center; gap:12px; }
 .rrm-socials a { display:grid; place-items:center; width:32px; height:32px; border:1px solid #284a29; border-radius:50%; font-size:12px; }
-.rrm-footer-legal { grid-column:1/-1; margin:4px auto 0; text-align:center; }
 .rrm-copyright { color:#88836d; font-size:12px; margin:0; text-align:center; }
 /* Service-card actions are the one primary action: gold means request this service. */
 .bf-card .card-actions .btn.primary { color:#fff7de; border-color:#c17f24; background:linear-gradient(135deg,#c17f24,#7b4b13); }
 .bf-card .card-actions .btn.primary:hover { background:linear-gradient(135deg,#d9932a,#8d5718); }
-@media(max-width:900px){ .rrm-public-nav{min-height:5.15rem}.rrm-public-menu{display:inline-grid;place-items:center}.rrm-public-links{display:none;position:absolute;left:4vw;right:4vw;top:calc(100% + .5rem);padding:.75rem;background:#07120a;border:1px solid #1e3a20}.rrm-public-header[data-open="true"] .rrm-public-links{display:grid}.rrm-public-links a{min-height:3rem;padding:.7rem .85rem}.rrm-nav-dropdown-toggle{width:100%;justify-content:space-between;min-height:3rem;padding:.7rem .85rem}.rrm-nav-dropdown-menu{position:static;display:none;border:none;background:none;box-shadow:none;padding:0 0 0 .75rem;min-width:0}.rrm-nav-dropdown[data-open="true"] .rrm-nav-dropdown-menu{display:grid}.rrm-public-footer-inner{display:flex;flex-direction:column;text-align:center;gap:10px}.rrm-footer-bottom{flex-direction:row;gap:10px} }
+@media(max-width:900px){ .rrm-public-nav{min-height:5.15rem}.rrm-public-menu{display:inline-grid;place-items:center}.rrm-public-links{display:none;position:absolute;left:4vw;right:4vw;top:calc(100% + .5rem);padding:.75rem;background:#07120a;border:1px solid #1e3a20}.rrm-public-header[data-open="true"] .rrm-public-links{display:grid}.rrm-public-links a{min-height:3rem;padding:.7rem .85rem}.rrm-nav-dropdown-toggle{width:100%;justify-content:space-between;min-height:3rem;padding:.7rem .85rem}.rrm-nav-dropdown-menu{position:static;display:none;border:none;background:none;box-shadow:none;padding:0 0 0 .75rem;min-width:0}.rrm-nav-dropdown[data-open="true"] .rrm-nav-dropdown-menu{display:grid}.rrm-public-footer{padding:18px 16px}.rrm-public-footer-inner{width:100%;display:flex;flex-direction:column;text-align:center;gap:9px}.rrm-footer-brand img{width:2.25rem;height:2.25rem}.rrm-footer-brand strong{font-size:.9rem}.rrm-footer-brand small{font-size:.64rem}.rrm-footer-links{gap:12px}.rrm-footer-links a{font-size:.75rem}.rrm-footer-bottom{flex-direction:row;gap:10px}.rrm-socials a{width:1.9rem;height:1.9rem}.rrm-copyright{margin:0;font-size:.7rem} }
 /* Homepage narrative sections share centered introductory and supporting copy. */
 .business-feature .section-head .business-description { max-width:820px; margin:1.5rem auto 0; text-align:center; color:#d7d1b3; font-size:18px; }
 .business-feature .section-head .business-description p { margin:0 0 1rem; }

@@ -91,6 +91,15 @@ function renderCategories(){
 }
 
 function wire(){
+  const menu=document.querySelector('.rrl-menu-toggle');
+  const nav=document.querySelector('.rrl-nav');
+  menu?.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close navigation':'Open navigation');nav?.classList.toggle('is-open',open)});
+  nav?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{menu?.setAttribute('aria-expanded','false');menu?.setAttribute('aria-label','Open navigation');nav.classList.remove('is-open')}));
+  const mobileDoors=matchMedia('(max-width:560px)');
+  const syncDoors=()=>document.querySelectorAll('.rrl-door').forEach(door=>{if(mobileDoors.matches)door.removeAttribute('open');else door.setAttribute('open','')});
+  syncDoors();
+  mobileDoors.addEventListener?.('change',syncDoors);
+  document.querySelectorAll('.rrl-door').forEach(door=>door.addEventListener('toggle',()=>{if(!mobileDoors.matches||!door.open)return;document.querySelectorAll('.rrl-door').forEach(other=>{if(other!==door)other.removeAttribute('open')})}));
   document.querySelectorAll('[data-rrl-door]').forEach(btn=>btn.addEventListener('click',()=>{state.filter=btn.dataset.rrlDoor;state.categoryId='';document.querySelectorAll('.rrl-category').forEach(x=>x.classList.remove('active'));showFeatured();renderSellers()}));
   const form=$('rrl-search-form');
   form?.addEventListener('submit',e=>{e.preventDefault();state.term=$('rrl-search').value.trim().toLowerCase();state.categoryId='';showFeatured();renderSellers()});
