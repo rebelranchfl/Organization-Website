@@ -22,6 +22,7 @@ Every agent must read this document before starting visual, layout, or public-pa
 
 - The current approved RRM page background is one consistent forest green: `#204227`.
 - Black `#050806` remains reserved for the shared header and footer.
+- The compact shared footer keeps the RRM identity, Contact, Privacy Policy, Legal Disclosures, social links, and the Faith, Family & Nature Church, Inc. copyright. The program-relationship sentence belongs on the Legal Disclosures page rather than repeating in every footer.
 - Primary headings use cream `#F0EDD8`.
 - Body text on green surfaces uses `#D7D1B3`.
 - Small labels and approved highlights use bright gold `#EF9F27`.
@@ -88,6 +89,16 @@ The approved symbol assignments and filenames are listed in [`rrm-icon-inventory
 - Every major section handoff after the hero uses the approved full-width green divider with its centered gold accent.
 - Section-heading-to-content spacing: `clamp(2rem, 4vw, 3.25rem)`.
 - Card grid gap: `18px`; two-column gap: `20px`; card padding: `24px`.
+
+## Locked public typography
+
+- RRM organization pages use `Arial, Helvetica, sans-serif` with a `16px` base and `1.65` body line height.
+- Primary page headings use `clamp(3rem, 8vw, 6.4rem)` with `1.08` line height.
+- Major section headings use `clamp(2.15rem, 5vw, 4rem)` with `1.08` line height.
+- Card and subsection headings use `clamp(1.15rem, 2vw, 1.45rem)` with `1.15` line height.
+- Standard paragraphs, lists, labels, and form controls remain at least `1rem` (`16px`). Fine print may use `.8rem` (`12.8px`) with `1.5` line height.
+- These shared measurements apply to RRM organization pages through the `rrm-site-standard` layer in `assets/css/public-surface.css`.
+- Separate program brands and internal operations tools keep their own approved typography and layout systems unless the owner explicitly authorizes a change to that program or tool.
 
 ## Shared shell
 
