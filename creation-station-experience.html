@@ -266,6 +266,10 @@ input:focus,textarea:focus,select:focus{border-color:var(--teal);box-shadow:0 0 
   .entry-overlay img{animation:none}.entry-progress span{width:100%;animation:none}
 }
 </style>
+  <style>
+    .rrm-home-link{position:relative;z-index:2;display:inline-flex;margin:0 0 18px;padding:9px 13px;border:1px solid rgba(255,255,255,.45);border-radius:10px;color:#fff;font-size:.8rem;font-weight:900;text-decoration:none}
+    .rrm-home-link:hover,.rrm-home-link:focus-visible{background:rgba(255,255,255,.14)}
+  </style>
 </head>
 <body>
 <div class="entry-overlay" id="entryOverlay" aria-hidden="true" aria-live="polite">
@@ -282,6 +286,7 @@ input:focus,textarea:focus,select:focus{border-color:var(--teal);box-shadow:0 0 
   </div>
 
   <header class="hero" id="top">
+    <a class="rrm-home-link" href="index.html">Rebel Ranch Ministries</a>
     <div class="brand-row">
       <div class="logo-wrap"><img src="assets/Creation Station Logo.png" alt="Creation Station logo"></div>
       <div><div class="kicker">Kids · Parent Demo</div><h1>Step into their creative journey.</h1><p>Customize a Creation Companion, move through the project tracker, and try one complete sample project. This is enough to understand the experience without opening the full member dashboard.</p></div>
@@ -399,7 +404,7 @@ input:focus,textarea:focus,select:focus{border-color:var(--teal);box-shadow:0 0 
 </div>
 <div data-creation-station-footer></div>
 <div class="confetti" id="confetti"></div>
-<script src="assets/components/creation-station-footer/footer.js?v=20260803-1" defer></script>
+  <script src="assets/components/creation-station-footer/footer.js?v=20260921-1" defer></script>
 <script>
 const entryOverlay=document.getElementById('entryOverlay');
 const entryTransitionJustShown=sessionStorage.getItem('csEntryTransitionJustShown')==='1';

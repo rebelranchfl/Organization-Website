@@ -6,7 +6,8 @@
 
   const componentUrl = new URL('footer.html', script.src);
   const stylesheetUrl = new URL('footer.css', script.src);
-  stylesheetUrl.searchParams.set('v', '20260803-1');
+  componentUrl.searchParams.set('v', '20260921-1');
+  stylesheetUrl.searchParams.set('v', '20260921-1');
 
   if (!document.querySelector('link[data-creation-station-footer-styles]')) {
     const stylesheet = document.createElement('link');
@@ -31,7 +32,7 @@
     })
     .catch(() => {
       mounts.forEach((mount) => {
-        mount.innerHTML = '<p class="cs-footer__load-error"><a href="creation.html">Return to Creation Station</a></p>';
+        mount.innerHTML = '<p class="cs-footer__load-error"><a href="index.html">Return to Rebel Ranch Ministries</a></p>';
         mount.removeAttribute('aria-busy');
       });
     });

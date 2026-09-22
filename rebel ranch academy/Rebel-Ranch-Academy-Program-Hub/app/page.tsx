@@ -59,13 +59,13 @@ export default function Home(){
 
   return <main>
     <header className="site-header">
-      <a className="brand-lockup" href="#top" aria-label="Rebel Ranch Academy home"><img src="/rra-logo.png" alt="" width={1254} height={1254}/><span><small>Rebel Ranch Ministries</small><strong>Rebel Ranch Academy</strong></span></a>
+      <a className="brand-lockup" href="#top" aria-label="Rebel Ranch Academy home"><img src="https://rebelranchministries.org/assets/rebel_ranch_academy_logo_transparent-cropped.png" alt="" width={956} height={956}/><span><small>Rebel Ranch Ministries</small><strong>Rebel Ranch Academy</strong></span></a>
       <button className="menu-button" type="button" aria-expanded={menuOpen} aria-controls="primary-navigation" onClick={()=>setMenuOpen(open=>!open)}>{menuOpen?"Close":"Menu"}</button>
       <nav id="primary-navigation" className={menuOpen?"nav-open":""} aria-label="Primary navigation">
         <a href="#learning-areas" onClick={()=>setMenuOpen(false)}>Learning areas</a>
         <a href="#sample-learning" onClick={()=>setMenuOpen(false)}>Try the Academy</a>
         <a href="#my-plan" onClick={()=>setMenuOpen(false)}>My learning plan <b aria-label={`${plan.length} saved activities`}>{plan.length}</b></a>
-        <a className="rrm-return" href="https://rebelranchministries.org/">Visit Rebel Ranch Ministries</a>
+        <a className="rrm-return" href="https://rebelranchministries.org/">Rebel Ranch Ministries</a>
       </nav>
     </header>
 
@@ -77,7 +77,7 @@ export default function Home(){
         <div className="hero-actions"><a className="button button-gold" href="#choose-your-path">Find your path <span aria-hidden="true">→</span></a><a className="button button-outline" href="#sample-learning">Try a sample activity</a></div>
         <p className="hero-note">Respectable. Responsible. Accountable. Confident. Independent. Strong.</p>
       </div>
-      <div className="hero-seal" aria-label="Official Rebel Ranch Academy seal"><div className="seal-glow" aria-hidden="true"/><img src="/rra-logo.png" alt="Rebel Ranch Academy. Skills for life. Freedom for all." width={1254} height={1254} loading="eager" fetchPriority="high"/></div>
+      <div className="hero-seal" aria-label="Official Rebel Ranch Academy seal"><div className="seal-glow" aria-hidden="true"/><img src="https://rebelranchministries.org/assets/rebel_ranch_academy_logo_transparent-cropped.png" alt="Rebel Ranch Academy. Skills for life. Freedom for all." width={956} height={956} loading="eager" fetchPriority="high"/></div>
     </section>
 
     <section className="declaration" aria-label="Academy promise"><p>Beyond traditional education.</p><strong>Real skills for real life.</strong><p>Online learning. Real-world action.</p></section>
@@ -115,7 +115,17 @@ export default function Home(){
 
     <section className="interest-section"><p className="eyebrow">RESPONSIBLE REBELS WANTED</p><h2>You do not have to know everything.<span>You do need to keep learning.</span></h2><p>Tell Rebel Ranch Ministries what you want to learn. Your interest helps shape which Academy programs move forward first.</p><a className="button button-gold" href="https://rebelranchministries.org/academy-learning-interest.html">Share what you want to learn <span aria-hidden="true">→</span></a></section>
 
-    <footer><div className="footer-brand"><img src="/rra-logo.png" alt="" width={1254} height={1254}/><div><strong>Rebel Ranch Academy</strong><span>Real skills for real life.</span></div></div><div className="footer-links"><a href="https://rebelranchministries.org/">Rebel Ranch Ministries</a><a href="#learning-areas">Academy learning areas</a><a href="https://rebelranchministries.org/contact.html">Contact</a></div><p className="legal">Rebel Ranch Academy is a program of Rebel Ranch Ministries, a ministry program under Faith, Family &amp; Nature Church, Inc.</p></footer>
+    <footer className="academy-footer">
+      <div className="academy-footer-main">
+        <div className="academy-footer-brand"><img src="https://rebelranchministries.org/assets/rebel_ranch_academy_logo_transparent-cropped.png" alt=""/><div><strong>Rebel Ranch Academy</strong><span>Real skills for real life.</span></div></div>
+        <nav className="academy-footer-links" aria-label="Academy footer"><a href="#learning-areas">Academy Learning Areas</a><a href="#sample-learning">Try the Academy</a><a href="#my-plan">My Learning Plan</a></nav>
+      </div>
+      <div className="academy-rrm-bar">
+        <a className="academy-rrm-brand" href="https://rebelranchministries.org/"><img src="https://rebelranchministries.org/assets/brand/Rebel%20Ranch%20Ministries/rrm-logo-white.png" alt=""/><span><strong>Rebel Ranch Ministries</strong><small>Faith · Family · Freedom</small></span></a>
+        <nav className="academy-rrm-links" aria-label="Rebel Ranch Ministries"><a href="https://rebelranchministries.org/contact.html">Contact</a><a href="https://rebelranchministries.org/privacy-policy.html">Privacy Policy</a><a href="https://rebelranchministries.org/legal-disclosures.html">Legal Disclosures</a></nav>
+        <div className="academy-rrm-bottom"><div className="academy-socials" aria-label="Social media"><a href="https://www.facebook.com/rebelranchministries" target="_blank" rel="noopener" aria-label="Facebook">f</a><a href="https://www.instagram.com/rebel_ranch_fl" target="_blank" rel="noopener" aria-label="Instagram">◎</a><a href="https://www.youtube.com/@RebelRanchMinistries" target="_blank" rel="noopener" aria-label="YouTube">▶</a></div><p>© 2026 Faith, Family &amp; Nature Church, Inc.</p></div>
+      </div>
+    </footer>
 
     {selected&&<div className="modal-backdrop" onMouseDown={()=>setSelected(null)}><section className="lesson-modal" role="dialog" aria-modal="true" aria-labelledby="lesson-title" onMouseDown={event=>event.stopPropagation()}><button ref={closeButtonRef} className="modal-close" type="button" onClick={()=>setSelected(null)} aria-label="Close activity">×</button><p className="eyebrow">{selected.area}</p><p className="modal-meta">{selected.level} · {selected.ages} · {selected.time}</p><h2 id="lesson-title">{selected.title}</h2><p className="lesson-description">{selected.description}</p><h3>What you will learn</h3><ol>{selected.learn.map((item,index)=><li key={item}><span>0{index+1}</span>{item}</li>)}</ol><div className="challenge"><strong>Put it to work</strong><p>{selected.challenge}</p></div><div className="modal-actions"><button className="button button-gold" type="button" onClick={()=>togglePlan(selected.id)}>{plan.includes(selected.id)?"Remove from my plan":"Add to my plan →"}</button><button className="button button-dark" type="button" onClick={()=>toggleDone(selected.id)}>{done.includes(selected.id)?"✓ Completed":"Mark complete"}</button></div></section></div>}
   </main>
