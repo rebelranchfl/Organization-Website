@@ -62,7 +62,7 @@ Same boundary RRM already draws for Creation Station applies here: RRL's styling
 
 - On phones, hero copy and controls sit in their own readable content area. The hero image follows as a separate visual; live text must not be placed over that image.
 - Large visual category cards may remain on desktop. On phones, they become compact expandable rows so visitors choose a category before its image, description, and action are revealed.
-- The RRL program header may retain the RRL identity, but it must provide a usable mobile navigation control with a clear path back to the wider RRM website.
+- The RRL program header retains the RRL identity and provides a visible link labeled **Rebel Ranch Ministries** that returns directly to the RRM homepage.
 - RRL public pages end with the standard Rebel Ranch Ministries organization footer so the program remains visibly connected to its parent organization.
 - The Marketplace hero's former Browse/Services pill actions and the oversized five-item mobile value panel were rejected on 2026-09-21 because they crowded the phone experience and repeated the next section's choices.
 - The Marketplace hero search was removed from the hero on 2026-09-21. Search remains available with the revealed local listings, where it supports the visitor's next task instead of competing with the hero.

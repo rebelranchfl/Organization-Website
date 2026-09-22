@@ -388,6 +388,8 @@ The approved public-hub color direction is:
 
 The approved implementation is documented in the Program Hub source, especially `app/globals.css`. Gold or pale yellow text must not be used on cream or other light surfaces. The polished public hub uses Georgia for formal headings and Arial/Helvetica for clear body content.
 
+The Academy keeps its navy-and-gold branded footer. The footer also includes the standardized RRM parent block with the RRM homepage, Contact, Privacy Policy, Legal Disclosures, organization social links, and the Faith, Family & Nature Church, Inc. copyright. The Academy header includes a visible link labeled **Rebel Ranch Ministries** that returns directly to the RRM homepage.
+
 Do not use visual rebellion as an excuse for distressed clutter, graffiti, chaos, aggression, or disrespect.
 
 ### Interactive-shape rule

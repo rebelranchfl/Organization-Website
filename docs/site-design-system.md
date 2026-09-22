@@ -104,6 +104,8 @@ When a surface is governed by the shared RRM public shell, use the approved shar
 
 Detailed shared-shell implementation belongs with shared system operations and applicable visual rules, not repeated here.
 
+Public program sites may preserve their own approved branded headers and footers. Every program header must nevertheless include a clearly visible link labeled **Rebel Ranch Ministries** that returns directly to the RRM homepage. Every branded program footer must preserve the program identity while also providing a consistent RRM parent block with the RRM homepage, Contact, Privacy Policy, Legal Disclosures, organization social links, and the Faith, Family & Nature Church, Inc. copyright. Programs already governed by the shared RRM public shell may continue using the standard RRM footer instead.
+
 Authentication, accounts, database, email, deployment, analytics, security, and other genuinely shared infrastructure should be documented once at repository/shared-system level. Program documents should state only their program-specific behavior, roles, permissions, and user paths.
 
 ## 8. Content and voice

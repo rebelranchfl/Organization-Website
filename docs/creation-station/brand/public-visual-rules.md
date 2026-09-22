@@ -65,6 +65,7 @@ The approved Creation Station primary action is the current borderless gradient 
 - Preserve the deep-purple footer and thin rainbow top edge.
 - Preserve the Creation Station logo and identity.
 - Preserve the clearly linked line `by Rebel Ranch Ministries · Return to the main website`.
+- Preserve the standardized RRM parent block beneath the branded Creation Station footer. It includes the RRM homepage, Contact, Privacy Policy, Legal Disclosures, RRM social links, and the Faith, Family & Nature Church, Inc. copyright.
 - Keep complete disclosure language on the dedicated disclaimer page rather than repeating long disclaimer copy throughout sales pages.
 - Shared footer navigation should make the two high-value actions easy to find: joining Creation Station and returning to My Studio.
 
