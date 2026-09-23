@@ -60,7 +60,7 @@ Every agent must read this document before starting visual, layout, or public-pa
 - A program card may link to more than one page within an already-approved program as long as every destination is an existing, approved page — never a newly invented or unapproved one.
 - Rebel Ranch Academy's live program destination is the interactive Program Hub at `https://academy.rebelranchministries.org`. The shared-header Academy link must point there. The older `academy.html` file is intentionally unchanged and on hold for a later content review; it is not the general public Academy destination. Do not redirect, delete, or edit `academy.html` without separate owner approval.
 - `programs.html` is the canonical RRM program overview. The shared-header Programs control must provide a route to `programs.html` while retaining direct navigation to approved programs.
-- Until separate pages exist, Roots, Boots & Animal Poops routes to `programs.html#roots-boots` and Rebel Ranch Rescue routes to `programs.html#rescue`.
+- Roots, Boots & Animal Poops routes to its approved standalone landing page at `roots-boots-animal-poops.html`. Rebel Ranch Rescue continues to route to `programs.html#rescue` until its own page is approved.
 - The shared-header **Support the Mission** link goes to `support.html`. The direct PayPal link remains used by approved on-page support actions.
 - Required Privacy Policy and Legal Disclosures links and official social-media links remain available; they are not program-navigation links.
 
