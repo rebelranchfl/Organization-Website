@@ -2,9 +2,12 @@
 
 **Applies to these currently deferred program areas:**
 
-- Roots, Boots & Animal Poops
 - Back 2 the Basics — How to Survive
 - Rebel Ranch Rescue
+
+## Roots, Boots & Animal Poops activation — updated September 23, 2026
+
+The owner explicitly activated a public Roots, Boots & Animal Poops homepage and replaced the September 21 landing-page direction with a new desktop/mobile concept on September 23, 2026. The homepage now introduces the full program: growing food through plants, animals, and connected systems; starting with whatever space a person has; and expanding what that space can do over time. The approved visual reference uses the desktop composition from the owner's first supplied concept image and the phone composition from the owner's second supplied concept image. Preserve the established program logo and cream, deep green, rust, and natural palette; warm modern photography; rural and small-space pathways; compact supporting actions; credibility strip; clear return to the Rebel Ranch Ministries homepage; and separate RRM parent footer. The two main homepage pathways are **Got Land?**, which leads to a one-on-one RRM contact conversation about land, facilities, animals, hosting, income, or partnership, and **Small Space?**, which will lead to a separate future page for apartments, condos, balconies, patios, small yards, and home food-growing support. Come Hang Out and Sponsor an Animal remain supporting actions. Do not restore the superseded three-pathway/accordion layout or the discarded conversion handoff as the homepage; that handoff is reserved as source material for the future small-space branch page. The owner rejected the plain miscellaneous character symbols used in the first local implementation. Homepage icons must use the coordinated RBAP line-art family with recognizable land, small-space growing, community, animal care, practice, social-follow, and merchandise subjects; do not substitute generic Unicode or unrelated symbols. Copy should sound direct and human and should not assume that the visitor is already a farmer or has acreage or animals. RBAP remains a sibling of Rebel Ranch Academy under RRM, not an Academy program.
 
 These programs do not currently have clean, dedicated program-documentation folders on `main`. Do **not** create new folder structures merely to make the repository look organized. This handoff is the controlling temporary guard until each program becomes an active priority and receives a verified organization pass.
 
