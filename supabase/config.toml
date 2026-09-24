@@ -6,3 +6,20 @@ verify_jwt = false
 
 [functions.submit-marketplace-order]
 verify_jwt = false
+
+# Booking system (added 2026-09-24, Claude Code). Public functions implement their own
+# checks (manage token, admin JWT + user_roles, Vault cron secret); see docs/booking-system.md.
+[functions.booking-public-config]
+verify_jwt = false
+
+[functions.booking-availability]
+verify_jwt = false
+
+[functions.booking-create]
+verify_jwt = false
+
+[functions.booking-manage]
+verify_jwt = false
+
+[functions.booking-reminders]
+verify_jwt = false
