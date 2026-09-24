@@ -305,7 +305,12 @@ import { validCollections, resolveCollection, resolveType, collectionName } from
   // Browsing "all collections" is a preview, not the whole catalog — cap each program to a
   // handful of items so the page reads as curated highlights. Narrowing to one collection
   // (via its card or its "View all" link) shows everything that program has.
+  // The owner sets each collection's order, visibility, and preview size in store-manager.html
+  // (table merch_collection_settings); these defaults apply if that can't be loaded.
   const GROUP_PREVIEW_LIMIT = 3;
+  const collectionSettings = new Map();
+  const previewLimit = (collection) => collectionSettings.get(collection)?.preview_count ?? GROUP_PREVIEW_LIMIT;
+  const collectionShown = (collection) => collectionSettings.get(collection)?.site_visible !== false;
 
   const money = (value) => Number.isFinite(Number(value))
     ? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(value))
@@ -315,13 +320,13 @@ import { validCollections, resolveCollection, resolveType, collectionName } from
     let visibleCount = 0;
 
     groupEls.forEach(({ section, grid, count, moreLink }, collection) => {
-      const collectionActive = activeCollection === 'all' || activeCollection === collection;
+      const collectionActive = collectionShown(collection) && (activeCollection === 'all' || activeCollection === collection);
       const showAllInGroup = activeCollection === collection;
       const cards = [...grid.children];
       const matchingCards = collectionActive
         ? cards.filter((card) => activeType === 'all' || card.dataset.productType === activeType)
         : [];
-      const shownCards = showAllInGroup ? matchingCards : matchingCards.slice(0, GROUP_PREVIEW_LIMIT);
+      const shownCards = showAllInGroup ? matchingCards : matchingCards.slice(0, previewLimit(collection));
       const shownSet = new Set(shownCards);
       cards.forEach((card) => { card.hidden = !shownSet.has(card); });
       visibleCount += shownCards.length;
@@ -432,10 +437,29 @@ import { validCollections, resolveCollection, resolveType, collectionName } from
   });
 
   try {
-    const [feedResponse, overridesResult] = await Promise.all([
+    const [feedResponse, overridesResult, collectionsResult] = await Promise.all([
       fetch(productFeed, { headers: { Accept: 'application/json' } }),
-      supabase.from('merch_product_overrides').select('*')
+      supabase.from('merch_product_overrides').select('*'),
+      supabase.from('merch_collection_settings').select('*')
     ]);
+
+    // Collection order/visibility/preview size from the Store Manager. Not fatal: without it
+    // the page keeps its built-in order and shows every collection.
+    if (!collectionsResult.error && Array.isArray(collectionsResult.data)) {
+      collectionsResult.data.forEach((row) => collectionSettings.set(row.collection, row));
+      const rank = (collection) => collectionSettings.get(collection)?.display_order ?? validCollections.indexOf(collection);
+      const ordered = [...validCollections].sort((a, b) => rank(a) - rank(b));
+      const cardGrid = collectionButtons[0]?.parentElement;
+      ordered.forEach((collection) => {
+        groupsContainer.appendChild(groupEls.get(collection).section);
+        const button = collectionButtons.find((b) => b.dataset.collection === collection);
+        if (button && cardGrid) {
+          cardGrid.appendChild(button);
+          button.style.display = collectionShown(collection) ? '' : 'none'; // .collection-card sets display:flex, which beats [hidden]
+        }
+      });
+      if (activeCollection !== 'all' && !collectionShown(activeCollection)) activeCollection = 'all';
+    }
     if (!feedResponse.ok) throw new Error('Product feed unavailable');
     const data = await feedResponse.json();
     if (!data || !Array.isArray(data.products)) throw new Error('Product collection unavailable');
@@ -450,14 +474,17 @@ import { validCollections, resolveCollection, resolveType, collectionName } from
       .map((product, index) => ({ product, override: overridesById.get(product.id), index }))
       .filter(({ override }) => override && override.site_visible === true);
 
+    // The owner's numbered ranking (display_order, set per collection in the Store Manager's
+    // Arrange view) comes first; unranked items follow. "featured" is kept only as a legacy
+    // tie-breaker for unranked items.
     visibleProducts.sort((a, b) => {
-      const featuredDiff = (b.override.featured ? 1 : 0) - (a.override.featured ? 1 : 0);
-      if (featuredDiff !== 0) return featuredDiff;
       const orderA = a.override.display_order;
       const orderB = b.override.display_order;
-      if (orderA != null && orderB != null) return orderA - orderB;
-      if (orderA != null) return -1;
-      if (orderB != null) return 1;
+      if (orderA != null && orderB != null && orderA !== orderB) return orderA - orderB;
+      if (orderA != null && orderB == null) return -1;
+      if (orderB != null && orderA == null) return 1;
+      const featuredDiff = (b.override.featured ? 1 : 0) - (a.override.featured ? 1 : 0);
+      if (featuredDiff !== 0) return featuredDiff;
       return a.index - b.index;
     });
 
