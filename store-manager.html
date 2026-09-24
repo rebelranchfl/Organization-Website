@@ -5,9 +5,12 @@
 <meta name="description" content="Protected Rebel Ranch Ministries store manager — control what is visible, featured, and how it is categorized on the public store.">
 <title>Store Manager | Rebel Ranch Ministries</title>
 <link rel="stylesheet" href="assets/css/brand-tokens.css"><link rel="stylesheet" href="assets/css/public-surface.css">
+<!-- 2026-09-24 (Claude Code / Claude Opus 5.5, session "Custom booking system build" store-manager follow-up):
+     owner asked for full store control — collection order/visibility/preview size, filters by
+     collection/type/status, and a numbered per-collection Arrange view replacing Featured/Order. -->
 <style>
 *{box-sizing:border-box}body{margin:0;min-height:100vh;background:#15331d;color:var(--rrm-ink);font-family:Arial,Helvetica,sans-serif}a{color:inherit}button,textarea,input,select{font:inherit}main{width:min(1280px,94vw);margin:auto;padding:40px 0 80px}.topbar{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}.eyebrow{margin:0 0 8px;color:var(--rrm-gold-bright);font-size:.8rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}h1{margin:0;font-size:clamp(2.1rem,5vw,4rem);line-height:1}.intro{color:var(--rrm-muted);line-height:1.55}.back-link{padding:11px 15px;border-radius:8px;border:1px solid #3b5a40;text-decoration:none;font-weight:800;background:#1d4024}.notice{display:none;margin:20px 0;padding:15px 17px;border-left:5px solid var(--rrm-gold);background:#1d4024;border-radius:8px}.notice.visible{display:block}.notice.error{border-left-color:#c96f5b}.notice.success{border-left-color:#97c459}.panel{margin-top:24px;padding:24px;border:1px solid #315239;border-radius:16px;background:linear-gradient(180deg,#1d4024,#122a18);box-shadow:var(--rrm-shadow)}.panel h2{margin:0 0 8px}.muted{color:var(--rrm-muted)}
-.toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:16px}
+.toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;justify-content:space-between;margin-bottom:16px}
 .search{flex:1;min-width:220px;padding:11px 13px;border:1px solid #45634a;border-radius:8px;background:#102718;color:var(--rrm-ink)}
 .count{color:var(--rrm-muted);font-size:.85rem;white-space:nowrap}
 .rows{display:grid;gap:12px}
@@ -25,167 +28,412 @@
 .row-status.saved{color:#97c459}
 .row-status.error{color:#c96f5b}
 .row-status.saving{color:#f2d38b}
-@media(max-width:820px){.row{grid-template-columns:48px minmax(0,1fr)}.row img{width:48px;height:48px}.row-controls{grid-column:1/-1;justify-content:flex-start}}
+.btn{padding:8px 12px;border-radius:8px;border:1px solid #3b5a40;background:#1d4024;color:var(--rrm-ink);font-weight:800;cursor:pointer}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn:focus-visible{outline:3px solid var(--rrm-gold-bright);outline-offset:2px}
+.rank{display:grid;place-items:center;width:64px;height:64px;border-radius:8px;border:1px solid #45634a;background:#102718;font-size:1.4rem;font-weight:900;color:var(--rrm-gold-bright)}
+.row.arrange{grid-template-columns:64px 64px minmax(0,1fr) auto}
+.row.arrange img{width:64px;height:64px}
+.cutline{margin:4px 0;padding:8px 12px;border-left:5px solid var(--rrm-gold-bright);background:#18351f;border-radius:8px;font-size:.85rem;font-weight:800;color:var(--rrm-gold-bright)}
+.subhead{margin:22px 0 10px;font-size:1.05rem}
+.coll-row{grid-template-columns:48px minmax(0,1fr) auto}
+.coll-pos{font-size:1.2rem;font-weight:900;color:var(--rrm-gold-bright);text-align:center}
+@media(max-width:820px){.row,.row.arrange,.coll-row{grid-template-columns:48px minmax(0,1fr)}.row img,.rank{width:48px;height:48px}.row.arrange .rank{grid-row:1}.row-controls{grid-column:1/-1;justify-content:flex-start}}
 </style>
 </head>
 <body><main>
-<div class="topbar"><div><p class="eyebrow">Rebel Ranch Ministries • Owner Control</p><h1>Store Manager</h1><p class="intro">Choose exactly what shows on the public store, what's featured, and fix any product that landed in the wrong collection or type. Nothing here changes Printify — this only controls the public site.</p></div><a class="back-link" href="account.html">Back to My Account</a></div>
-<div id="notice" class="notice" role="status"></div><section id="loading" class="panel"><strong>Checking administrator access…</strong></section>
-<div id="content" class="hidden" style="display:none">
+<div class="topbar"><div><p class="eyebrow">Rebel Ranch Ministries • Owner Control</p><h1>Store Manager</h1><p class="intro">Choose exactly what shows on the public store, the order collections appear in, and the 1-2-3 order of products inside each collection. Nothing here changes Printify — this only controls the public site.</p></div><a class="back-link" href="account.html">Back to My Account</a></div>
+<div id="notice" class="notice" role="status" aria-live="polite"></div><section id="loading" class="panel"><strong>Checking administrator access…</strong></section>
+<div id="content" style="display:none">
+<section class="panel">
+  <h2>Collections on the store page</h2>
+  <p class="muted">Set the order the program collections appear on the store, turn a whole collection on or off, and choose how many of its top products show on the main store view. Visitors who click a collection always see all of its shown products.</p>
+  <div class="rows" id="collection-rows"></div>
+</section>
 <section class="panel">
   <h2>Products</h2>
-  <p class="muted">Toggle Visible to control whether a product shows on the public store at all. Featured items are pinned to the front of their collection. Order only matters among items that share the same featured state (lower shows first) — leave it blank to use the default order.</p>
+  <p class="muted">Pick a collection to arrange its products in order — #1 shows first. Use the filters to find anything fast.</p>
   <div class="toolbar">
-    <input type="search" id="search" class="search" placeholder="Search products by title…">
+    <input type="search" id="search" class="search" placeholder="Search products by title…" aria-label="Search products by title">
+    <label class="field">Collection<select id="filter-collection"></select></label>
+    <label class="field">Product type<select id="filter-type"></select></label>
+    <label class="field">On the store<select id="filter-status"><option value="all">All</option><option value="shown">Shown</option><option value="hidden">Hidden</option></select></label>
     <span class="count" id="count"></span>
   </div>
-  <div class="rows" id="rows"></div>
+  <div id="products"></div>
 </section>
 </div>
 </main>
 <script type="module">
 import { supabase } from './assets/js/supabase-client.js';
-import { validCollections, validTypes, detectCollection, detectType, collectionName, typeName } from './assets/js/merch-taxonomy.js';
+import { validCollections, validTypes, detectCollection, detectType, collectionName, typeName, resolveCollection, resolveType } from './assets/js/merch-taxonomy.js';
 
 const notice = document.getElementById('notice');
 const loading = document.getElementById('loading');
 const content = document.getElementById('content');
-const rowsEl = document.getElementById('rows');
+const productsEl = document.getElementById('products');
 const countEl = document.getElementById('count');
 const searchEl = document.getElementById('search');
+const collectionFilter = document.getElementById('filter-collection');
+const typeFilter = document.getElementById('filter-type');
+const statusFilter = document.getElementById('filter-status');
+const collectionRowsEl = document.getElementById('collection-rows');
 const productFeed = 'https://rrm-printify-products.rebelranchfl.workers.dev/products';
 
 let allEntries = [];
+let collectionSettings = [];
 
-function msg(t, type = '') { notice.textContent = t; notice.className = `notice visible ${type}`.trim(); }
+function msg(t, type = '') { notice.textContent = t; notice.className = `notice ${t ? 'visible' : ''} ${type}`.trim(); }
 
 function overrideDefaults(id, title) {
   return { printify_product_id: id, product_title_cache: title, site_visible: false, featured: false, display_order: null, collection_override: null, type_override: null };
 }
 
+const effectiveCollection = (entry) => resolveCollection(entry.product, entry.override);
+const effectiveType = (entry) => resolveType(entry.product, entry.override);
+const shown = (entry) => entry.override.site_visible === true;
+
+// Same order the public store uses (merch.html): ranked first, then legacy featured, then Printify order.
+function storeOrder(a, b) {
+  const oa = a.override.display_order;
+  const ob = b.override.display_order;
+  if (oa != null && ob != null && oa !== ob) return oa - ob;
+  if (oa != null && ob == null) return -1;
+  if (ob != null && oa == null) return 1;
+  const f = (b.override.featured ? 1 : 0) - (a.override.featured ? 1 : 0);
+  if (f) return f;
+  return a.index - b.index;
+}
+
+function setStatus(el, state, text) {
+  el.textContent = text;
+  el.className = `row-status ${state}`;
+  if (state === 'saved') setTimeout(() => { if (el.textContent === 'Saved') el.textContent = ''; }, 2000);
+}
+
 async function save(entry, patch, statusEl) {
-  statusEl.textContent = 'Saving…';
-  statusEl.className = 'row-status saving';
+  if (statusEl) setStatus(statusEl, 'saving', 'Saving…');
   const next = { ...entry.override, ...patch, printify_product_id: entry.product.id, product_title_cache: entry.product.title };
   const { error } = await supabase.from('merch_product_overrides').upsert(next, { onConflict: 'printify_product_id' });
   if (error) {
-    statusEl.textContent = 'Error';
-    statusEl.className = 'row-status error';
+    if (statusEl) setStatus(statusEl, 'error', 'Error');
     msg(`Could not save "${entry.product.title}": ${error.message}`, 'error');
-    return;
+    return false;
   }
   entry.override = next;
-  statusEl.textContent = 'Saved';
-  statusEl.className = 'row-status saved';
-  setTimeout(() => { if (statusEl.textContent === 'Saved') statusEl.textContent = ''; }, 2000);
+  if (statusEl) setStatus(statusEl, 'saved', 'Saved');
+  return true;
 }
 
-function renderRow(entry) {
-  const { product, override } = entry;
-  const row = document.createElement('div');
-  row.className = 'row';
+// ---------------------------------------------------------------------------
+// Collections panel
+// ---------------------------------------------------------------------------
+const settingFor = (c) => collectionSettings.find((s) => s.collection === c) || { collection: c, display_order: validCollections.indexOf(c) + 1, site_visible: true, preview_count: 3 };
+const orderedCollections = () => [...validCollections].sort((a, b) => settingFor(a).display_order - settingFor(b).display_order);
 
+async function saveCollection(collection, patch) {
+  const { error } = await supabase.from('merch_collection_settings').update(patch).eq('collection', collection);
+  if (error) { msg(`Could not save ${collectionName(collection)}: ${error.message}`, 'error'); return false; }
+  Object.assign(settingFor(collection), patch);
+  return true;
+}
+
+async function moveCollection(collection, dir) {
+  const order = orderedCollections();
+  const i = order.indexOf(collection);
+  const j = i + dir;
+  if (j < 0 || j >= order.length) return;
+  [order[i], order[j]] = [order[j], order[i]];
+  const results = await Promise.all(order.map((c, idx) => saveCollection(c, { display_order: idx + 1 })));
+  if (results.every(Boolean)) msg('Collection order saved.', 'success');
+  renderCollections();
+  renderProducts();
+}
+
+function renderCollections() {
+  const order = orderedCollections();
+  collectionRowsEl.replaceChildren(...order.map((c, i) => {
+    const s = settingFor(c);
+    const shownCount = allEntries.filter((e) => shown(e) && effectiveCollection(e) === c).length;
+    const row = document.createElement('div');
+    row.className = 'row coll-row';
+    const pos = document.createElement('div');
+    pos.className = 'coll-pos';
+    pos.textContent = `${i + 1}`;
+    const info = document.createElement('div');
+    info.innerHTML = `<div class="row-title"></div><div class="row-detected"></div>`;
+    info.children[0].textContent = collectionName(c) + (s.site_visible ? '' : ' — hidden from the store');
+    info.children[1].textContent = `${shownCount} product${shownCount === 1 ? '' : 's'} shown on the store`;
+    const controls = document.createElement('div');
+    controls.className = 'row-controls';
+    const status = document.createElement('span');
+    status.className = 'row-status';
+
+    const visLabel = document.createElement('label');
+    visLabel.className = 'check';
+    const vis = document.createElement('input');
+    vis.type = 'checkbox';
+    vis.checked = s.site_visible;
+    vis.addEventListener('change', async () => {
+      setStatus(status, 'saving', 'Saving…');
+      if (await saveCollection(c, { site_visible: vis.checked })) { setStatus(status, 'saved', 'Saved'); renderCollections(); }
+      else setStatus(status, 'error', 'Error');
+    });
+    visLabel.append(vis, document.createTextNode('Show on store'));
+
+    const prevLabel = document.createElement('label');
+    prevLabel.className = 'field';
+    prevLabel.textContent = 'Top items on main page';
+    const prev = document.createElement('input');
+    prev.type = 'number'; prev.min = '1'; prev.max = '24'; prev.value = s.preview_count;
+    prev.addEventListener('change', async () => {
+      const n = Math.min(24, Math.max(1, Number.parseInt(prev.value, 10) || 3));
+      prev.value = n;
+      setStatus(status, 'saving', 'Saving…');
+      if (await saveCollection(c, { preview_count: n })) { setStatus(status, 'saved', 'Saved'); renderProducts(); }
+      else setStatus(status, 'error', 'Error');
+    });
+    prevLabel.appendChild(prev);
+
+    const up = document.createElement('button');
+    up.className = 'btn'; up.type = 'button'; up.textContent = '↑'; up.disabled = i === 0;
+    up.setAttribute('aria-label', `Move ${collectionName(c)} up`);
+    up.addEventListener('click', () => moveCollection(c, -1));
+    const down = document.createElement('button');
+    down.className = 'btn'; down.type = 'button'; down.textContent = '↓'; down.disabled = i === order.length - 1;
+    down.setAttribute('aria-label', `Move ${collectionName(c)} down`);
+    down.addEventListener('click', () => moveCollection(c, 1));
+    const arrange = document.createElement('button');
+    arrange.className = 'btn'; arrange.type = 'button'; arrange.textContent = 'Arrange products';
+    arrange.addEventListener('click', () => {
+      collectionFilter.value = c; statusFilter.value = 'all'; typeFilter.value = 'all'; searchEl.value = '';
+      renderProducts();
+      productsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    controls.append(visLabel, prevLabel, up, down, arrange, status);
+    row.append(pos, info, controls);
+    return row;
+  }));
+}
+
+// ---------------------------------------------------------------------------
+// Product rows
+// ---------------------------------------------------------------------------
+function productImage(product) {
   const img = document.createElement('img');
   const image = Array.isArray(product.images) ? (product.images.find((i) => i.isDefault) || product.images[0]) : null;
   img.src = image?.src || '';
   img.alt = '';
   img.loading = 'lazy';
-  row.appendChild(img);
+  return img;
+}
 
-  const info = document.createElement('div');
-  const title = document.createElement('div');
-  title.className = 'row-title';
-  title.textContent = product.title;
-  const detected = document.createElement('div');
-  detected.className = 'row-detected';
-  detected.textContent = `Auto-detected: ${collectionName(detectCollection(product))} / ${typeName(detectType(product))}`;
-  info.append(title, detected);
-  row.appendChild(info);
+function selectField(label, options, value, onChange) {
+  const field = document.createElement('label');
+  field.className = 'field';
+  field.textContent = label;
+  const select = document.createElement('select');
+  options.forEach(([v, t]) => { const o = document.createElement('option'); o.value = v; o.textContent = t; select.appendChild(o); });
+  select.value = value;
+  select.addEventListener('change', () => onChange(select.value));
+  field.appendChild(select);
+  return field;
+}
 
-  const controls = document.createElement('div');
-  controls.className = 'row-controls';
-
-  const status = document.createElement('span');
-  status.className = 'row-status';
-
+function commonControls(entry, status) {
+  const { product, override } = entry;
   const visibleField = document.createElement('label');
   visibleField.className = 'check';
   const visibleInput = document.createElement('input');
   visibleInput.type = 'checkbox';
   visibleInput.checked = override.site_visible === true;
-  visibleInput.addEventListener('change', () => save(entry, { site_visible: visibleInput.checked }, status));
-  visibleField.append(visibleInput, document.createTextNode('Visible'));
+  visibleInput.addEventListener('change', async () => {
+    // Newly shown items join the end of their collection's order; hidden items drop their rank.
+    if (await save(entry, { site_visible: visibleInput.checked, display_order: null }, status)) { renderCollections(); renderProducts(); }
+  });
+  visibleField.append(visibleInput, document.createTextNode('Shown'));
 
-  const featuredField = document.createElement('label');
-  featuredField.className = 'check';
-  const featuredInput = document.createElement('input');
-  featuredInput.type = 'checkbox';
-  featuredInput.checked = override.featured === true;
-  featuredInput.addEventListener('change', () => save(entry, { featured: featuredInput.checked }, status));
-  featuredField.append(featuredInput, document.createTextNode('Featured'));
+  const collectionField = selectField('Collection',
+    [['', `Auto (${collectionName(detectCollection(product))})`], ...validCollections.map((c) => [c, collectionName(c)])],
+    override.collection_override || '',
+    async (v) => { if (await save(entry, { collection_override: v || null, display_order: null }, status)) { renderCollections(); renderProducts(); } });
 
-  const orderField = document.createElement('label');
-  orderField.className = 'field';
-  orderField.textContent = 'Order';
-  const orderInput = document.createElement('input');
-  orderInput.type = 'number';
-  orderInput.value = override.display_order ?? '';
-  orderInput.addEventListener('change', () => save(entry, { display_order: orderInput.value === '' ? null : Number(orderInput.value) }, status));
-  orderField.appendChild(orderInput);
+  const typeField = selectField('Type',
+    [['', `Auto (${typeName(detectType(product))})`], ...validTypes.map((t) => [t, typeName(t)])],
+    override.type_override || '',
+    async (v) => { if (await save(entry, { type_override: v || null }, status)) renderProducts(); });
 
-  const collectionField = document.createElement('label');
-  collectionField.className = 'field';
-  collectionField.textContent = 'Collection';
-  const collectionSelect = document.createElement('select');
-  const autoCollectionOpt = document.createElement('option');
-  autoCollectionOpt.value = '';
-  autoCollectionOpt.textContent = `Auto (${collectionName(detectCollection(product))})`;
-  collectionSelect.appendChild(autoCollectionOpt);
-  validCollections.forEach((c) => { const o = document.createElement('option'); o.value = c; o.textContent = collectionName(c); collectionSelect.appendChild(o); });
-  collectionSelect.value = override.collection_override || '';
-  collectionSelect.addEventListener('change', () => save(entry, { collection_override: collectionSelect.value || null }, status));
-  collectionField.appendChild(collectionSelect);
+  return [visibleField, collectionField, typeField];
+}
 
-  const typeField = document.createElement('label');
-  typeField.className = 'field';
-  typeField.textContent = 'Type';
-  const typeSelect = document.createElement('select');
-  const autoTypeOpt = document.createElement('option');
-  autoTypeOpt.value = '';
-  autoTypeOpt.textContent = `Auto (${typeName(detectType(product))})`;
-  typeSelect.appendChild(autoTypeOpt);
-  validTypes.forEach((t) => { const o = document.createElement('option'); o.value = t; o.textContent = typeName(t); typeSelect.appendChild(o); });
-  typeSelect.value = override.type_override || '';
-  typeSelect.addEventListener('change', () => save(entry, { type_override: typeSelect.value || null }, status));
-  typeField.appendChild(typeSelect);
-
-  controls.append(visibleField, featuredField, orderField, collectionField, typeField, status);
-  row.appendChild(controls);
+function listRow(entry, rankText) {
+  const row = document.createElement('div');
+  row.className = 'row';
+  const info = document.createElement('div');
+  info.innerHTML = '<div class="row-title"></div><div class="row-detected"></div>';
+  info.children[0].textContent = entry.product.title;
+  info.children[1].textContent = `${collectionName(effectiveCollection(entry))} · ${typeName(effectiveType(entry))}${rankText ? ` · ${rankText}` : ''}`;
+  const controls = document.createElement('div');
+  controls.className = 'row-controls';
+  const status = document.createElement('span');
+  status.className = 'row-status';
+  controls.append(...commonControls(entry, status), status);
+  row.append(productImage(entry.product), info, controls);
   return row;
 }
 
-function renderAll() {
-  const q = searchEl.value.trim().toLowerCase();
-  const filtered = q ? allEntries.filter((e) => e.product.title.toLowerCase().includes(q)) : allEntries;
-  countEl.textContent = `${filtered.length} of ${allEntries.length} products`;
-  rowsEl.replaceChildren();
-  filtered.forEach((entry) => rowsEl.appendChild(renderRow(entry)));
+async function saveRanking(ordered, statusEl) {
+  const changed = ordered.map((entry, i) => ({ entry, rank: i + 1 })).filter(({ entry, rank }) => entry.override.display_order !== rank);
+  if (!changed.length) return;
+  if (statusEl) setStatus(statusEl, 'saving', 'Saving…');
+  const rows = changed.map(({ entry, rank }) => ({ ...entry.override, printify_product_id: entry.product.id, product_title_cache: entry.product.title, display_order: rank }));
+  const { error } = await supabase.from('merch_product_overrides').upsert(rows, { onConflict: 'printify_product_id' });
+  if (error) { msg(`Could not save the new order: ${error.message}`, 'error'); if (statusEl) setStatus(statusEl, 'error', 'Error'); return; }
+  changed.forEach(({ entry, rank }) => { entry.override = { ...entry.override, display_order: rank }; });
+  msg('New order saved — the store now shows them in this order.', 'success');
 }
 
-searchEl.addEventListener('input', renderAll);
+function arrangeRow(entry, i, ordered) {
+  const row = document.createElement('div');
+  row.className = 'row arrange';
+  const rank = document.createElement('div');
+  rank.className = 'rank';
+  rank.textContent = `#${i + 1}`;
+  const info = document.createElement('div');
+  info.innerHTML = '<div class="row-title"></div><div class="row-detected"></div>';
+  info.children[0].textContent = entry.product.title;
+  info.children[1].textContent = typeName(effectiveType(entry));
+  const controls = document.createElement('div');
+  controls.className = 'row-controls';
+  const status = document.createElement('span');
+  status.className = 'row-status';
+  const move = async (to) => {
+    const next = [...ordered];
+    next.splice(i, 1);
+    next.splice(to, 0, entry);
+    await saveRanking(next, status);
+    renderProducts();
+  };
+  const mk = (label, aria, disabled, fn) => {
+    const b = document.createElement('button');
+    b.className = 'btn'; b.type = 'button'; b.textContent = label; b.disabled = disabled;
+    b.setAttribute('aria-label', aria);
+    b.addEventListener('click', fn);
+    return b;
+  };
+  controls.append(
+    mk('Top', `Move ${entry.product.title} to #1`, i === 0, () => move(0)),
+    mk('↑', `Move ${entry.product.title} up`, i === 0, () => move(i - 1)),
+    mk('↓', `Move ${entry.product.title} down`, i === ordered.length - 1, () => move(i + 1)),
+    ...commonControls(entry, status),
+    status);
+  row.append(rank, productImage(entry.product), info, controls);
+  return row;
+}
+
+function matchesFilters(entry) {
+  const q = searchEl.value.trim().toLowerCase();
+  if (q && !entry.product.title.toLowerCase().includes(q)) return false;
+  if (typeFilter.value !== 'all' && effectiveType(entry) !== typeFilter.value) return false;
+  if (statusFilter.value === 'shown' && !shown(entry)) return false;
+  if (statusFilter.value === 'hidden' && shown(entry)) return false;
+  return true;
+}
+
+function heading(text) {
+  const h = document.createElement('h3');
+  h.className = 'subhead';
+  h.textContent = text;
+  return h;
+}
+
+function renderProducts() {
+  const c = collectionFilter.value;
+  const nodes = [];
+  if (c === 'all') {
+    const list = allEntries.filter(matchesFilters);
+    countEl.textContent = `${list.length} of ${allEntries.length} products`;
+    const rankIn = new Map();
+    for (const coll of validCollections) {
+      allEntries.filter((e) => shown(e) && effectiveCollection(e) === coll).sort(storeOrder).forEach((e, i) => rankIn.set(e, i + 1));
+    }
+    const rows = document.createElement('div');
+    rows.className = 'rows';
+    list.forEach((e) => rows.appendChild(listRow(e, rankIn.has(e) ? `#${rankIn.get(e)} in its collection` : 'not shown')));
+    nodes.push(rows);
+  } else {
+    const inColl = allEntries.filter((e) => effectiveCollection(e) === c);
+    const shownOrdered = inColl.filter(shown).sort(storeOrder);
+    const filteredShown = shownOrdered.filter(matchesFilters);
+    const hidden = inColl.filter((e) => !shown(e) && matchesFilters(e));
+    countEl.textContent = `${shownOrdered.length} shown · ${inColl.length - shownOrdered.length} hidden in ${collectionName(c)}`;
+    const setting = settingFor(c);
+    const filtering = searchEl.value.trim() || typeFilter.value !== 'all' || statusFilter.value === 'hidden';
+    if (statusFilter.value !== 'hidden') {
+      nodes.push(heading(`${collectionName(c)} — store order`));
+      if (!setting.site_visible) {
+        const warn = document.createElement('p'); warn.className = 'cutline';
+        warn.textContent = 'This whole collection is currently hidden from the store (see Collections above).';
+        nodes.push(warn);
+      }
+      if (!shownOrdered.length) {
+        const p = document.createElement('p'); p.className = 'muted'; p.textContent = 'No products in this collection are shown yet. Tick "Shown" on a product below to add it.';
+        nodes.push(p);
+      } else if (filtering) {
+        const p = document.createElement('p'); p.className = 'muted'; p.textContent = 'Clear the search and type filters to rearrange the full order.';
+        nodes.push(p);
+        const rows = document.createElement('div'); rows.className = 'rows';
+        filteredShown.forEach((e) => rows.appendChild(listRow(e, `#${shownOrdered.indexOf(e) + 1}`)));
+        nodes.push(rows);
+      } else {
+        const rows = document.createElement('div'); rows.className = 'rows';
+        shownOrdered.forEach((e, i) => {
+          rows.appendChild(arrangeRow(e, i, shownOrdered));
+          if (i === setting.preview_count - 1 && shownOrdered.length > setting.preview_count) {
+            const cut = document.createElement('div'); cut.className = 'cutline';
+            cut.textContent = `↑ These top ${setting.preview_count} appear on the main store page. The rest show when a visitor opens ${collectionName(c)}.`;
+            rows.appendChild(cut);
+          }
+        });
+        nodes.push(rows);
+      }
+    }
+    if (statusFilter.value !== 'shown' && hidden.length) {
+      nodes.push(heading(`Hidden from the store (${hidden.length})`));
+      const rows = document.createElement('div'); rows.className = 'rows';
+      hidden.forEach((e) => rows.appendChild(listRow(e, 'not shown')));
+      nodes.push(rows);
+    }
+  }
+  productsEl.replaceChildren(...nodes);
+}
+
+function fillFilters() {
+  collectionFilter.replaceChildren(...[['all', 'All collections'], ...orderedCollections().map((c) => [c, collectionName(c)])].map(([v, t]) => { const o = document.createElement('option'); o.value = v; o.textContent = t; return o; }));
+  typeFilter.replaceChildren(...[['all', 'All types'], ...validTypes.map((t) => [t, typeName(t)])].map(([v, t]) => { const o = document.createElement('option'); o.value = v; o.textContent = t; return o; }));
+}
+
+[searchEl].forEach((el) => el.addEventListener('input', renderProducts));
+[collectionFilter, typeFilter, statusFilter].forEach((el) => el.addEventListener('change', renderProducts));
 
 async function loadProducts() {
-  const [feedResponse, overridesResult] = await Promise.all([
+  const [feedResponse, overridesResult, collectionsResult] = await Promise.all([
     fetch(productFeed, { headers: { Accept: 'application/json' } }),
-    supabase.from('merch_product_overrides').select('*')
+    supabase.from('merch_product_overrides').select('*'),
+    supabase.from('merch_collection_settings').select('*')
   ]);
   if (!feedResponse.ok) throw new Error('Product feed unavailable');
   const data = await feedResponse.json();
   if (!data || !Array.isArray(data.products)) throw new Error('Product feed returned no products');
   if (overridesResult.error) throw overridesResult.error;
+  if (collectionsResult.error) throw collectionsResult.error;
+  collectionSettings = collectionsResult.data || [];
   const overridesById = new Map((overridesResult.data || []).map((row) => [row.printify_product_id, row]));
-  allEntries = data.products.map((product) => ({ product, override: overridesById.get(product.id) || overrideDefaults(product.id, product.title) }));
-  renderAll();
+  allEntries = data.products.map((product, index) => ({ product, index, override: overridesById.get(product.id) || overrideDefaults(product.id, product.title) }));
+  fillFilters();
+  renderCollections();
+  renderProducts();
 }
 
 async function init() {
