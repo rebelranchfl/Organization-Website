@@ -63,6 +63,15 @@
         contentCard.innerHTML = `<h3>Social Content Hub</h3><p>Plan, review, organize, approve, assemble, and track Rebel Ranch Ministries social content and reels.</p><span class="path-link-text">Open Social Content Hub</span>`;
         pathGrid.append(contentCard);
       }
+
+      if (!document.getElementById('admin-booking-path')) {
+        const bookingCard = document.createElement('a');
+        bookingCard.id = 'admin-booking-path';
+        bookingCard.className = 'path-card';
+        bookingCard.href = 'booking-admin.html';
+        bookingCard.innerHTML = `<h3>Scheduling &amp; Booking</h3><p>Set booking types, hours, blocked dates, and waivers. See, export, and cancel bookings.</p><span class="path-link-text">Open Scheduling &amp; Booking</span>`;
+        pathGrid.append(bookingCard);
+      }
     };
 
     addAdminOperationsPath();
