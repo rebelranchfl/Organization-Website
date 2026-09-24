@@ -80,7 +80,7 @@
   .collection-card:hover,.collection-card:focus-visible{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 22px 60px rgba(0,0,0,.4)}
   .collection-card[aria-pressed="true"]{border-color:var(--gold);box-shadow:0 0 0 2px rgba(193,127,36,.3),var(--shadow)}
   .collection-card-image{width:42%;min-height:210px;object-fit:contain;padding:20px;background:#0D1E11}
-  .collection-card.creation .collection-card-image{background:#F5F0E8}
+  .collection-card.creation .collection-card-image,.collection-card.light-logo .collection-card-image{background:#F5F0E8}
   .collection-card-copy{display:flex;flex:1;flex-direction:column;justify-content:center;padding:22px}
   .collection-card-copy strong{font-size:22px;line-height:1.1}
   .collection-card-copy span{margin-top:9px;color:var(--muted);font-size:15px}
@@ -244,8 +244,11 @@
 
 <script type="module">
 import { supabase } from './assets/js/supabase-client.js';
-import { validCollections, resolveCollection, resolveType, collectionName } from './assets/js/merch-taxonomy.js';
+import { buildCatalog, resolveType } from './assets/js/merch-taxonomy.js';
 
+// 2026-09-24 (Claude Code): collections — their cards, order, visibility, preview size, and the
+// title words that auto-sort products — come from the Store Manager (merch_collection_settings).
+// The hand-built cards in the HTML above remain only as a fallback if that table can't load.
 (async () => {
   const productFeed = 'https://rrm-printify-products.rebelranchfl.workers.dev/products';
   const storeUrl = 'https://rebel-ranch-store.printify.me';
@@ -256,71 +259,108 @@ import { validCollections, resolveCollection, resolveType, collectionName } from
   const empty = document.getElementById('filter-empty');
   const emptyHeading = document.getElementById('filter-empty-heading');
   const emptyMessage = document.getElementById('filter-empty-message');
-  const collectionButtons = [...document.querySelectorAll('[data-collection]')];
+  const cardGrid = document.querySelector('.collection-grid');
   const typeButtons = [...document.querySelectorAll('[data-product-type]')];
   const productCards = [];
   const requestedCollection = new URLSearchParams(location.search).get('collection');
-  let activeCollection = validCollections.includes(requestedCollection) ? requestedCollection : 'all';
+  let activeCollection = 'all';
   let activeType = 'all';
+  let catalog = buildCatalog(null);
+  let groupEls = new Map();
 
   if (requestedCollection === 'creation-station') {
     document.getElementById('cs-bridge-banner').hidden = false;
   }
 
-  // One section per program, always in the same order, so "all collections" reads as
-  // organized groups instead of one flat mixed grid.
-  const groupEls = new Map(validCollections.map((collection) => {
-    const section = document.createElement('section');
-    section.className = 'product-group';
-    section.dataset.group = collection;
-    section.hidden = true;
-
-    const header = document.createElement('div');
-    header.className = 'product-group-header';
-    const heading = document.createElement('h3');
-    heading.className = 'product-group-heading';
-    heading.textContent = collectionName(collection);
-    const count = document.createElement('span');
-    count.className = 'product-group-count';
-    header.append(heading, count);
-
-    const grid = document.createElement('div');
-    grid.className = 'product-grid';
-
-    const moreLink = document.createElement('button');
-    moreLink.className = 'product-group-more';
-    moreLink.type = 'button';
-    moreLink.hidden = true;
-    moreLink.addEventListener('click', () => {
-      activeCollection = collection;
-      applyFilters();
-      productTools.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
-
-    section.append(header, grid, moreLink);
-    groupsContainer.appendChild(section);
-    return [collection, { section, grid, count, moreLink }];
-  }));
-
-  // Browsing "all collections" is a preview, not the whole catalog — cap each program to a
-  // handful of items so the page reads as curated highlights. Narrowing to one collection
+  // Browsing "all collections" is a preview, not the whole catalog — cap each program to its
+  // owner-set preview size so the page reads as curated highlights. Narrowing to one collection
   // (via its card or its "View all" link) shows everything that program has.
-  // The owner sets each collection's order, visibility, and preview size in store-manager.html
-  // (table merch_collection_settings); these defaults apply if that can't be loaded.
   const GROUP_PREVIEW_LIMIT = 3;
-  const collectionSettings = new Map();
-  const previewLimit = (collection) => collectionSettings.get(collection)?.preview_count ?? GROUP_PREVIEW_LIMIT;
-  const collectionShown = (collection) => collectionSettings.get(collection)?.site_visible !== false;
+  const previewLimit = (collection) => catalog.byKey.get(collection)?.preview_count ?? GROUP_PREVIEW_LIMIT;
+  const collectionShown = (collection) => {
+    const c = catalog.byKey.get(collection);
+    return !!c && c.site_visible !== false && !c.archived;
+  };
+  const collectionButtons = () => [...cardGrid.querySelectorAll('[data-collection]')];
 
   const money = (value) => Number.isFinite(Number(value))
     ? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(value))
     : '';
 
+  // Same card structure/classes as the original hand-built cards.
+  const buildCard = (c) => {
+    const button = document.createElement('button');
+    button.className = `collection-card${c.logo_background === 'light' ? ' light-logo' : ''}`;
+    button.type = 'button';
+    button.dataset.collection = c.collection;
+    button.setAttribute('aria-pressed', 'false');
+    if (c.logo_url) {
+      const img = document.createElement('img');
+      img.className = 'collection-card-image';
+      img.src = c.logo_url;
+      img.alt = '';
+      button.appendChild(img);
+    }
+    const copy = document.createElement('span');
+    copy.className = 'collection-card-copy';
+    const strong = document.createElement('strong');
+    strong.textContent = c.name;
+    copy.appendChild(strong);
+    if (c.description) {
+      const desc = document.createElement('span');
+      desc.textContent = c.description;
+      copy.appendChild(desc);
+    }
+    const small = document.createElement('small');
+    small.textContent = c.button_label || `Shop ${c.name}`;
+    copy.appendChild(small);
+    button.appendChild(copy);
+    return button;
+  };
+
+  // One section per shown collection, in the owner's order.
+  const buildGroups = () => {
+    groupsContainer.replaceChildren();
+    groupEls = new Map(catalog.list.filter((c) => collectionShown(c.collection)).map((c) => {
+      const collection = c.collection;
+      const section = document.createElement('section');
+      section.className = 'product-group';
+      section.dataset.group = collection;
+      section.hidden = true;
+
+      const header = document.createElement('div');
+      header.className = 'product-group-header';
+      const heading = document.createElement('h3');
+      heading.className = 'product-group-heading';
+      heading.textContent = c.name;
+      const count = document.createElement('span');
+      count.className = 'product-group-count';
+      header.append(heading, count);
+
+      const grid = document.createElement('div');
+      grid.className = 'product-grid';
+
+      const moreLink = document.createElement('button');
+      moreLink.className = 'product-group-more';
+      moreLink.type = 'button';
+      moreLink.hidden = true;
+      moreLink.addEventListener('click', () => {
+        activeCollection = collection;
+        applyFilters();
+        productTools.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+
+      section.append(header, grid, moreLink);
+      groupsContainer.appendChild(section);
+      return [collection, { section, grid, count, moreLink }];
+    }));
+  };
+
   const applyFilters = () => {
     let visibleCount = 0;
 
     groupEls.forEach(({ section, grid, count, moreLink }, collection) => {
-      const collectionActive = collectionShown(collection) && (activeCollection === 'all' || activeCollection === collection);
+      const collectionActive = activeCollection === 'all' || activeCollection === collection;
       const showAllInGroup = activeCollection === collection;
       const cards = [...grid.children];
       const matchingCards = collectionActive
@@ -336,13 +376,13 @@ import { validCollections, resolveCollection, resolveType, collectionName } from
 
       const remaining = matchingCards.length - shownCards.length;
       moreLink.hidden = remaining <= 0;
-      if (remaining > 0) moreLink.textContent = `View all ${matchingCards.length} in ${collectionName(collection)} →`;
+      if (remaining > 0) moreLink.textContent = `View all ${matchingCards.length} in ${catalog.collectionName(collection)} →`;
     });
 
-    collectionButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.collection === activeCollection)));
+    collectionButtons().forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.collection === activeCollection)));
     typeButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.productType === activeType)));
 
-    const collectionLabel = activeCollection === 'all' ? 'all collections' : collectionName(activeCollection);
+    const collectionLabel = activeCollection === 'all' ? 'all collections' : catalog.collectionName(activeCollection);
     const typeLabel = activeType === 'all' ? 'products' : activeType;
     summary.textContent = `${visibleCount} ${typeLabel} in ${collectionLabel}`;
     groupsContainer.hidden = visibleCount === 0;
@@ -357,6 +397,9 @@ import { validCollections, resolveCollection, resolveType, collectionName } from
     } else if (visibleCount === 0 && activeCollection === 'academy') {
       emptyHeading.textContent = 'Rebel Ranch Academy gear is coming soon.';
       emptyMessage.textContent = 'New Real Skills for Real Life designs are being prepared now. Shop another collection today and check back soon.';
+    } else if (visibleCount === 0 && activeCollection !== 'all') {
+      emptyHeading.textContent = `${catalog.collectionName(activeCollection)} gear is coming soon.`;
+      emptyMessage.textContent = 'New designs are being prepared now. Shop another collection today and check back soon.';
     } else {
       emptyHeading.textContent = 'No matching products yet.';
       emptyMessage.textContent = 'Try another collection or product type to see what is available now.';
@@ -364,9 +407,11 @@ import { validCollections, resolveCollection, resolveType, collectionName } from
   };
 
   const addProduct = (product, override) => {
+    const collection = catalog.resolveCollection(product, override);
+    const group = groupEls.get(collection);
+    if (!group) return; // collection hidden or retired by the owner
     const card = document.createElement('article');
     card.className = 'product-card';
-    const collection = resolveCollection(product, override);
     const type = resolveType(product, override);
     card.dataset.collection = collection;
     card.dataset.productType = type;
@@ -388,7 +433,7 @@ import { validCollections, resolveCollection, resolveType, collectionName } from
 
     const category = document.createElement('p');
     category.className = 'product-category';
-    category.textContent = collectionName(collection);
+    category.textContent = catalog.collectionName(collection);
 
     const title = document.createElement('h3');
     title.textContent = product.title || 'Rebel Ranch Merchandise';
@@ -410,17 +455,16 @@ import { validCollections, resolveCollection, resolveType, collectionName } from
 
     copy.append(category, title, price, link);
     card.appendChild(copy);
-    groupEls.get(collection).grid.appendChild(card);
+    group.grid.appendChild(card);
     productCards.push({ card, collection, type });
   };
 
-  collectionButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      if (!productCards.length) return;
-      activeCollection = button.dataset.collection === activeCollection ? 'all' : button.dataset.collection;
-      applyFilters();
-      productTools.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
+  cardGrid.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-collection]');
+    if (!button || !productCards.length) return;
+    activeCollection = button.dataset.collection === activeCollection ? 'all' : button.dataset.collection;
+    applyFilters();
+    productTools.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
 
   typeButtons.forEach((button) => {
@@ -443,23 +487,15 @@ import { validCollections, resolveCollection, resolveType, collectionName } from
       supabase.from('merch_collection_settings').select('*')
     ]);
 
-    // Collection order/visibility/preview size from the Store Manager. Not fatal: without it
-    // the page keeps its built-in order and shows every collection.
-    if (!collectionsResult.error && Array.isArray(collectionsResult.data)) {
-      collectionsResult.data.forEach((row) => collectionSettings.set(row.collection, row));
-      const rank = (collection) => collectionSettings.get(collection)?.display_order ?? validCollections.indexOf(collection);
-      const ordered = [...validCollections].sort((a, b) => rank(a) - rank(b));
-      const cardGrid = collectionButtons[0]?.parentElement;
-      ordered.forEach((collection) => {
-        groupsContainer.appendChild(groupEls.get(collection).section);
-        const button = collectionButtons.find((b) => b.dataset.collection === collection);
-        if (button && cardGrid) {
-          cardGrid.appendChild(button);
-          button.style.display = collectionShown(collection) ? '' : 'none'; // .collection-card sets display:flex, which beats [hidden]
-        }
-      });
-      if (activeCollection !== 'all' && !collectionShown(activeCollection)) activeCollection = 'all';
+    // Owner-managed collections. Not fatal: without them the page keeps its built-in
+    // five collections and the hand-built cards.
+    if (!collectionsResult.error && Array.isArray(collectionsResult.data) && collectionsResult.data.length) {
+      catalog = buildCatalog(collectionsResult.data);
+      cardGrid.replaceChildren(...catalog.list.filter((c) => collectionShown(c.collection)).map(buildCard));
     }
+    buildGroups();
+    if (requestedCollection && collectionShown(requestedCollection)) activeCollection = requestedCollection;
+
     if (!feedResponse.ok) throw new Error('Product feed unavailable');
     const data = await feedResponse.json();
     if (!data || !Array.isArray(data.products)) throw new Error('Product collection unavailable');

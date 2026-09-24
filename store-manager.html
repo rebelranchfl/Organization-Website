@@ -38,6 +38,19 @@
 .subhead{margin:22px 0 10px;font-size:1.05rem}
 .coll-row{grid-template-columns:48px minmax(0,1fr) auto}
 .coll-pos{font-size:1.2rem;font-weight:900;color:var(--rrm-gold-bright);text-align:center}
+.editor{margin-top:12px;padding:18px;border:1px solid #45634a;border-radius:12px;background:#122a18}
+.editor h3{margin:0 0 12px}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.form-grid .wide{grid-column:1/-1}
+.field input[type="text"],.field textarea,.field input[type="file"]{padding:8px 10px;border:1px solid #45634a;border-radius:7px;background:#102718;color:var(--rrm-ink);min-width:0;text-transform:none;letter-spacing:0;font-weight:400;font-size:1rem}
+.field textarea{min-height:70px;resize:vertical}
+.hint{font-size:.78rem;font-weight:400;text-transform:none;letter-spacing:0;color:var(--rrm-muted)}
+.logo-preview{width:120px;height:90px;object-fit:contain;padding:8px;border-radius:8px;border:1px solid #45634a;background:#0D1E11}
+.logo-preview.light{background:#F5F0E8}
+.coll-logo{width:48px;height:48px;object-fit:contain;padding:4px;border-radius:8px;background:#0D1E11}
+.coll-logo.light{background:#F5F0E8}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;align-items:center}
+.btn.primary{border-color:var(--rrm-gold);background:linear-gradient(135deg,var(--rrm-gold),var(--rrm-gold-dark));color:#fff7de}
 @media(max-width:820px){.row,.row.arrange,.coll-row{grid-template-columns:48px minmax(0,1fr)}.row img,.rank{width:48px;height:48px}.row.arrange .rank{grid-row:1}.row-controls{grid-column:1/-1;justify-content:flex-start}}
 </style>
 </head>
@@ -47,8 +60,11 @@
 <div id="content" style="display:none">
 <section class="panel">
   <h2>Collections on the store page</h2>
-  <p class="muted">Set the order the program collections appear on the store, turn a whole collection on or off, and choose how many of its top products show on the main store view. Visitors who click a collection always see all of its shown products.</p>
+  <p class="muted">Add, edit, and order the program collections on the store. Turn a whole collection on or off, and choose how many of its top products show on the main store view. Visitors who click a collection always see all of its shown products.</p>
   <div class="rows" id="collection-rows"></div>
+  <div class="actions"><button type="button" class="btn primary" id="add-collection">Add a collection</button></div>
+  <div id="collection-editor"></div>
+  <div id="retired-collections"></div>
 </section>
 <section class="panel">
   <h2>Products</h2>
@@ -66,7 +82,7 @@
 </main>
 <script type="module">
 import { supabase } from './assets/js/supabase-client.js';
-import { validCollections, validTypes, detectCollection, detectType, collectionName, typeName, resolveCollection, resolveType } from './assets/js/merch-taxonomy.js';
+import { buildCatalog, validTypes, detectType, typeName, resolveType } from './assets/js/merch-taxonomy.js';
 
 const notice = document.getElementById('notice');
 const loading = document.getElementById('loading');
@@ -82,6 +98,9 @@ const productFeed = 'https://rrm-printify-products.rebelranchfl.workers.dev/prod
 
 let allEntries = [];
 let collectionSettings = [];
+let catalog = buildCatalog(null);
+const collectionName = (key) => catalog.collectionName(key);
+const refreshCatalog = () => { catalog = buildCatalog(collectionSettings); };
 
 function msg(t, type = '') { notice.textContent = t; notice.className = `notice ${t ? 'visible' : ''} ${type}`.trim(); }
 
@@ -89,7 +108,7 @@ function overrideDefaults(id, title) {
   return { printify_product_id: id, product_title_cache: title, site_visible: false, featured: false, display_order: null, collection_override: null, type_override: null };
 }
 
-const effectiveCollection = (entry) => resolveCollection(entry.product, entry.override);
+const effectiveCollection = (entry) => catalog.resolveCollection(entry.product, entry.override);
 const effectiveType = (entry) => resolveType(entry.product, entry.override);
 const shown = (entry) => entry.override.site_visible === true;
 
@@ -128,13 +147,15 @@ async function save(entry, patch, statusEl) {
 // ---------------------------------------------------------------------------
 // Collections panel
 // ---------------------------------------------------------------------------
-const settingFor = (c) => collectionSettings.find((s) => s.collection === c) || { collection: c, display_order: validCollections.indexOf(c) + 1, site_visible: true, preview_count: 3 };
-const orderedCollections = () => [...validCollections].sort((a, b) => settingFor(a).display_order - settingFor(b).display_order);
+const settingFor = (c) => collectionSettings.find((s) => s.collection === c) || { collection: c, name: c, display_order: 999, site_visible: false, preview_count: 3, match_keywords: [] };
+// Active (not retired) collections in store order.
+const orderedCollections = () => collectionSettings.filter((s) => !s.archived).sort((a, b) => a.display_order - b.display_order).map((s) => s.collection);
 
 async function saveCollection(collection, patch) {
   const { error } = await supabase.from('merch_collection_settings').update(patch).eq('collection', collection);
   if (error) { msg(`Could not save ${collectionName(collection)}: ${error.message}`, 'error'); return false; }
   Object.assign(settingFor(collection), patch);
+  refreshCatalog();
   return true;
 }
 
@@ -151,6 +172,7 @@ async function moveCollection(collection, dir) {
 }
 
 function renderCollections() {
+  renderRetired();
   const order = orderedCollections();
   collectionRowsEl.replaceChildren(...order.map((c, i) => {
     const s = settingFor(c);
@@ -160,10 +182,17 @@ function renderCollections() {
     const pos = document.createElement('div');
     pos.className = 'coll-pos';
     pos.textContent = `${i + 1}`;
+    if (s.logo_url) {
+      const logo = document.createElement('img');
+      logo.className = `coll-logo${s.logo_background === 'light' ? ' light' : ''}`;
+      logo.src = s.logo_url;
+      logo.alt = '';
+      pos.replaceChildren(document.createTextNode(`${i + 1}`), document.createElement('br'), logo);
+    }
     const info = document.createElement('div');
     info.innerHTML = `<div class="row-title"></div><div class="row-detected"></div>`;
     info.children[0].textContent = collectionName(c) + (s.site_visible ? '' : ' — hidden from the store');
-    info.children[1].textContent = `${shownCount} product${shownCount === 1 ? '' : 's'} shown on the store`;
+    info.children[1].textContent = `${shownCount} product${shownCount === 1 ? '' : 's'} shown on the store${s.is_default ? ' · catches products that match no other collection' : ''}`;
     const controls = document.createElement('div');
     controls.className = 'row-controls';
     const status = document.createElement('span');
@@ -211,10 +240,208 @@ function renderCollections() {
       productsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
-    controls.append(visLabel, prevLabel, up, down, arrange, status);
+    const edit = document.createElement('button');
+    edit.className = 'btn'; edit.type = 'button'; edit.textContent = 'Edit details';
+    edit.addEventListener('click', () => openCollectionEditor(s));
+    controls.append(visLabel, prevLabel, up, down, arrange, edit, status);
     row.append(pos, info, controls);
     return row;
   }));
+}
+
+// ---------------------------------------------------------------------------
+// Add / edit / retire collections
+// ---------------------------------------------------------------------------
+const editorEl = document.getElementById('collection-editor');
+const retiredEl = document.getElementById('retired-collections');
+const slugify = (text) => text.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 50) || 'collection';
+
+function textField(label, value, { wide = false, multiline = false, hint = '', max = 200 } = {}) {
+  const wrap = document.createElement('label');
+  wrap.className = `field${wide ? ' wide' : ''}`;
+  wrap.append(document.createTextNode(label));
+  const input = document.createElement(multiline ? 'textarea' : 'input');
+  if (!multiline) input.type = 'text';
+  input.maxLength = max;
+  input.value = value ?? '';
+  wrap.appendChild(input);
+  if (hint) { const h = document.createElement('span'); h.className = 'hint'; h.textContent = hint; wrap.appendChild(h); }
+  return { wrap, input };
+}
+
+async function uploadLogo(key, file) {
+  if (!/^image\/(png|jpeg|webp)$/.test(file.type)) throw new Error('Logos must be PNG, JPG, or WebP images.');
+  if (file.size > 5 * 1024 * 1024) throw new Error('Logos must be 5 MB or smaller.');
+  const ext = { 'image/png': 'png', 'image/jpeg': 'jpg', 'image/webp': 'webp' }[file.type];
+  const path = `logos/${key}-${Date.now()}.${ext}`;
+  const { error } = await supabase.storage.from('merch-collection-logos').upload(path, file, { contentType: file.type, upsert: false });
+  if (error) throw error;
+  return supabase.storage.from('merch-collection-logos').getPublicUrl(path).data.publicUrl;
+}
+
+function openCollectionEditor(existing = null) {
+  const isNew = !existing;
+  const s = existing || { name: '', description: '', button_label: '', logo_url: '', logo_background: 'dark', match_keywords: [] };
+  const name = textField('Collection name', s.name, { max: 80 });
+  const desc = textField('Card description (one short line)', s.description, { wide: true, multiline: true, max: 300 });
+  const label = textField('Card button text', s.button_label, { hint: `Leave empty for "Shop ${s.name || 'this collection'}"`, max: 60 });
+  const words = textField('Auto-sort title words', (s.match_keywords || []).join(', '), {
+    wide: true, multiline: true, max: 2000,
+    hint: s.is_default
+      ? 'This is the catch-all collection: products that match no other collection land here, so it needs no words.'
+      : 'Separate with commas. A product whose Printify title contains any of these words is placed here automatically (you can always override a product by hand). Example: rescue, rebel ranch rescue',
+  });
+  if (s.is_default) words.input.disabled = true;
+
+  const bgWrap = document.createElement('label');
+  bgWrap.className = 'field';
+  bgWrap.append(document.createTextNode('Logo background'));
+  const bg = document.createElement('select');
+  [['dark', 'Dark green (for light-colored logos)'], ['light', 'Cream (for dark or colorful logos)']].forEach(([v, t]) => { const o = document.createElement('option'); o.value = v; o.textContent = t; bg.appendChild(o); });
+  bg.value = s.logo_background || 'dark';
+  bgWrap.appendChild(bg);
+
+  const preview = document.createElement('img');
+  preview.className = `logo-preview${bg.value === 'light' ? ' light' : ''}`;
+  preview.alt = 'Logo preview';
+  if (s.logo_url) preview.src = s.logo_url; else preview.style.display = 'none';
+  bg.addEventListener('change', () => preview.classList.toggle('light', bg.value === 'light'));
+
+  const logoWrap = document.createElement('label');
+  logoWrap.className = 'field';
+  logoWrap.append(document.createTextNode(s.logo_url ? 'Replace logo' : 'Logo'));
+  const file = document.createElement('input');
+  file.type = 'file';
+  file.accept = 'image/png,image/jpeg,image/webp';
+  file.addEventListener('change', () => {
+    const f = file.files?.[0];
+    if (f) { preview.src = URL.createObjectURL(f); preview.style.display = ''; }
+  });
+  const logoHint = document.createElement('span');
+  logoHint.className = 'hint';
+  logoHint.textContent = 'PNG, JPG, or WebP, up to 5 MB. Use the program\'s approved logo.';
+  logoWrap.append(file, logoHint);
+
+  const save = document.createElement('button');
+  save.className = 'btn primary'; save.type = 'button'; save.textContent = isNew ? 'Create collection' : 'Save changes';
+  const cancel = document.createElement('button');
+  cancel.className = 'btn'; cancel.type = 'button'; cancel.textContent = 'Cancel';
+  cancel.addEventListener('click', () => editorEl.replaceChildren());
+
+  save.addEventListener('click', async () => {
+    const cleanName = name.input.value.trim();
+    if (!cleanName) { msg('Please give the collection a name.', 'error'); return; }
+    save.disabled = true;
+    try {
+      let key = s.collection;
+      if (isNew) {
+        const base = slugify(cleanName);
+        key = base;
+        let n = 2;
+        while (collectionSettings.some((c) => c.collection === key)) key = `${base}-${n++}`;
+      }
+      let logoUrl = s.logo_url || null;
+      const picked = file.files?.[0];
+      if (picked) logoUrl = await uploadLogo(key, picked);
+      const fields = {
+        name: cleanName,
+        description: desc.input.value.trim() || null,
+        button_label: label.input.value.trim() || null,
+        logo_url: logoUrl,
+        logo_background: bg.value,
+      };
+      if (!s.is_default) {
+        fields.match_keywords = words.input.value.split(',').map((w) => w.trim().toLowerCase()).filter(Boolean);
+      }
+      if (isNew) {
+        const maxOrder = Math.max(0, ...collectionSettings.map((c) => c.display_order || 0));
+        // New collections start hidden so an empty card never appears; the owner turns them on.
+        const row = { collection: key, ...fields, display_order: maxOrder + 1, site_visible: false, preview_count: 3, match_priority: 5 };
+        const { data, error } = await supabase.from('merch_collection_settings').insert(row).select().single();
+        if (error) throw error;
+        collectionSettings.push(data);
+        refreshCatalog();
+        msg(`"${cleanName}" created. It is hidden from the store until you tick "Show on store". Assign products with their Collection dropdown, or let its auto-sort words pick them up.`, 'success');
+      } else {
+        if (!(await saveCollection(s.collection, fields))) return;
+        msg(`"${cleanName}" saved.`, 'success');
+      }
+      editorEl.replaceChildren();
+      fillFilters();
+      renderCollections();
+      renderProducts();
+    } catch (e) {
+      msg(`Could not save the collection: ${e.message}`, 'error');
+    } finally {
+      save.disabled = false;
+    }
+  });
+
+  const actions = document.createElement('div');
+  actions.className = 'actions';
+  actions.append(save, cancel);
+  if (!isNew && !s.is_default) {
+    const retire = document.createElement('button');
+    retire.className = 'btn'; retire.type = 'button'; retire.textContent = 'Retire this collection';
+    retire.addEventListener('click', async () => {
+      if (!confirm(`Retire "${s.name}"? It disappears from the store and from the Collection dropdowns, and its auto-sort words stop working. Products you assigned to it by hand fall back to automatic sorting on the store until you reassign them. You can restore it any time.`)) return;
+      if (await saveCollection(s.collection, { archived: true, site_visible: false })) {
+        editorEl.replaceChildren();
+        fillFilters(); renderCollections(); renderProducts();
+        msg(`"${s.name}" retired.`, 'success');
+      }
+    });
+    actions.appendChild(retire);
+  }
+
+  const box = document.createElement('div');
+  box.className = 'editor';
+  const h = document.createElement('h3');
+  h.textContent = isNew ? 'New collection' : `Edit: ${s.name}`;
+  const grid = document.createElement('div');
+  grid.className = 'form-grid';
+  const previewWrap = document.createElement('div');
+  previewWrap.className = 'field';
+  previewWrap.append(document.createTextNode('Logo on its card'), preview);
+  grid.append(name.wrap, label.wrap, desc.wrap, logoWrap, bgWrap, previewWrap, words.wrap);
+  box.append(h, grid, actions);
+  editorEl.replaceChildren(box);
+  box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  name.input.focus();
+}
+
+document.getElementById('add-collection').addEventListener('click', () => openCollectionEditor(null));
+
+function renderRetired() {
+  const retired = collectionSettings.filter((c) => c.archived);
+  if (!retired.length) { retiredEl.replaceChildren(); return; }
+  const h = document.createElement('h3');
+  h.className = 'subhead';
+  h.textContent = 'Retired collections';
+  const rows = document.createElement('div');
+  rows.className = 'rows';
+  retired.forEach((c) => {
+    const row = document.createElement('div');
+    row.className = 'row coll-row';
+    const pos = document.createElement('div'); pos.className = 'coll-pos'; pos.textContent = '—';
+    const info = document.createElement('div');
+    info.innerHTML = '<div class="row-title"></div><div class="row-detected">Not on the store</div>';
+    info.children[0].textContent = c.name;
+    const controls = document.createElement('div'); controls.className = 'row-controls';
+    const restore = document.createElement('button');
+    restore.className = 'btn'; restore.type = 'button'; restore.textContent = 'Restore';
+    restore.addEventListener('click', async () => {
+      const maxOrder = Math.max(0, ...collectionSettings.filter((x) => !x.archived).map((x) => x.display_order || 0));
+      if (await saveCollection(c.collection, { archived: false, display_order: maxOrder + 1 })) {
+        fillFilters(); renderCollections(); renderProducts();
+        msg(`"${c.name}" restored (still hidden until you tick "Show on store").`, 'success');
+      }
+    });
+    controls.appendChild(restore);
+    row.append(pos, info, controls);
+    rows.appendChild(row);
+  });
+  retiredEl.replaceChildren(h, rows);
 }
 
 // ---------------------------------------------------------------------------
@@ -255,7 +482,9 @@ function commonControls(entry, status) {
   visibleField.append(visibleInput, document.createTextNode('Shown'));
 
   const collectionField = selectField('Collection',
-    [['', `Auto (${collectionName(detectCollection(product))})`], ...validCollections.map((c) => [c, collectionName(c)])],
+    [['', `Auto (${collectionName(catalog.detectCollection(product))})`],
+      ...orderedCollections().map((c) => [c, collectionName(c)]),
+      ...(override.collection_override && !orderedCollections().includes(override.collection_override) ? [[override.collection_override, `${collectionName(override.collection_override)} (retired)`]] : [])],
     override.collection_override || '',
     async (v) => { if (await save(entry, { collection_override: v || null, display_order: null }, status)) { renderCollections(); renderProducts(); } });
 
@@ -355,7 +584,7 @@ function renderProducts() {
     const list = allEntries.filter(matchesFilters);
     countEl.textContent = `${list.length} of ${allEntries.length} products`;
     const rankIn = new Map();
-    for (const coll of validCollections) {
+    for (const coll of catalog.keys) {
       allEntries.filter((e) => shown(e) && effectiveCollection(e) === coll).sort(storeOrder).forEach((e, i) => rankIn.set(e, i + 1));
     }
     const rows = document.createElement('div');
@@ -429,6 +658,7 @@ async function loadProducts() {
   if (overridesResult.error) throw overridesResult.error;
   if (collectionsResult.error) throw collectionsResult.error;
   collectionSettings = collectionsResult.data || [];
+  refreshCatalog();
   const overridesById = new Map((overridesResult.data || []).map((row) => [row.printify_product_id, row]));
   allEntries = data.products.map((product, index) => ({ product, index, override: overridesById.get(product.id) || overrideDefaults(product.id, product.title) }));
   fillFilters();
