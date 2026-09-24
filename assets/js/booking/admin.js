@@ -33,12 +33,12 @@ function fail(error, prefix = 'Could not save') {
   const raw = error?.message || String(error);
   let friendly = raw;
   if (/foreign key|violates.*restrict|still referenced/i.test(raw)) friendly = 'This item is used by existing bookings, so it cannot be deleted. Turn it off instead.';
-  else if (/duplicate key.*slug/i.test(raw)) friendly = 'Another visit type already uses that web address name (slug).';
+  else if (/duplicate key.*slug/i.test(raw)) friendly = 'Another booking type already uses that web address name (slug).';
   msg(`${prefix}: ${friendly}`, 'error');
 }
 
 const tz = () => db.settings?.timezone || 'America/New_York';
-const typeName = (id) => (id ? db.types.find((t) => t.id === id)?.name ?? 'Unknown visit type' : 'All visit types');
+const typeName = (id) => (id ? db.types.find((t) => t.id === id)?.name ?? 'Unknown booking type' : 'All booking types');
 const hhmm = (t) => (t ? t.slice(0, 5) : '');
 const fmtTime = (t) => {
   if (!t) return '';
@@ -58,7 +58,7 @@ function checkbox(label, checked, attrs = {}) {
 }
 function typeSelect(value, allowAll = true) {
   const select = el('select', {});
-  if (allowAll) select.append(el('option', { value: '' }, 'All visit types'));
+  if (allowAll) select.append(el('option', { value: '' }, 'All booking types'));
   for (const t of db.types) select.append(el('option', { value: t.id }, t.name + (t.active ? '' : ' (off)')));
   select.value = value || '';
   return select;
@@ -146,20 +146,20 @@ renderers.settings = () => {
   });
   $('panel-settings').replaceChildren(
     el('h2', {}, 'Settings'),
-    el('p', { class: 'muted' }, 'Turn online booking on only after you have added at least one visit type and weekly hours.'),
+    el('p', { class: 'muted' }, 'Turn online booking on only after you have added at least one booking type and weekly hours. Public page: rebelranchministries.org/book.html'),
     el('div', { class: 'actions' }, enabled.label),
     el('div', { class: 'form-grid' },
       field('Send new-booking notices to', email),
       field('Time zone', zone),
-      field('Reminder email, hours before visit', reminder),
-      field('Private location / directions (emailed only to confirmed visitors — never shown on the website)', location, 'wide'),
+      field('Reminder email, hours before the booking', reminder),
+      field('General private location / directions (emailed only to confirmed bookers — never shown on the website). A booking type can override this with its own.', location, 'wide'),
       field('Message included in confirmation emails', confirmation, 'wide'),
       field('Cancellation policy (shown to visitors)', policy, 'wide')),
     el('div', { class: 'actions' }, save));
 };
 
 // ---------------------------------------------------------------------------
-// Visit types
+// Booking types
 // ---------------------------------------------------------------------------
 const slugify = (s) => s.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60) || 'visit';
 
@@ -169,6 +169,7 @@ function typeForm(t = null) {
     name: input({ type: 'text', value: v.name, maxlength: '120', required: true }),
     slug: input({ type: 'text', value: v.slug, maxlength: '60', pattern: '[a-z0-9-]+' }),
     description: el('textarea', {}, v.description || ''),
+    location_text: el('textarea', {}, v.location_text || ''),
     duration_minutes: input({ type: 'number', min: '5', max: '1440', value: v.duration_minutes }),
     slot_interval_minutes: input({ type: 'number', min: '5', max: '1440', value: v.slot_interval_minutes ?? '', placeholder: 'Same as length' }),
     buffer_before_minutes: input({ type: 'number', min: '0', max: '1440', value: v.buffer_before_minutes }),
@@ -181,7 +182,7 @@ function typeForm(t = null) {
   };
   const active = checkbox('Bookable (On)', v.active);
   if (!t) f.name.addEventListener('input', () => { f.slug.value = slugify(f.name.value); });
-  const save = el('button', { class: 'btn primary', type: 'button' }, t ? 'Save visit type' : 'Add visit type');
+  const save = el('button', { class: 'btn primary', type: 'button' }, t ? 'Save booking type' : 'Add booking type');
   const cancel = el('button', { class: 'btn', type: 'button', onclick: () => renderers.types() }, 'Cancel');
   save.addEventListener('click', async () => {
     if (!f.name.value.trim()) return msg('Please enter a name.', 'error');
@@ -190,6 +191,7 @@ function typeForm(t = null) {
       name: f.name.value.trim(),
       slug: slugify(f.slug.value || f.name.value),
       description: f.description.value.trim() || null,
+      location_text: f.location_text.value.trim() || null,
       duration_minutes: num(f.duration_minutes, 60),
       slot_interval_minutes: num(f.slot_interval_minutes),
       buffer_before_minutes: num(f.buffer_before_minutes, 0),
@@ -208,13 +210,14 @@ function typeForm(t = null) {
     save.disabled = false;
     if (error) return fail(error);
     await refresh();
-    msg(t ? 'Visit type saved.' : 'Visit type added.', 'success');
+    msg(t ? 'Booking type saved.' : 'Booking type added.', 'success');
   });
   return el('div', { class: 'detail' },
-    el('h3', {}, t ? `Edit: ${t.name}` : 'New visit type'),
+    el('h3', {}, t ? `Edit: ${t.name}` : 'New booking type'),
     el('div', { class: 'form-grid' },
       field('Name', f.name), field('Web address name (slug)', f.slug),
       field('Description (shown to visitors)', f.description, 'wide'),
+      field('Private location or how to join (emailed only after booking; leave empty to use the general location from Settings — e.g. a video-call link for remote bookings)', f.location_text, 'wide'),
       field('Length (minutes)', f.duration_minutes), field('Start times every (minutes)', f.slot_interval_minutes),
       field('Buffer before (minutes)', f.buffer_before_minutes), field('Buffer after (minutes)', f.buffer_after_minutes),
       field('Minimum notice (hours)', f.min_notice_hours), field('Bookable up to (days ahead)', f.max_days_ahead),
@@ -232,11 +235,11 @@ renderers.types = () => {
     const slot = el('div', {});
     edit.addEventListener('click', () => slot.replaceChildren(typeForm(t)));
     del.addEventListener('click', async () => {
-      if (!confirm(`Delete "${t.name}"? Its weekly hours and blocked dates are removed too. Visit types with bookings cannot be deleted — turn them off instead.`)) return;
+      if (!confirm(`Delete "${t.name}"? Its weekly hours and blocked dates are removed too. Booking types with bookings cannot be deleted — turn them off instead.`)) return;
       const { error } = await supabase.from('booking_event_types').delete().eq('id', t.id);
       if (error) return fail(error, 'Could not delete');
       await refresh();
-      msg('Visit type deleted.', 'success');
+      msg('Booking type deleted.', 'success');
     });
     list.append(el('div', {},
       el('div', { class: 'row' },
@@ -247,11 +250,11 @@ renderers.types = () => {
       slot));
   }
   const addSlot = el('div', {});
-  const add = el('button', { class: 'btn primary', type: 'button', onclick: () => addSlot.replaceChildren(typeForm()) }, 'Add a visit type');
+  const add = el('button', { class: 'btn primary', type: 'button', onclick: () => addSlot.replaceChildren(typeForm()) }, 'Add a booking type');
   panel.replaceChildren(
-    el('h2', {}, 'Visit Types'),
-    el('p', { class: 'muted' }, 'Each visit type is something visitors can book. Buffers keep open time before/after a visit. "Bookings allowed per time slot" above 1 lets separate groups share a time.'),
-    db.types.length ? list : el('p', { class: 'muted' }, 'No visit types yet.'),
+    el('h2', {}, 'Booking Types'),
+    el('p', { class: 'muted' }, 'Each booking type is something people can schedule — an in-person visit, a remote call, a class, and so on. Link straight to one with book.html?type=<web address name>. Buffers keep open time before/after each booking. "Bookings allowed per time slot" above 1 lets separate groups share a time.'),
+    db.types.length ? list : el('p', { class: 'muted' }, 'No booking types yet.'),
     el('div', { class: 'actions' }, add), addSlot);
 };
 
@@ -288,7 +291,7 @@ renderers.hours = () => {
   });
   panel.replaceChildren(
     el('h2', {}, 'Weekly Hours'),
-    el('p', { class: 'muted' }, `Times are in ${tz()}. You can add more than one window per day (for example 9–12 and 2–5). If a visit type has hours of its own, only its own hours are used for it; otherwise it uses the "All visit types" hours.`),
+    el('p', { class: 'muted' }, `Times are in ${tz()}. You can add more than one window per day (for example 9–12 and 2–5). If a booking type has hours of its own, only its own hours are used for it; otherwise it uses the "All booking types" hours.`),
     db.rules.length ? el('div', { class: 'table-wrap' }, table) : el('p', { class: 'muted' }, 'No weekly hours yet — nothing can be booked until hours are added.'),
     el('h3', {}, 'Add hours'),
     el('div', { class: 'form-grid' }, field('Day', day), field('From', from), field('To', to), field('Applies to', applies)),
@@ -417,7 +420,7 @@ function requirementRow(req, index) {
 
   // Applies to
   const assigned = new Set((req.booking_requirement_event_types || []).map((j) => j.event_type_id));
-  const allBox = checkbox('All visit types', req.applies_to_all);
+  const allBox = checkbox('All booking types', req.applies_to_all);
   const typeBoxes = db.types.map((t) => ({ t, ...checkbox(t.name, assigned.has(t.id)) }));
   const typeWrap = el('div', { class: `row-controls ${req.applies_to_all ? 'hidden' : ''}`.trim(), style: 'justify-content:flex-start' }, typeBoxes.map((x) => x.label));
   allBox.box.addEventListener('change', async () => {
@@ -605,7 +608,7 @@ async function showBookingDetail(b, mount) {
   const canCancel = b.status === 'confirmed' && new Date(b.start_at) > new Date();
   const dl = el('dl', {});
   const add = (k, v) => dl.append(el('dt', {}, k), el('dd', {}, v ?? '—'));
-  add('Visit', typeName(b.event_type_id));
+  add('Booking type', typeName(b.event_type_id));
   add('When', formatWhen(b.start_at, b.end_at, tz()));
   add('Status', b.status === 'cancelled' ? `Cancelled by ${b.cancelled_by || '—'} on ${fmtStamp(b.cancelled_at)}` : 'Confirmed');
   add('Name', b.name); add('Email', b.email); add('Phone', b.phone);
@@ -653,7 +656,7 @@ async function exportCsv() {
     if (!byBooking.has(a.booking_id)) byBooking.set(a.booking_id, []);
     byBooking.get(a.booking_id).push(text);
   }
-  const header = ['Booking ID', 'Visit', 'Start', 'End', 'Status', 'Name', 'Email', 'Phone', 'Party size', 'Under 18', 'Guardian', 'Notes', 'Booked at', 'Cancelled at', 'Cancelled by', 'Waivers signed'];
+  const header = ['Booking ID', 'Booking type', 'Start', 'End', 'Status', 'Name', 'Email', 'Phone', 'Party size', 'Under 18', 'Guardian', 'Notes', 'Booked at', 'Cancelled at', 'Cancelled by', 'Waivers signed'];
   const lines = [header.map(csvCell).join(',')];
   for (const b of db.bookings) {
     lines.push([b.id, typeName(b.event_type_id), fmtStamp(b.start_at), fmtStamp(b.end_at), b.status, b.name, b.email, b.phone, b.party_size, b.minors_count, b.guardian_name, b.notes, fmtStamp(b.created_at), b.cancelled_at ? fmtStamp(b.cancelled_at) : '', b.cancelled_by, (byBooking.get(b.id) || []).join(' | ')].map(csvCell).join(','));
@@ -677,7 +680,7 @@ renderers.bookings = async () => {
   filter.addEventListener('change', () => { bookingFilter = filter.value; renderers.bookings(); });
   const detail = el('div', {});
   const table = el('table', {},
-    el('thead', {}, el('tr', {}, ['When', 'Visit', 'Name', 'Party', 'Status', ''].map((h) => el('th', {}, h)))),
+    el('thead', {}, el('tr', {}, ['When', 'Booking type', 'Name', 'Party', 'Status', ''].map((h) => el('th', {}, h)))),
     el('tbody', {}, db.bookings.map((b) => el('tr', {},
       el('td', {}, formatWhen(b.start_at, b.end_at, tz())),
       el('td', {}, typeName(b.event_type_id)),

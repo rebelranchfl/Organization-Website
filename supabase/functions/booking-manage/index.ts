@@ -19,7 +19,7 @@ const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
 const RESCHEDULE_MESSAGES: Record<string, [number, string]> = {
   slot_unavailable: [409, "Sorry — that time was just taken or is no longer open. Please pick another time."],
   not_active: [409, "This booking has already been cancelled."],
-  already_started: [409, "This visit has already started or passed and can't be changed online."],
+  already_started: [409, "This booking has already started or passed and can't be changed online."],
   disabled: [403, "Online booking changes are currently closed. Please contact us directly."],
 };
 
@@ -92,7 +92,7 @@ Deno.serve(async (req: Request) => {
       return json(req, {
         booking: {
           event_type_id: booking.event_type_id,
-          event_name: et?.name ?? "Visit",
+          event_name: et?.name ?? "Booking",
           start_at: booking.start_at,
           end_at: booking.end_at,
           status: booking.status,
@@ -131,7 +131,7 @@ Deno.serve(async (req: Request) => {
         const code = /booking:([a-z_]+)/.exec(error.message ?? "")?.[1];
         const mapped = code ? RESCHEDULE_MESSAGES[code] : undefined;
         if (!mapped) console.error("booking_reschedule failed", error);
-        const [status, message] = mapped ?? [400, "The visit could not be rescheduled. Please try again."];
+        const [status, message] = mapped ?? [400, "The booking could not be rescheduled. Please try again."];
         return json(req, { error: message, code: code ?? "unknown" }, status);
       }
       const oldStart = Array.isArray(moved) ? moved[0]?.old_start_at : undefined;
@@ -140,7 +140,7 @@ Deno.serve(async (req: Request) => {
       await Promise.all([
         sendEmail(admin, {
           bookingId: booking.id, type: "reschedule_visitor", to: ctx.booking.email,
-          ...visitorConfirmationEmail(ctx, token, "Your visit has been rescheduled"),
+          ...visitorConfirmationEmail(ctx, token, "Your booking has been rescheduled"),
           ics: calendarFor(ctx, token, sequence),
         }),
         sendEmail(admin, { bookingId: booking.id, type: "owner_rescheduled", to: ctx.settings.notification_email, ...ownerEmail(ctx, "rescheduled", { oldStart }) }),

@@ -15,9 +15,9 @@ import {
 
 const MESSAGES: Record<string, [number, string]> = {
   disabled: [403, "Online booking is currently closed."],
-  event_type_unavailable: [409, "That visit type is no longer available. Please choose another."],
+  event_type_unavailable: [409, "That booking type is no longer available. Please choose another."],
   slot_unavailable: [409, "Sorry — that time was just taken or is no longer open. Please pick another time."],
-  party_size: [400, "Please enter a party size within the limit for this visit."],
+  party_size: [400, "Please enter a party size within the limit for this booking."],
   minors_count: [400, "The number of people under 18 can't be more than the party size."],
   contact_missing: [400, "Please enter your name and a valid email address."],
   guardian_missing: [400, "A parent or guardian name is required when anyone under 18 is coming."],

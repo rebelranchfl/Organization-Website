@@ -18,14 +18,14 @@ function notice(text, isError = false) {
 
 function render() {
   const b = view.booking;
-  $('visit-what').textContent = `Visit: ${b.event_name}`;
+  $('visit-what').textContent = `Booking: ${b.event_name}`;
   $('visit-when').textContent = `When: ${formatWhen(b.start_at, b.end_at, view.timezone)}`;
   $('visit-party').textContent = `Party size: ${b.party_size}${b.minors_count ? ` (${b.minors_count} under 18)` : ''}`;
   $('visit-status').textContent = b.status === 'cancelled' ? 'Status: Cancelled' : 'Status: Confirmed';
   $('reschedule-btn').classList.toggle('booking-hidden', !view.can_reschedule);
   $('cancel-btn').classList.toggle('booking-hidden', !view.can_cancel);
   $('policy').textContent = view.cancellation_policy_text ? `Cancellation policy: ${view.cancellation_policy_text}` : '';
-  if (b.status === 'confirmed' && !view.can_cancel) notice('This visit has already started or passed, so it can no longer be changed online.');
+  if (b.status === 'confirmed' && !view.can_cancel) notice('This booking has already started or passed, so it can no longer be changed online.');
   $('visit').classList.remove('booking-hidden');
 }
 
@@ -47,7 +47,7 @@ $('confirm-cancel-btn').addEventListener('click', async (event) => {
     $('confirm-cancel').classList.add('booking-hidden');
     ['picker', 'confirm-move'].forEach((id) => $(id).classList.add('booking-hidden'));
     await load();
-    notice('Your visit has been cancelled. A confirmation email is on its way.');
+    notice('Your booking has been cancelled. A confirmation email is on its way.');
   } catch (e) {
     notice(e.message, true);
   } finally {
@@ -84,7 +84,7 @@ $('confirm-move-btn').addEventListener('click', async (event) => {
     ['picker', 'confirm-move'].forEach((id) => $(id).classList.add('booking-hidden'));
     picked = null;
     await load();
-    notice('Your visit has been moved. An updated confirmation email is on its way.');
+    notice('Your booking has been moved. An updated confirmation email is on its way.');
   } catch (e) {
     notice(e.message, true);
     if (e.code === 'slot_unavailable') {

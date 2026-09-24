@@ -201,7 +201,7 @@ export async function sendEmail(
   }
   try {
     const body: Record<string, unknown> = { from: FROM_ADDRESS, to: [opts.to], subject: opts.subject, html: opts.html };
-    if (opts.ics) body.attachments = [{ filename: "rebel-ranch-visit.ics", content: toBase64(opts.ics) }];
+    if (opts.ics) body.attachments = [{ filename: "rebel-ranch-booking.ics", content: toBase64(opts.ics) }];
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: { Authorization: `Bearer ${resendKey}`, "Content-Type": "application/json" },
@@ -240,23 +240,25 @@ export interface BookingEmailContext {
     end_at: string;
   };
   eventName: string;
+  /** This booking type's own private location, else the general one from settings. */
+  location: string | null;
   settings: BookingSettings;
 }
 
 function detailsBlock(ctx: BookingEmailContext, includeLocation: boolean): string {
   const b = ctx.booking;
   const rows = [
-    `<strong>Visit:</strong> ${escapeHtml(ctx.eventName)}`,
+    `<strong>Booking:</strong> ${escapeHtml(ctx.eventName)}`,
     `<strong>When:</strong> ${escapeHtml(formatWhen(b.start_at, b.end_at, ctx.settings.timezone))}`,
     `<strong>Party size:</strong> ${b.party_size}${b.minors_count ? ` (${b.minors_count} under 18)` : ""}`,
   ];
-  if (includeLocation && ctx.settings.private_location_text) {
-    rows.push(`<strong>Where:</strong><br>${nl2br(ctx.settings.private_location_text)}`);
+  if (includeLocation && ctx.location) {
+    rows.push(`<strong>Where / how to join:</strong><br>${nl2br(ctx.location)}`);
   }
   return `<p>${rows.join("<br>")}</p>`;
 }
 
-export function visitorConfirmationEmail(ctx: BookingEmailContext, token: string, heading = "Your visit is booked") {
+export function visitorConfirmationEmail(ctx: BookingEmailContext, token: string, heading = "You're booked") {
   const s = ctx.settings;
   return {
     subject: `${heading}: ${ctx.eventName}`,
@@ -265,8 +267,8 @@ export function visitorConfirmationEmail(ctx: BookingEmailContext, token: string
       <p>Hi ${escapeHtml(ctx.booking.name)},</p>
       ${detailsBlock(ctx, true)}
       ${s.confirmation_message ? `<p>${nl2br(s.confirmation_message)}</p>` : ""}
-      <p>A calendar file is attached so you can add this visit to your calendar.</p>
-      <p><a href="${manageUrl(token)}">View, reschedule, or cancel your visit</a></p>
+      <p>A calendar file is attached so you can add it to your calendar.</p>
+      <p><a href="${manageUrl(token)}">View, reschedule, or cancel your booking</a></p>
       ${s.cancellation_policy_text ? `<p style="font-size:14px"><strong>Cancellation policy:</strong><br>${nl2br(s.cancellation_policy_text)}</p>` : ""}
       <p style="font-size:14px">Please keep this email private — the link above lets anyone who has it change your booking.</p>
     `),
@@ -276,13 +278,13 @@ export function visitorConfirmationEmail(ctx: BookingEmailContext, token: string
 export function visitorReminderEmail(ctx: BookingEmailContext, manageLink: string | null) {
   const s = ctx.settings;
   return {
-    subject: `Reminder: ${ctx.eventName} at Rebel Ranch`,
+    subject: `Reminder: ${ctx.eventName} — Rebel Ranch Ministries`,
     html: wrap(`
       <h2 style="margin:0 0 12px">See you soon</h2>
-      <p>Hi ${escapeHtml(ctx.booking.name)}, this is a reminder about your upcoming visit.</p>
+      <p>Hi ${escapeHtml(ctx.booking.name)}, this is a reminder about your upcoming booking.</p>
       ${detailsBlock(ctx, true)}
       ${s.confirmation_message ? `<p>${nl2br(s.confirmation_message)}</p>` : ""}
-      ${manageLink ? `<p><a href="${manageLink}">Manage your visit</a></p>` : "<p>Need to change plans? Use the link in your confirmation email.</p>"}
+      ${manageLink ? `<p><a href="${manageLink}">Manage your booking</a></p>` : "<p>Need to change plans? Use the link in your confirmation email.</p>"}
     `),
   };
 }
@@ -291,11 +293,11 @@ export function visitorCancelledEmail(ctx: BookingEmailContext, byAdmin: boolean
   return {
     subject: `Cancelled: ${ctx.eventName}`,
     html: wrap(`
-      <h2 style="margin:0 0 12px">Your visit has been cancelled</h2>
+      <h2 style="margin:0 0 12px">Your booking has been cancelled</h2>
       <p>Hi ${escapeHtml(ctx.booking.name)},</p>
       <p>${byAdmin
-        ? "Rebel Ranch Ministries had to cancel the visit below. We're sorry for the inconvenience."
-        : "Your visit below has been cancelled as you requested."}</p>
+        ? "Rebel Ranch Ministries had to cancel the booking below. We're sorry for the inconvenience."
+        : "Your booking below has been cancelled as you requested."}</p>
       ${detailsBlock(ctx, false)}
       <p><a href="${SITE_URL}/book.html">Book another time</a></p>
     `),
@@ -339,9 +341,14 @@ export async function loadEmailContext(admin: SupabaseClient, bookingId: string)
     .eq("id", bookingId)
     .single();
   if (error || !booking) throw new Error("Booking not found");
-  const { data: et } = await admin.from("booking_event_types").select("name").eq("id", booking.event_type_id).single();
+  const { data: et } = await admin.from("booking_event_types").select("name,location_text").eq("id", booking.event_type_id).single();
   const settings = await loadSettings(admin);
-  return { booking, eventName: et?.name ?? "Visit", settings };
+  return {
+    booking,
+    eventName: et?.name ?? "Booking",
+    location: et?.location_text?.trim() || settings.private_location_text || null,
+    settings,
+  };
 }
 
 export async function loadAcknowledgmentSummary(admin: SupabaseClient, bookingId: string) {
@@ -364,8 +371,8 @@ export function calendarFor(ctx: BookingEmailContext, token: string | null, sequ
     title: `${ctx.eventName} — Rebel Ranch Ministries`,
     startIso: ctx.booking.start_at,
     endIso: ctx.booking.end_at,
-    location: ctx.settings.private_location_text,
-    description: token ? `Manage your visit: ${manageUrl(token)}` : "Rebel Ranch Ministries visit",
+    location: ctx.location,
+    description: token ? `Manage your booking: ${manageUrl(token)}` : "Rebel Ranch Ministries booking",
     sequence,
   });
 }

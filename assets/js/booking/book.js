@@ -1,6 +1,7 @@
 // AI-Agent: Claude Code (Claude Opus 5.5)
 // Session: Custom booking system build for rebelranchministries.org (2026-09-24)
-// Public booking flow: visit type → date → time → details + waivers → confirmation.
+// Public booking flow: booking type → date → time → details + waivers → confirmation.
+// book.html?type=<slug> opens straight to one booking type (for linking from other pages).
 // The page only guides the visitor; booking-create re-checks every rule on the server.
 
 import { callBooking, el, createSlotPicker, formatWhen } from './booking-common.js';
@@ -49,7 +50,7 @@ function renderTypes() {
 function chooseType(t) {
   state.type = t;
   state.slot = null;
-  $('type-summary').replaceChildren(el('strong', {}, 'Visit: '), t.name);
+  $('type-summary').replaceChildren(el('strong', {}, 'Booking: '), t.name);
   show('step-when');
   state.picker = createSlotPicker({
     mount: $('picker'),
@@ -179,7 +180,7 @@ form.addEventListener('submit', async (event) => {
   event.preventDefault();
   if (missingItems().length) { updateSubmit(); return; }
   submitBtn.disabled = true;
-  submitBtn.textContent = 'Booking…';
+  submitBtn.textContent = 'Confirming…';
   formNotice.textContent = '';
   const acknowledgments = [];
   for (const rs of state.reqState.values()) {
@@ -209,8 +210,8 @@ form.addEventListener('submit', async (event) => {
     $('done-summary').replaceChildren(el('strong', {}, `${b.event_name}: `), formatWhen(b.start_at, b.end_at, b.timezone));
     $('done-message').textContent = b.confirmation_message || '';
     $('done-email').textContent = b.email_sent
-      ? `A confirmation email is on its way to ${form.email.value.trim()}. It includes directions, a calendar file, and a link to change or cancel your visit.`
-      : 'Your visit is booked, but the confirmation email could not be sent. Please contact us so we can send your visit details.';
+      ? `A confirmation email is on its way to ${form.email.value.trim()}. It includes the details you need, a calendar file, and a link to change or cancel your booking.`
+      : 'Your booking is confirmed, but the confirmation email could not be sent. Please contact us so we can send your details.';
     show('step-done');
     $('step-done').focus();
   } catch (e) {
@@ -224,7 +225,7 @@ form.addEventListener('submit', async (event) => {
       renderRequirements();
     }
   } finally {
-    submitBtn.textContent = 'Book this visit';
+    submitBtn.textContent = 'Confirm booking';
     updateSubmit();
   }
 });
@@ -244,12 +245,15 @@ async function init() {
     return;
   }
   if (!state.config.event_types.length) {
-    notice('There are no visits available to book right now. Please check back soon.');
+    notice('Nothing is available to book right now. Please check back soon.');
     return;
   }
   notice('');
   renderTypes();
-  show('step-type');
+  const wanted = new URLSearchParams(location.search).get('type');
+  const direct = wanted && state.config.event_types.find((t) => t.slug === wanted);
+  if (direct) chooseType(direct);
+  else show('step-type');
 }
 
 init();
