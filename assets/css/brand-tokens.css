@@ -37,6 +37,9 @@
   --rrm-gold-dark:#7b4b13;
   --rrm-gold-bright:#EF9F27;
 
+  /* approved Responsible Rebellion accent and action color */
+  --rrm-rebellion-red:#7A1E1E;
+
   /* the site's real third accent — marks "negative/old way" framing
      in before/after comparisons. Not invented; verified in active use. */
   --rrm-rust:#a94c3e;
