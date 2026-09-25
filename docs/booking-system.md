@@ -107,7 +107,14 @@ Database functions `booking_slots`, `booking_create`, `booking_reschedule`, `boo
 
 **Added (owner-approved 2026-09-24):** a **Scheduling & Booking** card in the admin section of My Account (`assets/js/public-shell.js`, next to Store Manager). Like the other admin cards it is a convenience only; the page itself checks the admin role.
 
-**Public links not added yet** (owner to decide where):
+**Public links added (owner-approved 2026-09-25):**
+- "Come Hang Out" (Roots Boots & Animal Poops, Small Space) → `book.html?type=campfire-stories`
+- Small space consultation (Small Space page) → `book.html?type=small-spaces-big-possibilities`
+- Every partnership "Let's Talk" (Roots Boots land partnership; Programs → Community Partnerships, all five groups) → `book.html?type=lets-talk`
+- Settings 2026-09-25: booking switched **on**; hours every day 9:00 AM–5:00 PM for all types; test type and test bookings removed (the two TEST waivers are switched off — waiver versions cannot be deleted by design).
+- Paid types (Campfire Stories, Small Spaces) tell visitors in the booking email that a payment link comes next and the private Proton link follows payment. The system itself does not take payment.
+
+**Still not added** (owner to decide where):
 - Shared header in `assets/js/public-shell.js` (e.g. "Schedule a Time").
 - `contact.html`, `programs.html`, and individual program pages — use `book.html?type=<slug>` to open one booking type directly.
 - `sitemap.xml` for `book.html` (not the manage or admin pages).
