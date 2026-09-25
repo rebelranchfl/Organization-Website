@@ -242,8 +242,16 @@ export interface BookingEmailContext {
   eventName: string;
   /** This booking type's own private location, else the general one from settings. */
   location: string | null;
+  /** True when the owner confirms this booking type only after payment (booking_event_types.payment_required). */
+  paymentRequired: boolean;
   settings: BookingSettings;
 }
+
+// Owner-approved 2026-09-25: paid booking types are confirmed only after payment.
+export const PAYMENT_NOTE =
+  "Your session will be confirmed once we receive payment. We'll email you a payment link. After payment is received, we'll send your confirmation and your private Proton link. If payment isn't received, your session will not be confirmed.";
+const paymentBlock = (ctx: BookingEmailContext) =>
+  ctx.paymentRequired ? `<p><strong>${escapeHtml(PAYMENT_NOTE)}</strong></p>` : "";
 
 function detailsBlock(ctx: BookingEmailContext, includeLocation: boolean): string {
   const b = ctx.booking;
@@ -258,14 +266,16 @@ function detailsBlock(ctx: BookingEmailContext, includeLocation: boolean): strin
   return `<p>${rows.join("<br>")}</p>`;
 }
 
-export function visitorConfirmationEmail(ctx: BookingEmailContext, token: string, heading = "You're booked") {
+export function visitorConfirmationEmail(ctx: BookingEmailContext, token: string, headingOverride?: string) {
   const s = ctx.settings;
+  const heading = headingOverride ?? (ctx.paymentRequired ? "Payment needed to confirm your session" : "You're booked");
   return {
     subject: `${heading}: ${ctx.eventName}`,
     html: wrap(`
       <h2 style="margin:0 0 12px">${escapeHtml(heading)}</h2>
       <p>Hi ${escapeHtml(ctx.booking.name)},</p>
       ${detailsBlock(ctx, true)}
+      ${paymentBlock(ctx)}
       ${s.confirmation_message ? `<p>${nl2br(s.confirmation_message)}</p>` : ""}
       <p>A calendar file is attached so you can add it to your calendar.</p>
       <p><a href="${manageUrl(token)}">View, reschedule, or cancel your booking</a></p>
@@ -283,6 +293,7 @@ export function visitorReminderEmail(ctx: BookingEmailContext, manageLink: strin
       <h2 style="margin:0 0 12px">See you soon</h2>
       <p>Hi ${escapeHtml(ctx.booking.name)}, this is a reminder about your upcoming booking.</p>
       ${detailsBlock(ctx, true)}
+      ${paymentBlock(ctx)}
       ${s.confirmation_message ? `<p>${nl2br(s.confirmation_message)}</p>` : ""}
       ${manageLink ? `<p><a href="${manageLink}">Manage your booking</a></p>` : "<p>Need to change plans? Use the link in your confirmation email.</p>"}
     `),
@@ -329,6 +340,7 @@ export function ownerEmail(
       ${b.minors_count ? `<strong>Guardian:</strong> ${escapeHtml(b.guardian_name ?? "—")}<br>` : ""}
       <strong>Notes:</strong> ${b.notes ? nl2br(b.notes) : "—"}</p>
       ${acks ? `<p><strong>Waivers &amp; forms acknowledged:</strong></p><ul>${acks}</ul>` : ""}
+      ${kind === "new" && ctx.paymentRequired ? `<p><strong>Payment required:</strong> send this person the payment link. If payment doesn't arrive, cancel the booking in booking admin so the time opens up again.</p>` : ""}
       <p><a href="${SITE_URL}/booking-admin.html">Open booking admin</a></p>
     `),
   };
@@ -341,12 +353,13 @@ export async function loadEmailContext(admin: SupabaseClient, bookingId: string)
     .eq("id", bookingId)
     .single();
   if (error || !booking) throw new Error("Booking not found");
-  const { data: et } = await admin.from("booking_event_types").select("name,location_text").eq("id", booking.event_type_id).single();
+  const { data: et } = await admin.from("booking_event_types").select("name,location_text,payment_required").eq("id", booking.event_type_id).single();
   const settings = await loadSettings(admin);
   return {
     booking,
     eventName: et?.name ?? "Booking",
     location: et?.location_text?.trim() || settings.private_location_text || null,
+    paymentRequired: Boolean(et?.payment_required),
     settings,
   };
 }
