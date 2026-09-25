@@ -4,7 +4,7 @@
   root.dataset.publicShellReady = 'true';
   root.classList.add('rrm-public-shell');
   const standardPublicPages = new Set([
-    'index.html', 'programs.html', 'support.html', 'contact.html', 'merch.html',
+    'index.html', 'about.html', 'programs.html', 'support.html', 'contact.html', 'merch.html',
     'privacy-policy.html', 'legal-disclosures.html', 'align-interest.html',
     'business-request.html', 'support-supplies-interest.html',
     'academy-learning-interest.html', 'business-fixes.html',
@@ -16,7 +16,7 @@
   if (standardPublicPages.has(currentPage)) root.classList.add('rrm-site-standard');
   const header = document.createElement('header');
   header.className = 'rrm-public-header';
-  header.innerHTML = `<nav class="rrm-public-nav" aria-label="Primary"><a class="rrm-public-brand" href="index.html"><img src="assets/brand/Rebel%20Ranch%20Ministries/rrm-logo-white.png" alt=""><span><strong>Rebel Ranch Ministries</strong><small>Faith &middot; Family &middot; Freedom</small></span></a><button class="rrm-public-menu" type="button" aria-expanded="false" aria-label="Open navigation">&#9776;</button><div class="rrm-public-links"><a href="index.html">Home</a><a href="merch.html">Shop</a><a href="programs.html">Programs</a><a href="align-interest.html">Partner With Us</a><a href="support.html">Support the Mission</a><a href="account.html">My Account</a><a href="contact.html">Contact</a></div></nav>`;
+  header.innerHTML = `<nav class="rrm-public-nav" aria-label="Primary"><a class="rrm-public-brand" href="index.html"><img src="assets/brand/Rebel%20Ranch%20Ministries/rrm-logo-white.png" alt=""><span><strong>Rebel Ranch Ministries</strong><small>Faith &middot; Family &middot; Freedom</small></span></a><button class="rrm-public-menu" type="button" aria-expanded="false" aria-label="Open navigation">&#9776;</button><div class="rrm-public-links"><a href="index.html">Home</a><a href="merch.html">Shop</a><a href="programs.html">Programs</a><a href="align-interest.html">Partner With Us</a><a href="support.html">Support the Mission</a><a href="about.html">About</a><a href="account.html">My Account</a></div></nav>`;
   const oldHeader = document.querySelector('header.site-header, header.public-header, body > .rr-page > nav.nav, body > nav.nav, .rr-page > nav.nav');
   if (oldHeader) oldHeader.replaceWith(header); else root.prepend(header);
   document.querySelectorAll('.rr-page > nav.nav, body > nav.nav').forEach((nav) => nav.remove());
@@ -25,7 +25,7 @@
 
   const footer = document.createElement('footer');
   footer.className = 'rrm-public-footer';
-  footer.innerHTML = `<div class="rrm-public-footer-inner"><a class="rrm-footer-brand" href="index.html"><img src="assets/brand/Rebel%20Ranch%20Ministries/rrm-logo-white.png" alt=""><span><strong>Rebel Ranch Ministries</strong><small>Faith &middot; Family &middot; Freedom</small></span></a><nav class="rrm-footer-links" aria-label="Footer"><a href="contact.html">Contact</a><a href="privacy-policy.html">Privacy Policy</a><a href="legal-disclosures.html">Legal Disclosures</a></nav><div class="rrm-footer-bottom"><div class="rrm-socials" aria-label="Social media"><a href="https://www.facebook.com/rebelranchministries" target="_blank" rel="noopener" aria-label="Facebook">f</a><a href="https://www.instagram.com/rebel_ranch_fl" target="_blank" rel="noopener" aria-label="Instagram">&#9678;</a><a href="https://www.youtube.com/@RebelRanchMinistries" target="_blank" rel="noopener" aria-label="YouTube">&#9654;</a></div><p class="rrm-copyright">&copy; 2026 Faith, Family &amp; Nature Church, Inc.</p></div></div>`;
+  footer.innerHTML = `<div class="rrm-public-footer-inner"><a class="rrm-footer-brand" href="index.html"><img src="assets/brand/Rebel%20Ranch%20Ministries/rrm-logo-white.png" alt=""><span><strong>Rebel Ranch Ministries</strong><small>Faith &middot; Family &middot; Freedom</small></span></a><nav class="rrm-footer-links" aria-label="Footer"><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy-policy.html">Privacy Policy</a><a href="legal-disclosures.html">Legal Disclosures</a></nav><div class="rrm-footer-bottom"><div class="rrm-socials" aria-label="Social media"><a href="https://www.facebook.com/rebelranchministries" target="_blank" rel="noopener" aria-label="Facebook">f</a><a href="https://www.instagram.com/rebel_ranch_fl" target="_blank" rel="noopener" aria-label="Instagram">&#9678;</a><a href="https://www.youtube.com/@RebelRanchMinistries" target="_blank" rel="noopener" aria-label="YouTube">&#9654;</a></div><p class="rrm-copyright">&copy; 2026 Faith, Family &amp; Nature Church, Inc.</p></div></div>`;
   const existingFooters = document.querySelectorAll('footer');
   const oldFooter = existingFooters[existingFooters.length - 1];
   if (oldFooter) oldFooter.replaceWith(footer); else root.append(footer);

@@ -1,6 +1,6 @@
 // AI-Agent: Claude Code (Claude Opus 5.5)
 // Session: Custom booking system build for rebelranchministries.org (2026-09-24/25) — coming-soon follow-up
-// Owner-controlled "Coming Soon" markers for program cards (index.html accordion items and
+// Owner-controlled "Coming Soon" markers for program cards (index.html .program-card rows and
 // programs.html cards). Any element with data-program="<key>" is decorated when the owner has
 // switched that program to Coming Soon in program-status.html (table program_status).
 // The label reuses the homepage's approved "In Development" text treatment (.future-status):
@@ -55,10 +55,10 @@
   const decorate = (el, row) => {
     if (el.dataset.comingSoonApplied) return;
     el.dataset.comingSoonApplied = 'true';
-    if (el.classList.contains('accordion-item')) {
+    if (el.classList.contains('accordion-item') || el.classList.contains('program-card')) {
       // Homepage: label under the program name (visible while collapsed), details in the panel.
-      el.querySelector('.accordion-summary')?.after(label(row.label_text));
-      const panel = el.querySelector('.accordion-panel');
+      el.querySelector('.program-summary, .accordion-summary')?.after(label(row.label_text));
+      const panel = el.querySelector('.program-panel, .accordion-panel');
       const link = panel?.querySelector('.card-link');
       if (panel) {
         const box = marker(row, false);
