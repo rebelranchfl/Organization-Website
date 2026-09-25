@@ -208,7 +208,9 @@ form.addEventListener('submit', async (event) => {
     const b = res.booking;
     if (!b) throw new Error('The booking could not be completed. Please try again.');
     $('done-summary').replaceChildren(el('strong', {}, `${b.event_name}: `), formatWhen(b.start_at, b.end_at, b.timezone));
-    $('done-message').textContent = b.confirmation_message || '';
+    // Paid booking types are confirmed only after payment (owner-approved 2026-09-25).
+    $('done-heading').textContent = b.payment_required ? 'Payment needed to confirm your session' : "You're booked";
+    $('done-message').textContent = [b.payment_note, b.confirmation_message].filter(Boolean).join(' ');
     $('done-email').textContent = b.email_sent
       ? `A confirmation email is on its way to ${form.email.value.trim()}. It includes the details you need, a calendar file, and a link to change or cancel your booking.`
       : 'Your booking is confirmed, but the confirmation email could not be sent. Please contact us so we can send your details.';

@@ -10,7 +10,7 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import {
   json, corsHeaders, serviceClient, clean, sha256Hex, randomToken, underRateLimit,
   loadEmailContext, loadAcknowledgmentSummary, visitorConfirmationEmail, ownerEmail,
-  calendarFor, sendEmail,
+  calendarFor, sendEmail, PAYMENT_NOTE,
 } from "../_shared/booking.ts";
 
 const MESSAGES: Record<string, [number, string]> = {
@@ -105,6 +105,8 @@ Deno.serve(async (req: Request) => {
         end_at: ctx.booking.end_at,
         timezone: ctx.settings.timezone,
         confirmation_message: ctx.settings.confirmation_message,
+        payment_required: ctx.paymentRequired,
+        payment_note: ctx.paymentRequired ? PAYMENT_NOTE : null,
         email_sent: visitorSent,
       },
     });

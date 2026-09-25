@@ -114,6 +114,10 @@ Database functions `booking_slots`, `booking_create`, `booking_reschedule`, `boo
 - Settings 2026-09-25: booking switched **on**; hours every day 9:00 AM–5:00 PM for all types; test type and test bookings removed (the two TEST waivers are switched off — waiver versions cannot be deleted by design).
 - Paid types (Campfire Stories, Small Spaces) tell visitors in the booking email that a payment link comes next and the private Proton link follows payment. The system itself does not take payment.
 
+- 2026-09-25 (owner-approved): **no overlaps across booking types** — any confirmed booking blocks that time (plus buffers) for every type; create/reschedule share one lock (`booking_all_types`). Migration `20260925210000_booking_no_overlaps_and_payment_required.sql`.
+- 2026-09-25: `booking_event_types.payment_required` (on for Campfire Stories and Small Spaces). Those visitors see "Payment needed to confirm your session" and are told the session is confirmed only after payment, and not confirmed if payment isn't received. The owner email says to send the payment link and to cancel unpaid bookings so the time reopens. Not yet editable from the admin page (set in the database).
+- Campfire Stories description shows "Cost: $5" (price published on the Small Space page). Small Spaces has no published price yet.
+
 **Still not added** (owner to decide where):
 - Shared header in `assets/js/public-shell.js` (e.g. "Schedule a Time").
 - `contact.html`, `programs.html`, and individual program pages — use `book.html?type=<slug>` to open one booking type directly.
