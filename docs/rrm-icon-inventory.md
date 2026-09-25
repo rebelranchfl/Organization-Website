@@ -1,7 +1,7 @@
 # Rebel Ranch Ministries Icon Inventory
 
 **Status:** Approved RRM public-site icon list
-**Last updated:** 2026-09-18
+**Last updated:** 2026-09-24
 **Governing visual rules:** [`rrm-visual-rules.md`](rrm-visual-rules.md)
 
 ## Standard construction
@@ -49,6 +49,14 @@ The icon circle does not imply interaction. The surrounding card, row, or button
 | Funding | Stacked coins | `partnership-funding.svg` |
 | Local Goods | Storefront | `partnership-local-goods.svg` |
 | Opportunities | Open door with outward arrow | `partnership-opportunities.svg` |
+
+### Interface controls
+
+| Control | Approved symbol | File |
+|---|---|---|
+| Expand/collapse | Centered downward chevron in the standard RRM circular disk | `expand-chevron.svg` |
+
+The expand/collapse control must use the complete SVG file. Do not substitute a text character or rebuild the circle and chevron separately in CSS. Rotate the complete SVG 180 degrees for the expanded state.
 
 ## Meaning boundaries
 
