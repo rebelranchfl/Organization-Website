@@ -215,6 +215,15 @@ function fillFilters() {
   fillSelect($('o-category'), OUTREACH_CATEGORIES.map((s) => ({ value: s, label: s })), 'All categories');
 }
 Object.values(F).forEach((el) => el.addEventListener(el.tagName === 'INPUT' && el.type !== 'checkbox' ? 'input' : 'change', () => { S.preset = 'all'; renderContent(); }));
+// Filters live behind one "Filter" button; the badge shows how many are switched on.
+function filterEls(key) { return [...document.querySelectorAll(`#${key}-filters select, #${key}-filters input`)]; }
+function showFilterCount(key) {
+  const n = filterEls(key).filter((el) => (el.type === 'checkbox' ? el.checked : el.value && el.value !== 'all')).length;
+  $(`${key}-fcount`).textContent = n ? String(n) : '';
+}
+function clearFilters(key) { filterEls(key).forEach((el) => { if (el.type === 'checkbox') el.checked = false; else el.value = el.tagName === 'SELECT' ? 'all' : ''; }); }
+$('c-clear').onclick = () => { clearFilters('c'); renderContent(); };
+$('o-clear').onclick = () => { clearFilters('o'); renderOutreach(); };
 document.querySelectorAll('[data-preset]').forEach((b) => { b.onclick = () => { S.preset = b.dataset.preset; renderContent(); }; });
 
 function presetMatch(i) {
@@ -244,6 +253,7 @@ function filteredItems() {
 
 function renderContent() {
   document.querySelectorAll('[data-preset]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.preset === S.preset)));
+  showFilterCount('c');
   const list = filteredItems(); const cards = $('cards'); cards.replaceChildren();
   $('c-count').textContent = `${list.length} of ${S.items.length} posts`;
   if (!list.length) { cards.innerHTML = '<div class="empty">Nothing matches. Change the filters or add new content.</div>'; renderReels(); return; }
@@ -267,12 +277,24 @@ function collapsible(card, key, rowHtml, detailHtml) {
 function rowHtml({ thumb = '', title, status, line, next = '' }) {
   return `${thumb}<div class="row-main"><h2>${esc(title)}</h2><div class="row-line"><span class="row-status">${esc(status)}</span>${line ? ` • ${esc(line)}` : ''}</div></div>${next}`;
 }
+// An image request puts the post in ChatGPT's "Needs an image" queue (ChatGPT makes all images).
+function imageRequested(i) { return i.assigned_to === 'ChatGPT' && ['Prompt Needed', 'Ready for Image', 'Generating', 'Revision Needed'].includes(i.image_status); }
+function openImageRequest(i) {
+  openForm({ title: `Ask for an image — ${i.title}`, saveLabel: 'Send to ChatGPT’s queue',
+    fields: [{ key: 'image_prompt', label: 'What should the image show? (the current idea is filled in — change it or leave it)', type: 'textarea', rows: 5 }],
+    values: { image_prompt: i.image_prompt || '' },
+    onSave: async (v) => {
+      const prompt = (v.image_prompt || '').trim();
+      const stamp = `Owner asked for an image ${todayStr()}.`;
+      await patchItem(i, { image_needed: true, image_prompt: prompt || null, image_status: prompt ? 'Ready for Image' : 'Prompt Needed', assigned_to: 'ChatGPT', notes: [i.notes, stamp].filter(Boolean).join('\n') }, 'image requested from ChatGPT');
+    } });
+}
 // The single most useful thing to do with a post right now.
 function itemNextStep(i, url) {
   if (i.is_paused) return ['pause', 'Resume'];
   if (i.status === 'Posted' || i.status === 'Archived' || i.status === 'Rejected') return null;
   if (!['Approved', 'Scheduled'].includes(i.status)) return ['approve', 'Approve'];
-  if (i.image_needed && !url && i.image_status !== 'Approved') return ['upload', 'Upload image'];
+  if (i.image_needed && !url && i.image_status !== 'Approved') return imageRequested(i) ? null : ['askimg', 'Ask for image'];
   return ['copy', 'Copy post'];
 }
 
@@ -281,10 +303,11 @@ function itemCard(i) {
   const chans = (i.channel_ids || []).map((id) => nameOf(S.channels, id)).filter(Boolean);
   const card = document.createElement('article'); card.className = `card${i.is_paused ? ' paused' : ''}`;
   const next = itemNextStep(i, url);
-  const line = i.scheduled_for ? `📅 ${fmtDate(i.scheduled_for)}` : readyToPost(i) ? 'Ready to post' : (i.image_needed && i.image_status !== 'Approved' ? `Image: ${i.image_status}` : i.program);
+  const line = i.scheduled_for ? `📅 ${fmtDate(i.scheduled_for)}` : readyToPost(i) ? 'Ready to post' : imageRequested(i) ? 'Image requested from ChatGPT' : (i.image_needed && i.image_status !== 'Approved' ? `Image: ${i.image_status}` : i.program);
   const thumb = `<div class="row-thumb">${url ? `<img src="${esc(url)}" alt="" loading="lazy">` : `<span>${i.image_needed ? 'No image' : 'Text'}</span>`}</div>`;
   const more = [
-    ['edit', 'Edit'], ['schedule', 'Schedule'], ['posted', 'Mark posted'], ['upload', 'Upload image'],
+    ['edit', 'Edit'], ['schedule', 'Schedule'], ['posted', 'Mark posted'],
+    !url || i.image_status !== 'Approved' ? ['askimg', imageRequested(i) ? 'Change image request' : 'Ask for image'] : null, ['upload', 'Upload image'],
     i.image_prompt ? ['prompt', 'Copy image prompt'] : null, ['dup', 'Duplicate'], ['reel', 'Add to reel'],
     ['pause', i.is_paused ? 'Resume' : 'Pause'],
   ].filter((x) => x && x[0] !== next?.[0]);
@@ -305,6 +328,7 @@ function itemCard(i) {
   on('copy', async () => { await navigator.clipboard.writeText(postText(i)); msg(`${i.id} post text copied.`, 'success'); });
   on('prompt', async () => { await navigator.clipboard.writeText(i.image_prompt); msg('Image prompt copied — paste it into ChatGPT.', 'success'); });
   on('upload', () => pickUpload(i));
+  on('askimg', () => openImageRequest(i));
   on('edit', () => openItemForm(i));
   on('approve', () => patchItem(i, { status: 'Approved' }, 'approved'));
   on('schedule', () => openScheduleForm(i));
@@ -513,7 +537,7 @@ function renderSchedule() {
   const row = (i) => {
     const a = mainAsset(i.id); const url = assetUrl(a); const chans = (i.channel_ids || []).map((id) => nameOf(S.channels, id)).filter(Boolean).join(', ');
     const warn = []; if (!readyToPost(i)) warn.push(i.is_paused ? 'Paused' : i.status !== 'Approved' && i.status !== 'Scheduled' ? `Status: ${i.status}` : ''); if (!['Approved', 'Not Needed'].includes(i.image_status)) warn.push(`Image: ${i.image_status}`);
-    return `<div class="sched-row" data-id="${esc(i.id)}"><div class="sched-time">${i.scheduled_for ? esc(new Date(i.scheduled_for).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })) : '—'}</div>${url ? `<img src="${esc(url)}" alt="">` : '<div class="thumb-empty">No image</div>'}<div class="sched-main"><strong>${esc(i.title)}</strong><small>${esc(i.id)} • ${esc(i.program)} • ${esc(chans || 'no channel picked')}${i.assigned_to !== 'Unassigned' ? ` • ${esc(i.assigned_to)}` : ''}</small>${warn.filter(Boolean).length ? `<small class="warn-text">⚠ ${esc(warn.filter(Boolean).join(' • '))}</small>` : ''}</div><div class="actions"><button class="button small primary" data-a="copy">Copy post</button>${url ? `<a class="button small" href="${esc(url)}" target="_blank" rel="noopener" download>Image</a>` : ''}<button class="button small" data-a="posted">Mark posted</button><button class="button small" data-a="edit">Edit</button></div></div>`;
+    return `<div class="sched-row" data-id="${esc(i.id)}"><div class="sched-time">${i.scheduled_for ? esc(new Date(i.scheduled_for).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })) : '—'}</div>${url ? `<img src="${esc(url)}" alt="">` : '<div class="thumb-empty">No image</div>'}<div class="sched-main"><strong>${esc(i.title)}</strong><small>${esc(i.id)} • ${esc(i.program)} • ${esc(chans || 'no channel picked')}${i.assigned_to !== 'Unassigned' ? ` • ${esc(i.assigned_to)}` : ''}</small>${warn.filter(Boolean).length ? `<small class="warn-text">⚠ ${esc(warn.filter(Boolean).join(' • '))}</small>` : ''}</div><div class="actions"><button class="button small primary" data-a="copy">Copy post</button>${url ? `<a class="button small" href="${esc(url)}" target="_blank" rel="noopener" download>Open image</a>` : imageRequested(i) ? '<span class="muted small-note">Image requested</span>' : '<button class="button small" data-a="askimg">Ask for image</button>'}<button class="button small" data-a="posted">Mark posted</button><button class="button small" data-a="edit">Edit</button></div></div>`;
   };
   el.innerHTML = (Object.keys(groups).length ? Object.entries(groups).map(([k, list]) => `<section class="panel"><h2 class="day">${esc(k)}</h2>${list.map(row).join('')}</section>`).join('') : '<section class="panel"><div class="empty">Nothing scheduled yet. Use "Schedule" on a post.</div></section>')
     + `<section class="panel"><h2 class="day">Approved and ready, but not scheduled (${unscheduled.length})</h2>${unscheduled.map(row).join('') || '<div class="empty">None.</div>'}</section>`;
@@ -522,6 +546,7 @@ function renderSchedule() {
     r.querySelector('[data-a="copy"]').onclick = async () => { await navigator.clipboard.writeText(postText(i)); msg(`${i.id} post text copied.`, 'success'); };
     r.querySelector('[data-a="posted"]').onclick = () => openPostedForm(i);
     r.querySelector('[data-a="edit"]').onclick = () => openItemForm(i);
+    const ask = r.querySelector('[data-a="askimg"]'); if (ask) ask.onclick = () => openImageRequest(i);
   });
 }
 
@@ -663,6 +688,7 @@ function messageHtml(m) {
 
 function renderOutreach() {
   document.querySelectorAll('[data-opreset]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.opreset === S.oPreset)));
+  showFilterCount('o');
   const q = $('o-search').value.trim().toLowerCase(); const pre = OUTREACH_PRESETS[S.oPreset] || OUTREACH_PRESETS.all;
   const list = S.outreach.filter((o) => ($('o-paused').checked || !o.is_paused) && pre(o)
     && (S.oPreset !== 'all' || !['Rejected', 'Declined', 'Archived'].includes(o.status) || $('o-status').value !== 'all')

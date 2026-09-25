@@ -40,6 +40,15 @@ table{width:100%;border-collapse:collapse;font-size:.88rem}th,td{padding:9px 8px
 .more[open]{flex-basis:100%}
 .copy.extra{margin-top:14px}
 @media (max-width:640px){.row-head{flex-wrap:wrap;gap:10px}.row-next{order:3;width:100%}}
+.filters>summary,.how>summary{list-style:none;cursor:pointer}
+.filters>summary::-webkit-details-marker,.how>summary::-webkit-details-marker{display:none}
+.filters>summary::after{content:" ▾"}
+.filters[open]>summary::after{content:" ▴"}
+.f-count:not(:empty){margin-left:6px;padding:1px 7px;border-radius:10px;background:var(--rrm-gold);color:#1a1405;font-size:.72rem}
+.how>summary{color:#f2d38b;font-size:.78rem;font-weight:900;text-transform:uppercase}
+.how>summary::before{content:"▸ "}
+.how[open]>summary::before{content:"▾ "}
+.how p{margin:8px 0 0}
 </style>
 </head>
 <body>
@@ -61,7 +70,7 @@ table{width:100%;border-collapse:collapse;font-size:.88rem}th,td{padding:9px 8px
 
 <div id="tab-content" class="tab-panel">
 <section class="panel"><div class="list-head"><div class="presets"><button type="button" class="button small" data-preset="all">All</button><button type="button" class="button small" data-preset="ready">Ready to post</button><button type="button" class="button small" data-preset="image">Needs an image</button><button type="button" class="button small" data-preset="review">Needs review</button><button type="button" class="button small" data-preset="scheduled">Scheduled</button><button type="button" class="button small" data-preset="posted">Posted</button></div><button id="new-content" class="button primary" type="button">+ New content</button></div>
-<div class="toolbar" style="margin-top:14px">
+<details class="filters" id="c-filters" style="margin-top:14px"><summary class="button small">Filter<span class="f-count" id="c-fcount"></span></summary><div class="toolbar" style="margin-top:12px">
 <div class="field"><label for="c-program">Program</label><select id="c-program"></select></div>
 <div class="field"><label for="c-purpose">Purpose</label><select id="c-purpose"></select></div>
 <div class="field"><label for="c-campaign">Campaign</label><select id="c-campaign"></select></div>
@@ -70,7 +79,7 @@ table{width:100%;border-collapse:collapse;font-size:.88rem}th,td{padding:9px 8px
 <div class="field"><label for="c-image">Image</label><select id="c-image"></select></div>
 <div class="field"><label for="c-search">Search</label><input id="c-search" type="search" placeholder="title, text, notes…"></div>
 <div class="field"><label>&nbsp;</label><label class="check"><input id="c-paused" type="checkbox"> Show paused</label></div>
-</div><p id="c-count" class="muted" style="margin:10px 0 0"></p></section>
+</div><button type="button" class="button small" id="c-clear" style="margin-top:10px">Clear filters</button></details><p id="c-count" class="muted" style="margin:10px 0 0"></p></section>
 <div class="workspace" style="margin-top:22px">
 <section><div id="cards" class="cards"></div></section>
 <aside class="side"><section class="panel" style="margin-top:0"><p class="eyebrow">Reel Builder</p><h2>Saved Reels</h2><p class="muted">Create a reel, then use “Add to reel” on posts in the order you want them.</p><div class="reel-create"><label for="reel-select">Working reel</label><select id="reel-select"><option value="">Select a reel</option></select><div class="row"><div><label for="new-reel-title">New reel title</label><input id="new-reel-title" placeholder="Example: Seller Recruitment Reel"></div><button id="create-reel" class="button primary" type="button">Create</button></div><label for="reel-objective">Objective</label><input id="reel-objective" placeholder="What should this reel accomplish?"><label for="reel-cta">Primary CTA</label><input id="reel-cta" placeholder="One main action"></div><div id="frames" class="frame-list"></div></section></aside>
@@ -80,15 +89,15 @@ table{width:100%;border-collapse:collapse;font-size:.88rem}th,td{padding:9px 8px
 <div id="tab-schedule" class="tab-panel hidden"><div id="schedule-list"></div></div>
 
 <div id="tab-outreach" class="tab-panel hidden">
-<section class="panel"><div class="list-head"><p class="muted" style="margin:0">Partnership pipeline: the agent finds prospects → you approve → the agent drafts → you approve each message → it's sent → replies are logged → the agent suggests a response → you approve. Approving never sends by itself.</p><button id="new-outreach" class="button primary" type="button">+ New prospect</button></div>
+<section class="panel"><div class="list-head"><details class="how"><summary>How outreach works</summary><p class="muted">The agent finds prospects → you approve → the agent drafts → you approve each message → it's sent → replies are logged → the agent suggests a response → you approve. Approving never sends by itself.</p></details><button id="new-outreach" class="button primary" type="button">+ New prospect</button></div>
 <div class="presets" style="margin-top:14px"><button type="button" class="button small" data-opreset="all">All active</button><button type="button" class="button small" data-opreset="prospects">Prospects to review</button><button type="button" class="button small" data-opreset="review">Messages to review</button><button type="button" class="button small" data-opreset="send">Ready to send</button><button type="button" class="button small" data-opreset="waiting">Waiting on reply</button><button type="button" class="button small" data-opreset="replies">Replies</button><button type="button" class="button small" data-opreset="followup">Follow-ups due</button><button type="button" class="button small" data-opreset="partners">Partners</button><button type="button" class="button small" data-opreset="closed">Closed</button></div>
-<div class="toolbar" style="margin-top:14px">
+<details class="filters" id="o-filters" style="margin-top:14px"><summary class="button small">Filter<span class="f-count" id="o-fcount"></span></summary><div class="toolbar" style="margin-top:12px">
 <div class="field"><label for="o-program">Program</label><select id="o-program"></select></div>
 <div class="field"><label for="o-status">Status</label><select id="o-status"></select></div>
 <div class="field"><label for="o-category">Category</label><select id="o-category"></select></div>
 <div class="field"><label for="o-search">Search</label><input id="o-search" type="search" placeholder="name, message, notes…"></div>
 <div class="field"><label class="check"><input id="o-paused" type="checkbox"> Show paused</label></div>
-</div><p id="o-count" class="muted" style="margin:10px 0 0"></p></section>
+</div><button type="button" class="button small" id="o-clear" style="margin-top:10px">Clear filters</button></details><p id="o-count" class="muted" style="margin:10px 0 0"></p></section>
 <div id="outreach-list" class="cards" style="margin-top:22px"></div>
 </div>
 
@@ -103,7 +112,7 @@ table{width:100%;border-collapse:collapse;font-size:.88rem}th,td{padding:9px 8px
 </div>
 </main>
 <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-card"><div class="modal-top"><h2 id="modal-title"></h2><button id="modal-close" class="button small" type="button" aria-label="Close">✕</button></div><div id="modal-body"></div></div></div>
-<script type="module" src="assets/js/social-content-hub.js?v=20260925d"></script>
+<script type="module" src="assets/js/social-content-hub.js?v=20260925e"></script>
 <script src="assets/js/public-shell.js" defer></script>
 </body>
 </html>
