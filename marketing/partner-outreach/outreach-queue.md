@@ -1,5 +1,11 @@
 # Rebel Ranch Ministries Outreach Queue
 
+> **Moved 2026-09-25 — this file is now an archive.** The working outreach queue lives in
+> the Social Content Hub → Outreach tab (`social-content-hub.html`). All 13 entries below
+> were imported as OUT-001 to OUT-013 (entry number = OUT number). Create, edit, approve,
+> mark sent and log replies in the Hub only. See
+> `marketing/social-media/SOCIAL-HUB-AGENT-GUIDE.md`.
+
 ## Purpose
 
 This file is the only working queue for outreach messages from creation

@@ -1,5 +1,10 @@
 # Rebel Ranch Ministries In-Kind Donation Needs List
 
+> **Moved 2026-09-25 — this file is now an archive.** The needs list lives in the Social
+> Content Hub → Setup → Needs list, where you can add items, set priority (High/Medium/Low),
+> mark progress (Needed / Partly met / Met) and pause or delete them. All 33 items below
+> were imported there (priority Medium). Edit them in the Hub only.
+
 ## Purpose
 
 A running, prioritized wishlist of physical items and equipment Rebel

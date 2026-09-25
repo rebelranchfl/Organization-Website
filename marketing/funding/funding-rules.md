@@ -41,6 +41,45 @@ changed — it was already worded correctly.
   toward, or imply that filing is scheduled or in progress unless Brooke
   says otherwise.
 
+## Confident language standard — owner direction 2026-09-25
+
+Brooke's direction: we are a nonprofit, and we talk about it the way every
+nonprofit does — plainly and confidently. Stop hedging, stop carrying the
+donor's tax situation for them, and lead with the benefits of partnering.
+Where the older sections below sound more cautious than this, **this
+section wins on tone**; the short list of real limits at the end still
+applies.
+
+Say it plainly:
+
+- "Rebel Ranch Ministries is a nonprofit ministry of Faith, Family, and
+  Nature Church, a tax-exempt church."
+- "Your donation is tax-deductible, and we send a written receipt for your
+  records." (Use this instead of "may be tax-deductible as allowed by law"
+  in outreach and social copy. The formal "as allowed by law" wording can
+  stay in website legal disclaimers.)
+- "For many businesses, a sponsorship can also count as a marketing
+  expense."
+- Name the partner benefits outright: public thank-you and recognition on
+  our social media and website, a spotlight post introducing their business
+  to local families, sending our families their way, and the goodwill of
+  backing something real at home.
+
+Don't carry the donor's burden. Their tax situation belongs to them and
+their accountant. Outreach does not explain itemizing, pass-through
+entities, Form 8283, appraisals or audit scenarios. We give an accurate
+receipt when a gift is actually made, and it covers what they need.
+
+The only real limits (all still true):
+
+- Never say "we are a 501(c)(3)", "501(c)(3) certified" or "approved".
+  "Nonprofit", "tax-exempt church" and "tax-deductible" are accurate.
+- Never put a dollar value on someone's in-kind gift. Valuing it is the
+  donor's job, and the receipt describes the items.
+- Never promise a specific tax outcome, such as "you'll save $X".
+- If a funder or verification form directly asks about a determination
+  letter, answer truthfully (see below).
+
 ## Approved language
 
 Locked 2026-08-17, after Brooke flagged that spelling out "does not

@@ -1,5 +1,11 @@
 # Rebel Ranch Ministries Draft Posts
 
+> **Moved 2026-09-25 — this file is now an archive.** The working queue lives in the
+> Social Content Hub (`social-content-hub.html`). All 8 drafts below were imported there
+> (IDs BF-0104, RRM-0101, RRL-0100, BF-0106, RRM-0103, CS-0105, RRA-0107, RRL-0102;
+> each carries `source_ref` = "draft-posts.md #N"). Create and edit posts in the Hub only.
+> See `SOCIAL-HUB-AGENT-GUIDE.md`.
+
 ## Purpose
 
 This file is the only working queue for social media posts from creation through final status.
