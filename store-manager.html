@@ -191,7 +191,7 @@ function renderCollections() {
     }
     const info = document.createElement('div');
     info.innerHTML = `<div class="row-title"></div><div class="row-detected"></div>`;
-    info.children[0].textContent = collectionName(c) + (s.site_visible ? '' : ' — hidden from the store');
+    info.children[0].textContent = collectionName(c) + (s.coming_soon ? ` — showing “${s.coming_soon_label || 'Coming Soon'}”` : (s.site_visible ? '' : ' — hidden from the store'));
     info.children[1].textContent = `${shownCount} product${shownCount === 1 ? '' : 's'} shown on the store${s.is_default ? ' · catches products that match no other collection' : ''}`;
     const controls = document.createElement('div');
     controls.className = 'row-controls';
@@ -279,6 +279,16 @@ async function uploadLogo(key, file) {
   return supabase.storage.from('merch-collection-logos').getPublicUrl(path).data.publicUrl;
 }
 
+async function uploadComingSoonImage(key, file) {
+  if (!/^image\/(png|jpeg|webp)$/.test(file.type)) throw new Error('Images must be PNG, JPG, or WebP.');
+  if (file.size > 5 * 1024 * 1024) throw new Error('Images must be 5 MB or smaller.');
+  const ext = { 'image/png': 'png', 'image/jpeg': 'jpg', 'image/webp': 'webp' }[file.type];
+  const path = `collections/${key}-${Date.now()}.${ext}`;
+  const { error } = await supabase.storage.from('coming-soon-images').upload(path, file, { contentType: file.type, upsert: false });
+  if (error) throw error;
+  return supabase.storage.from('coming-soon-images').getPublicUrl(path).data.publicUrl;
+}
+
 function openCollectionEditor(existing = null) {
   const isNew = !existing;
   const s = existing || { name: '', description: '', button_label: '', logo_url: '', logo_background: 'dark', match_keywords: [] };
@@ -322,6 +332,28 @@ function openCollectionEditor(existing = null) {
   logoHint.textContent = 'PNG, JPG, or WebP, up to 5 MB. Use the program\'s approved logo.';
   logoWrap.append(file, logoHint);
 
+  // Coming Soon: card stays on the store with this label/note/image, not clickable, no products.
+  const csWrap = document.createElement('label');
+  csWrap.className = 'check wide';
+  const cs = document.createElement('input');
+  cs.type = 'checkbox';
+  cs.checked = !!s.coming_soon;
+  csWrap.append(cs, document.createTextNode('Coming Soon — show this collection\u2019s card with the label below (not clickable, no products yet)'));
+  const csLabel = textField('Coming Soon label', s.coming_soon_label || 'Coming Soon', { max: 60, hint: 'Short, e.g. Coming Soon or Arriving This Fall' });
+  const csNote = textField('Coming Soon note (optional)', s.coming_soon_note, { wide: true, multiline: true, max: 300 });
+  const csImgWrap = document.createElement('label');
+  csImgWrap.className = 'field';
+  csImgWrap.append(document.createTextNode(s.coming_soon_image_url ? 'Replace Coming Soon image (optional)' : 'Coming Soon image (optional)'));
+  const csFile = document.createElement('input');
+  csFile.type = 'file';
+  csFile.accept = 'image/png,image/jpeg,image/webp';
+  csImgWrap.appendChild(csFile);
+  let csRemove = false;
+  const csRemoveBtn = document.createElement('button');
+  csRemoveBtn.className = 'btn'; csRemoveBtn.type = 'button'; csRemoveBtn.textContent = 'Remove Coming Soon image';
+  csRemoveBtn.style.display = s.coming_soon_image_url ? '' : 'none';
+  csRemoveBtn.addEventListener('click', () => { csRemove = true; csFile.value = ''; csRemoveBtn.textContent = 'Image will be removed on save'; });
+
   const save = document.createElement('button');
   save.className = 'btn primary'; save.type = 'button'; save.textContent = isNew ? 'Create collection' : 'Save changes';
   const cancel = document.createElement('button');
@@ -349,7 +381,13 @@ function openCollectionEditor(existing = null) {
         button_label: label.input.value.trim() || null,
         logo_url: logoUrl,
         logo_background: bg.value,
+        coming_soon: cs.checked,
+        coming_soon_label: csLabel.input.value.trim() || 'Coming Soon',
+        coming_soon_note: csNote.input.value.trim() || null,
+        coming_soon_image_url: csRemove ? null : (s.coming_soon_image_url || null),
       };
+      const csPicked = csFile.files?.[0];
+      if (csPicked) fields.coming_soon_image_url = await uploadComingSoonImage(key, csPicked);
       if (!s.is_default) {
         fields.match_keywords = words.input.value.split(',').map((w) => w.trim().toLowerCase()).filter(Boolean);
       }
@@ -404,7 +442,16 @@ function openCollectionEditor(existing = null) {
   previewWrap.className = 'field';
   previewWrap.append(document.createTextNode('Logo on its card'), preview);
   grid.append(name.wrap, label.wrap, desc.wrap, logoWrap, bgWrap, previewWrap, words.wrap);
-  box.append(h, grid, actions);
+  const csHead = document.createElement('h3');
+  csHead.className = 'subhead';
+  csHead.textContent = 'Coming Soon';
+  const csGrid = document.createElement('div');
+  csGrid.className = 'form-grid';
+  csGrid.append(csWrap, csLabel.wrap, csImgWrap, csNote.wrap);
+  const csActions = document.createElement('div');
+  csActions.className = 'actions';
+  csActions.appendChild(csRemoveBtn);
+  box.append(h, grid, csHead, csGrid, csActions, actions);
   editorEl.replaceChildren(box);
   box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   name.input.focus();
