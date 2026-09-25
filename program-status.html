@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex">
+<meta name="description" content="Protected Rebel Ranch Ministries program status controls.">
+<title>Program Status | Rebel Ranch Ministries</title>
+<link rel="stylesheet" href="assets/css/brand-tokens.css"><link rel="stylesheet" href="assets/css/public-surface.css">
+<!-- AI-Agent: Claude Code (Claude Opus 5.5) | Session: Custom booking system build (2026-09-24/25) — coming-soon follow-up.
+     Owner tool for "Coming Soon" markers on the program cards of index.html and programs.html
+     (table program_status). Visual pattern copied from store-manager.html. -->
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:#15331d;color:var(--rrm-ink);font-family:Arial,Helvetica,sans-serif}a{color:inherit}button,textarea,input,select{font:inherit}main{width:min(1100px,94vw);margin:auto;padding:40px 0 80px}.topbar{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}.eyebrow{margin:0 0 8px;color:var(--rrm-gold-bright);font-size:.8rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}h1{margin:0;font-size:clamp(2.1rem,5vw,4rem);line-height:1}.intro{color:var(--rrm-muted);line-height:1.55}.back-link{padding:11px 15px;border-radius:8px;border:1px solid #3b5a40;text-decoration:none;font-weight:800;background:#1d4024}.notice{display:none;margin:20px 0;padding:15px 17px;border-left:5px solid var(--rrm-gold);background:#1d4024;border-radius:8px}.notice.visible{display:block}.notice.error{border-left-color:#c96f5b}.notice.success{border-left-color:#97c459}.panel{margin-top:24px;padding:24px;border:1px solid #315239;border-radius:16px;background:linear-gradient(180deg,#1d4024,#122a18);box-shadow:var(--rrm-shadow)}.panel h2{margin:0 0 8px}.muted{color:var(--rrm-muted)}
+.rows{display:grid;gap:14px}
+.program{padding:16px;border:1px solid #3b5a40;border-radius:12px;background:#18351f}
+.program-head{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.program-title{font-weight:850;font-size:1.1rem}
+.state{font-size:.78rem;font-weight:800;color:var(--rrm-muted)}
+.state.on{color:var(--rrm-gold-bright)}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:14px}
+.form-grid .wide{grid-column:1/-1}
+.field{display:flex;flex-direction:column;gap:4px;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--rrm-muted)}
+.field input[type="text"],.field textarea,.field input[type="file"]{padding:8px 10px;border:1px solid #45634a;border-radius:7px;background:#102718;color:var(--rrm-ink);min-width:0;text-transform:none;letter-spacing:0;font-weight:400;font-size:1rem}
+.field textarea{min-height:60px;resize:vertical}
+.hint{font-size:.78rem;font-weight:400;text-transform:none;letter-spacing:0;color:var(--rrm-muted)}
+.check{display:flex;align-items:center;gap:8px;font-size:.85rem;font-weight:800;color:var(--rrm-ink)}
+.check input{width:18px;height:18px}
+.btn{padding:8px 12px;border-radius:8px;border:1px solid #3b5a40;background:#1d4024;color:var(--rrm-ink);font-weight:800;cursor:pointer}
+.btn.primary{border-color:var(--rrm-gold);background:linear-gradient(135deg,var(--rrm-gold),var(--rrm-gold-dark));color:#fff7de}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn:focus-visible{outline:3px solid var(--rrm-gold-bright);outline-offset:2px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;align-items:center}
+.row-status{font-size:.72rem;font-weight:800}
+.row-status.saved{color:#97c459}.row-status.error{color:#c96f5b}.row-status.saving{color:#f2d38b}
+.preview-img{display:block;max-width:160px;max-height:96px;object-fit:contain;margin-top:4px}
+.preview-label{display:block;margin-top:.3rem;color:#EF9F27;font-size:.78rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+</style>
+</head>
+<body><main>
+<div class="topbar"><div><p class="eyebrow">Rebel Ranch Ministries • Owner Control</p><h1>Program Status</h1><p class="intro">Mark a program as “Coming Soon” on the homepage and the Programs page. Its card stays visible with your label, optional short note, and optional image. Turn it off any time and the card goes back to normal.</p></div><a class="back-link" href="account.html">Back to My Account</a></div>
+<div id="notice" class="notice" role="status" aria-live="polite"></div>
+<section id="loading" class="panel"><strong>Checking administrator access…</strong></section>
+<section id="content" class="panel" style="display:none">
+  <h2>Programs</h2>
+  <p class="muted">Store collections have their own Coming Soon switch in the Store Manager (Edit details on a collection).</p>
+  <div class="rows" id="rows"></div>
+</section>
+</main>
+<script type="module">
+import { supabase } from './assets/js/supabase-client.js';
+
+const notice = document.getElementById('notice');
+const rowsEl = document.getElementById('rows');
+function msg(t, type = '') { notice.textContent = t; notice.className = `notice ${t ? 'visible' : ''} ${type}`.trim(); }
+function setStatus(el, state, text) {
+  el.textContent = text; el.className = `row-status ${state}`;
+  if (state === 'saved') setTimeout(() => { if (el.textContent === 'Saved') el.textContent = ''; }, 2500);
+}
+
+async function uploadImage(key, file) {
+  if (!/^image\/(png|jpeg|webp)$/.test(file.type)) throw new Error('Images must be PNG, JPG, or WebP.');
+  if (file.size > 5 * 1024 * 1024) throw new Error('Images must be 5 MB or smaller.');
+  const ext = { 'image/png': 'png', 'image/jpeg': 'jpg', 'image/webp': 'webp' }[file.type];
+  const path = `programs/${key}-${Date.now()}.${ext}`;
+  const { error } = await supabase.storage.from('coming-soon-images').upload(path, file, { contentType: file.type, upsert: false });
+  if (error) throw error;
+  return supabase.storage.from('coming-soon-images').getPublicUrl(path).data.publicUrl;
+}
+
+function textField(label, value, { wide = false, multiline = false, max = 60, hint = '' } = {}) {
+  const wrap = document.createElement('label');
+  wrap.className = `field${wide ? ' wide' : ''}`;
+  wrap.append(document.createTextNode(label));
+  const input = document.createElement(multiline ? 'textarea' : 'input');
+  if (!multiline) input.type = 'text';
+  input.maxLength = max;
+  input.value = value ?? '';
+  wrap.appendChild(input);
+  if (hint) { const h = document.createElement('span'); h.className = 'hint'; h.textContent = hint; wrap.appendChild(h); }
+  return { wrap, input };
+}
+
+function renderRow(row) {
+  const box = document.createElement('div');
+  box.className = 'program';
+  const head = document.createElement('div');
+  head.className = 'program-head';
+  const title = document.createElement('div');
+  title.className = 'program-title';
+  title.textContent = row.name;
+  const state = document.createElement('span');
+  const paintState = () => { state.className = `state${row.coming_soon ? ' on' : ''}`; state.textContent = row.coming_soon ? 'Showing “Coming Soon” on the site' : 'Normal (live)'; };
+  paintState();
+  const onLabel = document.createElement('label');
+  onLabel.className = 'check';
+  const on = document.createElement('input');
+  on.type = 'checkbox';
+  on.checked = row.coming_soon;
+  onLabel.append(on, document.createTextNode('Coming Soon'));
+  head.append(title, state, onLabel);
+
+  const labelF = textField('Label', row.label_text, { hint: 'Short, e.g. Coming Soon or Opening Spring 2027' });
+  const noteF = textField('Short note (optional)', row.note_text, { wide: true, multiline: true, max: 300 });
+  const keepLabel = document.createElement('label');
+  keepLabel.className = 'check';
+  const keep = document.createElement('input');
+  keep.type = 'checkbox';
+  keep.checked = row.keep_link;
+  keepLabel.append(keep, document.createTextNode('Keep the card’s link clickable while Coming Soon'));
+
+  const imgWrap = document.createElement('label');
+  imgWrap.className = 'field';
+  imgWrap.append(document.createTextNode(row.image_url ? 'Replace image (optional)' : 'Image (optional)'));
+  const file = document.createElement('input');
+  file.type = 'file';
+  file.accept = 'image/png,image/jpeg,image/webp';
+  const imgHint = document.createElement('span');
+  imgHint.className = 'hint';
+  imgHint.textContent = 'PNG, JPG, or WebP, up to 5 MB. Shown small on the card.';
+  imgWrap.append(file, imgHint);
+
+  const previewWrap = document.createElement('div');
+  previewWrap.className = 'field';
+  previewWrap.append(document.createTextNode('Preview'));
+  const preview = document.createElement('img');
+  preview.className = 'preview-img';
+  preview.alt = '';
+  const previewLabel = document.createElement('span');
+  previewLabel.className = 'preview-label';
+  const paintPreview = () => {
+    previewLabel.textContent = labelF.input.value.trim() || 'Coming Soon';
+    const src = file.files?.[0] ? URL.createObjectURL(file.files[0]) : (removeImage ? '' : row.image_url);
+    preview.style.display = src ? '' : 'none';
+    if (src) preview.src = src;
+  };
+  let removeImage = false;
+  previewWrap.append(preview, previewLabel);
+  labelF.input.addEventListener('input', paintPreview);
+  file.addEventListener('change', () => { removeImage = false; paintPreview(); });
+
+  const removeBtn = document.createElement('button');
+  removeBtn.type = 'button'; removeBtn.className = 'btn'; removeBtn.textContent = 'Remove image';
+  removeBtn.style.display = row.image_url ? '' : 'none';
+  removeBtn.addEventListener('click', () => { removeImage = true; file.value = ''; paintPreview(); });
+  paintPreview();
+
+  const status = document.createElement('span');
+  status.className = 'row-status';
+  const save = document.createElement('button');
+  save.type = 'button'; save.className = 'btn primary'; save.textContent = 'Save';
+
+  const persist = async () => {
+    const labelText = labelF.input.value.trim() || 'Coming Soon';
+    save.disabled = true;
+    setStatus(status, 'saving', 'Saving…');
+    try {
+      let imageUrl = removeImage ? null : row.image_url;
+      if (file.files?.[0]) imageUrl = await uploadImage(row.program_key, file.files[0]);
+      const patch = { coming_soon: on.checked, label_text: labelText, note_text: noteF.input.value.trim() || null, keep_link: keep.checked, image_url: imageUrl };
+      const { error } = await supabase.from('program_status').update(patch).eq('program_key', row.program_key);
+      if (error) throw error;
+      Object.assign(row, patch);
+      file.value = ''; removeImage = false;
+      labelF.input.value = labelText;
+      removeBtn.style.display = row.image_url ? '' : 'none';
+      paintState(); paintPreview();
+      setStatus(status, 'saved', 'Saved');
+      msg(`${row.name}: ${row.coming_soon ? `now showing “${labelText}” on the homepage and Programs page.` : 'back to normal on the site.'}`, 'success');
+    } catch (e) {
+      setStatus(status, 'error', 'Error');
+      msg(`Could not save ${row.name}: ${e.message}`, 'error');
+    } finally {
+      save.disabled = false;
+    }
+  };
+  save.addEventListener('click', persist);
+  on.addEventListener('change', persist); // the on/off switch saves immediately
+
+  const grid = document.createElement('div');
+  grid.className = 'form-grid';
+  grid.append(labelF.wrap, imgWrap, previewWrap, noteF.wrap);
+  const actions = document.createElement('div');
+  actions.className = 'actions';
+  actions.append(keepLabel, removeBtn, save, status);
+  box.append(head, grid, actions);
+  return box;
+}
+
+async function init() {
+  try {
+    const { data: s, error } = await supabase.auth.getSession();
+    if (error) throw error;
+    const user = s.session?.user;
+    if (!user) { location.href = 'account.html?next=program-status.html'; return; }
+    const { data: roles, error: re } = await supabase.from('user_roles').select('role').eq('user_id', user.id);
+    if (re) throw re;
+    if (!(roles || []).some((x) => x.role === 'admin')) { document.getElementById('loading').textContent = 'Administrator access is required.'; return; }
+    const { data, error: le } = await supabase.from('program_status').select('*').order('display_order');
+    if (le) throw le;
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('content').style.display = '';
+    rowsEl.replaceChildren(...data.map(renderRow));
+  } catch (e) {
+    document.getElementById('loading').textContent = 'Program Status could not be loaded.';
+    msg(e.message, 'error');
+  }
+}
+init();
+</script>
+</body>
+</html>

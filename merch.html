@@ -85,6 +85,9 @@
   .collection-card-copy strong{font-size:22px;line-height:1.1}
   .collection-card-copy span{margin-top:9px;color:var(--muted);font-size:15px}
   .collection-card-copy small{margin-top:14px;color:var(--gold-bright);font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+  .collection-card.coming-soon{cursor:default}
+  .collection-card.coming-soon:hover{transform:none;border-color:#284A29;box-shadow:var(--shadow)}
+  .collection-card-copy .cs-image{display:block;max-width:140px;max-height:72px;margin-top:12px;object-fit:contain}
   .product-tools{margin-top:28px;padding:22px;border:1px solid rgba(40,74,41,.85);border-radius:18px;background:rgba(18,42,24,.55)}
   .product-tools-label{margin:0 0 12px;text-align:center;color:var(--muted);font-size:14px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
   .filter-list{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
@@ -277,10 +280,13 @@ import { buildCatalog, resolveType } from './assets/js/merch-taxonomy.js?v=20260
   // (via its card or its "View all" link) shows everything that program has.
   const GROUP_PREVIEW_LIMIT = 3;
   const previewLimit = (collection) => catalog.byKey.get(collection)?.preview_count ?? GROUP_PREVIEW_LIMIT;
+  // Products show only for live collections. A "Coming Soon" collection keeps its card (with the
+  // owner's label/note/image, not clickable) but shows no products yet.
   const collectionShown = (collection) => {
     const c = catalog.byKey.get(collection);
-    return !!c && c.site_visible !== false && !c.archived;
+    return !!c && c.site_visible !== false && !c.archived && !c.coming_soon;
   };
+  const cardShown = (c) => !c.archived && (c.site_visible !== false || c.coming_soon);
   const collectionButtons = () => [...cardGrid.querySelectorAll('[data-collection]')];
 
   const money = (value) => Number.isFinite(Number(value))
@@ -289,11 +295,15 @@ import { buildCatalog, resolveType } from './assets/js/merch-taxonomy.js?v=20260
 
   // Same card structure/classes as the original hand-built cards.
   const buildCard = (c) => {
-    const button = document.createElement('button');
-    button.className = `collection-card${c.logo_background === 'light' ? ' light-logo' : ''}`;
-    button.type = 'button';
-    button.dataset.collection = c.collection;
-    button.setAttribute('aria-pressed', 'false');
+    const button = document.createElement(c.coming_soon ? 'div' : 'button');
+    button.className = `collection-card${c.logo_background === 'light' ? ' light-logo' : ''}${c.coming_soon ? ' coming-soon' : ''}`;
+    if (c.coming_soon) {
+      button.dataset.comingSoon = c.collection;
+    } else {
+      button.type = 'button';
+      button.dataset.collection = c.collection;
+      button.setAttribute('aria-pressed', 'false');
+    }
     if (c.logo_url) {
       const img = document.createElement('img');
       img.className = 'collection-card-image';
@@ -312,8 +322,20 @@ import { buildCatalog, resolveType } from './assets/js/merch-taxonomy.js?v=20260
       copy.appendChild(desc);
     }
     const small = document.createElement('small');
-    small.textContent = c.button_label || `Shop ${c.name}`;
+    small.textContent = c.coming_soon ? (c.coming_soon_label || 'Coming Soon') : (c.button_label || `Shop ${c.name}`);
     copy.appendChild(small);
+    if (c.coming_soon && c.coming_soon_note) {
+      const note = document.createElement('span');
+      note.textContent = c.coming_soon_note;
+      copy.appendChild(note);
+    }
+    if (c.coming_soon && c.coming_soon_image_url) {
+      const img = document.createElement('img');
+      img.className = 'cs-image';
+      img.src = c.coming_soon_image_url;
+      img.alt = '';
+      copy.appendChild(img);
+    }
     button.appendChild(copy);
     return button;
   };
@@ -491,7 +513,7 @@ import { buildCatalog, resolveType } from './assets/js/merch-taxonomy.js?v=20260
     // five collections and the hand-built cards.
     if (!collectionsResult.error && Array.isArray(collectionsResult.data) && collectionsResult.data.length) {
       catalog = buildCatalog(collectionsResult.data);
-      cardGrid.replaceChildren(...catalog.list.filter((c) => collectionShown(c.collection)).map(buildCard));
+      cardGrid.replaceChildren(...catalog.list.filter(cardShown).map(buildCard));
     }
     buildGroups();
     if (requestedCollection && collectionShown(requestedCollection)) activeCollection = requestedCollection;

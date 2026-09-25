@@ -72,6 +72,15 @@
         bookingCard.innerHTML = `<h3>Scheduling &amp; Booking</h3><p>Set booking types, hours, blocked dates, and waivers. See, export, and cancel bookings.</p><span class="path-link-text">Open Scheduling &amp; Booking</span>`;
         pathGrid.append(bookingCard);
       }
+
+      if (!document.getElementById('admin-program-status-path')) {
+        const statusCard = document.createElement('a');
+        statusCard.id = 'admin-program-status-path';
+        statusCard.className = 'path-card';
+        statusCard.href = 'program-status.html';
+        statusCard.innerHTML = `<h3>Program Status</h3><p>Mark programs as “Coming Soon” on the homepage and Programs page, with your own label, note, and image.</p><span class="path-link-text">Open Program Status</span>`;
+        pathGrid.append(statusCard);
+      }
     };
 
     addAdminOperationsPath();
