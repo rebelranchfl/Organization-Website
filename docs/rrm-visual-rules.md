@@ -1,7 +1,7 @@
 # Rebel Ranch Ministries Visual Rules
 
 **Status:** Approved and locked  
-**Version:** 2.3  
+**Version:** 2.4
 **Current rollout:** Phase 1 public surfaces plus the owner-approved Programs Hub extension (`programs.html`). This governs which pages receive the current RRM public styling and structural rebuilds; it does not restrict which already-approved program pages may be linked as destinations.  
 **Authority:** This document supersedes conflicting public-site surface guidance in `brand-guide.md` and `site-design-system.md`.
 
@@ -26,6 +26,7 @@ Every agent must read this document before starting visual, layout, or public-pa
 - Primary headings use cream `#F0EDD8`.
 - Body text on green surfaces uses `#D7D1B3`.
 - Small labels and approved highlights use bright gold `#EF9F27`.
+- Responsible Rebellion headline accents and red action buttons use the single approved red `#7A1E1E`. Do not substitute lighter, pinker, darker, or gradient red variants.
 - Do not introduce another surface color or gradient without approval.
 
 ## Hero
@@ -41,6 +42,13 @@ Every agent must read this document before starting visual, layout, or public-pa
 - Every major section handoff uses a full-width, `1px` green line: `rgba(151, 196, 89, .62)`.
 - A centered `3px` gold accent (`#EF9F27` fading to transparent) sits over that line. It is no wider than `min(10rem, 28vw)`.
 - Do not use unrelated internal green rules between content blocks.
+
+### Emotional anchor heading
+
+- The centered cream heading with short gold rules on both sides is an emotional anchor, not the standard section divider.
+- Reserve it for one high-impact invitation, commitment, or closing moment per page, such as **Join the Rebellion**. Additional uses require owner approval.
+- Place the emotional anchor after the standard section-boundary divider and before the section's primary image. Supporting eyebrow and message copy follow the image.
+- Do not convert routine section headings to this treatment or roll it across existing pages without explicit page-by-page approval. Its impact depends on being rare.
 
 ## Cards and forms
 
