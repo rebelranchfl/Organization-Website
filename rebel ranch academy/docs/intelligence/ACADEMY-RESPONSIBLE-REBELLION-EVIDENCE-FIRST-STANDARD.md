@@ -170,7 +170,7 @@ When appropriate, Academy products should turn alternatives into experiments rat
 
 Use:
 
-`UNDERSTAND → BUILD / IMPLEMENT → OBSERVE → TEST → COMPARE → IMPROVE → DECIDE → TRANSFER THE PRINCIPLE`
+`UNDERSTAND → BUILD / IMPLEMENT → OBSERVE → TEST → COMPARE → IMPROVE → DECIDE → REBEL RANCH PRINCIPLE`
 
 A recurring learner challenge may use:
 

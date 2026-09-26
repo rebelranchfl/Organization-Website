@@ -538,7 +538,7 @@ It should include, when appropriate:
 13. practical activities;
 14. reflection or decision prompts only when educationally useful;
 15. safety instructions integrated where needed;
-16. `TRANSFER THE PRINCIPLE`;
+16. `REBEL RANCH PRINCIPLE`;
 17. next-step guidance;
 18. source/reference section appropriate to the audience.
 

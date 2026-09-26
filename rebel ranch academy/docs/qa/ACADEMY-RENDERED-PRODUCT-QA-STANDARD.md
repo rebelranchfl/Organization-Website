@@ -31,6 +31,7 @@ At minimum, verify:
 6. **Practical outputs exist.** Confirm required build concepts, system plans, comparison tools, checklists, experiments, decision tools, downloads, print outputs, or other tangible outputs are present and usable.
 7. **Responsive/use behavior works.** Check the intended desktop and mobile widths and print/download behavior where applicable.
 8. **Owner-visible preview is the same product being certified.** Final Product Review must preview the same release-candidate files that were functionally tested.
+9. **No section is thin.** Walk every section of the release candidate individually (not a sample) and confirm each one contains at least one of: a real illustrative graphic (a diagram or comparison visual — a decorative icon alone does not count), a working interactive element (an activity, quiz, matching exercise, or learner input), or substantive body text (more than a single short paragraph). **Exempt from this check:** sections whose entire purpose is reference/navigation — a table of contents, a glossary, or a sources/references list — where brevity is the correct, expected format, not a defect. Added 2026-09-14 after a real Academy project shipped a release candidate with several thin, image-less, non-interactive sections that only surfaced as a problem during owner review, after multiple rounds of the underlying layout being "fixed" without the actual content gap being addressed.
 
 ## Evidence required in Final Product QA
 
@@ -58,7 +59,8 @@ Final Product QA is **FAIL** if any of the following is true:
 - the final personalized output does not materially reflect learner input;
 - required visual teaching is replaced primarily by prose/cards when the approved design calls for diagrams, cutaways, scenes, branch visuals, or system visuals;
 - the preview manifest points to a different or older product than the one tested;
-- the QA record claims a behavior that was not exercised in the actual release candidate.
+- the QA record claims a behavior that was not exercised in the actual release candidate;
+- any non-reference section (i.e., not a table of contents, glossary, or references/sources list) has no graphic, no interactive element, and no more than a single short paragraph of text.
 
 ## Water Through the Layers regression test
 
