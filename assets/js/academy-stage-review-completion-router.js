@@ -93,6 +93,8 @@ function installFinalReturnButtons(){
   research.className='asr-more';
   research.dataset.returnStage='RESEARCH_WORKING';
   research.textContent='Return to Research';
+  // 2026-09-27: follow the parked lock on the main decision buttons.
+  const locked=!!actions.querySelector('[data-review]')?.disabled;product.disabled=locked;research.disabled=locked;
   if(reject){actions.insertBefore(product,reject);actions.insertBefore(research,reject)}
   else{actions.append(product,research)}
 }
