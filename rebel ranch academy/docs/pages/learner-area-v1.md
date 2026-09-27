@@ -15,6 +15,7 @@
 | 2026-09-27 | Build against **current capability only** — no screen that leads to nothing. |
 | 2026-09-27 | Split: Claude builds code and data wiring; ChatGPT generates images for the marked image spots. |
 | 2026-09-27 | Do **not** turn on the content agent yet. |
+| 2026-09-27 | Owner did not like the navy version. **Trial on preview:** RRM homepage black `#050806`, forest green `#204227`, green fade `#1D4024`→`#122A18`, maroon `#7A1E1E` (used sparingly), cream `#F0EDD8`/`#D7D1B3`, with the Academy gold for buttons. Pending owner pick between this and navy (navy kept in Git, commit 71e6bee). |
 
 ## 2. Working brief
 
