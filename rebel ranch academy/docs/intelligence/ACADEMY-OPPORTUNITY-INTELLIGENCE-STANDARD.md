@@ -147,6 +147,10 @@ Cost/risk factors:
 
 A high opportunity score is a prioritization signal, not owner approval and not a promise of commercial success.
 
+### Automatic value screen for new Academy projects (owner decision 2026-09-27)
+
+For every new Academy project, the same 0–5 factors are scored during Product Opportunity Research, **before subject research**, and recorded with `record_academy_value_screen`. The scores, recommendation state, proposed price, projected revenue, competitor summary, format recommendation and distribution are logged in `academy_value_screens`, and the project is routed automatically using the thresholds in `ACADEMY-PRODUCT-PHASE-WORKFLOW-EXTENSION.md` §2A. Only low-confidence, not-recommended or borderline results come to the owner.
+
 The recommendation must remain explainable in plain language. Never show a score without the reason and unresolved gaps.
 
 ## Relationship graph

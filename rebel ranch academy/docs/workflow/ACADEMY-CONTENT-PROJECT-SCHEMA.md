@@ -443,6 +443,12 @@ When an improvement becomes durable, update the smallest appropriate controlling
 
 ---
 
+## 13A. Owner-facing summary field (owner decision 2026-09-27)
+
+`academy_content_projects.owner_summary` is one or two plain-language sentences for the owner: what is ready and what is being asked. It is shown first on the project page. Every agent that updates `progress_detail` must also write `owner_summary` in plain words: no commit hashes, file names, gate names or internal jargon. The technical detail stays in `progress_detail` and appears only in the Agent log.
+
+`academy_content_projects.projected_revenue` is set during Research & Value (value screen) together with `proposed_price`.
+
 ## 14. Schema evolution
 
 The project record will evolve as the dashboard and automation are built.

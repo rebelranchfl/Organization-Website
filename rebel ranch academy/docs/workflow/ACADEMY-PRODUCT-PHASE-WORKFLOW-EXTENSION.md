@@ -31,13 +31,15 @@ For substantive Academy material, whether free or paid, the target workflow is:
 ```text
 IDEA
 → CONTEXT REVIEW
+
+→ AUDIENCE / PRODUCT OPPORTUNITY RESEARCH
+→ PRODUCT RECOMMENDATION SCORECARD
+→ AUTOMATIC VALUE SCREEN (see §2A)
+
 → SUBJECT RESEARCH
 → SOURCE AUDIT / CLAIM VERIFICATION
 → RESEARCH QA
 → OWNER RESEARCH REVIEW
-
-→ AUDIENCE / PRODUCT OPPORTUNITY RESEARCH
-→ PRODUCT RECOMMENDATION SCORECARD
 
 → PRODUCT ARCHITECTURE
 → PRODUCT MANUSCRIPT / LEARNING CONTENT
@@ -65,6 +67,26 @@ IDEA
 
 Research, product opportunity analysis, product design, visual production, final acceptance, and release are separate responsibilities even when the same underlying AI model performs more than one role.
 
+## 2A. Value-first order and automatic value screen (owner decision 2026-09-27)
+
+**Owner directive:** do not research something that has no opportunity. Product Opportunity Research (who else sells it and for how much, demand, desirability, marketing angle, best format, price and projected revenue) runs **before** subject research, immediately after Idea + Context.
+
+The result is recorded through the database function `record_academy_value_screen`, which logs every screen in `academy_value_screens` and routes the project automatically. There is no routine owner approval at this point. Owner-approved starting thresholds, using the 0–5 scores from the Opportunity Intelligence Standard:
+
+| Screen result | Automatic routing |
+| --- | --- |
+| Confidence ≤ 2, or `NOT_RECOMMENDED_OWNER_REVIEW` | Owner review (`VALUE_SCREEN_REVIEW`): proceed, park, or reject |
+| `PURSUE_NOW` with demand ≥ 3 and confidence ≥ 3 | Research (`RESEARCH_WORKING`) |
+| `FREE_RESOURCE` or `INCORPORATE_BUNDLE` (confidence ≥ 3) | Research on that path. Value is not only dollars. |
+| `PURSUE_LATER` or `MONITOR` (confidence ≥ 3) | Parked, with the reason recorded |
+| Anything else (for example `PURSUE_NOW` with demand < 3) | Owner review |
+
+Thresholds are a starting point. Adjust them from the logged results, with owner approval.
+
+**Distribution and format (owner decision 2026-09-27):** distribution is the Academy website for now; social media is marketing, not the educational channel. Keep recommending the best format. Record video as a future format when it fits; video production is a later phase. No production-capability rule is applied yet.
+
+**Projects created before 2026-09-27** already completed research first. When their Research Review is approved they still go to Product Opportunity Research (the old order) so pricing is not skipped. Projects that passed the value screen go straight from Research Review to Product Design.
+
 A worker completing one stage does not authorize the next owner-controlled stage.
 
 ---
@@ -90,7 +112,7 @@ Owner decisions:
 
 `APPROVE RESEARCH FOUNDATION` does **not** approve a product, design, price, visual package, sale, free release, or publication.
 
-It authorizes the next applicable Product Opportunity / Product Design intake.
+It authorizes the next applicable intake: Product Design for value-screened projects, or Product Opportunity Research for projects created before the value-first order (§2A).
 
 ---
 

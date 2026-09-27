@@ -602,6 +602,10 @@ Implementation tools may also include:
 
 Do not create unsafe experiments, unsupported build instructions, fake demonstrations, or activities that imply stronger evidence than they actually provide.
 
+### Interaction & Assessment Library (owner decision 2026-09-27)
+
+Pick learner interactions and tests from the Interaction & Assessment Library (`academy_interaction_types`, shown in the back office under **Library**) and log each one used in a product as a row in `academy_interaction_uses` for that project. If a needed interaction is not in the library, add it as a new type rather than leaving it unrecorded. The owner rates fit (1–5) and records what works per type, so interactions are matched to material by evidence over time and none are overlooked or overused.
+
 ---
 
 ## 12. Visual-design brief
