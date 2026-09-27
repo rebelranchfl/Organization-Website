@@ -122,7 +122,8 @@ body.aa a{color:inherit}
 .md-table{overflow-x:auto;margin:.6em 0;border:1px solid var(--aa-line-soft);border-radius:8px}
 .md-table table{border-collapse:collapse;width:100%;font-size:.82rem}
 .md-table th{padding:8px;text-align:left;background:var(--aa-panel);color:var(--aa-muted);border-bottom:1px solid var(--aa-line-soft);white-space:nowrap}
-.md-table td{padding:8px;border-bottom:1px solid var(--aa-line-soft);vertical-align:top;min-width:90px}
+.md-table td{padding:8px;border-bottom:1px solid var(--aa-line-soft);vertical-align:top;min-width:150px}
+.md-table td:first-child{min-width:32px}
 
 @media(max-width:760px){.aa-split{grid-template-columns:1fr}.aa-nav-sep{display:none}}
 @media(prefers-reduced-motion:no-preference){.aa-card,.aa-btn{transition:border-color .15s,background .15s}}
