@@ -1,0 +1,126 @@
+/* Learner area v1 — forest green / gold (owner-preferred concept colors, 2026-09-27).
+   Non-clickable labels are square-cornered (repo rule: pills only when clickable).
+   AI-Agent: Claude (claude-opus-5-5) · Session: Academy back office restructure 2026-09-27 */
+.app{
+  --bg:#0b140d; --panel:#111d13; --panel-2:#16261a; --line:rgba(201,164,92,.22);
+  --gold:#c9a45c; --gold-2:#e2c27f; --ink:#f1ead8; --muted:#b5ae9c;
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  min-height:100vh; background:var(--bg); color:var(--ink);
+  display:grid; grid-template-columns:248px minmax(0,1fr);
+}
+.srOnly{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Brand lockup */
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.brand img{object-fit:contain}
+.brand span{display:flex;flex-direction:column;line-height:1.05}
+.brand strong{font-family:var(--serif);font-size:20px;font-weight:600;letter-spacing:.02em}
+.brand small{color:var(--gold);font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;margin-top:3px}
+
+/* Sidebar */
+.sidebar{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:28px;padding:26px 18px;background:var(--panel);border-right:1px solid var(--line)}
+.sideBrand{padding:0 6px}
+.nav{display:flex;flex-direction:column;gap:4px}
+.nav a{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:8px;color:var(--muted);text-decoration:none;font-size:15px;border-left:3px solid transparent}
+.nav a:hover{background:var(--panel-2);color:var(--ink)}
+.navActive{background:var(--panel-2);color:var(--gold-2)!important;border-left-color:var(--gold)!important}
+.sideFoot{margin-top:auto;display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--line);padding-top:16px}
+.sideFoot a{display:flex;align-items:center;gap:10px;padding:8px 12px;color:var(--muted);text-decoration:none;font-size:14px;border-radius:6px}
+.sideFoot a:hover{color:var(--ink);background:var(--panel-2)}
+
+/* Phone top bar (hidden on desktop) */
+.topbar{display:none}
+.menuBtn{display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--ink);cursor:pointer}
+
+.main{display:flex;flex-direction:column;min-width:0}
+.content{flex:1;padding:32px clamp(20px,3.5vw,48px) 56px;max-width:1240px;width:100%}
+
+/* Library */
+.library{display:flex;flex-direction:column;gap:40px}
+.hero{position:relative;min-height:220px;display:flex;align-items:flex-end;padding:32px;border-radius:14px;border:1px solid var(--line);overflow:hidden;
+  background:radial-gradient(120% 140% at 85% 10%,rgba(201,164,92,.18),transparent 55%),linear-gradient(135deg,#17301d 0%,#0f1f13 60%,#0b140d 100%)}
+.heroText{max-width:620px}
+.eyebrow{margin:0 0 10px;color:var(--gold);font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase}
+.hero h1{margin:0 0 10px;font-family:var(--serif);font-size:clamp(34px,4.6vw,54px);font-weight:600;line-height:1.02;letter-spacing:-.01em}
+.hero p{margin:0;color:var(--muted);font-size:16px;line-height:1.55}
+
+.section{display:flex;flex-direction:column;gap:16px}
+.h2{margin:0;font-family:var(--serif);font-size:28px;font-weight:600;color:var(--ink)}
+.sectionHead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.sectionHead p{margin:0;color:var(--muted);font-size:14px}
+
+.areaGrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px}
+.areaTile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-height:108px;padding:14px 8px;text-align:center;
+  background:var(--panel);border:1px solid var(--line);border-radius:10px;color:var(--gold-2);cursor:pointer;font-size:13px;line-height:1.25;transition:border-color .15s,background .15s}
+.areaTile span{color:var(--ink)}
+.areaTile:hover{border-color:var(--gold);background:var(--panel-2)}
+.areaOn{border-color:var(--gold);background:linear-gradient(180deg,rgba(201,164,92,.16),rgba(201,164,92,.04));box-shadow:inset 0 0 0 1px var(--gold)}
+.areaNote{margin:0;color:var(--muted);font-size:14px;max-width:760px}
+
+.cardGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
+.card{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.cardImg{aspect-ratio:16/9;display:grid;place-items:center;color:var(--gold);
+  background:radial-gradient(90% 120% at 70% 20%,rgba(201,164,92,.14),transparent 60%),linear-gradient(160deg,#1a3120,#0f1c12)}
+.cardImg img{width:100%;height:100%;object-fit:cover}
+.cardBody{display:flex;flex-direction:column;gap:8px;padding:16px 16px 18px;flex:1}
+.cardMeta{margin:0;color:var(--gold);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.cardBody h3{margin:0;font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.15}
+.cardBody p:not(.cardMeta){margin:0;color:var(--muted);font-size:14.5px;line-height:1.55}
+.cardFoot{margin-top:auto;padding-top:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.cardFoot .btn{margin-left:auto}
+.label{display:inline-block;padding:3px 8px;border:1px solid var(--gold);border-radius:2px;color:var(--gold-2);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.saved{display:inline-flex;align-items:center;gap:4px;color:var(--muted);font-size:12px}
+
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px;border:0;border-radius:8px;background:var(--gold);color:#132015;font-weight:700;font-size:14px;text-decoration:none;cursor:pointer}
+.btn:hover{background:var(--gold-2)}
+.linkBtn{border:0;background:none;color:var(--gold-2);text-decoration:underline;cursor:pointer;padding:0}
+.empty{margin:0;color:var(--muted)}
+
+/* Activity dialog */
+.overlay{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:16px;background:rgba(3,7,4,.72)}
+.dialog{position:relative;width:min(560px,100%);max-height:calc(100vh - 32px);overflow:auto;padding:28px;background:var(--panel);border:1px solid var(--gold);border-radius:14px}
+.dialog > .cardMeta{padding-right:44px}
+.dialog h2{margin:6px 0 10px;font-family:var(--serif);font-size:30px;font-weight:600;line-height:1.1;padding-right:36px}
+.dialog h3{margin:18px 0 8px;color:var(--gold-2);font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+.dialog p{margin:0;color:var(--muted);line-height:1.6}
+.closeBtn{position:absolute;top:14px;right:14px;display:grid;place-items:center;width:40px;height:40px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--ink);cursor:pointer}
+.checks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.checks li{display:flex;gap:10px;align-items:flex-start;color:var(--ink)}
+.checks svg{color:var(--gold);flex:none;margin-top:3px}
+.dialogFoot{margin-top:22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.hint{color:var(--muted);font-size:13px}
+
+/* Footer with RRM parent block */
+.footer{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;padding:28px clamp(20px,3.5vw,48px);border-top:1px solid var(--line);background:var(--panel)}
+.footAcademy{display:flex;align-items:center;gap:12px}
+.footAcademy div{display:flex;flex-direction:column}
+.footAcademy strong{font-family:var(--serif);font-size:19px;font-weight:600}
+.footAcademy span{color:var(--muted);font-size:13px}
+.footParent{display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+.footRrm img{display:block;height:36px;width:auto}
+.footParent nav{display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:flex-end}
+.footParent nav a{color:var(--muted);font-size:13px;text-decoration:none}
+.footParent nav a:hover{color:var(--gold-2)}
+.footParent p{margin:0;color:var(--muted);font-size:12px}
+
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold-2);outline-offset:2px}
+
+@media (max-width:1100px){ .areaGrid{grid-template-columns:repeat(4,minmax(0,1fr))} }
+
+/* Phone / tablet: sidebar becomes a drop-down menu under a top bar */
+@media (max-width:860px){
+  .app{grid-template-columns:1fr}
+  .topbar{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;height:64px;padding:0 16px;background:var(--panel);border-bottom:1px solid var(--line)}
+  .sidebar{display:none;position:fixed;top:64px;left:0;right:0;height:auto;z-index:39;padding:12px 16px 18px;gap:12px;border-right:0;border-bottom:1px solid var(--line)}
+  .sidebarOpen{display:flex}
+  .sideBrand{display:none}
+  .content{padding:20px 16px 40px}
+  .library{gap:30px}
+  .hero{min-height:180px;padding:22px}
+  .areaGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .areaTile{flex-direction:row;justify-content:flex-start;min-height:56px;padding:10px 12px;text-align:left}
+  .cardGrid{grid-template-columns:1fr}
+  .footer{padding:24px 16px}
+  .footParent{align-items:flex-start}
+  .footParent nav{justify-content:flex-start}
+}
