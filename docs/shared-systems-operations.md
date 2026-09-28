@@ -111,7 +111,7 @@ That historical successful test proves the configuration worked at that verifica
 
 Program-specific transactional email behavior belongs with the relevant program. Example: Marketplace seller-order notification logic belongs in the Marketplace documentation and should reference the shared email/Resend infrastructure rather than redefine the shared auth SMTP system.
 
-Secrets must not be committed to the repository. Protected server-side keys belong in the appropriate protected environment/secret store.
+Secrets must not be committed to the repository. Protected server-side keys belong in the appropriate protected environment/secret store. Every key's name, location and users are listed in `docs/keys-and-access-register.md`.
 
 ## 5. Shared public shell and navigation
 
