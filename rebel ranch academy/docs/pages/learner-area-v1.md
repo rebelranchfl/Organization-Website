@@ -70,8 +70,9 @@ Images follow the existing Academy image handoff and checks. No logo may be gene
 | Database (catalog, purchases, memberships, receipts, locks) | Applied. Lock rules tested in a rolled-back transaction: all pass. |
 | Server functions | `academy-commerce` v2 and `paypal-webhook` v21 deployed; reject signed-out and off-site requests; notice handler still rejects unsigned PayPal notices. |
 | Independent code review | DONE (separate agent). 2 high + 5 medium findings fixed and redeployed; lock rules re-tested. |
-| Main-site pages | BUILT · TECHNICALLY CHECKED locally (phone 390px, desktop 1280px, no sideways scroll, no errors). Home page pixel-identical to the Program Hub home except the added Library links. |
+| Main-site pages | DEPLOYED 2026-09-28 (PR #139). PUBLICLY VERIFIED signed-out: all pages load on rebelranchministries.org at phone 390px and desktop 1280px with no errors or sideways scroll; My Materials, receipts and Sales send signed-out visitors to sign-in; the live site can reach the payment function. Not linked from the main navigation yet. |
 | Signed-in flows (buy, receipt, My Materials, membership, owner release checklist, Sales) | NOT VERIFIED — needs the pages on the real address and a signed-in person. |
 | Live PayPal payment | NOT VERIFIED — needs an owner-approved test purchase. |
 | Independent visual review | NOT DONE |
-| Public release | NOT DEPLOYED — branch `claude/academy-main-site`; merge only with owner approval. |
+| Old academy address | Still serves the Program Hub (now green + `/learn`). Not forwarded yet — owner to decide forwarding and relinking. |
+| Leftover public access / Creation Station bundle | `publish-ledger` switched off, `site` bucket private; stale rule blocking Club and bundles removed (tested). |
