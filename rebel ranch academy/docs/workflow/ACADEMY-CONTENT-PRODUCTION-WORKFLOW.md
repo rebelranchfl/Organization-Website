@@ -75,7 +75,7 @@ The agent must review the current public Rebel Ranch Ministries website and the 
 At minimum:
 
 - `https://rebelranchministries.org`
-- `https://academy.rebelranchministries.org`
+- `https://rebelranchministries.org/rebel-ranch-academy.html` and `https://rebelranchministries.org/academy-library.html` (the old academy subdomain forwards here since 2026-09-28)
 
 The purpose of website review is not to copy marketing language. It is to understand the current public identity, audience, program connections, current promises, available learning paths, and how a visitor actually experiences RRM and RRA.
 

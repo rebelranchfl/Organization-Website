@@ -60,9 +60,25 @@ interface ExecutionContext {
 // dangerouslyAllowSVG: true in next.config.js and uncomment below:
 // const imageConfig: ImageConfig = { dangerouslyAllowSVG: true };
 
+// The Academy moved onto the main site (owner decision 2026-09-28: one website, one login).
+// Every Academy address here forwards permanently to its matching main-site page. The
+// Wealth Management preview (/wealth-management*) and built assets keep being served here.
+// AI-Agent: Claude (claude-opus-5-5) · Session: Academy back office restructure 2026-09-27
+const MAIN_SITE = "https://rebelranchministries.org";
+function academyForward(url: URL): Response | null {
+  const path = url.pathname;
+  if (path === WEALTH_MANAGEMENT_PATH || path.startsWith(WEALTH_MANAGEMENT_PATH + "/")) return null;
+  if (path.startsWith("/_vinext/") || path.startsWith("/assets/") || /\.[a-z0-9]{2,5}$/i.test(path)) return null;
+  const target = path === "/learn" || path.startsWith("/learn/") ? "/academy-library.html" : "/rebel-ranch-academy.html";
+  return Response.redirect(MAIN_SITE + target, 301);
+}
+
 const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+
+    const forward = academyForward(url);
+    if (forward) return forward;
 
     if (url.pathname === WEALTH_MANAGEMENT_PATH || url.pathname.startsWith(WEALTH_MANAGEMENT_PATH + "/")) {
       if (!hasValidPreviewPassword(request, env.WEALTH_MANAGEMENT_PREVIEW_PASSWORD)) {

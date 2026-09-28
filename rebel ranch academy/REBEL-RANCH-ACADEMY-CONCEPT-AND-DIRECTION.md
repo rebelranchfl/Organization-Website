@@ -338,7 +338,7 @@ Do not make every RRA campaign faith-centered. Faith, Family & Freedom is part o
 The intended website path is:
 
 1. the RRM website introduces Rebel Ranch Ministries programs;
-2. the interactive RRA Program Hub at `https://academy.rebelranchministries.org` is the live public Academy destination;
+2. the Academy home page on the main site, `https://rebelranchministries.org/rebel-ranch-academy.html`, is the live public Academy destination (owner decision 2026-09-28: one website, one login; the old `academy.rebelranchministries.org` address forwards there);
 3. the existing `academy.html` remains unchanged and on hold for a later content review;
 4. visitors choose an audience, need, or learning area;
 5. the hub presents relevant programs, classes, or interest paths; and
