@@ -1,0 +1,168 @@
+/* Rebel Ranch Academy — learner area styles (Library, item, My Materials, lesson).
+   Ported from the Academy Program Hub (app/learn/learn.module.css) on 2026-09-28;
+   CSS-module class names are prefixed "lx-". Colors: owner-approved RRM black /
+   green / maroon with the Academy gold.
+   AI-Agent: Claude (claude-opus-5-5) · Session: Academy back office restructure 2026-09-27 */
+:root{--gold:#d7aa43;--gold-bright:#f2cf78}
+*,::before,::after{box-sizing:border-box;border:0 solid}
+html,body,h1,h2,h3,h4,p,ol,ul,figure{margin:0}
+ol,ul{list-style:none;padding:0}
+img,svg{display:block;max-width:100%}
+img{height:auto}
+button,input,select,textarea{font:inherit;color:inherit;background:transparent}
+body{font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.65;background:#204227}
+a{color:inherit}
+/* Learner area v1 — "ranch" trial (owner go 2026-09-27): RRM homepage black,
+   forest green and maroon with the Academy gold for actions.
+   Source hexes pulled from the RRM homepage (index.html :root and
+   assets/css/public-surface.css): black #050806, green #204227, card fade
+   #1D4024 -> #122A18, maroon #7A1E1E, cream #F0EDD8, muted #D7D1B3.
+   Gold = Academy tokens (--gold, --gold-bright) from app/globals.css.
+   Maroon is used sparingly (accent lines and the Free label only).
+   The navy version is in Git history (commit 71e6bee) if the owner prefers it.
+   Non-clickable labels are square-cornered (repo rule: pills only when clickable).
+   AI-Agent: Claude (claude-opus-5-5) · Session: Academy back office restructure 2026-09-27 */
+.lx-app{
+  --serif:Georgia,"Times New Roman",serif;
+  --r-black:#050806; --r-green:#204227; --r-fade-1:#1D4024; --r-fade-2:#122A18;
+  --r-maroon:#7A1E1E; --r-cream:#F0EDD8; --r-muted:#D7D1B3; --r-line:rgba(215,170,67,.24);
+  min-height:100vh; background:var(--r-green); color:var(--r-cream);
+  display:grid; grid-template-columns:248px minmax(0,1fr);
+}
+.lx-srOnly{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Brand lockup (matches home .lx-brand-lockup) */
+.lx-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff}
+.lx-brand img{object-fit:contain}
+.lx-brand span{display:flex;flex-direction:column;line-height:1.1}
+.lx-brand strong{font-family:var(--serif);font-size:19px;font-weight:400;letter-spacing:.03em}
+.lx-brand small{color:var(--gold-bright);font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-top:3px}
+
+/* Sidebar — dark navy frame */
+.lx-sidebar{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:28px;padding:26px 18px;background:var(--r-black);border-right:1px solid var(--r-line);color:#fff}
+.lx-sideBrand{padding:0 6px}
+.lx-nav{display:flex;flex-direction:column;gap:4px}
+.lx-nav a{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:4px;color:var(--r-muted);text-decoration:none;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-left:3px solid transparent}
+.lx-nav a:hover{background:var(--r-fade-2);color:#fff}
+.lx-navActive{background:var(--r-fade-1);color:var(--gold-bright)!important;border-left-color:var(--gold)!important}
+.lx-sideFoot{margin-top:auto;display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--r-line);padding-top:16px}
+.lx-sideFoot a{display:flex;align-items:center;gap:10px;padding:8px 12px;color:var(--r-muted);text-decoration:none;font-size:14px;border-radius:4px}
+.lx-sideFoot a:hover{color:#fff;background:var(--r-fade-2)}
+
+/* Phone top bar (hidden on desktop) */
+.lx-topbar{display:none}
+.lx-menuBtn{display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--gold);border-radius:4px;background:transparent;color:#fff;cursor:pointer}
+
+.lx-main{display:flex;flex-direction:column;min-width:0}
+.lx-content{flex:1;padding:32px clamp(20px,3.5vw,48px) 56px;max-width:1240px;width:100%}
+
+/* Library */
+.lx-library{display:flex;flex-direction:column;gap:40px}
+/* Header band — same background recipe as the home .lx-hero */
+.lx-hero{position:relative;min-height:220px;display:flex;align-items:flex-end;padding:32px;border-radius:5px;border:1px solid var(--r-line);border-bottom:3px solid var(--r-maroon);overflow:hidden;color:#fff;
+  background:linear-gradient(135deg,var(--r-black) 0%,var(--r-fade-2) 55%,var(--r-fade-1) 100%)}
+.lx-heroText{max-width:620px}
+.lx-eyebrow{margin:0 0 12px;color:var(--gold-bright);font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase}
+.lx-hero h1{margin:0 0 12px;font-family:var(--serif);font-size:clamp(36px,4.6vw,56px);font-weight:400;line-height:1;letter-spacing:-.035em}
+.lx-hero p{margin:0;color:var(--r-muted);font-size:16px;line-height:1.6}
+
+.lx-section{display:flex;flex-direction:column;gap:16px}
+.lx-h2{margin:0;font-family:var(--serif);font-size:32px;font-weight:400;letter-spacing:-.02em;color:var(--r-cream)}
+.lx-sectionHead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.lx-sectionHead p{margin:0;color:var(--r-muted);font-size:14px}
+
+/* Area tiles — like home .lx-audience-choice (selected = navy with gold) */
+.lx-areaGrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px}
+.lx-areaTile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-height:108px;padding:14px 8px;text-align:center;
+  background:linear-gradient(180deg,var(--r-fade-1),var(--r-fade-2));border:1px solid var(--r-line);border-radius:5px;color:var(--gold-bright);cursor:pointer;font-size:13px;font-weight:700;line-height:1.25;transition:border-color .15s,background .15s,transform .15s}
+.lx-areaTile span{color:var(--r-cream)}
+.lx-areaTile:hover{border-color:var(--gold);transform:translateY(-2px)}
+.lx-areaOn{background:var(--r-black);border-color:var(--gold);color:var(--gold-bright);box-shadow:inset 0 3px 0 var(--gold)}
+.lx-areaOn span{color:#fff}
+.lx-areaNote{margin:0;color:var(--r-muted);font-size:14px;max-width:760px}
+
+/* Cards — like home .lx-experience-card (cream, gold→silver top line) */
+.lx-cardGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
+.lx-card{position:relative;display:flex;flex-direction:column;background:linear-gradient(180deg,var(--r-fade-1),var(--r-fade-2));border:1px solid var(--r-line);border-radius:5px;overflow:hidden}
+.lx-card:before{content:"";position:absolute;left:0;top:0;right:0;height:3px;z-index:1;background:linear-gradient(90deg,var(--gold),var(--r-maroon))}
+.lx-cardImg{aspect-ratio:16/9;display:grid;place-items:center;color:var(--gold-bright);
+  background:linear-gradient(150deg,var(--r-fade-2),var(--r-black) 80%)}
+.lx-cardImg img{width:100%;height:100%;object-fit:cover}
+.lx-cardBody{display:flex;flex-direction:column;gap:8px;padding:18px 18px 20px;flex:1}
+.lx-cardMeta{margin:0;color:var(--gold-bright);font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.lx-cardBody h3{margin:0;font-family:var(--serif);font-size:24px;font-weight:400;line-height:1.1}
+.lx-cardBody p:not(.lx-cardMeta){margin:0;color:var(--r-muted);font-size:15px;line-height:1.6}
+.lx-cardFoot{margin-top:auto;padding-top:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.lx-cardFoot .lx-btn{margin-left:auto}
+.lx-label{display:inline-block;padding:3px 8px;border:1px solid var(--r-maroon);border-radius:2px;background:var(--r-maroon);color:var(--r-cream);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.lx-saved{display:inline-flex;align-items:center;gap:4px;color:var(--r-muted);font-size:12px;font-weight:700}
+
+/* Gold action — like home .lx-button-gold */
+.lx-btn{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:0 16px;border:1px solid var(--gold);border-radius:4px;
+  background:linear-gradient(180deg,var(--gold-bright),var(--gold));color:#111722;font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;cursor:pointer}
+.lx-btn:hover{background:linear-gradient(180deg,#ffe29b,var(--gold-bright))}
+.lx-linkBtn{border:0;background:none;color:var(--gold-bright);font-weight:700;text-decoration:underline;cursor:pointer;padding:0}
+.lx-empty{margin:0;color:var(--r-muted)}
+
+/* Activity dialog — like home .lx-lesson-modal */
+.lx-overlay{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:16px;background:rgba(2,5,10,.84)}
+.lx-dialog{position:relative;width:min(600px,100%);max-height:calc(100vh - 32px);overflow:auto;padding:32px;background:linear-gradient(180deg,var(--r-fade-1),var(--r-fade-2));color:var(--r-cream);border:1px solid var(--gold);border-radius:5px;box-shadow:0 28px 70px rgba(0,0,0,.55)}
+.lx-dialog > .lx-cardMeta{padding-right:44px}
+.lx-dialog h2{margin:8px 0 12px;font-family:var(--serif);font-size:32px;font-weight:400;line-height:1.05;padding-right:36px}
+.lx-dialog h3{margin:20px 0 8px;color:var(--gold-bright);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.lx-dialog p{margin:0;color:var(--r-muted);line-height:1.65}
+.lx-closeBtn{position:absolute;top:14px;right:14px;display:grid;place-items:center;width:40px;height:40px;border:1px solid var(--r-line);border-radius:4px;background:transparent;color:var(--r-cream);cursor:pointer}
+.lx-checks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.lx-checks li{display:flex;gap:10px;align-items:flex-start;color:var(--r-cream)}
+.lx-checks svg{color:var(--gold-bright);flex:none;margin-top:3px}
+.lx-dialogFoot{margin-top:24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.lx-hint{color:var(--r-muted);font-size:13px}
+
+/* Footer — like home .lx-academy-footer (night, gold line) with RRM parent block */
+.lx-footer{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;padding:28px clamp(20px,3.5vw,48px);border-top:3px solid var(--r-maroon);background:var(--r-black);color:#fff}
+.lx-footAcademy{display:flex;align-items:center;gap:12px}
+.lx-footAcademy div{display:flex;flex-direction:column}
+.lx-footAcademy strong{font-family:var(--serif);font-size:19px;font-weight:400}
+.lx-footAcademy span{color:var(--r-muted);font-size:13px}
+.lx-footParent{display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+.lx-footRrm img{display:block;height:36px;width:auto}
+.lx-footParent nav{display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:flex-end}
+.lx-footParent nav a{color:var(--r-muted);font-size:13px;text-decoration:none}
+.lx-footParent nav a:hover{color:var(--gold-bright)}
+.lx-footParent p{margin:0;color:var(--r-muted);font-size:12px}
+
+.lx-app a:focus-visible,.lx-app button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+@media (max-width:1100px){ .lx-areaGrid{grid-template-columns:repeat(4,minmax(0,1fr))} }
+
+/* Phone / tablet: sidebar becomes a drop-down menu under a top bar */
+@media (max-width:860px){
+  .lx-app{grid-template-columns:1fr}
+  .lx-topbar{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;height:64px;padding:0 16px;background:var(--r-black);border-bottom:1px solid var(--r-line)}
+  .lx-sidebar{display:none;position:fixed;top:64px;left:0;right:0;height:auto;z-index:39;padding:12px 16px 18px;gap:12px;border-right:0;border-bottom:1px solid var(--r-line)}
+  .lx-sidebarOpen{display:flex}
+  .lx-sideBrand{display:none}
+  .lx-content{padding:20px 16px 40px}
+  .lx-library{gap:30px}
+  .lx-hero{min-height:180px;padding:22px}
+  .lx-areaGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .lx-areaTile{flex-direction:row;justify-content:flex-start;min-height:56px;padding:10px 12px;text-align:left}
+  .lx-cardGrid{grid-template-columns:1fr}
+  .lx-footer{padding:24px 16px}
+  .lx-footParent{align-items:flex-start}
+  .lx-footParent nav{justify-content:flex-start}
+}
+
+/* Main-site additions (2026-09-28): lesson player and receipts list */
+.lx-player{width:100%;min-height:78vh;border:1px solid var(--r-line);border-radius:5px;background:#fff}
+video.lx-player{min-height:0;background:#000}
+.lx-receipts{display:flex;flex-direction:column;border:1px solid var(--r-line);border-radius:5px;overflow:hidden}
+.lx-receiptRow{display:grid;grid-template-columns:150px 1fr auto auto;gap:14px;align-items:center;padding:14px 16px;border-bottom:1px solid var(--r-line);text-decoration:none;background:linear-gradient(180deg,var(--r-fade-1),var(--r-fade-2))}
+.lx-receiptRow:last-child{border-bottom:0}
+.lx-receiptRow:hover{border-color:var(--gold)}
+.lx-receiptRow span{color:var(--r-muted);font-size:14px}
+.lx-receiptRow .lx-hint{display:inline-flex;align-items:center;gap:6px}
+.lx-section > .lx-linkBtn{align-self:flex-start}
+@media (max-width:860px){.lx-receiptRow{grid-template-columns:1fr;gap:4px}}
+[hidden]{display:none!important}
+.lx-h2{line-height:1.15}

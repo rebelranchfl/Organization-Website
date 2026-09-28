@@ -1198,6 +1198,9 @@
 
         document.getElementById("signin-password").value = "";
 
+        const returnTarget = safeReturnTarget();
+        if (returnTarget) { window.location.assign(returnTarget); return; }
+
         await loadDashboard(data.user);
       } catch (error) {
         setStatus(
@@ -1456,6 +1459,19 @@
       setActivePanel("signin");
     });
 
+    // Return people to the page that sent them here (e.g. an Academy item they were
+    // buying). Accepts ?returnTo= or ?next= and only same-site relative pages.
+    // Added 2026-09-28 · AI-Agent: Claude (claude-opus-5-5)
+    function safeReturnTarget() {
+      const params = new URLSearchParams(window.location.search);
+      const raw = params.get("returnTo") || params.get("next") || "";
+      // Only a plain page on this site, e.g. "academy-item.html?id=x" — no slashes,
+      // no leading dot, no scheme — so it can never point to another website.
+      if (!/^[A-Za-z0-9_-][A-Za-z0-9._-]*\.html(\?[^#]*)?(#.*)?$/.test(raw)) return "";
+      if (/^account\.html/i.test(raw)) return "";
+      return raw;
+    }
+
     async function initializeAccountPage() {
       try {
         const { data, error } =
@@ -1466,6 +1482,8 @@
         }
 
         if (data.session?.user) {
+          const returnTarget = safeReturnTarget();
+          if (returnTarget) { window.location.assign(returnTarget); return; }
           await loadDashboard(data.session.user);
           return;
         }

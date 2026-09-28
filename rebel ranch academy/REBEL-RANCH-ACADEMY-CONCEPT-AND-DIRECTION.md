@@ -378,17 +378,17 @@ It should feel like Academy-level credibility without institutional conformity.
 
 Use the existing approved RRA logo as the starting point. Do not create a substitute wordmark or redraw the emblem.
 
-The approved public-hub color direction is:
+The approved public-hub color direction (owner decision 2026-09-28, replacing the earlier navy direction) is:
 
-- midnight and deep navy for strength and Academy-level credibility;
-- antique gold for accents and important actions;
-- warm cream and paper for readable learning surfaces;
-- charcoal and navy text on every cream or paper surface; and
-- limited visual connections back to RRM where needed.
+- RRM black `#050806` for the header, side menu and footer;
+- RRM forest green (`#204227`, `#1A3620`) for pages, with the RRM green fade (`#1D4024` → `#122A18`) for cards, panels and pop-ups;
+- the Academy antique gold (`--gold` `#d7aa43`, `--gold-bright` `#f2cf78`) for buttons, important actions and small labels;
+- RRM maroon `#7A1E1E` used sparingly for accent lines and small labels only, never as body text on green;
+- RRM cream `#F0EDD8` for headings and `#D7D1B3` for body text on the dark surfaces.
 
-The approved implementation is documented in the Program Hub source, especially `app/globals.css`. Gold or pale yellow text must not be used on cream or other light surfaces. The polished public hub uses Georgia for formal headings and Arial/Helvetica for clear body content.
+The navy version is preserved in Git history. The approved implementation is in the Program Hub source: `app/globals.css` (`.academy-home` block) for the home page and `app/learn/learn.module.css` for the learner area. The polished public hub uses Georgia for formal headings and Arial/Helvetica for clear body content.
 
-The Academy keeps its navy-and-gold branded footer. The footer also includes the standardized RRM parent block with the RRM homepage, Contact, Privacy Policy, Legal Disclosures, organization social links, and the Faith, Family & Nature Church, Inc. copyright. The Academy header includes a visible link labeled **Rebel Ranch Ministries** that returns directly to the RRM homepage.
+The Academy keeps its black-and-gold branded footer. The footer also includes the standardized RRM parent block with the RRM homepage, Contact, Privacy Policy, Legal Disclosures, organization social links, and the Faith, Family & Nature Church, Inc. copyright. The Academy header includes a visible link labeled **Rebel Ranch Ministries** that returns directly to the RRM homepage.
 
 Do not use visual rebellion as an excuse for distressed clutter, graffiti, chaos, aggression, or disrespect.
 

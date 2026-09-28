@@ -1,4 +1,19 @@
-@import "tailwindcss";
+/* Rebel Ranch Academy — main-site home page styles.
+   Ported unchanged from the Academy Program Hub (app/globals.css, incl. the
+   owner-approved green/black/maroon block) on 2026-09-28 when the Academy moved
+   onto rebelranchministries.org (owner decision: one website, one login).
+   The small reset below stands in for the Program Hub's Tailwind base reset.
+   AI-Agent: Claude (claude-opus-5-5) · Session: Academy back office restructure 2026-09-27 */
+*,::before,::after{box-sizing:border-box;border:0 solid}
+html,body,h1,h2,h3,h4,p,ol,ul,figure,blockquote{margin:0}
+ol,ul{list-style:none;padding:0}
+img,svg{display:block;max-width:100%}
+img{height:auto}
+button,input,select,textarea{font:inherit;color:inherit;background:transparent}
+button{cursor:pointer}
+h1,h2,h3,h4{font-size:inherit;font-weight:inherit}
+a{color:inherit;text-decoration:inherit}
+
 
 :root{
   --night:#050810;

@@ -1,6 +1,7 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { paypalEnvironment, paypalRequest, verifyWebhookSignature } from "../_shared/paypal.ts";
+import { handleAcademyWebhookEvent } from "../_shared/academy-paypal.ts";
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } });
@@ -68,6 +69,11 @@ Deno.serve(async (req) => {
     const service = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
     if (!url || !service) throw new Error("Supabase function environment is incomplete.");
     db = createClient(url, service);
+
+    // Rebel Ranch Academy payments are recognised by their order/subscription id and
+    // handled separately; everything else continues to the Creation Station logic below.
+    const academy = await handleAcademyWebhookEvent(db, event as Record<string, any>);
+    if (academy) return json(academy);
 
     if (ORDER_EVENT_TYPES.includes(event.event_type)) {
       return await handleOrderEvent(db, environment, event);

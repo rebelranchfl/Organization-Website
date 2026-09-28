@@ -112,6 +112,7 @@ Authentication, accounts, Supabase/database, email, deployment, shared shell/nav
 
 - `docs/shared-systems-operations.md` — current shared-system operating authority.
 - `docs/email-delivery-setup.md` — focused shared email-delivery setup and operational reference.
+- `docs/keys-and-access-register.md` — where every key/token/secret lives (names only, never values), what uses it, and how agents get access. Check it before asking the owner for any key.
 
 ### Marketing — repository-wide vs program-specific
 

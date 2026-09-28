@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Receipt | Rebel Ranch Academy</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/rebel_ranch_academy_logo_transparent-cropped.png">
+<!-- Rebel Ranch Academy printable receipt · AI-Agent: Claude (claude-opus-5-5) · Session: Academy back office restructure 2026-09-27 -->
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#204227;color:#10151f;font-family:Arial,Helvetica,sans-serif;line-height:1.5}
+  .bar{display:flex;justify-content:space-between;align-items:center;gap:12px;max-width:760px;margin:0 auto;padding:18px 16px;color:#F0EDD8}
+  .bar a{color:#F0EDD8}
+  .bar button{min-height:42px;padding:0 16px;border:1px solid #d7aa43;border-radius:4px;background:linear-gradient(180deg,#f2cf78,#d7aa43);color:#111722;font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+  .receipt{max-width:760px;margin:0 auto 40px;padding:36px clamp(20px,5vw,48px);background:#fff;border-radius:5px}
+  .head{display:flex;align-items:center;gap:14px;border-bottom:2px solid #10151f;padding-bottom:16px;margin-bottom:20px}
+  .head img{width:56px;height:56px}
+  .head strong{display:block;font-family:Georgia,serif;font-size:22px;font-weight:400}
+  .head span{font-size:13px;color:#5a6170}
+  h1{font-family:Georgia,serif;font-weight:400;font-size:28px;margin:0 0 4px}
+  .muted{color:#5a6170;font-size:14px}
+  table{width:100%;border-collapse:collapse;margin:20px 0}
+  th,td{text-align:left;padding:10px 0;border-bottom:1px solid #d1c8b6;vertical-align:top}
+  th{width:40%;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#5a6170;font-weight:700}
+  .total td,.total th{font-size:18px;font-weight:700;color:#10151f;border-bottom:2px solid #10151f}
+  .foot{font-size:12px;color:#5a6170;margin-top:24px}
+  @media print{body{background:#fff}.bar{display:none}.receipt{margin:0;padding:0}}
+</style>
+</head>
+<body>
+<div class="bar"><a href="academy-my-materials.html">← My Materials</a><button type="button" onclick="window.print()">Print / save as PDF</button></div>
+<main class="receipt" id="receipt"><p class="muted">Loading…</p></main>
+<script type="module" src="assets/academy/academy-receipt.js"></script>
+</body>
+</html>

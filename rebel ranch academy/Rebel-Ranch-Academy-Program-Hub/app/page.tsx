@@ -2,37 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 
-type Audience = "Parents & Homeschoolers" | "Teens & Young Adults" | "Adults" | "Business Owners" | "Homesteaders";
-type LearningArea = { id:string; number:string; title:string; short:string; description:string; outcomes:string; audiences:Audience[] };
-type Experience = { id:string; title:string; area:string; audiences:Audience[]; ages:string; time:string; level:string; description:string; learn:string[]; challenge:string };
-
-const audiences:{value:"Everyone"|Audience;label:string;copy:string}[]=[
-  {value:"Everyone",label:"See everything",copy:"Explore the full real-life skills curriculum."},
-  {value:"Parents & Homeschoolers",label:"Parents & homeschoolers",copy:"Build capable kids with skills they will use for life."},
-  {value:"Teens & Young Adults",label:"Teens & young adults",copy:"Learn the skills adulthood will expect you to have."},
-  {value:"Adults",label:"Adults",copy:"Learn what many people spend a lifetime figuring out."},
-  {value:"Business Owners",label:"Business owners",copy:"Build the knowledge behind a business that works."},
-  {value:"Homesteaders",label:"Homesteaders",copy:"Understand food, land, animals, water, and practical independence."},
-];
-
-const learningAreas:LearningArea[]=[
-  {id:"personal-strength",number:"01",title:"Personal Strength & Independence",short:"Strength & Independence",description:"Confidence, responsibility, accountability, resilience, decision-making, and the ability to move forward when life gets hard.",outcomes:"Think clearly. Choose responsibly. Stand on your own feet.",audiences:["Parents & Homeschoolers","Teens & Young Adults","Adults"]},
-  {id:"communication",number:"02",title:"Communication & Emotional Intelligence",short:"Communication & EQ",description:"Self-control, healthy boundaries, difficult conversations, conflict, teamwork, relationships, and leadership.",outcomes:"Handle people, pressure, and hard conversations with backbone and respect.",audiences:["Parents & Homeschoolers","Teens & Young Adults","Adults","Business Owners"]},
-  {id:"business",number:"03",title:"Business & Operations",short:"Business & Operations",description:"Business basics, planning, customer service, pricing foundations, processes, quality, problem-solving, and practical Six Sigma.",outcomes:"Understand the work behind a business that actually works.",audiences:["Teens & Young Adults","Adults","Business Owners"]},
-  {id:"money",number:"04",title:"Money, Finance & Taxes",short:"Money, Finance & Taxes",description:"Budgeting, banking, credit, saving, debt, cash flow, pricing, taxes, and making informed financial decisions.",outcomes:"Know where your money goes and understand the systems around it.",audiences:["Parents & Homeschoolers","Teens & Young Adults","Adults","Business Owners"]},
-  {id:"sustainability",number:"05",title:"Sustainability & Agriculture",short:"Sustainability & Agriculture",description:"Homesteading, real food systems, soil, water, growing, farming, animal stewardship, land care, and resourcefulness.",outcomes:"Work with what you have and understand the systems that sustain life.",audiences:["Parents & Homeschoolers","Teens & Young Adults","Adults","Homesteaders"]},
-  {id:"family",number:"06",title:"Family, Community & Leadership",short:"Family & Leadership",description:"Capable families, teamwork, responsibility, healthy community, service, leadership, and showing up for the people around you.",outcomes:"Build strong people who can stand alone and still work together.",audiences:["Parents & Homeschoolers","Teens & Young Adults","Adults"]},
-];
-
-const experiences:Experience[]=[
-  {id:"hard-times",title:"Stay Useful in Hard Times",area:"Personal Strength & Independence",audiences:["Parents & Homeschoolers","Teens & Young Adults","Adults"],ages:"Ages 12+",time:"40 min",level:"Sample activity",description:"Replace panic with a practical process for seeing what is true, choosing what you control, and taking the next useful step.",learn:["Separate facts from fear","Identify what you can control","Choose the next useful action"],challenge:"Use the process on one real problem you are facing today."},
-  {id:"speak-up",title:"Speak Up Without Blowing Up",area:"Communication & Emotional Intelligence",audiences:["Parents & Homeschoolers","Teens & Young Adults","Adults","Business Owners"],ages:"Ages 12+",time:"35 min",level:"Sample activity",description:"Practice saying what needs to be said with clarity, confidence, backbone, and respect.",learn:["Name the real issue","Separate facts from assumptions","Make a clear request"],challenge:"Rewrite one heated response as a calm, direct statement."},
-  {id:"business-map",title:"Map the Work Behind the Work",area:"Business & Operations",audiences:["Teens & Young Adults","Adults","Business Owners"],ages:"Ages 14+",time:"45 min",level:"Sample activity",description:"See how a customer request moves through a business and find where time, quality, or money gets lost.",learn:["Identify the real starting point","Map the steps and handoffs","Find one avoidable delay"],challenge:"Map one repeated process from request to finished result."},
-  {id:"money-map",title:"Build a Real-World Money Map",area:"Money, Finance & Taxes",audiences:["Parents & Homeschoolers","Teens & Young Adults","Adults","Business Owners"],ages:"Ages 14+",time:"45 min",level:"Sample activity",description:"See where money comes from, where it goes, and what your choices actually cost.",learn:["Read income and expenses","Separate needs from wants","Plan for a real goal"],challenge:"Map one month of expected income, bills, saving, and spending."},
-  {id:"water-ready",title:"How Much Water Do You Really Need?",area:"Sustainability & Agriculture",audiences:["Parents & Homeschoolers","Teens & Young Adults","Adults","Homesteaders"],ages:"All ages",time:"30 min",level:"Sample activity",description:"Calculate household water needs and build a practical backup plan using what you already have.",learn:["Estimate daily use","Prioritize drinking and sanitation","Compare practical storage choices"],challenge:"Calculate a three-day water plan for your household."},
-  {id:"food-system",title:"See Food as a Life-Sustaining System",area:"Sustainability & Agriculture",audiences:["Parents & Homeschoolers","Teens & Young Adults","Adults","Homesteaders"],ages:"All ages",time:"50 min",level:"Sample activity",description:"Follow the connections between soil, water, plants, animals, people, and nourishment.",learn:["Trace inputs and outputs","Recognize useful natural cycles","Design one simple local loop"],challenge:"Draw the food system behind one meal on your table."},
-  {id:"team-code",title:"Write Your Family Team Code",area:"Family, Community & Leadership",audiences:["Parents & Homeschoolers","Teens & Young Adults","Adults"],ages:"All ages",time:"45 min",level:"Sample activity",description:"Turn shared values into clear agreements about responsibility, communication, and repairing mistakes.",learn:["Choose values you can act on","Define shared responsibility","Create fair repair rules"],challenge:"Agree on five rules your whole team can explain and use."},
-];
+import { audiences, learningAreas, experiences, type Audience, type Experience } from "./lib/academy-content";
 
 export default function Home(){
   const[audience,setAudience]=useState<"Everyone"|Audience>("Everyone");
@@ -57,7 +27,7 @@ export default function Home(){
   const togglePlan=(id:string)=>save("rra-plan",plan.includes(id)?plan.filter(item=>item!==id):[...plan,id]);
   const toggleDone=(id:string)=>save("rra-done",done.includes(id)?done.filter(item=>item!==id):[...done,id]);
 
-  return <main>
+  return <main className="academy-home">
     <header className="site-header">
       <a className="brand-lockup" href="#top" aria-label="Rebel Ranch Academy home"><img src="https://rebelranchministries.org/assets/rebel_ranch_academy_logo_transparent-cropped.png" alt="" width={956} height={956}/><span><small>Rebel Ranch Ministries</small><strong>Rebel Ranch Academy</strong></span></a>
       <button className="menu-button" type="button" aria-expanded={menuOpen} aria-controls="primary-navigation" onClick={()=>setMenuOpen(open=>!open)}>{menuOpen?"Close":"Menu"}</button>

@@ -111,7 +111,7 @@ That historical successful test proves the configuration worked at that verifica
 
 Program-specific transactional email behavior belongs with the relevant program. Example: Marketplace seller-order notification logic belongs in the Marketplace documentation and should reference the shared email/Resend infrastructure rather than redefine the shared auth SMTP system.
 
-Secrets must not be committed to the repository. Protected server-side keys belong in the appropriate protected environment/secret store.
+Secrets must not be committed to the repository. Protected server-side keys belong in the appropriate protected environment/secret store. Every key's name, location and users are listed in `docs/keys-and-access-register.md`.
 
 ## 5. Shared public shell and navigation
 
@@ -221,6 +221,10 @@ academy.rebelranchministries.org
 ```
 
 GitHub remains the master source for the RRA code. The Worker is the service that runs/serves the Academy application.
+
+### Owner decision 2026-09-28 — one website, one login
+
+The owner decided that every RRM program lives on `rebelranchministries.org` with one shared sign-in, and each program keeps its own look. The Academy is being moved from `academy.rebelranchministries.org` onto the main site (`rebel-ranch-academy.html` and `academy-*.html`, code in `assets/academy/`). The Academy subdomain and its Cloudflare Worker will be retired only after the owner reviews the main-site pages. Until then the Worker route above remains live. This decision takes priority over the per-program Worker direction below for where programs live; Workers may still be used behind the main site for automation.
 
 ### Future architecture direction — owner-approved direction, not a current migration project
 

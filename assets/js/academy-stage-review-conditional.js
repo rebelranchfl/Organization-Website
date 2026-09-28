@@ -6,6 +6,8 @@ document.addEventListener('academy-stage-review-ready', e => {
   const stage = e.detail?.stage || new URLSearchParams(location.search).get('stage') || '';
   if (stage === 'RESEARCH_REVIEW') import('./academy-stage-review-research-lazy.js').then(m => m.mount?.(stage));
   if (stage === 'FINAL_PRODUCT_REVIEW') import('./operations-review-final-product-acceptance.js');
+  // Release checklist + Library listing (2026-09-28): approved final product through LIVE.
+  if (['FINAL_PRODUCT_REVIEW', 'AWAITING_RELEASE', 'PUBLISHING', 'LIVE'].includes(stage)) import('./academy-release-listing.js').then(m => m.mount?.(e.detail?.projectId));
 }, { once: true });
 
 // Late Findings remains opt-in and is never part of normal startup.
