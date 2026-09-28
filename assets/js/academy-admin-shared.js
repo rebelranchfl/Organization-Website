@@ -123,15 +123,17 @@ export function markdown(text) {
   return out.join('');
 }
 
-// Owner navigation: Overview · Projects · New Idea · Library, plus Academy and My Account.
+// Owner navigation: Overview · Projects · New Idea · Library · Sales, plus Academy and My Account.
+// 2026-09-28: Sales added; Academy link points to the Academy's main-site home.
 export const NAV = [
   ['Overview', 'operations-review.html', 'overview'],
   ['Projects', 'operations-review.html#projects', 'projects'],
   ['New Idea', 'operations-review.html#new', 'new'],
-  ['Library', 'academy-interaction-library.html', 'library']
+  ['Library', 'academy-interaction-library.html', 'library'],
+  ['Sales', 'academy-sales.html', 'sales']
 ];
 export function navHtml(active) {
-  return `<nav class="aa-nav" aria-label="Academy owner navigation">${NAV.map(([label, href, key]) => `<a href="${href}" data-nav="${key}"${key === active ? ' aria-current="page"' : ''}>${label}</a>`).join('')}<span class="aa-nav-sep"></span><a href="https://academy.rebelranchministries.org">Academy</a><a href="account.html">My Account</a></nav>`;
+  return `<nav class="aa-nav" aria-label="Academy owner navigation">${NAV.map(([label, href, key]) => `<a href="${href}" data-nav="${key}"${key === active ? ' aria-current="page"' : ''}>${label}</a>`).join('')}<span class="aa-nav-sep"></span><a href="rebel-ranch-academy.html">Academy</a><a href="account.html">My Account</a></nav>`;
 }
 
 export async function requireAdmin(supabase, loadingEl) {
