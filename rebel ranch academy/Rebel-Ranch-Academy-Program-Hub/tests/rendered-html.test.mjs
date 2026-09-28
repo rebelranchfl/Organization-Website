@@ -1,51 +1,31 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-test("renders the Rebel Ranch Academy home page", async () => {
+async function fetchPath(path) {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
+  workerUrl.searchParams.set("test", `${path}-${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
-
-  const response = await worker.fetch(
-    new Request("http://localhost/", {
-      headers: { accept: "text/html" },
-    }),
-    {
-      ASSETS: {
-        fetch: async () => new Response("Not found", { status: 404 }),
-      },
-    },
-    {
-      waitUntil() {},
-      passThroughOnException() {},
-    },
-  );
-
-  assert.equal(response.status, 200);
-  assert.match(
-    response.headers.get("content-type") ?? "",
-    /^text\/html\b/i,
-  );
-  const html = await response.text();
-  assert.match(html, /Rebel Ranch Academy/i);
-  assert.match(html, /Build the skills/i);
-});
-
-test("renders the learner Library with the RRM parent link and free activities", async () => {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `lib-${process.pid}-${Date.now()}`);
-  const { default: worker } = await import(workerUrl.href);
-  const response = await worker.fetch(
-    new Request("http://localhost/learn/library", { headers: { accept: "text/html" } }),
+  return worker.fetch(
+    new Request(`http://localhost${path}`, { headers: { accept: "text/html" } }),
     { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
     { waitUntil() {}, passThroughOnException() {} },
   );
-  assert.equal(response.status, 200);
-  const html = await response.text();
-  assert.match(html, /Library \| Rebel Ranch Academy/);
-  assert.match(html, /Free activities/);
-  assert.match(html, /Stay Useful in Hard Times/);
-  assert.match(html, /Rebel Ranch Ministries/);
-  assert.match(html, /Faith, Family &amp; Nature Church/);
-  assert.match(html, /data-image-slot="activity-water-ready"/);
+}
+
+// 2026-09-28: the Academy moved to rebelranchministries.org; this site forwards to it.
+test("forwards the old Academy home to the main-site Academy home", async () => {
+  const r = await fetchPath("/");
+  assert.equal(r.status, 301);
+  assert.equal(r.headers.get("location"), "https://rebelranchministries.org/rebel-ranch-academy.html");
 });
+
+test("forwards the old Library to the main-site Library", async () => {
+  for (const p of ["/learn", "/learn/library"]) {
+    const r = await fetchPath(p);
+    assert.equal(r.status, 301);
+    assert.equal(r.headers.get("location"), "https://rebelranchministries.org/academy-library.html");
+  }
+});
+
+// The Wealth Management preview is verified on the live address instead: its existing
+// password prompt header contains a long dash that Node's fetch refuses but Cloudflare serves.

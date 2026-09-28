@@ -224,7 +224,7 @@ GitHub remains the master source for the RRA code. The Worker is the service tha
 
 ### Owner decision 2026-09-28 — one website, one login
 
-The owner decided that every RRM program lives on `rebelranchministries.org` with one shared sign-in, and each program keeps its own look. The Academy is being moved from `academy.rebelranchministries.org` onto the main site (`rebel-ranch-academy.html` and `academy-*.html`, code in `assets/academy/`). The Academy subdomain and its Cloudflare Worker will be retired only after the owner reviews the main-site pages. Until then the Worker route above remains live. This decision takes priority over the per-program Worker direction below for where programs live; Workers may still be used behind the main site for automation.
+The owner decided that every RRM program lives on `rebelranchministries.org` with one shared sign-in, and each program keeps its own look. The Academy is being moved from `academy.rebelranchministries.org` onto the main site (`rebel-ranch-academy.html` and `academy-*.html`, code in `assets/academy/`). **Forwarding in place (owner go-ahead 2026-09-28):** the Academy Worker now permanently forwards every Academy address to the main site (`/` → `rebel-ranch-academy.html`, `/learn*` → `academy-library.html`). It still serves only the password-protected Wealth Management preview (`/wealth-management*`). Main-site links (home, Programs, My Account, back office) point to `rebel-ranch-academy.html`. This decision takes priority over the per-program Worker direction below for where programs live; Workers may still be used behind the main site for automation.
 
 ### Future architecture direction — owner-approved direction, not a current migration project
 

@@ -74,5 +74,5 @@ Images follow the existing Academy image handoff and checks. No logo may be gene
 | Signed-in flows (buy, receipt, My Materials, membership, owner release checklist, Sales) | NOT VERIFIED — needs the pages on the real address and a signed-in person. |
 | Live PayPal payment | NOT VERIFIED — needs an owner-approved test purchase. |
 | Independent visual review | NOT DONE |
-| Old academy address | Still serves the Program Hub (now green + `/learn`). Not forwarded yet — owner to decide forwarding and relinking. |
+| Old academy address | FORWARDED 2026-09-28 (owner go-ahead): `/` → `rebel-ranch-academy.html`, `/learn*` → `academy-library.html` (permanent). Wealth Management preview stays. Main-site Academy links (home, Programs, My Account) now point to `rebel-ranch-academy.html`; both pages added to the sitemap. |
 | Leftover public access / Creation Station bundle | `publish-ledger` switched off, `site` bucket private; stale rule blocking Club and bundles removed (tested). |
