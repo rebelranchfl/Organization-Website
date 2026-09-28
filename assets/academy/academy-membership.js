@@ -11,7 +11,7 @@ const { data: plans } = await supabase.from("academy_membership_plans")
 let mine = null;
 if (session) {
   const { data } = await supabase.from("academy_member_subscriptions").select("plan_name,status,current_period_end")
-    .in("status", ["ACTIVE", "PAST_DUE"]).limit(1);
+    .eq("user_id", session.user.id).in("status", ["ACTIVE", "PAST_DUE"]).limit(1);
   mine = data?.[0] || null;
 }
 

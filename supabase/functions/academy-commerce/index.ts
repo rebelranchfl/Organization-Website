@@ -17,6 +17,7 @@ const INTERVAL: Record<string, string> = { MONTH: "MONTH", YEAR: "YEAR" };
 
 Deno.serve(async (req) => {
   const origin = req.headers.get("Origin");
+  let action = "";
   try {
     const site = validatedSiteUrl();
     if (origin && origin !== site.origin) return reply({ error: "Origin is not allowed." }, 403, origin);
@@ -33,7 +34,7 @@ Deno.serve(async (req) => {
     const db = createClient(url, service);
 
     const body = await req.json().catch(() => ({}));
-    const action = String(body.action || "");
+    action = String(body.action || "");
 
     // ── Buy one item ──────────────────────────────────────────────────────
     if (action === "buy") {
@@ -73,7 +74,8 @@ Deno.serve(async (req) => {
           },
         }),
       });
-      await db.from("academy_purchases").update({ paypal_order_id: order.id }).eq("id", purchase.id);
+      const { error: oErr } = await db.from("academy_purchases").update({ paypal_order_id: order.id }).eq("id", purchase.id);
+      if (oErr) throw oErr;
       const approve = (order.links || []).find((l: any) => l.rel === "approve" || l.rel === "payer-action")?.href;
       if (!approve) throw new Error("PayPal did not return a payment link.");
       return reply({ approve_url: approve }, 200, origin);
@@ -94,9 +96,14 @@ Deno.serve(async (req) => {
       const code = String(body.plan_code || "");
       const { data: plan } = await db.from("academy_membership_plans").select("*").eq("code", code).eq("active", true).maybeSingle();
       if (!plan?.paypal_plan_id) return reply({ error: "This membership is not available." }, 404, origin);
-      const { data: current } = await db.from("academy_member_subscriptions").select("id")
-        .eq("user_id", user.id).in("status", ["ACTIVE", "PAST_DUE"]).maybeSingle();
-      if (current) return reply({ error: "You already have an active membership." }, 409, origin);
+      // The price shown must be the price PayPal will charge.
+      if (money(plan.paypal_plan_price) !== money(plan.price_usd) || plan.paypal_plan_interval !== plan.billing_interval) {
+        return reply({ error: "This membership is being updated. Please try again shortly." }, 409, origin);
+      }
+      const { data: current, error: cErr } = await db.from("academy_member_subscriptions").select("id")
+        .eq("user_id", user.id).in("status", ["ACTIVE", "PAST_DUE"]).limit(1);
+      if (cErr) throw cErr;
+      if (current?.length) return reply({ error: "You already have an active membership." }, 409, origin);
 
       const { data: sub, error: sErr } = await db.from("academy_member_subscriptions").insert({
         user_id: user.id, buyer_email: user.email, plan_id: plan.id, plan_name: plan.name,
@@ -115,7 +122,8 @@ Deno.serve(async (req) => {
           },
         }),
       });
-      await db.from("academy_member_subscriptions").update({ paypal_subscription_id: pp.id }).eq("id", sub.id);
+      const { error: spErr } = await db.from("academy_member_subscriptions").update({ paypal_subscription_id: pp.id }).eq("id", sub.id);
+      if (spErr) throw spErr;
       const approve = (pp.links || []).find((l: any) => l.rel === "approve")?.href;
       if (!approve) throw new Error("PayPal did not return a membership link.");
       return reply({ approve_url: approve }, 200, origin);
@@ -147,22 +155,23 @@ Deno.serve(async (req) => {
     if (action === "open") {
       const projectId = String(body.project_id || "");
       if (!projectRe.test(projectId)) return reply({ error: "Unknown item." }, 400, origin);
-      const { data: allowed, error: aErr } = await userDb.rpc("academy_can_open", { p_project_id: projectId });
-      if (aErr) throw aErr;
-      if (!allowed) return reply({ error: "locked" }, 403, origin);
-      const { data: rel } = await db.from("academy_release_records").select("id,material_path,material_kind,material_filename,public_title")
-        .eq("project_id", projectId).not("material_path", "is", null)
-        .order("updated_at", { ascending: false }).limit(1).maybeSingle();
-      if (!rel?.material_path) return reply({ error: "No material has been attached yet." }, 404, origin);
+      // Only the LIVE release the Library shows, and only if this person may open it (decided in the database).
+      const { data: rows, error: mErr } = await db.rpc("academy_material_for", { p_uid: user.id, p_project_id: projectId });
+      if (mErr) throw mErr;
+      const rel = rows?.[0];
+      if (!rel) {
+        const { data: allowed } = await userDb.rpc("academy_can_open", { p_project_id: projectId });
+        return allowed ? reply({ error: "No material has been attached yet." }, 404, origin) : reply({ error: "locked" }, 403, origin);
+      }
       if (rel.material_kind === "LESSON_HTML") {
         const { data: file, error: dErr } = await db.storage.from("academy-materials").download(rel.material_path);
         if (dErr) throw dErr;
-        return reply({ kind: rel.material_kind, title: rel.public_title, html: await file.text() }, 200, origin);
+        return reply({ kind: rel.material_kind, title: rel.title, html: await file.text() }, 200, origin);
       }
       const { data: signed, error: sErr } = await db.storage.from("academy-materials")
         .createSignedUrl(rel.material_path, 600, rel.material_kind === "FILE" ? { download: rel.material_filename || true } : undefined);
       if (sErr) throw sErr;
-      return reply({ kind: rel.material_kind, title: rel.public_title, url: signed.signedUrl, expires_in: 600 }, 200, origin);
+      return reply({ kind: rel.material_kind, title: rel.title, url: signed.signedUrl, expires_in: 600 }, 200, origin);
     }
 
     // ── Owner: send a membership plan's price to PayPal ───────────────────
@@ -211,6 +220,7 @@ Deno.serve(async (req) => {
     return reply({ error: "Unknown action." }, 400, origin);
   } catch (error) {
     console.error(error);
-    return reply({ error: "Something went wrong. Please try again.", detail: String((error as Error)?.message || error).slice(0, 300) }, 500, origin);
+    const detail = action === "sync_plan" ? String((error as Error)?.message || error).slice(0, 300) : undefined;
+    return reply({ error: "Something went wrong. Please try again.", detail }, 500, origin);
   }
 });

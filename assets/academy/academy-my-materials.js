@@ -10,9 +10,9 @@ if (session) await load();
 async function load() {
   const [lib, purchases, subs, payments] = await Promise.all([
     supabase.rpc("get_my_academy_library"),
-    supabase.from("academy_purchases").select("id,item_title,amount_usd,status,receipt_number,completed_at,created_at,project_id").neq("status", "PENDING").order("created_at", { ascending: false }),
-    supabase.from("academy_member_subscriptions").select("id,plan_name,amount_usd,billing_interval,status,started_at,current_period_end,cancelled_at").neq("status", "PENDING").order("created_at", { ascending: false }),
-    supabase.from("academy_membership_payments").select("id,amount_usd,status,receipt_number,paid_at,subscription_id").order("paid_at", { ascending: false }),
+    supabase.from("academy_purchases").select("id,item_title,amount_usd,status,receipt_number,completed_at,created_at,project_id").eq("user_id", session.user.id).neq("status", "PENDING").order("created_at", { ascending: false }),
+    supabase.from("academy_member_subscriptions").select("id,plan_name,amount_usd,billing_interval,status,started_at,current_period_end,cancelled_at").eq("user_id", session.user.id).neq("status", "PENDING").order("created_at", { ascending: false }),
+    supabase.from("academy_membership_payments").select("id,amount_usd,status,receipt_number,paid_at,subscription_id").eq("user_id", session.user.id).order("paid_at", { ascending: false }),
   ]);
   const items = lib.data || [], buys = purchases.data || [], memberships = subs.data || [], mpays = payments.data || [];
   const planName = Object.fromEntries(memberships.map((s) => [s.id, s.plan_name]));

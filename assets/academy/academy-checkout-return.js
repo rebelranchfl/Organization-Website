@@ -13,8 +13,12 @@ if (session) {
   try {
     if (kind === "item") {
       let r;
-      for (let i = 0; i < 4; i++) { r = await commerce("confirm_purchase", { purchase_id: p.get("purchase") }); if (r.status === "COMPLETED") break; await wait(2500); }
-      if (r.status === "COMPLETED") {
+      for (let i = 0; i < 4; i++) { r = await commerce("confirm_purchase", { purchase_id: p.get("purchase") }); if (["COMPLETED", "CANCELLED", "REFUNDED"].includes(r.status)) break; await wait(2500); }
+      if (r.status === "CANCELLED" || r.status === "REFUNDED") {
+        show(`<h1 class="lx-h2">You already own this item.</h1>
+          <p class="lx-hint">${r.status === "REFUNDED" ? "The second payment was refunded to you through PayPal." : "You were not charged again."}</p>
+          <div class="lx-cardFoot"><a class="lx-btn" href="academy-lesson.html?id=${encodeURIComponent(r.project_id)}">Open it${icon.arrow()}</a><a class="lx-linkBtn" href="academy-my-materials.html">My Materials</a></div>`);
+      } else if (r.status === "COMPLETED") {
         show(`<h1 class="lx-h2">Thank you — your purchase is complete.</h1>
           <p class="lx-hint">Receipt ${esc(r.receipt_number)}. It's saved in My Materials.</p>
           <div class="lx-cardFoot"><a class="lx-btn" href="academy-lesson.html?id=${encodeURIComponent(r.project_id)}">Open it now${icon.arrow()}</a>

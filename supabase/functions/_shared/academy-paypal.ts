@@ -14,6 +14,13 @@ export function money(v: unknown): string {
 export async function completeAcademyPurchase(db: Db, purchase: Record<string, any>) {
   if (purchase.status === "COMPLETED") return purchase;
   if (!purchase.paypal_order_id) throw new Error("Purchase has no PayPal order.");
+  // Already bought this item in another checkout? Don't take the money twice.
+  const { data: owned } = await db.from("academy_purchases").select("id").eq("user_id", purchase.user_id)
+    .eq("project_id", purchase.project_id).eq("status", "COMPLETED").neq("id", purchase.id).limit(1);
+  if (owned?.length) {
+    await db.from("academy_purchases").update({ status: "CANCELLED", updated_at: new Date().toISOString() }).eq("id", purchase.id).eq("status", "PENDING");
+    return { ...purchase, status: "CANCELLED", duplicate_of: owned[0].id };
+  }
 
   let order: Record<string, any>;
   try {
@@ -45,14 +52,24 @@ export async function applyOrderState(db: Db, purchase: Record<string, any>, ord
       status: "COMPLETED", paypal_capture_id: capture.id, receipt_number: purchase.receipt_number || receipt,
       completed_at: capture.create_time || new Date().toISOString(), updated_at: new Date().toISOString(),
     }).eq("id", purchase.id).neq("status", "COMPLETED").select().maybeSingle();
-    if (error) throw error;
+    if (error) {
+      // Paid twice for the same item (two tabs): refund this second payment instead of failing.
+      if (String(error.message).includes("academy_purchases_one_completed")) {
+        await paypalRequest(`/v2/payments/captures/${capture.id}/refund`, {
+          method: "POST", headers: { "PayPal-Request-Id": `rra-dup-refund-${purchase.id}` }, body: JSON.stringify({ note_to_payer: "Duplicate purchase — you already own this item." }),
+        });
+        await db.from("academy_purchases").update({ status: "REFUNDED", paypal_capture_id: capture.id, updated_at: new Date().toISOString() }).eq("id", purchase.id);
+        return { ...purchase, status: "REFUNDED" };
+      }
+      throw error;
+    }
     return data || purchase;
   }
   if (capture.status === "DECLINED" || capture.status === "FAILED") {
     await db.from("academy_purchases").update({ status: "DENIED", updated_at: new Date().toISOString() })
       .eq("id", purchase.id).eq("status", "PENDING");
   }
-  if (capture.status === "REFUNDED") {
+  if (capture.status === "REFUNDED" || capture.status === "PARTIALLY_REFUNDED" || capture.status === "REVERSED") {
     await db.from("academy_purchases").update({ status: "REFUNDED", updated_at: new Date().toISOString() })
       .eq("id", purchase.id);
   }
@@ -79,7 +96,18 @@ export async function syncAcademySubscription(db: Db, sub: Record<string, any>) 
   if (status === "ACTIVE" && !sub.started_at) patch.started_at = pp.start_time || new Date().toISOString();
   if (status === "CANCELLED" && !sub.cancelled_at) patch.cancelled_at = pp.status_update_time || new Date().toISOString();
   const { data, error } = await db.from("academy_member_subscriptions").update(patch).eq("id", sub.id).select().maybeSingle();
-  if (error) throw error;
+  if (error) {
+    // A second membership for the same person (two sign-ups): cancel this one at PayPal.
+    if (String(error.message).includes("academy_subs_one_current")) {
+      await paypalRequest(`/v1/billing/subscriptions/${sub.paypal_subscription_id}/cancel`, {
+        method: "POST", body: JSON.stringify({ reason: "Duplicate membership — you already have an active Academy membership." }),
+      }).catch(() => {});
+      const { data: c } = await db.from("academy_member_subscriptions").update({ status: "CANCELLED", cancelled_at: new Date().toISOString(), updated_at: new Date().toISOString() })
+        .eq("id", sub.id).select().maybeSingle();
+      return c || { ...sub, status: "CANCELLED" };
+    }
+    throw error;
+  }
   return data || sub;
 }
 

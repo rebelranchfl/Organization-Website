@@ -1465,13 +1465,11 @@
     function safeReturnTarget() {
       const params = new URLSearchParams(window.location.search);
       const raw = params.get("returnTo") || params.get("next") || "";
-      if (!raw || raw.startsWith("//") || /^[a-z][a-z0-9+.-]*:/i.test(raw) || raw.includes("\\")) return "";
-      try {
-        const target = new URL(raw, window.location.href);
-        if (target.origin !== window.location.origin) return "";
-        if (target.pathname.endsWith("/account.html")) return "";
-        return target.pathname + target.search + target.hash;
-      } catch { return ""; }
+      // Only a plain page on this site, e.g. "academy-item.html?id=x" — no slashes,
+      // no leading dot, no scheme — so it can never point to another website.
+      if (!/^[A-Za-z0-9_-][A-Za-z0-9._-]*\.html(\?[^#]*)?(#.*)?$/.test(raw)) return "";
+      if (/^account\.html/i.test(raw)) return "";
+      return raw;
     }
 
     async function initializeAccountPage() {
