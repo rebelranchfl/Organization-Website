@@ -16,7 +16,8 @@
 | 2026-09-27 | Split: Claude builds code and data wiring; ChatGPT generates images for the marked image spots. |
 | 2026-09-27 | Do **not** turn on the content agent yet. |
 | 2026-09-27 | Owner did not like the navy version. **Trial on preview:** RRM homepage black `#050806`, forest green `#204227`, green fade `#1D4024`→`#122A18`, maroon `#7A1E1E` (used sparingly), cream `#F0EDD8`/`#D7D1B3`, with the Academy gold for buttons. Navy kept in Git (commit 71e6bee). |
-| 2026-09-28 | **Owner picked green over navy** ("i like the green over the blue"). The learner area uses the RRM black / green / maroon with Academy gold. Open: the Academy home page and the RRA color direction in `REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md` still say navy — owner decision needed on whether to change them to match. |
+| 2026-09-28 | **Owner picked green over navy** ("i like the green over the blue"). The learner area uses the RRM black / green / maroon with Academy gold. Home page and RRA color direction were still navy. |
+| 2026-09-28 | Owner chose **option 1**: the whole Academy matches. Home page switched to green/black/maroon + gold (scoped to the home page so `/wealth-management/trusts` is unchanged) and the color direction in `REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md` updated. |
 
 ## 2. Working brief
 

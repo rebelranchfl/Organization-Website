@@ -248,3 +248,36 @@ a{color:inherit}
   html{scroll-behavior:auto}
   .button,.audience-choice,.learning-card,.progress span{transition:none}
 }
+
+/* ── Academy home: green / black / maroon + Academy gold ──────────────────
+   Owner decision 2026-09-28 (option 1): the whole Academy matches the learner
+   area. Scoped to .academy-home so other pages that share these color settings
+   (e.g. /wealth-management/trusts) are unchanged. Hex values pulled from the
+   RRM homepage: black #050806, green #204227 / #1A3620, fade #1D4024 -> #122A18,
+   maroon #7A1E1E, cream #F0EDD8, muted #D7D1B3. Gold stays the Academy gold.
+   AI-Agent: Claude (claude-opus-5-5) · Session: Academy back office restructure 2026-09-27 */
+.academy-home{
+  --night:#050806; --navy:#122A18; --navy-2:#1D4024; --navy-3:#1D4024;
+  --light-text-accent:var(--gold-bright);
+  --cream:#204227; --paper:#1A3620; --ink:#F0EDD8; --muted:#D7D1B3; --silver:#D7D1B3;
+  --line:rgba(215,170,67,.24); --dark-line:rgba(215,170,67,.34);
+  --maroon:#7A1E1E;
+  background:var(--cream); color:var(--ink);
+}
+.academy-home .site-header{background:rgba(5,8,6,.97)}
+.academy-home .hero{background:linear-gradient(135deg,var(--night) 0%,#122A18 55%,#1D4024 100%)}
+.academy-home .hero:after{background:var(--maroon);height:3px}
+.academy-home .hero-lede,.academy-home .roots-copy>p:not(.eyebrow):not(.program-endorsement){color:var(--muted)}
+.academy-home .audience-choice,.academy-home .learning-card,.academy-home .experience-card{background:linear-gradient(180deg,#1D4024,#122A18)}
+.academy-home .audience-choice.selected{background:var(--night)}
+.academy-home .learning-card:hover,.academy-home .learning-card:focus-visible{background:var(--night)}
+.academy-home .experience-card:before{background:linear-gradient(90deg,var(--gold),var(--maroon))}
+.academy-home .filter-row button{border-color:var(--line);color:var(--ink)}
+.academy-home .filter-row button.active{background:var(--night);border-color:var(--gold);color:var(--gold-bright)}
+.academy-home .button-dark{background:var(--night);border-color:var(--gold);color:var(--gold-bright)}
+.academy-home .progress{background:rgba(240,237,216,.18)}
+.academy-home .challenge{background:rgba(5,8,6,.35)}
+.academy-home .plan-board,.academy-home .lesson-modal{background:linear-gradient(180deg,#1D4024,#122A18);color:var(--ink)}
+.academy-home .academy-footer{border-top:3px solid var(--maroon)}
+.academy-home .declaration{background:linear-gradient(180deg,#122A18,var(--night))}
+.academy-home .plan-section{background:linear-gradient(135deg,var(--night),#122A18 60%,#1D4024)}

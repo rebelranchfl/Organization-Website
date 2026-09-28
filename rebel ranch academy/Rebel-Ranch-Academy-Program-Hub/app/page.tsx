@@ -27,7 +27,7 @@ export default function Home(){
   const togglePlan=(id:string)=>save("rra-plan",plan.includes(id)?plan.filter(item=>item!==id):[...plan,id]);
   const toggleDone=(id:string)=>save("rra-done",done.includes(id)?done.filter(item=>item!==id):[...done,id]);
 
-  return <main>
+  return <main className="academy-home">
     <header className="site-header">
       <a className="brand-lockup" href="#top" aria-label="Rebel Ranch Academy home"><img src="https://rebelranchministries.org/assets/rebel_ranch_academy_logo_transparent-cropped.png" alt="" width={956} height={956}/><span><small>Rebel Ranch Ministries</small><strong>Rebel Ranch Academy</strong></span></a>
       <button className="menu-button" type="button" aria-expanded={menuOpen} aria-controls="primary-navigation" onClick={()=>setMenuOpen(open=>!open)}>{menuOpen?"Close":"Menu"}</button>
