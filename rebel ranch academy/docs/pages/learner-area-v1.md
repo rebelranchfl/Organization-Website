@@ -11,11 +11,12 @@
 | Date | Decision |
 |---|---|
 | 2026-09-27 | "RRA UI Direction 1 Learning Hub Dashboard" concept (ChatGPT) is **APPROVED as the structure**. Logo, colors, taglines and labels are design-layer and changeable; do not copy the concept literally. |
-| 2026-09-27 | Colors: **keep the Academy navy / gold** so the learner area matches the program (owner: "Keep it navy… If we want to switch it later, we can"). This supersedes the brief green/gold preference from earlier the same day. Colors come only from the Academy tokens in `app/globals.css`, per the approved color direction in `REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md`: navy frame, cream/paper learning surfaces with navy text, gold for accents and actions (never as text on light surfaces), Georgia headings. |
+| 2026-09-27 | ~~SUPERSEDED 2026-09-28~~ Colors: **keep the Academy navy / gold** so the learner area matches the program (owner: "Keep it navy… If we want to switch it later, we can"). This supersedes the brief green/gold preference from earlier the same day. Colors come only from the Academy tokens in `app/globals.css`, per the approved color direction in `REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md`: navy frame, cream/paper learning surfaces with navy text, gold for accents and actions (never as text on light surfaces), Georgia headings. |
 | 2026-09-27 | Build against **current capability only** — no screen that leads to nothing. |
 | 2026-09-27 | Split: Claude builds code and data wiring; ChatGPT generates images for the marked image spots. |
 | 2026-09-27 | Do **not** turn on the content agent yet. |
-| 2026-09-27 | Owner did not like the navy version. **Trial on preview:** RRM homepage black `#050806`, forest green `#204227`, green fade `#1D4024`→`#122A18`, maroon `#7A1E1E` (used sparingly), cream `#F0EDD8`/`#D7D1B3`, with the Academy gold for buttons. Pending owner pick between this and navy (navy kept in Git, commit 71e6bee). |
+| 2026-09-27 | Owner did not like the navy version. **Trial on preview:** RRM homepage black `#050806`, forest green `#204227`, green fade `#1D4024`→`#122A18`, maroon `#7A1E1E` (used sparingly), cream `#F0EDD8`/`#D7D1B3`, with the Academy gold for buttons. Navy kept in Git (commit 71e6bee). |
+| 2026-09-28 | **Owner picked green over navy** ("i like the green over the blue"). The learner area uses the RRM black / green / maroon with Academy gold. Open: the Academy home page and the RRA color direction in `REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md` still say navy — owner decision needed on whether to change them to match. |
 
 ## 2. Working brief
 
@@ -30,7 +31,7 @@
   4. Free activities — the 7 sample activities the home page already offers; "Open activity" shows what you learn, the challenge, and "Save to my plan" (same device-saved plan as the home page, key `rra-plan`).
 - **Shell:** sidebar (Library only), "Academy home" and "Rebel Ranch Ministries" links; phone top bar with menu; footer with Academy block and RRM parent block (Contact, Privacy Policy, Legal Disclosures, socials, © Faith, Family & Nature Church, Inc.).
 - **Assets:** approved Academy logo `rebel_ranch_academy_logo_transparent-cropped.png` and RRM white logo, both linked from rebelranchministries.org (same files the Academy home page uses). No base64 images.
-- **Colors:** dark navy sidebar, top bar, header band and footer; cream/paper page and cards; selected area tile = navy with gold (same as the home page audience buttons); cards use the home page gold-to-silver top line.
+- **Colors (2026-09-28):** black sidebar, top bar and footer; forest green page; green-fade cards, tiles and pop-up; Academy gold buttons and small labels; maroon only on the Free labels and thin accent lines.
 - **Phone first:** single column, 2-column area tiles, menu drops down under the top bar. **Desktop:** fixed sidebar, 7 tiles in one row, 3-column cards.
 - **Pill rule:** only buttons are rounded; the "Free" label is square.
 
@@ -40,7 +41,7 @@ Dashboard, My Materials, Lesson player, Checkout, Account / Sign-in on the acade
 
 ## 4. Image spots for ChatGPT
 
-Each spot is marked in the page with `data-image-slot`. Until an image is approved, the spot shows the area icon on a navy gradient.
+Each spot is marked in the page with `data-image-slot`. Until an image is approved, the spot shows the area icon on a dark green gradient.
 
 | Slot | Shape | Subject |
 |---|---|---|
@@ -61,7 +62,7 @@ Images follow the existing Academy image handoff and checks. No logo may be gene
 | Item | Status |
 |---|---|
 | Supabase catalog (`20260927200000_academy_learner_catalog_v1.sql`) | Applied; anonymous visitor sees 6 areas, 0 released items |
-| Shell + Library | BUILT LOCALLY · TECHNICALLY CHECKED in navy/gold (build + render tests pass; phone 390px and desktop 1280px screenshots, no sideways scroll, no console errors; filter, pop-up, save-to-plan and Escape checked) |
+| Shell + Library | BUILT LOCALLY · TECHNICALLY CHECKED in green/black/maroon + gold (build + render tests pass; phone 390px and desktop 1280px screenshots, no sideways scroll, no console errors; filter, pop-up, save-to-plan and Escape checked) |
 | Independent visual review | NOT DONE |
 | Owner visual approval | PENDING (private preview) |
 | Public release | NOT DEPLOYED — merge only after owner approval |
