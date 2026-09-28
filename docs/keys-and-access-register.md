@@ -31,7 +31,7 @@ Location: Supabase dashboard → Project `dfrwxpuojeiykaignyny` → Edge Functio
 |---|---|---|---|
 | `SUPABASE_URL` | Supabase (auto-provided) | most functions | Auto-provided by Supabase |
 | `SUPABASE_ANON_KEY` | Supabase public key (auto-provided) | paypal-create-order, paypal-create-subscription, booking-manage, notify-website-request, academy-agent-dispatch | Auto-provided |
-| `SUPABASE_SERVICE_ROLE_KEY` | Supabase full-access server key (auto-provided). **Never in browser code.** | paypal-*, notify-website-request, verify-citation, publish-ledger, academy-agent-dispatch, booking-*, submit-*-order | Auto-provided |
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase full-access server key (auto-provided). **Never in browser code.** | paypal-*, academy-commerce, notify-website-request, verify-citation, academy-agent-dispatch, booking-*, submit-*-order | Auto-provided |
 | `PAYPAL_CLIENT_ID` | PayPal REST app ID | `_shared/paypal.ts` → paypal-create-order, paypal-create-subscription, paypal-webhook | **Yes.** Live PayPal checkouts were created and live PayPal notices passed signature checks (latest 2026-08-18). None of that works without these keys. |
 | `PAYPAL_CLIENT_SECRET` | PayPal REST app secret | same as above | **Yes** (same evidence) |
 | `PAYPAL_WEBHOOK_ID` | PayPal webhook ID used to verify PayPal notices | paypal-webhook | **Yes.** Notices recorded as `verified`. |
@@ -84,8 +84,8 @@ Location: GitHub → `rebelranchfl/Organization-Website` → Settings → Secret
 
 ## 5. Open items found while building this register (not changed)
 
-- **`publish-ledger` Edge Function** can be called by anyone and uses the full-access server key to create a public storage bucket and upload a file. It looks like a leftover test. Owner decision needed: switch it off or delete it.
-- **Creation Station PayPal (found 2026-09-28, not changed):** the 10 August live checkouts marked `pending` were sign-ups that were started but never approved at PayPal (only `CREATED` notices arrived; they expired). One real problem: a `club_studio_bundle` sign-up notice failed because the `memberships` table rule does not allow that offer code (`memberships_creation_station_offer_check`). If someone completes that bundle, their membership will not be granted until the rule is fixed. Academy payments use separate tables and are not affected.
+- **`publish-ledger` Edge Function:** SWITCHED OFF 2026-09-28 (owner instruction). It now only answers "Disabled" (410). Its public `site` storage bucket was made private; files kept.
+- **Creation Station memberships:** FIXED 2026-09-28. A leftover database rule (`memberships_creation_station_offer_check`) blocked Club and both bundles from ever being granted; it was removed (the current rule allows all six offers). The 10 "pending" August checkouts were sign-ups never approved at PayPal; none was an unpaid-but-charged member.
 
 ## 6. Keeping this register true
 
