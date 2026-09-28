@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rebel Ranch Academy | Real Skills for Real Life</title>
+<meta name="description" content="Real-life education for children, teens, and adults. Build confidence, communication, business, money, sustainability, leadership, and practical independence.">
+<link rel="canonical" href="https://rebelranchministries.org/rebel-ranch-academy.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rebel Ranch Academy | Real Skills for Real Life">
+<meta property="og:description" content="Build the skills life expects. Real-life learning for capable, confident, responsible people.">
+<meta property="og:url" content="https://rebelranchministries.org/rebel-ranch-academy.html">
+<meta property="og:site_name" content="Rebel Ranch Academy">
+<link rel="icon" href="assets/rebel_ranch_academy_logo_transparent-cropped.png">
+<link rel="stylesheet" href="assets/academy/academy-home.css">
+<!-- Rebel Ranch Academy home — moved from academy.rebelranchministries.org onto the main site
+     2026-09-28 (owner: one website, one login). Ported unchanged from the Program Hub app/page.tsx,
+     plus a Library link. AI-Agent: Claude (claude-opus-5-5) · Session: Academy back office restructure 2026-09-27 -->
+</head>
+<body>
+<main class="academy-home">
+  <header class="site-header">
+    <a class="brand-lockup" href="#top" aria-label="Rebel Ranch Academy home"><img src="assets/rebel_ranch_academy_logo_transparent-cropped.png" alt="" width="956" height="956"><span><small>Rebel Ranch Ministries</small><strong>Rebel Ranch Academy</strong></span></a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-navigation" id="menu-button">Menu</button>
+    <nav id="primary-navigation" aria-label="Primary navigation">
+      <a href="#learning-areas">Learning areas</a>
+      <a href="#sample-learning">Try the Academy</a>
+      <a href="academy-library.html">Library</a>
+      <a href="#my-plan">My learning plan <b id="plan-count" aria-label="0 saved activities">0</b></a>
+      <a class="rrm-return" href="index.html">Rebel Ranch Ministries</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="hero-copy">
+      <p class="eyebrow">REBEL RANCH MINISTRIES PRESENTS</p>
+      <h1>Build the skills<span>life expects.</span></h1>
+      <p class="hero-lede">Real-life education for children, teens, and adults who want to think clearly, communicate well, understand how things work, and become more capable.</p>
+      <div class="hero-actions"><a class="button button-gold" href="#choose-your-path">Find your path <span aria-hidden="true">→</span></a><a class="button button-outline" href="#sample-learning">Try a sample activity</a></div>
+      <p class="hero-note">Respectable. Responsible. Accountable. Confident. Independent. Strong.</p>
+    </div>
+    <div class="hero-seal" aria-label="Official Rebel Ranch Academy seal"><div class="seal-glow" aria-hidden="true"></div><img src="assets/rebel_ranch_academy_logo_transparent-cropped.png" alt="Rebel Ranch Academy. Skills for life. Freedom for all." width="956" height="956" loading="eager" fetchpriority="high"></div>
+  </section>
+
+  <section class="declaration" aria-label="Academy promise"><p>Beyond traditional education.</p><strong>Real skills for real life.</strong><p>Online learning. Real-world action.</p></section>
+
+  <section class="audience-section" id="choose-your-path">
+    <div class="section-heading"><div><p class="eyebrow">CHOOSE YOUR PATH</p><h2>Start with the life you are living.</h2></div><p>The Academy covers a lot of ground because real life does too. Choose who you are learning for, and we will narrow the path.</p></div>
+    <div class="audience-grid" role="group" aria-label="Choose an audience" id="audience-grid"></div>
+    <p class="selection-note" aria-live="polite">Showing paths for <strong id="audience-label">Everyone</strong></p>
+  </section>
+
+  <section class="learning-section" id="learning-areas">
+    <div class="section-heading"><div><p class="eyebrow">THE REAL-LIFE CURRICULUM</p><h2>Six learning areas. One capable human.</h2></div><p>Each area builds knowledge people can use at home, at work, in relationships, in business, and in the community.</p></div>
+    <div class="learning-grid" id="learning-grid"></div>
+  </section>
+
+  <section class="roots-feature">
+    <div class="roots-logo"><img src="assets/brand/roots%20boots%20and%20animal%20poops/adult/roots-boots-and-animal-poops-adult%20logo.png" alt="Roots, Boots and Animal Poops" width="1254" height="1254"></div>
+    <div class="roots-copy"><p class="eyebrow">SUSTAINABILITY &amp; AGRICULTURE</p><h2>Real food starts long before the store.</h2><p>Roots, Boots &amp; Animal Poops is where children, adults, homesteaders, and homeschool families learn how soil, water, plants, animals, food, and responsible stewardship work together.</p><p class="program-endorsement">Roots, Boots &amp; Animal Poops is a Rebel Ranch Academy program.</p><button class="button button-gold" type="button" data-choose-area="Sustainability &amp; Agriculture">Explore agriculture learning <span aria-hidden="true">→</span></button></div>
+  </section>
+
+  <section class="experience-section" id="sample-learning">
+    <div class="section-heading"><div><p class="eyebrow">TRY THE ACADEMY</p><h2>Learn something you can use.</h2></div><p>These sample activities show how RRA learning works. Every lesson ends with something to do, decide, build, practice, or change.</p></div>
+    <div class="filter-row" role="group" aria-label="Filter sample learning" id="filter-row"></div>
+    <div class="experience-grid" id="experience-grid"></div>
+    <div id="no-results"></div>
+  </section>
+
+  <section class="plan-section" id="my-plan">
+    <div class="plan-intro"><p class="eyebrow">YOUR NEXT MOVE</p><h2>Build your own learning path.</h2><p>Save sample activities here and mark them complete when the real work is done. Your plan stays on this device and is not connected to an account.</p></div>
+    <div class="plan-board" id="plan-board"></div>
+  </section>
+
+  <section class="interest-section"><p class="eyebrow">RESPONSIBLE REBELS WANTED</p><h2>You do not have to know everything.<span>You do need to keep learning.</span></h2><p>Tell Rebel Ranch Ministries what you want to learn. Your interest helps shape which Academy programs move forward first.</p><a class="button button-gold" href="academy-learning-interest.html">Share what you want to learn <span aria-hidden="true">→</span></a></section>
+
+  <footer class="academy-footer">
+    <div class="academy-footer-main">
+      <div class="academy-footer-brand"><img src="assets/rebel_ranch_academy_logo_transparent-cropped.png" alt=""><div><strong>Rebel Ranch Academy</strong><span>Real skills for real life.</span></div></div>
+      <nav class="academy-footer-links" aria-label="Academy footer"><a href="#learning-areas">Academy Learning Areas</a><a href="#sample-learning">Try the Academy</a><a href="academy-library.html">Library</a><a href="#my-plan">My Learning Plan</a></nav>
+    </div>
+    <div class="academy-rrm-bar">
+      <a class="academy-rrm-brand" href="index.html"><img src="assets/brand/Rebel%20Ranch%20Ministries/rrm-logo-white.png" alt=""><span><strong>Rebel Ranch Ministries</strong><small>Faith · Family · Freedom</small></span></a>
+      <nav class="academy-rrm-links" aria-label="Rebel Ranch Ministries"><a href="contact.html">Contact</a><a href="privacy-policy.html">Privacy Policy</a><a href="legal-disclosures.html">Legal Disclosures</a></nav>
+      <div class="academy-rrm-bottom"><div class="academy-socials" aria-label="Social media"><a href="https://www.facebook.com/rebelranchministries" target="_blank" rel="noopener" aria-label="Facebook">f</a><a href="https://www.instagram.com/rebel_ranch_fl" target="_blank" rel="noopener" aria-label="Instagram">◎</a><a href="https://www.youtube.com/@RebelRanchMinistries" target="_blank" rel="noopener" aria-label="YouTube">▶</a></div><p>© 2026 Faith, Family &amp; Nature Church, Inc.</p></div>
+    </div>
+  </footer>
+  <div id="modal-host"></div>
+</main>
+<script type="module" src="assets/academy/academy-home.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Library | Rebel Ranch Academy</title>
+<meta name="description" content="Everything you can learn at Rebel Ranch Academy, starting with free activities.">
+<link rel="canonical" href="https://rebelranchministries.org/academy-library.html">
+<link rel="icon" href="assets/rebel_ranch_academy_logo_transparent-cropped.png">
+<link rel="stylesheet" href="assets/academy/academy-learn.css">
+<!-- Rebel Ranch Academy learner area · AI-Agent: Claude (claude-opus-5-5) · Session: Academy back office restructure 2026-09-27 -->
+</head>
+<body>
+<div id="lx-content">
+  <div class="lx-library" id="library">
+    <section class="lx-hero" data-image-slot="library-hero" aria-labelledby="lib-title">
+      <div class="lx-heroText">
+        <p class="lx-eyebrow">Library</p>
+        <h1 id="lib-title">Real skills for real life.</h1>
+        <p>Everything you can learn at Rebel Ranch Academy, in one place. Start with a free activity — no account needed.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="areas-title" class="lx-section">
+      <h2 id="areas-title" class="lx-h2">Learning areas</h2>
+      <div class="lx-areaGrid" role="group" aria-label="Filter by learning area" id="area-grid"></div>
+      <p class="lx-areaNote" id="area-note" hidden></p>
+    </section>
+
+    <section aria-labelledby="mat-title" class="lx-section" id="materials" hidden>
+      <h2 id="mat-title" class="lx-h2">Academy materials</h2>
+      <div class="lx-cardGrid" id="material-grid"></div>
+    </section>
+
+    <section aria-labelledby="free-title" class="lx-section">
+      <div class="lx-sectionHead"><h2 id="free-title" class="lx-h2">Free activities</h2><p id="free-count"></p></div>
+      <div class="lx-cardGrid" id="activity-grid"></div>
+    </section>
+  </div>
+  <div id="dialog-host"></div>
+</div>
+<script type="module" src="assets/academy/academy-library.js"></script>
+</body>
+</html>
