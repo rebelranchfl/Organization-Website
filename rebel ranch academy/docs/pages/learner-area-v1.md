@@ -1,8 +1,9 @@
 # Learner Area v1 — Page Decision Record
 
 **Program:** Rebel Ranch Academy (RRA)  
-**Surface:** academy.rebelranchministries.org `/learn` (redirects to `/learn/library`)  
-**Code:** `Rebel-Ranch-Academy-Program-Hub/app/learn/`  
+**Surface (current, 2026-09-28):** main site — `rebel-ranch-academy.html` (home), `academy-library.html`, `academy-item.html`, `academy-lesson.html`, `academy-membership.html`, `academy-my-materials.html`, `academy-receipt.html`, `academy-checkout-return.html`  
+**Code:** `/assets/academy/` (+ back office `assets/js/academy-release-listing.js`, `academy-sales.html`)  
+**Earlier surface:** academy.rebelranchministries.org `/learn` (Program Hub, branch `claude/academy-learner-area-v1`, PR #138) — superseded by the main-site move; old address to be retired after owner review.  
 **Mode:** implementation (owner "go", 2026-09-27: start with the layout and the Library screen)  
 **AI-Agent:** Claude (claude-opus-5-5) · **Session:** Academy back office restructure 2026-09-27
 
@@ -17,6 +18,8 @@
 | 2026-09-27 | Do **not** turn on the content agent yet. |
 | 2026-09-27 | Owner did not like the navy version. **Trial on preview:** RRM homepage black `#050806`, forest green `#204227`, green fade `#1D4024`→`#122A18`, maroon `#7A1E1E` (used sparingly), cream `#F0EDD8`/`#D7D1B3`, with the Academy gold for buttons. Navy kept in Git (commit 71e6bee). |
 | 2026-09-28 | **Owner picked green over navy** ("i like the green over the blue"). The learner area uses the RRM black / green / maroon with Academy gold. Home page and RRA color direction were still navy. |
+| 2026-09-28 | **One website, one login:** the Academy moves onto rebelranchministries.org and the academy subdomain will be retired after owner review. Every program lives on the main site with its own look. `academy.html` stays untouched (separate owner rule). |
+| 2026-09-28 | **Selling:** pay per item **and** memberships. Everything paid is fully locked (private storage, short-lived links, access decided by the database). Owner controls listing, price and membership plans in the back office; prices flow into PayPal automatically (no per-item PayPal links). Lesson player built but only reachable when material exists. Customers get receipts and purchase history in My Materials. |
 | 2026-09-28 | Owner chose **option 1**: the whole Academy matches. Home page switched to green/black/maroon + gold (scoped to the home page so `/wealth-management/trusts` is unchanged) and the color direction in `REBEL-RANCH-ACADEMY-CONCEPT-AND-DIRECTION.md` updated. |
 
 ## 2. Working brief
@@ -36,9 +39,11 @@
 - **Phone first:** single column, 2-column area tiles, menu drops down under the top bar. **Desktop:** fixed sidebar, 7 tiles in one row, 3-column cards.
 - **Pill rule:** only buttons are rounded; the "Free" label is square.
 
-## 3. Not in v1 (added only when there is something behind them)
+## 3. Built for selling (2026-09-28) and still not in v1
 
-Dashboard, My Materials, Lesson player, Checkout, Account / Sign-in on the academy domain, Progress, Certificates, Community. Pay-per-item vs membership is still an **open owner decision**.
+Built: sign-in (shared RRM account, returns you to the page you came from), item page with Buy (PayPal), checkout return, My Materials (owned items, membership, receipts), printable receipts, membership page (menu item appears only when a plan is public), lesson player (reached from an item; not in the menu), owner release checklist on the project page, owner Sales page with membership plan editor.
+
+Still not in v1: Dashboard, Progress, Certificates, Community.
 
 ## 4. Image spots for ChatGPT
 
@@ -58,12 +63,15 @@ Each spot is marked in the page with `data-image-slot`. Until an image is approv
 
 Images follow the existing Academy image handoff and checks. No logo may be generated inside an image.
 
-## 5. Status
+## 5. Status (2026-09-28)
 
 | Item | Status |
 |---|---|
-| Supabase catalog (`20260927200000_academy_learner_catalog_v1.sql`) | Applied; anonymous visitor sees 6 areas, 0 released items |
-| Shell + Library | BUILT LOCALLY · TECHNICALLY CHECKED in green/black/maroon + gold (build + render tests pass; phone 390px and desktop 1280px screenshots, no sideways scroll, no console errors; filter, pop-up, save-to-plan and Escape checked) |
+| Database (catalog, purchases, memberships, receipts, locks) | Applied. Lock rules tested in a rolled-back transaction: all pass. |
+| Server functions | `academy-commerce` v2 and `paypal-webhook` v21 deployed; reject signed-out and off-site requests; notice handler still rejects unsigned PayPal notices. |
+| Independent code review | DONE (separate agent). 2 high + 5 medium findings fixed and redeployed; lock rules re-tested. |
+| Main-site pages | BUILT · TECHNICALLY CHECKED locally (phone 390px, desktop 1280px, no sideways scroll, no errors). Home page pixel-identical to the Program Hub home except the added Library links. |
+| Signed-in flows (buy, receipt, My Materials, membership, owner release checklist, Sales) | NOT VERIFIED — needs the pages on the real address and a signed-in person. |
+| Live PayPal payment | NOT VERIFIED — needs an owner-approved test purchase. |
 | Independent visual review | NOT DONE |
-| Owner visual approval | PENDING (private preview) |
-| Public release | NOT DEPLOYED — merge only after owner approval |
+| Public release | NOT DEPLOYED — branch `claude/academy-main-site`; merge only with owner approval. |

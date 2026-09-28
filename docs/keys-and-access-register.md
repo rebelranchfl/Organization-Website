@@ -85,7 +85,7 @@ Location: GitHub → `rebelranchfl/Organization-Website` → Settings → Secret
 ## 5. Open items found while building this register (not changed)
 
 - **`publish-ledger` Edge Function** can be called by anyone and uses the full-access server key to create a public storage bucket and upload a file. It looks like a leftover test. Owner decision needed: switch it off or delete it.
-- **Live PayPal records from August:** 10 live checkouts are still `pending`, and live PayPal notices from 2026-08-18 show `failed` processing. This needs investigation before relying on the same PayPal notice path for new sales.
+- **Creation Station PayPal (found 2026-09-28, not changed):** the 10 August live checkouts marked `pending` were sign-ups that were started but never approved at PayPal (only `CREATED` notices arrived; they expired). One real problem: a `club_studio_bundle` sign-up notice failed because the `memberships` table rule does not allow that offer code (`memberships_creation_station_offer_check`). If someone completes that bundle, their membership will not be granted until the rule is fixed. Academy payments use separate tables and are not affected.
 
 ## 6. Keeping this register true
 
