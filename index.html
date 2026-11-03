@@ -22,18 +22,34 @@ dialog{width:min(620px,92vw);max-height:90vh;padding:0;border:1px solid var(--bo
 @media(max-width:900px){.program-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.bridge-layout{grid-template-columns:1fr}}
 @media(max-width:700px){h1{font-size:clamp(3rem,15vw,4.6rem)}.section{padding-block:4.5rem}body.rrm-phase-one .hero{min-height:auto;padding-top:clamp(19rem,86vw,24rem);align-items:start;background-color:var(--page)!important;background-size:auto clamp(19rem,86vw,24rem)!important;background-position:center top!important;background-repeat:no-repeat!important}.hero::before{inset:0 0 auto;height:clamp(19rem,86vw,24rem);background:linear-gradient(0deg,rgba(26,54,32,.12),transparent 55%)}.hero-inner{padding-block:2.75rem 4.5rem}.hero .button-row{display:grid}.button{width:100%;min-height:3.5rem}.section-head{text-align:left;margin-left:0}.story-trigger{grid-template-columns:1fr auto;gap:0}.story-image{grid-column:1/3;height:150px}.story-copy{padding:18px}.chevron{margin-right:18px}.story-panel{padding:0 18px 20px}.bridge-layout{gap:2rem;padding:3rem 0 2.5rem}.bridge-photo{order:-1;min-height:0;aspect-ratio:16/9}.program-grid{grid-template-columns:1fr}.program-trigger{grid-template-columns:3.25rem 1fr 3rem;padding:16px}.program-panel{padding:0 16px 18px 5rem}.join-heading{gap:12px}.join-photo{border-radius:16px;min-height:240px;object-position:center}.join-content{text-align:left}.pledge{margin-left:0}.join-action .button{width:100%}.dialog-inner{padding:20px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important}}
+.home-hero{padding-block:clamp(2rem,5vw,4rem)}
+.home-hero h1{font-size:clamp(2.4rem,7.7vw,6.5rem)}
+.home-hero h1 span,.meaning-copy h3{color:var(--gold-bright)}
+.home-hero-photo{width:100%;height:auto;margin-bottom:clamp(1.5rem,4vw,3rem)}
+.home-hero h2{margin-bottom:.7rem;font-size:clamp(1.8rem,4vw,3.15rem)}
+.home-hero .hero-lead{color:var(--muted)}
+.meaning-copy{max-width:790px}
+.meaning-copy h3{line-height:1.35}
 </style>
 </head>
 <body class="rrm-phase-one"><main>
-<section class="hero" aria-labelledby="hero-title"><div class="wrap hero-inner"><div class="hero-copy"><h1 id="hero-title"><span>Responsible</span><span class="accent">Rebellion</span></h1><h2>Build a life that works for you.</h2><p class="hero-lead">Escape the rat race. Find your people.<br>Create a community you can trust.</p><div class="button-row"><a class="button rebellion" href="#join">Join the Rebellion</a><a class="button secondary" href="#programs">See What We’re Building</a></div></div></div></section>
+<section class="home-hero" aria-labelledby="hero-title">
+<div class="wrap">
+<h1 id="hero-title">Faith, Family <span>&amp; Freedom</span></h1>
+<img class="home-hero-photo" src="assets/images/homepage-refresh/hero-community.png" alt="Community gathered around a campfire">
+<div class="hero-copy"><h2>Build a life that works for you.</h2><p class="hero-lead">Escape the rat race. Find your people.<br>Create a community you can trust.</p><div class="button-row"><a class="button rebellion" href="#join">Join the Rebellion</a><a class="button secondary" href="#programs">See What We’re Building</a></div></div>
+</div>
+</section>
 
-<section class="section meaning" id="responsible-rebellion"><div class="wrap"><div class="section-head"><p class="eyebrow">Responsible Rebellion</p><h2>What the Hell Is Responsible Rebellion?</h2><p>It’s a different way of living — and we’re building it together.</p></div><div class="story-list">
-<article class="story-card"><button class="story-trigger" type="button" aria-expanded="false" aria-controls="story-one"><img class="story-image" src="assets/images/homepage-refresh/concept-life-handed-us.png" alt="A woman feeling the pressure of bills and daily responsibilities"><span class="story-copy"><span class="story-title">The Life They Handed Us</span><span class="story-summary">Pressure. Exhaustion. Barely getting by and calling it normal.</span></span><span class="chevron">+</span></button><div class="story-panel" id="story-one" hidden><p>We were prescribed a life built around someone else’s system: work more, stay tired, keep struggling, and accept that this is simply how life works.</p></div></article>
-<article class="story-card"><button class="story-trigger" type="button" aria-expanded="false" aria-controls="story-two"><img class="story-image" src="assets/images/homepage-refresh/concept-life-we-want.png" alt="A family laughing together during a bright day on the water"><span class="story-copy"><span class="story-title">The Life We Actually Want</span><span class="story-summary">Peace. Prosperity. Joy. Freedom. A life that finally feels like ours.</span></span><span class="chevron">+</span></button><div class="story-panel" id="story-two" hidden><p>We want time for the people we love, room to breathe, the freedom to choose, and a life shaped by what matters to us—not by what the system expects.</p></div></article>
-<article class="story-card"><button class="story-trigger" type="button" aria-expanded="false" aria-controls="story-three"><img class="story-image" src="assets/images/homepage-refresh/concept-chose-our-way.png" alt="A peaceful fall morning with coffee and nowhere to rush"><span class="story-copy"><span class="story-title">So We Chose Our Own Way</span><span class="story-summary">A life on our terms, with time for what—and who—matters.</span></span><span class="chevron">+</span></button><div class="story-panel" id="story-three" hidden><p>Responsible Rebellion is deciding that the prescribed path is not the only path. We choose differently and create a life we do not need to escape from.</p></div></article>
-</div></div></section>
-
-<section class="bridge"><div class="wrap bridge-layout"><div class="bridge-copy"><p class="eyebrow">A Different Way Forward</p><h2>Create a life that works for you.</h2><p>Take control, choose differently, and make room for more peace, freedom, and happiness.</p><div class="button-row"><a class="button rebellion" href="programs.html">Explore Our Programs</a></div></div><img class="bridge-photo" src="assets/images/homepage-refresh/concept-different-way-forward.png" alt="A family enjoying a bright day together at home"></div></section>
+<section class="section meaning" id="responsible-rebellion">
+<div class="wrap meaning-copy">
+<h2>What the Hell Is Responsible Rebellion?</h2>
+<h3>Question what you’re told. Do your own damn research. Take responsibility for what you do next.</h3>
+<p>We were done working 40-plus hours a week and still coming up short on rent, food, and gas. We wanted fresh food and meat without wondering what chemicals or toxins came with it. We wanted our kids educated, not indoctrinated. And we wanted a life worth living, one we didn’t need drugs or alcohol to escape from.</p>
+<p>We reconnected with our faith, our families, and nature. We questioned the systems we’d been told to live by and decided to make our lives work for us. We started growing food, raising animals, and sharing what we learned.</p>
+<p>That’s Responsible Rebellion. Now we’re building a community for people from all walks of life who want more say in what they eat, what their kids learn, and how they spend their lives.</p>
+</div>
+</section>
 
 <section class="section programs" id="programs"><div class="wrap"><div class="section-head"><p class="eyebrow">Our Programs</p><h2>Build the Life That Works for You</h2><p>Explore the programs, community, and support designed to help you create your own way forward.</p></div><div class="program-grid">
 <article class="program-card" data-program="academy"><button class="program-trigger" type="button" aria-expanded="false" aria-controls="p1"><span class="icon-disk"><img src="assets/brand/programs/learn.svg" alt=""></span><span><span class="program-title">Rebel Ranch Academy</span><span class="program-summary">Practical education for real life.</span></span><img class="expand-icon" src="assets/brand/programs/expand-chevron.svg" alt=""></button><div class="program-panel" id="p1" hidden><p>Learn real-world skills for life, independence, and everyday problem-solving.</p><a class="card-link" href="rebel-ranch-academy.html">Open the Academy →</a></div></article>
