@@ -24,6 +24,7 @@ const S = {
   programs: [], purposes: [], campaigns: [], links: [], channels: [],
   items: [], assets: [], reels: [], frames: [], history: [], outreach: [], learnings: [], activity: [], messages: [], settings: [], areas: [], ptypes: [], needs: [], templates: [],
   signed: {}, selectedReelId: null, tab: 'content', preset: 'all',
+  open: new Set(), // cards the owner has expanded; everything else shows as a one-line row
 };
 
 const $ = (id) => document.getElementById(id);
@@ -214,6 +215,15 @@ function fillFilters() {
   fillSelect($('o-category'), OUTREACH_CATEGORIES.map((s) => ({ value: s, label: s })), 'All categories');
 }
 Object.values(F).forEach((el) => el.addEventListener(el.tagName === 'INPUT' && el.type !== 'checkbox' ? 'input' : 'change', () => { S.preset = 'all'; renderContent(); }));
+// Filters live behind one "Filter" button; the badge shows how many are switched on.
+function filterEls(key) { return [...document.querySelectorAll(`#${key}-filters select, #${key}-filters input`)]; }
+function showFilterCount(key) {
+  const n = filterEls(key).filter((el) => (el.type === 'checkbox' ? el.checked : el.value && el.value !== 'all')).length;
+  $(`${key}-fcount`).textContent = n ? String(n) : '';
+}
+function clearFilters(key) { filterEls(key).forEach((el) => { if (el.type === 'checkbox') el.checked = false; else el.value = el.tagName === 'SELECT' ? 'all' : ''; }); }
+$('c-clear').onclick = () => { clearFilters('c'); renderContent(); };
+$('o-clear').onclick = () => { clearFilters('o'); renderOutreach(); };
 document.querySelectorAll('[data-preset]').forEach((b) => { b.onclick = () => { S.preset = b.dataset.preset; renderContent(); }; });
 
 function presetMatch(i) {
@@ -243,6 +253,7 @@ function filteredItems() {
 
 function renderContent() {
   document.querySelectorAll('[data-preset]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.preset === S.preset)));
+  showFilterCount('c');
   const list = filteredItems(); const cards = $('cards'); cards.replaceChildren();
   $('c-count').textContent = `${list.length} of ${S.items.length} posts`;
   if (!list.length) { cards.innerHTML = '<div class="empty">Nothing matches. Change the filters or add new content.</div>'; renderReels(); return; }
@@ -251,33 +262,73 @@ function renderContent() {
 }
 
 function chip(text, cls = '') { return text ? `<span class="chip ${cls}">${esc(text)}</span>` : ''; }
+
+// A card shows as one quiet row (title, status, one line of context, one next-step button).
+// Clicking the row opens the full details and every action; clicking again closes it.
+function collapsible(card, key, rowHtml, detailHtml) {
+  const open = S.open.has(key);
+  card.classList.add('fold'); card.classList.toggle('open', open);
+  card.innerHTML = `<div class="row-head" role="button" tabindex="0" aria-expanded="${open}">${rowHtml}<span class="chev" aria-hidden="true">▾</span></div><div class="fold-body"${open ? '' : ' hidden'}>${detailHtml}</div>`;
+  const head = card.querySelector('.row-head'); const body = card.querySelector('.fold-body');
+  const toggle = () => { const now = !S.open.has(key); if (now) S.open.add(key); else S.open.delete(key); card.classList.toggle('open', now); body.hidden = !now; head.setAttribute('aria-expanded', String(now)); };
+  head.onclick = (e) => { if (!e.target.closest('button, a')) toggle(); };
+  head.onkeydown = (e) => { if ((e.key === 'Enter' || e.key === ' ') && e.target === head) { e.preventDefault(); toggle(); } };
+}
+function rowHtml({ thumb = '', title, status, line, next = '' }) {
+  return `${thumb}<div class="row-main"><h2>${esc(title)}</h2><div class="row-line"><span class="row-status">${esc(status)}</span>${line ? ` • ${esc(line)}` : ''}</div></div>${next}`;
+}
+// An image request puts the post in ChatGPT's "Needs an image" queue (ChatGPT makes all images).
+function imageRequested(i) { return i.assigned_to === 'ChatGPT' && ['Prompt Needed', 'Ready for Image', 'Generating', 'Revision Needed'].includes(i.image_status); }
+function openImageRequest(i) {
+  openForm({ title: `Ask for an image — ${i.title}`, saveLabel: 'Send to ChatGPT’s queue',
+    fields: [{ key: 'image_prompt', label: 'What should the image show? (the current idea is filled in — change it or leave it)', type: 'textarea', rows: 5 }],
+    values: { image_prompt: i.image_prompt || '' },
+    onSave: async (v) => {
+      const prompt = (v.image_prompt || '').trim();
+      const stamp = `Owner asked for an image ${todayStr()}.`;
+      await patchItem(i, { image_needed: true, image_prompt: prompt || null, image_status: prompt ? 'Ready for Image' : 'Prompt Needed', assigned_to: 'ChatGPT', notes: [i.notes, stamp].filter(Boolean).join('\n') }, 'image requested from ChatGPT');
+    } });
+}
+// The single most useful thing to do with a post right now.
+function itemNextStep(i, url) {
+  if (i.is_paused) return ['pause', 'Resume'];
+  if (i.status === 'Posted' || i.status === 'Archived' || i.status === 'Rejected') return null;
+  if (!['Approved', 'Scheduled'].includes(i.status)) return ['approve', 'Approve'];
+  if (i.image_needed && !url && i.image_status !== 'Approved') return imageRequested(i) ? null : ['askimg', 'Ask for image'];
+  return ['copy', 'Copy post'];
+}
+
 function itemCard(i) {
   const a = mainAsset(i.id); const url = assetUrl(a); const n = itemAssets(i.id).length;
   const chans = (i.channel_ids || []).map((id) => nameOf(S.channels, id)).filter(Boolean);
   const card = document.createElement('article'); card.className = `card${i.is_paused ? ' paused' : ''}`;
-  card.innerHTML = `<div class="visual">${url ? `<img src="${esc(url)}" alt="${esc(a.alt_text || i.title)}" loading="lazy">` : `<div class="visual-empty"><strong>${i.image_needed ? 'No image yet' : 'Text-only post'}</strong>${i.image_needed ? esc(i.image_status) : ''}</div>`}<span class="status-tag">${esc(i.is_paused ? 'Paused' : i.status)}</span>${n > 1 ? `<span class="count-tag">${n} images</span>` : ''}</div>
-  <div class="card-body"><h2>${esc(i.title)}</h2><div class="asset-id">${esc(i.id)}${i.scheduled_for ? ` • 📅 ${esc(fmtDate(i.scheduled_for))}` : ''}</div>
-  <div class="chips">${chip(i.program)}${chip(nameOf(S.purposes, i.purpose_id), 'alt')}${chip(i.campaign !== 'General' ? i.campaign : '', 'soft')}${chip(`Image: ${i.image_status}`, i.image_status === 'Approved' || i.image_status === 'Not Needed' ? 'ok' : 'warn')}${i.assigned_to !== 'Unassigned' ? chip(`Assigned: ${i.assigned_to}`, 'soft') : ''}${readyToPost(i) ? chip('Ready to post', 'ok') : ''}</div>
+  const next = itemNextStep(i, url);
+  const line = i.scheduled_for ? `📅 ${fmtDate(i.scheduled_for)}` : readyToPost(i) ? 'Ready to post' : imageRequested(i) ? 'Image requested from ChatGPT' : (i.image_needed && i.image_status !== 'Approved' ? `Image: ${i.image_status}` : i.program);
+  const thumb = `<div class="row-thumb">${url ? `<img src="${esc(url)}" alt="" loading="lazy">` : `<span>${i.image_needed ? 'No image' : 'Text'}</span>`}</div>`;
+  const more = [
+    ['edit', 'Edit'], ['schedule', 'Schedule'], ['posted', 'Mark posted'],
+    !url || i.image_status !== 'Approved' ? ['askimg', imageRequested(i) ? 'Change image request' : 'Ask for image'] : null, ['upload', 'Upload image'],
+    i.image_prompt ? ['prompt', 'Copy image prompt'] : null, ['dup', 'Duplicate'], ['reel', 'Add to reel'],
+    ['pause', i.is_paused ? 'Resume' : 'Pause'],
+  ].filter((x) => x && x[0] !== next?.[0]);
+  collapsible(card, `c:${i.id}`,
+    rowHtml({ thumb, title: i.title, status: i.is_paused ? 'Paused' : i.status, line, next: next ? `<button class="button small primary row-next" data-a="${next[0]}">${next[1]}</button>` : '' }),
+    `<div class="visual">${url ? `<img src="${esc(url)}" alt="${esc(a.alt_text || i.title)}" loading="lazy">` : `<div class="visual-empty"><strong>${i.image_needed ? 'No image yet' : 'Text-only post'}</strong>${i.image_needed ? esc(i.image_status) : ''}</div>`}${n > 1 ? `<span class="count-tag">${n} images</span>` : ''}</div>
+  <div class="card-body"><div class="asset-id">${esc(i.id)}</div>
+  <div class="chips">${chip(i.program)}${chip(nameOf(S.purposes, i.purpose_id), 'alt')}${chip(i.campaign !== 'General' ? i.campaign : '', 'soft')}${chip(`Image: ${i.image_status}`, i.image_status === 'Approved' || i.image_status === 'Not Needed' ? 'ok' : 'warn')}${i.assigned_to !== 'Unassigned' ? chip(`Assigned: ${i.assigned_to}`, 'soft') : ''}</div>
   <div class="copy"><h3>Post text</h3><p class="caption">${esc(postText(i) || '—')}</p></div>
-  ${i.image_needed && i.image_prompt && i.image_status !== 'Approved' ? `<div class="copy"><h3>Image prompt for ChatGPT</h3><p class="caption prompt">${esc(i.image_prompt)}</p></div>` : ''}
+  ${i.image_needed && i.image_prompt && i.image_status !== 'Approved' ? `<details class="copy"><summary>Image prompt for ChatGPT</summary><p class="caption prompt">${esc(i.image_prompt)}</p></details>` : ''}
   <div class="meta"><div><strong>Channels</strong><span>${esc(chans.join(', ') || 'None picked yet')}</span></div><div><strong>Call to action</strong><span>${esc(i.cta || '—')}</span></div></div>
   <div class="actions">
-    <button class="button small primary" data-a="copy">Copy post</button>
+    ${next?.[0] !== 'copy' ? '<button class="button small" data-a="copy">Copy post</button>' : ''}
     ${url ? `<a class="button small" href="${esc(url)}" download target="_blank" rel="noopener">Open image</a>` : ''}
-    ${i.image_prompt ? '<button class="button small" data-a="prompt">Copy image prompt</button>' : ''}
-    <button class="button small" data-a="upload">Upload image</button>
-    <button class="button small" data-a="edit">Edit</button>
-    ${i.status !== 'Approved' && i.status !== 'Posted' ? '<button class="button small" data-a="approve">Approve</button>' : ''}
-    <button class="button small" data-a="schedule">Schedule</button>
-    <button class="button small" data-a="posted">Mark posted</button>
-    <button class="button small" data-a="pause">${i.is_paused ? 'Resume' : 'Pause'}</button>
-    <button class="button small" data-a="dup">Duplicate</button>
-    <button class="button small" data-a="reel">Add to reel</button>
-  </div></div>`;
-  const on = (a, fn) => { const b = card.querySelector(`[data-a="${a}"]`); if (b) b.onclick = fn; };
+    <details class="more"><summary class="button small">More actions</summary><div class="more-list">${more.map(([k, label]) => `<button class="button small" data-a="${k}">${label}</button>`).join('')}</div></details>
+  </div></div>`);
+  const on = (a, fn) => card.querySelectorAll(`[data-a="${a}"]`).forEach((b) => { b.onclick = fn; });
   on('copy', async () => { await navigator.clipboard.writeText(postText(i)); msg(`${i.id} post text copied.`, 'success'); });
   on('prompt', async () => { await navigator.clipboard.writeText(i.image_prompt); msg('Image prompt copied — paste it into ChatGPT.', 'success'); });
   on('upload', () => pickUpload(i));
+  on('askimg', () => openImageRequest(i));
   on('edit', () => openItemForm(i));
   on('approve', () => patchItem(i, { status: 'Approved' }, 'approved'));
   on('schedule', () => openScheduleForm(i));
@@ -486,7 +537,7 @@ function renderSchedule() {
   const row = (i) => {
     const a = mainAsset(i.id); const url = assetUrl(a); const chans = (i.channel_ids || []).map((id) => nameOf(S.channels, id)).filter(Boolean).join(', ');
     const warn = []; if (!readyToPost(i)) warn.push(i.is_paused ? 'Paused' : i.status !== 'Approved' && i.status !== 'Scheduled' ? `Status: ${i.status}` : ''); if (!['Approved', 'Not Needed'].includes(i.image_status)) warn.push(`Image: ${i.image_status}`);
-    return `<div class="sched-row" data-id="${esc(i.id)}"><div class="sched-time">${i.scheduled_for ? esc(new Date(i.scheduled_for).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })) : '—'}</div>${url ? `<img src="${esc(url)}" alt="">` : '<div class="thumb-empty">No image</div>'}<div class="sched-main"><strong>${esc(i.title)}</strong><small>${esc(i.id)} • ${esc(i.program)} • ${esc(chans || 'no channel picked')}${i.assigned_to !== 'Unassigned' ? ` • ${esc(i.assigned_to)}` : ''}</small>${warn.filter(Boolean).length ? `<small class="warn-text">⚠ ${esc(warn.filter(Boolean).join(' • '))}</small>` : ''}</div><div class="actions"><button class="button small primary" data-a="copy">Copy post</button>${url ? `<a class="button small" href="${esc(url)}" target="_blank" rel="noopener" download>Image</a>` : ''}<button class="button small" data-a="posted">Mark posted</button><button class="button small" data-a="edit">Edit</button></div></div>`;
+    return `<div class="sched-row" data-id="${esc(i.id)}"><div class="sched-time">${i.scheduled_for ? esc(new Date(i.scheduled_for).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })) : '—'}</div>${url ? `<img src="${esc(url)}" alt="">` : '<div class="thumb-empty">No image</div>'}<div class="sched-main"><strong>${esc(i.title)}</strong><small>${esc(i.id)} • ${esc(i.program)} • ${esc(chans || 'no channel picked')}${i.assigned_to !== 'Unassigned' ? ` • ${esc(i.assigned_to)}` : ''}</small>${warn.filter(Boolean).length ? `<small class="warn-text">⚠ ${esc(warn.filter(Boolean).join(' • '))}</small>` : ''}</div><div class="actions"><button class="button small primary" data-a="copy">Copy post</button>${url ? `<a class="button small" href="${esc(url)}" target="_blank" rel="noopener" download>Open image</a>` : imageRequested(i) ? '<span class="muted small-note">Image requested</span>' : '<button class="button small" data-a="askimg">Ask for image</button>'}<button class="button small" data-a="posted">Mark posted</button><button class="button small" data-a="edit">Edit</button></div></div>`;
   };
   el.innerHTML = (Object.keys(groups).length ? Object.entries(groups).map(([k, list]) => `<section class="panel"><h2 class="day">${esc(k)}</h2>${list.map(row).join('')}</section>`).join('') : '<section class="panel"><div class="empty">Nothing scheduled yet. Use "Schedule" on a post.</div></section>')
     + `<section class="panel"><h2 class="day">Approved and ready, but not scheduled (${unscheduled.length})</h2>${unscheduled.map(row).join('') || '<div class="empty">None.</div>'}</section>`;
@@ -495,6 +546,7 @@ function renderSchedule() {
     r.querySelector('[data-a="copy"]').onclick = async () => { await navigator.clipboard.writeText(postText(i)); msg(`${i.id} post text copied.`, 'success'); };
     r.querySelector('[data-a="posted"]').onclick = () => openPostedForm(i);
     r.querySelector('[data-a="edit"]').onclick = () => openItemForm(i);
+    const ask = r.querySelector('[data-a="askimg"]'); if (ask) ask.onclick = () => openImageRequest(i);
   });
 }
 
@@ -636,6 +688,7 @@ function messageHtml(m) {
 
 function renderOutreach() {
   document.querySelectorAll('[data-opreset]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.opreset === S.oPreset)));
+  showFilterCount('o');
   const q = $('o-search').value.trim().toLowerCase(); const pre = OUTREACH_PRESETS[S.oPreset] || OUTREACH_PRESETS.all;
   const list = S.outreach.filter((o) => ($('o-paused').checked || !o.is_paused) && pre(o)
     && (S.oPreset !== 'all' || !['Rejected', 'Declined', 'Archived'].includes(o.status) || $('o-status').value !== 'all')
@@ -651,15 +704,24 @@ function renderOutreach() {
     const thread = msgsFor(o.id);
     const card = document.createElement('article'); card.className = `card o-card${o.is_paused ? ' paused' : ''}`;
     const stars = o.fit_score ? `Fit ${o.fit_score}/5` : '';
-    card.innerHTML = `<div class="card-body"><div class="o-head"><h2>${esc(o.target_name)}</h2><span class="status-tag static">${esc(o.is_paused ? 'Paused' : o.status)}</span></div><div class="asset-id">${esc(o.ref)} • ${esc(o.category)}${o.county ? ` • ${esc(o.county)}` : ''}</div>
-      <div class="chips">${chip(nameOf(S.programs, o.program_id))}${chip(nameOf(S.purposes, o.purpose_id), 'alt')}${chip(stars, o.fit_score >= 4 ? 'ok' : 'soft')}${o.follow_up_on ? chip(`Follow up ${o.follow_up_on}`, o.follow_up_on <= today ? 'warn' : 'soft') : ''}${o.last_contact_at ? chip(`Last sent ${new Date(o.last_contact_at).toLocaleDateString()}`, 'soft') : ''}${o.last_inbound_at ? chip(`Last reply ${new Date(o.last_inbound_at).toLocaleDateString()}`, 'ok') : ''}${o.found_by ? chip(`Found by ${o.found_by}`, 'soft') : ''}</div>
-      ${o.fit_reason ? `<div class="copy"><h3>Why they fit</h3><p>${esc(o.fit_reason)}</p></div>` : ''}
-      <div class="meta"><div><strong>How to reach</strong><span>${esc([o.contact_method, o.contact_name, o.contact_email, o.contact_phone].filter(Boolean).join(' • ') || 'Needs lookup')}</span></div><div><strong>Ask / offer</strong><span>${esc(o.offer_ask || '—')}</span></div></div>
-      ${o.notes ? `<div class="copy"><h3>Notes</h3><p>${esc(o.notes)}</p></div>` : ''}
-      ${o.sources ? `<details class="copy"><summary>Research sources</summary><p class="caption">${esc(o.sources)}</p></details>` : ''}
-      <div class="actions">${o.status === 'Prospect' ? '<button class="button small primary" data-a="approve-prospect">Approve prospect</button><button class="button small danger" data-a="decline-prospect">Not a fit</button>' : ''}<button class="button small" data-a="write">Write message</button><button class="button small" data-a="reply">Log their reply</button>${o.website ? `<a class="button small" href="${esc(o.website)}" target="_blank" rel="noopener">Their page</a>` : ''}<button class="button small" data-a="edit">Edit</button><button class="button small" data-a="pause">${o.is_paused ? 'Resume' : 'Pause'}</button></div>
-      <details class="thread"${thread.some((m) => ['Suggested', 'Needs Edit', 'Approved'].includes(m.status) || m.status === 'Received') ? ' open' : ''}><summary>Conversation (${thread.length})</summary>${thread.map(messageHtml).join('') || '<div class="empty">No messages yet.</div>'}</details></div>`;
+    const waiting = thread.find((m) => m.direction === 'Outbound' && ['Suggested', 'Needs Edit'].includes(m.status));
+    const ready = thread.find((m) => m.direction === 'Outbound' && m.status === 'Approved');
+    // One next step in the row; opening the card shows the rest.
+    const next = o.is_paused ? '' : o.status === 'Prospect' ? '<button class="button small primary row-next" data-a="open">Review prospect</button>'
+      : waiting ? '<button class="button small primary row-next" data-a="open">Review message</button>'
+      : ready ? '<button class="button small primary row-next" data-a="open">Ready to send</button>' : '';
+    const line = [stars, o.target_type, o.county, o.follow_up_on && o.follow_up_on <= today ? 'Follow-up due' : ''].filter(Boolean).join(' • ');
+    collapsible(card, `o:${o.id}`,
+      rowHtml({ title: o.target_name, status: o.is_paused ? 'Paused' : o.status, line, next }),
+      `<div class="card-body"><div class="asset-id">${esc(o.ref)} • ${esc(o.category)}</div>
+      <div class="chips">${chip(nameOf(S.programs, o.program_id))}${o.follow_up_on ? chip(`Follow up ${o.follow_up_on}`, o.follow_up_on <= today ? 'warn' : 'soft') : ''}${o.last_contact_at ? chip(`Last sent ${new Date(o.last_contact_at).toLocaleDateString()}`, 'soft') : ''}${o.last_inbound_at ? chip(`Last reply ${new Date(o.last_inbound_at).toLocaleDateString()}`, 'ok') : ''}</div>
+      <div class="meta"><div><strong>How to reach</strong><span>${esc([o.contact_name, o.contact_email, o.contact_phone].filter(Boolean).join(' • ') || 'Needs lookup')}</span></div><div><strong>What we'd ask for</strong><span>${esc(o.offer_ask || '—')}</span></div></div>
+      ${o.status === 'Prospect' ? '<div class="actions"><button class="button small primary" data-a="approve-prospect">Approve prospect</button><button class="button small danger" data-a="decline-prospect">Not a fit</button></div>' : ''}
+      ${thread.length ? `<details class="thread"${waiting || ready || thread.some((m) => m.status === 'Received') ? ' open' : ''}><summary>Conversation (${thread.length})</summary>${thread.map(messageHtml).join('')}</details>` : ''}
+      ${o.fit_reason || o.notes || o.sources ? `<details class="copy extra"><summary>Why they fit, notes &amp; sources</summary>${o.fit_reason ? `<p>${esc(o.fit_reason)}</p>` : ''}${o.notes ? `<p><strong>Notes:</strong> ${esc(o.notes)}</p>` : ''}${o.sources ? `<p class="caption">${esc(o.sources)}</p>` : ''}</details>` : ''}
+      <div class="actions"><details class="more"><summary class="button small">More actions</summary><div class="more-list"><button class="button small" data-a="write">Write message</button><button class="button small" data-a="reply">Log their reply</button>${o.website ? `<a class="button small" href="${esc(o.website)}" target="_blank" rel="noopener">Their page</a>` : ''}<button class="button small" data-a="edit">Edit</button><button class="button small" data-a="pause">${o.is_paused ? 'Resume' : 'Pause'}</button></div></details></div></div>`);
     const on = (a, fn) => { const b = card.querySelector(`[data-a="${a}"]`); if (b) b.onclick = fn; };
+    on('open', () => { if (!S.open.has(`o:${o.id}`)) card.querySelector('.row-head').click(); });
     const patch = async (p, label) => { try { await saveRow('social_outreach', 'outreach', o.id, p, label); renderOutreach(); renderCounts(); msg(`${o.ref} ${label}.`, 'success'); } catch (e) { msg(friendlyError(e), 'error'); } };
     on('approve-prospect', () => patch({ status: 'Prospect Approved' }, 'prospect approved — the agent will draft a first message'));
     on('decline-prospect', () => openForm({ title: `Not a fit — ${o.target_name}`, saveLabel: 'Save', fields: [{ key: 'reason', label: 'Why not? (helps the agent learn)', type: 'textarea', rows: 3 }], values: {},
