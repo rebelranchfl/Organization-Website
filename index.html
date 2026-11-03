@@ -31,6 +31,17 @@ dialog{width:min(620px,92vw);max-height:90vh;padding:0;border:1px solid var(--bo
 .meaning-copy{max-width:790px}
 .meaning-copy h3{line-height:1.35}
 .home-hero-logo{width:min(100%,360px)}
+.home-hero > .wrap{display:grid;justify-items:center;align-items:center;text-align:center;gap:clamp(1.5rem,4vw,3rem)}
+.home-hero h1,.home-hero .home-hero-logo{margin:0}
+.home-hero h1,.meaning-copy h2{color:var(--gold-bright)}
+.meaning-copy h3,.meaning-copy p{color:#fff}
+.home-hero .button-row{justify-content:center}
+@media(min-width:56rem){
+.home-hero > .wrap{grid-template-columns:minmax(0,3fr) minmax(0,2fr)}
+.home-hero h1{grid-column:1/-1}
+.home-hero .hero-copy{grid-area:2/1}
+.home-hero .home-hero-logo{grid-area:2/2}
+}
 </style>
 </head>
 <body class="rrm-phase-one"><main>
@@ -45,7 +56,7 @@ dialog{width:min(620px,92vw);max-height:90vh;padding:0;border:1px solid var(--bo
 <section class="section meaning" id="responsible-rebellion">
 <div class="wrap meaning-copy">
 <h2>What the Hell Is Responsible Rebellion?</h2>
-<h3>Question what you’re told. Do your own damn research. Take responsibility for what you do next.</h3>
+<h3>Be Different. Be You. Be a Rebel.</h3>
 <p>We were done working 40-plus hours a week and still coming up short on rent, food, and gas. We wanted fresh food and meat without wondering what chemicals or toxins came with it. We wanted our kids educated, not indoctrinated. And we wanted a life worth living, one we didn’t need drugs or alcohol to escape from.</p>
 <p>We reconnected with our faith, our families, and nature. We questioned the systems we’d been told to live by and decided to make our lives work for us. We started growing food, raising animals, and sharing what we learned.</p>
 <p>That’s Responsible Rebellion. Now we’re building a community for people from all walks of life who want more say in what they eat, what their kids learn, and how they spend their lives.</p>
