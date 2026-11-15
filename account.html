@@ -945,6 +945,11 @@
           </a>
         </div>
 
+        <div id="research-admin-link" hidden style="margin:24px 0;padding:20px;border:1px solid #bca066;background:#274d2c;border-radius:8px">
+          <h3>Administrator · Legal Research Center</h3>
+          <p>Private research library, organizational assessments and reports.</p>
+          <a href="research-center.html" style="display:inline-block;padding:12px 16px;background:#7a1e1e;color:#fff;border-radius:4px;text-decoration:none;font-weight:bold">Open Legal Research Center</a>
+        </div>
         <div class="dashboard-actions">
           <button
             id="signout-button"
@@ -1142,6 +1147,8 @@
             ? "Account access: Creation Station member"
             : "Account access: signed-in nonmember";
 
+      const existingResearchLink = document.getElementById("research-admin-link");
+      if (existingResearchLink) existingResearchLink.hidden = !isAdmin;
       showDashboard();
     }
 
