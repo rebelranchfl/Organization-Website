@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Research Center | Rebel Ranch Back Office</title>
+<style>
+:root{color-scheme:dark;font-family:Arial,Helvetica,sans-serif;background:#132b1a;color:#f5f5ef}*{box-sizing:border-box}body{margin:0}header{background:#701f2b;padding:20px max(18px,5vw);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}header a{color:white}main{max-width:1160px;margin:auto;padding:28px 18px 70px}h1{margin:0;font-size:1.7rem}h2{margin:0 0 14px}p{line-height:1.55}.muted{color:#bdc9c0}.layout{display:grid;grid-template-columns:230px 1fr;gap:22px}nav{display:grid;align-content:start;gap:8px}nav button{width:100%;text-align:left}.panel{border:1px solid #456b50;background:#203e29;padding:22px;border-radius:8px;margin-bottom:18px}button,input,textarea,select{font:inherit}button{border:1px solid #bca066;background:#38553d;color:white;padding:12px 14px;cursor:pointer;border-radius:5px}button:hover,button:focus{background:#536e50}button[aria-current="page"]{background:#792d34}input,textarea,select{display:block;width:100%;padding:12px;background:#132b1a;border:1px solid #719277;color:white;border-radius:4px;margin:7px 0 15px}label{display:block;font-weight:bold}.item{border-top:1px solid #52715a;padding:14px 0}.item a{color:#f0cf80}.item button{margin-top:8px}.hidden{display:none!important}.error{color:#ffb9b9}.status{min-height:1.5em}.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#112519;padding:15px;border:1px solid #4b6c50}small{color:#cad7cb}@media(max-width:750px){.layout,.two{grid-template-columns:1fr}nav{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style></head><body>
+<header><div><small>REBEL RANCH · PRIVATE BACK OFFICE</small><h1>Legal Research &amp; Organizational Analysis</h1></div><a href="account.html">Back to My Account</a></header>
+<main><p id="status" class="status" role="status">Checking administrator access…</p>
+<div id="workspace" class="layout hidden">
+<nav aria-label="Research tools">
+<button data-view="library" aria-current="page">Research Library</button>
+<button data-view="documents">Documents</button>
+<button data-view="assessments">Assessments</button>
+<button data-view="reports">Reports</button>
+</nav>
+<div>
+<section id="library" class="panel"><h2>Research Library</h2><label for="search">Search topics and legal authorities</label><input id="search" type="search" placeholder="Search titles, citations, or notes"><div id="library-list"></div><div id="topic-report"></div></section>
+<section id="documents" class="panel hidden"><h2>Documents</h2><p>Document records and uploaded originals are managed privately. Document processing is not yet enabled on this screen.</p><div id="document-list"></div></section>
+<section id="assessments" class="panel hidden"><h2>Organizational Assessments</h2><form id="assessment-form"><label for="assessment-title">Assessment title</label><input id="assessment-title" required minlength="3" maxlength="200" placeholder="Proposed community workshop"><label for="jurisdiction">Jurisdiction</label><input id="jurisdiction" value="Florida"><label for="facts">Activity facts</label><textarea id="facts" rows="7" required placeholder="Describe the activity, operator, participants, location, money, and documents."></textarea><button type="submit">Save Assessment</button></form><div id="assessment-list"></div></section>
+<section id="reports" class="panel hidden"><h2>Research Reports</h2><p>Select an assessment below to view its stored report, issues and evidence. Reports do not constitute legal clearance.</p><div id="report-list"></div><div id="report-output"></div></section>
+</div></div></main>
+<script type="module">
+import {supabase,SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY} from "./assets/js/supabase-client.js";
+const $=id=>document.getElementById(id),status=$("status");let state={topics:[],sources:[],assessments:[],organizations:[]};
+function node(tag,txt){const e=document.createElement(tag);e.textContent=String(txt??"");return e}
+function showError(e){status.textContent=String(e?.message||e);status.className="status error"}
+async function api(action,body={}){const {data:{session},error}=await supabase.auth.getSession();if(error||!session)throw Error("Sign in required");const r=await fetch(SUPABASE_URL+"/functions/v1/church-research-admin",{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+session.access_token,"apikey":SUPABASE_PUBLISHABLE_KEY},body:JSON.stringify({action,...body})});const data=await r.json();if(!r.ok)throw Error(data.error||"Request failed");return data}
+function item(parent,title,subtitle,callback){const div=node("div","");div.className="item";div.append(node("strong",title));if(subtitle)div.append(node("p",subtitle));if(callback){const b=node("button","Open");b.type="button";b.addEventListener("click",callback);div.append(b)}parent.append(div)}
+function renderLibrary(){const target=$("library-list");target.replaceChildren();const q=$("search").value.toLowerCase();for(const t of state.topics.filter(t=>(t.title+" "+(t.study_notes||"")).toLowerCase().includes(q))){item(target,t.title,t.scope||"",async()=>{try{const d=await api("topic",{id:t.id});$("topic-report").replaceChildren();const h=node("h2",t.title),pre=node("pre",JSON.stringify(d.report,null,2));$("topic-report").append(h,pre)}catch(e){showError(e)}})}for(const s of state.sources.filter(s=>(s.title+" "+s.citation+" "+s.notes).toLowerCase().includes(q))){const d=node("div","");d.className="item";d.append(node("strong",s.title),node("p",(s.citation||"")+" · Verification: "+(s.verification_status||"unverified")));if(s.url){const a=node("a","Open original source");a.href=s.url;a.target="_blank";a.rel="noopener noreferrer";d.append(a)}target.append(d)}}
+function renderAssessments(){for(const id of ["assessment-list","report-list"])$(id).replaceChildren();for(const a of state.assessments){item($("assessment-list"),a.title,a.assessment_status||"",()=>openReport(a.id));item($("report-list"),a.title,a.assessment_status||"",()=>openReport(a.id))}}
+async function openReport(id){try{const d=await api("assessment",{id});$("report-output").replaceChildren(node("pre",JSON.stringify(d.report,null,2)));view("reports")}catch(e){showError(e)}}
+function view(name){for(const s of ["library","documents","assessments","reports"])$(s).classList.toggle("hidden",s!==name);for(const b of document.querySelectorAll("nav button")){if(b.dataset.view===name)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")}}
+document.querySelectorAll("nav button").forEach(b=>b.addEventListener("click",()=>view(b.dataset.view)));
+$("search").addEventListener("input",renderLibrary);
+$("assessment-form").addEventListener("submit",async e=>{e.preventDefault();try{const facts={description:$("facts").value.trim()};await api("create_assessment",{title:$("assessment-title").value.trim(),jurisdiction:$("jurisdiction").value.trim(),facts});$("assessment-form").reset();await load();view("assessments");status.textContent="Assessment saved"}catch(err){showError(err)}});
+async function load(){const d=await api("overview");state=d;renderLibrary();renderAssessments();status.textContent="Administrator access confirmed"}
+(async()=>{try{const {data:{session}}=await supabase.auth.getSession();if(!session){location.replace("account.html?return="+encodeURIComponent("research-center.html"));return}await load();$("workspace").classList.remove("hidden")}catch(e){showError(e)}})();
+</script></body></html>
