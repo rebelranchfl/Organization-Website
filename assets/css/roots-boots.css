@@ -16,7 +16,6 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rb-button{transition:none}}
 
 .rb-involvement .rb-proof { margin: 0 0 24px; }
-.rb-choices .rb-text-choice { display: flex; align-items: center; }
 .rb-learning-links { display: flex; flex-wrap: wrap; gap: 8px 16px; }
 .rb-learning-links a { text-decoration: underline; text-underline-offset: .2em; }
 .rb-learning-dialog {
@@ -35,8 +34,6 @@
 .rb-learning-dialog h2 { margin: 0 0 12px; font-size: clamp(1.2rem, 4vw, 1.55rem); }
 .rb-learning-dialog details { border-top: 1px solid var(--rb-line); padding: 9px 0; }
 .rb-learning-dialog summary { cursor: pointer; font-weight: 600; }
-.rb-learning-photos { margin: 0; display: grid; grid-template-rows: repeat(2, minmax(0, 1fr)); }
-.rb-learning-photos img { display: block; min-height: 0; }
 .rb-learning-dialog { border-top: 6px solid var(--rb-green); box-shadow: var(--rb-shadow); }
 .rb-learning-dialog h2, .rb-tuition-options h3 { font-family: Georgia, "Times New Roman", serif; }
 .rb-learning-dialog button { background: var(--rb-deep); color: white; border-color: var(--rb-deep); border-radius: 3px; }
@@ -49,10 +46,6 @@
 .rb-tuition-options dl { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; }
 .rb-tuition-options dt { font-size: .82rem; }
 .rb-tuition-options dd { margin: 0; font-weight: 700; color: var(--rb-deep); }
-@media (max-width: 700px) {
-  .rb-learning-photos { grid-template: auto / repeat(2, minmax(0, 1fr)); }
-  .rb-learning-photos img { height: auto; aspect-ratio: 4 / 3; }
-}
 @media (max-width: 480px) {
   .rb-tuition-options { grid-template-columns: 1fr; }
 }
