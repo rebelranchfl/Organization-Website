@@ -14,3 +14,45 @@
 @media(max-width:700px){.rb-hero-panel{width:auto;margin:0;padding:30px 22px 36px;border:0;border-radius:0;background:var(--rb-paper);box-shadow:none;backdrop-filter:none}.rb-hero p{margin:0 auto 24px}}
 @media(max-width:700px){.rb-icon img{width:39px;height:39px}.rb-action-card h3{display:block}.rb-action-icon{width:38px;height:38px;margin-bottom:8px}.rb-action-icon img{width:30px;height:30px}.rb-proof-mark img{width:34px;height:34px}.rb-closer-icon{width:40px;height:40px;border-radius:10px}.rb-closer-icon img{width:32px;height:32px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rb-button{transition:none}}
+
+.rb-involvement .rb-proof { margin: 0 0 24px; }
+.rb-choices .rb-text-choice { display: flex; align-items: center; }
+.rb-learning-links { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.rb-learning-links a { text-decoration: underline; text-underline-offset: .2em; }
+.rb-learning-dialog {
+  width: min(640px, calc(100% - 24px));
+  max-height: 85vh;
+  overflow: auto;
+  padding: clamp(14px, 4vw, 28px);
+  background: var(--rb-paper);
+  color: var(--rb-ink);
+  border: 1px solid var(--rb-line);
+  border-radius: 6px;
+}
+.rb-learning-dialog::backdrop { background: rgb(17 43 31 / 65%); }
+.rb-learning-dialog form { float: right; margin-left: 12px; }
+.rb-learning-dialog button { font: inherit; color: inherit; background: transparent; border: 1px solid var(--rb-line); padding: 4px 9px; cursor: pointer; }
+.rb-learning-dialog h2 { margin: 0 0 12px; font-size: clamp(1.2rem, 4vw, 1.55rem); }
+.rb-learning-dialog details { border-top: 1px solid var(--rb-line); padding: 9px 0; }
+.rb-learning-dialog summary { cursor: pointer; font-weight: 600; }
+.rb-learning-photos { margin: 0; display: grid; grid-template-rows: repeat(2, minmax(0, 1fr)); }
+.rb-learning-photos img { display: block; min-height: 0; }
+.rb-learning-dialog { border-top: 6px solid var(--rb-green); box-shadow: var(--rb-shadow); }
+.rb-learning-dialog h2, .rb-tuition-options h3 { font-family: Georgia, "Times New Roman", serif; }
+.rb-learning-dialog button { background: var(--rb-deep); color: white; border-color: var(--rb-deep); border-radius: 3px; }
+.rb-learning-dialog summary { color: var(--rb-deep); padding-inline: 10px; }
+.rb-learning-dialog details[open] { background: var(--rb-paper-deep); padding-inline: 10px; }
+.rb-learning-dialog details[open] summary { padding-inline: 0; }
+.rb-tuition-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.rb-tuition-options article { background: var(--rb-paper-deep); border: 1px solid var(--rb-line); border-left: 4px solid var(--rb-green); padding: 10px 12px; }
+.rb-tuition-options h3 { margin: 0 0 8px; line-height: 1.15; font-size: 1rem; }
+.rb-tuition-options dl { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; }
+.rb-tuition-options dt { font-size: .82rem; }
+.rb-tuition-options dd { margin: 0; font-weight: 700; color: var(--rb-deep); }
+@media (max-width: 700px) {
+  .rb-learning-photos { grid-template: auto / repeat(2, minmax(0, 1fr)); }
+  .rb-learning-photos img { height: auto; aspect-ratio: 4 / 3; }
+}
+@media (max-width: 480px) {
+  .rb-tuition-options { grid-template-columns: 1fr; }
+}
