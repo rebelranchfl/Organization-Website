@@ -66,3 +66,19 @@
   font: inherit;
 }
 .rb-enrollment-form button { justify-self: start; }
+
+#rb-enrollment .rb-learning-links { margin-bottom: 1rem; }
+#rb-enrollment-calendar .cal-head { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+#rb-enrollment-calendar .cal-title { margin: 0; }
+#rb-enrollment-calendar :is(.cal-weekdays, .cal-grid) {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: .25rem;
+  text-align: center;
+  margin-top: .35rem;
+}
+#rb-enrollment-calendar .cal-day { padding: .35rem 0; }
+#rb-enrollment-calendar button:disabled,
+.rb-enrollment-form button:disabled { opacity: .5; cursor: default; }
+#rb-enrollment-calendar button[aria-pressed="true"] { background: var(--rb-rust-dark); }
+#rb-enrollment-calendar .time-list { display: flex; flex-wrap: wrap; gap: .35rem; }

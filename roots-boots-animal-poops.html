@@ -60,7 +60,7 @@
         <h2 class="rb-visually-hidden" id="involvement-title">Get involved</h2>
         <aside class="rb-proof" aria-label="How Roots, Boots and Animal Poops works"><div class="rb-proof-mark" aria-hidden="true"><img src="assets/brand/roots%20boots%20and%20animal%20poops/web/icons/practice.svg" alt=""></div><h2>We practice<br>what we preach.</h2><p>Rebel Ranch Ministries grows food, raises animals, builds systems, tests ideas, and shares what actually works. We live this every day.</p></aside>
         <div class="rb-action-grid rb-choices">
-          <article class="rb-action-card"><img src="assets/brand/roots%20boots%20and%20animal%20poops/web/homepage-concept/learn-animal-care.webp" width="720" height="540" loading="lazy" decoding="async" alt="Two young learners watch an instructor check a rabbit’s water bottle"><div><h3>Learn With Us</h3><p>Explore the workshops and four-session courses.</p><p><a class="rb-button" href="#rb-enrollment" data-rb-dialog aria-haspopup="dialog">Request Enrollment</a></p><div class="rb-learning-links"><a href="#rb-courses" data-rb-dialog aria-haspopup="dialog">Course Descriptions</a><a href="#rb-tuition" data-rb-dialog aria-haspopup="dialog">Tuition &amp; Fee Schedule</a><a href="#rb-bios" data-rb-dialog aria-haspopup="dialog">Instructor Bios</a></div></div></article>
+          <article class="rb-action-card"><img src="assets/brand/roots%20boots%20and%20animal%20poops/web/homepage-concept/learn-animal-care.webp" width="720" height="540" loading="lazy" decoding="async" alt="Two young learners watch an instructor check a rabbit’s water bottle"><div><h3>Learn With Us</h3><p>Explore the workshops and four-session courses.</p><p><a class="rb-button" href="#rb-enrollment" data-rb-dialog aria-haspopup="dialog">Request Enrollment</a></p></div></article>
           <article class="rb-action-card"><img src="assets/brand/roots%20boots%20and%20animal%20poops/web/homepage-concept/come-hang-out.jpg" width="720" height="540" decoding="async" alt="Friends sharing conversation together outdoors"><div><h3><span class="rb-action-icon" aria-hidden="true"><img src="assets/brand/roots%20boots%20and%20animal%20poops/web/icons/community.svg" alt=""></span>Visit Our Animals</h3><p>Come meet the animals and see how we care for them.</p><a class="rb-button" href="contact.html?interest=visit-our-animals">Visit Our Animals <span aria-hidden="true">→</span></a></div></article>
           <article class="rb-action-card" id="animals"><img src="assets/brand/roots%20boots%20and%20animal%20poops/web/homepage-concept/sponsor-an-animal.jpg" width="720" height="540" decoding="async" alt="Healthy hen standing in warm evening light"><div><h3><span class="rb-action-icon" aria-hidden="true"><img src="assets/brand/roots%20boots%20and%20animal%20poops/web/icons/animal-care.svg" alt=""></span>Sponsor an Animal</h3><p>Help care for an animal and support the mission of Rebel Ranch Ministries.</p><a class="rb-button" href="https://www.paypal.com/ncp/payment/9JPANPYSZ7DV4">Sponsor an Animal <span aria-hidden="true">→</span></a></div></article>
           <article class="rb-action-card"><img src="assets/brand/roots%20boots%20and%20animal%20poops/web/homepage-concept/sponsor-child-workshop.webp" width="720" height="540" loading="lazy" decoding="async" alt="A child receives a workshop ticket at check-in"><div><h3>Sponsor a Child’s Workshop</h3><p>Help cover a child’s workshop tuition.</p><a class="rb-button" href="https://www.paypal.com/ncp/payment/9JPANPYSZ7DV4">Sponsor a Child’s Workshop <span aria-hidden="true">→</span></a></div></article>
@@ -93,6 +93,7 @@
 <dialog class="rb-learning-dialog" id="rb-enrollment" aria-labelledby="rb-enrollment-title">
   <form method="dialog"><button autofocus>Close</button></form>
   <h2 id="rb-enrollment-title">Request Enrollment</h2>
+  <div class="rb-learning-links"><a href="#rb-courses" data-rb-dialog aria-haspopup="dialog">Course Descriptions</a><a href="#rb-tuition" data-rb-dialog aria-haspopup="dialog">Tuition &amp; Fee Schedule</a><a href="#rb-bios" data-rb-dialog aria-haspopup="dialog">Instructor Bios</a></div>
   <p>Tell us when you’re available between 10:00 AM and 3:00 PM Eastern, Monday through Sunday.</p>
   <form class="rb-enrollment-form" action="https://formspree.io/f/xnjrqydq" method="POST">
     <input type="hidden" name="form_type" value="RBAP Enrollment Request">
@@ -101,23 +102,25 @@
     <label>Parent or guardian name <input name="name" autocomplete="name" required></label>
     <label>Email <input name="email" type="email" autocomplete="email" required></label>
     <label>Subject and format <select name="offering" required><option value="">Select an offering</option>
-      <option>Animal Care &amp; Husbandry · Introductory workshop ($89 per student)</option>
-      <option>Animal Care &amp; Husbandry · Four-session course ($250 per student)</option>
-      <option>Growing Food: Soil, Seeds &amp; Plants · Introductory workshop ($89 per student)</option>
-      <option>Growing Food: Soil, Seeds &amp; Plants · Four-session course ($250 per student)</option>
-      <option>Soil, Water &amp; Natural Systems · Introductory workshop ($89 per student)</option>
-      <option>Soil, Water &amp; Natural Systems · Four-session course ($250 per student)</option>
-      <option>Farm to Table · Introductory workshop ($89 per student)</option>
-      <option>Farm to Table · Four-session course ($250 per student)</option>
-      <option>Hydroponics · Introductory workshop ($189 per student)</option>
-      <option>Hydroponics · Four-session course ($350 per student)</option>
-      <option>Aquaponics · Introductory workshop ($239 per student)</option>
-      <option>Aquaponics · Four-session course ($400 per student)</option>
+      <option data-event="02d63acb-48f4-4cbe-abc1-4920a5173311">Animal Care &amp; Husbandry · Introductory workshop ($89 per student)</option>
+      <option data-event="02d63acb-48f4-4cbe-abc1-4920a5173311">Animal Care &amp; Husbandry · Four-session course ($250 per student)</option>
+      <option data-event="09a7b7f0-0fdf-462e-87c8-c1c4a9111b59">Growing Food: Soil, Seeds &amp; Plants · Introductory workshop ($89 per student)</option>
+      <option data-event="09a7b7f0-0fdf-462e-87c8-c1c4a9111b59">Growing Food: Soil, Seeds &amp; Plants · Four-session course ($250 per student)</option>
+      <option data-event="2c7f585d-f84f-425b-8e32-a24e1082d3d3">Soil, Water &amp; Natural Systems · Introductory workshop ($89 per student)</option>
+      <option data-event="2c7f585d-f84f-425b-8e32-a24e1082d3d3">Soil, Water &amp; Natural Systems · Four-session course ($250 per student)</option>
+      <option data-event="b5546d7d-24ae-4f6a-89f2-eedc06c2e8e8">Farm to Table · Introductory workshop ($89 per student)</option>
+      <option data-event="b5546d7d-24ae-4f6a-89f2-eedc06c2e8e8">Farm to Table · Four-session course ($250 per student)</option>
+      <option data-event="05f2884f-a312-4f25-8d0d-3c3acc7d567f">Hydroponics · Introductory workshop ($189 per student)</option>
+      <option data-event="05f2884f-a312-4f25-8d0d-3c3acc7d567f">Hydroponics · Four-session course ($350 per student)</option>
+      <option data-event="439af823-abfd-4d1e-802d-9c1dacb74e02">Aquaponics · Introductory workshop ($239 per student)</option>
+      <option data-event="439af823-abfd-4d1e-802d-9c1dacb74e02">Aquaponics · Four-session course ($400 per student)</option>
     </select></label>
     <label>Number of students <input name="students" type="number" min="1" max="4" value="1" required></label>
-    <label>Preferred days and times <textarea name="message" rows="3" maxlength="1000" required></textarea></label>
-    <p>Send us your preferred dates and times. We’ll review availability and email you the proposed date or, for a four-session course, all four dates. Once you agree to the schedule, we’ll send your PayPal link. Your spot is reserved once we receive payment.</p>
-    <button type="submit">Send enrollment request</button>
+    <div id="rb-enrollment-calendar"></div>
+    <div id="rb-enrollment-selections" aria-live="polite"></div>
+    <input type="hidden" name="message">
+    <p>Select your preferred dates and times. We’ll review availability and email you the proposed date or, for a four-session course, all four dates. Once you agree to the schedule, we’ll send your PayPal link. Your spot is reserved once we receive payment.</p>
+    <button type="submit" disabled>Send enrollment request</button>
   </form>
 </dialog>
 <dialog class="rb-learning-dialog" id="rb-bios" aria-labelledby="rb-bios-title"><form method="dialog"><button autofocus>Close</button></form><h2 id="rb-bios-title">Instructor Bios</h2><details name="rb-instructor"><summary>Animal Care &amp; Husbandry</summary><p><strong>Brooklyn Ritchie</strong></p><p>Brooklyn&#x27;s experience in animal care began approximately 22 years ago at Safe Harbor Animal Sanctuary &amp; Hospital in Jupiter, Florida, where she managed operations involving animal rescue, boarding, and veterinary care. The nonprofit facility cared for animals in need, and her work brought her into contact with dogs, cats, rabbits, ferrets, and other rescued animals.</p><p>That early experience established a lasting interest in animal welfare, responsible care, and the operational demands of caring for animals with different needs. Since 2023, she has extended that experience into hands-on agricultural work at Rebel Ranch, raising and caring for pigs, rabbits, chickens, and ducks and developing practical feeding, habitat, and foraging systems.</p><p>Brooklyn&#x27;s instruction combines experience in rescue operations with everyday livestock management to explore animal behavior, nutrition, responsible handling, appropriate habitats, and the relationship between animal care and natural systems.</p></details>
@@ -142,5 +145,6 @@
     dialog.addEventListener('close', () => link.focus({ preventScroll: true }));
   });
   </script>
+<script type="module" src="assets/js/booking/rbap-enrollment.js"></script>
 </body>
 </html>
