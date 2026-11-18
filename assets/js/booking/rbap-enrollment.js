@@ -90,7 +90,9 @@ function showSubjects(moveFocus = false) {
 function showFormats(subject, formats) {
   resetOffering();
   const heading = el('h3', { tabindex: '-1' }, 'Choose a format');
-  const cards = formats.map(({ format, value }) => el('button', {
+  const prices = formats.map(({ format }) => Number(format.match(/\$(\d+) per student/)?.[1]));
+  const difference = prices[0] * 4 - prices[1];
+  const cards = formats.map(({ format, value }, index) => el('button', {
     type: 'button',
     onclick: () => {
       offering.value = value;
@@ -102,10 +104,15 @@ function showFormats(subject, formats) {
       summary.focus();
       summary.scrollIntoView({ block: 'nearest' });
     },
-  }, format));
+  }, format, index === 1 && difference > 0
+    ? el('strong', { style: 'display:block;margin-top:.35rem' }, '$' + difference + ' less per student than four individual workshops')
+    : null));
   steps.replaceChildren(el('p', { class: 'rb-selected-offering' }, '✓ Selected subject: ' + subject),
     heading, el('div', { class: 'rb-offering-grid' }, cards),
     el('button', { type: 'button', onclick: () => showSubjects(true) }, 'Change subject'));
+  if (prices[0] > 89) {
+    steps.append(el('p', {}, 'This compares tuition totals. The four-session course includes one take-home system per student.'));
+  }
   heading.focus();
   heading.scrollIntoView({ block: 'nearest' });
 }
