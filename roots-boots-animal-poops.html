@@ -99,8 +99,7 @@
     <input type="hidden" name="form_type" value="RBAP Enrollment Request">
     <input type="hidden" name="_subject" value="RBAP Enrollment Request">
     <input type="hidden" name="reason" value="RBAP Enrollment Request">
-    <label>Parent or guardian name <input name="name" autocomplete="name" required></label>
-    <label>Email <input name="email" type="email" autocomplete="email" required></label>
+    <div id="rb-offering-steps"></div>
     <label>Subject and format <select name="offering" required><option value="">Select an offering</option>
       <option data-event="02d63acb-48f4-4cbe-abc1-4920a5173311">Animal Care &amp; Husbandry · Introductory workshop ($89 per student)</option>
       <option data-event="02d63acb-48f4-4cbe-abc1-4920a5173311">Animal Care &amp; Husbandry · Four-session course ($250 per student)</option>
@@ -115,9 +114,11 @@
       <option data-event="439af823-abfd-4d1e-802d-9c1dacb74e02">Aquaponics · Introductory workshop ($239 per student)</option>
       <option data-event="439af823-abfd-4d1e-802d-9c1dacb74e02">Aquaponics · Four-session course ($400 per student)</option>
     </select></label>
-    <label>Number of students <input name="students" type="number" min="1" max="4" value="1" required></label>
     <div id="rb-enrollment-calendar"></div>
     <div id="rb-enrollment-selections" aria-live="polite"></div>
+    <label>Parent or guardian name <input name="name" autocomplete="name" required></label>
+    <label>Email <input name="email" type="email" autocomplete="email" required></label>
+    <label>Number of students <input name="students" type="number" min="1" max="4" value="1" required></label>
     <input type="hidden" name="message">
     <p>Select your preferred dates and times. We’ll review availability and email you the proposed date or, for a four-session course, all four dates. Once you agree to the schedule, we’ll send your PayPal link. Your spot is reserved once we receive payment.</p>
     <button type="submit" disabled>Send enrollment request</button>

@@ -82,3 +82,13 @@
 .rb-enrollment-form button:disabled { opacity: .5; cursor: default; }
 #rb-enrollment-calendar button[aria-pressed="true"] { background: var(--rb-rust-dark); }
 #rb-enrollment-calendar .time-list { display: flex; flex-wrap: wrap; gap: .35rem; }
+
+.rb-enrollment-form label[hidden] { display: none; }
+.rb-offering-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; margin-bottom: .65rem; }
+.rb-offering-card { min-width: 0; border: 1px solid var(--rb-line); border-radius: 4px; }
+#rb-offering-steps button { border-radius: 4px; text-align: left; }
+.rb-offering-card > button { width: 100%; min-height: 3rem; }
+.rb-offering-card details { padding-inline: .6rem; }
+@media (max-width: 480px) {
+  .rb-offering-grid { grid-template-columns: 1fr; }
+}

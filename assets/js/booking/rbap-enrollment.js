@@ -51,8 +51,67 @@ function loadCalendar() {
   });
 }
 
-offering.addEventListener('change', loadCalendar);
+const steps = document.querySelector('#rb-offering-steps');
+const subjects = new Map();
+for (const option of [...offering.options].slice(1)) {
+  const [subject, format] = option.textContent.split(' · ');
+  if (!subjects.has(subject)) subjects.set(subject, []);
+  subjects.get(subject).push({ format, value: option.value });
+}
+
+function subjectDetails(subject) {
+  const disclosure = el('details', {}, el('summary', {}, 'View details'));
+  for (const id of ['rb-courses', 'rb-bios']) {
+    const source = [...document.querySelectorAll('#' + id + ' details')]
+      .find((item) => item.querySelector('summary').textContent === subject);
+    if (!source) continue;
+    if (id === 'rb-bios') disclosure.append(el('h4', {}, 'Instructor Bio'));
+    for (const child of [...source.children].slice(1)) disclosure.append(child.cloneNode(true));
+  }
+  return disclosure;
+}
+
+function resetOffering() {
+  offering.value = '';
+  loadCalendar();
+}
+
+function showSubjects(moveFocus = false) {
+  resetOffering();
+  const heading = el('h3', { tabindex: '-1' }, 'Choose a subject');
+  const grid = el('div', { class: 'rb-offering-grid' });
+  for (const [subject, formats] of subjects) {
+    grid.append(el('article', { class: 'rb-offering-card' },
+      el('button', { type: 'button', onclick: () => showFormats(subject, formats) }, subject),
+      subjectDetails(subject)));
+  }
+  steps.replaceChildren(heading, grid);
+  if (moveFocus) heading.focus();
+}
+
+function showFormats(subject, formats) {
+  resetOffering();
+  const heading = el('h3', { tabindex: '-1' }, 'Choose a format for ' + subject);
+  const cards = formats.map(({ format, value }) => el('button', {
+    type: 'button',
+    onclick: () => {
+      offering.value = value;
+      loadCalendar();
+      const summary = el('h3', { tabindex: '-1' }, value);
+      steps.replaceChildren(summary, el('button', {
+        type: 'button', onclick: () => showFormats(subject, formats),
+      }, 'Change selection'));
+      summary.focus();
+    },
+  }, format));
+  steps.replaceChildren(heading, el('div', { class: 'rb-offering-grid' }, cards),
+    el('button', { type: 'button', onclick: () => showSubjects(true) }, 'Change subject'));
+  heading.focus();
+}
+
+offering.closest('label').hidden = true;
+offering.required = false;
 form.addEventListener('submit', (event) => {
-  if (!preferred.size) event.preventDefault();
+  if (!offering.value || !preferred.size) event.preventDefault();
 });
-loadCalendar();
+showSubjects();
