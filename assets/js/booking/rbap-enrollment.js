@@ -61,11 +61,9 @@ for (const option of [...offering.options].slice(1)) {
 
 function subjectDetails(subject) {
   const disclosure = el('details', {}, el('summary', {}, 'View details'));
-  for (const id of ['rb-courses', 'rb-bios']) {
-    const source = [...document.querySelectorAll('#' + id + ' details')]
-      .find((item) => item.querySelector('summary').textContent === subject);
-    if (!source) continue;
-    if (id === 'rb-bios') disclosure.append(el('h4', {}, 'Instructor Bio'));
+  const source = [...document.querySelectorAll('#rb-courses details')]
+    .find((item) => item.querySelector('summary').textContent === subject);
+  if (source) {
     for (const child of [...source.children].slice(1)) disclosure.append(child.cloneNode(true));
   }
   return disclosure;
