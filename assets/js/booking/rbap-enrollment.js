@@ -89,22 +89,25 @@ function showSubjects(moveFocus = false) {
 
 function showFormats(subject, formats) {
   resetOffering();
-  const heading = el('h3', { tabindex: '-1' }, 'Choose a format for ' + subject);
+  const heading = el('h3', { tabindex: '-1' }, 'Choose a format');
   const cards = formats.map(({ format, value }) => el('button', {
     type: 'button',
     onclick: () => {
       offering.value = value;
       loadCalendar();
-      const summary = el('h3', { tabindex: '-1' }, value);
+      const summary = el('h3', { tabindex: '-1', class: 'rb-selected-offering' }, '✓ Selected: ' + value);
       steps.replaceChildren(summary, el('button', {
         type: 'button', onclick: () => showFormats(subject, formats),
       }, 'Change selection'));
       summary.focus();
+      summary.scrollIntoView({ block: 'nearest' });
     },
   }, format));
-  steps.replaceChildren(heading, el('div', { class: 'rb-offering-grid' }, cards),
+  steps.replaceChildren(el('p', { class: 'rb-selected-offering' }, '✓ Selected subject: ' + subject),
+    heading, el('div', { class: 'rb-offering-grid' }, cards),
     el('button', { type: 'button', onclick: () => showSubjects(true) }, 'Change subject'));
   heading.focus();
+  heading.scrollIntoView({ block: 'nearest' });
 }
 
 offering.closest('label').hidden = true;

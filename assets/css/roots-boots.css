@@ -122,3 +122,14 @@
 @media (max-width: 480px) {
   .rb-offering-grid { grid-template-columns: 1fr; }
 }
+
+#rb-offering-steps .rb-selected-offering {
+  padding: .65rem .8rem;
+  border-left: 4px solid var(--rb-rust-dark);
+  border-radius: 4px;
+  background: var(--rb-paper-deep);
+  color: var(--rb-deep);
+  font-weight: 700;
+}
+#rb-offering-steps .rb-offering-grid button:hover,
+#rb-offering-steps .rb-offering-grid button:focus-visible { background: var(--rb-rust-dark); }
