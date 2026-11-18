@@ -99,8 +99,8 @@
     <input type="hidden" name="form_type" value="RBAP Enrollment Request">
     <input type="hidden" name="_subject" value="RBAP Enrollment Request">
     <input type="hidden" name="reason" value="RBAP Enrollment Request">
-    <div id="rb-offering-steps"></div>
-    <label>Subject and format <select name="offering" required><option value="">Select an offering</option>
+    <div id="rb-offering-steps"><h3 tabindex="-1">Choose a subject</h3><div class="rb-offering-grid"><article class="rb-offering-card"><button type="button" data-rb-subject>Animal Care &amp; Husbandry</button></article><article class="rb-offering-card"><button type="button" data-rb-subject>Growing Food: Soil, Seeds &amp; Plants</button></article><article class="rb-offering-card"><button type="button" data-rb-subject>Soil, Water &amp; Natural Systems</button></article><article class="rb-offering-card"><button type="button" data-rb-subject>Farm to Table</button></article><article class="rb-offering-card"><button type="button" data-rb-subject>Hydroponics</button></article><article class="rb-offering-card"><button type="button" data-rb-subject>Aquaponics</button></article></div></div>
+    <label hidden>Subject and format <select name="offering"><option value="">Select an offering</option>
       <option data-event="02d63acb-48f4-4cbe-abc1-4920a5173311">Animal Care &amp; Husbandry · Introductory workshop ($89 per student)</option>
       <option data-event="02d63acb-48f4-4cbe-abc1-4920a5173311">Animal Care &amp; Husbandry · Four-session course ($250 per student)</option>
       <option data-event="09a7b7f0-0fdf-462e-87c8-c1c4a9111b59">Growing Food: Soil, Seeds &amp; Plants · Introductory workshop ($89 per student)</option>
@@ -146,6 +146,6 @@
     dialog.addEventListener('close', () => link.focus({ preventScroll: true }));
   });
   </script>
-<script type="module" src="assets/js/booking/rbap-enrollment.js"></script>
+<script type="module" src="assets/js/booking/rbap-enrollment.js?v=subject-cards-2"></script>
 </body>
 </html>

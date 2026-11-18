@@ -114,4 +114,9 @@ offering.required = false;
 form.addEventListener('submit', (event) => {
   if (!offering.value || !preferred.size) event.preventDefault();
 });
-showSubjects();
+for (const button of steps.querySelectorAll('[data-rb-subject]')) {
+  const subject = button.textContent;
+  button.addEventListener('click', () => showFormats(subject, subjects.get(subject)));
+  button.parentElement.append(subjectDetails(subject));
+}
+loadCalendar();
